@@ -1,17 +1,15 @@
 //
 // Theme style
 //
-
 // Mode
 $mode: default;
-
 // Initialize
 @import 'init';
-
 // Components
 @import './core/components/components';
 @import 'components/components';
-
 // Layout
 @import 'layout/layout';
 @import './core/layout/docs/layout';
+//page
+@import 'page/page';

@@ -37,7 +37,7 @@ const Topbar: FC = () => {
       {/* end::User */}
 
       {/* begin::Aside Toggler */}
-      {config.header.left === 'menu' && (
+      {/* {config.header.left === 'menu' && (
         <div className='d-flex align-items-center d-lg-none ms-2 me-n3' title='Show header menu'>
           <div
             className='btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px'
@@ -46,7 +46,7 @@ const Topbar: FC = () => {
             <KTSVG path='/media/icons/duotune/text/txt001.svg' className='svg-icon-1' />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   )
 }
