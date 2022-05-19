@@ -1,16 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 
 type Props = {
   className: string
 }
 
-const TablesWidget10: React.FC<Props> = ({className}) => {
+const TablesWidget10: React.FC<Props> = ({ className }) => {
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
-      <div className='card-header border-0 pt-5'>
+      {/* <div className='card-header border-0 pt-5'>
         <h3 className='card-title align-items-start flex-column'>
           <span className='card-label fw-bolder fs-3 mb-1'>Members Statistics</span>
           <span className='text-muted mt-1 fw-bold fs-7'>Over 500 members</span>
@@ -32,8 +32,55 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
             New Member
           </a>
         </div>
+      </div> */}
+      <div className='card-header align-items-center py-5 gap-2 gap-md-5'>
+        <div className='card-title'>
+          <div className='d-flex align-items-center position-relative my-1'>
+            <span className='svg-icon svg-icon-1 position-absolute ms-4'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+              </svg>
+            </span>
+            <input type="text" data-kt-ecommerce-order-filter="search" className='form-control form-control-solid w-250px ps-14' placeholder="Search Order" />
+          </div>
+        </div>
+
+        <div className='card-toolbar flex-row-fluid justify-content-end gap-5'>
+          <div className='input-group w-250px'>
+            <input className='form-control form-control-solid rounded rounded-end-0 flatpickr-input' placeholder="Pick date range" id="kt_ecommerce_sales_flatpickr" type="hidden" />
+            <input className='form-control form-control-solid rounded rounded-end-0 form-control input' placeholder="Pick date range" type="text" />
+            <button className='btn btn-icon btn-light' id="kt_ecommerce_sales_flatpickr_clear">
+              <span className='svg-icon svg-icon-2'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"></rect>
+                  <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"></rect>
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div className='w-100 mw-150px'>
+            <select className='form-select form-select-solid select2-hidden-accessible' data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status" data-select2-id="select2-data-10-xev6" aria-hidden="true">
+              <option data-select2-id="select2-data-12-9jg9"></option>
+              <option value="all">All</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Completed">Completed</option>
+              <option value="Denied">Denied</option>
+              <option value="Expired">Expired</option>
+              <option value="Failed">Failed</option>
+              <option value="Pending">Pending</option>
+              <option value="Processing">Processing</option>
+              <option value="Refunded">Refunded</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Delivering">Delivering</option>
+            </select>
+          </div>
+          <a href="#" className='btn btn-primary'>Add Order</a>
+        </div>
       </div>
       {/* end::Header */}
+
+
       {/* begin::Body */}
       <div className='card-body py-3'>
         {/* begin::Table container */}
@@ -101,7 +148,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <div
                         className='progress-bar bg-primary'
                         role='progressbar'
-                        style={{width: '50%'}}
+                        style={{ width: '50%' }}
                       ></div>
                     </div>
                   </div>
@@ -173,7 +220,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <div
                         className='progress-bar bg-danger'
                         role='progressbar'
-                        style={{width: '70%'}}
+                        style={{ width: '70%' }}
                       ></div>
                     </div>
                   </div>
@@ -243,7 +290,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <div
                         className='progress-bar bg-success'
                         role='progressbar'
-                        style={{width: '60%'}}
+                        style={{ width: '60%' }}
                       ></div>
                     </div>
                   </div>
@@ -313,7 +360,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <div
                         className='progress-bar bg-warning'
                         role='progressbar'
-                        style={{width: '50%'}}
+                        style={{ width: '50%' }}
                       ></div>
                     </div>
                   </div>
@@ -383,7 +430,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                       <div
                         className='progress-bar bg-info'
                         role='progressbar'
-                        style={{width: '90%'}}
+                        style={{ width: '90%' }}
                       ></div>
                     </div>
                   </div>
@@ -429,4 +476,4 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
   )
 }
 
-export {TablesWidget10}
+export { TablesWidget10 }

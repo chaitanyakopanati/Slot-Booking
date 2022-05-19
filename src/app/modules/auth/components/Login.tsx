@@ -160,6 +160,7 @@ export function Login() {
           </div>
         </div>
         <input
+          placeholder='Password'
           type='password'
           autoComplete='off'
           className='form-control form-control-lg form-control-solid'

@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx'
-import {FC} from 'react'
-import {toAbsoluteUrl} from '../../../helpers'
-import {useLang, setLanguage} from '../../../i18n/Metronici18n'
+import { FC } from 'react'
+import { toAbsoluteUrl } from '../../../helpers'
+import { useLang, setLanguage } from '../../../i18n/Metronici18n'
+import { useIntl } from 'react-intl'
 
 const languages = [
   {
@@ -50,17 +51,19 @@ const languages = [
 
 const Languages: FC = () => {
   const lang = useLang()
+  const intl = useIntl()
   const currentLanguage = languages.find((x) => x.lang === lang)
   return (
     <div
-      className='menu-item px-5'
+      className='menu-item px-5 my-1'
       data-kt-menu-trigger='hover'
       data-kt-menu-placement='left-start'
       data-kt-menu-flip='bottom'
     >
       <a href='#' className='menu-link px-5'>
         <span className='menu-title position-relative'>
-          Language
+          {/* Language */}
+          {intl.formatMessage({ id: 'PROFILE.LANGUAGE' })}
           <span className='fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0'>
             {currentLanguage?.name}{' '}
             <img
@@ -83,7 +86,7 @@ const Languages: FC = () => {
           >
             <a
               href='#'
-              className={clsx('menu-link d-flex px-5', {active: l.lang === currentLanguage?.lang})}
+              className={clsx('menu-link d-flex px-5', { active: l.lang === currentLanguage?.lang })}
             >
               <span className='symbol symbol-20px me-4'>
                 <img className='rounded-1' src={l.flag} alt='metronic' />
@@ -97,4 +100,4 @@ const Languages: FC = () => {
   )
 }
 
-export {Languages}
+export { Languages }

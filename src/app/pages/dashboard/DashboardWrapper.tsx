@@ -11,15 +11,26 @@ import {
   ListsWidget4,
   ListsWidget5,
   ListsWidget6,
+  TablesWidget1,
+  TablesWidget2,
+  TablesWidget3,
+  TablesWidget4,
   TablesWidget5,
+  TablesWidget6,
+  TablesWidget7,
+  TablesWidget8,
+  TablesWidget9,
   TablesWidget10,
+  TablesWidget11,
+  TablesWidget12,
+  TablesWidget13,
   MixedWidget8,
 } from '../../../_metronic/partials/widgets'
 
 const DashboardPage: FC = () => (
   <>
     {/* begin::Row */}
-    <div className='row gy-5 g-xl-8'>
+    {/* <div className='row gy-5 g-xl-8'>
       <div className='col-xxl-4'>
         <MixedWidget2
           className='card-xl-stretch mb-xl-8'
@@ -43,22 +54,61 @@ const DashboardPage: FC = () => (
           chartHeight='175px'
         />
       </div>
-    </div>
+    </div> */}
     {/* end::Row */}
 
     {/* begin::Row */}
     <div className='row gy-5 gx-xl-8'>
-      <div className='col-xxl-4'>
+      {/* <div className='col-xxl-4'>
         <ListsWidget3 className='card-xxl-stretch mb-xl-3' />
+      </div> */}
+      {/* <div className='col-xl-12'>
+        <TablesWidget1 className='card-xxl-stretch mb-5 mb-xl-8' />
       </div>
-      <div className='col-xl-8'>
+      <div className='col-xl-12'>
+        <TablesWidget2 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget3 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget4 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget5 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget6 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget7 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget8 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget9 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
         <TablesWidget10 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget11 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div>
+      <div className='col-xl-12'>
+        <TablesWidget12 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div> */}
+      {/* <div className='col-xl-12'>
+        <TablesWidget10 className='card-xxl-stretch mb-5 mb-xl-8' />
+      </div> */}
+      <div className='col-xl-12'>
+        <TablesWidget13 className='card-xxl-stretch mb-5 mb-xl-8' />
       </div>
     </div>
     {/* end::Row */}
 
     {/* begin::Row */}
-    <div className='row gy-5 g-xl-8'>
+    {/* <div className='row gy-5 g-xl-8'>
       <div className='col-xl-4'>
         <ListsWidget2 className='card-xl-stretch mb-xl-8' />
       </div>
@@ -67,12 +117,11 @@ const DashboardPage: FC = () => (
       </div>
       <div className='col-xl-4'>
         <ListsWidget4 className='card-xl-stretch mb-5 mb-xl-8' items={5} />
-        {/* partials/widgets/lists/_widget-4', 'class' => 'card-xl-stretch mb-5 mb-xl-8', 'items' => '5' */}
       </div>
-    </div>
+    </div> */}
     {/* end::Row */}
 
-    <div className='row g-5 gx-xxl-8'>
+    {/* <div className='row g-5 gx-xxl-8'>
       <div className='col-xxl-4'>
         <MixedWidget8
           className='card-xxl-stretch mb-xl-3'
@@ -83,7 +132,7 @@ const DashboardPage: FC = () => (
       <div className='col-xxl-8'>
         <TablesWidget5 className='card-xxl-stretch mb-5 mb-xxl-8' />
       </div>
-    </div>
+    </div> */}
   </>
 )
 
