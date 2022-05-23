@@ -12,6 +12,13 @@ export function AsideMenuMain() {
     <>
 
       <AsideMenuItem
+        to='/dashboard'
+        icon='/media/icons/duotune/general/gen008.svg'
+        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
         to='/users'
         icon='/media/icons/duotune/general/gen009.svg'
         title={intl.formatMessage({ id: 'MENU.USERS' })}
@@ -19,9 +26,65 @@ export function AsideMenuMain() {
       />
 
       <AsideMenuItem
-        to='/dashboard'
-        icon='/media/icons/duotune/general/gen008.svg'
-        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
+        to='/complaint-types'
+        icon='/media/icons/duotune/general/gen010.svg'
+        title={intl.formatMessage({ id: 'MENU.COMPLAINT.TYPES' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/faults'
+        icon='/media/icons/duotune/general/gen011.svg'
+        title={intl.formatMessage({ id: 'MENU.FAULTS' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/zones'
+        icon='/media/icons/duotune/general/gen001.svg'
+        title={intl.formatMessage({ id: 'MENU.ZONES' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/main-points'
+        icon='/media/icons/duotune/general/gen002.svg'
+        title={intl.formatMessage({ id: 'MENU.MAIN.POINTS' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/companies'
+        icon='/media/icons/duotune/general/gen003.svg'
+        title={intl.formatMessage({ id: 'MENU.COMPANIES' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/banks'
+        icon='/media/icons/duotune/general/gen004.svg'
+        title={intl.formatMessage({ id: 'MENU.BANKS' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/products'
+        icon='/media/icons/duotune/general/gen005.svg'
+        title={intl.formatMessage({ id: 'MENU.PRODUCTS' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/packages'
+        icon='/media/icons/duotune/general/gen006.svg'
+        title={intl.formatMessage({ id: 'MENU.PACKAGES' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/package-categories'
+        icon='/media/icons/duotune/general/gen007.svg'
+        title={intl.formatMessage({ id: 'MENU.PACKAGE.CATEGORIES' })}
         fontIcon='bi-app-indicator'
       />
 

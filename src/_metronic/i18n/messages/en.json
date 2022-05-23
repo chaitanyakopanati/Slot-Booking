@@ -6,7 +6,6 @@
     "MENU.PAGES": "Pages",
     "MENU.FEATURES": "Features",
     "MENU.APPS": "Apps",
-    "MENU.USERS": "Users",
     "MENU.DASHBOARD": "Dashboard",
     "AUTH.GENERAL.OR": "Or",
     "AUTH.GENERAL.SUBMIT_BUTTON": "Submit",
@@ -69,5 +68,15 @@
     "ECOMMERCE.CUSTOMERS.EDIT.ADD_MESSAGE": "Customer has been created",
     "PROFILE.SETTINGS": "Profile Settings",
     "PROFILE.SIGNOUT": "Sign Out",
-    "PROFILE.LANGUAGE": "Language"
+    "PROFILE.LANGUAGE": "Language",
+    "MENU.USERS": "Users",
+    "MENU.COMPLAINT.TYPES": "Complaint Types",
+    "MENU.FAULTS": "Faults",
+    "MENU.ZONES": "Zones",
+    "MENU.MAIN.POINTS": "Main Points",
+    "MENU.COMPANIES": "Companies",
+    "MENU.BANKS": "Banks",
+    "MENU.PRODUCTS": "Products",
+    "MENU.PACKAGES": "Packages",
+    "MENU.PACKAGE.CATEGORIES": "Package Categories"
 }

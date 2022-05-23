@@ -4,7 +4,7 @@ import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 
 
 type Props = {
-  className: string
+  className: string,
 }
 
 const TablesWidget13: React.FC<Props> = ({ className }) => {
@@ -13,6 +13,7 @@ const TablesWidget13: React.FC<Props> = ({ className }) => {
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
         <div className='card-title d-flex align-items-center justify-content-between w-100 mx-0'>
+
           <div className='d-flex align-items-center position-relative my-1 col-lg-3'>
             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
               <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
@@ -63,7 +64,7 @@ const TablesWidget13: React.FC<Props> = ({ className }) => {
             <div className='mb-10' data-select2-id="select-zone">
               <label className='form-label fw-bold'>Zone:</label>
               <div data-select2-id="select-zone">
-                <select className='form-select form-select-solid' >
+                <select className='form-select form-select-solid'>
                   <option></option>
                   <option value="1">All</option>
                   <option value="2">Katargam</option>
@@ -219,13 +220,13 @@ const TablesWidget13: React.FC<Props> = ({ className }) => {
             <thead>
               <tr className='fw-bolder text-muted bg-light'>
                 <th className='max-w-60px min-w-40px rounded-start ps-4'>No</th>
-                <th className='min-w-140px'>Name</th>
-                <th className='min-w-120px'>Username</th>
-                <th className='min-w-120px'>Email</th>
-                <th className='min-w-120px'>Mobile No.</th>
+                <th className='min-w-150px'>Name</th>
+                <th className='min-w-150px'>Username</th>
+                <th className='min-w-200px'>Email</th>
+                <th className='min-w-100px'>Mobile No.</th>
                 <th className='min-w-120px'>Zone</th>
-                <th className='min-w-100px'>Role</th>
-                <th className='min-w-80px rounded-end'>Actions</th>
+                <th className='min-w-150px'>Role</th>
+                <th className='min-w-125px rounded-end'>Actions</th>
               </tr>
             </thead>
             {/* end::Table head */}
@@ -468,7 +469,7 @@ const TablesWidget13: React.FC<Props> = ({ className }) => {
 
       {/* begin::Modal */}
       <div className='modal fade' id="kt_modal_1">
-        <div className="modal-dialog modal-fullscreen">
+        <div className="modal-dialog mw-850px">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Create User</h5>
@@ -481,7 +482,7 @@ const TablesWidget13: React.FC<Props> = ({ className }) => {
 
             <div className="modal-body">
 
-              <div className='container-fluid'>
+              <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4' >
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>First Name:</label>
