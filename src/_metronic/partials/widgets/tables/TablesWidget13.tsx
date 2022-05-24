@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useState } from 'react'
+import { threadId } from 'worker_threads'
 import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 
 type Props = {
@@ -7,6 +8,7 @@ type Props = {
 }
 
 const TablesWidget13: React.FC<Props> = ({className}) => {
+  const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
@@ -32,13 +34,13 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
             </a>
           </div>
 
-          <div className='ms-3'>
-            <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+          <div className='ms-3' onClick={()=>setFilterShow(!filterShow)}>
+            <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
               <span className='svg-icon svg-icon-gray-500 me-1'>
                 <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
               </span>
               Filter
-            </a>
+            </div>
           </div>
 
           <div className='ms-3'>
@@ -56,7 +58,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
           </div>
         </div>
 
-        <div className='row w-100 mx-0 mt-5'>
+        {filterShow && <div className='row w-100 mx-0 mt-5'>
           <div className='col-lg-3 ps-0'>
             <label className='form-label fw-bold'>Username:</label>
             <input
@@ -110,6 +112,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
             </div>
           </div>
         </div>
+}
 
         <div className='card-toolbar d-none'>
           {/* begin::Menu */}
