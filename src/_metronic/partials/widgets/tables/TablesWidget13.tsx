@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
-import { threadId } from 'worker_threads'
+import React, {useState} from 'react'
+import {threadId} from 'worker_threads'
 import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 
 type Props = {
@@ -34,7 +34,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
             </a>
           </div>
 
-          <div className='ms-3' onClick={()=>setFilterShow(!filterShow)}>
+          <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
             <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
               <span className='svg-icon svg-icon-gray-500 me-1'>
                 <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
@@ -58,61 +58,62 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
           </div>
         </div>
 
-        {filterShow && <div className='row w-100 mx-0 mt-5'>
-          <div className='col-lg-3 ps-0'>
-            <label className='form-label fw-bold'>Username:</label>
-            <input
-              placeholder='Search username'
-              className='form-control form-control-lg form-control-solid'
-              type='text'
-              autoComplete='off'
-            />
-          </div>
-          <div className='col-lg-3'>
-            <div className='mb-10' data-select2-id='select-zone'>
-              <label className='form-label fw-bold'>Zone:</label>
-              <div data-select2-id='select-zone'>
-                <select className='form-select form-select-solid'>
-                  <option></option>
-                  <option value='1'>All</option>
-                  <option value='2'>Katargam</option>
-                  <option value='3'>Ring Road</option>
-                  <option value='4'>Varachha</option>
-                </select>
+        {filterShow && (
+          <div className='row w-100 mx-0 mt-5'>
+            <div className='col-lg-3 ps-0'>
+              <label className='form-label fw-bold'>Username:</label>
+              <input
+                placeholder='Search username'
+                className='form-control form-control-lg form-control-solid'
+                type='text'
+                autoComplete='off'
+              />
+            </div>
+            <div className='col-lg-3'>
+              <div className='mb-10' data-select2-id='select-zone'>
+                <label className='form-label fw-bold'>Zone:</label>
+                <div data-select2-id='select-zone'>
+                  <select className='form-select form-select-solid'>
+                    <option></option>
+                    <option value='1'>All</option>
+                    <option value='2'>Katargam</option>
+                    <option value='3'>Ring Road</option>
+                    <option value='4'>Varachha</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-3'>
+              <div className='mb-10' data-select2-id='select-role'>
+                <label className='form-label fw-bold'>Role:</label>
+                <div data-select2-id='select-role'>
+                  <select className='form-select form-select-solid'>
+                    <option></option>
+                    <option value='1'>All</option>
+                    <option value='2'>Sales Executive</option>
+                    <option value='3'>Technician</option>
+                    <option value='4'>Customer</option>
+                    <option value='4'>Stock Manager</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-3 pe-0'>
+              <div className='mb-10' data-select2-id='select-created-by'>
+                <label className='form-label fw-bold'>Created by:</label>
+                <div data-select2-id='select-created-by'>
+                  <select className='form-select form-select-solid'>
+                    <option></option>
+                    <option value='1'>All</option>
+                    <option value='2'>A</option>
+                    <option value='3'>B</option>
+                    <option value='4'>C</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
-          <div className='col-lg-3'>
-            <div className='mb-10' data-select2-id='select-role'>
-              <label className='form-label fw-bold'>Role:</label>
-              <div data-select2-id='select-role'>
-                <select className='form-select form-select-solid'>
-                  <option></option>
-                  <option value='1'>All</option>
-                  <option value='2'>Sales Executive</option>
-                  <option value='3'>Technician</option>
-                  <option value='4'>Customer</option>
-                  <option value='4'>Stock Manager</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className='col-lg-3 pe-0'>
-            <div className='mb-10' data-select2-id='select-created-by'>
-              <label className='form-label fw-bold'>Created by:</label>
-              <div data-select2-id='select-created-by'>
-                <select className='form-select form-select-solid'>
-                  <option></option>
-                  <option value='1'>All</option>
-                  <option value='2'>A</option>
-                  <option value='3'>B</option>
-                  <option value='4'>C</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-}
+        )}
 
         <div className='card-toolbar d-none'>
           {/* begin::Menu */}
@@ -597,15 +598,17 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
-              <div className='btn btn-icon btn-sm btn-active-light-primary me-5' data-bs-dismiss='modal'
-                aria-label='Close'>
-                <span className='svg-icon svg-icon-2x'>
-                <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-                </span>
+                <div
+                  className='btn btn-icon btn-sm btn-active-light-primary me-5'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                >
+                  <span className='svg-icon svg-icon-2x'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+                  </span>
+                </div>
+                <h5 className='modal-title'>Edit complaint</h5>
               </div>
-              <h5 className='modal-title'>Edit complaint</h5>
-              </div>
-              
 
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
@@ -613,7 +616,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
                 aria-label='Close'
               >
                 <span className='svg-icon svg-icon-2x'>
-                <KTSVG path='/media/icons/duotune/arrows/arr088.svg' />
+                  <KTSVG path='/media/icons/duotune/arrows/arr088.svg' />
                 </span>
               </div>
             </div>
@@ -709,6 +712,29 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
                     />
                   </div>
                 </div>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-12'>
+                  <label className='form-label fw-bold'>Notification</label>
+                    <div className='form-check form-switch form-check-custom form-check-solid me-10'>
+                      <input
+                        className='form-check-input h-20px w-30px'
+                        type='checkbox'
+                        value=''
+                        id='flexSwitch20x30'
+                      />
+                      <label className='form-check-label'>Technician</label>
+                    </div>
+                    <div className='form-check form-switch form-check-custom form-check-solid me-10 mt-3'>
+                      <input
+                        className='form-check-input h-20px w-30px'
+                        type='checkbox'
+                        value=''
+                        id='flexSwitch20x30'
+                      />
+                      <label className='form-check-label'>Customer</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className='modal-footer'>
@@ -726,27 +752,30 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
-              <div className='btn btn-icon btn-sm btn-active-light-primary me-5' data-bs-dismiss='modal'
-                aria-label='Close'>
-                <span className='svg-icon svg-icon-2x'>
-                <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-                </span>
-              </div>
-              <h5 className='modal-title'>View complaint</h5>
+                <div
+                  className='btn btn-icon btn-sm btn-active-light-primary me-5'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                >
+                  <span className='svg-icon svg-icon-2x'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+                  </span>
+                </div>
+                <h5 className='modal-title'>View complaint</h5>
               </div>
               <div className='ms-3'>
-            <a
-              href='#'
-              className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
-              data-bs-toggle='modal'
-              data-bs-target='#kt_modal_2'
-            >
-              <span className='svg-icon svg-icon-gray-500 me-1'>
-              <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-              </span>
-              Edit Complaint
-            </a>
-          </div>
+                <a
+                  href='#'
+                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                  data-bs-toggle='modal'
+                  data-bs-target='#kt_modal_2'
+                >
+                  <span className='svg-icon svg-icon-gray-500 me-1'>
+                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  </span>
+                  Edit Complaint
+                </a>
+              </div>
             </div>
 
             <div className='modal-body'>
