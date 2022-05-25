@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
-import { threadId } from 'worker_threads'
-import { KTSVG, toAbsoluteUrl } from '../../../helpers'
+import React, {useState} from 'react'
+import {threadId} from 'worker_threads'
+import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget10: React.FC<Props> = ({ className }) => {
+const TablesWidget10: React.FC<Props> = ({className}) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -146,7 +146,6 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                   <option value='4'>Wireless</option>
                 </select>
               </div>
-
             </div>
           </>
         )}
@@ -183,15 +182,16 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                 <td className='text-dark fw-bold  fs-6'>Kirtibhai</td>
                 <td className='text-dark fw-bold  fs-6'>246, Platinum Point, Sudama Chok, M...</td>
                 <td className='text-dark fw-bold fs-6'>Gaurang Sakhiya</td>
-                <td className='text-dark fw-bold fs-6'>	25-May-2022 12:05 PM</td>
+                <td className='text-dark fw-bold fs-6'> 25-May-2022 12:05 PM</td>
                 <td className='fw-bold fs-6'>
-                  <span className='badge badge-light-danger fs-6'>Pending</span></td>
+                  <span className='badge badge-light-danger fs-6'>Pending</span>
+                </td>
                 <td>
                   <a
                     href='#'
                     className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                     data-bs-toggle='modal'
-                    data-bs-target='#view-form-modal'
+                    data-bs-target='#view-installation-modal'
                   >
                     <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
                   </a>
@@ -200,7 +200,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     href='#'
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                     data-bs-toggle='modal'
-                    data-bs-target='#edit-form-modal'
+                    data-bs-target='#edit-installation-modal'
                   >
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </a>
@@ -215,11 +215,14 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                       className='svg-icon-3'
                     />
                   </a>
-                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                  >
                     <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
                   </a>
-                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-info btn-sm'>
-                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-3' />
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-2' />
                   </a>
                 </td>
               </tr>
@@ -233,13 +236,14 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                 <td className='text-dark fw-bold fs-6'>Anil Sabhadiya</td>
                 <td className='text-dark fw-bold fs-6'>25-May-2022 11:54 AM</td>
                 <td className='fw-bold fs-6'>
-                  <span className='badge badge-light-danger fs-6'>Pending</span></td>
+                  <span className='badge badge-light-danger fs-6'>Pending</span>
+                </td>
                 <td>
                   <a
                     href='#'
                     className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                     data-bs-toggle='modal'
-                    data-bs-target='#view-form-modal'
+                    data-bs-target='#view-installation-modal'
                   >
                     <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
                   </a>
@@ -248,7 +252,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     href='#'
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                     data-bs-toggle='modal'
-                    data-bs-target='#edit-form-modal'
+                    data-bs-target='#edit-installation-modal'
                   >
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </a>
@@ -263,11 +267,14 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                       className='svg-icon-3'
                     />
                   </a>
-                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                  >
                     <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
                   </a>
-                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-info btn-sm'>
-                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-3' />
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-2' />
                   </a>
                 </td>
               </tr>
@@ -282,13 +289,14 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                 <td className='text-dark fw-bold fs-6'>Amit Rana</td>
                 <td className='text-dark fw-bold fs-6'>23-May-2022 11:43 AM</td>
                 <td className='fw-bold fs-6'>
-                  <span className='badge badge-light-success fs-6'>Done</span></td>
+                  <span className='badge badge-light-success fs-6'>Done</span>
+                </td>
                 <td>
                   <a
                     href='#'
                     className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                     data-bs-toggle='modal'
-                    data-bs-target='#view-form-modal'
+                    data-bs-target='#view-installation-modal'
                   >
                     <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
                   </a>
@@ -297,7 +305,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     href='#'
                     className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                     data-bs-toggle='modal'
-                    data-bs-target='#edit-form-modal'
+                    data-bs-target='#edit-installation-modal'
                   >
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </a>
@@ -312,11 +320,14 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                       className='svg-icon-3'
                     />
                   </a>
-                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                  >
                     <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
                   </a>
-                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-info btn-sm'>
-                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-3' />
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-2' />
                   </a>
                 </td>
               </tr>
@@ -394,7 +405,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
 
       {/* begin::create form Modal */}
       <div className='modal fade' id='create-installation-modal'>
-        <div className='modal-dialog modal-fullscreen'>
+        <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Create Installation</h5>
@@ -412,7 +423,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
             <div className='modal-body'>
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold required'>Username</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -421,7 +432,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     />
                   </div>
 
-                  <div className='col-md-3'>
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Installer</label>
                     <select className='form-select form-select-solid'>
                       <option value='1'></option>
@@ -430,7 +441,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     </select>
                   </div>
 
-                  <div className='col-md-3'>
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Main point</label>
                     <select className='form-select form-select-solid'>
                       <option value='1'></option>
@@ -440,7 +451,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     </select>
                   </div>
 
-                  <div className='col-md-3'>
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Connection Type</label>
                     <select className='form-select form-select-solid'>
                       <option value='1'></option>
@@ -449,11 +460,10 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                       <option value='4'>Wireless</option>
                     </select>
                   </div>
-
                 </div>
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className="col-md-3">
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Cable type</label>
                     <select className='form-select form-select-solid'>
                       <option value='1'></option>
@@ -462,17 +472,15 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     </select>
                   </div>
 
-                  <div className="col-md-3">
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Cable length</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>m</span>
-                      </div>
+                      <span className='input-group-text'>m</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
 
-                  <div className="col-md-3">
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>IP type</label>
                     <select className='form-select form-select-solid'>
                       <option value='1'></option>
@@ -481,7 +489,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     </select>
                   </div>
 
-                  <div className="col-md-3">
+                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Acces point IP</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -491,7 +499,70 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                   </div>
                 </div>
 
-                
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station IP</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station Name</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station MAC</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station Name</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Pending</option>
+                      <option value='3'>Done</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col'>
+                    <label className='form-label fw-bold required'>Remark</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                      placeholder='Remark'
+                    />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col'>
+                    <label className='form-label fw-bold'>Notification</label>
+                    <div className='form-check form-switch form-check-custom form-check-solid me-10'>
+                      <input
+                        className='form-check-input h-20px w-30px'
+                        type='checkbox'
+                        value=''
+                        id='flexSwitch20x30'
+                      />
+                      <label className='form-check-label'>Installer</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -508,12 +579,12 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
       </div>
       {/* end::create form Modal */}
 
-      {/* Edit form::Modal */}
-      <div className='modal fade' id='edit-form-modal'>
-        <div className='modal-dialog modal-fullscreen'>
+      {/* Edit Installation::Modal */}
+      <div className='modal fade' id='edit-installation-modal'>
+        <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>Edit Form</h5>
+              <h5 className='modal-title'>Edit Installation</h5>
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
@@ -528,337 +599,168 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
             <div className='modal-body'>
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
-                    <div
-                      className='image-input image-input-outline mx-auto'
-                      data-kt-image-input='true'
-                      style={{
-                        backgroundImage:
-                          "url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')",
-                      }}
-                    >
-                      <div
-                        className='image-input-wrapper w-125px h-125px'
-                        style={{
-                          backgroundImage: 'url(/metronic8/demo1/assets/media/avatars/300-1.jpg)',
-                        }}
-                      ></div>
-                      <label
-                        className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
-                        data-kt-image-input-action='change'
-                      >
-                        <i className='bi bi-pencil-fill fs-7'></i>
-                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
-                        <input type='hidden' name='avatar_remove' />
-                      </label>
-                      <span
-                        className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
-                        data-kt-image-input-action='remove'
-                      >
-                        <i className='bi bi-x fs-2'></i>
-                      </span>
-                    </div>
-                    <div className='form-text'>Choose an image</div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Username</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-9'>
-                    <div className='row mb-6'>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Username</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='text'
-                          autoComplete='off'
-                        />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form no.</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='text'
-                          autoComplete='off'
-                        />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form date</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='date'
-                          autoComplete='off'
-                        />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form type</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>New`</option>
-                          <option value='3'>Renew</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className='row mb-6 gy-4'>
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold required'>Sales Executive</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Ajay Sulin</option>
-                          <option value='3'>Amit soni</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold required'>Comapny</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Earth</option>
-                          <option value='3'>Softnet</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package category</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Broadband</option>
-                          <option value='3'>Cancel</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className='row mb-6'>
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package type</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Limited</option>
-                          <option value='3'>Unlimited</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package Name</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>1-2mbps</option>
-                          <option value='3'>1000gb</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package Validity</label>
-                        <div className='input-group'>
-                          <div className='input-group-prepend'>
-                            <span className='input-group-text'>Month</span>
-                          </div>
-                          <input
-                            type='number'
-                            className='form-control'
-                            placeholder='Package validity'
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Package Cost</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Installation cost</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input
-                        type='number'
-                        className='form-control'
-                      />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Other Cost</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Discount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>GST Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Total Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cash Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Remaining Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Bank Name</label>
-                    <select className='form-select form-select-outline'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Installer</label>
+                    <select className='form-select form-select-solid'>
                       <option value='1'></option>
-                      <option value='2'>Axis</option>
-                      <option value='3'>HDFC</option>
+                      <option value='2'>Amit</option>
+                      <option value='3'>Ajay</option>
                     </select>
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque no.</label>
-                    <input type='number' className='form-control' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Main point</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Not described</option>
+                      <option value='3'>Angel Square</option>
+                      <option value='4'>Anjani Sayan</option>
+                    </select>
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
-                    <input type='date' className='form-control' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Connection Type</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Not described</option>
+                      <option value='3'>Cable</option>
+                      <option value='4'>Wireless</option>
+                    </select>
                   </div>
                 </div>
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Reciever</label>
-                    <select className='form-select form-select-outline'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Cable type</label>
+                    <select className='form-select form-select-solid'>
                       <option value='1'></option>
-                      <option value='2'>Ajay</option>
-                      <option value='3'>Amit</option>
+                      <option value='2'>2 pair - Single coating</option>
+                      <option value='3'>2 pair - Double coating</option>
                     </select>
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
-                    <input type='date' className='form-control' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Cable length</label>
+                    <div className='input-group'>
+                      <span className='input-group-text'>m</span>
+                      <input type='number' className='form-control' />
+                    </div>
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
-                    <input type='date' className='form-control' />
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>IP Type</label>
-                    <select className='form-select form-select-outline'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>IP type</label>
+                    <select className='form-select form-select-solid'>
                       <option value='1'></option>
-                      <option value='2'>Dynmaic</option>
+                      <option value='2'>Dynamic</option>
                       <option value='3'>Static</option>
                     </select>
                   </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Acces point IP</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
                 </div>
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Note</label>
-                    <input type='text' className='form-control' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station IP</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Third party</label>
-                    <input type='text' className='form-control' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station Name</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-4'>
-                    <label className='form-label fw-bold'>Remark</label>
-                    <input type='text' className='form-control' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Station MAC</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-2'>
-                    <label className='form-label fw-bold'>Form submit</label>
-                    <select className='form-select form-select-outline'>
-                      <option value="1"></option>
-                      <option value='2'>Done</option>
-                      <option value='3'>Pending</option>
-                      <option value='4'>Cancel</option>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold required'>Status</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Pending</option>
+                      <option value='3'>Done</option>
                     </select>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col'>
+                    <label className='form-label fw-bold required'>Remark</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                      placeholder='Remark'
+                    />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col'>
+                    <label className='form-label fw-bold'>Notification</label>
+                    <div className='form-check form-switch form-check-custom form-check-solid me-10'>
+                      <input
+                        className='form-check-input h-20px w-30px'
+                        type='checkbox'
+                        value=''
+                        id='flexSwitch20x30'
+                      />
+                      <label className='form-check-label'>Installer</label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
 
             <div className='modal-footer'>
               <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
                 Close
               </button>
               <button type='button' className='btn btn-primary'>
-                Create
+                Update
               </button>
             </div>
           </div>
         </div>
       </div>
-      {/* Edit form::Modal */}
+      {/* Edit Installation::Modal */}
 
-      {/* View form::Modal */}
-      <div className='modal fade' id='view-form-modal'>
-        <div className='modal-dialog modal-fullscreen'>
+      {/* View installation::Modal */}
+      <div className='modal fade' id='view-installation-modal'>
+        <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>View Form</h5>
+              <h5 className='modal-title'>View Installation</h5>
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
@@ -873,297 +775,222 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
             <div className='modal-body'>
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
-                    <div
-                      className='image-input image-input-outline mx-auto'
-                      data-kt-image-input='true'
-                      style={{
-                        backgroundImage:
-                          "url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')",
-                      }}
-                    >
-                      <div
-                        className='image-input-wrapper w-125px h-125px'
-                        style={{
-                          backgroundImage: 'url(/metronic8/demo1/assets/media/avatars/300-1.jpg)',
-                        }}
-                      ></div>
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Username</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-9'>
-                    <div className='row mb-6'>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Username</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='text'
-                          autoComplete='off'
-                        />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form no.</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='text'
-                          autoComplete='off'
-                        />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form date</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='date'
-                          autoComplete='off'
-                        />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form type</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>New`</option>
-                          <option value='3'>Renew</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className='row mb-6 gy-4'>
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold required'>Sales Executive</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Ajay Sulin</option>
-                          <option value='3'>Amit soni</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold required'>Comapny</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Earth</option>
-                          <option value='3'>Softnet</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package category</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Broadband</option>
-                          <option value='3'>Cancel</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className='row mb-6'>
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package type</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Limited</option>
-                          <option value='3'>Unlimited</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package Name</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>1-2mbps</option>
-                          <option value='3'>1000gb</option>
-                        </select>
-                      </div>
-
-                      <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package Validity</label>
-                        <div className='input-group'>
-                          <div className='input-group-prepend'>
-                            <span className='input-group-text'>Month</span>
-                          </div>
-                          <input
-                            type='number'
-                            className='form-control'
-                            placeholder='Package validity'
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Name</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
-                </div>
 
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Package Cost</label>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Company name</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Zone</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Mobile no.</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Contact no.</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Email</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Address</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Total amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
+                      <input type='number' className='form-control' placeholder='10620.00' />
+                    </div>
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold text-danger'>Remaining amount</label>
+                    <div className='input-group'>
+                      <span className='input-group-text'>₹</span>
+                      <input type='number' className='form-control' placeholder='10620.00' />
+                    </div>
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Installer</label>
+                    <input type='number' className='form-control form-control-solid' />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Company</label>
+                    <input type='number' className='form-control form-control-solid' />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Main point</label>
+                    <input type='number' className='form-control form-control-solid' />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Connection type</label>
+                    <input type='number' className='form-control form-control-solid' />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Cable type</label>
+                    <input type='number' className='form-control form-control-solid' />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Cable length</label>
+                    <div className='input-group'>
+                      <span className='input-group-text'>m</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Installation cost</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input
-                        type='number'
-                        className='form-control'
-                      />
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>IP type</label>
+                    <input type='number' className='form-control form-control-solid' />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Other Cost</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Acces point IP</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Discount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>GST Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Station IP</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Total Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Station Name</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cash Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Station MAC</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Remaining Amount</label>
-                    <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input type='number' className='form-control' />
-                    </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Status</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                    />
                   </div>
 
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Bank Name</label>
-                    <select className='form-select form-select-outline'>
-                      <option value='1'></option>
-                      <option value='2'>Axis</option>
-                      <option value='3'>HDFC</option>
-                    </select>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque no.</label>
-                    <input type='number' className='form-control' />
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
-                    <input type='date' className='form-control' />
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Reciever</label>
-                    <select className='form-select form-select-outline'>
-                      <option value='1'></option>
-                      <option value='2'>Ajay</option>
-                      <option value='3'>Amit</option>
-                    </select>
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
-                    <input type='date' className='form-control' />
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
-                    <input type='date' className='form-control' />
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>IP Type</label>
-                    <select className='form-select form-select-outline'>
-                      <option value='1'></option>
-                      <option value='2'>Dynmaic</option>
-                      <option value='3'>Static</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Note</label>
-                    <input type='text' className='form-control' />
-                  </div>
-
-                  <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Third party</label>
-                    <input type='text' className='form-control' />
-                  </div>
-
-                  <div className='col-md-4'>
+                  <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Remark</label>
-                    <input type='text' className='form-control' />
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                      placeholder='Remark'
+                    />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Created by</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
                   </div>
 
-                  <div className='col-md-2'>
-                    <label className='form-label fw-bold'>Form submit</label>
-                    <select className='form-select form-select-outline'>
-                      <option value="1"></option>
-                      <option value='2'>Done</option>
-                      <option value='3'>Pending</option>
-                      <option value='4'>Cancel</option>
-                    </select>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Created at</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='date'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Updated by</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Updated at</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='date'
+                      autoComplete='off'
+                    />
                   </div>
                 </div>
               </div>
@@ -1173,14 +1000,11 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
               <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
                 Close
               </button>
-              <button type='button' className='btn btn-primary'>
-                Create
-              </button>
             </div>
           </div>
         </div>
       </div>
-      {/* view form::Modal */}
+      {/* view installation::Modal */}
 
       {/* View customer::Modal */}
       <div className='modal fade' id='view-customer-modal'>
@@ -1188,16 +1012,8 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
-                <div
-                  className='btn btn-icon btn-sm btn-active-light-primary me-5'
-                  data-bs-dismiss='modal'
-                  aria-label='Close'
-                >
-                  <span className='svg-icon svg-icon-2x'>
-                    <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-                  </span>
-                </div>
-                <h5 className='modal-title'>Create Customer</h5>
+                
+                <h5 className='modal-title'>View Customer</h5>
               </div>
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
@@ -1220,7 +1036,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1264,7 +1080,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1308,7 +1124,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1469,8 +1285,8 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
             </div>
 
             <div className='modal-footer'>
-              <button type='button' className='btn btn-secondary'>
-                Create
+              <button type='button' className='btn btn-secondary' data-bs-dismiss='modal' aria-label='Close'>
+                Close
               </button>
             </div>
           </div>
@@ -1481,4 +1297,4 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
   )
 }
 
-export { TablesWidget10 }
+export {TablesWidget10}

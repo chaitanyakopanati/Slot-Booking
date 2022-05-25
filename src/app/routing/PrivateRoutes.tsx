@@ -16,6 +16,8 @@ import {PackageCategoriesWrapper} from '../pages/package-categories/PackageCateg
 import {ProfileSettingsWrapper} from '../pages/profile-settings/ProfileSettingsWrapper'
 import {FormsWrapper} from '../pages/forms/FormsWrapper'
 import {InstallationsWrapper} from '../pages/installations/InstallationsWrapper'
+import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
+
 
 
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
@@ -41,6 +43,8 @@ const PrivateRoutes = () => {
         <Route path='profile-settings' element={<ProfileSettingsWrapper />} />
         <Route path='forms' element={<FormsWrapper />} />
         <Route path='installations' element={<InstallationsWrapper />} />
+        <Route path='inquiries' element={<InquiriesWrapper />} />
+
 
 
         <Route path='*' element={<Navigate to='/error/404' />} />

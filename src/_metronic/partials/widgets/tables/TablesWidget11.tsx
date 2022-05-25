@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
-import { threadId } from 'worker_threads'
-import { KTSVG, toAbsoluteUrl } from '../../../helpers'
+import React, {useState} from 'react'
+import {threadId} from 'worker_threads'
+import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget11: React.FC<Props> = ({ className }) => {
+const TablesWidget11: React.FC<Props> = ({className}) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -219,7 +219,8 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                 <td className='text-dark fw-bold fs-6'>Dharmeshbhai Patel</td>
                 <td className='text-dark fw-bold fs-6'>25-May-2022</td>
                 <td className='fw-bold fs-6'>
-                  <span className='badge badge-light-danger fs-6'>New</span></td>
+                  <span className='badge badge-light-danger fs-6'>New</span>
+                </td>
                 <td>
                   <a
                     href='#'
@@ -263,7 +264,8 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                 <td className='text-dark fw-bold fs-6'>Dharmeshbhai Patel</td>
                 <td className='text-dark fw-bold fs-6'>25-May-2022</td>
                 <td className='fw-bold fs-6'>
-                  <span className='badge badge-light-info fs-6'>Shifting</span></td>
+                  <span className='badge badge-light-info fs-6'>Shifting</span>
+                </td>
                 <td>
                   <a
                     href='#'
@@ -307,7 +309,8 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                 <td className='text-dark fw-bold fs-6'>Dharmeshbhai Patel</td>
                 <td className='text-dark fw-bold fs-6'>25-May-2022</td>
                 <td className='fw-bold fs-6'>
-                  <span className='badge badge-light-success fs-6'>Renew</span></td>
+                  <span className='badge badge-light-success fs-6'>Renew</span>
+                </td>
                 <td>
                   <a
                     href='#'
@@ -554,9 +557,9 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                       <div className='col-md-4'>
                         <label className='form-label fw-bold'>Package Validity</label>
                         <div className='input-group'>
-                          <div className='input-group-prepend'>
-                            <span className='input-group-text'>Month</span>
-                          </div>
+                          {/* <div className='input-group-prepend'> */}
+                          <span className='input-group-text'>Month</span>
+                          {/* </div> */}
                           <input
                             type='number'
                             className='form-control'
@@ -572,9 +575,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Package Cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -582,22 +583,15 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Installation cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input
-                        type='number'
-                        className='form-control'
-                      />
+                      <span className='input-group-text'>₹</span>
+                      <input type='number' className='form-control' />
                     </div>
                   </div>
 
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Other Cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -605,9 +599,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Discount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -617,9 +609,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>GST Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -627,9 +617,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Total Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -637,9 +625,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Cash Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -647,9 +633,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Cheque Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -659,9 +643,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Remaining Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -735,7 +717,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-2'>
                     <label className='form-label fw-bold'>Form submit</label>
                     <select className='form-select form-select-outline'>
-                      <option value="1"></option>
+                      <option value='1'></option>
                       <option value='2'>Done</option>
                       <option value='3'>Pending</option>
                       <option value='4'>Cancel</option>
@@ -898,9 +880,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                       <div className='col-md-4'>
                         <label className='form-label fw-bold'>Package Validity</label>
                         <div className='input-group'>
-                          <div className='input-group-prepend'>
-                            <span className='input-group-text'>Month</span>
-                          </div>
+                          <span className='input-group-text'>Month</span>
                           <input
                             type='number'
                             className='form-control'
@@ -916,9 +896,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Package Cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -926,22 +904,15 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Installation cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input
-                        type='number'
-                        className='form-control'
-                      />
+                      <span className='input-group-text'>₹</span>
+                      <input type='number' className='form-control' />
                     </div>
                   </div>
 
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Other Cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -949,9 +920,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Discount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -961,9 +930,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>GST Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -971,9 +938,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Total Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -981,9 +946,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Cash Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -991,9 +954,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Cheque Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1003,9 +964,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Remaining Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1079,7 +1038,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-2'>
                     <label className='form-label fw-bold'>Form submit</label>
                     <select className='form-select form-select-outline'>
-                      <option value="1"></option>
+                      <option value='1'></option>
                       <option value='2'>Done</option>
                       <option value='3'>Pending</option>
                       <option value='4'>Cancel</option>
@@ -1089,13 +1048,12 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
               </div>
             </div>
 
-
             <div className='modal-footer'>
               <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
                 Close
               </button>
               <button type='button' className='btn btn-primary'>
-                Create
+                Update
               </button>
             </div>
           </div>
@@ -1142,8 +1100,8 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   </div>
 
                   <div className='col-md-9'>
-                    <div className='row mb-6'>
-                      <div className='col-md-3'>
+                    <div className='row mb-6 gy-4'>
+                      <div className='col-md-4'>
                         <label className='form-label fw-bold required'>Username</label>
                         <input
                           className='form-control form-control-lg form-control-solid'
@@ -1151,93 +1109,174 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                           autoComplete='off'
                         />
                       </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form no.</label>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold required'>Name</label>
                         <input
                           className='form-control form-control-lg form-control-solid'
                           type='text'
                           autoComplete='off'
                         />
                       </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form date</label>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold required'>Company name</label>
                         <input
                           className='form-control form-control-lg form-control-solid'
-                          type='date'
+                          type='text'
                           autoComplete='off'
                         />
-                      </div>
-                      <div className='col-md-3'>
-                        <label className='form-label fw-bold required'>Form type</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>New`</option>
-                          <option value='3'>Renew</option>
-                        </select>
                       </div>
                     </div>
 
                     <div className='row mb-6 gy-4'>
                       <div className='col-md-4'>
-                        <label className='form-label fw-bold required'>Sales Executive</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Ajay Sulin</option>
-                          <option value='3'>Amit soni</option>
-                        </select>
+                        <label className='form-label fw-bold required'>GST no.</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
                       </div>
 
                       <div className='col-md-4'>
-                        <label className='form-label fw-bold required'>Comapny</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Earth</option>
-                          <option value='3'>Softnet</option>
-                        </select>
+                        <label className='form-label fw-bold required'>Mobile no.</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
                       </div>
 
                       <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package category</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Broadband</option>
-                          <option value='3'>Cancel</option>
-                        </select>
+                        <label className='form-label fw-bold required'>Contact no.</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
                       </div>
                     </div>
 
-                    <div className='row mb-6'>
+                    <div className='row mb-6 gy-4'>
                       <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package type</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>Limited</option>
-                          <option value='3'>Unlimited</option>
-                        </select>
+                        <label className='form-label fw-bold required'>Address</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
                       </div>
 
                       <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package Name</label>
-                        <select className='form-select form-select-solid'>
-                          <option value='1'></option>
-                          <option value='2'>1-2mbps</option>
-                          <option value='3'>1000gb</option>
-                        </select>
+                        <label className='form-label fw-bold required'>Email</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
                       </div>
 
                       <div className='col-md-4'>
-                        <label className='form-label fw-bold'>Package Validity</label>
-                        <div className='input-group'>
-                          <div className='input-group-prepend'>
-                            <span className='input-group-text'>Month</span>
-                          </div>
-                          <input
-                            type='number'
-                            className='form-control'
-                            placeholder='Package validity'
-                          />
-                        </div>
+                        <label className='form-label fw-bold required'>Zone</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='row mb-6 gy-4'>
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>File no.</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Form no.</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Form date</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='date'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Form type</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Sales Executive</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Comapny</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                </div>
+
+                <div className='row mb-6 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Package category</label>
+                    <input
+                      className='form-control form-control-lg'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Package type</label>
+                    <input
+                      className='form-control form-control-lg'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Package Name</label>
+                    <input
+                      className='form-control form-control-lg'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Package Validity</label>
+                    <div className='input-group'>
+                      <span className='input-group-text'>Month</span>
+                      <input
+                        type='number'
+                        className='form-control'
+                        placeholder='Package validity'
+                      />
                     </div>
                   </div>
                 </div>
@@ -1246,9 +1285,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Package Cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1256,22 +1293,15 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Installation cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
-                      <input
-                        type='number'
-                        className='form-control'
-                      />
+                      <span className='input-group-text'>₹</span>
+                      <input type='number' className='form-control' />
                     </div>
                   </div>
 
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Other Cost</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1279,9 +1309,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Discount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1291,9 +1319,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>GST Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1301,9 +1327,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Total Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1311,9 +1335,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Cash Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1321,9 +1343,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Cheque Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1333,9 +1353,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Remaining Amount</label>
                     <div className='input-group'>
-                      <div className='input-group-prepend'>
-                        <span className='input-group-text'>₹</span>
-                      </div>
+                      <span className='input-group-text'>₹</span>
                       <input type='number' className='form-control' />
                     </div>
                   </div>
@@ -1362,7 +1380,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Reciever</label>
+                    <label className='form-label fw-bold'>Receiver</label>
                     <select className='form-select form-select-outline'>
                       <option value='1'></option>
                       <option value='2'>Ajay</option>
@@ -1371,12 +1389,12 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
+                    <label className='form-label fw-bold'>Activation date</label>
                     <input type='date' className='form-control' />
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
+                    <label className='form-label fw-bold'>Expiry date</label>
                     <input type='date' className='form-control' />
                   </div>
 
@@ -1384,7 +1402,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                     <label className='form-label fw-bold'>IP Type</label>
                     <select className='form-select form-select-outline'>
                       <option value='1'></option>
-                      <option value='2'>Dynmaic</option>
+                      <option value='2'>Dynamic</option>
                       <option value='3'>Static</option>
                     </select>
                   </div>
@@ -1409,22 +1427,42 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                   <div className='col-md-2'>
                     <label className='form-label fw-bold'>Form submit</label>
                     <select className='form-select form-select-outline'>
-                      <option value="1"></option>
+                      <option value='1'></option>
                       <option value='2'>Done</option>
                       <option value='3'>Pending</option>
                       <option value='4'>Cancel</option>
                     </select>
                   </div>
                 </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Created by</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Created at</label>
+                    <input type='date' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Updated by</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Updated at</label>
+                    <input type='date' className='form-control' />
+                  </div>
+                </div>
+
               </div>
             </div>
 
             <div className='modal-footer'>
               <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
                 Close
-              </button>
-              <button type='button' className='btn btn-primary'>
-                Create
               </button>
             </div>
           </div>
@@ -1437,18 +1475,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
         <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <div className='d-flex align-items-center'>
-                <div
-                  className='btn btn-icon btn-sm btn-active-light-primary me-5'
-                  data-bs-dismiss='modal'
-                  aria-label='Close'
-                >
-                  <span className='svg-icon svg-icon-2x'>
-                    <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-                  </span>
-                </div>
-                <h5 className='modal-title'>Create Customer</h5>
-              </div>
+              <h5 className='modal-title'>Create Customer</h5>
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
@@ -1470,7 +1497,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1514,7 +1541,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1558,7 +1585,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1720,7 +1747,7 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
 
             <div className='modal-footer'>
               <button type='button' className='btn btn-secondary'>
-                Create
+                Close
               </button>
             </div>
           </div>
@@ -1731,4 +1758,4 @@ const TablesWidget11: React.FC<Props> = ({ className }) => {
   )
 }
 
-export { TablesWidget11 }
+export {TablesWidget11}

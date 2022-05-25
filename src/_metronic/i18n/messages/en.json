@@ -80,5 +80,6 @@
     "MENU.PACKAGES": "Packages",
     "MENU.PACKAGE.CATEGORIES": "Package Categories",
     "MENU.FORMS": "Forms",
-    "MENU.INSTALLATIONS": "Installations"
+    "MENU.INSTALLATIONS": "Installations",
+    "MENU.INQUIRIES": "Inquiries"
 }
