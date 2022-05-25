@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react'
-import {threadId} from 'worker_threads'
 import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 
 type Props = {
@@ -224,10 +223,10 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
         {/* begin::Table container */}
         <div className='table-responsive'>
           {/* begin::Table */}
-          <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border'>
+          <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border table-striped'>
             {/* begin::Table head */}
             <thead>
-              <tr className='fw-bolder text-muted bg-light'>
+              <tr className='fw-bolder text-muted  bg-dark'>
                 <th className='max-w-60px min-w-40px rounded-start ps-4'>No</th>
                 <th className='min-w-150px'>Name</th>
                 <th className='min-w-150px'>Username</th>
