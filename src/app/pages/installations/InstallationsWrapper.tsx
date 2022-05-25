@@ -3,27 +3,27 @@ import React, { FC, SetStateAction } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import {
-  TablesWidget12,
+  TablesWidget10,
 } from '../../../_metronic/partials/widgets'
 
-const UsersPage: FC = () => (
+const InstallationsPage: FC = () => (
   <>
     <div className='row gy-5 gx-xl-8'>
       <div className='col-xl-12'>
-        <TablesWidget12 className='card-xxl-stretch mb-5 mb-xl-8' />
+        <TablesWidget10 className='card-xxl-stretch mb-5 mb-xl-8' />
       </div>
     </div>
   </>
 )
 
-const UsersWrapper: FC = () => {
+const InstallationsWrapper: FC = () => {
   const intl = useIntl()
   return (
     <>
-      <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.USERS' })}</PageTitle>
-      <UsersPage />
+      <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.INSTALLATIONS' })}</PageTitle>
+      <InstallationsPage />
     </>
   )
 }
 
-export { UsersWrapper }
+export { InstallationsWrapper }

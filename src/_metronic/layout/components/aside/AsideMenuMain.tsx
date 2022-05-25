@@ -19,9 +19,23 @@ export function AsideMenuMain() {
       />
 
       <AsideMenuItem
-        to='/users'
+        to='/customers'
         icon='/media/icons/duotune/general/gen009.svg'
-        title={intl.formatMessage({ id: 'MENU.USERS' })}
+        title={intl.formatMessage({ id: 'MENU.CUSTOMERS' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/forms'
+        icon='/media/icons/duotune/general/gen029.svg'
+        title={intl.formatMessage({ id: 'MENU.FORMS' })}
+        fontIcon='bi-app-indicator'
+      />
+
+      <AsideMenuItem
+        to='/installations'
+        icon='/media/icons/duotune/general/gen033.svg'
+        title={intl.formatMessage({ id: 'MENU.INSTALLATIONS' })}
         fontIcon='bi-app-indicator'
       />
 

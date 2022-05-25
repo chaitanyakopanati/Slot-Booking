@@ -1,110 +1,175 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useState } from 'react'
+import { threadId } from 'worker_threads'
 import { KTSVG, toAbsoluteUrl } from '../../../helpers'
+import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
 const TablesWidget10: React.FC<Props> = ({ className }) => {
+  const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
-      {/* <div className='card-header border-0 pt-5'>
-        <h3 className='card-title align-items-start flex-column'>
-          <span className='card-label fw-bolder fs-3 mb-1'>Members Statistics</span>
-          <span className='text-muted mt-1 fw-bold fs-7'>Over 500 members</span>
-        </h3>
-        <div
-          className='card-toolbar'
-          data-bs-toggle='tooltip'
-          data-bs-placement='top'
-          data-bs-trigger='hover'
-          title='Click to add a user'
-        >
-          <a
-            href='#'
-            className='btn btn-sm btn-light-primary'
-            // data-bs-toggle='modal'
-            // data-bs-target='#kt_modal_invite_friends'
-          >
-            <KTSVG path='media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-            New Member
-          </a>
-        </div>
-      </div> */}
-      <div className='card-header align-items-center py-5 gap-2 gap-md-5'>
-        <div className='card-title'>
-          <div className='d-flex align-items-center position-relative my-1'>
+      <div className='card-header border-0 pt-5'>
+        <div className='card-title d-flex flex-md-row flex-column gap-3 align-items-center justify-content-between w-100 mx-0'>
+          {/* begin::Searchbar */}
+          <div className='d-flex align-items-center position-relative my-1 col-12 col-md-3'>
             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
-                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
-              </svg>
+              <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
             </span>
-            <input type="text" data-kt-ecommerce-order-filter="search" className='form-control form-control-solid w-250px ps-14' placeholder="Search Order" />
+            <input
+              type='text'
+              className='form-control form-control-solid ps-14'
+              placeholder='Search'
+            />
+          </div>
+          {/* end::Searchbar */}
+
+          <div className='d-flex align-items-center'>
+            {/* begin::download */}
+            <div>
+              <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                <span className='svg-icon svg-icon-gray-500 me-1'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-3' />
+                </span>
+                Download
+              </a>
+            </div>
+            {/* end::download */}
+
+            {/* begin::filter btn */}
+            <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+              <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                <span className='svg-icon svg-icon-gray-500 me-1'>
+                  <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
+                </span>
+                Filter
+              </div>
+            </div>
+            {/* end::filter btn */}
+
+            {/* begin::add user btn */}
+            <div className='ms-3'>
+              <div
+                className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                data-bs-toggle='modal'
+                data-bs-target='#create-installation-modal'
+              >
+                <span className='svg-icon svg-icon-gray-500 me-1'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+                </span>
+                Create Installation
+              </div>
+            </div>
+            {/* end::add user btn */}
           </div>
         </div>
 
-        <div className='card-toolbar flex-row-fluid justify-content-end gap-5'>
-          <div className='input-group w-250px'>
-            <input className='form-control form-control-solid rounded rounded-end-0 flatpickr-input' placeholder="Pick date range" id="kt_ecommerce_sales_flatpickr" type="hidden" />
-            <input className='form-control form-control-solid rounded rounded-end-0 form-control input' placeholder="Pick date range" type="text" />
-            <button className='btn btn-icon btn-light' id="kt_ecommerce_sales_flatpickr_clear">
-              <span className='svg-icon svg-icon-2'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"></rect>
-                  <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"></rect>
-                </svg>
-              </span>
-            </button>
-          </div>
-          <div className='w-100 mw-150px'>
-            <select className='form-select form-select-solid select2-hidden-accessible' data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status" data-select2-id="select2-data-10-xev6" aria-hidden="true">
-              <option data-select2-id="select2-data-12-9jg9"></option>
-              <option value="all">All</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="Completed">Completed</option>
-              <option value="Denied">Denied</option>
-              <option value="Expired">Expired</option>
-              <option value="Failed">Failed</option>
-              <option value="Pending">Pending</option>
-              <option value="Processing">Processing</option>
-              <option value="Refunded">Refunded</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Delivering">Delivering</option>
-            </select>
-          </div>
-          <a href="#" className='btn btn-primary'>Add Order</a>
-        </div>
+        {filterShow && (
+          <>
+            <div className='row w-100 mx-0 my-3'>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Status</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Pending</option>
+                  <option value='3'>Done</option>
+                </select>
+              </div>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Zone</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Katargam</option>
+                  <option value='3'>Ring Road</option>
+                  <option value='4'>Varachha</option>
+                </select>
+              </div>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Company</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Earth</option>
+                  <option value='3'>Softnet</option>
+                </select>
+              </div>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Sales executive</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Not described</option>
+                  <option value='3'>Abalkesh Soft</option>
+                  <option value='4'>Ajay Sulin</option>
+                </select>
+              </div>
+            </div>
+
+            <div className='row w-100 mx-0 my-3'>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Installer</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Amit</option>
+                  <option value='3'>Ajay</option>
+                </select>
+              </div>
+              <div className='col-lg-3'>
+                <div>
+                  <label className='form-label fw-bold'>Installation date</label>
+                  <input
+                    className='form-control form-control-lg form-control-solid'
+                    type='date'
+                    autoComplete='off'
+                  />
+                </div>
+              </div>
+
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Main point</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Not described</option>
+                  <option value='3'>Angel Square</option>
+                  <option value='4'>Anjani Sayan</option>
+                </select>
+              </div>
+
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Connection Type</label>
+                <select className='form-select form-select-solid'>
+                  <option value='1'>All</option>
+                  <option value='2'>Not described</option>
+                  <option value='3'>Cable</option>
+                  <option value='4'>Wireless</option>
+                </select>
+              </div>
+
+            </div>
+          </>
+        )}
       </div>
       {/* end::Header */}
-
 
       {/* begin::Body */}
       <div className='card-body py-3'>
         {/* begin::Table container */}
         <div className='table-responsive'>
           {/* begin::Table */}
-          <table className='table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4'>
+          <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
             {/* begin::Table head */}
             <thead>
-              <tr className='fw-bolder text-muted'>
-                <th className='w-25px'>
-                  <div className='form-check form-check-sm form-check-custom form-check-solid'>
-                    <input
-                      className='form-check-input'
-                      type='checkbox'
-                      value='1'
-                      data-kt-check='true'
-                      data-kt-check-target='.widget-9-check'
-                    />
-                  </div>
-                </th>
-                <th className='min-w-150px'>Authors</th>
-                <th className='min-w-140px'>Company</th>
-                <th className='min-w-120px'>Progress</th>
-                <th className='min-w-100px text-end'>Actions</th>
+              <tr className='fw-bolder text-muted bg-dark'>
+                <th className='max-w-60px min-w-40px rounded-start ps-4'>No</th>
+                <th className='min-w-150px'>Username</th>
+                <th className='min-w-150px'>Name</th>
+                <th className='min-w-200px'>Address</th>
+                <th className='min-w-250px'>Installer</th>
+                <th className='min-w-150px'>Created at</th>
+                <th className='min-w-100px'>Status</th>
+                <th className='min-w-200px rounded-end'>Actions</th>
               </tr>
             </thead>
             {/* end::Table head */}
@@ -112,356 +177,147 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
             <tbody>
               <tr>
                 <td>
-                  <div className='form-check form-check-sm form-check-custom form-check-solid'>
-                    <input className='form-check-input widget-9-check' type='checkbox' value='1' />
-                  </div>
+                  <div className='text-dark fw-bolder fs-6 ps-4'>1</div>
                 </td>
+                <td className='text-dark fw-bold  fs-6'>khitaliya</td>
+                <td className='text-dark fw-bold  fs-6'>Kirtibhai</td>
+                <td className='text-dark fw-bold  fs-6'>246, Platinum Point, Sudama Chok, M...</td>
+                <td className='text-dark fw-bold fs-6'>Gaurang Sakhiya</td>
+                <td className='text-dark fw-bold fs-6'>	25-May-2022 12:05 PM</td>
+                <td className='fw-bold fs-6'>
+                  <span className='badge badge-light-danger fs-6'>Pending</span></td>
                 <td>
-                  <div className='d-flex align-items-center'>
-                    <div className='symbol symbol-45px me-5'>
-                      <img src={toAbsoluteUrl('/media/avatars/300-14.jpg')} alt='' />
-                    </div>
-                    <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
-                        Ana Simmons
-                      </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
-                        HTML, JS, ReactJS
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
-                    Intertico
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#view-form-modal'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
-                    Web, UI/UX Design
-                  </span>
-                </td>
-                <td className='text-end'>
-                  <div className='d-flex flex-column w-100 me-2'>
-                    <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>50%</span>
-                    </div>
-                    <div className='progress h-6px w-100'>
-                      <div
-                        className='progress-bar bg-primary'
-                        role='progressbar'
-                        style={{ width: '50%' }}
-                      ></div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex justify-content-end flex-shrink-0'>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen019.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                  </div>
+
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#edit-form-modal'
+                  >
+                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  </a>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#view-customer-modal'
+                  >
+                    <KTSVG
+                      path='/media/icons/duotune/communication/com013.svg'
+                      className='svg-icon-3'
+                    />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-info btn-sm'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-3' />
+                  </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div className='form-check form-check-sm form-check-custom form-check-solid'>
-                    <input className='form-check-input widget-9-check' type='checkbox' value='1' />
-                  </div>
+                  <div className='text-dark fw-bolder fs-6 ps-4'>2</div>
                 </td>
+                <td className='text-dark fw-bold  fs-6'>mmsorathiya_jainam</td>
+                <td className='text-dark fw-bold  fs-6'>Mukesh</td>
+                <td className='text-dark fw-bold  fs-6'>246, 247, Avadh Viceroy Sarthana Ja...</td>
+                <td className='text-dark fw-bold fs-6'>Anil Sabhadiya</td>
+                <td className='text-dark fw-bold fs-6'>25-May-2022 11:54 AM</td>
+                <td className='fw-bold fs-6'>
+                  <span className='badge badge-light-danger fs-6'>Pending</span></td>
                 <td>
-                  <div className='d-flex align-items-center'>
-                    <div className='symbol symbol-45px me-5'>
-                      <img src={toAbsoluteUrl('/media/avatars/300-2.jpg')} alt='' />
-                    </div>
-                    <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
-                        Jessie Clarcson
-                      </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
-                        C#, ASP.NET, MS SQL
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
-                    Agoda
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#view-form-modal'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>
-                    Houses &amp; Hotels
-                  </span>
-                </td>
-                <td className='text-end'>
-                  <div className='d-flex flex-column w-100 me-2'>
-                    <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>70%</span>
-                    </div>
-                    <div className='progress h-6px w-100'>
-                      <div
-                        className='progress-bar bg-danger'
-                        role='progressbar'
-                        style={{ width: '70%' }}
-                      ></div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex justify-content-end flex-shrink-0'>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen019.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                  </div>
+
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#edit-form-modal'
+                  >
+                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  </a>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#view-customer-modal'
+                  >
+                    <KTSVG
+                      path='/media/icons/duotune/communication/com013.svg'
+                      className='svg-icon-3'
+                    />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-info btn-sm'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-3' />
+                  </a>
                 </td>
               </tr>
+
               <tr>
                 <td>
-                  <div className='form-check form-check-sm form-check-custom form-check-solid'>
-                    <input className='form-check-input widget-9-check' type='checkbox' value='1' />
-                  </div>
+                  <div className='text-dark fw-bolder fs-6 ps-4'>3</div>
                 </td>
+                <td className='text-dark fw-bold  fs-6'>hmkalathiya</td>
+                <td className='text-dark fw-bold  fs-6'>Hasmukhbhai</td>
+                <td className='text-dark fw-bold  fs-6'>824/25, 8th Floor, Rajhans Heights,...</td>
+                <td className='text-dark fw-bold fs-6'>Amit Rana</td>
+                <td className='text-dark fw-bold fs-6'>23-May-2022 11:43 AM</td>
+                <td className='fw-bold fs-6'>
+                  <span className='badge badge-light-success fs-6'>Done</span></td>
                 <td>
-                  <div className='d-flex align-items-center'>
-                    <div className='symbol symbol-45px me-5'>
-                      <img src={toAbsoluteUrl('/media/avatars/300-5.jpg')} alt='' />
-                    </div>
-                    <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
-                        Lebron Wayde
-                      </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
-                        PHP, Laravel, VueJS
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
-                    RoadGee
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#view-form-modal'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Transportation</span>
-                </td>
-                <td className='text-end'>
-                  <div className='d-flex flex-column w-100 me-2'>
-                    <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>60%</span>
-                    </div>
-                    <div className='progress h-6px w-100'>
-                      <div
-                        className='progress-bar bg-success'
-                        role='progressbar'
-                        style={{ width: '60%' }}
-                      ></div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex justify-content-end flex-shrink-0'>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen019.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className='form-check form-check-sm form-check-custom form-check-solid'>
-                    <input className='form-check-input widget-9-check' type='checkbox' value='1' />
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex align-items-center'>
-                    <div className='symbol symbol-45px me-5'>
-                      <img src={toAbsoluteUrl('/media/avatars/300-20.jpg')} alt='' />
-                    </div>
-                    <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
-                        Natali Goodwin
-                      </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
-                        Python, PostgreSQL, ReactJS
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
-                    The Hill
+
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#edit-form-modal'
+                  >
+                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Insurance</span>
-                </td>
-                <td className='text-end'>
-                  <div className='d-flex flex-column w-100 me-2'>
-                    <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>50%</span>
-                    </div>
-                    <div className='progress h-6px w-100'>
-                      <div
-                        className='progress-bar bg-warning'
-                        role='progressbar'
-                        style={{ width: '50%' }}
-                      ></div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex justify-content-end flex-shrink-0'>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen019.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className='form-check form-check-sm form-check-custom form-check-solid'>
-                    <input className='form-check-input widget-9-check' type='checkbox' value='1' />
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex align-items-center'>
-                    <div className='symbol symbol-45px me-5'>
-                      <img src={toAbsoluteUrl('/media/avatars/300-23.jpg')} alt='' />
-                    </div>
-                    <div className='d-flex justify-content-start flex-column'>
-                      <a href='#' className='text-dark fw-bolder text-hover-primary fs-6'>
-                        Kevin Leonard
-                      </a>
-                      <span className='text-muted fw-bold text-muted d-block fs-7'>
-                        HTML, JS, ReactJS
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <a href='#' className='text-dark fw-bolder text-hover-primary d-block fs-6'>
-                    RoadGee
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#view-customer-modal'
+                  >
+                    <KTSVG
+                      path='/media/icons/duotune/communication/com013.svg'
+                      className='svg-icon-3'
+                    />
                   </a>
-                  <span className='text-muted fw-bold text-muted d-block fs-7'>Art Director</span>
-                </td>
-                <td className='text-end'>
-                  <div className='d-flex flex-column w-100 me-2'>
-                    <div className='d-flex flex-stack mb-2'>
-                      <span className='text-muted me-2 fs-7 fw-bold'>90%</span>
-                    </div>
-                    <div className='progress h-6px w-100'>
-                      <div
-                        className='progress-bar bg-info'
-                        role='progressbar'
-                        style={{ width: '90%' }}
-                      ></div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div className='d-flex justify-content-end flex-shrink-0'>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen019.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                  </div>
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-bg-light btn-active-color-info btn-sm'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr065.svg' className='svg-icon-3' />
+                  </a>
                 </td>
               </tr>
             </tbody>
@@ -469,9 +325,1158 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
           </table>
           {/* end::Table */}
         </div>
+
+        <div className='d-flex align-items-center justify-content-between pt-8 pb-4'>
+          <div className='min-w-100px'>
+            <div className='d-flex align-items-center' data-select2-id='show-enteries'>
+              <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
+              <div data-select2-id='show-enteries'>
+                <select className='form-select form-select-solid h-40px py-2'>
+                  <option value='1'>10</option>
+                  <option value='2'>25</option>
+                  <option value='3'>50</option>
+                  <option value='4'>100</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <ul className='pagination'>
+            <li className='page-item previous disabled'>
+              <a href='#' className='page-link'>
+                {/* Previous */}
+                <i className='previous'></i>
+              </a>
+            </li>
+            <li className='page-item active'>
+              <a href='#' className='page-link'>
+                1
+              </a>
+            </li>
+            <li className='page-item'>
+              <a href='#' className='page-link'>
+                2
+              </a>
+            </li>
+            <li className='page-item'>
+              <a href='#' className='page-link'>
+                3
+              </a>
+            </li>
+            <li className='page-item'>
+              <a href='#' className='page-link'>
+                4
+              </a>
+            </li>
+            <li className='page-item'>
+              <a href='#' className='page-link'>
+                5
+              </a>
+            </li>
+            <li className='page-item'>
+              <a href='#' className='page-link'>
+                6
+              </a>
+            </li>
+            <li className='page-item next'>
+              <a href='#' className='page-link'>
+                {/* Next */}
+                <i className='next'></i>
+              </a>
+            </li>
+          </ul>
+
+          <div className='form-label fw-bold px-4'>Showing 1-10 of 100 entries</div>
+        </div>
         {/* end::Table container */}
       </div>
-      {/* begin::Body */}
+      {/* end::Body */}
+
+      {/* begin::create form Modal */}
+      <div className='modal fade' id='create-installation-modal'>
+        <div className='modal-dialog modal-fullscreen'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title'>Create Installation</h5>
+              <div
+                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              >
+                <span className='svg-icon svg-icon-2x'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                </span>
+              </div>
+            </div>
+
+            <div className='modal-body'>
+              <div className='container-fluid p-0'>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold required'>Username</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Installer</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Amit</option>
+                      <option value='3'>Ajay</option>
+                    </select>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Main point</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Not described</option>
+                      <option value='3'>Angel Square</option>
+                      <option value='4'>Anjani Sayan</option>
+                    </select>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Connection Type</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Not described</option>
+                      <option value='3'>Cable</option>
+                      <option value='4'>Wireless</option>
+                    </select>
+                  </div>
+
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className="col-md-3">
+                    <label className='form-label fw-bold'>Cable type</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>2 pair - Single coating</option>
+                      <option value='3'>2 pair - Double coating</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-3">
+                    <label className='form-label fw-bold'>Cable length</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>m</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className="col-md-3">
+                    <label className='form-label fw-bold'>IP type</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='1'></option>
+                      <option value='2'>Dynamic</option>
+                      <option value='3'>Static</option>
+                    </select>
+                  </div>
+
+                  <div className="col-md-3">
+                    <label className='form-label fw-bold'>Acces point IP</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+
+            <div className='modal-footer'>
+              <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
+                Close
+              </button>
+              <button type='button' className='btn btn-primary'>
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* end::create form Modal */}
+
+      {/* Edit form::Modal */}
+      <div className='modal fade' id='edit-form-modal'>
+        <div className='modal-dialog modal-fullscreen'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title'>Edit Form</h5>
+              <div
+                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              >
+                <span className='svg-icon svg-icon-2x'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                </span>
+              </div>
+            </div>
+
+            <div className='modal-body'>
+              <div className='container-fluid p-0'>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
+                    <div
+                      className='image-input image-input-outline mx-auto'
+                      data-kt-image-input='true'
+                      style={{
+                        backgroundImage:
+                          "url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')",
+                      }}
+                    >
+                      <div
+                        className='image-input-wrapper w-125px h-125px'
+                        style={{
+                          backgroundImage: 'url(/metronic8/demo1/assets/media/avatars/300-1.jpg)',
+                        }}
+                      ></div>
+                      <label
+                        className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='change'
+                      >
+                        <i className='bi bi-pencil-fill fs-7'></i>
+                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
+                        <input type='hidden' name='avatar_remove' />
+                      </label>
+                      <span
+                        className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='remove'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                    </div>
+                    <div className='form-text'>Choose an image</div>
+                  </div>
+
+                  <div className='col-md-9'>
+                    <div className='row mb-6'>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Username</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
+                      </div>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Form no.</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
+                      </div>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Form date</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='date'
+                          autoComplete='off'
+                        />
+                      </div>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Form type</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>New`</option>
+                          <option value='3'>Renew</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className='row mb-6 gy-4'>
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold required'>Sales Executive</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Ajay Sulin</option>
+                          <option value='3'>Amit soni</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold required'>Comapny</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Earth</option>
+                          <option value='3'>Softnet</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package category</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Broadband</option>
+                          <option value='3'>Cancel</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className='row mb-6'>
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package type</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Limited</option>
+                          <option value='3'>Unlimited</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package Name</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>1-2mbps</option>
+                          <option value='3'>1000gb</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package Validity</label>
+                        <div className='input-group'>
+                          <div className='input-group-prepend'>
+                            <span className='input-group-text'>Month</span>
+                          </div>
+                          <input
+                            type='number'
+                            className='form-control'
+                            placeholder='Package validity'
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Package Cost</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Installation cost</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input
+                        type='number'
+                        className='form-control'
+                      />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Other Cost</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Discount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>GST Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Total Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cash Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Remaining Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Bank Name</label>
+                    <select className='form-select form-select-outline'>
+                      <option value='1'></option>
+                      <option value='2'>Axis</option>
+                      <option value='3'>HDFC</option>
+                    </select>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque no.</label>
+                    <input type='number' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque date</label>
+                    <input type='date' className='form-control' />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Reciever</label>
+                    <select className='form-select form-select-outline'>
+                      <option value='1'></option>
+                      <option value='2'>Ajay</option>
+                      <option value='3'>Amit</option>
+                    </select>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque date</label>
+                    <input type='date' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque date</label>
+                    <input type='date' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>IP Type</label>
+                    <select className='form-select form-select-outline'>
+                      <option value='1'></option>
+                      <option value='2'>Dynmaic</option>
+                      <option value='3'>Static</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Note</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Third party</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-4'>
+                    <label className='form-label fw-bold'>Remark</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Form submit</label>
+                    <select className='form-select form-select-outline'>
+                      <option value="1"></option>
+                      <option value='2'>Done</option>
+                      <option value='3'>Pending</option>
+                      <option value='4'>Cancel</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div className='modal-footer'>
+              <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
+                Close
+              </button>
+              <button type='button' className='btn btn-primary'>
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Edit form::Modal */}
+
+      {/* View form::Modal */}
+      <div className='modal fade' id='view-form-modal'>
+        <div className='modal-dialog modal-fullscreen'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title'>View Form</h5>
+              <div
+                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              >
+                <span className='svg-icon svg-icon-2x'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                </span>
+              </div>
+            </div>
+
+            <div className='modal-body'>
+              <div className='container-fluid p-0'>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
+                    <div
+                      className='image-input image-input-outline mx-auto'
+                      data-kt-image-input='true'
+                      style={{
+                        backgroundImage:
+                          "url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')",
+                      }}
+                    >
+                      <div
+                        className='image-input-wrapper w-125px h-125px'
+                        style={{
+                          backgroundImage: 'url(/metronic8/demo1/assets/media/avatars/300-1.jpg)',
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div className='col-md-9'>
+                    <div className='row mb-6'>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Username</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
+                      </div>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Form no.</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                        />
+                      </div>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Form date</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          type='date'
+                          autoComplete='off'
+                        />
+                      </div>
+                      <div className='col-md-3'>
+                        <label className='form-label fw-bold required'>Form type</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>New`</option>
+                          <option value='3'>Renew</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className='row mb-6 gy-4'>
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold required'>Sales Executive</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Ajay Sulin</option>
+                          <option value='3'>Amit soni</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold required'>Comapny</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Earth</option>
+                          <option value='3'>Softnet</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package category</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Broadband</option>
+                          <option value='3'>Cancel</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className='row mb-6'>
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package type</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>Limited</option>
+                          <option value='3'>Unlimited</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package Name</label>
+                        <select className='form-select form-select-solid'>
+                          <option value='1'></option>
+                          <option value='2'>1-2mbps</option>
+                          <option value='3'>1000gb</option>
+                        </select>
+                      </div>
+
+                      <div className='col-md-4'>
+                        <label className='form-label fw-bold'>Package Validity</label>
+                        <div className='input-group'>
+                          <div className='input-group-prepend'>
+                            <span className='input-group-text'>Month</span>
+                          </div>
+                          <input
+                            type='number'
+                            className='form-control'
+                            placeholder='Package validity'
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Package Cost</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Installation cost</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input
+                        type='number'
+                        className='form-control'
+                      />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Other Cost</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Discount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>GST Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Total Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cash Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Remaining Amount</label>
+                    <div className='input-group'>
+                      <div className='input-group-prepend'>
+                        <span className='input-group-text'>₹</span>
+                      </div>
+                      <input type='number' className='form-control' />
+                    </div>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Bank Name</label>
+                    <select className='form-select form-select-outline'>
+                      <option value='1'></option>
+                      <option value='2'>Axis</option>
+                      <option value='3'>HDFC</option>
+                    </select>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque no.</label>
+                    <input type='number' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque date</label>
+                    <input type='date' className='form-control' />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Reciever</label>
+                    <select className='form-select form-select-outline'>
+                      <option value='1'></option>
+                      <option value='2'>Ajay</option>
+                      <option value='3'>Amit</option>
+                    </select>
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque date</label>
+                    <input type='date' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Cheque date</label>
+                    <input type='date' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>IP Type</label>
+                    <select className='form-select form-select-outline'>
+                      <option value='1'></option>
+                      <option value='2'>Dynmaic</option>
+                      <option value='3'>Static</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Note</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Third party</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-4'>
+                    <label className='form-label fw-bold'>Remark</label>
+                    <input type='text' className='form-control' />
+                  </div>
+
+                  <div className='col-md-2'>
+                    <label className='form-label fw-bold'>Form submit</label>
+                    <select className='form-select form-select-outline'>
+                      <option value="1"></option>
+                      <option value='2'>Done</option>
+                      <option value='3'>Pending</option>
+                      <option value='4'>Cancel</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='modal-footer'>
+              <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
+                Close
+              </button>
+              <button type='button' className='btn btn-primary'>
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* view form::Modal */}
+
+      {/* View customer::Modal */}
+      <div className='modal fade' id='view-customer-modal'>
+        <div className='modal-dialog modal-dialog-centered modal-xl'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <div className='d-flex align-items-center'>
+                <div
+                  className='btn btn-icon btn-sm btn-active-light-primary me-5'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                >
+                  <span className='svg-icon svg-icon-2x'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+                  </span>
+                </div>
+                <h5 className='modal-title'>Create Customer</h5>
+              </div>
+              <div
+                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              >
+                <span className='svg-icon svg-icon-2x'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                </span>
+              </div>
+            </div>
+
+            <div className='modal-body'>
+              <div className='container-fluid p-0'>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-4 text-center'>
+                    <div className='pb-5'>
+                      <h5 className='m-0'>ID Proof</h5>
+                    </div>
+                    <div
+                      className='image-input image-input-empty'
+                      data-kt-image-input='true'
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                    >
+                      <div className='image-input-wrapper w-125px h-125px'></div>
+
+                      <label
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='change'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Change avatar'
+                      >
+                        <i className='bi bi-pencil-fill fs-7'></i>
+
+                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
+                        <input type='hidden' name='avatar_remove' />
+                      </label>
+
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='cancel'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Cancel avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='remove'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Remove avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div className='col-lg-4 text-center'>
+                    <div className='pb-5'>
+                      <h5 className='m-0'>Address Proof</h5>
+                    </div>
+                    <div
+                      className='image-input image-input-empty'
+                      data-kt-image-input='true'
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                    >
+                      <div className='image-input-wrapper w-125px h-125px'></div>
+
+                      <label
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='change'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Change avatar'
+                      >
+                        <i className='bi bi-pencil-fill fs-7'></i>
+
+                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
+                        <input type='hidden' name='avatar_remove' />
+                      </label>
+
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='cancel'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Cancel avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='remove'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Remove avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div className='col-lg-4 text-center'>
+                    <div className='pb-5'>
+                      <h5 className='m-0'>GST Certificate</h5>
+                    </div>
+                    <div
+                      className='image-input image-input-empty'
+                      data-kt-image-input='true'
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                    >
+                      <div className='image-input-wrapper w-125px h-125px'></div>
+
+                      <label
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='change'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Change avatar'
+                      >
+                        <i className='bi bi-pencil-fill fs-7'></i>
+
+                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
+                        <input type='hidden' name='avatar_remove' />
+                      </label>
+
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='cancel'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Cancel avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='remove'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Remove avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div className='col-lg-4'>
+                    <label className='form-label fw-bold'>First Name</label>
+                    <input
+                      placeholder='First name'
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-lg-4'>
+                    <label className='form-label fw-bold'>Middle name</label>
+                    <input
+                      placeholder='Middle name'
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-lg-4'>
+                    <label className='form-label fw-bold'>Last Name</label>
+                    <input
+                      placeholder='Last name'
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-6'>
+                    <label className='form-label fw-bold'>Company name</label>
+                    <input
+                      placeholder='Company name'
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>GST no.</label>
+                    <input
+                      placeholder='GST no.'
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Email</label>
+                    <input
+                      placeholder='Email'
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      autoComplete='off'
+                    />
+                  </div>
+                </div>
+
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Username</label>
+                    <input
+                      placeholder='Username'
+                      className='form-control form-control-lg form-control-solid'
+                      type='number'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Mobile no.</label>
+                    <input
+                      placeholder='Mobile no.'
+                      className='form-control form-control-lg form-control-solid'
+                      type='number'
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-lg-3'>
+                    <div data-select2-id='select-role'>
+                      <label className='form-label fw-bold'>Contact no.</label>
+                      <input
+                        placeholder='Contact no.'
+                        className='form-control form-control-lg form-control-solid'
+                        type='number'
+                        autoComplete='off'
+                      />
+                    </div>
+                  </div>
+                  <div className='col-lg-3'>
+                    <div data-select2-id='select-zone'>
+                      <label className='form-label fw-bold'>Zone</label>
+                      <div data-select2-id='select-zone'>
+                        <select className='form-select form-select-solid'>
+                          <option>Select Zone</option>
+                          <option value='1'>All</option>
+                          <option value='2'>Katargam</option>
+                          <option value='3'>Ring Road</option>
+                          <option value='4'>Varachha</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='col-lg-12'>
+                    <label className='form-label fw-bold'>Address</label>
+                    <textarea
+                      className='form-control form-control form-control-solid'
+                      data-kt-autosize='true'
+                      placeholder='Address here'
+                    ></textarea>
+                  </div>
+                  <div className='col-lg-12'>
+                    <label className='form-label fw-bold'>Remark</label>
+                    <textarea
+                      className='form-control form-control form-control-solid'
+                      data-kt-autosize='true'
+                      placeholder='Remark here'
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='modal-footer'>
+              <button type='button' className='btn btn-secondary'>
+                Create
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* view customer::Modal */}
     </div>
   )
 }

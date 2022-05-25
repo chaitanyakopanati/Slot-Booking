@@ -497,7 +497,6 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
               <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
               <div data-select2-id='show-enteries'>
                 <select className='form-select form-select-solid h-40px py-2'>
-                  <option></option>
                   <option value='1'>10</option>
                   <option value='2'>25</option>
                   <option value='3'>50</option>
