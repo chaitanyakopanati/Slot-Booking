@@ -45,12 +45,61 @@ export function AsideMenuMain() {
         fontIcon='bi-app-indicator'
       />
 
-      <AsideMenuItem
+      <AsideMenuItemWithSub
         to='/complaint-types'
-        icon='/media/icons/duotune/general/gen010.svg'
-        title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES'})}
-        fontIcon='bi-app-indicator'
-      />
+        title='Stocks'
+        fontIcon='bi-archive'
+        icon='/media/icons/duotune/general/gen033.svg'
+      >
+        <AsideMenuItem
+          to='/complaint-types'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES1'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types2'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES2'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types3'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES3'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types4'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES4'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types5'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES5'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types6'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES6'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types7'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES7'})}
+          fontIcon='bi-app-indicator'
+        />
+        <AsideMenuItem
+          to='/complaint-types8'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES8'})}
+          fontIcon='bi-app-indicator'
+        />
+      </AsideMenuItemWithSub>
 
       <AsideMenuItem
         to='/faults'

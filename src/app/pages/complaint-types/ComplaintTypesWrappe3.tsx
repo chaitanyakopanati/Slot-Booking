@@ -19,7 +19,7 @@ const ComplaintTypesWrapper: FC = () => {
   const intl = useIntl()
   return (
     <>
-      <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.COMPLAINT.TYPES1' })}</PageTitle>
+      <PageTitle breadcrumbs={[]}>{intl.formatMessage({ id: 'MENU.COMPLAINT.TYPES3' })}</PageTitle>
       <ComplaintTypesPage />
     </>
   )
