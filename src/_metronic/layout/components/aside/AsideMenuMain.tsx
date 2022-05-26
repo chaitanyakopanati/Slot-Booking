@@ -46,19 +46,19 @@ export function AsideMenuMain() {
       />
 
       <AsideMenuItemWithSub
-        to='/complaint-types'
+        to='/stocks'
         title='Stocks'
         fontIcon='bi-archive'
         icon='/media/icons/duotune/general/gen033.svg'
       >
         <AsideMenuItem
-          to='/complaint-types'
+          to='stocks/office-stock-inwards'
           icon='/media/icons/duotune/general/gen010.svg'
           title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES1'})}
           fontIcon='bi-app-indicator'
         />
         <AsideMenuItem
-          to='/complaint-types2'
+          to='/stocks/office-stock-outwards'
           icon='/media/icons/duotune/general/gen010.svg'
           title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES2'})}
           fontIcon='bi-app-indicator'
@@ -100,6 +100,21 @@ export function AsideMenuMain() {
           fontIcon='bi-app-indicator'
         />
       </AsideMenuItemWithSub>
+      {/* master */}
+      <AsideMenuItemWithSub
+        to='/master'
+        title='master'
+        fontIcon='bi-archive'
+        icon='/media/icons/duotune/general/gen033.svg'
+      >
+        <AsideMenuItem
+          to='/master/users'
+          icon='/media/icons/duotune/general/gen010.svg'
+          title={intl.formatMessage({id: 'MENU.MASTER.USERS'})}
+          fontIcon='bi-app-indicator'
+        />
+        </AsideMenuItemWithSub>
+        {/*  */}
 
       <AsideMenuItem
         to='/faults'

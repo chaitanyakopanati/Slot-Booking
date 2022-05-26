@@ -18,11 +18,12 @@ import {FormsWrapper} from '../pages/forms/FormsWrapper'
 import {InstallationsWrapper} from '../pages/installations/InstallationsWrapper'
 import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
 
-
-
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
+import MasterWrapper from '../pages/master/MasterWrapper'
+
 
 const PrivateRoutes = () => {
+  const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
   return (
     <Routes>
       <Route element={<MasterLayout />}>
@@ -32,6 +33,25 @@ const PrivateRoutes = () => {
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='customers' element={<CustomersWrapper />} />
         <Route path='complaint-types' element={<ComplaintTypesWrapper />} />
+        <Route
+          path='stocks/*'
+          element={
+            <SuspensedView>
+              <StockWrapper />
+            </SuspensedView>
+          
+          }
+        />
+        {/*  */}
+        <Route
+          path='master/*'
+          element={
+            <SuspensedView>
+              <MasterWrapper />
+            </SuspensedView>
+          
+          }
+        />
         <Route path='faults' element={<FaultsWrapper />} />
         <Route path='zones' element={<ZonesWrapper />} />
         <Route path='main-points' element={<MainPointsWrapper />} />
@@ -44,8 +64,6 @@ const PrivateRoutes = () => {
         <Route path='forms' element={<FormsWrapper />} />
         <Route path='installations' element={<InstallationsWrapper />} />
         <Route path='inquiries' element={<InquiriesWrapper />} />
-
-
 
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
