@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { KTSVG, toAbsoluteUrl } from '../../../_metronic/helpers'
+import { TablesWidget13 } from '../../../_metronic/partials/widgets/tables/TablesWidget13'
 
 function BanksWrapper() {
   const [filterShow, setFilterShow] = useState(false)
