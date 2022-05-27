@@ -232,13 +232,9 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
             {/* begin::Table body */}
             <tbody>
               <tr>
-                <td>
-                  <div className='text-dark fw-bolder fs-6 ps-4'>1020</div>
-                </td>
+                <td className='text-dark fw-bolder fs-6 ps-4'>1020</td>
                 <td className='text-dark fw-bold  fs-6'>25-May-2022</td>
-                <td>
-                Media convertor-1310-old
-                </td>
+                <td className='text-dark fw-bold  fs-6'>Media convertor-1310-old</td>
                 <td className='text-dark fw-bold  fs-6'>2 Pieces</td>
                 <td className='text-dark fw-bold fs-6'>Shashikantbhai Kaka</td>
                 <td className='text-dark fw-bold fs-6'>Katargam</td>
@@ -262,13 +258,9 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                 </td>
               </tr>
               <tr>
-                <td>
-                  <div className='text-dark fw-bolder fs-6 ps-4'>1020</div>
-                </td>
+                <td className='text-dark fw-bolder fs-6 ps-4'>1020</td>
                 <td className='text-dark fw-bold  fs-6'>25-May-2022</td>
-                <td>
-                Media convertor-1310-old
-                </td>
+                <td className='text-dark fw-bold  fs-6'>Media convertor-1310-old</td>
                 <td className='text-dark fw-bold  fs-6'>2 Pieces</td>
                 <td className='text-dark fw-bold fs-6'>Shashikantbhai Kaka</td>
                 <td className='text-dark fw-bold fs-6'>Katargam</td>
@@ -292,13 +284,9 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                 </td>
               </tr>
               <tr>
-                <td>
-                  <div className='text-dark fw-bolder fs-6 ps-4'>1020</div>
-                </td>
+                <td className='text-dark fw-bolder fs-6 ps-4'>1020</td>
                 <td className='text-dark fw-bold  fs-6'>25-May-2022</td>
-                <td>
-                Media convertor-1310-old
-                </td>
+                <td className='text-dark fw-bold  fs-6'>Media convertor-1310-old</td>
                 <td className='text-dark fw-bold  fs-6'>2 Pieces</td>
                 <td className='text-dark fw-bold fs-6'>Shashikantbhai Kaka</td>
                 <td className='text-dark fw-bold fs-6'>Katargam</td>
