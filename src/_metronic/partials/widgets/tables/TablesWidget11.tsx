@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useState} from 'react'
-import {threadId} from 'worker_threads'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import React, { useState } from 'react'
+import { threadId } from 'worker_threads'
+import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget11: React.FC<Props> = ({className}) => {
+const TablesWidget11: React.FC<Props> = ({ className }) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -83,6 +83,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Zone</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option value='1'>All</option>
                   <option value='2'>Katargam</option>
                   <option value='3'>Ring Road</option>
@@ -92,6 +93,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Company</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option value='1'>All</option>
                   <option value='2'>Earth</option>
                   <option value='3'>Softnet</option>
@@ -100,6 +102,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Sales executive</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option value='1'>All</option>
                   <option value='2'>Not described</option>
                   <option value='3'>Abalkesh Soft</option>
@@ -112,6 +115,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Payment</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option value='1'>All</option>
                   <option value='2'>Due</option>
                   <option value='3'>Clear</option>
@@ -153,6 +157,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Package Category</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option>All</option>
                   <option value='1'>Not described</option>
                   <option value='2'>Broadband</option>
@@ -161,6 +166,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Connection type</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option>All</option>
                   <option value='1'>Not described</option>
                   <option value='2'>Cable</option>
@@ -169,6 +175,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Form type</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option value='1'>All</option>
                   <option value='2'>New</option>
                   <option value='3'>Renew</option>
@@ -177,6 +184,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Form submit</label>
                 <select className='form-select form-select-solid'>
+                  <option></option>
                   <option value='1'>All</option>
                   <option value='2'>Pending</option>
                   <option value='3'>Done</option>
@@ -1497,7 +1505,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1541,7 +1549,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1585,7 +1593,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1758,4 +1766,4 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
   )
 }
 
-export {TablesWidget11}
+export { TablesWidget11 }

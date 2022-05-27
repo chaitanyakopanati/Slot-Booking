@@ -54,7 +54,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
 
         {filterShow && (
           <div className='row w-100 mx-0 mt-5'>
-            <div className='col-lg-3 ps-0'>
+            <div className='col-lg-3'>
               <label className='form-label fw-bold'>Username</label>
               <input
                 placeholder='All'
@@ -92,7 +92,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 pe-0'>
+            <div className='col-lg-3'>
               <div className='mb-10' data-select2-id='select-created-by'>
                 <label className='form-label fw-bold'>Created by</label>
                 <div data-select2-id='select-created-by'>
@@ -105,7 +105,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 pe-0'>
+            <div className='col-lg-3'>
               <div className='mb-10' data-select2-id='select-created-by'>
                 <label className='form-label fw-bold'>Installer</label>
                 <div data-select2-id='select-created-by'>
@@ -118,7 +118,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 pe-0'>
+            <div className='col-lg-3'>
               <div className='mb-10' data-select2-id='select-created-by'>
                 <label className='form-label fw-bold'>Sales Executive</label>
                 <div data-select2-id='select-created-by'>
@@ -131,7 +131,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 pe-0'>
+            <div className='col-lg-3'>
               <div className='mb-10' data-select2-id='select-created-by'>
                 <label className='form-label fw-bold'>Main point</label>
                 <div data-select2-id='select-created-by'>
@@ -144,7 +144,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                 </div>
               </div>
             </div>
-            <div className='col-lg-3 pe-0'>
+            <div className='col-lg-3'>
               <div className='mb-10' data-select2-id='select-created-by'>
                 <label className='form-label fw-bold'>Connection type</label>
                 <div data-select2-id='select-created-by'>

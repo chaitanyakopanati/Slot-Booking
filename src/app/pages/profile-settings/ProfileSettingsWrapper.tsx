@@ -76,7 +76,7 @@ const ProfileSettingsPage: FC = () => (
                     <span>Contact Phone</span>
                   </label>
                   <div className='col-lg-9'>
-                    <input type="tel" name="phone" className='form-control form-control-lg form-control-solid' placeholder="Phone number" />
+                    <input type="number" name="phone" className='form-control form-control-lg form-control-solid' placeholder="Phone number" />
                   </div>
                 </div>
 

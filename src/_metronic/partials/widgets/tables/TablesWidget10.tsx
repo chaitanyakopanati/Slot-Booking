@@ -166,7 +166,7 @@ const TablesWidget10: React.FC<Props> = ({className}) => {
                 <th className='min-w-150px'>Name</th>
                 <th className='min-w-200px'>Address</th>
                 <th className='min-w-250px'>Installer</th>
-                <th className='min-w-150px'>Created at</th>
+                <th className='min-w-200px'>Created at</th>
                 <th className='min-w-100px'>Status</th>
                 <th className='min-w-200px rounded-end'>Actions</th>
               </tr>
