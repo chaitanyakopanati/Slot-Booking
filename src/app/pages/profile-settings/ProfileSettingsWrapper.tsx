@@ -2,6 +2,8 @@
 import React, { FC, SetStateAction } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
+import { KTSVG, toAbsoluteUrl } from '../../../_metronic/helpers'
+
 import {
   TablesWidget12,
 } from '../../../_metronic/partials/widgets'
@@ -14,8 +16,21 @@ const ProfileSettingsPage: FC = () => (
 
         <div className='card mb-5 mb-xl-10 card-xxl-stretch'>
           <div className='card-header border-0 cursor-pointer'>
-            <div className='card-title m-0'>
+            <div className='card-title w-100 m-0 d-flex justify-content-between'>
               <h3 className='fw-bolder m-0'>Profile Details</h3>
+              <div className='ms-3'>
+                <a
+                  href='#'
+                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                  data-bs-toggle='modal'
+                  data-bs-target='#edit-password-modal'
+                >
+                  <span className='svg-icon svg-icon-gray-500 me-1'>
+                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  </span>
+                  Edit password
+                </a>
+              </div>
             </div>
           </div>
           <div id="kt_account_settings_profile_details" className='collapse show'>
@@ -98,7 +113,7 @@ const ProfileSettingsPage: FC = () => (
                     </div>
                   </div>
                 </div>
-                
+
               </div>
               <div className='card-footer d-flex justify-content-end py-6 px-9'>
                 <button type="reset" className='btn btn-light btn-active-light-primary me-2'>Discard</button>
@@ -107,8 +122,97 @@ const ProfileSettingsPage: FC = () => (
               <input type="hidden" /><div></div></form>
           </div>
         </div>
+
       </div>
     </div>
+
+    {/* Edit password::Modal */}
+    <div className='modal fade' id='edit-password-modal'>
+      <div className='modal-dialog modal-dialog-centered'>
+        <div className='modal-content'>
+          <div className='modal-header'>
+            <div className='d-flex align-items-center'>
+              <div
+                className='btn btn-icon btn-sm btn-active-light-primary me-5'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              >
+                <span className='svg-icon svg-icon-2x'>
+                  <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+                </span>
+              </div>
+              <h5 className='modal-title'>Edit password</h5>
+            </div>
+
+            <div
+              className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+              data-bs-dismiss='modal'
+              aria-label='Close'
+            >
+              <span className='svg-icon svg-icon-2x'>
+                <KTSVG path='/media/icons/duotune/arrows/arr088.svg' />
+              </span>
+            </div>
+          </div>
+
+          <div className='modal-body'>
+            <div className='container-fluid p-0'>
+              <div className='row w-100 mx-0 mb-4 gy-4'>
+                <div className='col'>
+                  <label className='form-label fw-bold'>Current password:</label>
+                  <input
+                    placeholder='First name'
+                    className='form-control form-control-lg form-control-solid'
+                    type='text'
+                    autoComplete='off'
+                  />
+                </div>
+              </div>
+
+
+              <div className='row w-100 mx-0 mb-4 gy-4'>
+                <div className='col'>
+                  <label className='form-label fw-bold'>New password:</label>
+                  <input
+                    placeholder='First name'
+                    className='form-control form-control-lg form-control-solid'
+                    type='text'
+                    autoComplete='off'
+                  />
+                </div>
+              </div>
+
+              <div className='row w-100 mx-0 mb-4 gy-4'>
+                <div className='col'>
+                  <label className='form-label fw-bold'>Confirm password:</label>
+                  <input
+                    placeholder='Last name'
+                    className='form-control form-control-lg form-control-solid'
+                    type='text'
+                    autoComplete='off'
+                  />
+                </div>
+              </div>
+              <div className='row w-100 mx-0 mt-4 gy-4'>
+                <div className='col'>
+                  <div className='form-check form-check-solid me-5 mb-0'>
+                    <input className='form-check-input' type='checkbox' />
+                    <label className='form-label m-0'>Show password</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='modal-footer'>
+            <button type='button' className='btn btn-primary'>
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* Edit password::Modal */}
   </>
 )
 

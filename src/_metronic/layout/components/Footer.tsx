@@ -23,7 +23,7 @@ const Footer: FC = () => {
         <ul className='menu menu-gray-600 menu-hover-primary fw-bold order-1'>
 
           <li className='menu-item'>
-            <a href='https://disolutions.net/' target={'blank'} className='menu-link pe-0'>
+            <a href='https://disolutions.net/' target={'blank'} className='menu-link pe-0 py-0'>
               Designed by DI Solutions
             </a>
           </li>

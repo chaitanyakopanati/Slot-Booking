@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useState} from 'react'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import React, { useState } from 'react'
+import { KTSVG, toAbsoluteUrl } from '../../../helpers'
 import ImageSelect from "../../../../app/images/error-profile.svg"
 
 
@@ -9,7 +9,7 @@ type Props = {
   className: string
 }
 
-const TablesWidget12: React.FC<Props> = ({className}) => {
+const TablesWidget12: React.FC<Props> = ({ className }) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -159,108 +159,6 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
             </div>
           </div>
         )}
-
-        <div className='card-toolbar d-none'>
-          {/* begin::Menu */}
-          <button
-            type='button'
-            className='btn btn-sm btn-icon btn-color-primary btn-active-light-primary'
-            data-kt-menu-trigger='click'
-            data-kt-menu-placement='bottom-end'
-            data-kt-menu-flip='top-end'
-          >
-            <KTSVG path='/media/icons/duotune/general/gen024.svg' className='svg-icon-2' />
-          </button>
-          {/* begin::Menu 2 */}
-          <div
-            className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px'
-            data-kt-menu='true'
-          >
-            {/* begin::Menu item */}
-            <div className='menu-item px-3'>
-              <div className='menu-content fs-6 text-dark fw-bolder px-3 py-4'>Quick Actions</div>
-            </div>
-            {/* end::Menu item */}
-            {/* begin::Menu separator */}
-            <div className='separator mb-3 opacity-75'></div>
-            {/* end::Menu separator */}
-            {/* begin::Menu item */}
-            <div className='menu-item px-3'>
-              <a href='#' className='menu-link px-3'>
-                New Ticket
-              </a>
-            </div>
-            {/* end::Menu item */}
-            {/* begin::Menu item */}
-            <div className='menu-item px-3'>
-              <a href='#' className='menu-link px-3'>
-                New Customer
-              </a>
-            </div>
-            {/* end::Menu item */}
-            {/* begin::Menu item */}
-            <div
-              className='menu-item px-3'
-              data-kt-menu-trigger='hover'
-              data-kt-menu-placement='right-start'
-              data-kt-menu-flip='left-start, top'
-            >
-              {/* begin::Menu item */}
-              <a href='#' className='menu-link px-3'>
-                <span className='menu-title'>New Group</span>
-                <span className='menu-arrow'></span>
-              </a>
-              {/* end::Menu item */}
-              {/* begin::Menu sub */}
-              <div className='menu-sub menu-sub-dropdown w-175px py-4'>
-                {/* begin::Menu item */}
-                <div className='menu-item px-3'>
-                  <a href='#' className='menu-link px-3'>
-                    Admin Group
-                  </a>
-                </div>
-                {/* end::Menu item */}
-                {/* begin::Menu item */}
-                <div className='menu-item px-3'>
-                  <a href='#' className='menu-link px-3'>
-                    Staff Group
-                  </a>
-                </div>
-                {/* end::Menu item */}
-                {/* begin::Menu item */}
-                <div className='menu-item px-3'>
-                  <a href='#' className='menu-link px-3'>
-                    Member Group
-                  </a>
-                </div>
-                {/* end::Menu item */}
-              </div>
-              {/* end::Menu sub */}
-            </div>
-            {/* end::Menu item */}
-            {/* begin::Menu item */}
-            <div className='menu-item px-3'>
-              <a href='#' className='menu-link px-3'>
-                New Contact
-              </a>
-            </div>
-            {/* end::Menu item */}
-            {/* begin::Menu separator */}
-            <div className='separator mt-3 opacity-75'></div>
-            {/* end::Menu separator */}
-            {/* begin::Menu item */}
-            <div className='menu-item px-3'>
-              <div className='menu-content px-3 py-3'>
-                <a className='btn btn-primary btn-sm px-4' href='#'>
-                  Generate Reports
-                </a>
-              </div>
-            </div>
-            {/* end::Menu item */}
-          </div>
-          {/* end::Menu 2 */}
-          {/* end::Menu */}
-        </div>
       </div>
       {/* end::Header */}
 
@@ -277,6 +175,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                 <th className='min-w-150px'>Username</th>
                 <th className='min-w-150px'>Name</th>
                 <th className='min-w-200px'>Address</th>
+                <th className='min-w-120px'>Mobile no.</th>
                 <th className='min-w-100px'>package name</th>
                 <th className='min-w-120px'>Expiry date</th>
                 <th className='min-w-125px rounded-end'>Options</th>
@@ -307,6 +206,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td className='text-dark fw-bold  fs-6'>165, Gf, Block No-2, New Gidc, Maha...</td>
+                <td className='text-dark fw-bold fs-6'>9909623544</td>
                 <td className='text-dark fw-bold fs-6'>6 mbps</td>
                 <td className='text-dark fw-bold fs-6'>23-May-2023</td>
                 <td>
@@ -374,6 +274,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td className='text-dark fw-bold  fs-6'>165, Gf, Block No-2, New Gidc, Maha...</td>
+                <td className='text-dark fw-bold fs-6'>6398765987</td>
                 <td className='text-dark fw-bold fs-6'>6 mbps</td>
                 <td className='text-dark fw-bold fs-6'>23-May-2023</td>
                 <td>
@@ -441,6 +342,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                   </div>
                 </td>
                 <td className='text-dark fw-bold  fs-6'>165, Gf, Block No-2, New Gidc, Maha...</td>
+                <td className='text-dark fw-bold fs-6'>9874321009</td>
                 <td className='text-dark fw-bold fs-6'>6 mbps</td>
                 <td className='text-dark fw-bold fs-6'>23-May-2023</td>
                 <td>
@@ -493,16 +395,14 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
         </div>
         <div className='d-flex align-items-center justify-content-between pt-5'>
           <div className='min-w-100px'>
-            <div className='mb-10 d-flex align-items-center' data-select2-id='show-enteries'>
+            <div className='mb-10 d-flex align-items-center'>
               <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
-              <div data-select2-id='show-enteries'>
-                <select className='form-select form-select-solid h-40px py-2'>
-                  <option value='1'>10</option>
-                  <option value='2'>25</option>
-                  <option value='3'>50</option>
-                  <option value='4'>100</option>
-                </select>
-              </div>
+              <select className='form-select form-select-solid h-40px py-2'>
+                <option value='1'>10</option>
+                <option value='2'>25</option>
+                <option value='3'>50</option>
+                <option value='4'>100</option>
+              </select>
             </div>
           </div>
 
@@ -594,7 +494,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -638,7 +538,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -682,7 +582,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1008,7 +908,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
       {/* View Complain::Modal */}
       <div className='modal fade' id='kt_modal_3'>
         <div className='modal-dialog modal-dialog-centered modal-xl'>
-        <div className='modal-content'>
+          <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
                 <div
@@ -1047,7 +947,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1091,7 +991,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1135,7 +1035,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      style={{ backgroundImage: `url(${ImageSelect})` }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1279,8 +1179,8 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                   <div className='col-lg-4'>
                     <label className='form-label fw-bold'>Activation date</label>
                     <div className='input-group mb-5'>
-                      <span className='input-group-text svg-icon svg-icon-gray-500 ' id='basic-addon1'>                      
-                    <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />                
+                      <span className='input-group-text svg-icon svg-icon-gray-500 ' id='basic-addon1'>
+                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
                       </span>
                       <input
                         type='text'
@@ -1291,12 +1191,12 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className='col-lg-4'>
                     <label className='form-label fw-bold'>Expiry date</label>
                     <div className='input-group mb-5'>
-                      <span className='input-group-text' id='basic-addon1'>                      
-                    <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />                
+                      <span className='input-group-text' id='basic-addon1'>
+                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
                       </span>
                       <input
                         type='text'
@@ -1306,7 +1206,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                         aria-describedby='basic-addon1'
                       />
                     </div>
-                  </div>                 
+                  </div>
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Remark</label>
                     <textarea
@@ -1329,8 +1229,8 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Created at</label>
                     <div className='input-group mb-5'>
-                      <span className='input-group-text svg-icon svg-icon-gray-500 ' id='basic-addon1'>                      
-                    <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />                
+                      <span className='input-group-text svg-icon svg-icon-gray-500 ' id='basic-addon1'>
+                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
                       </span>
                       <input
                         type='text'
@@ -1355,8 +1255,8 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Updated at</label>
                     <div className='input-group mb-5'>
-                      <span className='input-group-text' id='basic-addon1'>                      
-                    <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />                
+                      <span className='input-group-text' id='basic-addon1'>
+                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
                       </span>
                       <input
                         type='text'
@@ -1378,4 +1278,4 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
   )
 }
 
-export {TablesWidget12}
+export { TablesWidget12 }

@@ -12,9 +12,9 @@ const DefaultTitle: FC = () => {
   return (
     <div
       id='kt_page_title'
-      data-kt-swapper='true'
-      data-kt-swapper-mode='prepend'
-      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+      // data-kt-swapper='true'
+      // data-kt-swapper-mode='prepend'
+      // data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
       className={clsx('page-title d-flex align-items-center justify-content-between w-100', classes.pageTitle.join(' '))}
     >
       <div className='d-flex align-items-center'>

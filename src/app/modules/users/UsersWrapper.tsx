@@ -9,11 +9,11 @@ function UsersWrapper() {
       <div className='row gy-5 gx-xl-8'>
         <div className='col-xl-12'>
           {/* <TablesWidget13 className='card-xxl-stretch mb-5 mb-xl-8' /> */}
-          <div className='card card-xxl-stretch mb-5 mb-xl-8'>
+          <div className='card card-xxl-stretch'>
             {/* begin::Header */}
             <div className='card-header border-0 pt-5'>
-              <div className='card-title d-flex align-items-center justify-content-between w-100 mx-0'>
-                <div className='d-flex align-items-center position-relative my-1 col-lg-3'>
+              <div className='card-title d-flex flex-md-row flex-column gap-3 align-items-center justify-content-between w-100 mx-0'>
+                <div className='d-flex align-items-center position-relative my-1 col-12 col-md-3'>
                   <span className='svg-icon svg-icon-1 position-absolute ms-4'>
                     <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
                   </span>
@@ -23,43 +23,51 @@ function UsersWrapper() {
                     placeholder='Search'
                   />
                 </div>
+                <div className='d-flex align-items-center'>
+                  <div className='ms-auto'>
+                    <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                      <span className='svg-icon svg-icon-gray-500 me-0'>
+                        <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-2 me-0' />
+                      </span>
+                      <span className='d-none d-sm-block ms-3'>
+                        Download
+                      </span>
+                    </a>
+                  </div>
 
-                <div className='ms-auto'>
-                  <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                    <span className='svg-icon svg-icon-gray-500 me-1'>
-                      <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-3' />
-                    </span>
-                    Download
-                  </a>
-                </div>
+                  <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+                    <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                      <span className='svg-icon svg-icon-gray-500 me-0'>
+                        <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-2 me-0' />
+                      </span>
+                      <span className='d-none d-sm-block ms-3'>
+                        Filter
+                      </span>
+                    </div>
+                  </div>
 
-                <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
-                  <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                    <span className='svg-icon svg-icon-gray-500 me-1'>
-                      <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
-                    </span>
-                    Filter
+                  <div className='ms-3'>
+                    <a
+                      href='#'
+                      className='btn btn-sm  btn-flex btn-light btn-active-primary fw-bold'
+                      data-bs-toggle='modal'
+                      data-bs-target='#create-user-modal'
+                    >
+                      <span className='svg-icon svg-icon-gray-500 me-0'>
+                        <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-2 me-0' />
+                      </span>
+                      <span className='ms-3'>
+                        Create User
+                      </span>
+                    </a>
                   </div>
                 </div>
 
-                <div className='ms-3'>
-                  <a
-                    href='#'
-                    className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                    data-bs-toggle='modal'
-                    data-bs-target='#create-user-modal'
-                  >
-                    <span className='svg-icon svg-icon-gray-500 me-1'>
-                      <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-                    </span>
-                    Create User
-                  </a>
-                </div>
               </div>
 
               {filterShow && (
-                <div className='row w-100 mx-0 my-5'>
-                  <div className='col-lg-3'>
+                <div className='row w-100 gy-1 mx-0 my-5'>
+                  <div className='col-lg-3 col-md-6'>
                     <label className='form-label fw-bold'>Username:</label>
                     <input
                       placeholder='Search username'
@@ -68,7 +76,7 @@ function UsersWrapper() {
                       autoComplete='off'
                     />
                   </div>
-                  <div className='col-lg-3'>
+                  <div className='col-lg-3 col-md-6'>
                     <label className='form-label fw-bold'>Zone:</label>
                     <select className='form-select form-select-solid'>
                       <option></option>
@@ -78,7 +86,7 @@ function UsersWrapper() {
                       <option value='4'>Varachha</option>
                     </select>
                   </div>
-                  <div className='col-lg-3'>
+                  <div className='col-lg-3 col-md-6'>
                     <label className='form-label fw-bold'>Role:</label>
                     <select className='form-select form-select-solid'>
                       <option></option>
@@ -89,7 +97,7 @@ function UsersWrapper() {
                       <option value='4'>Stock Manager</option>
                     </select>
                   </div>
-                  <div className='col-lg-3'>
+                  <div className='col-lg-3 col-md-6'>
                     <label className='form-label fw-bold'>Created by:</label>
                     <select className='form-select form-select-solid'>
                       <option></option>
@@ -107,7 +115,7 @@ function UsersWrapper() {
             {/* begin::Body */}
             <div className='card-body py-3'>
               {/* begin::Table container */}
-              <div className='table-responsive'>
+              <div className='table-responsive d-lg-block d-none'>
                 {/* begin::Table */}
                 <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border table-striped'>
                   {/* begin::Table head */}
@@ -132,18 +140,7 @@ function UsersWrapper() {
                       </td>
                       <td>
                         <div className='d-flex align-items-center'>
-                          <div className='symbol symbol-50px me-5 d-none'>
-                            <span className='symbol-label bg-light'>
-                              <img
-                                src={toAbsoluteUrl('/media/svg/avatars/001-boy.svg')}
-                                className='h-75 align-self-end'
-                                alt='profile'
-                              />
-                            </span>
-                          </div>
-                          <div className='d-flex justify-content-start flex-column'>
-                            <div className='text-dark fw-bold  fs-6'>Ganesh Ahir</div>
-                          </div>
+                          <div className='text-dark fw-bold  fs-6'>Ganesh Ahir</div>
                         </div>
                       </td>
                       <td className='text-dark fw-bold  fs-6'>ganesh</td>
@@ -274,68 +271,241 @@ function UsersWrapper() {
                 </table>
                 {/* end::Table */}
               </div>
-              <div className='d-flex align-items-center justify-content-between pt-5'>
-                <div className='min-w-100px'>
-                  <div className='mb-10 d-flex align-items-center' data-select2-id='show-enteries'>
-                    <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
-                    <div data-select2-id='show-enteries'>
-                      <select className='form-select form-select-solid h-40px py-2'>
-                        <option></option>
-                        <option value='1'>10</option>
-                        <option value='2'>25</option>
-                        <option value='3'>50</option>
-                        <option value='4'>100</option>
-                      </select>
+
+              <div className='row g-5 d-flex d-lg-none'>
+                <div className='col-sm-6 mx-0 my-2'>
+                  <div className="card card-custom bg-light">
+                    <div className="card-body p-4">
+                      <div className='py-1 d-flex align-items-center'>
+                        <td className='text-dark fw-bold fs-2 me-2'>1.</td>
+                        <td className='text-dark fw-bold fs-2'>Ganesh Ahir</td>
+                        <td className='text-muted fw-bold fs-6 ms-2'>- ganesh</td>
+                      </div>
+
+                      <div className='py-1 d-flex'>
+                        <th>Zone:</th>
+                        <td className='text-dark fw-bold fs-6 ms-2'>Katargam</td>
+                      </div>
+                      <div className='py-1 d-flex'>
+                        <th>Role:</th>
+                        <td className='text-dark fw-bold fs-6 ms-2'>Technician</td>
+                      </div>
+                      <div className='d-flex align-items-center justify-content-evenly border-top border-secondary py-1 my-1 flex-wrap'>
+                        <div className='d-flex align-items-center'>
+                          {/* <th className='fs-6'>Email:</th> */}
+                          <i className="text-dark bi bi-envelope-fill fs-5"></i>
+                          <td className='text-dark fw-bold fs-6 ms-2'>ganesh@gmail.com</td>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                          {/* <th>Mobile:</th> */}
+                          <i className="text-dark bi bi-telephone-fill fs-5"></i>
+                          <td className='text-dark fw-bold fs-6 ms-2'>9099999676</td>
+                        </div>
+                      </div>
+                      <div className='d-flex align-items-center justify-content-evenly border-top border-secondary'>
+                        {/* <th>Actions:</th> */}
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                          data-bs-toggle='modal'
+                          data-bs-target='#view-user-modal'
+                        >
+                          <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
+                        </a>
+
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                          data-bs-toggle='modal'
+                          data-bs-target='#edit-user-modal'
+                        >
+                          <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                        </a>
+                        <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                          <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                        </a>
+
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <ul className='pagination'>
-                  <li className='page-item previous disabled'>
-                    <a href='#' className='page-link'>
-                      {/* Previous */}
-                      <i className='previous'></i>
-                    </a>
-                  </li>
-                  <li className='page-item active'>
-                    <a href='#' className='page-link'>
-                      1
-                    </a>
-                  </li>
-                  <li className='page-item'>
-                    <a href='#' className='page-link'>
-                      2
-                    </a>
-                  </li>
-                  <li className='page-item'>
-                    <a href='#' className='page-link'>
-                      3
-                    </a>
-                  </li>
-                  <li className='page-item'>
-                    <a href='#' className='page-link'>
-                      4
-                    </a>
-                  </li>
-                  <li className='page-item'>
-                    <a href='#' className='page-link'>
-                      5
-                    </a>
-                  </li>
-                  <li className='page-item'>
-                    <a href='#' className='page-link'>
-                      6
-                    </a>
-                  </li>
-                  <li className='page-item next'>
-                    <a href='#' className='page-link'>
-                      {/* Next */}
-                      <i className='next'></i>
-                    </a>
-                  </li>
-                </ul>
-                <div className='form-label fw-bold px-4'>Showing 1-10 of 100 entries</div>
+                <div className='col-sm-6 mx-0 my-2'>
+                  <div className="card card-custom bg-light">
+                    <div className="card-body p-4">
+                      <div className='py-1 d-flex align-items-center'>
+                        <td className='text-dark fw-bold fs-2 me-2'>1.</td>
+                        <td className='text-dark fw-bold fs-2'>Ganesh Ahir</td>
+                        <td className='text-muted fw-bold fs-6 ms-2'>- ganesh</td>
+                      </div>
+
+                      <div className='py-1 d-flex'>
+                        <th>Zone:</th>
+                        <td className='text-dark fw-bold fs-6 ms-2'>Katargam</td>
+                      </div>
+                      <div className='py-1 d-flex'>
+                        <th>Role:</th>
+                        <td className='text-dark fw-bold fs-6 ms-2'>Technician</td>
+                      </div>
+                      <div className='d-flex align-items-center justify-content-evenly border-top border-secondary py-1 my-1 flex-wrap'>
+                        <div className='d-flex align-items-center'>
+                          {/* <th className='fs-6'>Email:</th> */}
+                          <i className="text-dark bi bi-envelope-fill fs-5"></i>
+                          <td className='text-dark fw-bold fs-6 ms-2'>ganesh@gmail.com</td>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                          {/* <th>Mobile:</th> */}
+                          <i className="text-dark bi bi-telephone-fill fs-5"></i>
+                          <td className='text-dark fw-bold fs-6 ms-2'>9099999676</td>
+                        </div>
+                      </div>
+                      <div className='d-flex align-items-center justify-content-evenly border-top border-secondary'>
+                        {/* <th>Actions:</th> */}
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                          data-bs-toggle='modal'
+                          data-bs-target='#view-user-modal'
+                        >
+                          <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
+                        </a>
+
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                          data-bs-toggle='modal'
+                          data-bs-target='#edit-user-modal'
+                        >
+                          <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                        </a>
+                        <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                          <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='col-sm-6 mx-0 my-2'>
+                  <div className="card card-custom bg-light">
+                    <div className="card-body p-4">
+                      <div className='py-1 d-flex align-items-center'>
+                        <td className='text-dark fw-bold fs-2 me-2'>1.</td>
+                        <td className='text-dark fw-bold fs-2'>Ganesh Ahir</td>
+                        <td className='text-muted fw-bold fs-6 ms-2'>- ganesh</td>
+                      </div>
+
+                      <div className='py-1 d-flex'>
+                        <th>Zone:</th>
+                        <td className='text-dark fw-bold fs-6 ms-2'>Katargam</td>
+                      </div>
+                      <div className='py-1 d-flex'>
+                        <th>Role:</th>
+                        <td className='text-dark fw-bold fs-6 ms-2'>Technician</td>
+                      </div>
+                      <div className='d-flex align-items-center justify-content-evenly border-top border-secondary py-1 my-1 flex-wrap'>
+                        <div className='d-flex align-items-center'>
+                          {/* <th className='fs-6'>Email:</th> */}
+                          <i className="text-dark bi bi-envelope-fill fs-5"></i>
+                          <td className='text-dark fw-bold fs-6 ms-2'>ganesh@gmail.com</td>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                          {/* <th>Mobile:</th> */}
+                          <i className="text-dark bi bi-telephone-fill fs-5"></i>
+                          <td className='text-dark fw-bold fs-6 ms-2'>9099999676</td>
+                        </div>
+                      </div>
+                      <div className='d-flex align-items-center justify-content-evenly border-top border-secondary'>
+                        {/* <th>Actions:</th> */}
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                          data-bs-toggle='modal'
+                          data-bs-target='#view-user-modal'
+                        >
+                          <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
+                        </a>
+
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                          data-bs-toggle='modal'
+                          data-bs-target='#edit-user-modal'
+                        >
+                          <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                        </a>
+                        <a href='#' className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'>
+                          <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+
+
+              <div className='d-flex align-items-center justify-content-between py-2'>
+                <div className='min-w-100px'>
+                  <div className='d-flex align-items-center' data-select2-id='show-enteries'>
+                    <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
+                    <select className='form-select form-select-solid h-40px py-2'>
+                      <option value='1'>10</option>
+                      <option value='2'>25</option>
+                      <option value='3'>50</option>
+                      <option value='4'>100</option>
+                    </select>
+                  </div>
+                </div>
+                <div className='form-label fw-bold px-4 text-end'>Showing 1-10 of 100 entries</div>
+              </div>
+
+              <ul className='pagination py-3'>
+                <li className='page-item previous disabled'>
+                  <a href='#' className='page-link'>
+                    {/* Previous */}
+                    <i className='previous'></i>
+                  </a>
+                </li>
+                <li className='page-item active'>
+                  <a href='#' className='page-link'>
+                    1
+                  </a>
+                </li>
+                <li className='page-item'>
+                  <a href='#' className='page-link'>
+                    2
+                  </a>
+                </li>
+                <li className='page-item'>
+                  <a href='#' className='page-link'>
+                    3
+                  </a>
+                </li>
+                <li className='page-item'>
+                  <a href='#' className='page-link'>
+                    4
+                  </a>
+                </li>
+                <li className='page-item'>
+                  <a href='#' className='page-link'>
+                    5
+                  </a>
+                </li>
+                <li className='page-item'>
+                  <a href='#' className='page-link'>
+                    6
+                  </a>
+                </li>
+                <li className='page-item next'>
+                  <a href='#' className='page-link'>
+                    {/* Next */}
+                    <i className='next'></i>
+                  </a>
+                </li>
+              </ul>
               {/* end::Table container */}
             </div>
             {/* end::Body */}
@@ -823,7 +993,7 @@ function UsersWrapper() {
         </div>
       </div>
 
-    </div>
+    </div >
   )
 }
 

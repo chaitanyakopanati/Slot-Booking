@@ -37,7 +37,8 @@
 
   // Dark theme
   &.aside-dark {
-    background-color: get($aside-config, bg-color);
+    // background-color: get($aside-config, bg-color);
+    background-color: #2c2c41;
 
     // Logo
     .aside-logo {

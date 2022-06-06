@@ -14,12 +14,11 @@ const Topbar: FC = () => {
 
   return (
     <div className='d-flex align-items-stretch flex-shrink-0'>
-
+{/* 
       <div
         className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
         id='kt_header_user_menu_toggle'
       >
-        {/* begin::Toggle */}
         <div
           className={clsx('cursor-pointer symbol', toolbarUserAvatarHeightClass)}
           data-kt-menu-trigger='click'
@@ -29,11 +28,9 @@ const Topbar: FC = () => {
         >
           <KTSVG path='/media/icons/duotune/general/gen022.svg' className='svg-icon-1' />
 
-          {/* <img src={toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='metronic' /> */}
         </div>
         <HeaderNotificationsMenu />
-        {/* end::Toggle */}
-      </div>
+      </div> */}
 
 
 
