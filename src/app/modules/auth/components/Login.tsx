@@ -9,11 +9,11 @@ import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Wrong email format')
+  username: Yup.string()
+    //  .('Wrong username format')
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
-    .required('Email is required'),
+    .required('Username is required'),
   password: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
@@ -21,8 +21,8 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: 'admin@demo.com',
-  password: 'demo',
+  username: 'admin',
+  password: 'Admin@123##',
 }
 
 /*
@@ -41,10 +41,9 @@ export function Login() {
     onSubmit: async (values, { setStatus, setSubmitting }) => {
       setLoading(true)
       try {
-        const { data: auth } = await login(values.email, values.password)
+        const { data: auth } = await login(values.username, values.password)
         saveAuth(auth)
-        const { data: user } = await getUserByToken(auth.api_token)
-        setCurrentUser(user)
+        
       } catch (error) {
         console.error(error)
         saveAuth(undefined)
@@ -89,7 +88,7 @@ export function Login() {
 
       {/* begin::Form group */}
       {/* <div className='fv-row mb-10'>
-        <label className='form-label fs-6 fw-bolder text-dark'>Email</label>
+        <label className='form-label fs-6 fw-bolder text-dark'>username</label>
         <input
           placeholder='Email'
           {...formik.getFieldProps('email')}

@@ -20,6 +20,8 @@ import './_metronic/assets/sass/style.scss'
 import './_metronic/assets/sass/style.react.scss'
 import {AppRoutes} from './app/routing/AppRoutes'
 import {AuthProvider, setupAxios} from './app/modules/auth'
+import LoaderProvider from './app/modules/loader/LoaderContext'
+import Loader from './app/modules/loader/Loader'
 /**
  * Creates `axios-mock-adapter` instance for provided `axios` instance, add
  * basic Metronic mocks and returns it.
@@ -41,9 +43,12 @@ const queryClient = new QueryClient()
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
     <MetronicI18nProvider>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <LoaderProvider>
+        <Loader />
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </LoaderProvider>
     </MetronicI18nProvider>
     {/* <ReactQueryDevtools initialIsOpen={false} /> */}
   </QueryClientProvider>,

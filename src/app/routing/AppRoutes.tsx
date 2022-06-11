@@ -11,7 +11,9 @@ import {PrivateRoutes} from './PrivateRoutes'
 import {ErrorsPage} from '../modules/errors/ErrorsPage'
 import {Logout, AuthPage, useAuth} from '../modules/auth'
 import {App} from '../App'
-
+import React from 'react'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 /**
  * Base URL of the website.
  *
@@ -20,14 +22,16 @@ import {App} from '../App'
 const {PUBLIC_URL} = process.env
 
 const AppRoutes: FC = () => {
-  const {currentUser} = useAuth()
+  const {currentUser,auth} = useAuth()
   return (
+    <React.StrictMode>
+       <ToastContainer  />
     <BrowserRouter>
       <Routes>
         <Route element={<App />}>
           <Route path='error/*' element={<ErrorsPage />} />
           <Route path='logout' element={<Logout />} />
-          {currentUser ? (
+          {!auth?.token ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
               <Route index element={<Navigate to='/dashboard' />} />
@@ -41,6 +45,7 @@ const AppRoutes: FC = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    </React.StrictMode>
   )
 }
 
