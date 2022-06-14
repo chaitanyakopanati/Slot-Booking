@@ -1,11 +1,8 @@
-import { useEffect } from 'react'
-import ProductFormModalHeader from '../Product-Form/component/ProductFormModalHeader'
-import ProductFormModalWrapper from './ProductFormModalWrapper'
-
+import {useEffect} from 'react'
+import ProductFormHeader from '../Product-Form/component/ProductFormHeader'
+import ProductFormByCategory from './ProductFormByCategory'
 
 function ProductFormWrapper() {
- 
-   {/* begin:: model open-close */}
   useEffect(() => {
     document.body.classList.add('modal-open')
     return () => {
@@ -22,24 +19,23 @@ function ProductFormWrapper() {
         tabIndex={-1}
         aria-modal='true'
       >
-        {/* begin::Modal dialog */}
         <div className='modal-dialog modal-dialog-centered mw-600px'>
-          {/* begin::Modal content */}
           <div className='modal-content'>
-            <ProductFormModalHeader />
-            {/* begin::Modal body */}
-            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-            <ProductFormModalWrapper />
-            </div>
-            {/* end::Modal body */}     
-          </div>
-          {/* end::Modal content */}
-        </div>
-        {/* end::Modal dialog */}
-      </div>
-      {/* begin::Modal Backdrop */}
-      <div className='modal-backdrop fade show'></div>
+            {/* begin::Form Header */}
+            <ProductFormHeader />
+            {/* end::Form Header */}
 
+            {/* begin::Form Body */}
+            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
+              <ProductFormByCategory />
+            </div>
+            {/* end::Form Body */}
+          </div>
+        </div>
+      </div>
+      {/* begin::Form Backdrop */}
+      <div className='modal-backdrop fade show'></div>
+      {/* end::Form Backdrop */}
     </>
   )
 }

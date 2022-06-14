@@ -42,13 +42,13 @@ const MainPointFormModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.data?.id,
           name: category.data?.name || '',
-          faulttypeid: category.data?.faulttypeid || '',
+          zoneid: category.data?.zoneid || '',
         }}
         validationSchema={Yup.object({
           name: Yup.string()
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
-          faulttypeid: Yup.number().required('This field is required'),
+          zoneid: Yup.number().required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
@@ -129,7 +129,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                   <label className='form-label fw-bold'>Zone</label>
                   <select
                     className='form-select form-select-solid'
-                    {...props.getFieldProps('faulttypeid')}
+                    {...props.getFieldProps('zoneid')}
                   >
                     <option value='' disabled>
                       Select Zone Type
@@ -144,7 +144,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                   </select>
                 </div>
                 <div className='erro2' style={{color: 'red'}}>
-                  <ErrorMessage name='faulttypeid' />
+                  <ErrorMessage name='zoneid' />
                 </div>
                 {/* end: MainPoint Zone Filed */}
 

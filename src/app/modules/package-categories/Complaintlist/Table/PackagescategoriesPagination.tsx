@@ -1,12 +1,8 @@
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../PackagesCategoriesListContext'
+import {ListPageData} from '../../PackagesCategoriesContext'
 
-const PackagescategoriesFooter = () => {
-  const {
-    setPageNo,
-    setPageSize,
-    pageCount,
-  } = ListPageData()
+const PackagescategoriesPagination = () => {
+  const {setPageNo, setPageSize, pageCount} = ListPageData()
 
   const handlepageclick = async (data: any) => {
     const currantPage = (await data.selected) + 1
@@ -16,18 +12,19 @@ const PackagescategoriesFooter = () => {
   return (
     <>
       <div className='card-body py-3'>
-        {/* begin::Table container */}
-
         <div className='d-flex align-items-center justify-content-between pt-5'>
           <div className='min-w-100px'>
+            {/* begin:: Page Size */}
             <div className='mb-10 d-flex align-items-center' data-select2-id='show-enteries'>
               <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
               <div data-select2-id='show-enteries'>
                 <select
                   className='form-select form-select-solid h-40px py-2'
-                  onClick={(e: any) => setPageSize(e.target.value)}
+                  onChange={(e: any) => {
+                    setPageSize(e.target.value)
+                    setPageNo(1)
+                  }}
                 >
-                  {/* <option></option> */}
                   <option value='5'>5</option>
                   <option value='10'>10</option>
                   <option value='20'>20</option>
@@ -35,8 +32,10 @@ const PackagescategoriesFooter = () => {
                 </select>
               </div>
             </div>
+            {/* end:: Page Size */}
           </div>
 
+          {/* begin:: Page Index */}
           <div className='App'>
             <ReactPaginate
               previousLabel={'previous'}
@@ -57,14 +56,17 @@ const PackagescategoriesFooter = () => {
               activeClassName={'active'}
             />
           </div>
+          {/* end:: Page Index */}
+
+          {/* begin:: Page Data Result */}
           <div className='form-label fw-bold px-4'>
             {/* Showing {pageSize * pageNo + 1}-{lastIndex} of {totalData} entries */}
-             Showing 1-10 of 100 entries
+            Showing 1-10 of 100 entries
           </div>
+          {/* end:: Page Data Result */}
         </div>
-        {/* end::Table container */}
       </div>
     </>
   )
 }
-export default PackagescategoriesFooter
+export default PackagescategoriesPagination

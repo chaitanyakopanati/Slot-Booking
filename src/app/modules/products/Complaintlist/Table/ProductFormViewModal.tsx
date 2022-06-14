@@ -142,7 +142,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
                                   <div className='input-group'>
                                     <input
                                       className='form-control form-control-lg'
-                                      type='number'
+                                      type='string'
                                       value={props.values.unit}
                                       onChange={props.handleChange}
                                       name='unit'
@@ -233,7 +233,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
           </Form>
         )}
       </Formik>
-      {/* begin:: View form */}
+      {/* end:: View form */}
     </>
   )
 }

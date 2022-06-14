@@ -1,4 +1,3 @@
-
 export interface getFaultsData {
   name: string
   createdAt: string
@@ -21,16 +20,15 @@ export interface postlistData {
 }
 
 export interface GetAllData {
-    id: number
-    name: string
+  id: number
+  name: string
 }
 
 export interface GetAllData {
-    data:GetAllData[]
-    success:boolean
+  data: GetAllData[]
+  success: boolean
   message: string
-
-  }
+}
 export interface putFaultsmodel {
   name: string
   faulttypeid: number
@@ -46,10 +44,10 @@ export interface GetAllFaulttApi {
   data: getFaultsData[]
   message: string
   success: boolean
-  pages:number
-  TotalRecords:number
-  page:number
-  pageSize:number
+  pages: number
+  TotalRecords: number
+  page: number
+  pageSize: number
 }
 
 export type ID = undefined | null | string

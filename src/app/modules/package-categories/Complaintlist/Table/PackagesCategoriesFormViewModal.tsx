@@ -3,12 +3,12 @@ import moment from 'moment'
 import {FC, useEffect} from 'react'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import {CustomTooltip} from '../../../../routing/customtooltip'
-import { ListPageData } from '../../PackagesCategoriesListContext'
+import {ListPageData} from '../../PackagesCategoriesContext'
 
 type Props = {
   category: any
 }
-const ViewPackagesCategories: FC<Props> = ({category}) => {
+const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
   const {viewIdForUpdate, setItemIdForUpdate, setViewIdForUpdate} = ListPageData()
 
   useEffect(() => {
@@ -18,16 +18,10 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
     }
   }, [])
 
-  {
-    /* begin:: Edit functionlity */
-  }
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
   }
 
-  {
-    /* begin:: form onkey Down functionlity */
-  }
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
@@ -43,7 +37,7 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
   return (
     <>
       {/* {console.log(category, "category")} */}
-      {/* begin:: formik form */}
+      {/* begin:: View form */}
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -72,19 +66,18 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
               tabIndex={-1}
               aria-modal='true'
             >
-              {/* begin::Modal dialog */}
               <div className='modal-dialog modal-dialog-centered modal-xl'>
-                {/* begin::Modal body */}
                 <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
                   <div id='view-modal'>
                     <div className='modal-dialog modal-dialog-centered modal-xl'>
                       <div className='modal-content'>
+                        {/* begin:: View Modal Header */}
                         <div className='modal-header'>
                           <div className='d-flex align-items-center'>
                             <h5 className='modal-title'>View package category</h5>
                           </div>
                           <div className='ms-3'>
-                            {/* begin::  Edit complaint type */}
+                            {/* begin::  Edit Fault button */}
                             <button
                               type='submit'
                               className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
@@ -100,8 +93,9 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
                               />
                               Edit package category
                             </button>
-                            {/* end::  Edit complaint type */}
-                            {/* begin::  view button */}
+                            {/* end::  Edit Fault button */}
+
+                            {/* begin::  close icon */}
                             <CustomTooltip title='Close'>
                               <div
                                 className='btn btn-icon btn-sm btn-active-icon-primary'
@@ -114,51 +108,56 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
                                 />
                               </div>
                             </CustomTooltip>
-                            {/* end::  view button */}
+                            {/* end::  close icon */}
                           </div>
                         </div>
+                        {/* end:: View Modal Header */}
 
+                        {/* begin:: View Modal body */}
                         <div className='modal-body'>
                           <div className='container-fluid p-0'>
-                            {/* name Filed */}
+                            {/*begin:: Name Filed */}
                             <div className='row mb-4'>
-                            <div className='col-lg-12'>
-                              <label className=' fw-bold fs-6 mb-2'>Name</label>
-                              <input
-                                placeholder='Name'
-                                value={props.values.name}
-                                onChange={props.handleChange}
-                                type='text'
-                                name='name'
-                                className='form-control form-control-lg'
-                                autoComplete='off'
-                                disabled
-                              />
-                               </div>
+                              <div className='col-lg-12'>
+                                <label className=' fw-bold fs-6 mb-2'>Name</label>
+                                <input
+                                  placeholder='Name'
+                                  value={props.values.name}
+                                  onChange={props.handleChange}
+                                  type='text'
+                                  name='name'
+                                  className='form-control form-control-lg'
+                                  autoComplete='off'
+                                  disabled
+                                />
+                              </div>
                             </div>
-                            {/* name etr */}
+                            {/*end:: Name Filed */}
+
+                            {/* begin:: Etr(Hours) Input */}
                             <div>
                               <div className='row mb-4'>
-                              <div className='col-lg-12'>
-                                <label className=' fw-bold fs-6 mb-2'>ETR</label>
-                                <div className='input-group'>
-                                  <div className='input-group-text'>Hour</div>
-                                  <input
-                                    className='form-control form-control-lg'
-                                    type='number'
-                                    value={props.values.etr}
-                                    onChange={props.handleChange}
-                                    name='etr'
-                                    autoComplete='off'
-                                    disabled
-                                  />
-                                </div>
+                                <div className='col-lg-12'>
+                                  <label className=' fw-bold fs-6 mb-2'>ETR</label>
+                                  <div className='input-group'>
+                                    <div className='input-group-text'>Hour</div>
+                                    <input
+                                      className='form-control form-control-lg'
+                                      type='number'
+                                      value={props.values.etr}
+                                      onChange={props.handleChange}
+                                      name='etr'
+                                      autoComplete='off'
+                                      disabled
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>
+                            {/* end:: Etr(Hours) Input */}
 
-                            {/* name created by */}
                             <div className='row mb-4'>
+                              {/*begin:: Created By Filed */}
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Created by</label>
                                 <input
@@ -171,8 +170,9 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
                                   disabled
                                 />
                               </div>
+                              {/*end:: Created By Filed */}
 
-                              {/* name updated by */}
+                              {/*begin:: Updated By Filed */}
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Updated by</label>
                                 <input
@@ -185,10 +185,11 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
                                   disabled
                                 />
                               </div>
+                              {/*end:: Updated By Filed */}
                             </div>
 
-                            {/* name created at */}
                             <div className='row mb-4'>
+                              {/* begin:: Created At Filed */}
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Created at</label>
                                 <input
@@ -201,8 +202,9 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
                                   disabled
                                 />
                               </div>
+                              {/* end:: Created At Filed */}
 
-                              {/* name updated at */}
+                              {/* begin:: Updated At Filed */}
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Updated at</label>
                                 <input
@@ -215,25 +217,26 @@ const ViewPackagesCategories: FC<Props> = ({category}) => {
                                   disabled
                                 />
                               </div>
+                              {/* end:: Updated At Filed */}
                             </div>
                           </div>
                         </div>
+                        {/* end::View Modal body */}
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* end::Modal body */}
               </div>
-              {/* end::Modal dialog */}
             </div>
-            {/* begin::Modal Backdrop */}
+            {/* begin:: View Modal Backdrop */}
             <div className='modal-backdrop fade show'></div>
+            {/* end:: View Modal Backdrop */}
           </Form>
         )}
       </Formik>
-      {/* begin:: formik form */}
+      {/* begin:: View form */}
     </>
   )
 }
 
-export default ViewPackagesCategories
+export default PackagesCategoriesFormViewModal

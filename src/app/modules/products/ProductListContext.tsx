@@ -1,7 +1,13 @@
 import {createContext, FC, useContext, useState, SetStateAction, Dispatch} from 'react'
 import {useLoader} from '../loader/LoaderContext'
 import Complaintservice from './helperProduct/ApiDatarequestProduct'
-import { getAllProductData, GetAllProductApi, getProductData, ID, ViewForm } from './helperProduct/ModelTypeProduct'
+import {
+  getAllProductData,
+  GetAllProductApi,
+  getProductData,
+  ID,
+  ViewForm,
+} from './helperProduct/ModelTypeProduct'
 
 export interface ComplaintDataContextModel {
   getData: getProductData[]
@@ -61,10 +67,10 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
   {
-    /* begin:: DataGetApi */
+    /* begin:: Product:- getProduct Api call */
   }
   const DataGetApiProduct = async () => {
     LoderActions(true)
@@ -82,9 +88,12 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
   {
-    /* End:: DataGetApi */
+    /* end:: Product:- getProduct Api call */
   }
 
+  {
+    /* begin:: Product:- getDynamicProduct Api call */
+  }
   let fetchAllProduct = async () => {
     // setLoading(true)
     try {
@@ -102,6 +111,9 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {
       console.log(error, 'error')
     }
+  }
+  {
+    /* end:: Product:- getDynamicProduct Api call */
   }
 
   const value: ComplaintDataContextModel = {

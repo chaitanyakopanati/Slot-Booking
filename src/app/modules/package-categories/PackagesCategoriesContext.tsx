@@ -1,7 +1,13 @@
 import {createContext, FC, useContext, useState, SetStateAction, Dispatch} from 'react'
 import {useLoader} from '../loader/LoaderContext'
-import Complaintservice from './helperPackagesCategories/ApiDatarequestPackagwesCategories'
-import { getAllPackagecategoriesData, GetAllPackagecategorietApi, getPackageCategoriesData, ID, ViewForm } from './helperPackagesCategories/ModelTypePackagesCategories'
+import Complaintservice from './helperPackagesCategories/ApiDatarequest'
+import {
+  getAllPackagecategoriesData,
+  GetAllPackagecategorietApi,
+  getPackageCategoriesData,
+  ID,
+  ViewForm,
+} from './helperPackagesCategories/ModelTypePackagesCategories'
 
 export interface ComplaintDataContextModel {
   getData: getPackageCategoriesData[]
@@ -61,10 +67,10 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
   {
-    /* begin:: DataGetApi */
+    /* begin:: Package-Category:- getAllPackagecategoriesData Api call */
   }
   const DataGetApiPackagecategories = async () => {
     LoderActions(true)
@@ -82,9 +88,12 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
   {
-    /* End:: DataGetApi */
+    /* end:: Package-Category:- getAllPackagecategoriesData Api call */
   }
 
+  {
+    /* begin:: Package-Category:- getDynamicPackageCategories Api call */
+  }
   let fetchAllPackagecategories = async () => {
     // setLoading(true)
     try {
@@ -102,6 +111,9 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {
       console.log(error, 'error')
     }
+  }
+  {
+    /* end:: Package-Category:- getDynamicPackageCategories Api call */
   }
 
   const value: ComplaintDataContextModel = {

@@ -96,6 +96,7 @@ const FaultsTable = () => {
             </tr>
           </thead>
           {/* end::Table head */}
+
           {/* begin::Table body */}
           <tbody>
             {getData?.map((row: getFaultsData, index: number) => {

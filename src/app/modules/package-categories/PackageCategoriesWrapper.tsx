@@ -1,25 +1,33 @@
-import { KTCard } from "../../../_metronic/helpers"
-import PackagescategoriesFooter from "./Complaintlist/Table/PackagescategoriesFooter"
-import PackagescategoriesTable from "./Complaintlist/Table/PackagescategoriesTable"
-import PackagesCategoriesTypeHeader from "./Complaintlist/Table/PackagesCategoriesTypeHeader"
-import ViewPackagesCategories from "./Complaintlist/Table/ViewPackagesCategories"
-import PackagescategoriesFormWrapper from "./Form/PackagescategoriesFormWrapper"
-import { ListDataProvider, ListPageData } from "./PackagesCategoriesListContext"
-
+import {KTCard} from '../../../_metronic/helpers'
+import PackagescategoriesPagination from './Complaintlist/Table/PackagescategoriesPagination'
+import PackagescategoriesTable from './Complaintlist/Table/PackagescategoriesTable'
+import PackagesCategoriesTypeHeader from './Complaintlist/Table/PackagesCategoriesTypeHeader'
+import PackagesCategoriesFormViewModal from './Complaintlist/Table/PackagesCategoriesFormViewModal'
+import PackagescategoriesFormWrapper from './Form/PackagescategoriesFormWrapper'
+import {ListDataProvider, ListPageData} from './PackagesCategoriesContext'
 
 const PackagesCategorieslist = () => {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        <PackagesCategoriesTypeHeader /> {/* begin::  header functionlity */}
-        <PackagescategoriesTable /> {/* begin::  Table */}
+        {/* begin:: Package-Category Header Component */}
+        <PackagesCategoriesTypeHeader />
+        {/* end:: Package-Category Header Component */}
+
+        {/* begin:: Package-Category Table Component */}
+        <PackagescategoriesTable />
+        {/* end:: Package-Category Table Component */}
       </KTCard>
-      <PackagescategoriesFooter /> {/* begin::  Footer */}
+      {/* begin:: Package-Category Table-Pagination Component */}
+      <PackagescategoriesPagination />
+      {/* end:: Package-Category Table-Pagination Component */}
+      {/* begin:: Package-Category Add/Edit Form Component */}
       {itemIdForUpdate !== undefined && <PackagescategoriesFormWrapper />}{' '}
-      {/* begin::  ComplaintFormWrapper*/}
-      {viewIdForUpdate && <ViewPackagesCategories category={viewIdForUpdate} />}{' '}
-      {/* begin::  ViewComplaint*/}
+      {/* end:: Package-Category Add/Edit Form Component */}
+      {/* begin:: Package-Category View Form Component */}
+      {viewIdForUpdate && <PackagesCategoriesFormViewModal category={viewIdForUpdate} />}{' '}
+      {/* end:: Package-Category View Form Component */}
     </div>
   )
 }
@@ -33,4 +41,3 @@ function PackageCategoriesWrapper() {
 }
 
 export default PackageCategoriesWrapper
-

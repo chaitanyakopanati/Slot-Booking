@@ -11,13 +11,23 @@ const Productlist = () => {
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        <ProductHeader /> {/* begin::  header functionlity */}
-        <ProductTable /> {/* begin::  Table */}
+        {/* begin:: Product Header Component */}
+        <ProductHeader />
+        {/* end:: Product Header Component */}
+
+        {/* begin:: Product Table Component */}
+        <ProductTable />
+        {/* end:: Product Table Component */}
       </KTCard>
-      <Productpagination /> {/* begin::  Footer */}
-      {itemIdForUpdate !== undefined && <ProductFormWrapper />} {/* begin::  ComplaintFormWrapper*/}
+      {/* begin:: Product Table-Pagination Component */}
+      <Productpagination />
+      {/* end:: Product Table-Pagination Component */}
+      {/* begin:: Product Add/Edit Form Component */}
+      {itemIdForUpdate !== undefined && <ProductFormWrapper />}
+      {/* end:: Product Add/Edit Form Component */}
+      {/* begin:: Product View Form Component */}
       {viewIdForUpdate && <ProductFormViewModal category={viewIdForUpdate} />}{' '}
-      {/* begin::  ViewComplaint*/}
+      {/* end:: Product View Form Component */}
     </div>
   )
 }

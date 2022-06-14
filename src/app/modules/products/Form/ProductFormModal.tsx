@@ -13,8 +13,8 @@ type Props = {
 }
 
 const ProductFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, DataGetApiProduct, fetchAllProduct, itemIdForUpdate} = ListPageData()
-  let {LoderActions, open} = useLoader()
+  const {setItemIdForUpdate, fetchAllProduct, itemIdForUpdate} = ListPageData()
+  let {LoderActions} = useLoader()
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -59,6 +59,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               console.log(values, 'valuespost')
 
+              // Edit Api Response
               let response = await Complaintservice.editProduct(values)
               console.log(response, 'res======')
               toast.success(` Data Updated Successfully`)
@@ -69,6 +70,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
             } else {
               console.log(values, 'valuespost')
 
+              // Create Api Response
               let response = await Complaintservice.postProduct(values)
               console.log(response, 'res=----------====')
               toast.success(` Data Added Successfully`)
@@ -95,7 +97,6 @@ const ProductFormModal: FC<Props> = ({category}) => {
               onSubmit={props.handleSubmit}
               noValidate
             >
-              {/* begin::Scroll */}
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
                 id='kt_modal_add_user_scroll'
@@ -106,7 +107,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                 data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
                 data-kt-scroll-offset='300px'
               >
-                {/* name Filed */}
+                {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
                   <label className=' fw-bold fs-6 mb-2'>Name</label>
                   <input
@@ -122,7 +123,9 @@ const ProductFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='name' />
                   </div>
                 </div>
-                {/* Unit Filed */}
+                {/* end: input name Filed */}
+
+                {/*begin:: input Unit Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col'>
                     <label className='form-label fw-bold'>Unit</label>
@@ -136,8 +139,10 @@ const ProductFormModal: FC<Props> = ({category}) => {
                     />
                   </div>
                 </div>
-                {/* begin::close button */}
+                {/*end:: input Unit Filed */}
+
                 <div className='modal-footer border-0'>
+                  {/* begin::close button */}
                   <CustomTooltip title='Close form'>
                     <button
                       type='reset'
@@ -148,13 +153,15 @@ const ProductFormModal: FC<Props> = ({category}) => {
                       Close
                     </button>
                   </CustomTooltip>
+                  {/* end::close button */}
 
-                  {/* begin::create */}
+                  {/* begin::create/update Button */}
                   <CustomTooltip title='Submit form'>
                     <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                       {itemIdForUpdate ? 'Update' : 'Create'}
                     </button>
                   </CustomTooltip>
+                  {/* end::create/update Button */}
                 </div>
               </div>
             </Form>
@@ -162,7 +169,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
         )}
       </Formik>
 
-      {/* end::formik form */}
+      {/* end::formik Add/Edit form */}
     </>
   )
 }

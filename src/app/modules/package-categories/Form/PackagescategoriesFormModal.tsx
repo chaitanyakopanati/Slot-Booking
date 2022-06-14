@@ -2,33 +2,31 @@ import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import {FC, useEffect} from 'react'
 import {Form} from 'react-bootstrap'
-import {toast, ToastContainer} from 'react-toastify'
-import { useLoader } from '../../loader/LoaderContext'
-import { ListPageData } from '../PackagesCategoriesListContext'
-import Complaintservice from '../helperPackagesCategories/ApiDatarequestPackagwesCategories'
-import { CustomTooltip } from '../../../routing/customtooltip'
+import {toast} from 'react-toastify'
+import {useLoader} from '../../loader/LoaderContext'
+import {ListPageData} from '../PackagesCategoriesContext'
+import Complaintservice from '../helperPackagesCategories/ApiDatarequest'
+import {CustomTooltip} from '../../../routing/customtooltip'
 
 type Props = {
   category: any
 }
 
 const PackagescategoriesFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, DataGetApiPackagecategories,  fetchAllPackagecategories,itemIdForUpdate} = ListPageData()
+  const {
+    setItemIdForUpdate,
+    DataGetApiPackagecategories,
+    fetchAllPackagecategories,
+    itemIdForUpdate,
+  } = ListPageData()
   let {LoderActions, open} = useLoader()
 
-
-  {
-    /* begin::button onclick function */
-  }
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
     }
     setItemIdForUpdate(undefined)
   }
 
-  {
-    /* begin::form on keyDown */
-  }
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
@@ -42,8 +40,8 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
 
   return (
     <>
-      {/* begin::formik form */}
-     
+      {/* begin::formik Add/Edit form */}
+
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -56,17 +54,17 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
           etr: Yup.number()
-            .min(1, 'Etr must be of 3digit ')
+            .min(1, 'Etr must be between 1 to 999.')
             .required('This field is required'),
-        
         })}
         onSubmit={async (values, {resetForm}) => {
           LoderActions(true)
 
           try {
             if (values.id) {
-          console.log(values,"valuespost");
+              console.log(values, 'valuespost')
 
+              // Edit Api Response
               let response = await Complaintservice.editPackagesCategories(values)
               console.log(response, 'res======')
               toast.success(` Data Updated Successfully`)
@@ -75,8 +73,9 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
               resetForm({})
               cancel()
             } else {
-          console.log(values,"valuespost");
+              console.log(values, 'valuespost')
 
+              // Create Api Response
               let response = await Complaintservice.postPackageCategories(values)
               console.log(response, 'res=----------====')
               toast.success(` Data Added Successfully`)
@@ -87,11 +86,9 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
             }
           } catch (error: any) {
             console.log(error, 'error')
-          }finally{
+          } finally {
             LoderActions(false)
-
           }
-
         }}
       >
         {(props) => (
@@ -105,7 +102,6 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
               onSubmit={props.handleSubmit}
               noValidate
             >
-              {/* begin::Scroll */}
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
                 id='kt_modal_add_user_scroll'
@@ -116,7 +112,7 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                 data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
                 data-kt-scroll-offset='300px'
               >
-                {/* name Filed */}
+                {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
                   <label className=' fw-bold fs-6 mb-2'>Name</label>
                   <input
@@ -132,7 +128,9 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='name' />
                   </div>
                 </div>
-                {/* etr Filed */}
+                {/* end: input name Filed */}
+
+                {/* begin:: Etr(Hours) Filed */}
                 <div className='fv-row mb-7'>
                   <label className=' fw-bold fs-6 mb-2'>ETR</label>
                   <div className='input-group'>
@@ -143,7 +141,7 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                       value={props.values.etr}
                       // onChange={props.handleChange}
                       onChange={(e) => {
-                        if (+e.target.value >= 999) {
+                        if (+e.target.value > 999 || +e.target.value <= 0) {
                           return
                         }
                         props.handleChange(e)
@@ -156,9 +154,10 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='etr' />
                   </div>
                 </div>
+                {/* end:: Etr(Hours) Filed*/}
 
-                {/* begin::close button */}
                 <div className='modal-footer border-0'>
+                  {/* begin::close button */}
                   <CustomTooltip title='Close form'>
                     <button
                       type='reset'
@@ -169,21 +168,23 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                       Close
                     </button>
                   </CustomTooltip>
+                  {/* end::close button */}
 
-                  {/* begin::create */}
+                  {/* begin::create/update Button */}
                   <CustomTooltip title='Submit form'>
                     <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                       {itemIdForUpdate ? 'Update' : 'Create'}
                     </button>
                   </CustomTooltip>
+                  {/* end::create/update Button */}
                 </div>
               </div>
             </Form>
           </>
         )}
       </Formik>
-    
-      {/* end::formik form */}
+
+      {/* end::formik Add/Edit form */}
     </>
   )
 }

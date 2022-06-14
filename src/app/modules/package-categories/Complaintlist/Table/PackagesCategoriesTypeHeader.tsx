@@ -1,5 +1,5 @@
 import {KTSVG} from '../../../../../_metronic/helpers'
-import { ListPageData } from '../../PackagesCategoriesListContext'
+import {ListPageData} from '../../PackagesCategoriesContext'
 
 const PackagesCategoriesTypeHeader = () => {
   const {
@@ -9,7 +9,7 @@ const PackagesCategoriesTypeHeader = () => {
     filterShow,
     setSearchText,
     searchText,
-    setPageNo
+    setPageNo,
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -20,7 +20,6 @@ const PackagesCategoriesTypeHeader = () => {
     setPageNo(1)
     console.log(e.target.value)
     setSearchText(e.target.value)
-  
   }
 
   return (
@@ -32,6 +31,7 @@ const PackagesCategoriesTypeHeader = () => {
             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
               <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
             </span>
+            {/* begin::Search */}
             <input
               type='text'
               value={searchText}
@@ -39,8 +39,10 @@ const PackagesCategoriesTypeHeader = () => {
               className='form-control form-control-solid ps-14'
               placeholder='Search'
             />
+            {/* end:: Search */}
           </div>
 
+          {/* begin::Download */}
           <div className='ms-auto'>
             <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
               <span className='svg-icon svg-icon-gray-500 me-1'>
@@ -49,7 +51,9 @@ const PackagesCategoriesTypeHeader = () => {
               Download
             </a>
           </div>
+          {/* end:: Download */}
 
+          {/* begin::Filter */}
           <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
             <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
               <span className='svg-icon svg-icon-gray-500 me-1'>
@@ -58,7 +62,9 @@ const PackagesCategoriesTypeHeader = () => {
               Filter
             </div>
           </div>
+          {/* end:: Filter */}
 
+          {/* begin::Create Package-Category Button*/}
           <div className='d-flex justify-content-end ms-3' data-kt-user-table-toolbar='base'>
             <div title='Click to add new category'>
               <button
@@ -71,8 +77,10 @@ const PackagesCategoriesTypeHeader = () => {
               </button>
             </div>
           </div>
+          {/* end::Create Package-Category Button*/}
         </div>
 
+        {/* begin:: Filter:- Created By */}
         {filterShow && (
           <div className='row w-100 mx-0 my-5'>
             <div className='col-lg-3'>
@@ -87,6 +95,7 @@ const PackagesCategoriesTypeHeader = () => {
             </div>
           </div>
         )}
+        {/* end:: Filter:- Created By */}
       </div>
       {/* end::Header */}
     </>

@@ -31,7 +31,7 @@ const getMainPoint = () => {
 const postMainPoint = (obj: postlistData) => {
   return http.post('SaveMainPoint', {
     name: obj.name,
-    zoneid: obj.faulttypeid,
+    zoneid: obj.zoneid,
     createdby: 1,
     Updatedby: 1,
   })
@@ -56,7 +56,7 @@ const deleteMainPoint = (Id: number) => {
 const editMainPoint = (obj: putMainPointmodel) => {
   return http.post(`SaveMainPoint`, {
     name: obj.name,
-    zoneid: obj.faulttypeid,
+    zoneid: obj.zoneid,
     createdby: 1,
     id: obj.id,
   })

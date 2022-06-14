@@ -1,11 +1,8 @@
-
-import { useEffect } from 'react'
-import PackagescategoriesFormModalHeader from '../Packages-categories-Form/component/PackagescategoriesFormModalHeader'
-import PackagescategoriesFormModalWrapper from './PackagescategoriesFormModalWrapper'
+import {useEffect} from 'react'
+import PackagescategoriesFormHeader from '../Packages-categories-Form/component/PackagescategoriesFormHeader'
+import PackagescategoriesFormByCategory from './PackagescategoriesFormByCategory'
 
 function PackagescategoriesFormWrapper() {
- 
-   {/* begin:: model open-close */}
   useEffect(() => {
     document.body.classList.add('modal-open')
     return () => {
@@ -22,24 +19,23 @@ function PackagescategoriesFormWrapper() {
         tabIndex={-1}
         aria-modal='true'
       >
-        {/* begin::Modal dialog */}
         <div className='modal-dialog modal-dialog-centered mw-600px'>
-          {/* begin::Modal content */}
           <div className='modal-content'>
-            <PackagescategoriesFormModalHeader />
-            {/* begin::Modal body */}
-            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-            <PackagescategoriesFormModalWrapper />
-            </div>
-            {/* end::Modal body */}     
-          </div>
-          {/* end::Modal content */}
-        </div>
-        {/* end::Modal dialog */}
-      </div>
-      {/* begin::Modal Backdrop */}
-      <div className='modal-backdrop fade show'></div>
+            {/* begin::Form Header */}
+            <PackagescategoriesFormHeader />
+            {/* end::Form Header */}
 
+            {/* begin::Form Body */}
+            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
+              <PackagescategoriesFormByCategory />
+            </div>
+            {/* end::Form Body */}
+          </div>
+        </div>
+      </div>
+      {/* begin::Form Backdrop */}
+      <div className='modal-backdrop fade show'></div>
+      {/* end::Form Backdrop */}
     </>
   )
 }
