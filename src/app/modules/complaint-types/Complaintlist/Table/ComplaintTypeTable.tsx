@@ -1,46 +1,49 @@
-import moment from 'moment'
-import {useEffect} from 'react'
-import {toast} from 'react-toastify'
+import {KTSVG} from '../../../../../_metronic/helpers'
+import {getComplainData} from '../../helper/ModelType'
+import {ListPageData} from '../../ComplaintListContext'
 import Swal from 'sweetalert2'
-import {KTSVG} from '../../../../../_metronic/helpers/components/KTSVG'
+import Complaintservice from '../../helper/ApiDatarequest'
+import {useEffect} from 'react'
+import moment from 'moment'
+import {toast} from 'react-toastify'
 import {useLoader} from '../../../loader/LoaderContext'
-import Zoneservice from '../../helperPackage/ApiDatarequestPackages'
-import { getBankData } from '../../helperPackage/ModelPackages'
-import { ListPageData } from '../../PackageContext'
 
-
-const PackageTable = () => {
+const ComplaintTypeTable = () => {
   const {
     setItemIdForUpdate,
-    getData,
     pageNo,
     pageSize,
-    setViewIdForUpdate,
-    fetchAllBank,
+    getData,
     searchText,
+    DataGetApi,
+    setViewIdForUpdate,
+    fetchAllComplaint,
   } = ListPageData()
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
-  {
-    /* begin:: Edit functionlity */
-  }
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
   }
 
-  {
-    /* begin:: view functionlity */
-  }
   const openViewModal = (id: any) => {
     setViewIdForUpdate(id)
   }
 
+  useEffect(() => {
+    DataGetApi()
+    LoderActions(false)
+  }, [])
+
+  useEffect(() => {
+    fetchAllComplaint()
+  }, [pageNo, pageSize, searchText])
+
   {
     /* begin:: Delete functionlity */
   }
-  const deleteZones = (ID: number) => {
+  const deletecomplaints = (ID: number) => {
     Swal.fire({
       title: `Do you want to delete this records ?`,
       icon: 'warning',
@@ -51,7 +54,7 @@ const PackageTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Zoneservice.deleteBank(ID)
+        let payload = await Complaintservice.deletecomplaints(ID)
         if (payload.success === true) {
           LoderActions(false)
           toast.success(` Data Deleted Successfully`)
@@ -61,23 +64,18 @@ const PackageTable = () => {
           toast.error(` Failed to Delete Data`)
           toast.dismiss('1s')
         }
-        fetchAllBank()
+
+        fetchAllComplaint()
       }
     })
   }
+  {
+    /* end:: Delete functionlity */
+  }
 
   useEffect(() => {
-    LoderActions(false)
+    console.log(getData, 'getData')
   }, [])
-
-  useEffect(() => {
-    console.log('enter')
-    fetchAllBank()
-  }, [pageNo, pageSize, searchText])
-
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
 
   return (
     <>
@@ -89,6 +87,7 @@ const PackageTable = () => {
             <tr className='fw-bolder text-muted  bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4 text-center'>No</th>
               <th className='min-w-150px'>Name</th>
+              <th className='min-w-150px'>ETR</th>
               <th className='min-w-200px'>Created at</th>
               <th className='min-w-125px rounded-end'>Actions</th>
             </tr>
@@ -96,53 +95,73 @@ const PackageTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            {getData?.map((ComaniesData: getBankData, index: number) => {
+            {getData?.map((row: getComplainData, index: number) => {
               return (
                 <tr key={index}>
+                  {/* begin:: Index No */}
                   <td>
                     <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
                       {DataWiseIndex + index + 1}
                     </div>
                   </td>
+                  {/* end:: Index No */}
+
+                  {/* begin:: Name Input */}
                   <td>
                     <div className='d-flex align-items-center'>
                       <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>
-                          {ComaniesData?.name ? ComaniesData?.name : '-'}
-                        </div>
+                        <div className='text-dark fw-bold  fs-6'>{row?.name ? row?.name : '-'}</div>
                       </div>
                     </div>
                   </td>
+                  {/* end:: Name Input */}
+
+                  {/* begin:: Etr(Hours) Input */}
+                  <td className='text-dark fw-bold  fs-6'>{row?.etr ? row?.etr : '-'}</td>
+                  {/* end:: Etr(Hours) Input */}
+
+                  {/* begin:: Created At Date & Time */}
                   <td className='text-dark fw-bold fs-6'>
-                    {moment(ComaniesData?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                    {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
                   </td>
+                  {/* end:: Created At Date & Time */}
+
+                  {/* begin:: Action */}
                   <td>
+                    {/* begin:: View Icon */}
                     <a
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      onClick={() => openViewModal(ComaniesData)}
+                      onClick={() => openViewModal(row)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
                         className='svg-icon-3'
                       />
                     </a>
+                    {/* end:: View Icon */}
+
+                    {/* begin:: Edit Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      onClick={() => openEditModal(ComaniesData.id)}
+                      onClick={() => openEditModal(row.id)}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                     </button>
+                    {/* end:: Edit Icon */}
 
+                    {/* begin:: Delete Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deleteZones(ComaniesData.id)}
+                      onClick={() => deletecomplaints(row.id)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
                         className='svg-icon-3'
                       />
                     </button>
+                    {/* end:: Delete Icon */}
                   </td>
+                  {/* end:: Action */}
                 </tr>
               )
             })}
@@ -154,4 +173,4 @@ const PackageTable = () => {
     </>
   )
 }
-export default PackageTable
+export default ComplaintTypeTable

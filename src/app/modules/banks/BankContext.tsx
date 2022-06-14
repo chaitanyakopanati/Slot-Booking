@@ -1,8 +1,7 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../loader/LoaderContext'
-import Zoneservice from './helperBank/ApiDatarequestBank'
-import { GetAllBankApi, GetAllData, getBankData, ID, ViewForm } from './helperBank/ModelBank'
-
+import Zoneservice from './helperBank/ApiDatarequest'
+import {GetAllBankApi, GetAllData, getBankData, ID, ViewForm} from './helperBank/ModelBank'
 
 export interface ComplaintDataContextModel {
   getData: getBankData[]
@@ -53,16 +52,15 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
+  {
+    /* begin:: Bank:- getDynamicBank Api call */
+  }
   let fetchAllBank = async () => {
     LoderActions(true)
     try {
-      let response: GetAllBankApi = await Zoneservice.getDynamicBank(
-        pageNo,
-        pageSize,
-        searchText
-      )
+      let response: GetAllBankApi = await Zoneservice.getDynamicBank(pageNo, pageSize, searchText)
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -75,6 +73,9 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {
       LoderActions(false)
     }
+  }
+  {
+    /* end:: Bank:- getDynamicBank Api call */
   }
 
   const value: ComplaintDataContextModel = {

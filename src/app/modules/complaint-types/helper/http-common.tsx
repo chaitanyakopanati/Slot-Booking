@@ -3,7 +3,7 @@ import axios from 'axios'
 const API_URL_DATA = process.env.REACT_APP_API_URL
 
 {
-  /* begin::  axios*/
+  /* begin:: Complaint Type:- axios*/
 }
 axios.interceptors.response.use(
   function (response) {
@@ -14,9 +14,12 @@ axios.interceptors.response.use(
     return Promise.reject(response)
   }
 )
+{
+  /* end:: Complaint Type:- axios*/
+}
 
 {
-  /* begin:: Token*/
+  /* begin:: Complaint Type:- Authorization Token*/
 }
 axios.interceptors.request.use(
   function (config) {
@@ -29,9 +32,12 @@ axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+{
+  /* end:: Complaint Type:- Authorization Token*/
+}
 
 {
-  /* begin::  Get URL*/
+  /* begin:: Complaint Type:- get http URL */
 }
 export const get = (url: string, params?: any) =>
   axios
@@ -42,9 +48,12 @@ export const get = (url: string, params?: any) =>
     .catch((error) => {
       return Promise.reject(error)
     })
+{
+  /* end:: Complaint Type:- get http URL */
+}
 
 {
-  /* begin::  POST URL*/
+  /* begin:: Complaint Type:- post http URL */
 }
 export const post = (url: string, payload: any, config = {}) =>
   axios
@@ -55,9 +64,12 @@ export const post = (url: string, payload: any, config = {}) =>
     .catch((error) => {
       return Promise.reject(error)
     })
+{
+  /* end:: Complaint Type:- post http URL */
+}
 
 {
-  /* begin:: DELETE URL*/
+  /* begin:: Complaint Type:- delete http URL */
 }
 export const delet = (url: string) =>
   axios
@@ -68,10 +80,10 @@ export const delet = (url: string) =>
     .catch((error) => {
       return Promise.reject(error)
     })
-
 {
-  /* begin::  http variable*/
+  /* end:: Complaint Type:- delete http URL */
 }
+
 let http = {
   get,
   post,

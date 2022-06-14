@@ -1,10 +1,8 @@
 import {useEffect} from 'react'
-import BankFormModalWrapper from './BankFormModalWrapper'
+import BankFormByCategory from './BankFormByCategory'
+import BankFormHeader from '../component/BankFormHeader'
 
 const BankFormWrapper = () => {
-  {
-    /* begin:: model open-close */
-  }
   useEffect(() => {
     document.body.classList.add('modal-open')
     return () => {
@@ -20,23 +18,23 @@ const BankFormWrapper = () => {
         tabIndex={-1}
         aria-modal='true'
       >
-        {/* begin::Modal dialog */}
         <div className='modal-dialog modal-dialog-centered mw-600px'>
-          {/* begin::Modal content */}
           <div className='modal-content'>
-      
-            {/* begin::Modal body */}
+            {/* begin::Form Header */}
+            <BankFormHeader />
+            {/* end::Form Header */}
+
+            {/* begin::Form Body */}
             <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-              <BankFormModalWrapper />
+              <BankFormByCategory />
             </div>
-            {/* end::Modal body */}
+            {/* end::Form Body */}
           </div>
-          {/* end::Modal content */}
         </div>
-        {/* end::Modal dialog */}
       </div>
-      {/* begin::Modal Backdrop */}
+      {/* begin::Form Backdrop */}
       <div className='modal-backdrop fade show'></div>
+      {/* end::Form Backdrop */}
     </>
   )
 }

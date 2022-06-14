@@ -4,10 +4,9 @@ import {toast} from 'react-toastify'
 import Swal from 'sweetalert2'
 import {KTSVG} from '../../../../../_metronic/helpers/components/KTSVG'
 import {useLoader} from '../../../loader/LoaderContext'
-import { ListPageData } from '../../BankContext'
-import Zoneservice from '../../helperBank/ApiDatarequestBank'
-import { getBankData } from '../../helperBank/ModelBank'
-
+import {ListPageData} from '../../BankContext'
+import Zoneservice from '../../helperBank/ApiDatarequest'
+import {getBankData} from '../../helperBank/ModelBank'
 
 const BankTable = () => {
   const {
@@ -23,16 +22,10 @@ const BankTable = () => {
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
-  {
-    /* begin:: Edit functionlity */
-  }
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
   }
 
-  {
-    /* begin:: view functionlity */
-  }
   const openViewModal = (id: any) => {
     setViewIdForUpdate(id)
   }
@@ -40,7 +33,7 @@ const BankTable = () => {
   {
     /* begin:: Delete functionlity */
   }
-  const deleteZones = (ID: number) => {
+  const deleteBank = (ID: number) => {
     Swal.fire({
       title: `Do you want to delete this records ?`,
       icon: 'warning',
@@ -64,6 +57,9 @@ const BankTable = () => {
         fetchAllBank()
       }
     })
+  }
+  {
+    /* end:: Delete functionlity */
   }
 
   useEffect(() => {
@@ -96,52 +92,67 @@ const BankTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            {getData?.map((ComaniesData: getBankData, index: number) => {
+            {getData?.map((row: getBankData, index: number) => {
               return (
                 <tr key={index}>
+                  {/* begin:: Index No */}
                   <td>
                     <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
                       {DataWiseIndex + index + 1}
                     </div>
                   </td>
+                  {/* end:: Index No */}
+
+                  {/* begin:: Name Input */}
                   <td>
                     <div className='d-flex align-items-center'>
                       <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>
-                          {ComaniesData?.name ? ComaniesData?.name : '-'}
-                        </div>
+                        <div className='text-dark fw-bold  fs-6'>{row?.name ? row?.name : '-'}</div>
                       </div>
                     </div>
                   </td>
+                  {/* end:: Name Input */}
+
+                  {/* begin:: Created At Date & Time */}
                   <td className='text-dark fw-bold fs-6'>
-                    {moment(ComaniesData?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                    {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
                   </td>
+                  {/* end:: Created At Date & Time */}
+
+                  {/* begin:: Action */}
                   <td>
+                    {/* begin:: View Icon */}
                     <a
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      onClick={() => openViewModal(ComaniesData)}
+                      onClick={() => openViewModal(row)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
                         className='svg-icon-3'
                       />
                     </a>
+                    {/* end:: View Icon */}
+
+                    {/* begin:: Edit Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      onClick={() => openEditModal(ComaniesData.id)}
+                      onClick={() => openEditModal(row.id)}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                     </button>
+                    {/* end:: Edit Icon */}
 
+                    {/* begin:: Delete Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deleteZones(ComaniesData.id)}
+                      onClick={() => deleteBank(row.id)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
                         className='svg-icon-3'
                       />
                     </button>
+                    {/* end:: Delete Icon */}
                   </td>
                 </tr>
               )

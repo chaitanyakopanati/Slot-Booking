@@ -1,44 +1,42 @@
-import { useEffect } from "react"
-import FaultsFormModalHeader from "../component/FaultsFormModalHeader"
-import FaultsFormModalWrapper from "./FaultsFormModalWrapper"
+import {useEffect} from 'react'
+import FaultsFormHeader from '../component/FaultsFormHeader'
+import FaultsFormByCategory from './FaultsFormByCategory'
 
-const FaultsFormWrapper = () =>{
-
-      {/* begin:: model open-close */}
+const FaultsFormWrapper = () => {
   useEffect(() => {
     document.body.classList.add('modal-open')
     return () => {
       document.body.classList.remove('modal-open')
     }
   }, [])
-    return(
-        <>
-        <div
-          className='modal fade show d-block'
-          id='kt_modal_add_user'
-          role='dialog'
-          tabIndex={-1}
-          aria-modal='true'
-        >
-          {/* begin::Modal dialog */}
-          <div className='modal-dialog modal-dialog-centered mw-600px'>
-            {/* begin::Modal content */}
-            <div className='modal-content'>
-              <FaultsFormModalHeader />
-              {/* begin::Modal body */}
-              <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-                <FaultsFormModalWrapper />
-              </div>
-              {/* end::Modal body */}     
+
+  return (
+    <>
+      <div
+        className='modal fade show d-block'
+        id='kt_modal_add_user'
+        role='dialog'
+        tabIndex={-1}
+        aria-modal='true'
+      >
+        <div className='modal-dialog modal-dialog-centered mw-600px'>
+          <div className='modal-content'>
+            {/* begin::Form Header */}
+            <FaultsFormHeader />
+            {/* end::Form Header */}
+
+            {/* begin::Form Body */}
+            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
+              <FaultsFormByCategory />
             </div>
-            {/* end::Modal content */}
+            {/* end::Form Body */}
           </div>
-          {/* end::Modal dialog */}
         </div>
-        {/* begin::Modal Backdrop */}
-        <div className='modal-backdrop fade show'></div>
-  
-      </>
-    )
+      </div>
+      {/* begin::Form Backdrop */}
+      <div className='modal-backdrop fade show'></div>
+      {/* end::Form Backdrop */}
+    </>
+  )
 }
 export default FaultsFormWrapper

@@ -2,25 +2,17 @@ import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../ComplaintListContext'
 
 const ComplaintTypeHeader = () => {
-  const {
-    setItemIdForUpdate,
-    setFilterShow,
-    fetchAllComplaint,
-    filterShow,
-    setSearchText,
-    searchText,
-    setPageNo
-  } = ListPageData()
+  const {setItemIdForUpdate, setFilterShow, filterShow, setSearchText, searchText, setPageNo} =
+    ListPageData()
 
   const openAddCategoryModal = () => {
     setItemIdForUpdate(null)
   }
 
-  const handlesearchange = (e: any) => {
+  const handleSearchChange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
     setSearchText(e.target.value)
-  
   }
 
   return (
@@ -32,15 +24,19 @@ const ComplaintTypeHeader = () => {
             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
               <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
             </span>
+
+            {/* begin:: Search */}
             <input
               type='text'
               value={searchText}
-              onChange={handlesearchange}
+              onChange={handleSearchChange}
               className='form-control form-control-solid ps-14'
               placeholder='Search'
             />
+            {/* end:: Search */}
           </div>
 
+          {/* begin:: Download */}
           <div className='ms-auto'>
             <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
               <span className='svg-icon svg-icon-gray-500 me-1'>
@@ -49,7 +45,9 @@ const ComplaintTypeHeader = () => {
               Download
             </a>
           </div>
+          {/* end:: Download */}
 
+          {/* begin:: Filter */}
           <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
             <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
               <span className='svg-icon svg-icon-gray-500 me-1'>
@@ -58,7 +56,9 @@ const ComplaintTypeHeader = () => {
               Filter
             </div>
           </div>
+          {/* end:: Filter */}
 
+          {/* begin:: Create Complaint Button */}
           <div className='d-flex justify-content-end ms-3' data-kt-user-table-toolbar='base'>
             <div title='Click to add new category'>
               <button
@@ -71,8 +71,10 @@ const ComplaintTypeHeader = () => {
               </button>
             </div>
           </div>
+          {/* end:: Create Complaint Button */}
         </div>
 
+        {/* begin:: Filter:- Created By */}
         {filterShow && (
           <div className='row w-100 mx-0 my-5'>
             <div className='col-lg-3'>
@@ -87,6 +89,7 @@ const ComplaintTypeHeader = () => {
             </div>
           </div>
         )}
+        {/* end:: Filter:- Created By */}
       </div>
       {/* end::Header */}
     </>

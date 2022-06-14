@@ -1,11 +1,8 @@
-
-import { useEffect } from 'react'
-import ComplaintFormModalHeader from "./component/ComplaintFormModalHeader"
-import CategoryForm from './form/ComplaintFormModalWrapper'
+import {useEffect} from 'react'
+import ComplaintFormHeader from './form/ComplaintFormHeader'
+import ComplaintFormByCategory from './form/ComplaintFormByCategory'
 
 function ComplaintFormWrapper() {
- 
-   {/* begin:: model open-close */}
   useEffect(() => {
     document.body.classList.add('modal-open')
     return () => {
@@ -22,24 +19,23 @@ function ComplaintFormWrapper() {
         tabIndex={-1}
         aria-modal='true'
       >
-        {/* begin::Modal dialog */}
         <div className='modal-dialog modal-dialog-centered mw-600px'>
-          {/* begin::Modal content */}
           <div className='modal-content'>
-            <ComplaintFormModalHeader />
-            {/* begin::Modal body */}
-            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-              <CategoryForm />
-            </div>
-            {/* end::Modal body */}     
-          </div>
-          {/* end::Modal content */}
-        </div>
-        {/* end::Modal dialog */}
-      </div>
-      {/* begin::Modal Backdrop */}
-      <div className='modal-backdrop fade show'></div>
+            {/* begin::Form Header */}
+            <ComplaintFormHeader />
+            {/* end::Form Header */}
 
+            {/* begin::Form Body */}
+            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
+              <ComplaintFormByCategory />
+            </div>
+            {/* end::Form Body */}
+          </div>
+        </div>
+      </div>
+      {/* begin::Form Backdrop */}
+      <div className='modal-backdrop fade show'></div>
+      {/* end::Form Backdrop */}
     </>
   )
 }

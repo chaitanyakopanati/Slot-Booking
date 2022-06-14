@@ -1,24 +1,33 @@
-import { KTCard } from '../../../_metronic/helpers'
-import FaultsFooter from './Complaintlist/Table/FaultsFooter'
+import {KTCard} from '../../../_metronic/helpers'
+import FaultsPagination from './Complaintlist/Table/FaultsPagination'
 import FaultsTable from './Complaintlist/Table/FaultsTable'
-import FaultsTypeHeader from './Complaintlist/Table/FaultsTypeHeader'
-import ViewFaults from './Complaintlist/Table/ViewFaults'
-import { ListDataProvider, ListPageData } from './FaultsContext'
+import FaultsHeader from './Complaintlist/Table/FaultsHeader'
+import FaultsFormViewModal from './Complaintlist/Table/FaultsFormViewModal'
+import {ListDataProvider, ListPageData} from './FaultsContext'
 import FaultsFormWrapper from './form/FaultsFormWrapper'
 
-const Complaintlist = () => {
+const Faultlist = () => {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        <FaultsTypeHeader /> {/* begin::  header functionlity */}
-        <FaultsTable /> {/* begin::  Table */}
+        {/* begin:: Fault Header Component */}
+        <FaultsHeader />
+        {/* end:: Fault Header Component */}
+
+        {/* begin:: Fault Table Component */}
+        <FaultsTable />
+        {/* end:: Fault Table Component */}
       </KTCard>
-      <FaultsFooter /> {/* begin::  Footer */}
-      {itemIdForUpdate !== undefined && <FaultsFormWrapper />}{' '}
-      {/* begin::  ComplaintFormWrapper*/}
-      {viewIdForUpdate && <ViewFaults category={viewIdForUpdate} />}{' '}
-      {/* begin::  ViewComplaint*/}
+      {/* begin:: Fault Table-Pagination Component */}
+      <FaultsPagination />
+      {/* end:: Fault Table-Pagination Component */}
+      {/* begin:: Fault Add/Edit Form Component */}
+      {itemIdForUpdate !== undefined && <FaultsFormWrapper />}
+      {/* end:: Fault Add/Edit Form Component */}
+      {/* begin:: Fault View Form Component */}
+      {viewIdForUpdate && <FaultsFormViewModal category={viewIdForUpdate} />}{' '}
+      {/* end:: Fault View Form Component */}
     </div>
   )
 }
@@ -26,12 +35,9 @@ const Complaintlist = () => {
 function FaultsWrapper() {
   return (
     <ListDataProvider>
-      <Complaintlist />
+      <Faultlist />
     </ListDataProvider>
   )
 }
 
 export default FaultsWrapper
-
-
-

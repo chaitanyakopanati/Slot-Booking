@@ -5,29 +5,23 @@ import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {useLoader} from '../../loader/LoaderContext'
-import { ListPageData } from '../MainPointContext'
-import MainPointservice from '../helperMainPoint/ApiDatarequestMainPoint'
+import {ListPageData} from '../MainPointContext'
+import MainPointservice from '../helperMainPoint/ApiDatarequest'
 
 type Props = {
   category: any
 }
 
 const MainPointFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate,fetchAllMainPoint, getDataAllType} = ListPageData()
+  const {setItemIdForUpdate, itemIdForUpdate, fetchAllMainPoint, getDataAllType} = ListPageData()
   let {LoderActions} = useLoader()
 
-  {
-    /* begin::button onclick function */
-  }
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
     }
     setItemIdForUpdate(undefined)
   }
 
-  {
-    /* begin::form on keyDown */
-  }
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
@@ -41,7 +35,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
 
   return (
     <>
-      {/* begin::formik form */}
+      {/* begin::formik Add/Edit form */}
 
       <Formik
         enableReinitialize={true}
@@ -56,7 +50,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
             .required('This field is required'),
           faulttypeid: Yup.number().required('This field is required'),
         })}
-        onSubmit={async (values:any, {resetForm}) => {
+        onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
           console.log(values, 'values')
 
@@ -64,6 +58,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               console.log(values, 'valuesput')
 
+              // Edit Api Response
               let response = await MainPointservice.editMainPoint(values)
               console.log(response, 'res======')
               toast.success(` Data Updated Successfully`)
@@ -74,6 +69,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
             } else {
               console.log(values, 'valuespost')
 
+              // Create Api Response
               let response = await MainPointservice.postMainPoint(values)
               console.log(response, 'res=----------====')
               toast.success(` Data Added Successfully`)
@@ -100,7 +96,6 @@ const MainPointFormModal: FC<Props> = ({category}) => {
               onSubmit={props.handleSubmit}
               noValidate
             >
-              {/* begin::Scroll */}
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
                 id='kt_modal_add_user_scroll'
@@ -111,7 +106,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                 data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
                 data-kt-scroll-offset='300px'
               >
-                {/* name Filed */}
+                {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
                   <label className=' fw-bold fs-6 mb-2'>Name</label>
                   <input
@@ -127,15 +122,18 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='name' />
                   </div>
                 </div>
-                {/* Type Field */}
+                {/* end: input name Filed */}
 
+                {/* begin: MainPoint Zone Filed */}
                 <div className='col-lg-12'>
                   <label className='form-label fw-bold'>Zone</label>
                   <select
                     className='form-select form-select-solid'
-                    {...props.getFieldProps('faulttypeid') }
+                    {...props.getFieldProps('faulttypeid')}
                   >
-                    <option value='' disabled>Select Zone Type</option>
+                    <option value='' disabled>
+                      Select Zone Type
+                    </option>
                     {getDataAllType.map((TypeData, index) => {
                       return (
                         <option key={index} value={TypeData?.id}>
@@ -148,6 +146,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                 <div className='erro2' style={{color: 'red'}}>
                   <ErrorMessage name='faulttypeid' />
                 </div>
+                {/* end: MainPoint Zone Filed */}
 
                 {/* begin::close button */}
                 <div className='modal-footer border-0'>
@@ -161,13 +160,15 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                       Close
                     </button>
                   </CustomTooltip>
+                  {/* end::close button */}
 
-                  {/* begin::create */}
+                  {/* begin::create/update Button */}
                   <CustomTooltip title='Submit form'>
                     <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                       {itemIdForUpdate ? 'Update' : 'Create'}
                     </button>
                   </CustomTooltip>
+                  {/* end::create/update Button */}
                 </div>
               </div>
             </Form>
@@ -175,7 +176,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
         )}
       </Formik>
 
-      {/* end::formik form */}
+      {/* end::formik Add/Edit form */}
     </>
   )
 }

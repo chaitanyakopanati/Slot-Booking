@@ -4,7 +4,7 @@ import {toast} from 'react-toastify'
 import Swal from 'sweetalert2'
 import {KTSVG} from '../../../../../_metronic/helpers/components/KTSVG'
 import {useLoader} from '../../../loader/LoaderContext'
-import MainPointservice from '../../helperMainPoint/ApiDatarequestMainPoint'
+import MainPointservice from '../../helperMainPoint/ApiDatarequest'
 import {getMainPointData} from '../../helperMainPoint/ModelMainPoint'
 import {ListPageData} from '../../MainPointContext'
 
@@ -23,16 +23,10 @@ const MainPointTable = () => {
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
-  {
-    /* begin:: Edit functionlity */
-  }
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
   }
 
-  {
-    /* begin:: view functionlity */
-  }
   const openViewModal = (id: any) => {
     setViewIdForUpdate(id)
   }
@@ -67,6 +61,9 @@ const MainPointTable = () => {
       }
     })
   }
+  {
+    /* end:: Delete functionlity */
+  }
 
   useEffect(() => {
     DataGetAllType()
@@ -100,54 +97,73 @@ const MainPointTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            {getData?.map((FautlData: getMainPointData, index: number) => {
+            {getData?.map((row: getMainPointData, index: number) => {
               return (
                 <tr key={index}>
+                  {/* begin:: Index No */}
                   <td>
                     <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
                       {DataWiseIndex + index + 1}
                     </div>
                   </td>
+                  {/* end:: Index No */}
+
+                  {/* begin:: Name Input */}
                   <td>
                     <div className='d-flex align-items-center'>
                       <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>
-                          {FautlData?.name ? FautlData?.name : '-'}
-                        </div>
+                        <div className='text-dark fw-bold  fs-6'>{row?.name ? row?.name : '-'}</div>
                       </div>
                     </div>
                   </td>
-                  <td className='text-dark fw-bold  fs-6'>{FautlData.zoneName || '-'}</td>
+                  {/* end:: Name Input */}
+
+                  {/* begin:: Zone Input */}
+                  <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
+                  {/* end:: Zone Input */}
+
+                  {/* begin:: Created At Date & Time */}
                   <td className='text-dark fw-bold fs-6'>
-                    {moment(FautlData?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                    {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
                   </td>
+                  {/* end:: Created At Date & Time */}
+
+                  {/* begin:: Action */}
                   <td>
+                    {/* begin:: View Icon */}
                     <a
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      onClick={() => openViewModal(FautlData)}
+                      onClick={() => openViewModal(row)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
                         className='svg-icon-3'
                       />
                     </a>
+                    {/* end:: View Icon */}
+
+                    {/* begin:: Edit Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      onClick={() => openEditModal(FautlData.id)}
+                      onClick={() => openEditModal(row.id)}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                     </button>
+                    {/* end:: Edit Icon */}
 
+                    {/* begin:: Delete Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deleteFaults(FautlData.id)}
+                      onClick={() => deleteFaults(row.id)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
                         className='svg-icon-3'
                       />
                     </button>
+                    {/* end:: Delete Icon */}
                   </td>
+                  {/* end:: Action */}
                 </tr>
               )
             })}

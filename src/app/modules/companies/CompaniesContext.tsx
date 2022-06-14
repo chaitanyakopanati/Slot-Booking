@@ -1,6 +1,6 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../loader/LoaderContext'
-import Zoneservice from './helperCompanies/ApiDatarequestCompanies'
+import Zoneservice from './helperCompanies/ApiDatarequest'
 import {
   GetAllData,
   GetAllComapniesApi,
@@ -58,8 +58,11 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
+  {
+    /* begin:: Company:- getDynamicCompanies Api call */
+  }
   let fetchAllCompanies = async () => {
     LoderActions(true)
     try {
@@ -80,6 +83,9 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {
       LoderActions(false)
     }
+  }
+  {
+    /* end:: Company:- getDynamicCompanies Api call */
   }
 
   const value: ComplaintDataContextModel = {

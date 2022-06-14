@@ -1,11 +1,11 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
-import { useLoader } from '../loader/LoaderContext'
-import Zoneservice from './helperZones/ApiDatarequestZones'
-import { GetAllData, GetAllFaulttApi, getZoneData, ID, ViewForm } from './helperZones/ModelZones'
+import {useLoader} from '../loader/LoaderContext'
+import Zoneservice from './helperZones/ApiDatarequest'
+import {GetAllData, GetAllFaulttApi, getZoneData, ID, ViewForm} from './helperZones/ModelZones'
 
 export interface ComplaintDataContextModel {
   getData: getZoneData[]
-  getDataAllType:GetAllData[]
+  getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
@@ -56,25 +56,27 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   let {LoderActions, open} = useLoader()
 
-
+  {
+    /* begin:: Zone:- getDynamicZones Api call */
+  }
   let fetchAllZone = async () => {
-    
     try {
       let response: GetAllFaulttApi = await Zoneservice.getDynamicZones(
-        pageNo ,
+        pageNo,
         pageSize,
         searchText
       )
-      console.log(response,"response=========");
-      
+      console.log(response, 'response=========')
+
       if (response.success == true) {
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
       }
-    } catch (error) {
-      
-    }
+    } catch (error) {}
+  }
+  {
+    /* end:: Zone:- getDynamicZones Api call */
   }
 
   const value: ComplaintDataContextModel = {
@@ -95,7 +97,7 @@ const ListDataProvider: FC = ({children}) => {
     pageCount,
     setPageCount,
     setSearchText,
-    fetchAllZone
+    fetchAllZone,
   }
   return (
     <>

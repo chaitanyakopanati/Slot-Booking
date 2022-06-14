@@ -1,27 +1,27 @@
 
 import http from '../../complaint-types/helper/http-common'
-import { ID, putBankmodel } from './ModelPackages'
+import { ID, putPackagesmodel } from './ModelPackages'
 
-const getDynamicBank = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicPackages = (pageNo: number, pageSize: number, searchText: string = '') => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicBankData/${null}/${null}?searchText=${null}`)
+    return http.get(`GetDynamicPackageData/${null}/${null}?searchText=${null}`)
   } else {
-    return http.get(`GetDynamicBankData/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(`GetDynamicPackageData/${pageNo}/${pageSize}?searchText=${searchText}`)
   }
 }
 
 {
-  /* begin::  getBank*/
+  /* begin::  getPackages*/
 }
-const getBank = () => {
-  return http.get('GetAllBanks')
+const getPackages = () => {
+  return http.get('GetAllPackages')
 }
 
 {
-  /* begin::  postBank*/
+  /* begin::  postPackages*/
 }
-const postBank = (obj: putBankmodel) => {
-  return http.post('SaveBank', {
+const postPackages = (obj: putPackagesmodel) => {
+  return http.post('SavePackage', {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
     createdby: 1,
@@ -30,17 +30,17 @@ const postBank = (obj: putBankmodel) => {
 }
 
 {
-  /* begin::  deleteBank*/
+  /* begin::  deletePackages*/
 }
-const deleteBank = (Id: number) => {
-  return http.delet(`DeleteBankById/${Id}`)
+const deletePackages = (Id: number) => {
+  return http.delet(`DeletePackageById/${Id}`)
 }
 
 {
-  /* begin::  editBank*/
+  /* begin::  editPackages*/
 }
-const editBank = (obj: putBankmodel) => {
-  return http.post(`SaveBank`, {
+const editPackages = (obj: putPackagesmodel) => {
+  return http.post(`SavePackage`, {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
     modifyby: 1,
@@ -49,22 +49,22 @@ const editBank = (obj: putBankmodel) => {
 }
 
 {
-  /* begin::  GetBankTypeById*/
+  /* begin::  GetPackagesTypeById*/
 }
-const GetBankTypeById = (id: ID) => {
-  return http.get(`GetBankById/${id}`)
+const GetPackagesTypeById = (id: ID) => {
+  return http.get(`GetPackageById/${id}`)
 }
 
 {
   /* begin::  Zoneservice*/
 }
 const Zoneservice = {
-  getDynamicBank,
-  getBank,
-  postBank,
-  deleteBank,
-  editBank,
-  GetBankTypeById,
+  getDynamicPackages,
+  getPackages,
+  postPackages,
+  deletePackages,
+  editPackages,
+  GetPackagesTypeById,
 }
 
 export default Zoneservice

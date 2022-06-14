@@ -1,4 +1,4 @@
-export interface getBankData {
+export interface getPackagesData {
     name: string
     createdAt: string
     modifyById: null
@@ -12,8 +12,8 @@ export interface getBankData {
     modifyByName: string
    
   }
-  export interface getAllBankData {
-    data: getBankData[]
+  export interface getAllPackagesData {
+    data: getPackagesData[]
     message: string
     success: boolean
     page: number
@@ -35,19 +35,19 @@ export interface getBankData {
     success: boolean
     message: string
   }
-  export interface putBankmodel {
+  export interface putPackagesmodel {
     name: string
     faulttypeid: number
     id: number | string
   }
-  export interface putBankmodel1 {
-    data: getBankData
+  export interface putPackagesmodel1 {
+    data: getPackagesData
     message: string
     success: boolean
   }
   
-  export interface GetAllBankApi {
-    data: getBankData[]
+  export interface GetAllPackagesApi {
+    data: getPackagesData[]
     message: string
     success: boolean
     pages: number
@@ -58,5 +58,5 @@ export interface getBankData {
   
   export type ID = undefined | null | string
   
-  export type ViewForm = getBankData | undefined
+  export type ViewForm = getPackagesData | undefined
   

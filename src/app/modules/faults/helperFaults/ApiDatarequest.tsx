@@ -1,8 +1,9 @@
-
 import http from '../../complaint-types/helper/http-common'
-import { postlistData,putFaultsmodel,ID} from './ModelFaultsType'
+import {postlistData, putFaultsmodel, ID} from './ModelFaultsType'
 
-
+{
+  /* begin:: Faults:- getDynamicFaults Api call */
+}
 const getDynamicFaults = (pageNo: number, pageSize: number, searchText: string = '') => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicFaults/${null}/${null}?searchText=${null}`)
@@ -10,16 +11,22 @@ const getDynamicFaults = (pageNo: number, pageSize: number, searchText: string =
     return http.get(`GetDynamicFaults/${pageNo}/${pageSize}?searchText=${searchText}`)
   }
 }
+{
+  /* end:: Faults:- getDynamicFaults Api call */
+}
 
 {
-  /* begin::  getFaults*/
+  /* begin:: Faults:- get Api call */
 }
 const getFaults = () => {
   return http.get('GetAllFaults')
 }
+{
+  /* end:: Faults:- get Api call */
+}
 
 {
-  /* begin::  postFaults*/
+  /* begin:: Faults:- post Api call(create) */
 }
 const postFaults = (obj: postlistData) => {
   return http.post('SaveFault', {
@@ -29,16 +36,22 @@ const postFaults = (obj: postlistData) => {
     Updatedby: 1,
   })
 }
+{
+  /* end:: Faults:- post Api call(create) */
+}
 
 {
-  /* begin::  deleteFaults*/
+  /* begin:: Faults:- delete Api call */
 }
 const deleteFaults = (Id: number) => {
   return http.delet(`DeleteFaultById/${Id}`)
 }
+{
+  /* end:: Faults:- delete Api call */
+}
 
 {
-  /* begin::  editFaults*/
+  /* begin:: Faults:- post Api call(edit) */
 }
 const editFaults = (obj: putFaultsmodel) => {
   return http.post(`SaveFault`, {
@@ -48,21 +61,30 @@ const editFaults = (obj: putFaultsmodel) => {
     id: obj.id,
   })
 }
+{
+  /* begin:: Faults:- post Api call(edit) */
+}
 
 {
-  /* begin::  GetFaultsTypeById*/
+  /* begin:: Faults:- getById Api call */
 }
 const GetFaultsTypeById = (id: ID) => {
   return http.get(`GetFaultById/${id}`)
 }
-
-const getFaultsTypes = () => {
-  return http.get('GetAllFaultTypes')
+{
+  /* end:: Faults:- getById Api call */
 }
 
 {
-  /* begin::  Fautlservice*/
+  /* begin:: Faults:- get Faults type Api call */
 }
+const getFaultsTypes = () => {
+  return http.get('GetAllFaultTypes')
+}
+{
+  /* end:: Faults:- get Faults type Api call */
+}
+
 const Fautlservice = {
   getDynamicFaults,
   getFaults,
@@ -70,7 +92,7 @@ const Fautlservice = {
   deleteFaults,
   editFaults,
   GetFaultsTypeById,
-  getFaultsTypes
+  getFaultsTypes,
 }
 
 export default Fautlservice

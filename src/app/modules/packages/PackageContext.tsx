@@ -1,11 +1,16 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../loader/LoaderContext'
-import Zoneservice from './helperPackage/ApiDatarequestPackages'
-import { GetAllBankApi, GetAllData, getBankData, ID, ViewForm } from './helperPackage/ModelPackages'
-
+import Zoneservice from './helperPackage/ApiDatarequest'
+import {
+  GetAllPackagesApi,
+  GetAllData,
+  getPackagesData,
+  ID,
+  ViewForm,
+} from './helperPackage/ModelPackages'
 
 export interface ComplaintDataContextModel {
-  getData: getBankData[]
+  getData: getPackagesData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
@@ -44,7 +49,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   fetchAllBank: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
-  const [getData, setGetData] = useState<getBankData[]>([])
+  const [getData, setGetData] = useState<getPackagesData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
@@ -53,12 +58,15 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
+  {
+    /* begin:: Package:- getDynamicPackages Api call */
+  }
   let fetchAllBank = async () => {
     LoderActions(true)
     try {
-      let response: GetAllBankApi = await Zoneservice.getDynamicBank(
+      let response: GetAllPackagesApi = await Zoneservice.getDynamicPackages(
         pageNo,
         pageSize,
         searchText
@@ -75,6 +83,9 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {
       LoderActions(false)
     }
+  }
+  {
+    /* end:: Package:- getDynamicPackages Api call */
   }
 
   const value: ComplaintDataContextModel = {

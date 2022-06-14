@@ -1,6 +1,9 @@
 import http from './http-common'
 import {postlistData, putcomplaintsmodel, ID} from './ModelType'
 
+{
+  /* begin:: Complaint Type:- getDynamicComplainTypes Api call */
+}
 const getDynamicComplaints = (pageNo: number, pageSize: number, searchText: string = '') => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicComplaintTypes/${null}/${null}?searchText=${null}`)
@@ -8,30 +11,42 @@ const getDynamicComplaints = (pageNo: number, pageSize: number, searchText: stri
     return http.get(`GetDynamicComplaintTypes/${pageNo}/${pageSize}?searchText=${searchText}`)
   }
 }
+{
+  /* end:: Complaint Type:- getDynamicComplainTypes Api call */
+}
 
 {
-  /* begin::  getComplaints*/
+  /* begin:: Complaint Type:- get Api call */
 }
 const getComplaints = () => {
   return http.get('GetAllComplaintTypes')
 }
+{
+  /* end:: Complaint Type:- get Api call */
+}
 
 {
-  /* begin::  postcomplaints*/
+  /* begin:: Complaint Type:- post Api call(create) */
 }
 const postcomplaints = (obj: postlistData) => {
   return http.post('SaveComplaintType', obj)
 }
+{
+  /* end:: Complaint Type:- post Api call(create) */
+}
 
 {
-  /* begin::  deletecomplaints*/
+  /* begin:: Complaint Type:- delete Api call */
 }
 const deletecomplaints = (Id: number) => {
   return http.delet(`DeleteComplaintTypeById/${Id}`)
 }
+{
+  /* end:: Complaint Type:- delete Api call */
+}
 
 {
-  /* begin::  editcomplaints*/
+  /* begin:: Complaint Type:- post Api call(edit) */
 }
 const editcomplaints = (obj: putcomplaintsmodel) => {
   return http.post(`SaveComplaintType`, {
@@ -40,17 +55,20 @@ const editcomplaints = (obj: putcomplaintsmodel) => {
     id: obj.id,
   })
 }
+{
+  /* end:: Complaint Type:- post Api call(edit) */
+}
 
 {
-  /* begin::  GetComplaintTypeById*/
+  /* begin:: Complaint Type:- getById Api call */
 }
 const GetComplaintTypeById = (id: ID) => {
   return http.get(`GetComplaintTypeById/${id}`)
 }
-
 {
-  /* begin::  Complaintservice*/
+  /* end:: Complaint Type:- getById Api call */
 }
+
 const Complaintservice = {
   getDynamicComplaints,
   getComplaints,

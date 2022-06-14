@@ -24,8 +24,8 @@ const postZones = (obj: postlistData) => {
   return http.post('SaveZone', {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    createdby: 1,
-    Updatedby: 1,
+    createdById: 1,
+    modifyById: 1,
   })
 }
 

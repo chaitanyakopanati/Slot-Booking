@@ -56,6 +56,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetApi: () => {},
 })
+
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getComplainData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
@@ -67,10 +68,10 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
   {
-    /* begin:: DataGetApi */
+    /* begin:: Complaint Type:- get Api call */
   }
   const DataGetApi = async () => {
     LoderActions(true)
@@ -88,9 +89,12 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
   {
-    /* End:: DataGetApi */
+    /* end:: Complaint Type:- get Api call */
   }
 
+  {
+    /* begin:: Complaint Type:- getDynamicComplaints Api call */
+  }
   let fetchAllComplaint = async () => {
     // setLoading(true)
     try {
@@ -108,6 +112,9 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {
       console.log(error, 'error')
     }
+  }
+  {
+    /* end:: Complaint Type:- getDynamicComplaints Api call */
   }
 
   const value: ComplaintDataContextModel = {

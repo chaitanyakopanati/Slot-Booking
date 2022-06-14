@@ -3,7 +3,7 @@ import moment from 'moment'
 import {FC, useEffect} from 'react'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import {CustomTooltip} from '../../../../routing/customtooltip'
-import { ListPageData } from '../../PackageContext'
+import {ListPageData} from '../../PackageContext'
 
 type Props = {
   category: any
@@ -124,24 +124,24 @@ const PackagesView: FC<Props> = ({category}) => {
                             <div className='row mb-4'>
                               <label className='fw-bold fs-6 mb-2'>Name</label>
                               <div className='input-group'>
-                              <input
-                                placeholder='Name'
-                                value={props.values.name}
-                                onChange={props.handleChange}
-                                type='text'
-                                name='name'
-                                className='form-control form-control-lg'
-                                autoComplete='off'
-                                disabled
-                              />
+                                <input
+                                  placeholder='Name'
+                                  value={props.values.name}
+                                  onChange={props.handleChange}
+                                  type='text'
+                                  name='name'
+                                  className='form-control form-control-lg'
+                                  autoComplete='off'
+                                  disabled
+                                />
                               </div>
                             </div>
-                         
+
                             {/* name created by */}
                             <div className='row mb-4'>
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Created by</label>
-                               
+
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -215,6 +215,5 @@ const PackagesView: FC<Props> = ({category}) => {
       {/* begin:: formik form */}
     </>
   )
-  }
-  export default PackagesView
-  
+}
+export default PackagesView

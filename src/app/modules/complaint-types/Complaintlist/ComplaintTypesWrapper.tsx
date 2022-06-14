@@ -1,24 +1,33 @@
 import {KTCard} from '../../../../_metronic/helpers'
 import ComplaintFormWrapper from '../complaint-types-Form/ComplaintFormWrapper'
 import {ListDataProvider, ListPageData} from '../ComplaintListContext'
-import ComplaintFooter from './Table/ComplaintFooter'
-import ComplaintTable from './Table/ComplaintTable'
+import ComplaintTypePagination from './Table/ComplaintTypePagination'
+import ComplaintTypeTable from './Table/ComplaintTypeTable'
 import ComplaintTypeHeader from './Table/ComplaintTypeHeader'
-import ViewComplaint from './Table/ViewComplaint'
+import ComplaintFormViewModal from '../complaint-types-Form/form/ComplaintFormViewModal'
 
 const Complaintlist = () => {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        <ComplaintTypeHeader /> {/* begin::  header functionlity */}
-        <ComplaintTable /> {/* begin::  Table */}
+        {/* begin::  Complaint Type Header Component */}
+        <ComplaintTypeHeader />
+        {/* end::  Complaint Type Header Component */}
+
+        {/* begin:: Complaint Type Table Component */}
+        <ComplaintTypeTable />
+        {/* end:: Complaint Type Table Component */}
       </KTCard>
-      <ComplaintFooter /> {/* begin::  Footer */}
+      {/* begin:: Complaint Type Table-Pagination Component */}
+      <ComplaintTypePagination />
+      {/* begin:: Complaint Type Table-Pagination Component */}
+      {/* begin:: Complaint Type Add/Edit Form Component */}
       {itemIdForUpdate !== undefined && <ComplaintFormWrapper />}{' '}
-      {/* begin::  ComplaintFormWrapper*/}
-      {viewIdForUpdate && <ViewComplaint category={viewIdForUpdate} />}{' '}
-      {/* begin::  ViewComplaint*/}
+      {/* end:: Complaint Type Add/Edit Form Component */}
+      {/* begin:: Complaint Type View Form Component */}
+      {viewIdForUpdate && <ComplaintFormViewModal category={viewIdForUpdate} />}{' '}
+      {/* end:: Complaint Type View Form Component */}
     </div>
   )
 }

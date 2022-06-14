@@ -1,11 +1,17 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
-import { useLoader } from '../loader/LoaderContext'
-import MainPointservice from './helperMainPoint/ApiDatarequestMainPoint'
-import { GetAllData, GetAllMainPointApi, getMainPointData, ID, ViewForm } from './helperMainPoint/ModelMainPoint'
+import {useLoader} from '../loader/LoaderContext'
+import MainPointservice from './helperMainPoint/ApiDatarequest'
+import {
+  GetAllData,
+  GetAllMainPointApi,
+  getMainPointData,
+  ID,
+  ViewForm,
+} from './helperMainPoint/ModelMainPoint'
 
 export interface ComplaintDataContextModel {
   getData: getMainPointData[]
-  getDataAllType:GetAllData[]
+  getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
@@ -54,43 +60,49 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
+  {
+    /* begin:: MainPoint:- get zone Type Api call */
+  }
   const DataGetAllType = async () => {
     LoderActions(true)
     try {
-      let payload: GetAllData = await MainPointservice.getFaultsTypes()
-      // 
+      let payload: GetAllData = await MainPointservice.getMainPointTypes()
+      //
       if (payload.success == true) {
-        
         setGetDataAllType(payload.data)
       }
     } catch (error) {
-      
-    }finally{
+    } finally {
       LoderActions(false)
-
     }
   }
+  {
+    /* end:: MainPoint:- get zone Type Api call */
+  }
 
+  {
+    /* begin:: MainPoint:- getDynamicMainPoint Api call */
+  }
   let fetchAllMainPoint = async () => {
-    
     try {
       let response: GetAllMainPointApi = await MainPointservice.getDynamicMainPoint(
-        pageNo ,
+        pageNo,
         pageSize,
         searchText
       )
-      console.log(response,"response=========");
-      
+      console.log(response, 'response=========')
+
       if (response.success == true) {
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
       }
-    } catch (error) {
-      
-    }
+    } catch (error) {}
+  }
+  {
+    /* end:: MainPoint:- getDynamicMainPoint Api call */
   }
 
   const value: ComplaintDataContextModel = {
@@ -111,7 +123,7 @@ const ListDataProvider: FC = ({children}) => {
     pageCount,
     setPageCount,
     setSearchText,
-    fetchAllMainPoint
+    fetchAllMainPoint,
   }
   return (
     <>

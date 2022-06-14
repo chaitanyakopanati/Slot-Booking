@@ -5,29 +5,23 @@ import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {useLoader} from '../../loader/LoaderContext'
-import { ListPageData } from '../ZonesContext'
-import Zoneservice from '../helperZones/ApiDatarequestZones'
+import {ListPageData} from '../ZonesContext'
+import Zoneservice from '../helperZones/ApiDatarequest'
 
 type Props = {
   category: any
 }
 
 const ZonesFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate,fetchAllZone} = ListPageData()
+  const {setItemIdForUpdate, itemIdForUpdate, fetchAllZone} = ListPageData()
   let {LoderActions} = useLoader()
 
-  {
-    /* begin::button onclick function */
-  }
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
     }
     setItemIdForUpdate(undefined)
   }
 
-  {
-    /* begin::form on keyDown */
-  }
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
@@ -41,7 +35,7 @@ const ZonesFormModal: FC<Props> = ({category}) => {
 
   return (
     <>
-      {/* begin::formik form */}
+      {/* begin::formik Add/Edit form */}
 
       <Formik
         enableReinitialize={true}
@@ -63,6 +57,7 @@ const ZonesFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               console.log(values, 'valuesput')
 
+              // Edit Api Response
               let response = await Zoneservice.editZones(values)
               console.log(response, 'res======')
               toast.success(` Data Updated Successfully`)
@@ -73,6 +68,7 @@ const ZonesFormModal: FC<Props> = ({category}) => {
             } else {
               console.log(values, 'valuespost')
 
+              // Create Api Response
               let response = await Zoneservice.postZones(values)
               console.log(response, 'res=----------====')
               toast.success(` Data Added Successfully`)
@@ -99,7 +95,6 @@ const ZonesFormModal: FC<Props> = ({category}) => {
               onSubmit={props.handleSubmit}
               noValidate
             >
-              {/* begin::Scroll */}
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
                 id='kt_modal_add_user_scroll'
@@ -110,7 +105,7 @@ const ZonesFormModal: FC<Props> = ({category}) => {
                 data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
                 data-kt-scroll-offset='300px'
               >
-                {/* name Filed */}
+                {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
                   <label className=' fw-bold fs-6 mb-2'>Name</label>
                   <input
@@ -126,9 +121,10 @@ const ZonesFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='name' />
                   </div>
                 </div>
+                {/* end: input name Filed */}
 
-                {/* begin::close button */}
                 <div className='modal-footer border-0'>
+                  {/* begin::close button */}
                   <CustomTooltip title='Close form'>
                     <button
                       type='reset'
@@ -139,13 +135,15 @@ const ZonesFormModal: FC<Props> = ({category}) => {
                       Close
                     </button>
                   </CustomTooltip>
+                  {/* end::close button */}
 
-                  {/* begin::create */}
+                  {/* begin::create/update Button */}
                   <CustomTooltip title='Submit form'>
                     <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                       {itemIdForUpdate ? 'Update' : 'Create'}
                     </button>
                   </CustomTooltip>
+                  {/* end::create/update Button */}
                 </div>
               </div>
             </Form>
@@ -153,8 +151,8 @@ const ZonesFormModal: FC<Props> = ({category}) => {
         )}
       </Formik>
 
-      {/* end::formik form */}
+      {/* end::formik Add/Edit form */}
     </>
   )
-  }
-  export default ZonesFormModal
+}
+export default ZonesFormModal

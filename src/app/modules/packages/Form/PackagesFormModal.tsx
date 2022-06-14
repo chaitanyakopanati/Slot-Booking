@@ -2,33 +2,26 @@ import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import {FC, useEffect} from 'react'
 import {Form} from 'react-bootstrap'
-import {toast, ToastContainer} from 'react-toastify'
-import { useLoader } from '../../loader/LoaderContext'
-import { CustomTooltip } from '../../../routing/customtooltip'
-import { ListPageData } from '../PackageContext'
-import Zoneservice from '../helperPackage/ApiDatarequestPackages'
+import {toast} from 'react-toastify'
+import {useLoader} from '../../loader/LoaderContext'
+import {CustomTooltip} from '../../../routing/customtooltip'
+import {ListPageData} from '../PackageContext'
+import Zoneservice from '../helperPackage/ApiDatarequest'
 
 type Props = {
   category: any
 }
 
 const PackagesFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate,itemIdForUpdate,fetchAllBank} = ListPageData()
+  const {setItemIdForUpdate, itemIdForUpdate, fetchAllBank} = ListPageData()
   let {LoderActions, open} = useLoader()
 
-
-  {
-    /* begin::button onclick function */
-  }
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
     }
     setItemIdForUpdate(undefined)
   }
 
-  {
-    /* begin::form on keyDown */
-  }
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
@@ -42,8 +35,8 @@ const PackagesFormModal: FC<Props> = ({category}) => {
 
   return (
     <>
-      {/* begin::formik form */}
-     
+      {/* begin::formik Add/Edit form */}
+
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -52,17 +45,18 @@ const PackagesFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-            .required('This field is required')
+            // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .required('This field is required'),
         })}
-        onSubmit={async (values:any, {resetForm}) => {
+        onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
 
           try {
             if (values.id) {
-          // console.log(values,"valuespost");
+              // console.log(values,"valuespost");
 
-              let response = await Zoneservice.editBank(values)
+              // Edit Api Response
+              let response = await Zoneservice.editPackages(values)
               console.log(response, 'res======')
               toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
@@ -70,9 +64,10 @@ const PackagesFormModal: FC<Props> = ({category}) => {
               resetForm({})
               cancel()
             } else {
-          console.log(values,"valuespost");
+              console.log(values, 'valuespost')
 
-              let response = await Zoneservice.postBank(values)
+              // Create Api Response
+              let response = await Zoneservice.postPackages(values)
               console.log(response, 'res=----------====')
               toast.success(` Data Added Successfully`)
               toast.dismiss('1s')
@@ -82,11 +77,9 @@ const PackagesFormModal: FC<Props> = ({category}) => {
             }
           } catch (error: any) {
             console.log(error, 'error')
-          }finally{
+          } finally {
             LoderActions(false)
-
           }
-
         }}
       >
         {(props) => (
@@ -100,7 +93,6 @@ const PackagesFormModal: FC<Props> = ({category}) => {
               onSubmit={props.handleSubmit}
               noValidate
             >
-              {/* begin::Scroll */}
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
                 id='kt_modal_add_user_scroll'
@@ -111,7 +103,7 @@ const PackagesFormModal: FC<Props> = ({category}) => {
                 data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
                 data-kt-scroll-offset='300px'
               >
-                {/* name Filed */}
+                {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
                   <label className=' fw-bold fs-6 mb-2'>Name</label>
                   <input
@@ -127,9 +119,10 @@ const PackagesFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='name' />
                   </div>
                 </div>
-            
-                {/* begin::close button */}
+                {/* end: input name Filed */}
+
                 <div className='modal-footer border-0'>
+                  {/* begin::close button */}
                   <CustomTooltip title='Close form'>
                     <button
                       type='reset'
@@ -140,21 +133,23 @@ const PackagesFormModal: FC<Props> = ({category}) => {
                       Close
                     </button>
                   </CustomTooltip>
+                  {/* end::close button */}
 
-                  {/* begin::create */}
+                  {/* begin::create/update Button */}
                   <CustomTooltip title='Submit form'>
                     <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                       {itemIdForUpdate ? 'Update' : 'Create'}
                     </button>
                   </CustomTooltip>
+                  {/* end::create/update Button */}
                 </div>
               </div>
             </Form>
           </>
         )}
       </Formik>
-    
-      {/* end::formik form */}
+
+      {/* end::formik Add/Edit form */}
     </>
   )
 }

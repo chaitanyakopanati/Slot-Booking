@@ -1,11 +1,17 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
-import { useLoader } from '../loader/LoaderContext'
+import {useLoader} from '../loader/LoaderContext'
 import Fautlservice from './helperFaults/ApiDatarequest'
-import { getFaultsData, ID, ViewForm,GetAllData,GetAllFaulttApi } from './helperFaults/ModelFaultsType'
+import {
+  getFaultsData,
+  ID,
+  ViewForm,
+  GetAllData,
+  GetAllFaulttApi,
+} from './helperFaults/ModelFaultsType'
 
 export interface ComplaintDataContextModel {
   getData: getFaultsData[]
-  getDataAllType:GetAllData[]
+  getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
@@ -54,43 +60,49 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
 
+  {
+    /* begin:: Fault:- get Faults Type Api call */
+  }
   const DataGetAllType = async () => {
     LoderActions(true)
     try {
       let payload: GetAllData = await Fautlservice.getFaultsTypes()
-      // 
+      //
       if (payload.success == true) {
-        
         setGetDataAllType(payload.data)
       }
     } catch (error) {
-      
-    }finally{
+    } finally {
       LoderActions(false)
-
     }
   }
+  {
+    /* end:: Fault:- get Faults type Api call */
+  }
 
+  {
+    /* begin:: Fault:- getDynamicFaults Api call */
+  }
   let fetchAllFault = async () => {
-    
     try {
       let response: GetAllFaulttApi = await Fautlservice.getDynamicFaults(
-        pageNo ,
+        pageNo,
         pageSize,
         searchText
       )
-      console.log(response,"response=========");
-      
+      console.log(response, 'response=========')
+
       if (response.success == true) {
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
       }
-    } catch (error) {
-      
-    }
+    } catch (error) {}
+  }
+  {
+    /* end:: Fault:- getDynamicFaults Api call */
   }
 
   const value: ComplaintDataContextModel = {
@@ -111,7 +123,7 @@ const ListDataProvider: FC = ({children}) => {
     pageCount,
     setPageCount,
     setSearchText,
-    fetchAllFault
+    fetchAllFault,
   }
   return (
     <>

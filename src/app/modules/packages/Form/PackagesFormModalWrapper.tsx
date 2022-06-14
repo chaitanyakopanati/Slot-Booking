@@ -15,9 +15,9 @@ const PackagesFormModalWrapper = () => {
       data: category,
       error,
     } = useQuery(
-      `GetBankById-${itemIdForUpdate}`,
+      `GetPackageById-${itemIdForUpdate}`,
       () => {
-        return Zoneservice.GetBankTypeById(itemIdForUpdate)
+        return Zoneservice.GetPackagesTypeById(itemIdForUpdate)
       },
       {
         cacheTime: 0,
