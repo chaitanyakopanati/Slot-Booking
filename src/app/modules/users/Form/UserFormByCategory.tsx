@@ -1,23 +1,22 @@
-
-
 import {useQuery} from 'react-query'
 import {useEffect} from 'react'
 import {isNotEmpty} from '../../../../_metronic/helpers'
-import MainPointservice from '../helperMainPoint/ApiDatarequest'
-import {ListPageData} from '../MainPointContext'
-import MainPointFormModal from './MainPointFormModal'
+import { ListPageData } from '../UserContext'
+import Userservice from '../helperUser/ApiDatarequestUser'
+import UserFormModal from './UserFormModal'
 
-const MainPointFormByCategory = () => {
+
+const UserFormByCategory = () => {
   const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   {
-    /* begin:: Api call GetMainPointById */
+    /* begin:: Api call GetFaultsTypeById */
   }
   const {data: category, error} = useQuery(
-    `GetMainPointById-${itemIdForUpdate}`,
+    `GetUserbyId-${itemIdForUpdate}`,
     () => {
-      return MainPointservice.GetMainPointById(itemIdForUpdate)
+      return Userservice.GetUserTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
@@ -29,7 +28,7 @@ const MainPointFormByCategory = () => {
     }
   )
   {
-    /* end:: Api call GetMainPointById */
+    /* end:: Api call GetFaultsTypeById */
   }
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const MainPointFormByCategory = () => {
     /* begin::Add-Form Model functionality */
   }
   if (!itemIdForUpdate) {
-    return <MainPointFormModal category={{ID: undefined}} />
+    return <UserFormModal category={{ID: undefined}} />
   }
   {
     /* end::Add-Form Model functionality */
@@ -51,7 +50,7 @@ const MainPointFormByCategory = () => {
     /* begin::Edit-Form Model functionality */
   }
   if (!error && category) {
-    return <MainPointFormModal category={category} />
+    return <UserFormModal category={category} />
   }
   {
     /* end::Edit-Form Model functionality */
@@ -59,4 +58,4 @@ const MainPointFormByCategory = () => {
 
   return null
 }
-export default MainPointFormByCategory
+export default UserFormByCategory
