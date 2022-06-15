@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
-import { threadId } from 'worker_threads'
-import { KTSVG, toAbsoluteUrl } from '../../../helpers'
+import React, {useState} from 'react'
+import {threadId} from 'worker_threads'
+import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget6: React.FC<Props> = ({ className }) => {
+const TablesWidget6: React.FC<Props> = ({className}) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -33,18 +33,19 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
             <div className='ms-auto'>
               <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
                 <span className='svg-icon svg-icon-gray-500 me-0'>
-                  <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-2 me-0' />
+                  <KTSVG
+                    path='/media/icons/duotune/arrows/arr091.svg'
+                    className='svg-icon-2 me-0'
+                  />
                 </span>
-                <span className='d-none d-sm-block ms-3'>
-                  Download
-                </span>
+                <span className='d-none d-sm-block ms-3'>Download</span>
               </a>
             </div>
             {/* end::download */}
 
             {/* begin::filter */}
 
-            <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+            {/* <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
               <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
                 <span className='svg-icon svg-icon-gray-500 me-0'>
                   <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-2 me-0' />
@@ -53,7 +54,7 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                   Filter
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* end::filter btn */}
 
@@ -270,8 +271,8 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
 
         <div className='row g-5 d-flex d-lg-none py-3'>
           <div className='col-md-6 mx-0 my-2'>
-            <div className="card card-custom border">
-              <div className="card-body p-4">
+            <div className='card card-custom border'>
+              <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
                   <div className='fw-bolder fs-3'>Kiritbhai</div>
@@ -283,7 +284,6 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                 </div>
 
                 <div id='card-id-1' className='collapse'>
-
                   <div className='py-1 d-flex align-items-cenetr'>
                     <div className='fw-bolder '>Created at:</div>
                     <div className='text-dark fw-bold  ms-2'>06-Jun-2022 09:50 AM</div>
@@ -293,15 +293,17 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                     <div className='text-dark fw-bold  ms-2'>Mahidar pura</div>
                   </div>
                   <div className='py-1 d-flex align-items-center'>
-                    <i className="text-dark bi bi-telephone-fill fs-5"></i>
+                    <i className='text-dark bi bi-telephone-fill fs-5'></i>
                     <div className='text-dark fw-bold  ms-2'>9099999676</div>
                   </div>
                 </div>
 
-                <div className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                <div
+                  className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
                   data-bs-toggle='collapse'
                   data-bs-target='#card-id-1'
-                  aria-expanded='false'>
+                  aria-expanded='false'
+                >
                   <span>+ &nbsp;</span>More info
                 </div>
               </div>
@@ -333,8 +335,8 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
             </div>
           </div>
           <div className='col-md-6 mx-0 my-2'>
-            <div className="card card-custom border">
-              <div className="card-body p-4">
+            <div className='card card-custom border'>
+              <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>2.</div>
                   <div className='fw-bolder fs-3'>Kiritbhai</div>
@@ -346,7 +348,6 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                 </div>
 
                 <div id='card-id-2' className='collapse'>
-
                   <div className='py-1 d-flex align-items-cenetr'>
                     <div className='fw-bolder '>Created at:</div>
                     <div className='text-dark fw-bold  ms-2'>06-Jun-2022 09:50 AM</div>
@@ -356,15 +357,17 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                     <div className='text-dark fw-bold  ms-2'>Mahidar pura</div>
                   </div>
                   <div className='py-1 d-flex align-items-center'>
-                    <i className="text-dark bi bi-telephone-fill fs-5"></i>
+                    <i className='text-dark bi bi-telephone-fill fs-5'></i>
                     <div className='text-dark fw-bold  ms-2'>9099999676</div>
                   </div>
                 </div>
 
-                <div className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                <div
+                  className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
                   data-bs-toggle='collapse'
                   data-bs-target='#card-id-2'
-                  aria-expanded='false'>
+                  aria-expanded='false'
+                >
                   <span>+ &nbsp;</span>More info
                 </div>
               </div>
@@ -726,8 +729,6 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                       <option value='4'>Cancel</option>
                     </select>
                   </div>
-
-
                 </div>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-12 col-lg-4'>
@@ -759,7 +760,6 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                 </div>
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-
                   <div className='col-lg-4'>
                     <label className='form-label fw-bold'>Sales executive</label>
                     <select className='form-select form-select-solid'>
@@ -771,34 +771,34 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
                   </div>
                   <div className='col-lg-4'>
                     <label className='form-label fw-bold'>Assign Date</label>
-                    <input type="text" className='form-control form-control-solid' />
+                    <input type='text' className='form-control form-control-solid' />
                   </div>
 
                   <div className='col-lg-4'>
                     <label className='form-label fw-bold'>End Date</label>
-                    <input type="text" className='form-control form-control-solid' />
+                    <input type='text' className='form-control form-control-solid' />
                   </div>
                 </div>
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Created by</label>
-                    <input type="text" className='form-control form-control-solid' />
+                    <input type='text' className='form-control form-control-solid' />
                   </div>
 
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Created at</label>
-                    <input type="date" className='form-control form-control-solid' />
+                    <input type='date' className='form-control form-control-solid' />
                   </div>
 
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Updated by</label>
-                    <input type="text" className='form-control form-control-solid' />
+                    <input type='text' className='form-control form-control-solid' />
                   </div>
 
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Updated at</label>
-                    <input type="date" className='form-control form-control-solid' />
+                    <input type='date' className='form-control form-control-solid' />
                   </div>
                 </div>
               </div>
@@ -817,4 +817,4 @@ const TablesWidget6: React.FC<Props> = ({ className }) => {
   )
 }
 
-export { TablesWidget6 }
+export {TablesWidget6}
