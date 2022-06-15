@@ -67,14 +67,50 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
 
         {filterShow && (
           <div className='row gy-2 w-100 mx-0 mt-5'>
-            <div className='col-lg-3 '>
-              <label className='form-label fw-bold'>Username:</label>
-              <input
-                placeholder='Search username'
-                className='form-control form-control-lg form-control-solid'
-                type='text'
-                autoComplete='off'
-              />
+            <div className='col-lg-3'>
+              <label className='form-label fw-bold'>Status:</label>
+              <div data-select2-id='select-zone'>
+                <select className='form-select form-select-solid'>
+                  <option></option>
+                  <option value='1'>All</option>
+                  <option value='2'>Solved</option>
+                  <option value='3'>Unsolved</option>
+                </select>
+              </div>
+            </div>
+            <div className='col-lg-3'>
+              <div>
+                <label className='form-label fw-bold'>Complaint date</label>
+                <input
+                  className='form-control form-control-lg form-control-solid'
+                  type='date'
+                  autoComplete='off'
+                />
+              </div>
+            </div>
+            <div className='col-lg-3'>
+              <label className='form-label fw-bold'>Assign to:</label>
+              <div data-select2-id='select-zone'>
+                <select className='form-select form-select-solid'>
+                  <option></option>
+                  <option value='1'>All</option>
+                  <option value='2'>A</option>
+                  <option value='3'>B</option>
+                  <option value='4'>C</option>
+                </select>
+              </div>
+            </div>
+            <div className='col-lg-3'>
+              <label className='form-label fw-bold'>Complaint type:</label>
+              <div data-select2-id='select-zone'>
+                <select className='form-select form-select-solid'>
+                  <option></option>
+                  <option value='1'>All</option>
+                  <option value='2'>A</option>
+                  <option value='3'>B</option>
+                  <option value='4'>C</option>
+                </select>
+              </div>
             </div>
             <div className='col-lg-3'>
               <label className='form-label fw-bold'>Zone:</label>
@@ -89,15 +125,40 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
               </div>
             </div>
             <div className='col-lg-3'>
-              <label className='form-label fw-bold'>Role:</label>
-              <select className='form-select form-select-solid'>
-                <option></option>
-                <option value='1'>All</option>
-                <option value='2'>Sales Executive</option>
-                <option value='3'>Technician</option>
-                <option value='4'>Customer</option>
-                <option value='4'>Stock Manager</option>
-              </select>
+              <label className='form-label fw-bold'>Company:</label>
+              <div data-select2-id='select-zone'>
+                <select className='form-select form-select-solid'>
+                  <option></option>
+                  <option value='1'>All</option>
+                  <option value='2'>A</option>
+                  <option value='3'>B</option>
+                  <option value='4'>C</option>
+                </select>
+              </div>
+            </div>
+            <div className='col-lg-3'>
+              <label className='form-label fw-bold'>Fault:</label>
+              <div data-select2-id='select-zone'>
+                <select className='form-select form-select-solid'>
+                  <option></option>
+                  <option value='1'>All</option>
+                  <option value='2'>A</option>
+                  <option value='3'>B</option>
+                  <option value='4'>C</option>
+                </select>
+              </div>
+            </div>
+            <div className='col-lg-3'>
+              <label className='form-label fw-bold'>Package category:</label>
+              <div data-select2-id='select-zone'>
+                <select className='form-select form-select-solid'>
+                  <option></option>
+                  <option value='1'>All</option>
+                  <option value='2'>A</option>
+                  <option value='3'>B</option>
+                  <option value='4'>C</option>
+                </select>
+              </div>
             </div>
             <div className='col-lg-3'>
               <label className='form-label fw-bold'>Created by:</label>

@@ -270,26 +270,31 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
-                  <div className='fw-bolder fs-3'>Kiritbhai</div>
+                  <div className='fw-bolder fs-3'>vbvaghela</div>
                   <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                 </div>
                 <div className='py-1 d-flex'>
-                  <div className='fw-bolder '>Sales Executive:</div>
-                  <div className='text-dark fw-bold  ms-2'>Manis Solanki</div>
+                  <div className='fw-bolder '>Delivered by:</div>
+                  <div className='text-dark fw-bold  ms-2'>Pradip Variya</div>
                 </div>
 
                 <div id='card-id-1' className='collapse'>
                   <div className='py-1 d-flex align-items-cenetr'>
-                    <div className='fw-bolder '>Created at:</div>
-                    <div className='text-dark fw-bold  ms-2'>06-Jun-2022 09:50 AM</div>
+                    <div className='fw-bolder '>Inward date:</div>
+                    <div className='text-dark fw-bold  ms-2'>03-Jun-2022</div>
                   </div>
                   <div className='py-1 d-flex'>
-                    <div className='fw-bolder '>Address:</div>
-                    <div className='text-dark fw-bold  ms-2'>Mahidar pura</div>
+                    <div className='fw-bolder '>Product:</div>
+                    <div className='text-dark fw-bold  ms-2'>Media convertor-1310-old</div>
                   </div>
-                  <div className='py-1 d-flex align-items-center'>
-                    <i className='text-dark bi bi-telephone-fill fs-5'></i>
-                    <div className='text-dark fw-bold  ms-2'>9099999676</div>
+
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Quantity:</div>
+                    <div className='text-dark fw-bold  ms-2'>1 Pieces</div>
+                  </div>
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Zone:</div>
+                    <div className='text-dark fw-bold  ms-2'>Katargam</div>
                   </div>
                 </div>
 
@@ -334,26 +339,31 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>2.</div>
-                  <div className='fw-bolder fs-3'>Kiritbhai</div>
-                  <div className='fw-bold badge badge-light-success ms-auto'>Done</div>
+                  <div className='fw-bolder fs-3'>vbvaghela</div>
+                  <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                 </div>
                 <div className='py-1 d-flex'>
-                  <div className='fw-bolder '>Sales Executive:</div>
-                  <div className='text-dark fw-bold  ms-2'>Manis Solanki</div>
+                  <div className='fw-bolder '>Delivered by:</div>
+                  <div className='text-dark fw-bold  ms-2'>Pradip Variya</div>
                 </div>
 
                 <div id='card-id-2' className='collapse'>
                   <div className='py-1 d-flex align-items-cenetr'>
-                    <div className='fw-bolder '>Created at:</div>
-                    <div className='text-dark fw-bold  ms-2'>06-Jun-2022 09:50 AM</div>
+                    <div className='fw-bolder '>Inward date:</div>
+                    <div className='text-dark fw-bold  ms-2'>03-Jun-2022</div>
                   </div>
                   <div className='py-1 d-flex'>
-                    <div className='fw-bolder '>Address:</div>
-                    <div className='text-dark fw-bold  ms-2'>Mahidar pura</div>
+                    <div className='fw-bolder '>Product:</div>
+                    <div className='text-dark fw-bold  ms-2'>Media convertor-1310-old</div>
                   </div>
-                  <div className='py-1 d-flex align-items-center'>
-                    <i className='text-dark bi bi-telephone-fill fs-5'></i>
-                    <div className='text-dark fw-bold  ms-2'>9099999676</div>
+
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Quantity:</div>
+                    <div className='text-dark fw-bold  ms-2'>1 Pieces</div>
+                  </div>
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Zone:</div>
+                    <div className='text-dark fw-bold  ms-2'>Katargam</div>
                   </div>
                 </div>
 

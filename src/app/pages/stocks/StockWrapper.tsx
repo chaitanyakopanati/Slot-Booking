@@ -49,7 +49,7 @@ function StockWrapper() {
           path='office-old-stock-inwards'
           element={
             <>
-              <PageTitle>Office old stock Inwards</PageTitle>
+              <PageTitle>Office old stock inwards</PageTitle>
               <OfficeOldStockInwardsWrapper />
             </>
           }

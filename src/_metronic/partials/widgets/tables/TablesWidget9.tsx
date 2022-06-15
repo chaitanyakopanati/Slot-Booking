@@ -568,6 +568,8 @@ const TablesWidget9: React.FC<Props> = ({ className }) => {
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Edit Inquiry</h5>
+
+
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
@@ -685,6 +687,21 @@ const TablesWidget9: React.FC<Props> = ({ className }) => {
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>View Inquiry</h5>
+
+              <div className='ms-3'>
+                <a
+                  href='#'
+                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                  data-bs-toggle='modal'
+                  data-bs-target='#kt_modal_1'
+                >
+                  <span className='svg-icon svg-icon-gray-500 me-1'>
+                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  </span>
+                  Edit inquiry
+                </a>
+              </div>
+
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
