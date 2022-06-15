@@ -64,7 +64,7 @@ export function AsideMenuMain() {
           fontIcon='bi-app-indicator'
         />
         <AsideMenuItem
-          to='/complaint-types3'
+          to='/stocks/office-stock-availability'
           icon='/media/icons/duotune/general/gen010.svg'
           title={intl.formatMessage({ id: 'MENU.COMPLAINT.TYPES3' })}
           fontIcon='bi-app-indicator'

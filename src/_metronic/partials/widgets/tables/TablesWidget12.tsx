@@ -1,22 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react'
-import { KTSVG, toAbsoluteUrl } from '../../../helpers'
-import ImageSelect from "../../../../app/images/error-profile.svg"
-
-
+import React, {useState} from 'react'
+import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget12: React.FC<Props> = ({ className }) => {
+const TablesWidget12: React.FC<Props> = ({className}) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}
       <div className='card-header border-0 pt-5'>
-        <div className='card-title d-flex align-items-center justify-content-between w-100 mx-0'>
-          <div className='d-flex align-items-center position-relative my-1 col-lg-3'>
+        <div className='card-title d-flex flex-md-row flex-column gap-3 align-items-center justify-content-between w-100 mx-0'>
+          <div className='d-flex align-items-center position-relative my-1 col-12 col-md-3'>
             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
               <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
             </span>
@@ -26,13 +24,15 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
               placeholder='Search'
             />
           </div>
-          <div className='d-flex'>
-            <div onClick={() => setFilterShow(!filterShow)}>
-              <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                <span className='svg-icon svg-icon-gray-500 me-1'>
-                  <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
-                </span>
-                Filter
+          <div className='d-flex align-items-center'>
+            <div className='d-flex'>
+              <div onClick={() => setFilterShow(!filterShow)}>
+                <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                  <span className='svg-icon svg-icon-gray-500 me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
+                  </span>
+                  Filter
+                </div>
               </div>
             </div>
 
@@ -165,7 +165,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
       {/* begin::Body */}
       <div className='card-body py-3'>
         {/* begin::Table container */}
-        <div className='table-responsive'>
+        <div className='table-responsive d-none d-lg-block'>
           {/* begin::Table */}
           <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border table-striped'>
             {/* begin::Table head */}
@@ -393,9 +393,259 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
           </table>
           {/* end::Table */}
         </div>
-        <div className='d-flex align-items-center justify-content-between pt-5'>
+
+        <div className='row g-5 d-flex d-lg-none py-3'>
+          <div className='col-md-6 mx-0 my-2'>
+            <div className='card card-custom border'>
+              <div className='card-body p-4'>
+                <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                  <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
+                  <div className='text-dark fw-bolder fs-3'>Ganesh Ahir</div>
+                  <div className='text-muted fw-bold ms-2'>- ganesh65</div>
+                </div>
+                <div className='text-dark fw-bold py-1'>
+                  <span className='fw-bolder'>Package name:</span>
+                  <span className='mx-2'>6 mbps</span>
+                </div>
+                <div id='card-id-1' className='collapse'>
+                  <div className='d-flex align-items-center justify-content-evenly py-1 my-1 flex-wrap d-none'>
+                    <div className='d-flex align-items-center'>
+                      <i className='text-dark bi bi-envelope-fill fs-5'></i>
+                      <div className='text-dark fw-bold  ms-2'>ganesh@gmail.com</div>
+                    </div>
+                    <div className='d-flex align-items-center'>
+                      <i className='text-dark bi bi-telephone-fill fs-5'></i>
+                      <div className='text-dark fw-bold  ms-2'>9099999676</div>
+                    </div>
+                  </div>
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Address:</div>
+                    <div className='text-dark fw-bold  ms-2'>
+                      {' '}
+                      Rajlaxmi Society Opp. Madhuvan Suma...
+                    </div>
+                  </div>
+                  <div className='py-1 d-flex align-items-cenetr'>
+                    {/* <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-2 me-2' /> */}
+                    <span className='fw-bolder'>Expiry date:</span>
+                    <span className='text-dark fw-bold  ms-2'>23 May 2023</span>
+                  </div>
+                </div>
+                <div
+                  className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                  data-bs-toggle='collapse'
+                  data-bs-target='#card-id-1'
+                  aria-expanded='false'
+                >
+                  <span>+ &nbsp;</span>More info
+                </div>
+              </div>
+              <div className='card-footer p-2 py-0 bg-light'>
+                <div className='d-flex align-items-center justify-content-evenly w-75 mx-auto'>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_1'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
+                  </a>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-active-color-success btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_3'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen005.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG
+                      path='/media/icons/duotune/electronics/elc008.svg'
+                      className='svg-icon-3'
+                    />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
+                    <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='col-md-6 mx-0 my-2'>
+            <div className='card card-custom border'>
+              <div className='card-body p-4'>
+                <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                  <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
+                  <div className='text-dark fw-bolder fs-3'>Ganesh Ahir</div>
+                  <div className='text-muted fw-bold ms-2'>- ganesh65</div>
+                </div>
+                <div className='text-dark fw-bold py-1'>
+                  <span className='fw-bolder'>Package name:</span>
+                  <span className='mx-2'>6 mbps</span>
+                </div>
+                <div id='card-id-2' className='collapse'>
+                  <div className='d-flex align-items-center justify-content-evenly py-1 my-1 flex-wrap d-none'>
+                    <div className='d-flex align-items-center'>
+                      <i className='text-dark bi bi-envelope-fill fs-5'></i>
+                      <div className='text-dark fw-bold  ms-2'>ganesh@gmail.com</div>
+                    </div>
+                    <div className='d-flex align-items-center'>
+                      <i className='text-dark bi bi-telephone-fill fs-5'></i>
+                      <div className='text-dark fw-bold  ms-2'>9099999676</div>
+                    </div>
+                  </div>
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Address:</div>
+                    <div className='text-dark fw-bold  ms-2'>
+                      {' '}
+                      Rajlaxmi Society Opp. Madhuvan Suma...
+                    </div>
+                  </div>
+                  <div className='py-1 d-flex align-items-cenetr'>
+                    {/* <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-2 me-2' /> */}
+                    <span className='fw-bolder'>Expiry date:</span>
+                    <span className='text-dark fw-bold  ms-2'>23 May 2023</span>
+                  </div>
+                </div>
+                <div
+                  className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                  data-bs-toggle='collapse'
+                  data-bs-target='#card-id-2'
+                  aria-expanded='false'
+                >
+                  <span>+ &nbsp;</span>More info
+                </div>
+              </div>
+              <div className='card-footer p-2 py-0 bg-light'>
+                <div className='d-flex align-items-center justify-content-evenly w-75 mx-auto'>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_1'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
+                  </a>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-active-color-success btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_3'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen005.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG
+                      path='/media/icons/duotune/electronics/elc008.svg'
+                      className='svg-icon-3'
+                    />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
+                    <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='col-md-6 mx-0 my-2'>
+            <div className='card card-custom border'>
+              <div className='card-body p-4'>
+                <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                  <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
+                  <div className='text-dark fw-bolder fs-3'>Ganesh Ahir</div>
+                  <div className='text-muted fw-bold ms-2'>- ganesh65</div>
+                </div>
+                <div className='text-dark fw-bold py-1'>
+                  <span className='fw-bolder'>Package name:</span>
+                  <span className='mx-2'>6 mbps</span>
+                </div>
+                <div id='card-id-3' className='collapse'>
+                  <div className='d-flex align-items-center justify-content-evenly py-1 my-1 flex-wrap d-none'>
+                    <div className='d-flex align-items-center'>
+                      <i className='text-dark bi bi-envelope-fill fs-5'></i>
+                      <div className='text-dark fw-bold  ms-2'>ganesh@gmail.com</div>
+                    </div>
+                    <div className='d-flex align-items-center'>
+                      <i className='text-dark bi bi-telephone-fill fs-5'></i>
+                      <div className='text-dark fw-bold  ms-2'>9099999676</div>
+                    </div>
+                  </div>
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Address:</div>
+                    <div className='text-dark fw-bold  ms-2'>
+                      {' '}
+                      Rajlaxmi Society Opp. Madhuvan Suma...
+                    </div>
+                  </div>
+                  <div className='py-1 d-flex align-items-cenetr'>
+                    {/* <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-2 me-2' /> */}
+                    <span className='fw-bolder'>Expiry date:</span>
+                    <span className='text-dark fw-bold  ms-2'>23 May 2023</span>
+                  </div>
+                </div>
+                <div
+                  className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                  data-bs-toggle='collapse'
+                  data-bs-target='#card-id-3'
+                  aria-expanded='false'
+                >
+                  <span>+ &nbsp;</span>More info
+                </div>
+              </div>
+              <div className='card-footer p-2 py-0 bg-light'>
+                <div className='d-flex align-items-center justify-content-evenly w-75 mx-auto'>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_1'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen055.svg' className='svg-icon-3' />
+                  </a>
+                  <a
+                    href='#'
+                    className='btn btn-icon btn-active-color-success btn-sm me-1'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_3'
+                  >
+                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG path='/media/icons/duotune/general/gen005.svg' className='svg-icon-3' />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <KTSVG
+                      path='/media/icons/duotune/electronics/elc008.svg'
+                      className='svg-icon-3'
+                    />
+                  </a>
+                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
+                    <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='d-flex align-items-center justify-content-between py-2'>
           <div className='min-w-100px'>
-            <div className='mb-10 d-flex align-items-center'>
+            <div className=' d-flex align-items-center' data-select2-id='show-enteries'>
               <label className='form-label fw-bold me-2 mb-0'>Show entries:</label>
               <select className='form-select form-select-solid h-40px py-2'>
                 <option value='1'>10</option>
@@ -405,8 +655,9 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
               </select>
             </div>
           </div>
+          <div className='form-label fw-bold px-4 text-end'>Showing 1-10 of 100 entries</div>
 
-          <ul className='pagination'>
+          <ul className='pagination py-3'>
             <li className='page-item previous disabled'>
               <a href='#' className='page-link'>
                 {/* Previous */}
@@ -450,7 +701,6 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
               </a>
             </li>
           </ul>
-          <div className='form-label fw-bold px-4'>Showing 1-10 of 100 entries</div>
         </div>
         {/* end::Table container */}
       </div>
@@ -494,7 +744,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -538,7 +788,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -582,7 +832,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -947,7 +1197,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -991,7 +1241,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1035,7 +1285,7 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{ backgroundImage: `url(${ImageSelect})` }}
+                      style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1179,8 +1429,14 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                   <div className='col-lg-4'>
                     <label className='form-label fw-bold'>Activation date</label>
                     <div className='input-group mb-5'>
-                      <span className='input-group-text svg-icon svg-icon-gray-500 ' id='basic-addon1'>
-                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
+                      <span
+                        className='input-group-text svg-icon svg-icon-gray-500 '
+                        id='basic-addon1'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-3 svg-icon-gray-900'
+                        />
                       </span>
                       <input
                         type='text'
@@ -1196,7 +1452,10 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <label className='form-label fw-bold'>Expiry date</label>
                     <div className='input-group mb-5'>
                       <span className='input-group-text' id='basic-addon1'>
-                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-3 svg-icon-gray-900'
+                        />
                       </span>
                       <input
                         type='text'
@@ -1229,8 +1488,14 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Created at</label>
                     <div className='input-group mb-5'>
-                      <span className='input-group-text svg-icon svg-icon-gray-500 ' id='basic-addon1'>
-                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
+                      <span
+                        className='input-group-text svg-icon svg-icon-gray-500 '
+                        id='basic-addon1'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-3 svg-icon-gray-900'
+                        />
                       </span>
                       <input
                         type='text'
@@ -1256,7 +1521,10 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
                     <label className='form-label fw-bold'>Updated at</label>
                     <div className='input-group mb-5'>
                       <span className='input-group-text' id='basic-addon1'>
-                        <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-3 svg-icon-gray-900' />
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen014.svg'
+                          className='svg-icon-3 svg-icon-gray-900'
+                        />
                       </span>
                       <input
                         type='text'
@@ -1278,4 +1546,4 @@ const TablesWidget12: React.FC<Props> = ({ className }) => {
   )
 }
 
-export { TablesWidget12 }
+export {TablesWidget12}
