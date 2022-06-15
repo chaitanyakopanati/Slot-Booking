@@ -30,6 +30,7 @@ function StockWrapper() {
           }
         />
         {/*  */}
+
         {/*  */}
         <Route
           path='office-stock-availability'
@@ -40,6 +41,9 @@ function StockWrapper() {
             </>
           }
         />
+
+         {/*  */}
+         
       </Route>
       <Route index element={<Navigate to='/stocks/office-stock-inwards' />} />
     </Routes>
