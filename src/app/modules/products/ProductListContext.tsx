@@ -78,6 +78,7 @@ const ListDataProvider: FC = ({children}) => {
       let payload: getAllProductData = await Complaintservice.getProduct()
       console.log(payload, 'payload')
       if (payload.success == true) {
+        LoderActions(false)
         console.log(payload)
         // setGetData(payload.data)
       }
@@ -95,7 +96,8 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Product:- getDynamicProduct Api call */
   }
   let fetchAllProduct = async () => {
-    // setLoading(true)
+    LoderActions(true)
+
     try {
       let response: GetAllProductApi = await Complaintservice.getDynamicProduct(
         pageNo,
@@ -104,6 +106,7 @@ const ListDataProvider: FC = ({children}) => {
       )
       console.log(response, 'response=========Allll')
       if (response.success == true) {
+        LoderActions(false)
         console.log(response)
         setGetData(response.data)
         setPageCount(response?.pages)

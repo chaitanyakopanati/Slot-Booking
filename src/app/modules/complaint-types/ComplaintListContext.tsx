@@ -103,13 +103,18 @@ const ListDataProvider: FC = ({children}) => {
         pageSize,
         searchText
       )
+      LoderActions(true)
       console.log(response, 'response=========Allll')
       if (response.success == true) {
+        LoderActions(false)
+
         console.log(response)
         setGetData(response.data)
         setPageCount(response?.pages)
       }
     } catch (error) {
+      LoderActions(false)
+
       console.log(error, 'error')
     }
   }

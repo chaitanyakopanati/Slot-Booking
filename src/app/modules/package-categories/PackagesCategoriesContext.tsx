@@ -76,8 +76,10 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: getAllPackagecategoriesData = await Complaintservice.getPackageCategories()
+      LoderActions(true)
       console.log(payload, 'payload')
       if (payload.success == true) {
+        LoderActions(false)
         console.log(payload)
         // setGetData(payload.data)
       }

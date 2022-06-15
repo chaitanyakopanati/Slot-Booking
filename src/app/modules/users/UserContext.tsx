@@ -1,7 +1,7 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../loader/LoaderContext'
 import Userservice from './helperUser/ApiDatarequestUser'
-import { GetAllData, GetAllUserApi, getUserData, ID, ViewForm } from './helperUser/ModelUserType'
+import {GetAllData, GetAllUserApi, getUserData, ID, ViewForm} from './helperUser/ModelUserType'
 
 export interface ComplaintDataContextModel {
   getData: getUserData[]
@@ -87,16 +87,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Fault:- getDynamicFaults Api call */
   }
   let fetchAllUser = async () => {
+    LoderActions(true)
     try {
-      let response: GetAllUserApi = await Userservice.getDynamicUser(
-        pageNo,
-        pageSize,
-        searchText
-      )
+      let response: GetAllUserApi = await Userservice.getDynamicUser(pageNo, pageSize, searchText)
       console.log(response, 'response=========')
 
       if (response.success == true) {
         setGetData(response.data)
+        LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
       }
@@ -112,6 +110,7 @@ const ListDataProvider: FC = ({children}) => {
       let payload: GetAllData = await Userservice.getZoneTypes()
 
       if (payload.success == true) {
+        LoderActions(false)
         setGetDataAllType(payload.data)
       }
     } catch (error) {
@@ -126,6 +125,7 @@ const ListDataProvider: FC = ({children}) => {
       let payload: GetAllData = await Userservice.getroleTypes()
 
       if (payload.success == true) {
+        LoderActions(false)
         setGetDataAllTypeRole(payload.data)
       }
     } catch (error) {
@@ -155,7 +155,7 @@ const ListDataProvider: FC = ({children}) => {
     fetchAllUser,
     DataGetAllTypeZone,
     DataGetAllTyperole,
-    getDataAllTypeRole
+    getDataAllTypeRole,
   }
   return (
     <>

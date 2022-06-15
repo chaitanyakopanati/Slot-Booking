@@ -19,7 +19,9 @@ const UserTable = () => {
     fetchAllUser,
     searchText,
     DataGetAllTypeZone,
-    DataGetAllTyperole
+    DataGetAllTyperole,
+    setPageNo,
+    setSearchText,
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -72,9 +74,9 @@ const UserTable = () => {
     LoderActions(false)
   }, [])
 
-  useEffect(() =>{
+  useEffect(() => {
     DataGetAllTypeZone()
-  },[])
+  }, [])
 
   useEffect(() => {
     console.log('enter')
@@ -85,15 +87,21 @@ const UserTable = () => {
     console.log('getData', getData)
   }, [getData])
 
-useEffect(() =>{
-  DataGetAllTyperole()
-},[])
+  useEffect(() => {
+    DataGetAllTyperole()
+  }, [])
+
+  const handlesearchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setSearchText(e.target.value)
+  }
 
   return (
     <>
       <div className='table-responsive'>
         {/* begin::Table */}
-        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border table-striped'>
+        <table className='d-none d-md-table table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border table-striped'>
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
@@ -125,7 +133,7 @@ useEffect(() =>{
                   <td>
                     <div className='d-flex align-items-center'>
                       <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>{row?.name  || '-'}</div>
+                        <div className='text-dark fw-bold  fs-6'>{row?.name || '-'}</div>
                       </div>
                     </div>
                   </td>
@@ -194,6 +202,104 @@ useEffect(() =>{
           {/* end::Table body */}
         </table>
         {/* end::Table */}
+
+        {/* begin::Mobile Table */}
+        <div className='row g-5 d-flex d-lg-none d-md-none py-3'>
+          <div
+            onChange={handlesearchange}
+            className='form-control form-control-solid ps-14'
+            placeholder='Search'
+          />
+          {getData?.map((row: getUserData, index: number) => {
+            return (
+              <div key={DataWiseIndex + index + 1}>
+                <div className='col-md-6 mx-0 my-2'>
+                  <div className='card card-custom border'>
+                    <div className='card-body p-4'>
+                      <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                        <div className='text-dark fw-bolder fs-3 me-2'>
+                          {' '}
+                          {DataWiseIndex + index + 1}
+                        </div>
+                        <div className='fw-bolder fs-3'>{row?.name || '-'}</div>
+                        <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
+                      </div>
+                      <div className='py-1 d-flex'>
+                        <div className='fw-bolder '>Role:</div>
+                        <div className='text-dark fw-bold  ms-2'>{row.roleName || '-'}</div>
+                      </div>
+
+                      <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                        <div className='py-1 d-flex align-items-cenetr'>
+                          <div className='fw-bolder '>Username:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.username || '-'}</div>
+                        </div>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>Email:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.email || '-'}</div>
+                        </div>
+
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>Mobile No:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.phone || '-'}</div>
+                        </div>
+
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>Zone:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
+                        </div>
+                      </div>
+
+                      <div
+                        className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                        data-bs-toggle='collapse'
+                        data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
+                        aria-expanded='false'
+                      >
+                        <span>+ &nbsp;</span>More info
+                      </div>
+                    </div>
+
+                    <div className='card-footer p-2 py-0 bg-light'>
+                      <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
+                        <a
+                          className='btn btn-icon btn-active-color-success btn-sm me-1'
+                          onClick={() => openViewModal(row)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen060.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>
+
+                        <button
+                          className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                          onClick={() => openEditModal(row.id)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/art/art005.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+
+                        <button
+                          className='btn btn-icon btn-active-color-danger btn-sm'
+                          onClick={() => deleteFaults(row.id)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        {/* End::Mobile Table */}
       </div>
     </>
   )

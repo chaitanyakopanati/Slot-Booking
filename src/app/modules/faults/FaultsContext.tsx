@@ -71,6 +71,7 @@ const ListDataProvider: FC = ({children}) => {
       let payload: GetAllData = await Fautlservice.getFaultsTypes()
       //
       if (payload.success == true) {
+        LoderActions(false)
         setGetDataAllType(payload.data)
       }
     } catch (error) {
@@ -86,6 +87,7 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Fault:- getDynamicFaults Api call */
   }
   let fetchAllFault = async () => {
+    LoderActions(true)
     try {
       let response: GetAllFaulttApi = await Fautlservice.getDynamicFaults(
         pageNo,
@@ -95,6 +97,8 @@ const ListDataProvider: FC = ({children}) => {
       console.log(response, 'response=========')
 
       if (response.success == true) {
+    LoderActions(false)
+
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))

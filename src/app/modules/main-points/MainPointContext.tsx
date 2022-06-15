@@ -71,6 +71,7 @@ const ListDataProvider: FC = ({children}) => {
       let payload: GetAllData = await MainPointservice.getMainPointTypes()
       //
       if (payload.success == true) {
+        LoderActions(false)
         setGetDataAllType(payload.data)
       }
     } catch (error) {

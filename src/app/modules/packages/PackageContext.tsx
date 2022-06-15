@@ -72,6 +72,7 @@ const ListDataProvider: FC = ({children}) => {
         searchText
       )
       console.log(response, 'response=========')
+      LoderActions(true)
 
       if (response.success == true) {
         LoderActions(false)

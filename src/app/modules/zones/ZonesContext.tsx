@@ -60,6 +60,7 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Zone:- getDynamicZones Api call */
   }
   let fetchAllZone = async () => {
+    LoderActions(true)
     try {
       let response: GetAllFaulttApi = await Zoneservice.getDynamicZones(
         pageNo,
@@ -69,6 +70,7 @@ const ListDataProvider: FC = ({children}) => {
       console.log(response, 'response=========')
 
       if (response.success == true) {
+        LoderActions(false)
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
