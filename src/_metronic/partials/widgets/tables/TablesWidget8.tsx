@@ -273,9 +273,9 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                   <div className='fw-bolder '>Delivered by:</div>
                   <div className='text-dark fw-bold  ms-2'>Manis Solanki</div>
                 </div>
-                
+
                 <div id='card-id-1' className='collapse'>
-                <div className='py-1 d-flex align-items-cenetr'>
+                  <div className='py-1 d-flex align-items-cenetr'>
                     <div className='fw-bolder '>Product</div>
                     <div className='text-dark fw-bold  ms-2'>Switch</div>
                   </div>
@@ -341,9 +341,9 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                   <div className='fw-bolder '>Delivered by:</div>
                   <div className='text-dark fw-bold  ms-2'>Manis Solanki</div>
                 </div>
-                
+
                 <div id='card-id-2' className='collapse'>
-                <div className='py-1 d-flex align-items-cenetr'>
+                  <div className='py-1 d-flex align-items-cenetr'>
                     <div className='fw-bolder '>Product</div>
                     <div className='text-dark fw-bold  ms-2'>Switch</div>
                   </div>
@@ -654,8 +654,9 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
         <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>View office stock inward</h5>
-
+              <div className='d-flex align-items-center'>
+                <h5 className='modal-title'>View office stock inward</h5>
+              </div>
               <div className='ms-3'>
                 <a
                   href='#'
@@ -668,16 +669,15 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                   </span>
                   Edit office stock inward
                 </a>
-              </div>
-
-              <div
-                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
-                data-bs-dismiss='modal'
-                aria-label='Close'
-              >
-                <span className='svg-icon svg-icon-2x'>
-                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
-                </span>
+                <div
+                  className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                >
+                  <span className='svg-icon svg-icon-2x'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -725,14 +725,14 @@ const TablesWidget8: React.FC<Props> = ({className}) => {
                 </div>
 
                 <div className='col-lg-12'>
-                <label className='form-label fw-bold'>Zone</label>
-                <select className='form-select form-select-solid'>
-                  <option value='1'>All</option>
-                  <option value='2'>Not described</option>
-                  <option value='3'>Abalkesh Soft</option>
-                  <option value='4'>Ajay Sulin</option>
-                </select>
-              </div>
+                  <label className='form-label fw-bold'>Zone</label>
+                  <select className='form-select form-select-solid'>
+                    <option value='1'>All</option>
+                    <option value='2'>Not described</option>
+                    <option value='3'>Abalkesh Soft</option>
+                    <option value='4'>Ajay Sulin</option>
+                  </select>
+                </div>
 
                 <div className='col-12 col-lg-12'>
                   <label className='form-label fw-bold'>Serial no</label>

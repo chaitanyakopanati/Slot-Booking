@@ -111,13 +111,13 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Username</label>
                 <input
-                      placeholder='Username'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
+                  placeholder='Username'
+                  className='form-control form-control-lg form-control-solid'
+                  type='text'
+                  autoComplete='off'
+                />
               </div>
-              
+
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Zone</label>
                 <select className='form-select form-select-solid'>
@@ -361,7 +361,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
             </div>
           </div>
           <div className='col-md-6 mx-0 my-2'>
-          <div className='card card-custom border'>
+            <div className='card card-custom border'>
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>2.</div>
@@ -506,7 +506,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold '>Outward  date </label>
+                    <label className='form-label fw-bold '>Outward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
@@ -546,7 +546,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 </div>
 
                 <div className='col-lg-12'>
-                <div className='col-6'>
+                  <div className='col-6'>
                     <label className='form-label fw-bold'>Username</label>
                     <input
                       placeholder='Solved at'
@@ -565,7 +565,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                       autoComplete='off'
                     />
                   </div>
-                  </div>
+                </div>
 
                 <div className='col-lg-12'>
                   <label className='form-label fw-bold'>Zone </label>
@@ -634,7 +634,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold '>Outward  date </label>
+                    <label className='form-label fw-bold '>Outward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
@@ -674,7 +674,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 </div>
 
                 <div className='col-lg-12'>
-                <div className='col-6'>
+                  <div className='col-6'>
                     <label className='form-label fw-bold'>Username</label>
                     <input
                       placeholder='Solved at'
@@ -693,7 +693,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                       autoComplete='off'
                     />
                   </div>
-                  </div>
+                </div>
 
                 <div className='col-12 col-lg-12'>
                   <label className='form-label fw-bold'>Serial no</label>
@@ -736,8 +736,9 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
         <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>View office stock Outward</h5>
-
+              <div className='d-flex align-items-center'>
+                <h5 className='modal-title'>View office stock Outward</h5>
+              </div>
               <div className='ms-3'>
                 <a
                   href='#'
@@ -748,18 +749,18 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                   <span className='svg-icon svg-icon-gray-500 me-1'>
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </span>
-                  Edit office stock ward
+                  Edit office stock outward
                 </a>
-              </div>
 
-              <div
-                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
-                data-bs-dismiss='modal'
-                aria-label='Close'
-              >
-                <span className='svg-icon svg-icon-2x'>
-                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
-                </span>
+                <div
+                  className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                >
+                  <span className='svg-icon svg-icon-2x'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -767,7 +768,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold '>Outward  date </label>
+                    <label className='form-label fw-bold '>Outward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
@@ -807,7 +808,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 </div>
 
                 <div className='col-lg-12'>
-                <div className='col-6'>
+                  <div className='col-6'>
                     <label className='form-label fw-bold'>Username</label>
                     <input
                       placeholder='Solved at'
@@ -826,7 +827,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                       autoComplete='off'
                     />
                   </div>
-                  </div>
+                </div>
 
                 <div className='col-lg-12'>
                   <label className='form-label fw-bold'>Zone </label>
@@ -862,27 +863,27 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
             </div>
 
             <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Created by</label>
-                    <input type='text' className='form-control form-control-solid' />
-                  </div>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Created by</label>
+                <input type='text' className='form-control form-control-solid' />
+              </div>
 
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Created at</label>
-                    <input type='date' className='form-control form-control-solid' />
-                  </div>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Created at</label>
+                <input type='date' className='form-control form-control-solid' />
+              </div>
 
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Updated by</label>
-                    <input type='text' className='form-control form-control-solid' />
-                  </div>
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Updated by</label>
+                <input type='text' className='form-control form-control-solid' />
+              </div>
 
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Updated at</label>
-                    <input type='date' className='form-control form-control-solid' />
-                  </div>
-                </div>
-                
+              <div className='col-lg-3'>
+                <label className='form-label fw-bold'>Updated at</label>
+                <input type='date' className='form-control form-control-solid' />
+              </div>
+            </div>
+
             <div className='modal-footer'>
               {/* <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
                 Close

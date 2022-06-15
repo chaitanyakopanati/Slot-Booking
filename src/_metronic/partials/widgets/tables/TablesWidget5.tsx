@@ -684,8 +684,9 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
         <div className='modal-dialog modal-dialog-centered modal-xl'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>View office stock inward</h5>
-
+              <div className='d-flex align-items-center'>
+                <h5 className='modal-title'>View office old stock inward</h5>
+              </div>
               <div className='ms-3'>
                 <a
                   href='#'
@@ -696,18 +697,18 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
                   <span className='svg-icon svg-icon-gray-500 me-1'>
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </span>
-                  Edit office stock inward
+                  Edit office old stock inward
                 </a>
-              </div>
 
-              <div
-                className='btn btn-icon btn-sm btn-active-light-primary ms-2'
-                data-bs-dismiss='modal'
-                aria-label='Close'
-              >
-                <span className='svg-icon svg-icon-2x'>
-                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
-                </span>
+                <div
+                  className='btn btn-icon btn-sm btn-active-light-primary ms-2'
+                  data-bs-dismiss='modal'
+                  aria-label='Close'
+                >
+                  <span className='svg-icon svg-icon-2x'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
+                  </span>
+                </div>
               </div>
             </div>
 
