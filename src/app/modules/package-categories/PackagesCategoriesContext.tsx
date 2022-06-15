@@ -97,6 +97,7 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Package-Category:- getDynamicPackageCategories Api call */
   }
   let fetchAllPackagecategories = async () => {
+    LoderActions(true)
     // setLoading(true)
     try {
       let response: GetAllPackagecategorietApi = await Complaintservice.getDynamicPackageCategories(
@@ -107,6 +108,8 @@ const ListDataProvider: FC = ({children}) => {
       console.log(response, 'response=========Allll')
       if (response.success == true) {
         console.log(response)
+        LoderActions(false)
+
         setGetData(response.data)
         setPageCount(response?.pages)
       }

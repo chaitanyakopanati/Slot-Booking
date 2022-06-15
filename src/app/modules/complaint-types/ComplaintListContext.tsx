@@ -96,6 +96,7 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Complaint Type:- getDynamicComplaints Api call */
   }
   let fetchAllComplaint = async () => {
+    LoderActions(true)
     // setLoading(true)
     try {
       let response: GetAllComplaintApi = await Complaintservice.getDynamicComplaints(

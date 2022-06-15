@@ -87,6 +87,7 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: MainPoint:- getDynamicMainPoint Api call */
   }
   let fetchAllMainPoint = async () => {
+    LoderActions(true)
     try {
       let response: GetAllMainPointApi = await MainPointservice.getDynamicMainPoint(
         pageNo,
@@ -96,6 +97,7 @@ const ListDataProvider: FC = ({children}) => {
       console.log(response, 'response=========')
 
       if (response.success == true) {
+        LoderActions(false)
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
