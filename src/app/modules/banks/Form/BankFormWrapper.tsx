@@ -18,7 +18,7 @@ const BankFormWrapper = () => {
         tabIndex={-1}
         aria-modal='true'
       >
-        <div className='modal-dialog modal-dialog-centered mw-600px'>
+        <div className='modal-dialog modal-dialog-centered modal-x1 mw-md-600px'>
           <div className='modal-content'>
             {/* begin::Form Header */}
             <BankFormHeader />

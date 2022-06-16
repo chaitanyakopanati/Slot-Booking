@@ -30,8 +30,8 @@ const CompaniesHeader = () => {
     <>
       {/* begin:: Header */}
       <div className='card-header border-0 pt-5'>
-        <div className='card-title d-flex align-items-center justify-content-between w-100 mx-0'>
-          <div className='d-flex align-items-center position-relative my-1 col-lg-3'>
+        <div className='card-title d-flex  flex-md-row flex-column gap-3 align-items-center justify-content-between w-100 mx-0'>
+          <div className='d-flex align-items-center position-relative my-1 col-12 col-md-3'>
             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
               <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
             </span>
@@ -46,47 +46,59 @@ const CompaniesHeader = () => {
             {/* end:: Search */}
           </div>
 
-          {/* begin:: Download */}
-          <div className='ms-auto'>
-            <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-              <span className='svg-icon svg-icon-gray-500 me-1'>
-                <KTSVG path='/media/icons/duotune/arrows/arr091.svg' className='svg-icon-3' />
-              </span>
-              Download
-            </a>
-          </div>
-          {/* end:: Download */}
-
-          {/* begin:: Filter */}
-          <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
-            <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-              <span className='svg-icon svg-icon-gray-500 me-1'>
-                <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
-              </span>
-              Filter
+          <div className='d-flex align-items-center'>
+            {/* begin:: Download */}
+            <div className='ms-auto'>
+              <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                <span className='svg-icon svg-icon-gray-500 me-0'>
+                  <KTSVG
+                    path='/media/icons/duotune/arrows/arr091.svg'
+                    className='svg-icon-2 me-0'
+                  />
+                </span>
+                <span className='d-none d-sm-block ms-3'>Download</span>
+              </a>
             </div>
-          </div>
-          {/* end:: Filter */}
+            {/* end:: Download */}
 
-          {/* begin::Create Fault Button */}
-          <div className='d-flex justify-content-end ms-3' data-kt-user-table-toolbar='base'>
-            <div title='Click to add new category'>
-              <button
-                type='button'
-                className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                onClick={openAddCategoryModal}
-              >
-                <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-                Create Company
-              </button>
+            {/* begin:: Filter */}
+            <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+              <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                <span className='svg-icon svg-icon-gray-500 me-0'>
+                  <KTSVG
+                    path='/media/icons/duotune/general/gen031.svg'
+                    className='svg-icon-2 me-0'
+                  />
+                </span>
+                <span className='d-none d-sm-block ms-3'>Filter</span>
+              </div>
             </div>
+            {/* end:: Filter */}
+
+            {/* begin::Create Fault Button */}
+            <div className='ms-3'>
+              <div className='d-flex justify-content-end ms-3' data-kt-user-table-toolbar='base'>
+                <div title='Click to add new category'>
+                  <button
+                    type='button'
+                    className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                    onClick={openAddCategoryModal}
+                  >
+                    <span className='svg-icon svg-icon-gray-500 me-1'>
+                      <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+                    </span>
+                    Create Company
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/* end::Create Fault Button */}
           </div>
-          {/* end::Create Fault Button */}
         </div>
 
         {/* begin:: Filter:- Created By */}
         {filterShow && (
-          <div className='row w-100 mx-0 my-5'>
+          <div className='row gy-2 w-100 mx-0 mt-5'>
             <div className='col-lg-3'>
               <label className='form-label fw-bold'>Created by:</label>
               <select className='form-select form-select-solid'>

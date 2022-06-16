@@ -37,7 +37,6 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
   return (
     <>
       {/* begin::formik Add/Edit form */}
-
       <Formik
         enableReinitialize={true}
         initialValues={{

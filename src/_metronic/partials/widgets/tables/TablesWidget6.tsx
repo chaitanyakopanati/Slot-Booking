@@ -173,31 +173,6 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                   <span>+ &nbsp;</span>More info
                 </div>
               </div>
-
-              <div className='card-footer p-2 py-0 bg-light'>
-                <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
-                  <a
-                    href='#'
-                    className='btn btn-icon btn-active-color-success btn-sm me-1'
-                    data-bs-toggle='modal'
-                    data-bs-target='#view-inquiries-modal'
-                  >
-                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                  </a>
-
-                  <a
-                    href='#'
-                    className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                    data-bs-toggle='modal'
-                    data-bs-target='#edit-inquiries-modal'
-                  >
-                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                  </a>
-                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
-                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
           <div className='col-md-6 mx-0 my-2'>
@@ -231,31 +206,6 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                   aria-expanded='false'
                 >
                   <span>+ &nbsp;</span>More info
-                </div>
-              </div>
-
-              <div className='card-footer p-2 py-0 bg-light'>
-                <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
-                  <a
-                    href='#'
-                    className='btn btn-icon btn-active-color-success btn-sm me-1'
-                    data-bs-toggle='modal'
-                    data-bs-target='#view-inquiries-modal'
-                  >
-                    <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                  </a>
-
-                  <a
-                    href='#'
-                    className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                    data-bs-toggle='modal'
-                    data-bs-target='#edit-inquiries-modal'
-                  >
-                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                  </a>
-                  <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
-                    <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                  </a>
                 </div>
               </div>
             </div>
