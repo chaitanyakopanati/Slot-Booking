@@ -93,7 +93,7 @@ const PackagesCategoriesTypeHeader = () => {
         {/* begin:: Filter:- Created By */}
         {filterShow && (
           <div className='row gy-2 w-100 mx-0 mt-5'>
-            <div className='col-lg-3'>
+            <div className='col-lg-3 col-md-3'>
               <label className='form-label fw-bold'>Created by:</label>
               <select className='form-select form-select-solid'>
                 <option></option>

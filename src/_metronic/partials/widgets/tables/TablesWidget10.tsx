@@ -636,7 +636,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
 
       {/* begin::create form Modal */}
       <div className='modal fade' id='create-installation-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Create Installation</h5>
@@ -812,7 +812,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
 
       {/* Edit Installation::Modal */}
       <div className='modal fade' id='edit-installation-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Edit Installation</h5>
@@ -988,7 +988,7 @@ const TablesWidget10: React.FC<Props> = ({ className }) => {
 
       {/* View installation::Modal */}
       <div className='modal fade' id='view-installation-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>View Installation</h5>

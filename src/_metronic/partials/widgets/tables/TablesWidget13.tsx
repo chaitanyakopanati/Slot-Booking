@@ -620,7 +620,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
 
       {/* begin::Modal */}
       <div className='modal fade' id='create-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Create Complaint</h5>
@@ -766,7 +766,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
       {/* end::Modal */}
       {/* Edit Complain::Modal */}
       <div className='modal fade' id='edit-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
@@ -920,7 +920,7 @@ const TablesWidget13: React.FC<Props> = ({className}) => {
       {/* Edit Complain::Modal */}
       {/* View Complain::Modal */}
       <div className='modal fade' id='view-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>

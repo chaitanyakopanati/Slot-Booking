@@ -98,7 +98,6 @@ const ListDataProvider: FC = ({children}) => {
   }
   let fetchAllPackagecategories = async () => {
     LoderActions(true)
-    // setLoading(true)
     try {
       let response: GetAllPackagecategorietApi = await Complaintservice.getDynamicPackageCategories(
         pageNo,

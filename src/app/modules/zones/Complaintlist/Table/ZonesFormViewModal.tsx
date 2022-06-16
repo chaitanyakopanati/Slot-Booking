@@ -66,7 +66,7 @@ const ZonesFormViewModal: FC<Props> = ({category}) => {
               tabIndex={-1}
               aria-modal='true'
             >
-              <div className='modal-dialog modal-dialog-centered modal-xl'>
+              <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
                 <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
                   <div id='view-modal'>
                     <div className='modal-dialog modal-dialog-centered modal-xl'>

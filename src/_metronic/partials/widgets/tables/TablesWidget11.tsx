@@ -661,7 +661,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
 
       {/* begin::create form Modal */}
       <div className='modal fade' id='create-form-modal'>
-        <div className='modal-dialog modal-fullscreen'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Create Form</h5>
@@ -984,7 +984,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
 
       {/* Edit form::Modal */}
       <div className='modal fade' id='edit-form-modal'>
-        <div className='modal-dialog modal-fullscreen'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Edit Form</h5>
@@ -1305,7 +1305,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
 
       {/* View form::Modal */}
       <div className='modal fade' id='view-form-modal'>
-        <div className='modal-dialog modal-fullscreen'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>View Form</h5>
@@ -1713,7 +1713,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
 
       {/* View customer::Modal */}
       <div className='modal fade' id='view-customer-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Create Customer</h5>

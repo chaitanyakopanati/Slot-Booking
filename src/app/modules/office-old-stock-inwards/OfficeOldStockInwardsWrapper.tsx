@@ -1,4 +1,3 @@
-import React from 'react'
 import {TablesWidget5} from '../../../_metronic/partials/widgets'
 
 function OfficeOldStockInwardsWrapper() {

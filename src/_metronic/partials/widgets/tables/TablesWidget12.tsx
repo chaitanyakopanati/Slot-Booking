@@ -708,7 +708,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
 
       {/* Create Customer start::Modal */}
       <div className='modal fade' id='kt_modal_1'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
@@ -1003,7 +1003,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
       {/* Create Customer end::Modal */}
       {/* Edit Complain::Modal */}
       <div className='modal fade' id='kt_modal_2'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
@@ -1157,7 +1157,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
       {/* Edit Complain::Modal */}
       {/* View Complain::Modal */}
       <div className='modal fade' id='kt_modal_3'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>

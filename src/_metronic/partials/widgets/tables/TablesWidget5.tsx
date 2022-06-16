@@ -455,7 +455,7 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
 
       {/* begin::create inquiry Modal */}
       <div className='modal fade' id='create-inquiry-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Create office old stock inward</h5>
@@ -573,7 +573,7 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
 
       {/* Edit Installation::Modal */}
       <div className='modal fade' id='edit-inquiries-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title'>Edit office old stock inward</h5>
@@ -681,7 +681,7 @@ const TablesWidget5: React.FC<Props> = ({className}) => {
 
       {/* View installation::Modal */}
       <div className='modal fade' id='view-inquiries-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl'>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
