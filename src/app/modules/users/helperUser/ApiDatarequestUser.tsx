@@ -45,9 +45,11 @@ const postUser = (obj: postlistData) => {
 {
   /* begin:: Faults:- delete Api call */
 }
-const deleteUser = (Id: number) => {
-  return http.delet(`DeleteFaultById/${Id}`)
+const deleteUser = (Id: number,username:string) => {
+  return http.delet(`DeleteUserById/${username}/${Id}`)
 }
+
+
 {
   /* end:: Faults:- delete Api call */
 }
@@ -83,9 +85,7 @@ const GetUserTypeById = (id: ID) => {
 {
   /* begin:: Faults:- get Faults type Api call */
 }
-const getFaultsTypes = () => {
-  return http.get('GetAllFaultTypes')
-}
+
 {
   /* end:: Faults:- get Faults type Api call */
 }
@@ -105,7 +105,6 @@ const Userservice = {
   deleteUser,
   editUser,
   GetUserTypeById,
-  getFaultsTypes,
   getZoneTypes,
   getroleTypes
 }

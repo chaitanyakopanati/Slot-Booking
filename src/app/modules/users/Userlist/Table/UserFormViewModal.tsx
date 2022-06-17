@@ -43,13 +43,13 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.id,
           name: category.name || '',
-          username: category.data?.username || '',
-          email: category.data?.email || '',
-          phone: category.data?.phone || '',
-          createdby: category.createdByName || '',
-          modifyby: category.modifyByName || '',
-          zoneId: category.data?.zoneName || '',
-          roleId: category.data?.roleName || '',
+          username: category.username || '',
+          email: category.email || '',
+          phone: category.phone || '',
+          createdby: category.createdby || '',
+          modifyby: category.modifyby || '',
+          zoneId: category.zoneName || '',
+          roleId: category.roleName || '',
           createdAt: moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
           modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
         }}
@@ -150,6 +150,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   type='text'
                                   name='username'
                                   autoComplete='off'
+                                  disabled
                                 />
                               </div>
                               <div className='col-lg-6'>
@@ -162,12 +163,13 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   type='text'
                                   name='email'
                                   autoComplete='off'
+                                  disabled
                                 />
                               </div>
                             </div>
 
                             <div className='row w-100 mx-0 mb-4 gy-4'>
-                              <div className='col-lg-4'>
+                              <div className='col-lg-12'>
                                 <label className='form-label fw-bold'>Mobile no:</label>
                                 <input
                                   placeholder='Mobile no.'
@@ -177,6 +179,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   onChange={props.handleChange}
                                   name='phone'
                                   autoComplete='off'
+                                  disabled
                                 />
                               </div>
                               <div>

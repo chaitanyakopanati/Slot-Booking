@@ -15,7 +15,7 @@ const UserTable = () => {
     pageNo,
     pageSize,
     setViewIdForUpdate,
-    DataGetAllType,
+    // DataGetAllType,
     fetchAllUser,
     searchText,
     DataGetAllTypeZone,
@@ -38,7 +38,7 @@ const UserTable = () => {
   {
     /* begin:: Delete functionlity */
   }
-  const deleteFaults = (ID: number) => {
+  const deleteFaults = (ID: number,username:string) => {
     Swal.fire({
       title: `Do you want to delete this records ?`,
       icon: 'warning',
@@ -49,7 +49,7 @@ const UserTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Userservice.deleteUser(ID)
+        let payload = await Userservice.deleteUser(ID,username)
         if (payload.success === true) {
           LoderActions(false)
 
@@ -69,10 +69,10 @@ const UserTable = () => {
     /* end:: Delete functionlity */
   }
 
-  useEffect(() => {
-    DataGetAllType()
-    LoderActions(false)
-  }, [])
+  // useEffect(() => {
+  //   DataGetAllType()
+  //   LoderActions(false)
+  // }, [])
 
   useEffect(() => {
     DataGetAllTypeZone()
@@ -185,7 +185,7 @@ const UserTable = () => {
                     {/* begin:: Delete Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deleteFaults(row.id)}
+                      onClick={() => deleteFaults(row.id,row.username)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
@@ -284,7 +284,7 @@ const UserTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-danger btn-sm'
-                          onClick={() => deleteFaults(row.id)}
+                          onClick={() => deleteFaults(row.id,row.username)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen027.svg'

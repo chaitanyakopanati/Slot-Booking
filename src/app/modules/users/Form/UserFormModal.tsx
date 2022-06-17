@@ -62,13 +62,21 @@ const UserFormModal: FC<Props> = ({category}) => {
           username: Yup.string()
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
-          email: Yup.number().required('This field is required'),
-          phone: Yup.number().required('This field is required'),
+          email: Yup.string().email('Invalid email format') .required('This field is required'),
+          phone: Yup.string()
+            //  .min(10, 'Min 10 digits are allowed')
+              // .max(10, 'Max 10 digits are allowed')
+            .min(
+              10,
+              'Invalid Phone Number'
+            )
+            .matches(/^[0-9]{0,10}$/,'Invalid Phone Number')
+            .required('This field is required'),
           zoneId: Yup.number().required('This field is required'),
-          roleId: Yup.number().required('This field is required'),
+          roleId: Yup.string().required('This field is required'),
           password: Yup.number().required('This field is required'),
           confirmPassword: Yup.string().when('password', {
-            is: (val:any) => (val && val.length > 0 ? true : false),
+            is: (val: any) => (val && val.length > 0 ? true : false),
             then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
           }),
         })}
@@ -137,6 +145,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.firstname}
                       onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       type='text'
                       name='firstname'
                       autoComplete='off'
@@ -152,6 +161,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.lastname}
                       onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       type='text'
                       name='lastname'
                       autoComplete='off'
@@ -171,6 +181,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.username}
                       onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       type='text'
                       name='username'
                       autoComplete='off'
@@ -186,6 +197,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.email}
                       onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       type='text'
                       name='email'
                       autoComplete='off'
@@ -197,14 +209,20 @@ const UserFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-lg-4'>
+                  <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Mobile no:</label>
                     <input
                       placeholder='Mobile no.'
                       className='form-control form-control-lg form-control-solid'
                       type='number'
                       value={props.values.phone}
-                      onChange={props.handleChange}
+                      onChange={(e) => {
+                        if (+e.target.value > 9999999999) {
+                          return
+                        }
+                        props.handleChange(e)
+                      }}
+                      onBlur={props.handleBlur}
                       name='phone'
                       autoComplete='off'
                     />
@@ -243,10 +261,10 @@ const UserFormModal: FC<Props> = ({category}) => {
                       <option value='' disabled>
                         Select Role Type
                       </option>
-                      {getDataAllTypeRole.map((TypeData, index) => {
+                      {getDataAllTypeRole.map((TypeDataRole, index) => {
                         return (
-                          <option key={index} value={TypeData?.id}>
-                            {TypeData?.name}
+                          <option key={index} value={TypeDataRole?.id}>
+                            {TypeDataRole?.name}
                           </option>
                         )
                       })}
@@ -266,9 +284,10 @@ const UserFormModal: FC<Props> = ({category}) => {
                     <input
                       placeholder='Password'
                       className='form-control form-control-lg form-control-solid'
-                      type='text'
+                      type='Password'
                       value={props.values.password}
                       onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                       name='password'
                       autoComplete='off'
                     />
@@ -284,7 +303,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                       value={props.values.confirmPassword}
                       onChange={props.handleChange}
                       name='confirmPassword'
-                      type='text'
+                      onBlur={props.handleBlur}
+                      type='password'
                       autoComplete='off'
                     />
                     <div className='erro2' style={{color: 'red'}}>

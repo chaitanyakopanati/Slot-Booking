@@ -19,7 +19,7 @@ export interface ComplaintDataContextModel {
   viewIdForUpdate: ViewForm
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
-  DataGetAllType: () => void
+  // DataGetAllType: () => void
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllUser: () => void
@@ -45,7 +45,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
-  DataGetAllType: () => {},
+  // DataGetAllType: () => {},
   fetchAllUser: () => {},
   DataGetAllTypeZone: () => {},
   DataGetAllTyperole: () => {},
@@ -66,19 +66,19 @@ const ListDataProvider: FC = ({children}) => {
   {
     /* begin:: Fault:- get Faults Type Api call */
   }
-  const DataGetAllType = async () => {
-    LoderActions(true)
-    try {
-      let payload: GetAllData = await Userservice.getFaultsTypes()
-      //
-      if (payload.success == true) {
-        setGetDataAllType(payload.data)
-      }
-    } catch (error) {
-    } finally {
-      LoderActions(false)
-    }
-  }
+  // const DataGetAllType = async () => {
+  //   LoderActions(true)
+  //   try {
+  //     let payload: GetAllData = await Userservice.getFaultsTypes()
+  //     //
+  //     if (payload.success == true) {
+  //       setGetDataAllType(payload.data)
+  //     }
+  //   } catch (error) {
+  //   } finally {
+  //     LoderActions(false)
+  //   }
+  // }
   {
     /* end:: Fault:- get Faults type Api call */
   }
@@ -142,7 +142,7 @@ const ListDataProvider: FC = ({children}) => {
     setFilterShow,
     viewIdForUpdate,
     setViewIdForUpdate,
-    DataGetAllType,
+    // DataGetAllType,
     getDataAllType,
     pageNo,
     pageSize,

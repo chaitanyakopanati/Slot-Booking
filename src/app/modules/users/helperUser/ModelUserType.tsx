@@ -64,4 +64,6 @@ export interface GetAllUserApi {
 
 export type ID = undefined | null | string
 
+export type username = undefined | null | string
+
 export type ViewForm = getUserData | undefined
