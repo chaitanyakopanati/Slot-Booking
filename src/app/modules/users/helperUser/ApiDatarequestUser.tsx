@@ -4,11 +4,17 @@ import {ID, postlistData, putUsersmodel} from './ModelUserType'
 {
   /* begin:: Faults:- getDynamicUser Api call */
 }
-const getDynamicUser = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicUser = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+) => {
   if (pageSize <= 0) {
     return http.get(`GetAllUsers/${null}/${null}?searchText=${null}`)
   } else {
-    return http.get(`GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(
+      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}`
+    )
   }
 }
 {
@@ -35,7 +41,7 @@ const postUser = (obj: postlistData) => {
     roleId: obj.roleId,
     createdby: 1,
     Updatedby: 1,
-    status:1,
+    status: 1,
   })
 }
 {
@@ -45,10 +51,9 @@ const postUser = (obj: postlistData) => {
 {
   /* begin:: Faults:- delete Api call */
 }
-const deleteUser = (Id: number,username:string) => {
+const deleteUser = (Id: number, username: string) => {
   return http.delet(`DeleteUserById/${username}/${Id}`)
 }
-
 
 {
   /* end:: Faults:- delete Api call */
@@ -64,7 +69,7 @@ const editUser = (obj: putUsersmodel) => {
     roleId: obj.roleId,
     createdby: 1,
     Updatedby: 1,
-    status:1,
+    status: 1,
     id: obj.id,
   })
 }
@@ -106,7 +111,7 @@ const Userservice = {
   editUser,
   GetUserTypeById,
   getZoneTypes,
-  getroleTypes
+  getroleTypes,
 }
 
 export default Userservice

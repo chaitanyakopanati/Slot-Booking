@@ -62,15 +62,12 @@ const UserFormModal: FC<Props> = ({category}) => {
           username: Yup.string()
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
-          email: Yup.string().email('Invalid email format') .required('This field is required'),
+          email: Yup.string().email('Invalid email format').required('This field is required'),
           phone: Yup.string()
             //  .min(10, 'Min 10 digits are allowed')
-              // .max(10, 'Max 10 digits are allowed')
-            .min(
-              10,
-              'Invalid Phone Number'
-            )
-            .matches(/^[0-9]{0,10}$/,'Invalid Phone Number')
+            // .max(10, 'Max 10 digits are allowed')
+            .min(10, 'Invalid Phone Number')
+            .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
             .required('This field is required'),
           zoneId: Yup.number().required('This field is required'),
           roleId: Yup.string().required('This field is required'),

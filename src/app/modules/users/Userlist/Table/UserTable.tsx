@@ -22,6 +22,7 @@ const UserTable = () => {
     DataGetAllTyperole,
     setPageNo,
     setSearchText,
+
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -96,6 +97,9 @@ const UserTable = () => {
     console.log(e.target.value)
     setSearchText(e.target.value)
   }
+
+
+
 
   return (
     <>

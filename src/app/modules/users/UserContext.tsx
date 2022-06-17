@@ -19,7 +19,6 @@ export interface ComplaintDataContextModel {
   viewIdForUpdate: ViewForm
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
-  // DataGetAllType: () => void
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllUser: () => void
@@ -45,7 +44,6 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
-  // DataGetAllType: () => {},
   fetchAllUser: () => {},
   DataGetAllTypeZone: () => {},
   DataGetAllTyperole: () => {},
@@ -142,7 +140,6 @@ const ListDataProvider: FC = ({children}) => {
     setFilterShow,
     viewIdForUpdate,
     setViewIdForUpdate,
-    // DataGetAllType,
     getDataAllType,
     pageNo,
     pageSize,
