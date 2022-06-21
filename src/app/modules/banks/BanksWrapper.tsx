@@ -12,7 +12,7 @@ const Banklist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin:: Bank Header Component */}
-        <BankHeader />
+        <BankHeader category={BankHeader} />
         {/* end:: Bank Header Component */}
 
         {/* begin:: Bank Table Component */}

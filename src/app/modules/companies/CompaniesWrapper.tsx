@@ -12,7 +12,7 @@ const Companieslist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin:: Company Header Component */}
-        <CompaniesHeader />
+        <CompaniesHeader category={CompaniesHeader} />
         {/* end:: Company Header Component */}
 
         {/* begin:: Company Table Component */}

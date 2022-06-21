@@ -7,6 +7,7 @@ import {CustomTooltip} from '../../../routing/customtooltip'
 import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../UserContext'
 import Userservice from '../helperUser/ApiDatarequestUser'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   category: any
@@ -16,6 +17,7 @@ const UserFormModal: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, itemIdForUpdate, fetchAllUser, getDataAllType, getDataAllTypeRole} =
     ListPageData()
   let {LoderActions} = useLoader()
+  const navigation = useNavigate()
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -69,8 +71,8 @@ const UserFormModal: FC<Props> = ({category}) => {
             .min(10, 'Invalid Phone Number')
             .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
             .required('This field is required'),
-          zoneId: Yup.number().required('This field is required'),
-          roleId: Yup.string().required('This field is required'),
+          zoneId: Yup.number().required('This fied is required'),
+          roleId: Yup.string().required('This fielld is required'),
           password: Yup.number().required('This field is required'),
           confirmPassword: Yup.string().when('password', {
             is: (val: any) => (val && val.length > 0 ? true : false),
@@ -115,7 +117,9 @@ const UserFormModal: FC<Props> = ({category}) => {
         {(props) => (
           <>
             {console.log(category, 'category')}
-
+            <div className='from4'>
+              <button onClick={() => navigation(-1)}>Back</button>
+            </div>
             <Form
               id='kt_modal_add_user_form'
               onKeyDown={onKeyDown}
@@ -133,7 +137,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
                 data-kt-scroll-offset='300px'
               >
-                {/* begin: input name Filed */}
+                {/* begin: input firstname Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>First Name:</label>
@@ -151,6 +155,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                       <ErrorMessage name='firstname' />
                     </div>
                   </div>
+
+                  {/* begin: input lastname Filed */}
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Last Name:</label>
                     <input
@@ -168,8 +174,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
                 </div>
-                {/* end: input name Filed */}
 
+                {/* begin: input username Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Username :</label>
@@ -187,6 +193,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                       <ErrorMessage name='username' />
                     </div>
                   </div>
+
+                  {/* begin: input email Filed */}
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Email :</label>
                     <input
@@ -205,6 +213,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                   </div>
                 </div>
 
+                {/* begin: input phone Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Mobile no:</label>
@@ -227,6 +236,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                       <ErrorMessage name='phone' />
                     </div>
                   </div>
+
+                  {/* begin: input Zone Filed */}
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Zone</label>
                     <select
@@ -249,6 +260,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='zoneId' />
                   </div>
 
+                  {/* begin: input Role Filed */}
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Role</label>
                     <select
@@ -271,9 +283,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                     <ErrorMessage name='roleId' />
                   </div>
                 </div>
-                {/*begin:: Fault-Type Filed */}
 
-                {/*end:: Fault-Type Filed */}
+                {/* begin: input Password Filed */}
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
@@ -292,6 +303,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                       <ErrorMessage name='password' />
                     </div>
                   </div>
+
+                  {/* begin: input confirmPassword Filed */}
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Confirm Password:</label>
                     <input
@@ -316,7 +329,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 <CustomTooltip title='Close form'>
                   <button
                     type='reset'
-                    onClick={() => cancel()}
+                    onClick={() => navigation(-1)}
                     className='btn btn-light'
                     data-kt-users-modal-action='cancel'
                   >

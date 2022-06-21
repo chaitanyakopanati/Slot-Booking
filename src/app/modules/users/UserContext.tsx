@@ -10,9 +10,13 @@ export interface ComplaintDataContextModel {
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
+  setZoneId: Dispatch<SetStateAction<number>>
+  setRoleId: Dispatch<SetStateAction<string>>
   pageCount: number
   setPageCount: Dispatch<SetStateAction<number>>
   pageSize: number
+  zoneId: number
+  roleId: string
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
   itemIdForUpdate: ID
@@ -30,9 +34,13 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   pageNo: 0,
   setPageNo: () => {},
+  setZoneId: () => {},
+  setRoleId: () => {},
   pageCount: 0,
   setPageCount: () => {},
   pageSize: 0,
+  zoneId: 0,
+  roleId: '',
   setPageSize: () => {},
   searchText: '',
   setSearchText: () => {},
@@ -59,6 +67,8 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
+  const [zoneId, setZoneId] = useState(0)
+  const [roleId, setRoleId] = useState('')
   let {LoderActions} = useLoader()
 
   {
@@ -82,12 +92,18 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   {
-    /* begin:: Fault:- getDynamicFaults Api call */
+    /* begin:: User:- getDynamicUser Api call */
   }
   let fetchAllUser = async () => {
     LoderActions(true)
     try {
-      let response: GetAllUserApi = await Userservice.getDynamicUser(pageNo, pageSize, searchText)
+      let response: GetAllUserApi = await Userservice.getDynamicUser(
+        pageNo,
+        pageSize,
+        searchText,
+        zoneId,
+        roleId
+      )
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -99,9 +115,12 @@ const ListDataProvider: FC = ({children}) => {
     } catch (error) {}
   }
   {
-    /* end:: Fault:- getDynamicFaults Api call */
+    /* end:: User:- getDynamicUser Api call */
   }
 
+  {
+    /* begin:: User:- getZoneTypes Api call */
+  }
   const DataGetAllTypeZone = async () => {
     LoderActions(true)
     try {
@@ -116,7 +135,13 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(false)
     }
   }
+  {
+    /* End:: User:- getZoneTypes Api call */
+  }
 
+  {
+    /* begin:: User:- getroleTypes Api call */
+  }
   const DataGetAllTyperole = async () => {
     LoderActions(true)
     try {
@@ -131,6 +156,9 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(false)
     }
   }
+  {
+    /* End:: User:- getroleTypes Api call */
+  }
 
   const value: ComplaintDataContextModel = {
     getData,
@@ -142,7 +170,11 @@ const ListDataProvider: FC = ({children}) => {
     setViewIdForUpdate,
     getDataAllType,
     pageNo,
+    roleId,
     pageSize,
+    zoneId,
+    setRoleId,
+    setZoneId,
     searchText,
     setPageSize,
     setPageNo,

@@ -7,6 +7,7 @@ import {useLoader} from '../../../loader/LoaderContext'
 import {ListPageData} from '../../UserContext'
 import {getUserData} from '../../helperUser/ModelUserType'
 import Userservice from '../../helperUser/ApiDatarequestUser'
+import {useNavigate} from 'react-router-dom'
 
 const UserTable = () => {
   const {
@@ -22,9 +23,9 @@ const UserTable = () => {
     DataGetAllTyperole,
     setPageNo,
     setSearchText,
-
   } = ListPageData()
   let {LoderActions} = useLoader()
+  const navigate = useNavigate()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -39,7 +40,7 @@ const UserTable = () => {
   {
     /* begin:: Delete functionlity */
   }
-  const deleteFaults = (ID: number,username:string) => {
+  const deleteFaults = (ID: number, username: string) => {
     Swal.fire({
       title: `Do you want to delete this records ?`,
       icon: 'warning',
@@ -50,7 +51,7 @@ const UserTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Userservice.deleteUser(ID,username)
+        let payload = await Userservice.deleteUser(ID, username)
         if (payload.success === true) {
           LoderActions(false)
 
@@ -98,9 +99,6 @@ const UserTable = () => {
     setSearchText(e.target.value)
   }
 
-
-
-
   return (
     <>
       <div className='table-responsive'>
@@ -143,32 +141,32 @@ const UserTable = () => {
                   </td>
                   {/* end:: Name Input */}
 
-                  {/* begin:: Fault Type Input */}
+                  {/* begin:: User Type Input username */}
                   <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
-                  {/* end:: Fault Type Input */}
+                  {/* end:: User Type Input  username */}
 
-                  {/* begin:: Fault Type Input */}
+                  {/* begin:: User Type Input email */}
                   <td className='text-dark fw-bold  fs-6'>{row.email || '-'}</td>
-                  {/* end:: Fault Type Input */}
+                  {/* end:: User Type Input  email*/}
 
-                  {/* begin:: Fault Type Input */}
+                  {/* begin:: User Type Input phone*/}
                   <td className='text-dark fw-bold  fs-6'>{row.phone || '-'}</td>
-                  {/* end:: Fault Type Input */}
+                  {/* end:: User Type Input  phone*/}
 
-                  {/* begin:: Fault Type Input */}
+                  {/* begin:: User Type Input zoneName */}
                   <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
-                  {/* end:: Fault Type Input */}
+                  {/* end:: User Type Input  zoneName*/}
 
-                  {/* begin:: Fault Type Input */}
+                  {/* begin:: User Type Input roleName*/}
                   <td className='text-dark fw-bold  fs-6'>{row.roleName || '-'}</td>
-                  {/* end:: Fault Type Input */}
+                  {/* end:: User Type Input  roleName*/}
 
                   {/* begin:: Action */}
                   <td>
                     {/* begin:: View Icon */}
                     <a
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      onClick={() => openViewModal(row)}
+                      onClick={() => navigate('viewform/view')}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
@@ -180,7 +178,7 @@ const UserTable = () => {
                     {/* begin:: Edit Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      onClick={() => openEditModal(row.id)}
+                      onClick={() => navigate('form/edit')}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                     </button>
@@ -189,7 +187,7 @@ const UserTable = () => {
                     {/* begin:: Delete Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deleteFaults(row.id,row.username)}
+                      onClick={() => deleteFaults(row.id, row.username)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
@@ -288,7 +286,7 @@ const UserTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-danger btn-sm'
-                          onClick={() => deleteFaults(row.id,row.username)}
+                          onClick={() => deleteFaults(row.id, row.username)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen027.svg'

@@ -11,7 +11,7 @@ const UserFormByCategory = () => {
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   {
-    /* begin:: Api call GetFaultsTypeById */
+    /* begin:: Api call GetUserTypeById */
   }
   const {data: category, error} = useQuery(
     `GetUserbyId-${itemIdForUpdate}`,
@@ -28,7 +28,7 @@ const UserFormByCategory = () => {
     }
   )
   {
-    /* end:: Api call GetFaultsTypeById */
+    /* end:: Api call GetUserTypeById */
   }
 
   useEffect(() => {

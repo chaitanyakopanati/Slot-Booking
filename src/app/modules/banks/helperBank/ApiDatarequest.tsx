@@ -4,11 +4,11 @@ import {ID, putBankmodel} from './ModelBank'
 {
   /* begin:: Bank:- GetDynamicBankData Api call */
 }
-const getDynamicBank = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicBank = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicBankData/${null}/${null}?searchText=${null}`)
+    return http.get(`GetDynamicBankData/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicBankData/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(`GetDynamicBankData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
   }
 }
 {

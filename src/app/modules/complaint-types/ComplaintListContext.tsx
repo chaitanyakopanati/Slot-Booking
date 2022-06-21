@@ -11,9 +11,13 @@ import {useLoader} from '../loader/LoaderContext'
 
 export interface ComplaintDataContextModel {
   getData: getComplainData[]
+  getDataComplaint: getComplainData[]
+  getDataCreatedByAllType: getComplainData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
+  createdById: number
   lastIndex: number
   setLastIndex: Dispatch<SetStateAction<number>>
   totalData: number
@@ -31,10 +35,15 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllComplaint: () => void
+  getDataComplaintAllType: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataComplaint: [],
+  getDataCreatedByAllType:[],
+  createdById: 0,
+  setCreatedById: () => {},
   pageNo: 0,
   setPageNo: () => {},
   totalData: 0,
@@ -55,10 +64,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetApi: () => {},
+  getDataComplaintAllType: () => {},
 })
 
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getComplainData[]>([])
+  const [getDataComplaint, setgetDataComplaint] = useState<getComplainData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -68,6 +79,8 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
+  const [getDataCreatedByAllType, setGetDataCreatedByAllType] = useState<getComplainData[]>([])
   let {LoderActions} = useLoader()
 
   {
@@ -80,6 +93,7 @@ const ListDataProvider: FC = ({children}) => {
       console.log(payload, 'payload')
       if (payload.success == true) {
         console.log(payload)
+        setGetDataCreatedByAllType(payload.data)
         // setGetData(payload.data)
       }
     } catch (error) {
@@ -102,7 +116,8 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllComplaintApi = await Complaintservice.getDynamicComplaints(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       LoderActions(true)
       console.log(response, 'response=========Allll')
@@ -123,12 +138,22 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Complaint Type:- getDynamicComplaints Api call */
   }
 
+  let getDataComplaintAllType = async() =>{
+    let response: GetAllComplaintApi = await Complaintservice.getComplaints()
+    console.log(response,"responseppppppp");
+    setgetDataComplaint(response.data)
+    
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDataComplaintAllType,
+    getDataComplaint,
     itemIdForUpdate,
     setItemIdForUpdate,
     DataGetApi,
     filterShow,
+    getDataCreatedByAllType,
     pageNo,
     pageSize,
     searchText,
@@ -142,6 +167,8 @@ const ListDataProvider: FC = ({children}) => {
     lastIndex,
     setLastIndex,
     totalData,
+    createdById,
+    setCreatedById,
     setTotalData,
     viewIdForUpdate,
     setViewIdForUpdate,

@@ -4,11 +4,11 @@ import {ID, putPackagesmodel} from './ModelPackages'
 {
   /* begin:: Packages:- getDynamicFaults Api call */
 }
-const getDynamicPackages = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicPackages = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicPackageData/${null}/${null}?searchText=${null}`)
+    return http.get(`GetDynamicPackageData/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicPackageData/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(`GetDynamicPackageData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
   }
 }
 {

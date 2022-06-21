@@ -4,11 +4,11 @@ import {ID, postlistData, putZonemodel} from './ModelZones'
 {
   /* begin:: Zones:- GetDynamicZones Api call */
 }
-const getDynamicZones = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicZones = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicZones/${null}/${null}?searchText=${null}`)
+    return http.get(`GetDynamicZones/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicZones/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(`GetDynamicZones/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
   }
 }
 {

@@ -11,12 +11,15 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getPackagesData[]
+  getDatapackages: getPackagesData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -27,16 +30,20 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllBank: () => void
+  getPackagesAllData: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDatapackages: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
   pageSize: 0,
   setPageSize: () => {},
+  setCreatedById: () => {},
   searchText: '',
   setSearchText: () => {},
   getDataAllType: [],
@@ -47,9 +54,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   fetchAllBank: () => {},
+  getPackagesAllData: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getPackagesData[]>([])
+  const [getDatapackages, setGetDatapackages] = useState<getPackagesData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
@@ -57,6 +66,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   let {LoderActions} = useLoader()
 
@@ -69,7 +79,8 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllPackagesApi = await Zoneservice.getDynamicPackages(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       console.log(response, 'response=========')
       LoderActions(true)
@@ -89,8 +100,22 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Package:- getDynamicPackages Api call */
   }
 
+  {
+    /* begin::Get API Call */
+  }
+  const getPackagesAllData = async () => {
+    let response: GetAllPackagesApi = await Zoneservice.getPackages()
+    console.log(response, '=========-----+++++')
+
+    setGetDatapackages(response.data)
+  }
+  {
+    /* End::Get API Call */
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDatapackages,
     itemIdForUpdate,
     setItemIdForUpdate,
     filterShow,
@@ -107,6 +132,9 @@ const ListDataProvider: FC = ({children}) => {
     setPageCount,
     setSearchText,
     fetchAllBank,
+    createdById,
+    getPackagesAllData,
+    setCreatedById,
   }
   return (
     <>

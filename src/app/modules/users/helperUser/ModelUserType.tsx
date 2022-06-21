@@ -14,7 +14,7 @@ export interface getUserData {
   roleName: string
   firstname: string
   lastname: string
-  roleId:number
+  roleId: string
 }
 
 export interface getAllUserData {
@@ -25,8 +25,7 @@ export interface getAllUserData {
 export interface postlistData {
   name: string
   zoneId: number
-  roleId:number
-
+  roleId: string
 }
 
 export interface GetAllData {
@@ -42,7 +41,7 @@ export interface GetAllData {
 export interface putUsersmodel {
   name: string
   zoneId: number
-  roleId:number
+  roleId: string
 
   id: number | string
 }
@@ -60,6 +59,8 @@ export interface GetAllUserApi {
   TotalRecords: number
   page: number
   pageSize: number
+  zoneId: number
+  roleId: string
 }
 
 export type ID = undefined | null | string

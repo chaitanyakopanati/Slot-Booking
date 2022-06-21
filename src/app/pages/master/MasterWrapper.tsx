@@ -12,10 +12,15 @@ import BanksWrapper from '../../modules/banks/BanksWrapper'
 import ProductsWrapper from '../../modules/products/ProductsWrapper'
 import PackagesWrapper from '../../modules/packages/PackagesWrapper'
 import PackageCategoriesWrapper from '../../modules/package-categories/PackageCategoriesWrapper'
+import UserFormWrapper from '../../modules/users/Form/UserFormWrapper'
+import { ListPageData } from '../../modules/users/UserContext'
+import UserViewWrapper from '../../modules/users/Form/UserViewWrapper'
 
 
 
 function MasterWrapper() {
+  const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
+
   return (
     <Routes>
       <Route element={<Outlet />}>
@@ -25,6 +30,24 @@ function MasterWrapper() {
             <>
               <PageTitle>Users</PageTitle>
               <UsersWrapper />
+            </>
+          }
+        />
+        <Route
+          path='users/form/:id'
+          element={
+            <>
+              <PageTitle>Add User</PageTitle>
+              <UserFormWrapper />
+            </>
+          }
+        />
+          <Route
+          path='users/viewform/:id'
+          element={
+            <>
+              <PageTitle>View User</PageTitle>
+              <UserViewWrapper />
             </>
           }
         />

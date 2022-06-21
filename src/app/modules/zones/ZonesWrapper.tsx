@@ -12,7 +12,7 @@ const Zoneslist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin:: Zone Header Component */}
-        <ZonesHeader />
+        <ZonesHeader category={ZonesHeader} />
         {/* end:: Zone Header Component */}
 
         {/* begin:: Zone Table Component */}

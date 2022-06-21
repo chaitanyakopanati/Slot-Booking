@@ -11,6 +11,7 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getProductData[]
+  getDataProduct: getProductData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
@@ -19,7 +20,9 @@ export interface ComplaintDataContextModel {
   totalData: number
   setTotalData: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -31,10 +34,12 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllProduct: () => void
+  getDataProductAllType: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataProduct: [],
   pageNo: 0,
   setPageNo: () => {},
   totalData: 0,
@@ -42,7 +47,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   lastIndex: 0,
   setLastIndex: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
+  setCreatedById: () => {},
   pageSize: 0,
   setPageSize: () => {},
   searchText: '',
@@ -55,9 +62,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetApiProduct: () => {},
+  getDataProductAllType: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getProductData[]>([])
+  const [getDataProduct, setgetDataProduct] = useState<getProductData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -67,6 +76,7 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
   let {LoderActions} = useLoader()
 
   {
@@ -102,7 +112,8 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllProductApi = await Complaintservice.getDynamicProduct(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       console.log(response, 'response=========Allll')
       if (response.success == true) {
@@ -119,8 +130,23 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Product:- getDynamicProduct Api call */
   }
 
+  {
+    /* begin::Get Api Call */
+  }
+  let getDataProductAllType = async () => {
+    let response: GetAllProductApi = await Complaintservice.getProduct()
+    console.log(response, 'dataaaaaaa')
+
+    setgetDataProduct(response.data)
+  }
+  {
+    /* End::Get Api Call */
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDataProduct,
+    getDataProductAllType,
     itemIdForUpdate,
     setItemIdForUpdate,
     DataGetApiProduct,
@@ -141,6 +167,8 @@ const ListDataProvider: FC = ({children}) => {
     setTotalData,
     viewIdForUpdate,
     setViewIdForUpdate,
+    createdById,
+    setCreatedById,
   }
   return (
     <>

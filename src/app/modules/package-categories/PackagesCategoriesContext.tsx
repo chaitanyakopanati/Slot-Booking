@@ -11,6 +11,7 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getPackageCategoriesData[]
+  getDataPackageCategory: getPackageCategoriesData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
@@ -19,7 +20,9 @@ export interface ComplaintDataContextModel {
   totalData: number
   setTotalData: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setcreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -31,10 +34,12 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllPackagecategories: () => void
+  getDataPackageCategoryDataAllType: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataPackageCategory: [],
   pageNo: 0,
   setPageNo: () => {},
   totalData: 0,
@@ -42,12 +47,15 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   lastIndex: 0,
   setLastIndex: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
+  setcreatedById: () => {},
   pageSize: 0,
   setPageSize: () => {},
   searchText: '',
   setSearchText: () => {},
   fetchAllPackagecategories: () => {},
+  getDataPackageCategoryDataAllType: () => {},
   filterShow: false,
   setFilterShow: (filterShow: boolean) => {},
   setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
@@ -58,6 +66,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getPackageCategoriesData[]>([])
+  const [getDataPackageCategory, setGetDataPackageCategory] = useState<getPackageCategoriesData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -67,6 +76,7 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
+  const [createdById, setcreatedById] = useState<number>(0)
   let {LoderActions} = useLoader()
 
   {
@@ -102,7 +112,8 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllPackagecategorietApi = await Complaintservice.getDynamicPackageCategories(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       console.log(response, 'response=========Allll')
       if (response.success == true) {
@@ -120,11 +131,23 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Package-Category:- getDynamicPackageCategories Api call */
   }
 
+   {/* begin::Get Api call */}
+  const getDataPackageCategoryDataAllType = async() =>{
+    let response: GetAllPackagecategorietApi = await Complaintservice.getPackageCategories()
+    console.log(response,"respo//////////");
+    setGetDataPackageCategory(response.data)
+  }
+   {/* End::Get Api call */}
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDataPackageCategory,
+    createdById,
+    setcreatedById,
     itemIdForUpdate,
     setItemIdForUpdate,
     DataGetApiPackagecategories,
+    getDataPackageCategoryDataAllType,
     filterShow,
     pageNo,
     pageSize,

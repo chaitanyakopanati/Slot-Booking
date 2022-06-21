@@ -5,12 +5,14 @@ import {GetAllData, GetAllFaulttApi, getZoneData, ID, ViewForm} from './helperZo
 
 export interface ComplaintDataContextModel {
   getData: getZoneData[]
-  getDataAllType: GetAllData[]
+  getDataAllType: getZoneData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -22,6 +24,7 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllZone: () => void
+  getZonesAllTypeData: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -29,7 +32,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
+  setCreatedById: () => {},
   pageSize: 0,
   setPageSize: () => {},
   searchText: '',
@@ -43,16 +48,18 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   // DataGetAllType: () => {},
   fetchAllZone: () => {},
+  getZonesAllTypeData: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getZoneData[]>([])
-  const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  const [getDataAllType, setGetDataAllType] = useState<getZoneData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   let {LoderActions, open} = useLoader()
 
@@ -65,7 +72,8 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllFaulttApi = await Zoneservice.getDynamicZones(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       console.log(response, 'response=========')
 
@@ -81,6 +89,18 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Zone:- getDynamicZones Api call */
   }
 
+  {
+    /* begin::Get Api Call */
+  }
+  let getZonesAllTypeData = async () => {
+    let response: GetAllFaulttApi = await Zoneservice.getZones()
+    console.log(response, '=666')
+    setGetDataAllType(response.data)
+  }
+  {
+    /* End::Get Api Call */
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
     itemIdForUpdate,
@@ -89,6 +109,7 @@ const ListDataProvider: FC = ({children}) => {
     setFilterShow,
     viewIdForUpdate,
     setViewIdForUpdate,
+    getZonesAllTypeData,
     // DataGetAllType,
     getDataAllType,
     pageNo,
@@ -100,6 +121,8 @@ const ListDataProvider: FC = ({children}) => {
     setPageCount,
     setSearchText,
     fetchAllZone,
+    createdById,
+    setCreatedById,
   }
   return (
     <>

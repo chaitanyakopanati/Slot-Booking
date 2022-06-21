@@ -4,11 +4,11 @@ import {postlistData, putFaultsmodel, ID} from './ModelFaultsType'
 {
   /* begin:: Faults:- getDynamicFaults Api call */
 }
-const getDynamicFaults = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicFaults = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicFaults/${null}/${null}?searchText=${null}`)
+    return http.get(`GetDynamicFaults/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicFaults/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(`GetDynamicFaults/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
   }
 }
 {

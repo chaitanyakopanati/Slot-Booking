@@ -11,12 +11,15 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getMainPointData[]
+  getDataMainPoint: getMainPointData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setcreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -28,16 +31,20 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllMainPoint: () => void
+  getDataMainPointAllType: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataMainPoint: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
   pageSize: 0,
   setPageSize: () => {},
+  setcreatedById: () => {},
   searchText: '',
   setSearchText: () => {},
   getDataAllType: [],
@@ -49,9 +56,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetAllType: () => {},
   fetchAllMainPoint: () => {},
+  getDataMainPointAllType: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getMainPointData[]>([])
+  const [getDataMainPoint, setGetDataMainPoint] = useState<getMainPointData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
@@ -59,6 +68,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [createdById, setcreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   let {LoderActions} = useLoader()
 
@@ -92,7 +102,8 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllMainPointApi = await MainPointservice.getDynamicMainPoint(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       console.log(response, 'response=========')
 
@@ -108,10 +119,24 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: MainPoint:- getDynamicMainPoint Api call */
   }
 
+  {
+    /* begin:: Get Api call */
+  }
+  let getDataMainPointAllType = async () => {
+    let response: GetAllMainPointApi = await MainPointservice.getMainPoint()
+    console.log(response, '-==-------====s')
+    setGetDataMainPoint(response.data)
+  }
+  {
+    /* End:: Get Api call */
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDataMainPoint,
     itemIdForUpdate,
     setItemIdForUpdate,
+    getDataMainPointAllType,
     filterShow,
     setFilterShow,
     viewIdForUpdate,
@@ -127,6 +152,8 @@ const ListDataProvider: FC = ({children}) => {
     setPageCount,
     setSearchText,
     fetchAllMainPoint,
+    createdById,
+    setcreatedById,
   }
   return (
     <>

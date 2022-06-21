@@ -13,7 +13,7 @@ const UserFormHeader = () => {
         {/* end::Modal title */}
 
         {/* begin::Close Icon */}
-        <CustomTooltip title='Close'>
+        {/* <CustomTooltip title='Close'>
           <div
             className='btn btn-icon btn-sm btn-active-icon-primary'
             onClick={() => setItemIdForUpdate(undefined)}
@@ -21,7 +21,7 @@ const UserFormHeader = () => {
           >
             <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
           </div>
-        </CustomTooltip>
+        </CustomTooltip> */}
         {/* end::Close Icon*/}
       </div>
     </>

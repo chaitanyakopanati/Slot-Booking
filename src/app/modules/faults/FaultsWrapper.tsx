@@ -12,7 +12,7 @@ const Faultlist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin:: Fault Header Component */}
-        <FaultsHeader />
+        <FaultsHeader category={FaultsHeader} />
         {/* end:: Fault Header Component */}
 
         {/* begin:: Fault Table Component */}

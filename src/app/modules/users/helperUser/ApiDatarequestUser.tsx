@@ -2,37 +2,39 @@ import http from '../../complaint-types/helper/http-common'
 import {ID, postlistData, putUsersmodel} from './ModelUserType'
 
 {
-  /* begin:: Faults:- getDynamicUser Api call */
+  /* begin:: User:- getDynamicUser Api call */
 }
 const getDynamicUser = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
+  zoneId: number | null,
+  roleId: string
 ) => {
   if (pageSize <= 0) {
-    return http.get(`GetAllUsers/${null}/${null}?searchText=${null}`)
+    return http.get(`GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}`)
   } else {
     return http.get(
-      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}`
+      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}`
     )
   }
 }
 {
-  /* end:: Faults:- getDynamicFaults Api call */
+  /* end:: User:- getDynamicFaults Api call */
 }
 
 {
-  /* begin:: Faults:- get Api call */
+  /* begin:: User:- get Api call */
 }
 // const getUser = () => {
 //   return http.get('GetAllFaults')
 // }
 {
-  /* end:: Faults:- get Api call */
+  /* end:: User:- get Api call */
 }
 
 {
-  /* begin:: Faults:- post Api call(create) */
+  /* begin:: User:- post Api call(create) */
 }
 const postUser = (obj: postlistData) => {
   return http.post('CreateUser', {
@@ -45,22 +47,22 @@ const postUser = (obj: postlistData) => {
   })
 }
 {
-  /* end:: Faults:- post Api call(create) */
+  /* end:: User:- post Api call(create) */
 }
 
 {
-  /* begin:: Faults:- delete Api call */
+  /* begin:: User:- delete Api call */
 }
 const deleteUser = (Id: number, username: string) => {
   return http.delet(`DeleteUserById/${username}/${Id}`)
 }
 
 {
-  /* end:: Faults:- delete Api call */
+  /* end:: User:- delete Api call */
 }
 
 {
-  /* begin:: Faults:- post Api call(edit) */
+  /* begin:: User:- post Api call(edit) */
 }
 const editUser = (obj: putUsersmodel) => {
   return http.post(`UpdateUser`, {
@@ -74,25 +76,25 @@ const editUser = (obj: putUsersmodel) => {
   })
 }
 {
-  /* begin:: Faults:- post Api call(edit) */
+  /* begin:: User:- post Api call(edit) */
 }
 
 {
-  /* begin:: Faults:- getById Api call */
+  /* begin:: User:- getById Api call */
 }
 const GetUserTypeById = (id: ID) => {
   return http.get(`GetUserbyId/${id}`)
 }
 {
-  /* end:: Faults:- getById Api call */
+  /* end:: User:- getById Api call */
 }
 
 {
-  /* begin:: Faults:- get Faults type Api call */
+  /* begin:: User:- get User type Api call */
 }
 
 {
-  /* end:: Faults:- get Faults type Api call */
+  /* end:: User:- get User type Api call */
 }
 //Zones
 const getZoneTypes = () => {

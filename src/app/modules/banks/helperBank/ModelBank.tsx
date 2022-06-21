@@ -7,7 +7,7 @@ export interface getBankData {
     faultTypeName: string
     modifyAt: null
     modifyby: null
-    createdById: null
+    createdById: number
     createdByName: string
     modifyByName: string
    
@@ -54,6 +54,7 @@ export interface getBankData {
     TotalRecords: number
     page: number
     pageSize: number
+    createdById:number
   }
   
   export type ID = undefined | null | string

@@ -12,7 +12,7 @@ const Packageslist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin:: Packages Header Component */}
-        <PackagesHeader />
+        <PackagesHeader category={PackagesHeader} />
         {/* end:: Packages Header Component */}
 
         {/* begin:: Packages Table Component */}

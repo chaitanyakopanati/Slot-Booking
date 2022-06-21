@@ -7,7 +7,7 @@ export interface getCompaniesData {
     faultTypeName: string
     modifyAt: null
     modifyby: null
-    createdById: null
+    createdById: number
     createdByName: string
     modifyByName: string
    
@@ -19,6 +19,7 @@ export interface getCompaniesData {
     page: number
     pageSize: number
     pages: number
+    
   }
   export interface postlistData {
     name: string
@@ -54,6 +55,7 @@ export interface getCompaniesData {
     TotalRecords: number
     page: number
     pageSize: number
+    createdById:number
   }
   
   export type ID = undefined | null | string

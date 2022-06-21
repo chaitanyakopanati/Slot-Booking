@@ -4,11 +4,11 @@ import {postlistData, putcomplaintsmodel, ID} from './ModelType'
 {
   /* begin:: Complaint Type:- getDynamicComplainTypes Api call */
 }
-const getDynamicComplaints = (pageNo: number, pageSize: number, searchText: string = '') => {
+const getDynamicComplaints = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicComplaintTypes/${null}/${null}?searchText=${null}`)
+    return http.get(`GetDynamicComplaintTypes/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicComplaintTypes/${pageNo}/${pageSize}?searchText=${searchText}`)
+    return http.get(`GetDynamicComplaintTypes/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
   }
 }
 {

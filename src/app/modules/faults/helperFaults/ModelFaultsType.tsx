@@ -7,6 +7,8 @@ export interface getFaultsData {
   faultTypeName: string
   modifyAt: null
   modifyby: null
+  createdById:number
+createdByName:string
 }
 
 export interface getAllFaultsData {
@@ -22,7 +24,10 @@ export interface postlistData {
 export interface GetAllData {
   id: number
   name: string
-}
+  createdById:number
+  createdByName:string
+  }
+
 
 export interface GetAllData {
   data: GetAllData[]
@@ -48,6 +53,7 @@ export interface GetAllFaulttApi {
   TotalRecords: number
   page: number
   pageSize: number
+  createdById:number
 }
 
 export type ID = undefined | null | string

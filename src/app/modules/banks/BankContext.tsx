@@ -5,12 +5,15 @@ import {GetAllBankApi, GetAllData, getBankData, ID, ViewForm} from './helperBank
 
 export interface ComplaintDataContextModel {
   getData: getBankData[]
+  getDataBankType: getBankData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -21,14 +24,18 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllBank: () => void
+  getDataBankAllType: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataBankType: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
+  setCreatedById: () => {},
   pageSize: 0,
   setPageSize: () => {},
   searchText: '',
@@ -41,9 +48,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   fetchAllBank: () => {},
+  getDataBankAllType: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getBankData[]>([])
+  const [getDataBankType, setgetDataBankType] = useState<getBankData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
@@ -51,6 +60,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   let {LoderActions} = useLoader()
 
@@ -60,7 +70,12 @@ const ListDataProvider: FC = ({children}) => {
   let fetchAllBank = async () => {
     LoderActions(true)
     try {
-      let response: GetAllBankApi = await Zoneservice.getDynamicBank(pageNo, pageSize, searchText)
+      let response: GetAllBankApi = await Zoneservice.getDynamicBank(
+        pageNo,
+        pageSize,
+        searchText,
+        createdById
+      )
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -78,8 +93,19 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Bank:- getDynamicBank Api call */
   }
 
+    {/* begin::Get Api Call*/}
+  let getDataBankAllType = async() =>{
+    let response: GetAllBankApi = await Zoneservice.getBank()
+    console.log(response,"res0000000");
+    setgetDataBankType(response.data)
+  }
+    {/* End::Get Api Call*/}
+
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDataBankAllType,
+    getDataBankType ,
     itemIdForUpdate,
     setItemIdForUpdate,
     filterShow,
@@ -96,6 +122,8 @@ const ListDataProvider: FC = ({children}) => {
     setPageCount,
     setSearchText,
     fetchAllBank,
+    createdById,
+    setCreatedById,
   }
   return (
     <>

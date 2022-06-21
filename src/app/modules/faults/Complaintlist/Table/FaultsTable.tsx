@@ -20,6 +20,7 @@ const FaultsTable = () => {
     searchText,
     setPageNo,
     setSearchText,
+    getDataAllType
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -81,6 +82,11 @@ const FaultsTable = () => {
   useEffect(() => {
     console.log('getData', getData)
   }, [getData])
+  
+  
+  useEffect(() => {
+    console.log('getDataAllType', getDataAllType)
+  }, [getDataAllType])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)

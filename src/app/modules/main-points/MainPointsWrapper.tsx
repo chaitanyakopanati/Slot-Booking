@@ -12,7 +12,7 @@ const MainPointlist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin:: MainPoint Header Component */}
-        <MainPointHeader />
+        <MainPointHeader category={MainPointHeader} />
         {/* end:: MainPoint Header Component */}
 
         {/* begin:: MainPoint Table Component */}

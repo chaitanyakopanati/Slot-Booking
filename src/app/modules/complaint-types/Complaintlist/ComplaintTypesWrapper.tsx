@@ -12,7 +12,7 @@ const Complaintlist = () => {
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
         {/* begin::  Complaint Type Header Component */}
-        <ComplaintTypeHeader />
+        <ComplaintTypeHeader category={ComplaintTypeHeader} />
         {/* end::  Complaint Type Header Component */}
 
         {/* begin:: Complaint Type Table Component */}

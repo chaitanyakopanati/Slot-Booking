@@ -11,12 +11,15 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getFaultsData[]
+  getDataFaults: getFaultsData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
@@ -28,14 +31,18 @@ export interface ComplaintDataContextModel {
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllFault: () => void
+  getDataFaultsAllType: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataFaults: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
+  setCreatedById: () => {},
   pageSize: 0,
   setPageSize: () => {},
   searchText: '',
@@ -49,9 +56,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetAllType: () => {},
   fetchAllFault: () => {},
+  getDataFaultsAllType: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getFaultsData[]>([])
+  const [getDataFaults, setGetDataFaults] = useState<getFaultsData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
@@ -59,7 +68,10 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
+  // const [getDataCreatedByAllType, setGetDataCreatedByAllType] = useState<getFaultsData[]>([])
+
   let {LoderActions} = useLoader()
 
   {
@@ -73,6 +85,7 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllType(payload.data)
+        // setGetDataCreatedByAllType(payload.data)
       }
     } catch (error) {
     } finally {
@@ -92,12 +105,13 @@ const ListDataProvider: FC = ({children}) => {
       let response: GetAllFaulttApi = await Fautlservice.getDynamicFaults(
         pageNo,
         pageSize,
-        searchText
+        searchText,
+        createdById
       )
       console.log(response, 'response=========')
 
       if (response.success == true) {
-    LoderActions(false)
+        LoderActions(false)
 
         setGetData(response.data)
         const PageCout = response?.pages
@@ -108,12 +122,23 @@ const ListDataProvider: FC = ({children}) => {
   {
     /* end:: Fault:- getDynamicFaults Api call */
   }
+  let getDataFaultsAllType = async () =>{
+    let response: GetAllFaulttApi = await Fautlservice.getFaults()
+    console.log(response,"-==========");
+    
+    setGetDataFaults(response.data) 
+  }
+
 
   const value: ComplaintDataContextModel = {
     getData,
+    getDataFaultsAllType,
+    getDataFaults,
     itemIdForUpdate,
     setItemIdForUpdate,
     filterShow,
+    createdById,
+    setCreatedById,
     setFilterShow,
     viewIdForUpdate,
     setViewIdForUpdate,
