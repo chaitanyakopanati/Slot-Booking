@@ -1,4 +1,4 @@
-import http from '../../complaint-types/helper/http-common'
+import http from '../../../../_metronic/helpers/components/http-common'
 import {postlistData, putFaultsmodel, ID} from './ModelFaultsType'
 
 {

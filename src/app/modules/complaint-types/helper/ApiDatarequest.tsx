@@ -1,4 +1,4 @@
-import http from './http-common'
+import http from '../../../../_metronic/helpers/components/http-common'
 import {postlistData, putcomplaintsmodel, ID} from './ModelType'
 
 {
