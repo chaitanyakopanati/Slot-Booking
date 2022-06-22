@@ -4,15 +4,16 @@ import {useFormik} from 'formik'
 import * as Yup from 'yup'
 import clsx from 'clsx'
 import {getUserByToken, register} from '../core/_requests'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
 import {PasswordMeterComponent} from '../../../../_metronic/assets/ts/components'
 import {useAuth} from '../core/Auth'
+import {toast} from 'react-toastify'
 
 const initialValues = {
   firstname: '',
   lastname: '',
-  email: '',
+  username: '',
   password: '',
   changepassword: '',
   acceptTerms: false,
@@ -23,11 +24,10 @@ const registrationSchema = Yup.object().shape({
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('First name is required'),
-  email: Yup.string()
-    .email('Wrong email format')
+  username: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
-    .required('Email is required'),
+    .required('username is required'),
   lastname: Yup.string()
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
@@ -48,6 +48,7 @@ const registrationSchema = Yup.object().shape({
 export function Registration() {
   const [loading, setLoading] = useState(false)
   const {saveAuth, setCurrentUser} = useAuth()
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues,
     validationSchema: registrationSchema,
@@ -55,19 +56,40 @@ export function Registration() {
       setLoading(true)
       try {
         const {data: auth} = await register(
-          values.email,
+          values.username,
           values.firstname,
           values.lastname,
           values.password,
           values.changepassword
         )
-        saveAuth(auth)
-        const {data: user} = await getUserByToken(auth.token)
-        setCurrentUser(user)
+        //   saveAuth(auth)
+        //   const {data: user} = await getUserByToken(auth.token)
+        //   setCurrentUser(user)
+        // } catch (error) {
+        //   console.error(error)
+        //   saveAuth(undefined)
+        //   setStatus('The registration details is incorrect')
+        //   setSubmitting(false)
+        //   setLoading(false)
+        // }
+        console.log('auth', auth)
+        if (auth.message === 'SignUp successfully') {
+          setLoading(false)
+          toast.success(auth.message)
+          navigate('/auth')
+        }
       } catch (error) {
-        console.error(error)
+        let {data}: any = error
+        console.log(data, 'response')
+        console.log(error, 'error')
+        if (data.message) {
+          setStatus(data.message)
+          toast.success(data.message)
+        } else {
+          toast.error(data.message)
+          setStatus('The registration details is incorrect')
+        }
         saveAuth(undefined)
-        setStatus('The registration details is incorrect')
         setSubmitting(false)
         setLoading(false)
       }
@@ -147,7 +169,9 @@ export function Registration() {
           {formik.touched.firstname && formik.errors.firstname && (
             <div className='fv-plugins-message-container'>
               <div className='fv-help-block'>
-                <span role='alert'>{formik.errors.firstname}</span>
+                <span role='alert' style={{color: 'red'}}>
+                  {formik.errors.firstname}
+                </span>
               </div>
             </div>
           )}
@@ -174,7 +198,9 @@ export function Registration() {
             {formik.touched.lastname && formik.errors.lastname && (
               <div className='fv-plugins-message-container'>
                 <div className='fv-help-block'>
-                  <span role='alert'>{formik.errors.lastname}</span>
+                  <span role='alert' style={{color: 'red'}}>
+                    {formik.errors.lastname}
+                  </span>
                 </div>
               </div>
             )}
@@ -184,26 +210,28 @@ export function Registration() {
       </div>
       {/* end::Form group */}
 
-      {/* begin::Form group Email */}
+      {/* begin::Form group username */}
       <div className='fv-row mb-7'>
-        <label className='form-label fw-bolder text-dark fs-6'>Email</label>
+        <label className='form-label fw-bolder text-dark fs-6'>username</label>
         <input
-          placeholder='Email'
-          type='email'
+          placeholder='username'
+          type='text'
           autoComplete='off'
-          {...formik.getFieldProps('email')}
+          {...formik.getFieldProps('username')}
           className={clsx(
             'form-control form-control-lg form-control-solid',
-            {'is-invalid': formik.touched.email && formik.errors.email},
+            {'is-invalid': formik.touched.username && formik.errors.username},
             {
-              'is-valid': formik.touched.email && !formik.errors.email,
+              'is-valid': formik.touched.username && !formik.errors.username,
             }
           )}
         />
-        {formik.touched.email && formik.errors.email && (
+        {formik.touched.username && formik.errors.username && (
           <div className='fv-plugins-message-container'>
             <div className='fv-help-block'>
-              <span role='alert'>{formik.errors.email}</span>
+              <span role='alert' style={{color: 'red'}}>
+                {formik.errors.username}
+              </span>
             </div>
           </div>
         )}
@@ -233,7 +261,9 @@ export function Registration() {
             {formik.touched.password && formik.errors.password && (
               <div className='fv-plugins-message-container'>
                 <div className='fv-help-block'>
-                  <span role='alert'>{formik.errors.password}</span>
+                  <span role='alert' style={{color: 'red'}}>
+                    {formik.errors.password}
+                  </span>
                 </div>
               </div>
             )}

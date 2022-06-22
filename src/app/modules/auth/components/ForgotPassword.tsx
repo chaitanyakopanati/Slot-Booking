@@ -4,9 +4,10 @@ import clsx from 'clsx'
 import {Link} from 'react-router-dom'
 import {useFormik} from 'formik'
 import {requestPassword} from '../core/_requests'
+import { toast } from 'react-toastify'
 
 const initialValues = {
-  email: 'admin@demo.com',
+  username: 'admin',
 }
 
 const forgotPasswordSchema = Yup.object().shape({
@@ -26,8 +27,9 @@ export function ForgotPassword() {
     onSubmit: (values, {setStatus, setSubmitting}) => {
       setLoading(true)
       setHasErrors(undefined)
+      toast.success("Data Successfully")
       setTimeout(() => {
-        requestPassword(values.email)
+        requestPassword(values.username)
           .then(({data: {result}}) => {
             setHasErrors(false)
             setLoading(false)
@@ -35,6 +37,7 @@ export function ForgotPassword() {
           .catch(() => {
             setHasErrors(true)
             setLoading(false)
+          toast.error("Wrong UserName")
             setSubmitting(false)
             setStatus('The login detail is incorrect')
           })
@@ -102,7 +105,7 @@ export function ForgotPassword() {
         </div> */}
 
         <div className='fv-row mb-10'>
-          <label className='form-label fw-bolder text-gray-900 fs-6'>Email</label>
+          <label className='form-label fw-bolder text-gray-900 fs-6'>Username</label>
           <input
             type='email'
             placeholder=''
@@ -110,16 +113,16 @@ export function ForgotPassword() {
             {...formik.getFieldProps('email')}
             className={clsx(
               'form-control form-control-lg form-control-solid',
-              {'is-invalid': formik.touched.email && formik.errors.email},
+              {'is-invalid': formik.touched.username && formik.errors.username},
               {
-                'is-valid': formik.touched.email && !formik.errors.email,
+                'is-valid': formik.touched.username && !formik.errors.username,
               }
             )}
           />
-          {formik.touched.email && formik.errors.email && (
+          {formik.touched.username && formik.errors.username && (
             <div className='fv-plugins-message-container'>
               <div className='fv-help-block'>
-                <span role='alert'>{formik.errors.email}</span>
+                <span role='alert' style={{color:'red'}}>{formik.errors.username}</span>
               </div>
             </div>
           )}

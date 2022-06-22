@@ -7,6 +7,7 @@ import { useFormik } from 'formik'
 import { getUserByToken, login } from '../core/_requests'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
+import { toast } from 'react-toastify'
 
 
 const loginSchema = Yup.object().shape({
@@ -45,9 +46,17 @@ export function Login() {
         const { data: auth } = await login(values.username, values.password)
         saveAuth(auth)
       } catch (error) {
-        console.error(error)
+        let {data}: any = error
+        console.log(data, 'response')
+        console.log(error, 'error')
+        if (data.message) {
+          setStatus(data.message)
+          toast.success(data.message)
+        } else {
+          toast.error(data.message)
+          setStatus('The registration details is incorrect')
+        }
         saveAuth(undefined)
-        setStatus('The login detail is incorrect')
         setSubmitting(false)
         setLoading(false)
       }
