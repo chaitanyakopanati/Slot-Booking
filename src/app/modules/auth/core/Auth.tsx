@@ -39,7 +39,6 @@ const AuthProvider: FC = ({ children }) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
   const saveAuth = (auth: AuthModel | undefined) => {
-    // console.log("auth", auth)
     setAuth(auth)
     if (auth) {
       authHelper.setAuth(auth)
@@ -66,30 +65,10 @@ const AuthInit: FC = ({ children }) => {
   const [showSplashScreen, setShowSplashScreen] = useState(true)
   // We should request user by authToken (IN OUR EXAMPLE IT'S API_TOKEN) before rendering the application
   useEffect(() => {
-    const requestUser = async (apiToken: string) => {
-      try {
-        if (!didRequest.current) {
-          const { data } = await getUserByToken(apiToken)
-          if (data) {
-            setCurrentUser(data)
-          }
-        }
-      } catch (error) {
-        console.error(error)
-        if (!didRequest.current) {
-          logout()
-        }
-      } finally {
-        setShowSplashScreen(false)
-      }
-
-      return () => (didRequest.current = true)
-    }
-
-    if (auth && auth.token) {
-      requestUser(auth.token)
-    } else {
+    if (!auth?.token) {
       logout()
+      setShowSplashScreen(false)
+    }else{
       setShowSplashScreen(false)
     }
     // eslint-disable-next-line
