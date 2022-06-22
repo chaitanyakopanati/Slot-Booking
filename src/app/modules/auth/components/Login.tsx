@@ -51,7 +51,7 @@ export function Login() {
         console.log(error, 'error')
         if (data.message) {
           setStatus(data.message)
-          toast.success(data.message)
+          toast.error(data.message)
         } else {
           toast.error(data.message)
           setStatus('The registration details is incorrect')
