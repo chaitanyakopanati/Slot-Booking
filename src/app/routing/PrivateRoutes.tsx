@@ -12,10 +12,10 @@ import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
 
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import MasterWrapper from '../pages/master/MasterWrapper'
-import { PageTitle } from '../../_metronic/layout/core'
+import {PageTitle} from '../../_metronic/layout/core'
 import CustomerFormWrapper from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormWrapper'
 import CustomerFormModal from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormModal'
-
+import ComplaintFormModal from '../../_metronic/partials/widgets/tables/Complaints/Form/ComplaintFormModal'
 
 const PrivateRoutes = () => {
   const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
@@ -26,6 +26,18 @@ const PrivateRoutes = () => {
         <Route path='auth/*' element={<Navigate to='/dashboard' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
+
+        <Route
+          path='dashboard/form/:id'
+          element={
+            <>
+              <PageTitle>Add User</PageTitle>
+              {/* <ComplaintFormWrapper /> */}
+              <ComplaintFormModal />
+            </>
+          }
+        />
+
         <Route path='customers' element={<CustomersWrapper />} />
         <Route
           path='customers/form/:id'
@@ -33,7 +45,7 @@ const PrivateRoutes = () => {
             <>
               <PageTitle>Add Customer</PageTitle>
               {/* <CustomerFormWrapper /> */}
-              <CustomerFormModal/>
+              <CustomerFormModal />
             </>
           }
         />
@@ -44,7 +56,6 @@ const PrivateRoutes = () => {
             <SuspensedView>
               <StockWrapper />
             </SuspensedView>
-          
           }
         />
         {/*  */}
@@ -54,7 +65,6 @@ const PrivateRoutes = () => {
             <SuspensedView>
               <MasterWrapper />
             </SuspensedView>
-          
           }
         />
         <Route path='profile-settings' element={<ProfileSettingsWrapper />} />

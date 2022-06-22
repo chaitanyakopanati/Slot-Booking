@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react'
 import {threadId} from 'worker_threads'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
-import ImageSelect from '../../../../app/images/error-profile.svg'
+import {KTSVG, toAbsoluteUrl} from '../../../../helpers'
+// import ImageSelect from '../../../../app/images/error-profile.svg'
+import ImageSelect from '../../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
@@ -1718,7 +1719,6 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
             <div className='modal-header'>
               <h5 className='modal-title'>Create Customer</h5>
 
-
               <div className='ms-3'>
                 <a
                   href='#'
@@ -1732,7 +1732,7 @@ const TablesWidget11: React.FC<Props> = ({className}) => {
                   Edit Customer
                 </a>
               </div>
-              
+
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'

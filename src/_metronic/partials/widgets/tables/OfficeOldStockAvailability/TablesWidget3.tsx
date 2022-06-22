@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react'
 import {threadId} from 'worker_threads'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import {KTSVG, toAbsoluteUrl} from '../../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
@@ -213,6 +213,8 @@ const TablesWidget3: React.FC<Props> = ({className}) => {
             </div>
           </div>
         </div>
+
+        {/* pagination */}
         <div className='d-flex align-items-center justify-content-between py-2'>
           <div className='min-w-100px'>
             <div className='d-flex align-items-center' data-select2-id='show-enteries'>
