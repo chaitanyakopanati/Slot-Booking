@@ -73,7 +73,7 @@ const UserFormModal: FC<Props> = ({category}) => {
             .required('This field is required'),
           zoneId: Yup.number().required('This fied is required'),
           roleId: Yup.string().required('This fielld is required'),
-          password: Yup.number().required('This field is required'),
+          password: Yup.string().required('This field is required'),
           confirmPassword: Yup.string().when('password', {
             is: (val: any) => (val && val.length > 0 ? true : false),
             then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
@@ -271,6 +271,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                         Select Role Type
                       </option>
                       {getDataAllTypeRole.map((TypeDataRole, index) => {
+                        console.log(TypeDataRole, 'TypeDataRole')
+
                         return (
                           <option key={index} value={TypeDataRole?.id}>
                             {TypeDataRole?.name}

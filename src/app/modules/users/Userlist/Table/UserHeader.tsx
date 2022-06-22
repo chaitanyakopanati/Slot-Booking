@@ -25,6 +25,11 @@ const UserHeader: FC<Props> = ({category}) => {
     getDataAllTypeRole,
     roleId,
     setRoleId,
+    searchByUsername,
+    setSearchByUsername,
+    createdById,
+    setCreatedById,
+    DataGetAllTypeZone,
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -43,6 +48,23 @@ const UserHeader: FC<Props> = ({category}) => {
   }
   {
     /* End::Search */
+  }
+
+  {
+    /* begin::createdBy */
+  }
+  const handleCreatedBYchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setCreatedById(e.target.value)
+  }
+  {
+    /* End::createdBy */
+  }
+
+  const handlesearchUsernamechange = (e: any) => {
+    console.log(e.target.value)
+    setSearchByUsername(e.target.value)
   }
 
   {
@@ -71,7 +93,35 @@ const UserHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     fetchAllUser()
-  }, [searchText, zoneId, roleId])
+    DataGetAllTypeZone()
+  }, [searchText, zoneId, roleId, searchByUsername])
+
+  {
+    /* begin::Created by Filter Map Function */
+  }
+
+  function uniqueBy(property: any) {
+    let seen = Object.create(null)
+    return function (item: any) {
+      let key = item[property]
+      if (seen[key] == null) {
+        seen[key] = 1
+        return true
+      }
+      return false
+    }
+  }
+
+  const result = getDataAllType.filter(uniqueBy('createdById')).map((product) => {
+    return {
+      id: product.createdById,
+      name: product.createdByName,
+    }
+  })
+  {
+    /* End::Created by Filter Map Function */
+  }
+
   return (
     <>
       {/* begin::formik Form */}
@@ -149,9 +199,10 @@ const UserHeader: FC<Props> = ({category}) => {
                       <button
                         type='button'
                         className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          navigate('form/add')
-                        }}
+                        // onClick={() => {
+                        //   navigate('form/add')
+                        // }}
+                        onClick={openAddCategoryModal}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG
@@ -170,21 +221,31 @@ const UserHeader: FC<Props> = ({category}) => {
               {/* begin:: Filter:- Created By */}
               {filterShow && (
                 <div className='row w-100 gy-1 mx-0 my-5'>
-                  <div className='col-lg-3 col-md-3'>
+                  <div className='col-lg-3 col-md-3 '>
                     <label className='form-label fw-bold'>Username:</label>
-                    <input
-                      placeholder='Search username'
-                      className='form-control form-control-lg form-control-solid  ps-14'
-                      type='text'
-                      // value={searchByUsername}
-                      // onChange={handlesearchangeUsername}
-                      // autoComplete='off'
-                    />
+                    <div className='position-relative'>
+                      <span className='svg-icon svg-icon-1 position-absolute ms-4 mt-4'>
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen021.svg'
+                          className='svg-icon-3'
+                        />
+                      </span>
+                      <input
+                        placeholder='Search username'
+                        className='form-control form-control-lg form-control-solid  ps-14'
+                        type='text'
+                        value={searchByUsername}
+                        onChange={handlesearchUsernamechange}
+                        autoComplete='off'
+                      />
+                    </div>
                   </div>
+
                   <div className='col-lg-3 col-md-3'>
                     <label className='form-label fw-bold'>Zone:</label>
                     <select
                       className='form-select form-select-solid'
+                      {...props.getFieldProps('zoneId')}
                       value={zoneId}
                       onChange={handleZoneChange}
                     >
@@ -218,12 +279,19 @@ const UserHeader: FC<Props> = ({category}) => {
                   </div>
                   <div className='col-lg-3 col-md-3'>
                     <label className='form-label fw-bold'>Created by:</label>
-                    <select className='form-select form-select-solid'>
-                      <option></option>
-                      <option value='1'>All</option>
-                      <option value='2'>A</option>
-                      <option value='3'>B</option>
-                      <option value='4'>C</option>
+                    <select
+                      className='form-select form-select-solid'
+                      value={createdById}
+                      onChange={handleCreatedBYchange}
+                    >
+                      <option value=''>Select Created By</option>
+                      {result.map((TypeData, index) => {
+                        return (
+                          <option key={index} value={TypeData?.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
                 </div>

@@ -4,9 +4,6 @@ import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
 import { KTSVG, toAbsoluteUrl } from '../../../_metronic/helpers'
 
-import {
-  TablesWidget12,
-} from '../../../_metronic/partials/widgets'
 
 const ProfileSettingsPage: FC = () => (
   <>

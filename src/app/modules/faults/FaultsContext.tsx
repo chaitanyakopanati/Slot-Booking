@@ -122,13 +122,19 @@ const ListDataProvider: FC = ({children}) => {
   {
     /* end:: Fault:- getDynamicFaults Api call */
   }
+
+  {
+    /* begin:: Api call */
+  }
   let getDataFaultsAllType = async () =>{
     let response: GetAllFaulttApi = await Fautlservice.getFaults()
     console.log(response,"-==========");
     
     setGetDataFaults(response.data) 
   }
-
+  {
+    /* End:: Api call */
+  }
 
   const value: ComplaintDataContextModel = {
     getData,

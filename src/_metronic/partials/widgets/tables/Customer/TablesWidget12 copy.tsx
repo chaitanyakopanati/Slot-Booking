@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
+import { KTSVG, toAbsoluteUrl } from '../../../../helpers'
 
 type Props = {
   className: string
@@ -744,7 +744,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      // style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -788,7 +788,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      // style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -832,7 +832,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      // style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1197,7 +1197,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      // style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1241,7 +1241,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      // style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -1285,7 +1285,7 @@ const TablesWidget12: React.FC<Props> = ({className}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      style={{backgroundImage: `url(${ImageSelect})`}}
+                      // style={{backgroundImage: `url(${ImageSelect})`}}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 

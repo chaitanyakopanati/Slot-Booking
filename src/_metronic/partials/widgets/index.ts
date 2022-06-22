@@ -56,9 +56,9 @@ export * from './tables/TablesWidget6'
 export * from './tables/TablesWidget7'
 export * from './tables/TablesWidget8'
 export * from './tables/TablesWidget9'
-export * from './tables/TablesWidget10'
+export * from './tables/Installation/TablesWidget10'
 export * from './tables/TablesWidget11'
-export * from './tables/TablesWidget12'
+export * from './tables/Customer/TablesWidget12'
 export * from './tables/TablesWidget13'
 
 // engage

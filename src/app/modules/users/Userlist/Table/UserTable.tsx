@@ -135,7 +135,7 @@ const UserTable = () => {
                   <td>
                     <div className='d-flex align-items-center'>
                       <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>{row?.name || '-'}</div>
+                        <div className='text-dark fw-bold  fs-6'>{row?.fullName || '-'}</div>
                       </div>
                     </div>
                   </td>
@@ -166,7 +166,8 @@ const UserTable = () => {
                     {/* begin:: View Icon */}
                     <a
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      onClick={() => navigate('viewform/view')}
+                      // onClick={() => navigate('viewform/view')}
+                      onClick={openViewModal}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
@@ -178,7 +179,8 @@ const UserTable = () => {
                     {/* begin:: Edit Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      onClick={() => navigate('form/edit')}
+                      // onClick={() => navigate('form/edit')}
+                      onClick={openEditModal}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                     </button>

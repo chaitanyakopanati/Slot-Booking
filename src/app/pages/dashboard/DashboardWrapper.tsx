@@ -22,7 +22,6 @@ import {
   TablesWidget9,
   TablesWidget10,
   TablesWidget11,
-  TablesWidget12,
   TablesWidget13,
   MixedWidget8,
 } from '../../../_metronic/partials/widgets'

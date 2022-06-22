@@ -12,6 +12,9 @@ import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
 
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import MasterWrapper from '../pages/master/MasterWrapper'
+import { PageTitle } from '../../_metronic/layout/core'
+import CustomerFormWrapper from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormWrapper'
+import CustomerFormModal from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormModal'
 
 
 const PrivateRoutes = () => {
@@ -24,6 +27,16 @@ const PrivateRoutes = () => {
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
         <Route path='customers' element={<CustomersWrapper />} />
+        <Route
+          path='customers/form/:id'
+          element={
+            <>
+              <PageTitle>Add Customer</PageTitle>
+              {/* <CustomerFormWrapper /> */}
+              <CustomerFormModal/>
+            </>
+          }
+        />
         <Route path='complaint-types' element={<ComplaintTypesWrapper />} />
         <Route
           path='stocks/*'

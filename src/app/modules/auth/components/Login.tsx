@@ -7,6 +7,8 @@ import { useFormik } from 'formik'
 import { getUserByToken, login } from '../core/_requests'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
+import { JwtDecoded } from '../core/_models'
+import jwt from 'jwt-decode'
 
 const loginSchema = Yup.object().shape({
   username: Yup.string()
@@ -21,8 +23,8 @@ const loginSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  username: 'admin',
-  password: 'Admin@123##',
+  username: '',
+  password: '',
 }
 
 /*
@@ -43,7 +45,9 @@ export function Login() {
       try {
         const { data: auth } = await login(values.username, values.password)
         saveAuth(auth)
-        
+        let decode = jwt<JwtDecoded>(auth.token)
+        setCurrentUser(decode.user)
+
       } catch (error) {
         console.error(error)
         saveAuth(undefined)
@@ -114,10 +118,23 @@ export function Login() {
         <label className='form-label fs-6 fw-bolder text-dark'>Username</label>
         <input
           placeholder='Username'
-          className='form-control form-control-lg form-control-solid'
-          type='text'
+             {...formik.getFieldProps('username')}
+          className={clsx(
+            'form-control form-control-lg form-control-solid',
+            {'is-invalid': formik.touched.username && formik.errors.username},
+            {
+              'is-valid': formik.touched.username && !formik.errors.username,
+            }
+          )}
+          type='username'
+          name='username'
           autoComplete='off'
         />
+        {formik.touched.username && formik.errors.username && (
+          <div className='fv-plugins-message-container'>
+            <span role='alert' style={{color:'red'}}>{formik.errors.username}</span>
+          </div>
+        )}
       </div>
       {/* end::Form group */}
 
@@ -159,11 +176,26 @@ export function Login() {
           </div>
         </div>
         <input
-          placeholder='Password'
           type='password'
           autoComplete='off'
-          className='form-control form-control-lg form-control-solid'
+          {...formik.getFieldProps('password')}
+          className={clsx(
+            'form-control form-control-lg form-control-solid',
+            {
+              'is-invalid': formik.touched.password && formik.errors.password,
+            },
+            {
+              'is-valid': formik.touched.password && !formik.errors.password,
+            }
+          )}
         />
+        {formik.touched.password && formik.errors.password && (
+          <div className='fv-plugins-message-container'>
+            <div className='fv-help-block'>
+              <span role='alert' style={{color:'red'}}>{formik.errors.password}</span>
+            </div>
+          </div>
+        )}
       </div>
       {/* end::Form group */}
 
@@ -252,3 +284,5 @@ export function Login() {
     </form>
   )
 }
+
+

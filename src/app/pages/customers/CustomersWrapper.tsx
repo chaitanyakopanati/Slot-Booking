@@ -2,9 +2,9 @@
 import React, { FC, SetStateAction } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
-import {
-  TablesWidget12,
-} from '../../../_metronic/partials/widgets'
+import TablesWidget12 from '../../../_metronic/partials/widgets/tables/Customer/TablesWidget12'
+
+
 
 const CustomersPage: FC = () => (
   <>

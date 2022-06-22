@@ -65,3 +65,7 @@ export interface UserModel {
   address?: UserAddressModel
   socialNetworks?: UserSocialNetworksModel
 }
+export interface JwtDecoded {
+  user:UserModel
+  iat:string
+}

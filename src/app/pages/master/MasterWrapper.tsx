@@ -1,7 +1,6 @@
-
 import React from 'react'
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
-import { PageTitle } from '../../../_metronic/layout/core'
+import {Navigate, Outlet, Route, Routes} from 'react-router-dom'
+import {PageTitle} from '../../../_metronic/layout/core'
 import UsersWrapper from '../../modules/users/UsersWrapper'
 import ComplaintTypesWrapper from '../../modules/complaint-types/Complaintlist/ComplaintTypesWrapper'
 import FaultsWrapper from '../../modules/faults/FaultsWrapper'
@@ -13,10 +12,8 @@ import ProductsWrapper from '../../modules/products/ProductsWrapper'
 import PackagesWrapper from '../../modules/packages/PackagesWrapper'
 import PackageCategoriesWrapper from '../../modules/package-categories/PackageCategoriesWrapper'
 import UserFormWrapper from '../../modules/users/Form/UserFormWrapper'
-import { ListPageData } from '../../modules/users/UserContext'
+import {ListPageData} from '../../modules/users/UserContext'
 import UserViewWrapper from '../../modules/users/Form/UserViewWrapper'
-
-
 
 function MasterWrapper() {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
@@ -42,7 +39,7 @@ function MasterWrapper() {
             </>
           }
         />
-          <Route
+        <Route
           path='users/viewform/:id'
           element={
             <>
@@ -153,7 +150,7 @@ function MasterWrapper() {
         {/*  */}
       </Route>
       <Route index element={<Navigate to='/master/users' />} />
-    </Routes >
+    </Routes>
   )
 }
 

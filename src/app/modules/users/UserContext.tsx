@@ -13,7 +13,9 @@ export interface ComplaintDataContextModel {
   setZoneId: Dispatch<SetStateAction<number>>
   setRoleId: Dispatch<SetStateAction<string>>
   pageCount: number
+  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
+  setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   zoneId: number
   roleId: string
@@ -24,7 +26,9 @@ export interface ComplaintDataContextModel {
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
   searchText: string
+  searchByUsername: string
   setSearchText: Dispatch<SetStateAction<string>>
+  setSearchByUsername: Dispatch<SetStateAction<string>>
   fetchAllUser: () => void
   DataGetAllTypeZone: () => void
   DataGetAllTyperole: () => void
@@ -37,13 +41,17 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setZoneId: () => {},
   setRoleId: () => {},
   pageCount: 0,
+  createdById: 0,
   setPageCount: () => {},
+  setCreatedById: () => {},
   pageSize: 0,
   zoneId: 0,
   roleId: '',
   setPageSize: () => {},
   searchText: '',
+  searchByUsername: '',
   setSearchText: () => {},
+  setSearchByUsername: () => {},
   getDataAllType: [],
   getDataAllTypeRole: [],
   filterShow: false,
@@ -66,7 +74,9 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
+  const [searchByUsername, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
   const [roleId, setRoleId] = useState('')
   let {LoderActions} = useLoader()
@@ -102,7 +112,9 @@ const ListDataProvider: FC = ({children}) => {
         pageSize,
         searchText,
         zoneId,
-        roleId
+        roleId,
+        searchByUsername,
+        createdById
       )
       console.log(response, 'response=========')
 
@@ -128,6 +140,8 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
+        console.log(payload,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
+        
         setGetDataAllType(payload.data)
       }
     } catch (error) {
@@ -150,6 +164,8 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeRole(payload.data)
+        console.log(payload.data,'oooooooooooo');
+        
       }
     } catch (error) {
     } finally {
@@ -162,6 +178,9 @@ const ListDataProvider: FC = ({children}) => {
 
   const value: ComplaintDataContextModel = {
     getData,
+    createdById,
+    setCreatedById,
+    searchByUsername,
     itemIdForUpdate,
     setItemIdForUpdate,
     filterShow,
@@ -181,6 +200,7 @@ const ListDataProvider: FC = ({children}) => {
     pageCount,
     setPageCount,
     setSearchText,
+    setSearchByUsername,
     fetchAllUser,
     DataGetAllTypeZone,
     DataGetAllTyperole,

@@ -81,7 +81,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                             <h5 className='modal-title'>View User</h5>
                           </div>
                           <div className='ms-3'>
-                            {/* begin::  Edit Fault button */}
+                            {/* begin::  Edit User button */}
                             <button
                               type='submit'
                               className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
@@ -97,7 +97,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                               />
                               Edit User
                             </button>
-                            {/* end::  Edit Fault button */}
+                            {/* end::  Edit User button */}
 
                             {/* begin::  close icon */}
                             <CustomTooltip title='Close'>
@@ -138,12 +138,12 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                             </div>
                             {/*end:: Name Filed */}
 
-                            {/*begin:: Fault-Type Filed */}
+                            {/*begin:: Username*/}
                             <div className='row w-100 mx-0 mb-4 gy-4'>
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Username :</label>
                                 <input
-                                  placeholder='First name'
+                                  placeholder='Username'
                                   className='form-control form-control-lg form-control-solid'
                                   value={props.values.username}
                                   onChange={props.handleChange}
@@ -153,10 +153,12 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   disabled
                                 />
                               </div>
+
+                            {/*begin:: Username*/}
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold'>Email :</label>
                                 <input
-                                  placeholder='Last name'
+                                  placeholder='Email'
                                   className='form-control form-control-lg form-control-solid'
                                   value={props.values.email}
                                   onChange={props.handleChange}
@@ -168,6 +170,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                               </div>
                             </div>
 
+                            {/*begin:: phone*/}
                             <div className='row w-100 mx-0 mb-4 gy-4'>
                               <div className='col-lg-12'>
                                 <label className='form-label fw-bold'>Mobile no:</label>
@@ -182,6 +185,8 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   disabled
                                 />
                               </div>
+
+                            {/*begin:: Zone*/}
                               <div>
                                 <div className='row mb-4'>
                                   <label className=' fw-bold fs-6 mb-2'>Zone</label>
@@ -196,6 +201,9 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   </div>
                                 </div>
                               </div>
+
+                            {/*begin:: Role*/}
+                          
                               <div className='row mb-4'>
                                   <label className=' fw-bold fs-6 mb-2'>Role</label>
                                   <div className='input-group'>
@@ -209,7 +217,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                                   </div>
                                 </div>
                             </div>
-                            {/*end:: Fault-Type Filed */}
+                            {/*end:: User-Type Filed */}
 
                             <div className='row mb-4'>
                               {/*begin:: Created By Filed */}

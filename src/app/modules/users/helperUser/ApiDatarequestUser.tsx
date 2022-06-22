@@ -9,13 +9,15 @@ const getDynamicUser = (
   pageSize: number,
   searchText: string = '',
   zoneId: number | null,
-  roleId: string
+  roleId: string,
+  searchByUsername:string,
+  createdById:number
 ) => {
   if (pageSize <= 0) {
-    return http.get(`GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}`)
+    return http.get(`GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}&searchByUsername=${null}&createdById=${null}`)
   } else {
     return http.get(
-      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}`
+      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}`
     )
   }
 }
@@ -38,7 +40,13 @@ const getDynamicUser = (
 }
 const postUser = (obj: postlistData) => {
   return http.post('CreateUser', {
-    name: obj.name,
+    id: 0,
+    firstname: obj.firstname,
+    lastname: obj.lastname,
+    username: obj.username,
+    email: obj.email,
+    phone: obj.phone,
+    password: obj.password,
     zoneId: obj.zoneId,
     roleId: obj.roleId,
     createdby: 1,
@@ -66,7 +74,12 @@ const deleteUser = (Id: number, username: string) => {
 }
 const editUser = (obj: putUsersmodel) => {
   return http.post(`UpdateUser`, {
-    name: obj.name,
+    firstname: obj.firstname,
+    lastname: obj.lastname,
+    username: obj.username,
+    email: obj.email,
+    phone: obj.phone,
+    password: obj.password,
     zoneId: obj.zoneId,
     roleId: obj.roleId,
     createdby: 1,
