@@ -7,8 +7,7 @@ import { useFormik } from 'formik'
 import { getUserByToken, login } from '../core/_requests'
 import { toAbsoluteUrl } from '../../../../_metronic/helpers'
 import { useAuth } from '../core/Auth'
-import { JwtDecoded } from '../core/_models'
-import jwt from 'jwt-decode'
+
 
 const loginSchema = Yup.object().shape({
   username: Yup.string()
@@ -45,9 +44,6 @@ export function Login() {
       try {
         const { data: auth } = await login(values.username, values.password)
         saveAuth(auth)
-        let decode = jwt<JwtDecoded>(auth.token)
-        setCurrentUser(decode.user)
-
       } catch (error) {
         console.error(error)
         saveAuth(undefined)
