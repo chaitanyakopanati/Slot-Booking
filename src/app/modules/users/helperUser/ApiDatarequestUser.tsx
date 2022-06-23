@@ -8,7 +8,7 @@ const getDynamicUser = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
-  zoneId: number | null,
+  zoneId: number,
   roleId: string,
   searchByUsername:string,
   createdById:number
@@ -40,18 +40,18 @@ const getDynamicUser = (
 }
 const postUser = (obj: postlistData) => {
   return http.post('CreateUser', {
-    id: 0,
-    firstname: obj.firstname,
-    lastname: obj.lastname,
-    username: obj.username,
-    email: obj.email,
-    phone: obj.phone,
-    password: obj.password,
-    zoneId: obj.zoneId,
-    roleId: obj.roleId,
-    createdby: 1,
-    Updatedby: 1,
-    status: 1,
+
+firstname: obj.firstname,
+lastname:  obj.lastname,
+username: obj.username,
+email: obj.email,
+phone:  obj.phone,
+password: obj.password,
+roleId:  obj.roleId,
+zoneId: obj.zoneId,
+status: "1",
+createdby: 1
+  
   })
 }
 {
@@ -79,13 +79,11 @@ const editUser = (obj: putUsersmodel) => {
     username: obj.username,
     email: obj.email,
     phone: obj.phone,
-    password: obj.password,
     zoneId: obj.zoneId,
     roleId: obj.roleId,
     createdby: 1,
-    Updatedby: 1,
-    status: 1,
-    id: obj.id,
+    status: "1",
+     id: obj.id,
   })
 }
 {
@@ -96,6 +94,8 @@ const editUser = (obj: putUsersmodel) => {
   /* begin:: User:- getById Api call */
 }
 const GetUserTypeById = (id: ID) => {
+  console.log(id,'id===============');
+  
   return http.get(`GetUserbyId/${id}`)
 }
 {

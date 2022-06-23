@@ -16,6 +16,8 @@ const UserFormByCategory = () => {
   const {data: category, error} = useQuery(
     `GetUserbyId-${itemIdForUpdate}`,
     () => {
+      console.log(itemIdForUpdate,"itemIdForUpdate=--------===");
+      
       return Userservice.GetUserTypeById(itemIdForUpdate)
     },
     {

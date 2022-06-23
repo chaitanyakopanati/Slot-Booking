@@ -42,7 +42,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         enableReinitialize={true}
         initialValues={{
           id: category.id,
-          name: category.name || '',
+          fullName: category.data.fullName || '',
           username: category.username || '',
           email: category.email || '',
           phone: category.phone || '',
@@ -120,23 +120,23 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                         {/* begin:: View Modal body */}
                         <div className='modal-body'>
                           <div className='container-fluid p-0'>
-                            {/*begin:: Name Filed */}
+                            {/*begin:: fullName Filed */}
                             <div className='row mb-4'>
-                              <label className='fw-bold fs-6 mb-2'>Name</label>
+                              <label className='fw-bold fs-6 mb-2'>FullName</label>
                               <div className='input-group'>
                                 <input
-                                  placeholder='Name'
-                                  value={props.values.name}
+                                  placeholder='FullName'
+                                  value={props.values.fullName}
                                   onChange={props.handleChange}
                                   type='text'
-                                  name='name'
+                                  name='fullName'
                                   className='form-control form-control-lg'
                                   autoComplete='off'
                                   disabled
                                 />
                               </div>
                             </div>
-                            {/*end:: Name Filed */}
+                            {/*end:: fullName Filed */}
 
                             {/*begin:: Username*/}
                             <div className='row w-100 mx-0 mb-4 gy-4'>

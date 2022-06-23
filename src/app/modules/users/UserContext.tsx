@@ -1,4 +1,4 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
 import {useLoader} from '../loader/LoaderContext'
 import Userservice from './helperUser/ApiDatarequestUser'
 import {GetAllData, GetAllUserApi, getUserData, ID, ViewForm} from './helperUser/ModelUserType'
@@ -8,6 +8,7 @@ export interface ComplaintDataContextModel {
   getDataAllType: GetAllData[]
   getDataAllTypeRole: GetAllData[]
   filterShow: boolean
+  showPasswordFields: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   setZoneId: Dispatch<SetStateAction<number>>
@@ -21,6 +22,7 @@ export interface ComplaintDataContextModel {
   roleId: string
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
+  setShowPasswordFields: (filterShow: boolean) => void
   itemIdForUpdate: ID
   viewIdForUpdate: ViewForm
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
@@ -55,7 +57,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   getDataAllType: [],
   getDataAllTypeRole: [],
   filterShow: false,
+  showPasswordFields: false,
   setFilterShow: (filterShow: boolean) => {},
+  setShowPasswordFields: (filterShow: boolean) => {},
   setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
@@ -71,6 +75,7 @@ const ListDataProvider: FC = ({children}) => {
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
+  const [showPasswordFields,setShowPasswordFields] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
@@ -80,7 +85,6 @@ const ListDataProvider: FC = ({children}) => {
   const [zoneId, setZoneId] = useState(0)
   const [roleId, setRoleId] = useState('')
   let {LoderActions} = useLoader()
-
   {
     /* begin:: Fault:- get Faults Type Api call */
   }
@@ -182,6 +186,7 @@ const ListDataProvider: FC = ({children}) => {
     setCreatedById,
     searchByUsername,
     itemIdForUpdate,
+    setShowPasswordFields,
     setItemIdForUpdate,
     filterShow,
     setFilterShow,
@@ -190,6 +195,7 @@ const ListDataProvider: FC = ({children}) => {
     getDataAllType,
     pageNo,
     roleId,
+    showPasswordFields,
     pageSize,
     zoneId,
     setRoleId,

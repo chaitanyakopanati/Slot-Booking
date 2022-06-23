@@ -70,7 +70,7 @@ const ZonesFormModal: FC<Props> = ({category}) => {
 
               // Create Api Response
               let response = await Zoneservice.postZones(values)
-              console.log(response, 'res=----------====')
+              console.log(response, 'res=----------====zone post')
               toast.success(` Data Added Successfully`)
               toast.dismiss('1s')
               fetchAllZone()

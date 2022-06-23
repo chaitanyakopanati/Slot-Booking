@@ -1,6 +1,6 @@
 import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-import {FC, useEffect} from 'react'
+import {FC, useEffect, useState} from 'react'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {CustomTooltip} from '../../../routing/customtooltip'
@@ -14,7 +14,8 @@ type Props = {
 }
 
 const UserFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate, fetchAllUser, getDataAllType, getDataAllTypeRole} =
+  const {setItemIdForUpdate, itemIdForUpdate, fetchAllUser, getDataAllType, getDataAllTypeRole,showPasswordFields
+    ,setShowPasswordFields} =
     ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
@@ -36,6 +37,11 @@ const UserFormModal: FC<Props> = ({category}) => {
     console.log('itemIdForUpdate', itemIdForUpdate)
   }, [category])
 
+  useEffect(() =>{
+    if(showPasswordFields){
+      console.log(showPasswordFields,"showPasswordFields-----");
+    }
+  },[showPasswordFields])
   return (
     <>
       {/* begin::formik Add/Edit form */}
@@ -50,6 +56,7 @@ const UserFormModal: FC<Props> = ({category}) => {
           email: category.data?.email || '',
           phone: category.data?.phone || '',
           zoneId: category.data?.zoneId || '',
+          zoneName: category.data?.zoneName || '',
           roleId: category.data?.roleId || '',
           password: category.data?.password || '',
           confirmPassword: '',
@@ -71,7 +78,7 @@ const UserFormModal: FC<Props> = ({category}) => {
             .min(10, 'Invalid Phone Number')
             .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
             .required('This field is required'),
-          zoneId: Yup.number().required('This fied is required'),
+          zoneId: Yup.string().required('This fied is required'),
           roleId: Yup.string().required('This fielld is required'),
           password: Yup.string().required('This field is required'),
           confirmPassword: Yup.string().when('password', {
@@ -81,26 +88,34 @@ const UserFormModal: FC<Props> = ({category}) => {
         })}
         onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
-          console.log(values, 'values')
-
+          console.log(values, 'values===========')
+          values.zoneId = +(values.zoneId)
+          values.phone = values.phone.toString()
+       
           try {
             if (values.id) {
-              //   console.log(values, 'valuesput')
+              console.log(values, 'valuesput')
+             
 
               // Edit Api Response
               let response = await Userservice.editUser(values)
               console.log(response, 'res======')
+              console.log("Enter EDIT.....................................................")
+              setShowPasswordFields(true)
               toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
               fetchAllUser()
               resetForm({})
               cancel()
             } else {
-              //   console.log(values, 'valuespost')
+              console.log(values, 'postUser')
+            
 
               // Create Api Response
               let response = await Userservice.postUser(values)
               console.log(response, 'res=----------====')
+              console.log("Enter CREATE....................................................")
+              setShowPasswordFields(false)
               toast.success(` Data Added Successfully`)
               toast.dismiss('1s')
               fetchAllUser()
@@ -116,7 +131,7 @@ const UserFormModal: FC<Props> = ({category}) => {
       >
         {(props) => (
           <>
-            {console.log(category, 'category')}
+            {/* {console.log(category, 'category')} */}
             <div className='from4'>
               <button onClick={() => navigation(-1)}>Back</button>
             </div>
@@ -241,15 +256,20 @@ const UserFormModal: FC<Props> = ({category}) => {
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Zone</label>
                     <select
+                      // name="zoneId"
+                      // value={props.values.zoneId}
                       className='form-select form-select-solid'
                       {...props.getFieldProps('zoneId')}
+                      // onChange={props.handleChange}
                     >
                       <option value='' disabled>
                         Select Zone Type
                       </option>
-                      {getDataAllType.map((TypeData, index) => {
+                      {getDataAllType.map((TypeData: any, index) => {
+                        // console.log('TypeData',TypeData?.id);
+
                         return (
-                          <option key={index} value={TypeData?.id}>
+                          <option key={index} value={TypeData.id}>
                             {TypeData?.name}
                           </option>
                         )
@@ -271,7 +291,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                         Select Role Type
                       </option>
                       {getDataAllTypeRole.map((TypeDataRole, index) => {
-                        console.log(TypeDataRole, 'TypeDataRole')
+                        // console.log(TypeDataRole, 'TypeDataRole')
 
                         return (
                           <option key={index} value={TypeDataRole?.id}>
@@ -287,7 +307,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 {/* begin: input Password Filed */}
-
+               {showPasswordFields ?
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Password:</label>
@@ -324,8 +344,10 @@ const UserFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
                 </div>
+                 :null
+                }
               </div>
-
+             
               <div className='modal-footer border-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>

@@ -9,12 +9,12 @@ export interface getUserData {
   modifyby: null
   username: string
   email: string
-  phone: number
+  phone: string
   zoneName: string
   roleName: string
   firstname: string
   lastname: string
-  roleId: number
+  roleId: string
   fullName: string
   createdById: number
   createdByName: string
@@ -29,12 +29,12 @@ export interface getAllUserData {
 export interface postlistData {
   name: string
   zoneId: number
-  roleId: number
+  roleId: string
   firstname: string
   lastname: string
   username: string
   email: string
-  phone: number
+  phone: string
   password: string
 }
 
@@ -52,13 +52,13 @@ export interface GetAllData {
 }
 export interface putUsersmodel {
   name: string
-  zoneId: number | null 
-  roleId: number
+  zoneId: number 
+  roleId: string
   firstname: string
   lastname: string
   username: string
   email: string
-  phone: number
+  phone: string
   password: string
   id: number | string
 }
@@ -76,8 +76,8 @@ export interface GetAllUserApi {
   TotalRecords: number
   page: number
   pageSize: number
-  zoneId: number | null
-  roleId: number
+  zoneId: number 
+  roleId: string
   searchByUsername: string
 }
 
