@@ -168,8 +168,8 @@ const UserTable = () => {
                     {/* begin:: View Icon */}
                     <a
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      // onClick={() => navigate('viewform/view')}
-                      onClick={() => openViewModal(row.id)}
+                     onClick={() => navigate('viewform/view')}
+                      // onClick={() => openViewModal(row.id)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
@@ -181,8 +181,8 @@ const UserTable = () => {
                     {/* begin:: Edit Icon */}
                     <button
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      // onClick={() => navigate('form/edit')}
-                      onClick={()=>openEditModal(row.id)}
+                     onClick={() => navigate('form/edit')}
+                      // onClick={()=>openEditModal(row.id)}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                     </button>
