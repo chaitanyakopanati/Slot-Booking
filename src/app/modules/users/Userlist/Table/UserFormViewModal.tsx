@@ -312,15 +312,24 @@ import {useNavigate} from 'react-router-dom'
 import Userservice from '../../helperUser/ApiDatarequestUser'
 import {useLoader} from '../../../loader/LoaderContext'
 import {ListPageData} from '../../UserContext'
+import {KTSVG} from '../../../../../_metronic/helpers'
+import moment from 'moment'
+import {CustomTooltip} from '../../../../routing/customtooltip'
 
 type Props = {
   category: any
 }
 
 const UserFormViewModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate, getDataAllType, getDataAllTypeRole} = ListPageData()
+  const {
+    setItemIdForUpdate,
+    setViewIdForUpdate,
+    itemIdForUpdate,
+    getDataAllType,
+    getDataAllTypeRole,
+  } = ListPageData()
   let {LoderActions} = useLoader()
-  const navigation = useNavigate()
+  const navigate = useNavigate()
 
   const [initialvalues, setInitialvalues] = useState<any>({
     ...category,
@@ -333,9 +342,16 @@ const UserFormViewModal: FC<Props> = ({category}) => {
     zoneId: category.data?.zoneId || '',
     zoneName: category.data?.zoneName || '',
     roleId: category.data?.roleId || '',
-    password: category.data?.password || '',
-    confirmPassword: '',
+    roleName: category.data?.roleName || '',
+    createdby: category.createdby || '',
+    modifyby: category.modifyby || '',
+    createdAt: moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+    modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
   })
+
+  const openEditModal = (id: any) => {
+    setItemIdForUpdate(id)
+  }
 
   return (
     <>
@@ -344,14 +360,50 @@ const UserFormViewModal: FC<Props> = ({category}) => {
       <div className='d-flex flex-column scroll-y me-n7 pe-7'>
         {/* begin: input firstname Filed */}
         <div className='row w-100 mx-0 mb-4 gy-4'>
+          {/* begin:: View Modal Header */}
+          <div className='modal-header'>
+            <div className='d-flex align-items-center'>
+              <h5 className='modal-title'>View User</h5>
+            </div>
+            <div className='ms-3'>
+              {/* begin::  Edit User button */}
+              <button
+                // type='submit'
+                className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                onClick={() => {
+                  setViewIdForUpdate(undefined)
+                  navigate(`/users/form/${ category.data.id}`)
+                  // openEditModal(category.id)
+                }}
+              >
+                <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                Edit User
+              </button>
+              {/* end::  Edit User button */}
+
+              {/* begin::  close icon */}
+              <CustomTooltip title='Close'>
+                <div
+                  className='btn btn-icon btn-sm btn-active-icon-primary'
+                  onClick={() => setViewIdForUpdate(undefined)}
+                  style={{cursor: 'pointer'}}
+                >
+                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
+                </div>
+              </CustomTooltip>
+              {/* end::  close icon */}
+            </div>
+          </div>
+          {/* end:: View Modal Header */}
           {/*  */}
-          <div className='col-lg-6'>
+          <div className='col-lg-12'>
             <label className='fw-bold fs-6 mb-2'>FullName</label>
             <div className='input-group'>
               <input
                 placeholder='FullName'
                 value={initialvalues.fullName}
                 type='text'
+                name='fullName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 readOnly
@@ -360,17 +412,6 @@ const UserFormViewModal: FC<Props> = ({category}) => {
           </div>
 
           {/* begin: input lastname Filed */}
-          <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Last Name:</label>
-            <input
-              placeholder='Last name'
-              className='form-control form-control-lg form-control-solid'
-              value={initialvalues.lastname}
-              type='text'
-              disabled
-              readOnly
-            />
-          </div>
         </div>
 
         {/* begin: input username Filed */}
@@ -414,11 +455,98 @@ const UserFormViewModal: FC<Props> = ({category}) => {
               readOnly
             />
           </div>
+        </div>
 
-       
+        {/*begin:: Zone*/}
+        <div className='row w-100 mx-0 mb-4 gy-4'>
+          <div className='col-lg-12'>
+            <label className='form-label fw-bold'>Zone:</label>
+            <input
+              placeholder='Zone.'
+              className='form-control form-control-lg form-control-solid'
+              type='text'
+              value={initialvalues.zoneName}
+              disabled
+              readOnly
+            />
+          </div>
+        </div>
+
+        {/*begin:: role*/}
+        <div className='row w-100 mx-0 mb-4 gy-4'>
+          <div className='col-lg-12'>
+            <label className='form-label fw-bold'>Role:</label>
+            <input
+              placeholder='Role'
+              className='form-control form-control-lg form-control-solid'
+              type='text'
+              value={initialvalues.roleName}
+              disabled
+              readOnly
+            />
+          </div>
+        </div>
+
+        <div className='row w-100 mx-0 mb-4 gy-4'>
+          {/*begin:: Created By Filed */}
+          <div className='col-lg-6'>
+            <label className='form-label fw-bold'>Created by</label>
+            <input
+              className='form-control form-control-lg'
+              type='text'
+              value={initialvalues.createdby}
+              name='createdby'
+              autoComplete='off'
+              disabled
+            />
+          </div>
+          {/*end:: Created By Filed */}
+
+          {/*begin:: Updated By Filed */}
+          <div className='col-lg-6'>
+            <label className='form-label fw-bold'>Updated by</label>
+            <input
+              className='form-control form-control-lg'
+              type='text'
+              value={initialvalues.modifyby}
+              name='modifyby'
+              autoComplete='off'
+              disabled
+            />
+          </div>
+          {/*end:: Updated By Filed */}
+        </div>
+
+        <div className='row w-100 mx-0 mb-4 gy-4'>
+          {/* begin:: Created At Filed */}
+          <div className='col-lg-6'>
+            <label className='form-label fw-bold'>Created at</label>
+            <input
+              className='form-control form-control-lg'
+              type='text'
+              value={initialvalues.createdAt}
+              name='createdAt'
+              autoComplete='off'
+              disabled
+            />
+          </div>
+          {/* end:: Created At Filed */}
+
+          {/* begin:: Updated At Filed */}
+          <div className='col-lg-6'>
+            <label className='form-label fw-bold'>Updated at</label>
+            <input
+              className='form-control form-control-lg'
+              type='text'
+              value={initialvalues.modifyAt}
+              name='modifyAt'
+              autoComplete='off'
+              disabled
+            />
+          </div>
+          {/* end:: Updated At Filed */}
         </div>
       </div>
-
     </>
   )
 }
