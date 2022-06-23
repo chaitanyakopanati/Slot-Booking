@@ -5,13 +5,14 @@ import {CustomTooltip} from '../../../routing/customtooltip'
 import { ListPageData } from '../UserContext'
 
 const UserFormHeader = () => {
-  let {id} = useParams()
+  
+  const {itemIdForUpdate} =ListPageData()
 
   return (
     <>
       <div className='modal-header'>
         {/* begin::Modal title */}
-        <h2 className='fw-bolder'>{id!=='add' ? 'Edit User' : 'Create User'}</h2>
+        <h2 className='fw-bolder'>{itemIdForUpdate!=='new' ? 'Edit User' : 'Create User'}</h2>
         {/* end::Modal title */}
       </div>
     </>

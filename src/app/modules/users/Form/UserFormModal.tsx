@@ -14,9 +14,7 @@ type Props = {
 }
 
 const UserFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate, fetchAllUser, getDataAllType, getDataAllTypeRole,showPasswordFields
-    ,setShowPasswordFields} =
-    ListPageData()
+  const {setItemIdForUpdate, itemIdForUpdate, getDataAllType, getDataAllTypeRole} =ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
 
@@ -26,6 +24,10 @@ const UserFormModal: FC<Props> = ({category}) => {
     setItemIdForUpdate(undefined)
   }
 
+
+
+
+
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
@@ -34,14 +36,10 @@ const UserFormModal: FC<Props> = ({category}) => {
 
   useEffect(() => {
     console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
+    console.log('itemIdForUpdate&&&&&&&&&&&&&&&&&&&', itemIdForUpdate)
+  }, [category,itemIdForUpdate])
 
-  useEffect(() =>{
-    if(showPasswordFields){
-      console.log(showPasswordFields,"showPasswordFields-----");
-    }
-  },[showPasswordFields])
+ 
   return (
     <>
       {/* begin::formik Add/Edit form */}
@@ -101,24 +99,20 @@ const UserFormModal: FC<Props> = ({category}) => {
               let response = await Userservice.editUser(values)
               console.log(response, 'res======')
               console.log("Enter EDIT.....................................................")
-              setShowPasswordFields(true)
+              navigation('/user')
               toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
-              fetchAllUser()
+              
               resetForm({})
               cancel()
             } else {
               console.log(values, 'postUser')
-            
-
-              // Create Api Response
               let response = await Userservice.postUser(values)
               console.log(response, 'res=----------====')
               console.log("Enter CREATE....................................................")
-              setShowPasswordFields(false)
               toast.success(` Data Added Successfully`)
               toast.dismiss('1s')
-              fetchAllUser()
+              navigation('/user')
               resetForm({})
               cancel()
             }
@@ -305,7 +299,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 {/* begin: input Password Filed */}
-               {showPasswordFields ?
+               {itemIdForUpdate ==='new' ?
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Password:</label>

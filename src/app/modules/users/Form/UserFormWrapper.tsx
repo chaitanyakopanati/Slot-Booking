@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { KTCard } from '../../../../_metronic/helpers'
 import UserFormHeader from '../component/UserFormHeader'
+import { ListDataProvider, ListPageData } from '../UserContext'
 import UserFormByCategory from './UserFormByCategory'
 
-function UserFormWrapper() {
+function UserForm() {
+  const {DataGetAllTypeZone, DataGetAllTyperole} = ListPageData()
+  useEffect(() => {
+    DataGetAllTypeZone()
+    DataGetAllTyperole()
+  }, [])
+  
   return (
 
     <div className='overflow-hidden'>
@@ -13,20 +20,18 @@ function UserFormWrapper() {
       <UserFormByCategory />
       
     </KTCard>
-
-
-
-
   </div>
-    // <div>
-    //   <UserFormHeader />
-
-    //   <div>
-    //     
-    //   </div>
-
-    // </div>
   )
 }
+
+
+let UserFormWrapper = () =>{
+  return(
+    <ListDataProvider>
+    <UserForm />
+  </ListDataProvider>
+  )
+}
+
 
 export default UserFormWrapper

@@ -34,7 +34,7 @@ function MasterWrapper() {
           path='users/form/:id'
           element={
             <>
-              <PageTitle>Add User</PageTitle>
+              <PageTitle>User Form</PageTitle>
               <UserFormWrapper />
             </>
           }

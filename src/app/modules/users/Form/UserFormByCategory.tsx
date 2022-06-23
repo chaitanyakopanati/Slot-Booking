@@ -11,8 +11,8 @@ const UserFormByCategory = () => {
 
   let {id} = useParams()
   
-  
-  const [itemIdForUpdate, setItemIdForUpdate] = useState<undefined | null | string>(null)
+  const {setItemIdForUpdate, itemIdForUpdate} =ListPageData()
+  // const [itemIdForUpdate, setItemIdForUpdate] = useState<undefined | null | string>(null)
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
 
