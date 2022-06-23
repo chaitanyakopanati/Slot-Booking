@@ -293,7 +293,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 {/* begin: input Password Filed */}
-                {itemIdForUpdate === 'new' ? (
+                {itemIdForUpdate === 'add' ? (
                   <div className='row w-100 mx-0 mb-4 gy-4'>
                     <div className='col-lg-6'>
                       <label className='form-label fw-bold'>Password:</label>
@@ -350,7 +350,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 {/* begin::create/update Button */}
                 <CustomTooltip title='Submit form'>
                   <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
-                    {itemIdForUpdate ? 'Update' : 'Create'}
+                    {itemIdForUpdate === 'add' ? 'Create' : 'Update'}
                   </button>
                 </CustomTooltip>
                 {/* end::create/update Button */}

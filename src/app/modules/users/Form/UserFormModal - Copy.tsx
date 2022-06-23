@@ -349,7 +349,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 {/* begin::create/update Button */}
                 <CustomTooltip title='Submit form'>
                   <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
-                    {itemIdForUpdate ? 'Update' : 'Create'}
+                    {itemIdForUpdate === 'new' ? 'Update' : 'Create'}
                   </button>
                 </CustomTooltip>
                 {/* end::create/update Button */}
