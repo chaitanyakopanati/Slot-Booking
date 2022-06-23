@@ -103,164 +103,184 @@ const ComplaintTypeTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            {getData?.map((row: getComplainData, index: number) => {
-              return (
-                <tr key={index}>
-                  {/* begin:: Index No */}
-                  <td>
-                    <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
-                      {DataWiseIndex + index + 1}
-                    </div>
-                  </td>
-                  {/* end:: Index No */}
-
-                  {/* begin:: Name Input */}
-                  <td>
-                    <div className='d-flex align-items-center'>
-                      <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>{row?.name ? row?.name : '-'}</div>
+            {getData.length > 0 ? (
+              getData?.map((row: getComplainData, index: number) => {
+                return (
+                  <tr key={index}>
+                    {/* begin:: Index No */}
+                    <td>
+                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                        {DataWiseIndex + index + 1}
                       </div>
-                    </div>
-                  </td>
-                  {/* end:: Name Input */}
+                    </td>
+                    {/* end:: Index No */}
 
-                  {/* begin:: Etr(Hours) Input */}
-                  <td className='text-dark fw-bold  fs-6'>{row?.etr ? row?.etr : '-'}</td>
-                  {/* end:: Etr(Hours) Input */}
+                    {/* begin:: Name Input */}
+                    <td>
+                      <div className='d-flex align-items-center'>
+                        <div className='d-flex justify-content-start flex-column'>
+                          <div className='text-dark fw-bold  fs-6'>
+                            {row?.name ? row?.name : '-'}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    {/* end:: Name Input */}
 
-                  {/* begin:: Created At Date & Time */}
-                  <td className='text-dark fw-bold fs-6'>
-                    {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
-                  </td>
-                  {/* end:: Created At Date & Time */}
+                    {/* begin:: Etr(Hours) Input */}
+                    <td className='text-dark fw-bold  fs-6'>{row?.etr ? row?.etr : '-'}</td>
+                    {/* end:: Etr(Hours) Input */}
 
-                  {/* begin:: Action */}
-                  <td>
-                    {/* begin:: View Icon */}
-                    <a
-                      className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                      onClick={() => openViewModal(row)}
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen060.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    {/* end:: View Icon */}
+                    {/* begin:: Created At Date & Time */}
+                    <td className='text-dark fw-bold fs-6'>
+                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                    </td>
+                    {/* end:: Created At Date & Time */}
 
-                    {/* begin:: Edit Icon */}
-                    <button
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      onClick={() => openEditModal(row.id)}
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </button>
-                    {/* end:: Edit Icon */}
+                    {/* begin:: Action */}
+                    <td>
+                      {/* begin:: View Icon */}
+                      <a
+                        className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                        onClick={() => openViewModal(row)}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen060.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                      {/* end:: View Icon */}
 
-                    {/* begin:: Delete Icon */}
-                    <button
-                      className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deletecomplaints(row.id)}
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </button>
-                    {/* end:: Delete Icon */}
-                  </td>
-                  {/* end:: Action */}
-                </tr>
-              )
-            })}
+                      {/* begin:: Edit Icon */}
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                        onClick={() => openEditModal(row.id)}
+                      >
+                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                      </button>
+                      {/* end:: Edit Icon */}
+
+                      {/* begin:: Delete Icon */}
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                        onClick={() => deletecomplaints(row.id)}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen027.svg'
+                          className='svg-icon-3'
+                        />
+                      </button>
+                      {/* end:: Delete Icon */}
+                    </td>
+                    {/* end:: Action */}
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan={8}>
+                  <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                    No Records Found !
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
           {/* end::Table body */}
         </table>
         {/* end::Table */}
 
         <div className='row g-5 d-flex d-lg-none d-md-none py-3'>
-        <div
+          <div
             onChange={handlesearchange}
             className='form-control form-control-solid ps-14'
             placeholder='Search'
           />
-          {getData?.map((row: getComplainData, index: number) => {
-            return (
-              <div key={DataWiseIndex + index + 1}>
-                <div className='col-md-6 mx-0 my-2'>
-                  <div className='card card-custom border'>
-                    <div className='card-body p-4'>
-                      <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
-                        <div className='text-dark fw-bolder fs-3 me-2'>
-                          {' '}
-                          {DataWiseIndex + index + 1}
-                        </div>
-                        <div className='fw-bolder fs-3'>{row?.name || '-'}</div>
-                        <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
-                      </div>
-                      <div className='py-1 d-flex'>
-                        <div className='fw-bolder '>ETR:</div>
-                        <div className='text-dark fw-bold  ms-2'>{row?.etr ? row?.etr : '-'}</div>
-                      </div>
-
-                      <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
-                        <div className='py-1 d-flex align-items-cenetr'>
-                          <div className='fw-bolder '>Created at:</div>
-                          <div className='text-dark fw-bold  ms-2'>
+          {getData.length > 0 ? (
+            getData?.map((row: getComplainData, index: number) => {
+              return (
+                <div key={DataWiseIndex + index + 1}>
+                  <div className='col-md-6 mx-0 my-2'>
+                    <div className='card card-custom border'>
+                      <div className='card-body p-4'>
+                        <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                          <div className='text-dark fw-bolder fs-3 me-2'>
                             {' '}
-                            {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                            {DataWiseIndex + index + 1}
+                          </div>
+                          <div className='fw-bolder fs-3'>{row?.name || '-'}</div>
+                          <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
+                        </div>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>ETR:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row?.etr ? row?.etr : '-'}</div>
+                        </div>
+
+                        <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                          <div className='py-1 d-flex align-items-cenetr'>
+                            <div className='fw-bolder '>Created at:</div>
+                            <div className='text-dark fw-bold  ms-2'>
+                              {' '}
+                              {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                            </div>
                           </div>
                         </div>
+
+                        <div
+                          className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                          data-bs-toggle='collapse'
+                          data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
+                          aria-expanded='false'
+                        >
+                          <span>+ &nbsp;</span>More info
+                        </div>
                       </div>
 
-                      <div
-                        className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
-                        data-bs-toggle='collapse'
-                        data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
-                        aria-expanded='false'
-                      >
-                        <span>+ &nbsp;</span>More info
-                      </div>
-                    </div>
+                      <div className='card-footer p-2 py-0 bg-light'>
+                        <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
+                          <a
+                            className='btn btn-icon btn-active-color-success btn-sm me-1'
+                            onClick={() => openViewModal(row)}
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/general/gen060.svg'
+                              className='svg-icon-3'
+                            />
+                          </a>
 
-                    <div className='card-footer p-2 py-0 bg-light'>
-                      <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
-                        <a
-                          className='btn btn-icon btn-active-color-success btn-sm me-1'
-                          onClick={() => openViewModal(row)}
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen060.svg'
-                            className='svg-icon-3'
-                          />
-                        </a>
+                          <button
+                            className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                            onClick={() => openEditModal(row.id)}
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/art/art005.svg'
+                              className='svg-icon-3'
+                            />
+                          </button>
 
-                        <button
-                          className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                          onClick={() => openEditModal(row.id)}
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/art/art005.svg'
-                            className='svg-icon-3'
-                          />
-                        </button>
-
-                        <button
-                          className='btn btn-icon btn-active-color-danger btn-sm'
-                          onClick={() => deletecomplaints(row.id)}
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen027.svg'
-                            className='svg-icon-3'
-                          />
-                        </button>
+                          <button
+                            className='btn btn-icon btn-active-color-danger btn-sm'
+                            onClick={() => deletecomplaints(row.id)}
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/general/gen027.svg'
+                              className='svg-icon-3'
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })
+          ) : (
+            <tr>
+              <td colSpan={8}>
+                <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+              </td>
+            </tr>
+          )}
         </div>
       </div>
     </>

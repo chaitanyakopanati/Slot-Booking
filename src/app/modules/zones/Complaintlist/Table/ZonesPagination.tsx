@@ -2,7 +2,7 @@ import ReactPaginate from 'react-paginate'
 import {ListPageData} from '../../ZonesContext'
 
 const ZonesPagination = () => {
-  const {setPageNo, setPageSize, pageCount} = ListPageData()
+  const {setPageNo, setPageSize, pageCount,getData} = ListPageData()
 
   const handlepageclick = async (pages: any) => {
     const currantPage = (await pages.selected) + 1
@@ -11,6 +11,7 @@ const ZonesPagination = () => {
 
   return (
     <>
+     {getData.length > 0 ? (
       <div className='card-body py-3'>
         <div className='d-flex align-items-center justify-content-between pt-5'>
           <div className='min-w-100px'>
@@ -66,6 +67,9 @@ const ZonesPagination = () => {
           {/* end:: Page Data Result */}
         </div>
       </div>
+      )
+     :null
+    }
     </>
   )
 }

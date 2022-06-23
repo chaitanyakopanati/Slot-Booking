@@ -363,6 +363,9 @@ const UserFormViewModal: FC<Props> = ({category}) => {
           {/* begin:: View Modal Header */}
           <div className='modal-header'>
             <div className='d-flex align-items-center'>
+            <span className='svg-icon svg-icon-2x' onClick={() => navigate(-1)}>
+                <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+              </span>
               <h5 className='modal-title'>View User</h5>
             </div>
             <div className='ms-3'>
@@ -372,7 +375,8 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  navigate(`/master/users/form/${ category.data.id}`)
+                  navigate(`/users/form/${category.data.id}`)
+                  // openEditModal(category.id) 
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

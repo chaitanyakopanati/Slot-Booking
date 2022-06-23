@@ -2,7 +2,7 @@ import ReactPaginate from 'react-paginate'
 import {ListPageData} from '../../ComplaintListContext'
 
 const ComplaintTypePagination = () => {
-  const {setPageNo, setPageSize, pageCount} = ListPageData()
+  const {setPageNo, setPageSize, pageCount,getData} = ListPageData()
 
   const handlepageclick = async (data: any) => {
     const currentPage = (await data.selected) + 1
@@ -11,6 +11,7 @@ const ComplaintTypePagination = () => {
 
   return (
     <>
+    {getData.length > 0 ? (
       <div className='card-body py-3'>
         <div className='d-flex align-items-center justify-content-between pt-5'>
           <div className='min-w-100px'>
@@ -66,6 +67,9 @@ const ComplaintTypePagination = () => {
           {/* end:: Page Data Result */}
         </div>
       </div>
+      )
+     :null
+    }
     </>
   )
 }

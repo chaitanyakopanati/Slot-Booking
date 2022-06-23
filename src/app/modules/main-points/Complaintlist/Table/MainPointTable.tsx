@@ -105,7 +105,9 @@ const MainPointTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            {getData?.map((row: getMainPointData, index: number) => {
+            
+            {getData.length > 0 ? (
+            getData?.map((row: getMainPointData, index: number) => {
               return (
                 <tr key={index}>
                   {/* begin:: Index No */}
@@ -174,7 +176,15 @@ const MainPointTable = () => {
                   {/* end:: Action */}
                 </tr>
               )
-            })}
+            })
+            ):(
+              <tr>
+              <td colSpan={8}>
+                <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+              </td>
+            </tr>
+            )
+          }
           </tbody>
           {/* end::Table body */}
         </table>
@@ -187,7 +197,8 @@ const MainPointTable = () => {
             className='form-control form-control-solid ps-14'
             placeholder='Search'
           />
-          {getData?.map((row: getMainPointData, index: number) => {
+          {getData.length > 0 ?(
+          getData?.map((row: getMainPointData, index: number) => {
             return (
               <div key= {DataWiseIndex + index + 1}>
                 <div className='col-md-6 mx-0 my-2'>
@@ -266,7 +277,15 @@ const MainPointTable = () => {
                 </div>
               </div>
             )
-          })}
+          })
+          ):(
+            <tr>
+            <td colSpan={8}>
+              <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+            </td>
+          </tr>
+          )
+        }
         </div>
         {/* End::Mobile Table */}
       </div>
