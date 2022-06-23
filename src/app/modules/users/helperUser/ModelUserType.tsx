@@ -1,12 +1,12 @@
 export interface getUserData {
   name: string
   createdAt: string
-  createdby: null
+  createdby: number
   id: number
   faulttypeid: number
   faultTypeName: string
-  modifyAt: null
-  modifyby: null
+  modifyAt: number
+  modifyby: number
   username: string
   email: string
   phone: string
@@ -61,6 +61,8 @@ export interface putUsersmodel {
   phone: string
   password: string
   id: number | string
+  createdById: number
+  createdByName: string
 }
 export interface putUsermodel1 {
   data: getUserData

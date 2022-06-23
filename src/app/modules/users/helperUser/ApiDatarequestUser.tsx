@@ -10,11 +10,13 @@ const getDynamicUser = (
   searchText: string = '',
   zoneId: number,
   roleId: string,
-  searchByUsername:string,
-  createdById:number
+  searchByUsername: string,
+  createdById: number
 ) => {
   if (pageSize <= 0) {
-    return http.get(`GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}&searchByUsername=${null}&createdById=${null}`)
+    return http.get(
+      `GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}&searchByUsername=${null}&createdById=${null}`
+    )
   } else {
     return http.get(
       `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}`
@@ -40,18 +42,16 @@ const getDynamicUser = (
 }
 const postUser = (obj: postlistData) => {
   return http.post('CreateUser', {
-
-firstname: obj.firstname,
-lastname:  obj.lastname,
-username: obj.username,
-email: obj.email,
-phone:  obj.phone,
-password: obj.password,
-roleId:  obj.roleId,
-zoneId: obj.zoneId,
-status: "1",
-createdby: 1
-  
+    firstname: obj.firstname,
+    lastname: obj.lastname,
+    username: obj.username,
+    email: obj.email,
+    phone: obj.phone,
+    password: obj.password,
+    roleId: obj.roleId,
+    zoneId: obj.zoneId,
+    status: '1',
+    createdby: 1,
   })
 }
 {
@@ -82,8 +82,9 @@ const editUser = (obj: putUsersmodel) => {
     zoneId: obj.zoneId,
     roleId: obj.roleId,
     createdby: 1,
-    status: "1",
-     id: obj.id,
+    status: '1',
+    id: obj.id,
+    
   })
 }
 {
@@ -94,8 +95,8 @@ const editUser = (obj: putUsersmodel) => {
   /* begin:: User:- getById Api call */
 }
 const GetUserTypeById = (id: ID) => {
-  console.log(id,'id===============');
-  
+  console.log(id, 'id===============')
+
   return http.get(`GetUserbyId/${id}`)
 }
 {

@@ -1,5 +1,3 @@
-
-
 import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import {FC, useEffect, useState} from 'react'
@@ -40,8 +38,8 @@ const UserFormViewModal: FC<Props> = ({category}) => {
     zoneName: category.data?.zoneName || '',
     roleId: category.data?.roleId || '',
     roleName: category.data?.roleName || '',
-    createdby: category.createdby || '',
-    modifyby: category.modifyby || '',
+    createdby: category.createdByName || '',
+    modifyby: category.modifyByName || '',
     createdAt: moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
     modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
   })
@@ -72,7 +70,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  console.log("tttttttttttttttttttttttttttt",category.data.id);
+                  console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/master/users/form/${category.data.id}`)
                   // openEditModal(category.id)
                 }}
