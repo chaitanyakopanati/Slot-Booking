@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react'
 import {threadId} from 'worker_threads'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import {KTSVG, toAbsoluteUrl} from '../../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget6: React.FC<Props> = ({className}) => {
+const TablesWidget1: React.FC<Props> = ({className}) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -72,16 +72,6 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                   <option value='3'>Done</option>
                 </select>
               </div>
-
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Zone</label>
-                <select className='form-select form-select-solid'>
-                  <option value='1'>All</option>
-                  <option value='2'>Not described</option>
-                  <option value='3'>Abalkesh Soft</option>
-                  <option value='4'>Ajay Sulin</option>
-                </select>
-              </div>
             </div>
           </>
         )}
@@ -100,7 +90,6 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                 <th className='max-w-60px min-w-40px rounded-start ps-4'> no.</th>
                 <th className='min-w-200px'>Product</th>
                 <th className='min-w-150px'>Quantity</th>
-                <th className='min-w-150px'>Zone</th>
               </tr>
             </thead>
             {/* end::Table head */}
@@ -112,26 +101,20 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
                 </td>
                 <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
                 <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
-
-                <td className='text-dark fw-bold fs-6'>Varachha</td>
               </tr>
               <tr>
                 <td>
-                  <div className='text-dark fw-bolder fs-6 ps-4'>1</div>
+                  <div className='text-dark fw-bolder fs-6 ps-4'>2</div>
                 </td>
                 <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
                 <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
-
-                <td className='text-dark fw-bold fs-6'>Varachha</td>
               </tr>
               <tr>
                 <td>
-                  <div className='text-dark fw-bolder fs-6 ps-4'>1</div>
+                  <div className='text-dark fw-bolder fs-6 ps-4'>3</div>
                 </td>
                 <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
                 <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
-
-                <td className='text-dark fw-bold fs-6'>Varachha</td>
               </tr>
             </tbody>
             {/* end::Table body */}
@@ -145,22 +128,19 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
-                  <div className='fw-bolder fs-3'>Kiritbhai</div>
+                  <div className='fw-bolder fs-3'>vbvaghela</div>
                   <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
-                </div>
-                <div className='py-1 d-flex'>
-                  <div className='fw-bolder '>Product:</div>
-                  <div className='text-dark fw-bold  ms-2'> Power beam400</div>
                 </div>
 
                 <div id='card-id-1' className='collapse'>
-                  <div className='py-1 d-flex align-items-cenetr'>
-                    <div className='fw-bolder '>Quantity:</div>
-                    <div className='text-dark fw-bold  ms-2'>2 Pieces</div>
-                  </div>
                   <div className='py-1 d-flex'>
-                    <div className='fw-bolder '> Zone:</div>
-                    <div className='text-dark fw-bold  ms-2'>Varachha</div>
+                    <div className='fw-bolder '>Product:</div>
+                    <div className='text-dark fw-bold  ms-2'>Media convertor-1310-old</div>
+                  </div>
+
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Quantity:</div>
+                    <div className='text-dark fw-bold  ms-2'>1 Pieces</div>
                   </div>
                 </div>
 
@@ -180,22 +160,19 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>2.</div>
-                  <div className='fw-bolder fs-3'>Kiritbhai</div>
+                  <div className='fw-bolder fs-3'>vbvaghela</div>
                   <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
-                </div>
-                <div className='py-1 d-flex'>
-                  <div className='fw-bolder '>Product:</div>
-                  <div className='text-dark fw-bold  ms-2'> Power beam400</div>
                 </div>
 
                 <div id='card-id-2' className='collapse'>
-                  <div className='py-1 d-flex align-items-cenetr'>
-                    <div className='fw-bolder '>Quantity:</div>
-                    <div className='text-dark fw-bold  ms-2'>2 Pieces</div>
-                  </div>
                   <div className='py-1 d-flex'>
-                    <div className='fw-bolder '> Zone:</div>
-                    <div className='text-dark fw-bold  ms-2'>Varachha</div>
+                    <div className='fw-bolder '>Product:</div>
+                    <div className='text-dark fw-bold  ms-2'>Media convertor-1310-old</div>
+                  </div>
+
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>Quantity:</div>
+                    <div className='text-dark fw-bold  ms-2'>1 Pieces</div>
                   </div>
                 </div>
 
@@ -263,4 +240,4 @@ const TablesWidget6: React.FC<Props> = ({className}) => {
   )
 }
 
-export {TablesWidget6}
+export {TablesWidget1}

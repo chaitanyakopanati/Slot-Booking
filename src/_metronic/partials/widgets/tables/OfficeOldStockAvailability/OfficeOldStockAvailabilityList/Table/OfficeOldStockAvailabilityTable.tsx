@@ -51,6 +51,7 @@ const OfficeOldStockAvailabilityTable = () => {
         {/* end::Table */}
       </div>
 
+      {/*Start: responsive */}
       <div className='row g-5 d-flex d-lg-none py-3'>
         <div className='col-md-6 mx-0 my-2'>
           <div className='card card-custom border'>
@@ -125,6 +126,7 @@ const OfficeOldStockAvailabilityTable = () => {
           </div>
         </div>
       </div>
+      {/*End: responsive */}
     </div>
   )
 }

@@ -13,102 +13,10 @@ type Props = {
   category: any
 }
 
-let validationSchemaNewForm = Yup.object({
-  firstname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  lastname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  username: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  email: Yup.string().email('Invalid email format').required('This field is required'),
-  phone: Yup.string()
-    //  .min(10, 'Min 10 digits are allowed')
-    // .max(10, 'Max 10 digits are allowed')
-    .min(10, 'Invalid Phone Number')
-    .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
-    .required('This field is required'),
-  zoneId: Yup.string().required('This fied is required'),
-  roleId: Yup.string().required('This fielld is required'),
-  password: Yup.string().required('This field is required'),
-  confirmPassword: Yup.string().when('password', {
-    is: (val: any) => (val && val.length > 0 ? true : false),
-    then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
-  }),
-})
-
-let validationSchemaEditForm = Yup.object({
-  firstname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  lastname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  username: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  email: Yup.string().email('Invalid email format').required('This field is required'),
-  phone: Yup.string()
-    //  .min(10, 'Min 10 digits are allowed')
-    // .max(10, 'Max 10 digits are allowed')
-    .min(10, 'Invalid Phone Number')
-    .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
-    .required('This field is required'),
-  zoneId: Yup.string().required('This fied is required'),
-  roleId: Yup.string().required('This fielld is required'),
-})
-
 const UserFormModal: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, itemIdForUpdate, getDataAllType, getDataAllTypeRole} = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
-  const [initialValues, setInitialValues] = useState<any>({
-    id: '',
-    firstname: '',
-    lastname: '',
-    username: '',
-    email: '',
-    phone: '',
-    zoneId: '',
-    zoneName: '',
-    roleId: '',
-    password: '',
-    confirmPassword: '',
-  })
-
-  useEffect(() => {
-    if (itemIdForUpdate === 'add') {
-      setInitialValues({
-        ...category,
-        id: category.data?.id,
-        firstname: category.data?.firstname || '',
-        lastname: category.data?.lastname || '',
-        username: category.data?.username || '',
-        email: category.data?.email || '',
-        phone: category.data?.phone || '',
-        zoneId: category.data?.zoneId || '',
-        zoneName: category.data?.zoneName || '',
-        roleId: category.data?.roleId || '',
-        password: category.data?.password || '',
-        confirmPassword: '',
-      })
-    } else {
-      setInitialValues({
-        ...category,
-        id: category.data?.id,
-        firstname: category.data?.firstname || '',
-        lastname: category.data?.lastname || '',
-        username: category.data?.username || '',
-        email: category.data?.email || '',
-        phone: category.data?.phone || '',
-        zoneId: category.data?.zoneId || '',
-        zoneName: category.data?.zoneName || '',
-        roleId: category.data?.roleId || '',
-      })
-    }
-  }, [itemIdForUpdate])
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -122,7 +30,10 @@ const UserFormModal: FC<Props> = ({category}) => {
     }
   }
 
-  useEffect(() => {}, [category, itemIdForUpdate])
+  useEffect(() => {
+    console.log('category', category)
+    console.log('itemIdForUpdate&&&&&&&&&&&&&&&&&&&', itemIdForUpdate)
+  }, [category, itemIdForUpdate])
 
   return (
     <>
@@ -130,37 +41,77 @@ const UserFormModal: FC<Props> = ({category}) => {
 
       <Formik
         enableReinitialize={true}
-        initialValues={initialValues}
-        validationSchema={
-          itemIdForUpdate === 'add' ? validationSchemaNewForm : validationSchemaEditForm
-        }
+        initialValues={{
+          id: category.data?.id,
+          firstname: category.data?.firstname || '',
+          lastname: category.data?.lastname || '',
+          username: category.data?.username || '',
+          email: category.data?.email || '',
+          phone: category.data?.phone || '',
+          zoneId: category.data?.zoneId || '',
+          zoneName: category.data?.zoneName || '',
+          roleId: category.data?.roleId || '',
+          password: category.data?.password || '',
+          confirmPassword: '',
+        }}
+        validationSchema={Yup.object({
+          firstname: Yup.string()
+            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .required('This field is required'),
+          lastname: Yup.string()
+            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .required('This field is required'),
+          username: Yup.string()
+            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .required('This field is required'),
+          email: Yup.string().email('Invalid email format').required('This field is required'),
+          phone: Yup.string()
+            //  .min(10, 'Min 10 digits are allowed')
+            // .max(10, 'Max 10 digits are allowed')
+            .min(10, 'Invalid Phone Number')
+            .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
+            .required('This field is required'),
+          zoneId: Yup.string().required('This fied is required'),
+          roleId: Yup.string().required('This fielld is required'),
+          password: Yup.string().required('This field is required'),
+          confirmPassword: Yup.string().when('password', {
+            is: (val: any) => (val && val.length > 0 ? true : false),
+            then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
+          }),
+        })}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
           LoderActions(true)
+          console.log(values, 'values===========')
           values.zoneId = +values.zoneId
           values.phone = values.phone.toString()
 
           try {
             if (values.id) {
+              console.log(values, 'valuesput')
+
               // Edit Api Response
               let response = await Userservice.editUser(values)
-
-              navigation('/master/users')
+              console.log(response, 'res======')
+              console.log('Enter EDIT.....................................................')
+              navigation('/user')
               toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
 
               resetForm({})
               cancel()
             } else {
+              console.log(values, 'postUser')
               let response = await Userservice.postUser(values)
-
+              console.log(response, 'res=----------====')
+              console.log('Enter CREATE....................................................')
               toast.success(` Data Added Successfully`)
               toast.dismiss('1s')
-              navigation('/master/users')
+              navigation('/user')
               resetForm({})
               cancel()
             }
           } catch (error: any) {
+            console.log(error, 'error')
           } finally {
             LoderActions(false)
           }
@@ -175,6 +126,7 @@ const UserFormModal: FC<Props> = ({category}) => {
               onKeyDown={onKeyDown}
               className='form'
               onSubmit={props.handleSubmit}
+              noValidate
             >
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
@@ -300,7 +252,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                         Select Zone Type
                       </option>
                       {getDataAllType.map((TypeData: any, index) => {
-                        //
+                        // console.log('TypeData',TypeData?.id);
 
                         return (
                           <option key={index} value={TypeData.id}>
@@ -325,7 +277,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                         Select Role Type
                       </option>
                       {getDataAllTypeRole.map((TypeDataRole, index) => {
-                        //
+                        // console.log(TypeDataRole, 'TypeDataRole')
 
                         return (
                           <option key={index} value={TypeDataRole?.id}>
@@ -341,7 +293,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 {/* begin: input Password Filed */}
-                {itemIdForUpdate === 'add' ? (
+                {itemIdForUpdate === 'new' ? (
                   <div className='row w-100 mx-0 mb-4 gy-4'>
                     <div className='col-lg-6'>
                       <label className='form-label fw-bold'>Password:</label>
@@ -384,7 +336,12 @@ const UserFormModal: FC<Props> = ({category}) => {
               <div className='modal-footer border-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>
-                  <button type='reset' onClick={() => navigation(-1)} className='btn btn-light'>
+                  <button
+                    type='reset'
+                    onClick={() => navigation(-1)}
+                    className='btn btn-light'
+                    data-kt-users-modal-action='cancel'
+                  >
                     Close
                   </button>
                 </CustomTooltip>
@@ -392,7 +349,7 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                 {/* begin::create/update Button */}
                 <CustomTooltip title='Submit form'>
-                  <button type='submit' className='btn btn-primary'>
+                  <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                     {itemIdForUpdate ? 'Update' : 'Create'}
                   </button>
                 </CustomTooltip>

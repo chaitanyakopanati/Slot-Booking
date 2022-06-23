@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react'
 import {threadId} from 'worker_threads'
-import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import {KTSVG, toAbsoluteUrl} from '../../../../helpers'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 
 type Props = {
   className: string
 }
 
-const TablesWidget7: React.FC<Props> = ({className}) => {
+const TablesWidget2: React.FC<Props> = ({className}) => {
   const [filterShow, setFilterShow] = useState(false)
   return (
     <div className={`card ${className}`}>
@@ -69,7 +69,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 <span className='svg-icon svg-icon-gray-500 me-1'>
                   <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
                 </span>
-                Create office stock outward
+                Create godown stock inwards
               </div>
             </div>
             {/* end::add user btn */}
@@ -81,7 +81,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
             <div className='row w-100 mx-0 my-3'>
               <div className='col-lg-3'>
                 <div>
-                  <label className='form-label fw-bold'>Outward date</label>
+                  <label className='form-label fw-bold'>Inward date</label>
                   <input
                     className='form-control form-control-lg form-control-solid'
                     type='date'
@@ -98,34 +98,14 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                   <option value='3'>Done</option>
                 </select>
               </div>
-
               <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Technician</label>
-                <select className='form-select form-select-solid'>
-                  <option value='1'>All</option>
-                  <option value='2'>Amit</option>
-                  <option value='3'>Done</option>
-                </select>
-              </div>
-
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Username</label>
+                <label className='form-label fw-bold'>Supplier name</label>
                 <input
-                  placeholder='Username'
                   className='form-control form-control-lg form-control-solid'
                   type='text'
+                  placeholder='All'
                   autoComplete='off'
                 />
-              </div>
-
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Zone</label>
-                <select className='form-select form-select-solid'>
-                  <option value='1'>All</option>
-                  <option value='2'>Not described</option>
-                  <option value='3'>Abalkesh Soft</option>
-                  <option value='4'>Ajay Sulin</option>
-                </select>
               </div>
 
               <div className='col-lg-3'>
@@ -151,13 +131,11 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
             {/* begin::Table head */}
             <thead>
               <tr className='fw-bolder text-muted bg-dark'>
-                <th className='max-w-60px min-w-40px rounded-start ps-4'>Outward no.</th>
-                <th className='min-w-150px'>Outward date</th>
+                <th className='max-w-60px min-w-40px rounded-start ps-4'>Inward no.</th>
+                <th className='min-w-150px'>Inward date</th>
                 <th className='min-w-200px'>Product</th>
                 <th className='min-w-150px'>Quantity</th>
-                <th className='min-w-200px'>Technician</th>
-                <th className='min-w-150px'>Zone</th>
-                <th className='min-w-150px'>Username</th>
+                <th className='min-w-150px'>Supplier name</th>
                 <th className='min-w-150px rounded-end'>Actions</th>
               </tr>
             </thead>
@@ -172,9 +150,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
                 <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
 
-                <td className='text-dark fw-bold fs-6'>Komal Tiwari</td>
-                <td className='text-dark fw-bold fs-6'>Varachha</td>
-                <td className='text-dark fw-bold fs-6'>Amit</td>
+                <td className='text-dark fw-bold fs-6'>Alambar cable</td>
                 <td>
                   <a
                     href='#'
@@ -210,9 +186,8 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
                 <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
 
-                <td className='text-dark fw-bold fs-6'>Komal Tiwari</td>
-                <td className='text-dark fw-bold fs-6'>Varachha</td>
-                <td className='text-dark fw-bold fs-6'>Amit</td>
+                <td className='text-dark fw-bold fs-6'>Alambar cable</td>
+
                 <td>
                   <a
                     href='#'
@@ -248,9 +223,8 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                 <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
                 <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
 
-                <td className='text-dark fw-bold fs-6'>Komal Tiwari</td>
-                <td className='text-dark fw-bold fs-6'>Varachha</td>
-                <td className='text-dark fw-bold fs-6'>Amit</td>
+                <td className='text-dark fw-bold fs-6'>Alambar cable</td>
+
                 <td>
                   <a
                     href='#'
@@ -284,43 +258,38 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
           {/* end::Table */}
         </div>
 
+        {/* responsive */}
         <div className='row g-5 d-flex d-lg-none py-3'>
           <div className='col-md-6 mx-0 my-2'>
             <div className='card card-custom border'>
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
-                  <div className='fw-bolder fs-3'>Kiritbhai</div>
+                  <div className='fw-bolder fs-3'>bbjetani</div>
                   <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                 </div>
                 <div className='py-1 d-flex'>
-                  <div className='fw-bolder '>Technician:</div>
-                  <div className='text-dark fw-bold  ms-2'>Shiva Upadhyay</div>
+                  <div className='fw-bolder '>Supplier name:</div>
+                  <div className='text-dark fw-bold  ms-2'>Alambar Cable</div>
                 </div>
 
                 <div id='card-id-1' className='collapse'>
                   <div className='py-1 d-flex align-items-cenetr'>
-                    <div className='fw-bolder '>Outward date:</div>
-                    <div className='text-dark fw-bold  ms-2'>14-Jun-2022</div>
+                    <div className='fw-bolder '>Inward date:</div>
+                    <div className='text-dark fw-bold  ms-2'>03-Jun-2022</div>
                   </div>
                   <div className='py-1 d-flex'>
                     <div className='fw-bolder '>Product:</div>
-                    <div className='text-dark fw-bold  ms-2'>2pair-double coat</div>
+                    <div className='text-dark fw-bold  ms-2'>Fiber unarmoured-2f</div>
                   </div>
 
                   <div className='py-1 d-flex'>
                     <div className='fw-bolder '>Quantity:</div>
-                    <div className='text-dark fw-bold  ms-2'>80 mtr</div>
+                    <div className='text-dark fw-bold  ms-2'>2000 mtr</div>
                   </div>
-
                   <div className='py-1 d-flex'>
                     <div className='fw-bolder '>Zone:</div>
                     <div className='text-dark fw-bold  ms-2'>Katargam</div>
-                  </div>
-
-                  <div className='py-1 d-flex'>
-                    <div className='fw-bolder '>Username:</div>
-                    <div className='text-dark fw-bold  ms-2'>rhpambhar</div>
                   </div>
                 </div>
 
@@ -365,37 +334,31 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='card-body p-4'>
                 <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                   <div className='text-dark fw-bolder fs-3 me-2'>2.</div>
-                  <div className='fw-bolder fs-3'>Kiritbhai</div>
+                  <div className='fw-bolder fs-3'>bbjetani</div>
                   <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                 </div>
                 <div className='py-1 d-flex'>
-                  <div className='fw-bolder '>Technician:</div>
-                  <div className='text-dark fw-bold  ms-2'>Shiva Upadhyay</div>
+                  <div className='fw-bolder '>Supplier name:</div>
+                  <div className='text-dark fw-bold  ms-2'>Alambar Cable</div>
                 </div>
 
                 <div id='card-id-2' className='collapse'>
                   <div className='py-1 d-flex align-items-cenetr'>
-                    <div className='fw-bolder '>Outward date:</div>
-                    <div className='text-dark fw-bold  ms-2'>14-Jun-2022</div>
+                    <div className='fw-bolder '>Inward date:</div>
+                    <div className='text-dark fw-bold  ms-2'>03-Jun-2022</div>
                   </div>
                   <div className='py-1 d-flex'>
                     <div className='fw-bolder '>Product:</div>
-                    <div className='text-dark fw-bold  ms-2'>2pair-double coat</div>
+                    <div className='text-dark fw-bold  ms-2'>Fiber unarmoured-2f</div>
                   </div>
 
                   <div className='py-1 d-flex'>
                     <div className='fw-bolder '>Quantity:</div>
-                    <div className='text-dark fw-bold  ms-2'>80 mtr</div>
+                    <div className='text-dark fw-bold  ms-2'>2000 mtr</div>
                   </div>
-
                   <div className='py-1 d-flex'>
                     <div className='fw-bolder '>Zone:</div>
                     <div className='text-dark fw-bold  ms-2'>Katargam</div>
-                  </div>
-
-                  <div className='py-1 d-flex'>
-                    <div className='fw-bolder '>Username:</div>
-                    <div className='text-dark fw-bold  ms-2'>rhpambhar</div>
                   </div>
                 </div>
 
@@ -436,6 +399,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
             </div>
           </div>
         </div>
+        {/* responsive */}
 
         <div className='d-flex align-items-center justify-content-between py-2'>
           <div className='min-w-100px'>
@@ -490,7 +454,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
         <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>Create office stock Outwards</h5>
+              <h5 className='modal-title'>Create godown stock inward</h5>
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
@@ -506,7 +470,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold '>Outward date </label>
+                    <label className='form-label fw-bold '>Inward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
@@ -535,46 +499,16 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                   </div>
 
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Technician</label>
-                    <select className='form-select form-select-solid'>
-                      <option value='1'>All</option>
-                      <option value='2'>Not described</option>
-                      <option value='3'>Abalkesh Soft</option>
-                      <option value='4'>Ajay Sulin</option>
-                    </select>
+                    <div className='col'>
+                      <label className='form-label fw-bold'>Supplier name</label>
+                      <input
+                        placeholder='Supplier name'
+                        className='form-control form-control-lg form-control-solid'
+                        type='text'
+                        autoComplete='off'
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className='col-lg-12'>
-                  <div className='col-6'>
-                    <label className='form-label fw-bold'>Username</label>
-                    <input
-                      placeholder='Solved at'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-
-                  <div className='col-6'>
-                    <label className='form-label fw-bold'>Reason</label>
-                    <input
-                      placeholder='Solved at'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-                </div>
-
-                <div className='col-lg-12'>
-                  <label className='form-label fw-bold'>Zone </label>
-                  <select className='form-select form-select-solid'>
-                    <option value='1'>All</option>
-                    <option value='2'>Katargam</option>
-                    <option value='3'>Abalkesh Soft</option>
-                    <option value='4'>Ajay Sulin</option>
-                  </select>
                 </div>
 
                 <div className='col-12 col-lg-12'>
@@ -618,7 +552,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
         <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h5 className='modal-title'>Edit office stock outward</h5>
+              <h5 className='modal-title'>Edit godown stock inward</h5>
               <div
                 className='btn btn-icon btn-sm btn-active-light-primary ms-2'
                 data-bs-dismiss='modal'
@@ -634,7 +568,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold '>Outward date </label>
+                    <label className='form-label fw-bold '>Inward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
@@ -663,35 +597,15 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                   </div>
 
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Technician</label>
-                    <select className='form-select form-select-solid'>
-                      <option value='1'>All</option>
-                      <option value='2'>Not described</option>
-                      <option value='3'>Abalkesh Soft</option>
-                      <option value='4'>Ajay Sulin</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className='col-lg-12'>
-                  <div className='col-6'>
-                    <label className='form-label fw-bold'>Username</label>
-                    <input
-                      placeholder='Solved at'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-
-                  <div className='col-6'>
-                    <label className='form-label fw-bold'>Reason</label>
-                    <input
-                      placeholder='Solved at'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
+                    <div className='col'>
+                      <label className='form-label fw-bold'>Supplier name</label>
+                      <input
+                        placeholder='Supplier name'
+                        className='form-control form-control-lg form-control-solid'
+                        type='text'
+                        autoComplete='off'
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -733,11 +647,11 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
 
       {/* View installation::Modal */}
       <div className='modal fade' id='view-inquiries-modal'>
-        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px '>
+        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
           <div className='modal-content'>
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
-                <h5 className='modal-title'>View office stock Outward</h5>
+                <h5 className='modal-title'>View godown stock inward</h5>
               </div>
               <div className='ms-3'>
                 <a
@@ -749,7 +663,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                   <span className='svg-icon svg-icon-gray-500 me-1'>
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                   </span>
-                  Edit office stock outward
+                  Edit godown stock inward
                 </a>
 
                 <div
@@ -768,7 +682,7 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
               <div className='container-fluid p-0'>
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold '>Outward date </label>
+                    <label className='form-label fw-bold '>Inward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
@@ -797,46 +711,16 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                   </div>
 
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Technician</label>
-                    <select className='form-select form-select-solid'>
-                      <option value='1'>All</option>
-                      <option value='2'>Not described</option>
-                      <option value='3'>Abalkesh Soft</option>
-                      <option value='4'>Ajay Sulin</option>
-                    </select>
+                    <div className='col'>
+                      <label className='form-label fw-bold'>Supplier name</label>
+                      <input
+                        placeholder='Supplier name'
+                        className='form-control form-control-lg form-control-solid'
+                        type='text'
+                        autoComplete='off'
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className='col-lg-12'>
-                  <div className='col-6'>
-                    <label className='form-label fw-bold'>Username</label>
-                    <input
-                      placeholder='Solved at'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-
-                  <div className='col-6'>
-                    <label className='form-label fw-bold'>Reason</label>
-                    <input
-                      placeholder='Solved at'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-                </div>
-
-                <div className='col-lg-12'>
-                  <label className='form-label fw-bold'>Zone </label>
-                  <select className='form-select form-select-solid'>
-                    <option value='1'>All</option>
-                    <option value='2'>Katargam</option>
-                    <option value='3'>Abalkesh Soft</option>
-                    <option value='4'>Ajay Sulin</option>
-                  </select>
                 </div>
 
                 <div className='col-12 col-lg-12'>
@@ -859,28 +743,28 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
                     />
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className='row w-100 mx-0 mb-4 gy-4'>
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Created by</label>
-                <input type='text' className='form-control form-control-solid' />
-              </div>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Created by</label>
+                    <input type='text' className='form-control form-control-solid' />
+                  </div>
 
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Created at</label>
-                <input type='date' className='form-control form-control-solid' />
-              </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Created at</label>
+                    <input type='date' className='form-control form-control-solid' />
+                  </div>
 
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Updated by</label>
-                <input type='text' className='form-control form-control-solid' />
-              </div>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Updated by</label>
+                    <input type='text' className='form-control form-control-solid' />
+                  </div>
 
-              <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Updated at</label>
-                <input type='date' className='form-control form-control-solid' />
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Updated at</label>
+                    <input type='date' className='form-control form-control-solid' />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -897,4 +781,4 @@ const TablesWidget7: React.FC<Props> = ({className}) => {
   )
 }
 
-export {TablesWidget7}
+export {TablesWidget2}

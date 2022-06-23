@@ -14,7 +14,7 @@ type Props = {
 }
 
 const UserFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate, getDataAllType, getDataAllTypeRole} =ListPageData()
+  const {setItemIdForUpdate, itemIdForUpdate, getDataAllType, getDataAllTypeRole} = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
 
@@ -33,9 +33,8 @@ const UserFormModal: FC<Props> = ({category}) => {
   useEffect(() => {
     console.log('category', category)
     console.log('itemIdForUpdate&&&&&&&&&&&&&&&&&&&', itemIdForUpdate)
-  }, [category,itemIdForUpdate])
+  }, [category, itemIdForUpdate])
 
- 
   return (
     <>
       {/* begin::formik Add/Edit form */}
@@ -83,28 +82,27 @@ const UserFormModal: FC<Props> = ({category}) => {
         onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
           console.log(values, 'values===========')
-          values.zoneId = +(values.zoneId)
+          values.zoneId = +values.zoneId
           values.phone = values.phone.toString()
-       
+
           try {
             if (values.id) {
               console.log(values, 'valuesput')
-             
 
               // Edit Api Response
               let response = await Userservice.editUser(values)
               console.log(response, 'res======')
-              console.log("Enter EDIT.....................................................")
+              console.log('Enter EDIT.....................................................')
               navigation('/users')
               toast.success(` Data Updated Successfully`)
-              toast.dismiss('1s') 
+              toast.dismiss('1s')
               resetForm({})
               cancel()
             } else {
               console.log(values, 'postUser')
               let response = await Userservice.postUser(values)
               console.log(response, 'res=----------====')
-              console.log("Enter CREATE....................................................")
+              console.log('Enter CREATE....................................................')
               toast.success(` Data Added Successfully`)
               toast.dismiss('1s')
               navigation('/users')
@@ -120,8 +118,8 @@ const UserFormModal: FC<Props> = ({category}) => {
       >
         {(props) => (
           <>
-          <div className='mt-4'></div>
-            
+            <div className='mt-4'></div>
+
             <Form
               id='kt_modal_add_user_form'
               onKeyDown={onKeyDown}
@@ -294,47 +292,46 @@ const UserFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 {/* begin: input Password Filed */}
-               {itemIdForUpdate ==='new' ?
-                <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Password:</label>
-                    <input
-                      placeholder='Password'
-                      className='form-control form-control-lg form-control-solid'
-                      type='Password'
-                      value={props.values.password}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      name='password'
-                      autoComplete='off'
-                    />
-                    <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='password' />
+                {itemIdForUpdate === 'new' ? (
+                  <div className='row w-100 mx-0 mb-4 gy-4'>
+                    <div className='col-lg-6'>
+                      <label className='form-label fw-bold'>Password:</label>
+                      <input
+                        placeholder='Password'
+                        className='form-control form-control-lg form-control-solid'
+                        type='Password'
+                        value={props.values.password}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        name='password'
+                        autoComplete='off'
+                      />
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='password' />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* begin: input confirmPassword Filed */}
-                  <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Confirm Password:</label>
-                    <input
-                      placeholder='Confirm Password'
-                      className='form-control form-control-lg form-control-solid'
-                      value={props.values.confirmPassword}
-                      onChange={props.handleChange}
-                      name='confirmPassword'
-                      onBlur={props.handleBlur}
-                      type='password'
-                      autoComplete='off'
-                    />
-                    <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='confirmPassword' />
+                    {/* begin: input confirmPassword Filed */}
+                    <div className='col-lg-6'>
+                      <label className='form-label fw-bold'>Confirm Password:</label>
+                      <input
+                        placeholder='Confirm Password'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.confirmPassword}
+                        onChange={props.handleChange}
+                        name='confirmPassword'
+                        onBlur={props.handleBlur}
+                        type='password'
+                        autoComplete='off'
+                      />
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='confirmPassword' />
+                      </div>
                     </div>
                   </div>
-                </div>
-                 :null
-                }
+                ) : null}
               </div>
-             
+
               <div className='modal-footer border-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>
