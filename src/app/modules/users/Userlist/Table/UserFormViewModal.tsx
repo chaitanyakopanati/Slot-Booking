@@ -372,8 +372,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  navigate(`/users/form/${ category.data.id}`)
-                  // openEditModal(category.id)
+                  navigate(`/master/users/form/${ category.data.id}`)
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

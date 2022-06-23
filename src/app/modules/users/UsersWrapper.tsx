@@ -7,7 +7,7 @@ import UserPagination from './Userlist/Table/UserPagination'
 import UserTable from './Userlist/Table/UserTable'
 
 const Userlist = () => {
-  const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
+  const {viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
@@ -21,10 +21,6 @@ const Userlist = () => {
       </KTCard>
       {/* begin:: User Table-Pagination Component */}
       <UserPagination />
-      {/* end:: User Table-Pagination Component */}
-      {/* begin:: User Add/Edit Form Component */}
-      {itemIdForUpdate !== undefined && <UserFormWrapper />}
-      {/* end:: User Add/Edit Form Component */}
       {/* begin:: User View Form Component */}
       {viewIdForUpdate && <UserFormViewModal category={viewIdForUpdate} />}{' '}
       {/* end:: User View Form Component */}
