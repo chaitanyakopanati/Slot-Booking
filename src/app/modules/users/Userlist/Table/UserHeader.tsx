@@ -18,7 +18,6 @@ const UserHeader: FC<Props> = ({category}) => {
     setPageNo,
     setSearchText,
     searchText,
-    fetchAllUser,
     zoneId,
     setZoneId,
     getDataAllType,

@@ -175,7 +175,10 @@ const UserTable = () => {
                       {/* begin:: Edit Icon */}
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                        onClick={() => navigate(`form/${row.id}`)}
+                        onClick={() =>
+                          {
+                           navigate(`form/${row.id}`)}
+                          }
                         // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
