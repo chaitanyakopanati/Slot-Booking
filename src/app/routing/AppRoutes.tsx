@@ -24,7 +24,8 @@ const {PUBLIC_URL} = process.env
 const AppRoutes: FC = () => {
   const {currentUser,auth} = useAuth()
   return (
-    <React.StrictMode>
+    // <React.StrictMode>
+    <>
        <ToastContainer  />
     <BrowserRouter>
       <Routes>
@@ -45,7 +46,8 @@ const AppRoutes: FC = () => {
         </Route>
       </Routes>
     </BrowserRouter>
-    </React.StrictMode>
+    </>
+    // </React.StrictMode>
   )
 }
 

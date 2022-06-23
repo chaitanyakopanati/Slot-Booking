@@ -16,13 +16,14 @@ const UserTable = () => {
     pageNo,
     pageSize,
     setViewIdForUpdate,
-    // DataGetAllType,
+    zoneId,
+    roleId,
     fetchAllUser,
     searchText,
-    DataGetAllTypeZone,
-    DataGetAllTyperole,
     setPageNo,
     setSearchText,
+    DataGetAllTyperole,
+    DataGetAllTypeZone,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -71,27 +72,19 @@ const UserTable = () => {
     /* end:: Delete functionlity */
   }
 
-  // useEffect(() => {
-  //   DataGetAllType()
-  //   LoderActions(false)
-  // }, [])
-
   useEffect(() => {
+    DataGetAllTyperole()
     DataGetAllTypeZone()
   }, [])
 
   useEffect(() => {
     console.log('enter')
     fetchAllUser()
-  }, [pageNo, pageSize, searchText])
+  }, [pageNo, pageSize, searchText, zoneId, roleId])
 
   useEffect(() => {
     console.log('getData', getData)
   }, [getData])
-
-  useEffect(() => {
-    DataGetAllTyperole()
-  }, [])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
@@ -120,90 +113,98 @@ const UserTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            {getData?.map((row: getUserData, index: number) => {
-              // console.log("wertyuiop[",row);
-              
-              return (
-                <tr key={index}>
-                  {/* begin:: Index No */}
-                  <td>
-                    <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
-                      {DataWiseIndex + index + 1}
-                    </div>
-                  </td>
-                  {/* end:: Index No */}
+            {getData.length > 0 ? (
+              getData.map((row: getUserData, index: number) => {
+                // console.log("wertyuiop[",row);
 
-                  {/* begin:: Name Input */}
-                  <td>
-                    <div className='d-flex align-items-center'>
-                      <div className='d-flex justify-content-start flex-column'>
-                        <div className='text-dark fw-bold  fs-6'>{row?.fullName || '-'}</div>
+                return (
+                  <tr key={index}>
+                    {/* begin:: Index No */}
+                    <td>
+                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                        {DataWiseIndex + index + 1}
                       </div>
-                    </div>
-                  </td>
-                  {/* end:: Name Input */}
+                    </td>
+                    {/* end:: Index No */}
 
-                  {/* begin:: User Type Input username */}
-                  <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
-                  {/* end:: User Type Input  username */}
+                    {/* begin:: Name Input */}
+                    <td>
+                      <div className='d-flex align-items-center'>
+                        <div className='d-flex justify-content-start flex-column'>
+                          <div className='text-dark fw-bold  fs-6'>{row?.fullName || '-'}</div>
+                        </div>
+                      </div>
+                    </td>
+                    {/* end:: Name Input */}
 
-                  {/* begin:: User Type Input email */}
-                  <td className='text-dark fw-bold  fs-6'>{row.email || '-'}</td>
-                  {/* end:: User Type Input  email*/}
+                    {/* begin:: User Type Input username */}
+                    <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
+                    {/* end:: User Type Input  username */}
 
-                  {/* begin:: User Type Input phone*/}
-                  <td className='text-dark fw-bold  fs-6'>{row.phone || '-'}</td>
-                  {/* end:: User Type Input  phone*/}
+                    {/* begin:: User Type Input email */}
+                    <td className='text-dark fw-bold  fs-6'>{row.email || '-'}</td>
+                    {/* end:: User Type Input  email*/}
 
-                  {/* begin:: User Type Input zoneName */}
-                  <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
-                  {/* end:: User Type Input  zoneName*/}
+                    {/* begin:: User Type Input phone*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.phone || '-'}</td>
+                    {/* end:: User Type Input  phone*/}
 
-                  {/* begin:: User Type Input roleName*/}
-                  <td className='text-dark fw-bold  fs-6'>{row.roleName || '-'}</td>
-                  {/* end:: User Type Input  roleName*/}
+                    {/* begin:: User Type Input zoneName */}
+                    <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
+                    {/* end:: User Type Input  zoneName*/}
 
-                  {/* begin:: Action */}
-                  <td>
-                    {/* begin:: View Icon */}
-                    <a
-                      className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                     onClick={() => navigate(`viewform/${row.id}`)}
-                      // onClick={() => openViewModal(row.id)}
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen060.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    {/* end:: View Icon */}
+                    {/* begin:: User Type Input roleName*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.roleName || '-'}</td>
+                    {/* end:: User Type Input  roleName*/}
 
-                    {/* begin:: Edit Icon */}
-                    <button
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                     onClick={() => navigate(`form/${row.id}`)}
-                      // onClick={()=>openEditModal(row.id)}
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                    </button>
-                    {/* end:: Edit Icon */}
+                    {/* begin:: Action */}
+                    <td>
+                      {/* begin:: View Icon */}
+                      <a
+                        className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                        onClick={() => navigate(`viewform/${row.id}`)}
+                        // onClick={() => openViewModal(row.id)}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen060.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                      {/* end:: View Icon */}
 
-                    {/* begin:: Delete Icon */}
-                    <button
-                      className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => deleteFaults(row.id, row.username)}
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </button>
-                    {/* end:: Delete Icon */}
-                  </td>
-                  {/* end:: Action */}
-                </tr>
-              )
-            })}
+                      {/* begin:: Edit Icon */}
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                        onClick={() => navigate(`form/${row.id}`)}
+                        // onClick={()=>openEditModal(row.id)}
+                      >
+                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                      </button>
+                      {/* end:: Edit Icon */}
+
+                      {/* begin:: Delete Icon */}
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                        onClick={() => deleteFaults(row.id, row.username)}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen027.svg'
+                          className='svg-icon-3'
+                        />
+                      </button>
+                      {/* end:: Delete Icon */}
+                    </td>
+                    {/* end:: Action */}
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan={8}>
+                  <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+                </td>
+              </tr>
+            )}
           </tbody>
           {/* end::Table body */}
         </table>

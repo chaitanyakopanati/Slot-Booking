@@ -43,6 +43,7 @@ function UserView() {
   return (
     <div className='overflow-hidden'>
     <KTCard className='ms-5 me-5'>
+      
       {userDetails &&
       <UserFormViewModal category={userDetails} />
       }

@@ -127,8 +127,16 @@ const ListDataProvider: FC = ({children}) => {
         LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
+      }else{
+        setGetData([])
+        LoderActions(false)
+        setPageCount(0)
       }
-    } catch (error) {}
+    } catch (error) {
+
+    }finally{
+      LoderActions(false)
+    }
   }
   {
     /* end:: User:- getDynamicUser Api call */

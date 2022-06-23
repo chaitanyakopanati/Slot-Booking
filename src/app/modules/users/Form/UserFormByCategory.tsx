@@ -18,7 +18,7 @@ const UserFormByCategory = () => {
 
   useEffect(() => {
     console.log("params",id)
-    if(id==='add'){
+    if(id==='new'){
       setItemIdForUpdate(null)
     }else{
       setItemIdForUpdate(id)

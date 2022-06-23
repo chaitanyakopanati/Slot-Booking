@@ -12,7 +12,7 @@ const UserFormHeader = () => {
     <>
       <div className='modal-header'>
         {/* begin::Modal title */}
-        <h2 className='fw-bolder'>{itemIdForUpdate!=='new' ? 'Edit User' : 'Create User'}</h2>
+        <h2 className='fw-bolder'>{itemIdForUpdate!=='add' ? 'Edit User' : 'Create User'}</h2>
         {/* end::Modal title */}
       </div>
     </>
