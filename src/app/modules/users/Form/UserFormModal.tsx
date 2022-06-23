@@ -131,10 +131,8 @@ const UserFormModal: FC<Props> = ({category}) => {
       >
         {(props) => (
           <>
-            {/* {console.log(category, 'category')} */}
-            <div className='from4'>
-              <button onClick={() => navigation(-1)}>Back</button>
-            </div>
+          <div className='mt-4'></div>
+            
             <Form
               id='kt_modal_add_user_form'
               onKeyDown={onKeyDown}

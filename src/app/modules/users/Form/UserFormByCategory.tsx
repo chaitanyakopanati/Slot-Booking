@@ -1,14 +1,29 @@
 import {useQuery} from 'react-query'
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {isNotEmpty} from '../../../../_metronic/helpers'
 import { ListPageData } from '../UserContext'
 import Userservice from '../helperUser/ApiDatarequestUser'
 import UserFormModal from './UserFormModal'
+import { useParams } from 'react-router-dom'
 
 
 const UserFormByCategory = () => {
-  const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+
+  let {id} = useParams()
+  
+  
+  const [itemIdForUpdate, setItemIdForUpdate] = useState<undefined | null | string>(null)
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+
+
+  useEffect(() => {
+    console.log("params",id)
+    if(id==='add'){
+      setItemIdForUpdate(null)
+    }else{
+      setItemIdForUpdate(id)
+    }
+  }, [id])
 
   {
     /* begin:: Api call GetUserTypeById */
