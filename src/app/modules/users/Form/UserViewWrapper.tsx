@@ -1,23 +1,65 @@
-import {ListPageData} from '../UserContext'
+import { useEffect } from 'react'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { isNotEmpty, KTCard } from '../../../../_metronic/helpers'
+import UserFormHeader from '../component/UserFormHeader'
+import Userservice from '../helperUser/ApiDatarequestUser'
+import {ListDataProvider, ListPageData} from '../UserContext'
 import UserFormViewModal from '../Userlist/Table/UserFormViewModal'
 import UserFormWrapper from './UserFormWrapper'
 
-function UserViewWrapper() {
-  const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
-  console.log(itemIdForUpdate,"itemIdForUpdate");
-  console.log(viewIdForUpdate,"viewIdForUpdate");
+function UserView() {
+  let {id} = useParams()
+  const {viewIdForUpdate,setViewIdForUpdate} = ListPageData()
+  const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
+  useEffect(() => {
+    console.log("id",id)
+    if(id){
+      setViewIdForUpdate(id)
+    }
+  }, [id])
+
+  useEffect(() => {
+    console.log("viewIdForUpdate",viewIdForUpdate)
+  }, [viewIdForUpdate])
+  
+
+  const {data: userDetails, error} = useQuery(
+    `ViewUserbyId-${viewIdForUpdate}`,
+    () => {
+      return Userservice.GetUserTypeById(viewIdForUpdate)
+    },
+    {
+      cacheTime: 0,
+      enabled: enabledQuery,
+      onError: (err) => {
+        setViewIdForUpdate(undefined)
+        console.error(err)
+      },
+    }
+  )
+  
   
   return (
     <div className='overflow-hidden'>
-      <h1>hello</h1>
-      <h1>hello</h1>
-      {/* begin:: Fault Add/Edit Form Component */}
-      {/* {itemIdForUpdate == undefined && <UserFormWrapper />} */}
-      {/* end:: Fault Add/Edit Form Component */}
-      {/* begin:: Fault View Form Component */}
-      {viewIdForUpdate && <UserFormViewModal category={viewIdForUpdate} />}{' '}
-      {/* end:: Fault View Form Component */}
-    </div>
+    <KTCard className='ms-5 me-5'>
+      {userDetails &&
+      <UserFormViewModal category={userDetails} />
+      }
+      
+    </KTCard>
+  </div>
+  )
+}
+
+
+
+
+let UserViewWrapper = () =>{
+  return(
+    <ListDataProvider>
+      <UserView />
+    </ListDataProvider>
   )
 }
 

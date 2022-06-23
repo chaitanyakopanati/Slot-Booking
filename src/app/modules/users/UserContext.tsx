@@ -24,8 +24,8 @@ export interface ComplaintDataContextModel {
   setFilterShow: (filterShow: boolean) => void
   setShowPasswordFields: (filterShow: boolean) => void
   itemIdForUpdate: ID
-  viewIdForUpdate: ViewForm
-  setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
+  viewIdForUpdate: ID
+  setViewIdForUpdate: (_setViewIdForUpdate: ID) => void
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
   searchText: string
   searchByUsername: string
@@ -63,7 +63,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
-  setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
+  setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
   fetchAllUser: () => {},
   DataGetAllTypeZone: () => {},
   DataGetAllTyperole: () => {},
@@ -73,7 +73,7 @@ const ListDataProvider: FC = ({children}) => {
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [getDataAllTypeRole, setGetDataAllTypeRole] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
-  const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
+  const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
   const [showPasswordFields,setShowPasswordFields] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
