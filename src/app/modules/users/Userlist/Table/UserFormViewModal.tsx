@@ -19,6 +19,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
   const {
     setItemIdForUpdate,
     setViewIdForUpdate,
+    viewIdForUpdate,
     itemIdForUpdate,
     getDataAllType,
     getDataAllTypeRole,
@@ -29,6 +30,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
   const [initialvalues, setInitialvalues] = useState<any>({
     ...category,
     id: category.data?.id,
+    fullName: category.data?.fullName || '',
     firstname: category.data?.firstname || '',
     lastname: category.data?.lastname || '',
     username: category.data?.username || '',
@@ -38,10 +40,10 @@ const UserFormViewModal: FC<Props> = ({category}) => {
     zoneName: category.data?.zoneName || '',
     roleId: category.data?.roleId || '',
     roleName: category.data?.roleName || '',
-    createdby: category.createdByName || '',
-    modifyby: category.modifyByName || '',
-    createdAt: moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
-    modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+    createdby: category.data.createdByName || '',
+    modifyby: category.data.modifyByName || '',
+    createdAt: moment(category.data.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+    modifyAt: moment(category.data.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
   })
 
   const openEditModal = (id: any) => {
@@ -70,6 +72,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
+                  console.log('tttttttttttttttttttttttttttt', category)
                   console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/master/users/form/${category.data.id}`)
                   // openEditModal(category.id)
@@ -195,6 +198,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
               type='text'
               value={initialvalues.createdby}
               name='createdby'
+              placeholder='CreatedBy'
               autoComplete='off'
               disabled
             />
@@ -209,6 +213,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
               type='text'
               value={initialvalues.modifyby}
               name='modifyby'
+              placeholder='UpdatedBy'
               autoComplete='off'
               disabled
             />
@@ -225,6 +230,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
               type='text'
               value={initialvalues.createdAt}
               name='createdAt'
+              placeholder='CreatedAt'
               autoComplete='off'
               disabled
             />
@@ -239,6 +245,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
               type='text'
               value={initialvalues.modifyAt}
               name='modifyAt'
+              placeholder='UpdatedAt'
               autoComplete='off'
               disabled
             />

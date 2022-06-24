@@ -153,8 +153,13 @@ const UserFormModal: FC<Props> = ({category}) => {
               cancel()
             } else {
               let response = await Userservice.postUser(values)
+              console.log('Add User*****************', response)
 
-              toast.success(` Data Added Successfully`)
+              if (response.success === false) {
+                toast.error(response.message)
+              } else {
+                toast.success(` Data Added Successfully`)
+              }
               toast.dismiss('1s')
               navigation('/master/users')
               resetForm({})
@@ -393,7 +398,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 {/* begin::create/update Button */}
                 <CustomTooltip title='Submit form'>
                   <button type='submit' className='btn btn-primary'>
-                    {itemIdForUpdate!=='add' ? 'Update' : 'Create'}
+                    {itemIdForUpdate !== 'add' ? 'Update' : 'Create'}
                   </button>
                 </CustomTooltip>
                 {/* end::create/update Button */}
