@@ -41,7 +41,7 @@ export interface ComplaintDataContextModel {
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   getDataComplaint: [],
-  getDataCreatedByAllType:[],
+  getDataCreatedByAllType: [],
   createdById: 0,
   setCreatedById: () => {},
   pageNo: 0,
@@ -127,6 +127,7 @@ const ListDataProvider: FC = ({children}) => {
         console.log(response)
         setGetData(response.data)
         setPageCount(response?.pages)
+        setTotalData(response.TotalRecords)
       }
     } catch (error) {
       LoderActions(false)
@@ -138,11 +139,10 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Complaint Type:- getDynamicComplaints Api call */
   }
 
-  let getDataComplaintAllType = async() =>{
+  let getDataComplaintAllType = async () => {
     let response: GetAllComplaintApi = await Complaintservice.getComplaints()
-    console.log(response,"responseppppppp");
+    console.log(response, 'responseppppppp')
     setgetDataComplaint(response.data)
-    
   }
 
   const value: ComplaintDataContextModel = {

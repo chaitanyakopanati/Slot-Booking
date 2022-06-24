@@ -10,6 +10,8 @@ export interface ComplaintDataContextModel {
   filterShow: boolean
   showPasswordFields: boolean
   pageNo: number
+  totalData: number
+  setTotalData: Dispatch<SetStateAction<number>>
   setPageNo: Dispatch<SetStateAction<number>>
   setZoneId: Dispatch<SetStateAction<number>>
   setRoleId: Dispatch<SetStateAction<string>>
@@ -46,6 +48,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   createdById: 0,
   setPageCount: () => {},
   setCreatedById: () => {},
+  totalData: 0,
+  setTotalData: () => {},
   pageSize: 0,
   zoneId: 0,
   roleId: '',
@@ -75,9 +79,10 @@ const ListDataProvider: FC = ({children}) => {
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
-  const [showPasswordFields,setShowPasswordFields] = useState<boolean>(false)
+  const [showPasswordFields, setShowPasswordFields] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
+  const [totalData, setTotalData] = useState<number>(100)
   const [pageCount, setPageCount] = useState<number>(0)
   const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
@@ -127,14 +132,14 @@ const ListDataProvider: FC = ({children}) => {
         LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
-      }else{
+        setTotalData(response.TotalRecords)
+      } else {
         setGetData([])
         LoderActions(false)
         setPageCount(0)
       }
     } catch (error) {
-
-    }finally{
+    } finally {
       LoderActions(false)
     }
   }
@@ -152,8 +157,8 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload,';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;');
-        
+        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+
         setGetDataAllType(payload.data)
       }
     } catch (error) {
@@ -176,8 +181,7 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeRole(payload.data)
-        console.log(payload.data,'oooooooooooo');
-        
+        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
@@ -219,6 +223,8 @@ const ListDataProvider: FC = ({children}) => {
     DataGetAllTypeZone,
     DataGetAllTyperole,
     getDataAllTypeRole,
+    totalData,
+    setTotalData,
   }
   return (
     <>

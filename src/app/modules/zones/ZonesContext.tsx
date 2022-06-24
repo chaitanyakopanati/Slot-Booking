@@ -10,6 +10,8 @@ export interface ComplaintDataContextModel {
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  totalData: number
+  setTotalData: Dispatch<SetStateAction<number>>
   createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
@@ -36,6 +38,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setPageCount: () => {},
   setCreatedById: () => {},
   pageSize: 0,
+  totalData: 0,
+  setTotalData: () => {},
   setPageSize: () => {},
   searchText: '',
   setSearchText: () => {},
@@ -59,6 +63,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [totalData, setTotalData] = useState<number>(100)
   const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   let {LoderActions, open} = useLoader()
@@ -82,6 +87,7 @@ const ListDataProvider: FC = ({children}) => {
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
+        setTotalData(response.TotalRecords)
       }
     } catch (error) {}
   }
@@ -114,6 +120,8 @@ const ListDataProvider: FC = ({children}) => {
     getDataAllType,
     pageNo,
     pageSize,
+    totalData,
+    setTotalData,
     searchText,
     setPageSize,
     setPageNo,

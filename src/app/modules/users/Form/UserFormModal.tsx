@@ -13,6 +13,8 @@ type Props = {
   category: any
 }
 
+const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
+
 let validationSchemaNewForm = Yup.object({
   firstname: Yup.string()
     .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
@@ -32,7 +34,16 @@ let validationSchemaNewForm = Yup.object({
     .required('This field is required'),
   zoneId: Yup.string().required('This fied is required'),
   roleId: Yup.string().required('This fielld is required'),
-  password: Yup.string().required('This field is required'),
+  // password: Yup.string().required('This field is required'),
+  password: Yup.string()
+    .label('Password')
+    .required('This field is required')
+    .min(8, 'Seems a bit short(Min 8 characters)...')
+    .max(24, 'Please try a shorter password(Max 24 characters)...).')
+    .matches(
+      passwordRegExp,
+      'Password should Have 1 Uppercase,1 Lowercase,1 digit,1 special character'
+    ),
   confirmPassword: Yup.string().when('password', {
     is: (val: any) => (val && val.length > 0 ? true : false),
     then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
@@ -237,22 +248,40 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                 {/* begin: input username Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Username :</label>
-                    <input
-                      placeholder='username'
-                      className='form-control form-control-lg form-control-solid'
-                      value={props.values.username}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      type='text'
-                      name='username'
-                      autoComplete='off'
-                    />
-                    <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='username' />
+                  {itemIdForUpdate === 'add' ? (
+                    <div className='col-lg-6'>
+                      <label className='form-label fw-bold'>Username :</label>
+                      <input
+                        placeholder='username'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.username}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        type='text'
+                        name='username'
+                        autoComplete='off'
+                      />
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='username' />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className='col-lg-6'>
+                      <label className='form-label fw-bold'>Username :</label>
+                      <input
+                        placeholder='username'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.username}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        type='text'
+                        name='username'
+                        autoComplete='off'
+                        disabled
+                        readOnly
+                      />
+                    </div>
+                  )}
 
                   {/* begin: input email Filed */}
                   <div className='col-lg-6'>

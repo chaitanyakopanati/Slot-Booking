@@ -17,6 +17,8 @@ export interface ComplaintDataContextModel {
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
   pageCount: number
+  totalData: number
+  setTotalData: Dispatch<SetStateAction<number>>
   createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
@@ -43,6 +45,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setPageCount: () => {},
   setCreatedById: () => {},
   pageSize: 0,
+  totalData: 0,
+  setTotalData: () => {},
   setPageSize: () => {},
   searchText: '',
   setSearchText: () => {},
@@ -66,6 +70,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [totalData, setTotalData] = useState<number>(100)
   const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   let {LoderActions} = useLoader()
@@ -90,6 +95,7 @@ const ListDataProvider: FC = ({children}) => {
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
+        setTotalData(response.TotalRecords)
       }
     } catch (error) {
       LoderActions(false)
@@ -99,9 +105,9 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Company:- getDynamicCompanies Api call */
   }
 
-  let getDataCompaniesAllType = async() =>{
+  let getDataCompaniesAllType = async () => {
     let response: GetAllComapniesApi = await Zoneservice.getCompanies()
-    console.log(response,"getCompanies======++++");
+    console.log(response, 'getCompanies======++++')
     setGetDataCompanies(response.data)
   }
 
@@ -123,6 +129,8 @@ const ListDataProvider: FC = ({children}) => {
     setPageNo,
     pageCount,
     setPageCount,
+    totalData,
+    setTotalData,
     setSearchText,
     fetchAllCompanies,
     createdById,
