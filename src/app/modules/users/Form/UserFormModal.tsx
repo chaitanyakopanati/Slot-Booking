@@ -144,9 +144,15 @@ const UserFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               // Edit Api Response
               let response = await Userservice.editUser(values)
+              console.log('Edit User*****************', response)
 
+              if (response.success === false) {
+                toast.error(response.message)
+              } else {
+                toast.success(`Data Updated Successfully`)
+              }
               navigation('/master/users')
-              toast.success(` Data Updated Successfully`)
+              // toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
 
               resetForm({})
