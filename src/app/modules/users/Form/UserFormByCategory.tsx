@@ -14,30 +14,28 @@ const UserFormByCategory = () => {
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   useEffect(() => {
-    console.log('params', id)
-    if (id === 'new') {
-      setItemIdForUpdate(null)
+    
+    if (id === 'add') {
+      setItemIdForUpdate(id)
     } else {
       setItemIdForUpdate(id)
     }
   }, [id])
 
-  {
-    /* begin:: Api call GetUserTypeById */
-  }
+
+
+
   const {data: category, error} = useQuery(
     `GetUserbyId-${itemIdForUpdate}`,
     () => {
-      console.log(itemIdForUpdate, 'itemIdForUpdate=--------===')
-
       return Userservice.GetUserTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery,
+      enabled: enabledQuery && id !== 'add',
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
+        
       },
     }
   )
@@ -46,23 +44,18 @@ const UserFormByCategory = () => {
   }
 
   useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
+    
+    console.log('itemIdForUpdate****', itemIdForUpdate)
+  }, [category,itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
   }
-  if (!itemIdForUpdate) {
+  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <UserFormModal category={{ID: undefined}} />
   }
-  {
-    /* end::Add-Form Model functionality */
-  }
 
-  {
-    /* begin::Edit-Form Model functionality */
-  }
+
   if (!error && category) {
     return <UserFormModal category={category} />
   }
