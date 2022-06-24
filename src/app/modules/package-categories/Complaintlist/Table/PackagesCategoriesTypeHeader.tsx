@@ -40,7 +40,8 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     getDataPackageCategoryDataAllType()
-  }, [])
+    fetchAllPackagecategories()
+  }, [createdById])
 
   {
     /* begin::Created by Filter Map Function */

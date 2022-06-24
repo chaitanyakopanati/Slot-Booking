@@ -28,6 +28,7 @@ const UserHeader: FC<Props> = ({category}) => {
     setSearchByUsername,
     createdById,
     setCreatedById,
+    fetchAllUser
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -89,9 +90,9 @@ const UserHeader: FC<Props> = ({category}) => {
     /* End::Role */
   }
 
-  // useEffect(() => {
-  //   fetchAllUser()
-  // }, [searchText, zoneId, roleId, searchByUsername])
+  useEffect(() => {
+    fetchAllUser()
+  }, [searchText, zoneId, roleId, searchByUsername,createdById])
 
   {
     /* begin::Created by Filter Map Function */

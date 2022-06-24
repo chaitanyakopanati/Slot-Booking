@@ -393,7 +393,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                         onChange={props.handleChange}
                         onBlur={props.handleBlur}
                         name='password'
-                        autoComplete='off'
+                        // autoComplete='off'
                       />
                       <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='password' />
@@ -410,8 +410,8 @@ const UserFormModal: FC<Props> = ({category}) => {
                         onChange={props.handleChange}
                         name='confirmPassword'
                         onBlur={props.handleBlur}
-                        type='password'
-                        autoComplete='off'
+                         type='password'
+                        // autoComplete='off'
                       />
                       <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='confirmPassword' />

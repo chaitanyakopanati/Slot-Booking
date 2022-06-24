@@ -20,6 +20,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
     setCreatedById,
     getDataComplaintAllType,
     getDataComplaint,
+    fetchAllComplaint
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -51,6 +52,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     getDataComplaintAllType()
+    fetchAllComplaint()
   }, [createdById])
 
   {

@@ -20,6 +20,7 @@ const FaultsHeader: FC<Props> = ({category}) => {
     createdById,
     setCreatedById,
     getDataFaults,
+    fetchAllFault
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -51,6 +52,7 @@ const FaultsHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     getDataFaultsAllType()
+    fetchAllFault()
   }, [searchText, createdById])
 
   {
