@@ -10,11 +10,13 @@ export interface ComplaintDataContextModel {
   filterShow: boolean
   pageNo: number
   setPageNo: Dispatch<SetStateAction<number>>
+  setTotalData: Dispatch<SetStateAction<number>>
   pageCount: number
   createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
+  totalData: number
   setPageSize: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
   itemIdForUpdate: ID
@@ -33,8 +35,10 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
+  totalData: 0,
   createdById: 0,
   setPageCount: () => {},
+  setTotalData: () => {},
   setCreatedById: () => {},
   pageSize: 0,
   setPageSize: () => {},
@@ -59,6 +63,7 @@ const ListDataProvider: FC = ({children}) => {
   const [filterShow, setFilterShow] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
+  const [totalData, setTotalData] = useState<number>(100)
   const [pageCount, setPageCount] = useState<number>(0)
   const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
@@ -80,7 +85,7 @@ const ListDataProvider: FC = ({children}) => {
 
       if (response.success == true) {
         LoderActions(false)
-
+        setTotalData(response.TotalRecords)
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
@@ -107,9 +112,11 @@ const ListDataProvider: FC = ({children}) => {
     getDataBankAllType,
     getDataBankType ,
     itemIdForUpdate,
+    setTotalData,
     setItemIdForUpdate,
     filterShow,
     setFilterShow,
+    totalData,
     viewIdForUpdate,
     setViewIdForUpdate,
     getDataAllType,

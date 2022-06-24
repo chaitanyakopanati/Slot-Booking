@@ -14,7 +14,6 @@ const UserFormByCategory = () => {
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   useEffect(() => {
-    
     if (id === 'add') {
       setItemIdForUpdate(id)
     } else {

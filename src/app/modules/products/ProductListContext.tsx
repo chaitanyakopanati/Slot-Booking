@@ -120,6 +120,7 @@ const ListDataProvider: FC = ({children}) => {
         LoderActions(false)
         console.log(response)
         setGetData(response.data)
+        setTotalData(response.TotalRecords)
         setPageCount(response?.pages)
       }
     } catch (error) {

@@ -2,7 +2,7 @@ import ReactPaginate from 'react-paginate'
 import {ListPageData} from '../../PackagesCategoriesContext'
 
 const PackagescategoriesPagination = () => {
-  const {setPageNo, setPageSize, pageCount, getData} = ListPageData()
+  const {setPageNo, setPageSize, pageCount, getData, pageNo, pageSize, totalData} = ListPageData()
 
   const handlepageclick = async (data: any) => {
     const currantPage = (await data.selected) + 1
@@ -60,10 +60,15 @@ const PackagescategoriesPagination = () => {
             {/* end:: Page Index */}
 
             {/* begin:: Page Data Result */}
-            <div className='form-label fw-bold px-4'>
-              {/* Showing {pageSize * pageNo + 1}-{lastIndex} of {totalData} entries */}
-              Showing 1-10 of 100 entries
-            </div>
+            {pageNo * pageSize <= totalData ? (
+              <div className='form-label fw-bold px-4'>
+                Showing {(pageNo - 1) * pageSize + 1}-{pageNo * pageSize} of of {totalData} entries
+              </div>
+            ) : (
+              <div className='form-label fw-bold px-4'>
+                Showing {(pageNo - 1) * pageSize + 1}-{totalData} of of {totalData} entries
+              </div>
+            )}
             {/* end:: Page Data Result */}
           </div>
         </div>
