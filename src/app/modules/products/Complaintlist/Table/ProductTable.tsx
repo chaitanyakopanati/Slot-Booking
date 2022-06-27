@@ -34,13 +34,13 @@ const ProductTable = () => {
   }
 
   useEffect(() => {
-    DataGetApiProduct()
+    // DataGetApiProduct()
     LoderActions(false)
   }, [])
 
-  useEffect(() => {
-    fetchAllProduct()
-  }, [pageNo, pageSize, searchText])
+  // useEffect(() => {
+  //   fetchAllProduct()
+  // }, [pageNo, pageSize, searchText])
 
   const handleSearchChange = (e: any) => {
     setPageNo(1)
@@ -271,11 +271,11 @@ const ProductTable = () => {
               )
             })
           ) : (
-            <tr>
-              <td colSpan={8}>
+            <div>
+              <div>
                 <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
         </div>
       </div>

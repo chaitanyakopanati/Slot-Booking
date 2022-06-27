@@ -275,11 +275,11 @@ const ComplaintTypeTable = () => {
               )
             })
           ) : (
-            <tr>
-              <td colSpan={8}>
+            <div>
+              <div>
                 <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
         </div>
       </div>

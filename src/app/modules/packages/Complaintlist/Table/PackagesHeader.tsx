@@ -12,7 +12,9 @@ const PackagesHeader: FC<Props> = ({category}) => {
   const {
     setItemIdForUpdate,
     setFilterShow,
+    pageNo,
     setPageNo,
+    pageSize,
     filterShow,
     setSearchText,
     searchText,
@@ -53,7 +55,7 @@ const PackagesHeader: FC<Props> = ({category}) => {
   useEffect(() => {
     fetchAllBank()
     getPackagesAllData()
-  }, [searchText, createdById])
+  }, [pageNo, pageSize, searchText, createdById])
 
   {
     /* begin::Created by Filter Map Function */

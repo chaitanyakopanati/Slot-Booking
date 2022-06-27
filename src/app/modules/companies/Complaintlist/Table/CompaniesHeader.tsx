@@ -12,6 +12,8 @@ const CompaniesHeader: FC<Props> = ({category}) => {
   const {
     setItemIdForUpdate,
     setFilterShow,
+    pageSize,
+    pageNo,
     setPageNo,
     filterShow,
     setSearchText,
@@ -53,7 +55,7 @@ const CompaniesHeader: FC<Props> = ({category}) => {
   useEffect(() => {
     fetchAllCompanies()
     getDataCompaniesAllType()
-  }, [searchText, createdById])
+  }, [pageNo, pageSize, searchText, createdById])
 
   {
     /* begin::Created by Filter Map Function*/
@@ -183,7 +185,7 @@ const CompaniesHeader: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Created by:</label>
                     <select
                       className='form-select form-select-solid'
-                      value={searchText}
+                      value={createdById}
                       onChange={handleCreatedBychange}
                     >
                       <option value=''>Select Created By</option>

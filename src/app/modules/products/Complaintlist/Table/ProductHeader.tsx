@@ -16,6 +16,8 @@ const ProductHeader: FC<Props> = ({category}) => {
     filterShow,
     setSearchText,
     searchText,
+    pageNo,
+    pageSize,
     setPageNo,
     createdById,
     setCreatedById,
@@ -54,7 +56,7 @@ const ProductHeader: FC<Props> = ({category}) => {
   useEffect(() => {
     fetchAllProduct()
     getDataProductAllType()
-  }, [createdById])
+  }, [pageNo, pageSize, searchText, createdById])
 
   {
     /* begin::Created by Filter Map Function */

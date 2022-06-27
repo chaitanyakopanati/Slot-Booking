@@ -16,7 +16,9 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
     filterShow,
     setSearchText,
     searchText,
+    pageNo,
     setPageNo,
+    pageSize,
     getDataPackageCategoryDataAllType,
     createdById,
     setcreatedById,
@@ -41,7 +43,7 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
   useEffect(() => {
     getDataPackageCategoryDataAllType()
     fetchAllPackagecategories()
-  }, [createdById])
+  }, [pageNo, pageSize, searchText, createdById])
 
   {
     /* begin::Created by Filter Map Function */

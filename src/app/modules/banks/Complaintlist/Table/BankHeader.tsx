@@ -12,6 +12,8 @@ const BankHeader: FC<Props> = ({category}) => {
   const {
     setItemIdForUpdate,
     setFilterShow,
+    pageSize,
+    pageNo,
     setPageNo,
     filterShow,
     setSearchText,
@@ -23,35 +25,47 @@ const BankHeader: FC<Props> = ({category}) => {
     getDataBankAllType,
   } = ListPageData()
 
-    {/* begin::Open Modal*/}
+  {
+    /* begin::Open Modal*/
+  }
   const openAddCategoryModal = () => {
     setItemIdForUpdate(null)
   }
-    {/* End::Open Modal*/}
+  {
+    /* End::Open Modal*/
+  }
 
-
-    {/* begin::Search modal*/}
+  {
+    /* begin::Search modal*/
+  }
   const handlesearchange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
     setSearchText(e.target.value)
   }
-    {/* End::Search modal*/}
+  {
+    /* End::Search modal*/
+  }
 
-    {/* begin::Created by*/}
+  {
+    /* begin::Created by*/
+  }
   const handlCreatedBychange = (e: any) => {
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }
-    {/* End::Created by*/}
-
+  {
+    /* End::Created by*/
+  }
 
   useEffect(() => {
     getDataBankAllType()
     fetchAllBank()
-  }, [searchText, createdById])
+  }, [pageNo, pageSize, searchText, createdById])
 
-    {/* begin::Created by Filter Map Function*/}
+  {
+    /* begin::Created by Filter Map Function*/
+  }
   function uniqueBy(property: any) {
     let seen = Object.create(null)
     return function (item: any) {
@@ -70,12 +84,13 @@ const BankHeader: FC<Props> = ({category}) => {
       name: product.createdByName,
     }
   })
-    {/* End::Created by Filter Map Function*/}
-
+  {
+    /* End::Created by Filter Map Function*/
+  }
 
   return (
     <>
-    {/* begin::formik Form */}
+      {/* begin::formik Form */}
       <Formik
         initialValues={{
           createdById: category.data?.createdById || '',
@@ -193,8 +208,7 @@ const BankHeader: FC<Props> = ({category}) => {
           </form>
         )}
       </Formik>
-    {/* End::formik Form */}
-
+      {/* End::formik Form */}
     </>
   )
 }

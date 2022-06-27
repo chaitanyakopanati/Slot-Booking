@@ -74,10 +74,10 @@ const BankTable = () => {
     LoderActions(false)
   }, [])
 
-  useEffect(() => {
-    console.log('enter')
-    fetchAllBank()
-  }, [pageNo, pageSize, searchText])
+  // useEffect(() => {
+  //   console.log('enter')
+  //   fetchAllBank()
+  // }, [pageNo, pageSize, searchText])
 
   useEffect(() => {
     console.log('getData', getData)
@@ -263,11 +263,11 @@ const BankTable = () => {
               )
             })
           ) : (
-            <tr>
-              <td colSpan={8}>
+            <div>
+              <div>
                 <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
-              </td>
-            </tr>
+              </div>
+            </div>
           )}
         </div>
       </div>
