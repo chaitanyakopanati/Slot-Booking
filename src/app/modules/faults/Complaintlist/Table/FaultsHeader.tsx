@@ -53,12 +53,11 @@ const FaultsHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
+    getDataFaultsAllType()
     fetchAllFault()
   }, [pageNo, pageSize, searchText, createdById])
 
-  useEffect(() =>{
-    getDataFaultsAllType()
-  },[])
+
 
   {
     /* begin::Created by Filter Map Function*/

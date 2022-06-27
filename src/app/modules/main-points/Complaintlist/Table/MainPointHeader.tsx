@@ -53,13 +53,11 @@ const MainPointHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-  
+    fetchAllMainPoint()
     getDataMainPointAllType()
   }, [pageNo, pageSize, searchText, createdById])
 
-  useEffect(() =>{
-    fetchAllMainPoint()
-  },[])
+ 
 
   {
     /* begin::Created by Filter Map Function */

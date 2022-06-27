@@ -53,12 +53,10 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
+    getDataComplaintAllType()
     fetchAllComplaint()
   }, [pageNo, pageSize, searchText, createdById])
 
-  useEffect(() => {
-    getDataComplaintAllType()
-  }, [])
   {
     /* begin::Created by Filter Map Function*/
   }

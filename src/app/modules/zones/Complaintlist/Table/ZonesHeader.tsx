@@ -53,12 +53,11 @@ const ZonesHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
+    fetchAllZone()
     getZonesAllTypeData()
   }, [pageNo, pageSize, searchText, createdById])
 
-  useEffect(() =>{
-    fetchAllZone()
-  },[])
+
 
   {
     /* begin::Created by Filter Map Function */
