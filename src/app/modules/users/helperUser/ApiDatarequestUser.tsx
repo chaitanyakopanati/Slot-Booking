@@ -125,6 +125,7 @@ const Userservice = {
   postUser,
   deleteUser,
   editUser,
+  // getUser,
   GetUserTypeById,
   getZoneTypes,
   getroleTypes,

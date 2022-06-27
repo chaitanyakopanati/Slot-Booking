@@ -45,6 +45,7 @@ const MainPointHeader: FC<Props> = ({category}) => {
     /* begin::CreatedBy */
   }
   const handleCratedBychange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setcreatedById(e.target.value)
   }

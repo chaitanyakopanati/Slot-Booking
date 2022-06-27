@@ -96,7 +96,7 @@ const ListDataProvider: FC = ({children}) => {
   // const DataGetAllType = async () => {
   //   LoderActions(true)
   //   try {
-  //     let payload: GetAllData = await Userservice.getFaultsTypes()
+  //     let payload: GetAllData = await Userservice.getUser()
   //     //
   //     if (payload.success == true) {
   //       setGetDataAllType(payload.data)

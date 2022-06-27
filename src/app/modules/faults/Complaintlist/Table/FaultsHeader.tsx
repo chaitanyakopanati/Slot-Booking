@@ -45,6 +45,7 @@ const FaultsHeader: FC<Props> = ({category}) => {
     /* begin::CreatedBy */
   }
   const handleCreatedByChange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }

@@ -36,6 +36,7 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
   }
 
   const handleCreatedBychange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setcreatedById(e.target.value)
   }

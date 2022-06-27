@@ -45,6 +45,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
     /* begin::CreatedBy */
   }
   const handleCreatedByChange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }
@@ -90,7 +91,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
       <Formik
         initialValues={{
           createdById: category.data?.createdById || '',
-          createdByName: category.data?.createdByName || '',
+          createdByName: category.data?.createdById || '',
         }}
         validationSchema={Yup.object({
           createdById: Yup.number().required('This fied is required'),
@@ -189,6 +190,8 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
                     >
                       <option value=''>Select Created By</option>
                       {result.map((TypeData, index) => {
+                        console.log("pppppppppp",TypeData);
+                        
                         return (
                           <option key={index} value={TypeData?.id}>
                             {TypeData?.name}

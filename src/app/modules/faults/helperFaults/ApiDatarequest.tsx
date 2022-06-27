@@ -33,7 +33,7 @@ const postFaults = (obj: postlistData) => {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
     createdby: 1,
-    Updatedby: 1,
+  
   })
 }
 {

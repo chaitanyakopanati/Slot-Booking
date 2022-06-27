@@ -111,6 +111,7 @@ export function Login() {
         <input
           type='password'
           autoComplete='off'
+          placeholder='password'
           {...formik.getFieldProps('password')}
           className={clsx(
             'form-control form-control-lg form-control-solid',
@@ -121,6 +122,7 @@ export function Login() {
               'is-valid': formik.touched.password && !formik.errors.password,
             }
           )}
+
         />
         {formik.touched.password && formik.errors.password && (
           <div className='fv-plugins-message-container'>

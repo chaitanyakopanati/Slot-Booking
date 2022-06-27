@@ -51,6 +51,7 @@ const BankHeader: FC<Props> = ({category}) => {
     /* begin::Created by*/
   }
   const handlCreatedBychange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }

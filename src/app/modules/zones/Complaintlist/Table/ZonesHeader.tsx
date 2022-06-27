@@ -45,6 +45,7 @@ const ZonesHeader: FC<Props> = ({category}) => {
     /* begin::CreatedBy */
   }
   const handleCratedBychange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }
@@ -56,8 +57,6 @@ const ZonesHeader: FC<Props> = ({category}) => {
     fetchAllZone()
     getZonesAllTypeData()
   }, [pageNo, pageSize, searchText, createdById])
-
-
 
   {
     /* begin::Created by Filter Map Function */

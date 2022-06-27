@@ -45,6 +45,7 @@ const PackagesHeader: FC<Props> = ({category}) => {
     /* begin::CreatedBy */
   }
   const handleCreatedBYchange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }
