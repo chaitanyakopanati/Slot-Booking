@@ -77,14 +77,14 @@ const UserTable = () => {
     DataGetAllTypeZone()
   }, [])
 
-  useEffect(() => {
-    console.log('enter')
-    fetchAllUser()
-  }, [pageNo, pageSize, searchText, zoneId, roleId])
+  // useEffect(() => {
+  //   console.log('enter')
+  //   fetchAllUser()
+  // }, [pageNo, pageSize, searchText, zoneId, roleId])
 
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
+  // useEffect(() => {
+  //   console.log('getData', getData)
+  // }, [getData])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)

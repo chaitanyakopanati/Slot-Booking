@@ -68,14 +68,14 @@ const ZonesTable = () => {
     LoderActions(false)
   }, [])
 
-  useEffect(() => {
-    console.log('enter')
-    fetchAllZone()
-  }, [pageNo, pageSize, searchText])
+  // useEffect(() => {
+  //   console.log('enter')
+  //   fetchAllZone()
+  // }, [pageNo, pageSize, searchText])
 
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
+  // useEffect(() => {
+  //   console.log('getData', getData)
+  // }, [getData])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)

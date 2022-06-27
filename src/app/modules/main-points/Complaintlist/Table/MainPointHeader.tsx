@@ -21,6 +21,8 @@ const MainPointHeader: FC<Props> = ({category}) => {
     setcreatedById,
     getDataMainPoint,
     fetchAllMainPoint,
+    pageNo,
+    pageSize,
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -51,9 +53,13 @@ const MainPointHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-    fetchAllMainPoint()
+  
     getDataMainPointAllType()
-  }, [searchText, createdById])
+  }, [pageNo, pageSize, searchText, createdById])
+
+  useEffect(() =>{
+    fetchAllMainPoint()
+  },[])
 
   {
     /* begin::Created by Filter Map Function */

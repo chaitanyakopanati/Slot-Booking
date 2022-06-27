@@ -20,7 +20,9 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
     setCreatedById,
     getDataComplaintAllType,
     getDataComplaint,
-    fetchAllComplaint
+    fetchAllComplaint,
+    pageNo,
+    pageSize,
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -42,7 +44,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
   {
     /* begin::CreatedBy */
   }
-  const handleCreatedChange = (e: any) => {
+  const handleCreatedByChange = (e: any) => {
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }
@@ -51,10 +53,12 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-    getDataComplaintAllType()
     fetchAllComplaint()
-  }, [createdById])
+  }, [pageNo, pageSize, searchText, createdById])
 
+  useEffect(() => {
+    getDataComplaintAllType()
+  }, [])
   {
     /* begin::Created by Filter Map Function*/
   }
@@ -183,7 +187,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
                     <select
                       className='form-select form-select-solid'
                       value={createdById}
-                      onChange={handleCreatedChange}
+                      onChange={handleCreatedByChange}
                     >
                       <option value=''>Select Created By</option>
                       {result.map((TypeData, index) => {

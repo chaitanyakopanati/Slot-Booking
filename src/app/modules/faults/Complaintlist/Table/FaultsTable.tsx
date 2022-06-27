@@ -74,14 +74,14 @@ const FaultsTable = () => {
     LoderActions(false)
   }, [])
 
-  useEffect(() => {
-    console.log('enter')
-    fetchAllFault()
-  }, [pageNo, pageSize, searchText])
+  // useEffect(() => {
+  //   console.log('enter')
+  //   fetchAllFault()
+  // }, [pageNo, pageSize, searchText])
 
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
+  // useEffect(() => {
+  //   console.log('getData', getData)
+  // }, [getData])
 
   useEffect(() => {
     console.log('getDataAllType', getDataAllType)

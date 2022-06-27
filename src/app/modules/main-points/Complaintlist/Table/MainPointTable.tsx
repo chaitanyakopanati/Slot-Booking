@@ -72,14 +72,14 @@ const MainPointTable = () => {
     LoderActions(false)
   }, [])
 
-  useEffect(() => {
-    console.log('enter')
-    fetchAllMainPoint()
-  }, [pageNo, pageSize, searchText])
+  // useEffect(() => {
+  //   console.log('enter')
+  //   fetchAllMainPoint()
+  // }, [pageNo, pageSize, searchText])
 
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
+  // useEffect(() => {
+  //   console.log('getData', getData)
+  // }, [getData])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)

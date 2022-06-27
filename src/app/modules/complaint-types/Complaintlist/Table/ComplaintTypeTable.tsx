@@ -34,13 +34,13 @@ const ComplaintTypeTable = () => {
   }
 
   useEffect(() => {
-    DataGetApi()
+    // DataGetApi()
     LoderActions(false)
   }, [])
 
-  useEffect(() => {
-    fetchAllComplaint()
-  }, [pageNo, pageSize, searchText])
+  // useEffect(() => {
+  //   fetchAllComplaint()
+  // }, [pageNo, pageSize, searchText])
 
   {
     /* begin:: Delete functionlity */

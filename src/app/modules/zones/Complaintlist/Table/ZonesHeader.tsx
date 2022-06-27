@@ -20,7 +20,9 @@ const ZonesHeader: FC<Props> = ({category}) => {
     createdById,
     setCreatedById,
     getDataAllType,
-    fetchAllZone
+    fetchAllZone,
+    pageNo,
+    pageSize,
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -52,8 +54,11 @@ const ZonesHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     getZonesAllTypeData()
+  }, [pageNo, pageSize, searchText, createdById])
+
+  useEffect(() =>{
     fetchAllZone()
-  }, [searchText,createdById])
+  },[])
 
   {
     /* begin::Created by Filter Map Function */

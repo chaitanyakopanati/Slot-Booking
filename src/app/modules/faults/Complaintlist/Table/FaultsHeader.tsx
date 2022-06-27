@@ -20,7 +20,9 @@ const FaultsHeader: FC<Props> = ({category}) => {
     createdById,
     setCreatedById,
     getDataFaults,
-    fetchAllFault
+    fetchAllFault,
+    pageNo,
+    pageSize,
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -51,9 +53,12 @@ const FaultsHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-    getDataFaultsAllType()
     fetchAllFault()
-  }, [searchText, createdById])
+  }, [pageNo, pageSize, searchText, createdById])
+
+  useEffect(() =>{
+    getDataFaultsAllType()
+  },[])
 
   {
     /* begin::Created by Filter Map Function*/
