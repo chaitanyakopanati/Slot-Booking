@@ -77,6 +77,7 @@ const BankFormModal: FC<Props> = ({category}) => {
             }
           } catch (error: any) {
             console.log(error, 'error')
+            toast.error(error.data.message)
           } finally {
             LoderActions(false)
           }

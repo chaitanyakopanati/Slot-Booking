@@ -183,6 +183,8 @@ const UserFormModal: FC<Props> = ({category}) => {
               cancel()
             }
           } catch (error: any) {
+            console.log(error, 'error')
+            toast.error(error.data.message)
           } finally {
             LoderActions(false)
           }

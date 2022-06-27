@@ -81,6 +81,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
             }
           } catch (error: any) {
             console.log(error, 'error')
+            toast.error(error.data.message)
           } finally {
             LoderActions(false)
           }
@@ -131,6 +132,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Unit</label>
                     <input
                       name='unit'
+                    placeholder='Unit'
                       value={props.values.unit}
                       onChange={props.handleChange}
                       className='form-control form-control-lg form-control-solid'

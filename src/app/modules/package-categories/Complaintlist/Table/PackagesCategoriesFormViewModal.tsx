@@ -144,6 +144,7 @@ const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
                                     <input
                                       className='form-control form-control-lg'
                                       type='number'
+                                      placeholder='ETR'
                                       value={props.values.etr}
                                       onChange={props.handleChange}
                                       name='etr'
@@ -163,6 +164,7 @@ const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='createdby'
                                   value={props.values.createdby}
                                   onChange={props.handleChange}
                                   name='createdby'
@@ -178,6 +180,7 @@ const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='modifyby'
                                   value={props.values.modifyby}
                                   onChange={props.handleChange}
                                   name='modifyby'
@@ -195,6 +198,7 @@ const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='createdAt'
                                   value={props.values.createdAt}
                                   onChange={props.handleChange}
                                   name='createdAt'
@@ -210,6 +214,7 @@ const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='modifyAt'
                                   value={props.values.modifyAt}
                                   onChange={props.handleChange}
                                   name='modifyAt'

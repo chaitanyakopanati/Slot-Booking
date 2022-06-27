@@ -143,6 +143,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
                                     <input
                                       className='form-control form-control-lg'
                                       type='string'
+                                      placeholder='unit'
                                       value={props.values.unit}
                                       onChange={props.handleChange}
                                       name='unit'
@@ -162,6 +163,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='createdby'
                                   value={props.values.createdby}
                                   onChange={props.handleChange}
                                   name='createdby'
@@ -180,6 +182,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
                                   value={props.values.modifyby}
                                   onChange={props.handleChange}
                                   name='modifyby'
+                                  placeholder='modifyby'
                                   autoComplete='off'
                                   disabled
                                 />
@@ -194,6 +197,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='createdAt'
                                   value={props.values.createdAt}
                                   onChange={props.handleChange}
                                   name='createdAt'
@@ -209,6 +213,7 @@ const ProductFormViewModal: FC<Props> = ({category}) => {
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
+                                  placeholder='modifyAt'
                                   value={props.values.modifyAt}
                                   onChange={props.handleChange}
                                   name='modifyAt'
