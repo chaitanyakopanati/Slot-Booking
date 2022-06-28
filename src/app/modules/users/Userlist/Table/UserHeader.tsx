@@ -22,6 +22,8 @@ const UserHeader: FC<Props> = ({category}) => {
     setZoneId,
     getDataAllType,
     getDataAllTypeRole,
+    getDataAllTypeCreatedBy,
+    DataGetAllTypeCreatedByTypes,
     roleId,
     setRoleId,
     searchByUsername,
@@ -100,24 +102,24 @@ const UserHeader: FC<Props> = ({category}) => {
     /* begin::Created by Filter Map Function */
   }
 
-  function uniqueBy(property: any) {
-    let seen = Object.create(null)
-    return function (item: any) {
-      let key = item[property]
-      if (seen[key] == null) {
-        seen[key] = 1
-        return true
-      }
-      return false
-    }
-  }
+  // function uniqueBy(property: any) {
+  //   let seen = Object.create(null)
+  //   return function (item: any) {
+  //     let key = item[property]
+  //     if (seen[key] == null) {
+  //       seen[key] = 1
+  //       return true
+  //     }
+  //     return false
+  //   }
+  // }
 
-  const result = getDataAllType.filter(uniqueBy('createdById')).map((product) => {
-    return {
-      id: product.createdById,
-      name: product.createdByName,
-    }
-  })
+  // const result = getDataAllType.filter(uniqueBy('createdById')).map((product) => {
+  //   return {
+  //     id: product.createdById,
+  //     name: product.createdByName,
+  //   }
+  // })
   {
     /* End::Created by Filter Map Function */
   }
@@ -129,10 +131,12 @@ const UserHeader: FC<Props> = ({category}) => {
         initialValues={{
           zoneId: category.data?.zoneId || '',
           roleId: category.data?.roleId || '',
+          id: category.data?.id || '',
         }}
         validationSchema={Yup.object({
           zoneId: Yup.number().required('This fied is required'),
           roleId: Yup.string().required('This fielld is required'),
+          id: Yup.string().required('This fielld is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
           console.log(values, 'values')
@@ -281,14 +285,15 @@ const UserHeader: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Created by:</label>
                     <select
                       className='form-select form-select-solid'
+                      {...props.getFieldProps('id')}
                       value={createdById}
                       onChange={handleCreatedBYchange}
                     >
                       <option value=''>Select Created By</option>
-                      {result.map((TypeData, index) => {
+                      {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
-                            {TypeData?.name}
+                            {TypeData?.username}
                           </option>
                         )
                       })}

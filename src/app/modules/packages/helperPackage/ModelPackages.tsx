@@ -10,7 +10,7 @@ export interface getPackagesData {
     createdById: number
     createdByName: string
     modifyByName: string
-   
+    username:string
   }
   export interface getAllPackagesData {
     data: getPackagesData[]
@@ -55,6 +55,7 @@ export interface getPackagesData {
     page: number
     pageSize: number
     createdById:number
+    username:string
   }
   
   export type ID = undefined | null | string

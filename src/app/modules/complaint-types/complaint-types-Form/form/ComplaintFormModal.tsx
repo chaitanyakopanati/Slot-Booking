@@ -49,11 +49,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
           etr: Yup.number()
-            .min(
-              1,
-              ' Etr must be between 1 to 999.'
-              // 'Etr must be of 3digit '
-            )
+            .min(1, 'etr must be between 1 to 999.')
             .required('This field is required'),
         })}
         onSubmit={async (values, {resetForm}) => {
@@ -141,7 +137,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                       value={props.values.etr}
                       // onChange={props.handleChange}
                       onChange={(e) => {
-                        if (+e.target.value > 999 || +e.target.value <= 0) {
+                        if (+e.target.value > 999 ) {
                           return
                         }
                         props.handleChange(e)

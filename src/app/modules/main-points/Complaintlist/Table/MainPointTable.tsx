@@ -19,6 +19,7 @@ const MainPointTable = () => {
     fetchAllMainPoint,
     searchText,
     setPageNo,
+    DataGetAllTypeCreatedByTypes,
     setSearchText,
   } = ListPageData()
   let {LoderActions, open} = useLoader()
@@ -69,6 +70,7 @@ const MainPointTable = () => {
 
   useEffect(() => {
     DataGetAllType()
+    DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
 

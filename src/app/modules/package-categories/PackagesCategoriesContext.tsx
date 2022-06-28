@@ -11,6 +11,7 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getPackageCategoriesData[]
+  getDataAllTypeCreatedBy: getPackageCategoriesData[]
   getDataPackageCategory: getPackageCategoriesData[]
   filterShow: boolean
   pageNo: number
@@ -35,10 +36,12 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllPackagecategories: () => void
   getDataPackageCategoryDataAllType: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataAllTypeCreatedBy: [],
   getDataPackageCategory: [],
   pageNo: 0,
   setPageNo: () => {},
@@ -63,10 +66,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetApiPackagecategories: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getPackageCategoriesData[]>([])
   const [getDataPackageCategory, setGetDataPackageCategory] = useState<getPackageCategoriesData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getPackageCategoriesData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -139,11 +144,30 @@ const ListDataProvider: FC = ({children}) => {
   }
    {/* End::Get Api call */}
 
+   const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllPackagecategorietApi = await Complaintservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+
   const value: ComplaintDataContextModel = {
     getData,
     getDataPackageCategory,
     createdById,
+    getDataAllTypeCreatedBy,
     setcreatedById,
+    DataGetAllTypeCreatedByTypes,
     itemIdForUpdate,
     setItemIdForUpdate,
     DataGetApiPackagecategories,

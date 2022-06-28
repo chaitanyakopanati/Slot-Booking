@@ -4,11 +4,12 @@ export interface getComplainData {
     name: string,
     etr: number ,
     createdAt: string
-    createdby: null
+    createdby: string
     id: number
-    modifyAt: null
-    modifyby: null
+    modifyAt: string
+    modifyby: string
     createdById:number
+    username:string
 }
 
 export interface getAllComplainData {
@@ -41,6 +42,7 @@ export interface GetAllComplaintApi {
     page:number
     pageSize:number
     createdById:number
+    username:string
 }
 
 export type ID = undefined | null | string 

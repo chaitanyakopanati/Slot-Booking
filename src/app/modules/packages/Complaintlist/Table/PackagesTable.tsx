@@ -18,6 +18,7 @@ const PackagesTable = () => {
     fetchAllBank,
     searchText,
     setPageNo,
+    DataGetAllTypeCreatedByTypes,
     setSearchText,
   } = ListPageData()
   let {LoderActions} = useLoader()
@@ -71,6 +72,7 @@ const PackagesTable = () => {
   }
 
   useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
 

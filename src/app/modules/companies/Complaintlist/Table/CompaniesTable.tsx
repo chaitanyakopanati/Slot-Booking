@@ -19,6 +19,7 @@ const CompaniesTable = () => {
     searchText,
     setPageNo,
     setSearchText,
+    DataGetAllTypeCreatedByTypes
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -70,9 +71,10 @@ const CompaniesTable = () => {
     /* end:: Delete functionlity */
   }
 
-  // useEffect(() => {
-  //   LoderActions(false)
-  // }, [])
+  useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
+    LoderActions(false)
+  }, [])
 
   // useEffect(() => {
   //   console.log('enter')

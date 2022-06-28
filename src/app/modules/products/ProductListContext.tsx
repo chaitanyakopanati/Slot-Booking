@@ -11,6 +11,7 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getProductData[]
+  getDataAllTypeCreatedBy: getProductData[]
   getDataProduct: getProductData[]
   filterShow: boolean
   pageNo: number
@@ -35,11 +36,13 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllProduct: () => void
   getDataProductAllType: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   getDataProduct: [],
+  getDataAllTypeCreatedBy: [],
   pageNo: 0,
   setPageNo: () => {},
   totalData: 0,
@@ -63,10 +66,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   DataGetApiProduct: () => {},
   getDataProductAllType: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getProductData[]>([])
   const [getDataProduct, setgetDataProduct] = useState<getProductData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getProductData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -144,6 +149,22 @@ const ListDataProvider: FC = ({children}) => {
     /* End::Get Api Call */
   }
 
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllProductApi = await Complaintservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
     getDataProduct,
@@ -151,7 +172,9 @@ const ListDataProvider: FC = ({children}) => {
     itemIdForUpdate,
     setItemIdForUpdate,
     DataGetApiProduct,
+    DataGetAllTypeCreatedByTypes,
     filterShow,
+    getDataAllTypeCreatedBy,
     pageNo,
     pageSize,
     searchText,

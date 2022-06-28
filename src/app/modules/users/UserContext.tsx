@@ -6,6 +6,7 @@ import {GetAllData, GetAllUserApi, getUserData, ID, ViewForm} from './helperUser
 export interface ComplaintDataContextModel {
   getData: getUserData[]
   getDataAllType: GetAllData[]
+  getDataAllTypeCreatedBy: GetAllData[]
   getDataAllTypeRole: GetAllData[]
   filterShow: boolean
   showPasswordFields: boolean
@@ -36,6 +37,7 @@ export interface ComplaintDataContextModel {
   fetchAllUser: () => void
   DataGetAllTypeZone: () => void
   DataGetAllTyperole: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -59,6 +61,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setSearchText: () => {},
   setSearchByUsername: () => {},
   getDataAllType: [],
+  getDataAllTypeCreatedBy: [],
   getDataAllTypeRole: [],
   filterShow: false,
   showPasswordFields: false,
@@ -71,10 +74,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   fetchAllUser: () => {},
   DataGetAllTypeZone: () => {},
   DataGetAllTyperole: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getUserData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<GetAllData[]>([])
   const [getDataAllTypeRole, setGetDataAllTypeRole] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
@@ -192,6 +197,22 @@ const ListDataProvider: FC = ({children}) => {
     /* End:: User:- getroleTypes Api call */
   }
 
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await Userservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
     createdById,
@@ -202,9 +223,11 @@ const ListDataProvider: FC = ({children}) => {
     setItemIdForUpdate,
     filterShow,
     setFilterShow,
+    DataGetAllTypeCreatedByTypes,
     viewIdForUpdate,
     setViewIdForUpdate,
     getDataAllType,
+    getDataAllTypeCreatedBy,
     pageNo,
     roleId,
     showPasswordFields,

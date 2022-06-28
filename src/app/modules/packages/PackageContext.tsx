@@ -11,6 +11,7 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getPackagesData[]
+  getDataAllTypeCreatedBy: getPackagesData[]
   getDatapackages: getPackagesData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
@@ -33,10 +34,12 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllBank: () => void
   getPackagesAllData: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataAllTypeCreatedBy: [],
   getDatapackages: [],
   pageNo: 0,
   setPageNo: () => {},
@@ -59,11 +62,13 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   fetchAllBank: () => {},
   getPackagesAllData: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getPackagesData[]>([])
   const [getDatapackages, setGetDatapackages] = useState<getPackagesData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getPackagesData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -118,8 +123,26 @@ const ListDataProvider: FC = ({children}) => {
     /* End::Get API Call */
   }
 
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllPackagesApi = await Zoneservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+
   const value: ComplaintDataContextModel = {
     getData,
+    getDataAllTypeCreatedBy,
     getDatapackages,
     itemIdForUpdate,
     setItemIdForUpdate,
@@ -138,6 +161,7 @@ const ListDataProvider: FC = ({children}) => {
     pageCount,
     setPageCount,
     setSearchText,
+    DataGetAllTypeCreatedByTypes,
     fetchAllBank,
     createdById,
     getPackagesAllData,

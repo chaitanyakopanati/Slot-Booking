@@ -5,6 +5,7 @@ import {GetAllData, GetAllFaulttApi, getZoneData, ID, ViewForm} from './helperZo
 
 export interface ComplaintDataContextModel {
   getData: getZoneData[]
+  getDataAllTypeCreatedBy: getZoneData[]
   getDataAllType: getZoneData[]
   filterShow: boolean
   pageNo: number
@@ -27,10 +28,12 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllZone: () => void
   getZonesAllTypeData: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataAllTypeCreatedBy: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
@@ -53,10 +56,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   // DataGetAllType: () => {},
   fetchAllZone: () => {},
   getZonesAllTypeData: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getZoneData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<getZoneData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getZoneData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -107,15 +112,33 @@ const ListDataProvider: FC = ({children}) => {
     /* End::Get Api Call */
   }
 
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllFaulttApi = await Zoneservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
     itemIdForUpdate,
     setItemIdForUpdate,
     filterShow,
+    getDataAllTypeCreatedBy,
     setFilterShow,
     viewIdForUpdate,
     setViewIdForUpdate,
     getZonesAllTypeData,
+    DataGetAllTypeCreatedByTypes,
     // DataGetAllType,
     getDataAllType,
     pageNo,

@@ -10,7 +10,7 @@ export interface getZoneData {
   createdById: number
   createdByName: string
   modifyByName: string
- 
+  username:string
 }
 export interface getAllZoneData {
   data: getZoneData[]
@@ -55,6 +55,7 @@ export interface GetAllFaulttApi {
   page: number
   pageSize: number
   createdById:number
+  username:string
 }
 
 export type ID = undefined | null | string

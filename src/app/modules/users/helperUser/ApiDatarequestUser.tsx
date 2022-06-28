@@ -120,6 +120,12 @@ const getroleTypes = () => {
   return http.get('GetAllRoles')
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Userservice = {
   getDynamicUser,
   postUser,
@@ -127,6 +133,7 @@ const Userservice = {
   editUser,
   // getUser,
   GetUserTypeById,
+  getCreatedByTypes,
   getZoneTypes,
   getroleTypes,
 }

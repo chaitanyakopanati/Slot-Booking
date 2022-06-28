@@ -9,6 +9,7 @@ export interface getPackageCategoriesData {
     modifyby: string
     createdById:number
     createdByName:string
+    username:string
 }
 
 export interface getAllPackagecategoriesData {
@@ -41,6 +42,7 @@ export interface GetAllPackagecategorietApi {
     page:number
     pageSize:number
     createdById:number
+    username:string
 }
 
 export type ID = undefined | null | string 

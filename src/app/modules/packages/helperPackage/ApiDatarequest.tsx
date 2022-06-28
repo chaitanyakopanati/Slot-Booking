@@ -75,6 +75,12 @@ const GetPackagesTypeById = (id: ID) => {
   /* end:: Packages:- getById Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Zoneservice = {
   getDynamicPackages,
   getPackages,
@@ -82,6 +88,7 @@ const Zoneservice = {
   deletePackages,
   editPackages,
   GetPackagesTypeById,
+  getCreatedByTypes
 }
 
 export default Zoneservice

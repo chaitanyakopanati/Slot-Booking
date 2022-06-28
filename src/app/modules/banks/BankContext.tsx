@@ -6,6 +6,7 @@ import {GetAllBankApi, GetAllData, getBankData, ID, ViewForm} from './helperBank
 export interface ComplaintDataContextModel {
   getData: getBankData[]
   getDataBankType: getBankData[]
+  getDataAllTypeCreatedBy: getBankData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
@@ -27,11 +28,13 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllBank: () => void
   getDataBankAllType: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   getDataBankType: [],
+  getDataAllTypeCreatedBy: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
@@ -53,11 +56,13 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
   fetchAllBank: () => {},
   getDataBankAllType: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getBankData[]>([])
   const [getDataBankType, setgetDataBankType] = useState<getBankData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getBankData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -106,6 +111,21 @@ const ListDataProvider: FC = ({children}) => {
   }
     {/* End::Get Api Call*/}
 
+    const DataGetAllTypeCreatedByTypes = async () => {
+      LoderActions(true)
+      try {
+        let payload: GetAllBankApi = await Zoneservice.getCreatedByTypes()
+  
+        if (payload.success == true) {
+          LoderActions(false)
+          setGetDataAllTypeCreatedBy(payload.data)
+          console.log(payload.data, 'oooooooooooo')
+        }
+      } catch (error) {
+      } finally {
+        LoderActions(false)
+      }
+    }
 
   const value: ComplaintDataContextModel = {
     getData,
@@ -113,8 +133,10 @@ const ListDataProvider: FC = ({children}) => {
     getDataBankType ,
     itemIdForUpdate,
     setTotalData,
+    DataGetAllTypeCreatedByTypes,
     setItemIdForUpdate,
     filterShow,
+    getDataAllTypeCreatedBy,
     setFilterShow,
     totalData,
     viewIdForUpdate,

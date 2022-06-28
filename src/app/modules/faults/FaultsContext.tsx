@@ -12,6 +12,7 @@ import {
 export interface ComplaintDataContextModel {
   getData: getFaultsData[]
   getDataFaults: getFaultsData[]
+  getDataAllTypeCreatedBy: getFaultsData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
@@ -34,11 +35,13 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllFault: () => void
   getDataFaultsAllType: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   getDataFaults: [],
+  getDataAllTypeCreatedBy: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
@@ -61,10 +64,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllType: () => {},
   fetchAllFault: () => {},
   getDataFaultsAllType: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getFaultsData[]>([])
   const [getDataFaults, setGetDataFaults] = useState<getFaultsData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getFaultsData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
@@ -142,6 +147,23 @@ const ListDataProvider: FC = ({children}) => {
     /* End:: Api call */
   }
 
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllFaulttApi = await Fautlservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+
   const value: ComplaintDataContextModel = {
     getData,
     getDataFaultsAllType,
@@ -151,6 +173,8 @@ const ListDataProvider: FC = ({children}) => {
     filterShow,
     createdById,
     setCreatedById,
+    DataGetAllTypeCreatedByTypes,
+    getDataAllTypeCreatedBy,
     setFilterShow,
     viewIdForUpdate,
     setViewIdForUpdate,

@@ -142,7 +142,7 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                       value={props.values.etr}
                       // onChange={props.handleChange}
                       onChange={(e) => {
-                        if (+e.target.value > 999 || +e.target.value <= 0) {
+                        if (+e.target.value > 999 ) {
                           return
                         }
                         props.handleChange(e)

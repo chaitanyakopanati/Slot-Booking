@@ -10,7 +10,7 @@ export interface getBankData {
     createdById: number
     createdByName: string
     modifyByName: string
-   
+    username:string
   }
   export interface getAllBankData {
     data: getBankData[]
@@ -55,6 +55,7 @@ export interface getBankData {
     page: number
     pageSize: number
     createdById:number
+    username:string
   }
   
   export type ID = undefined | null | string

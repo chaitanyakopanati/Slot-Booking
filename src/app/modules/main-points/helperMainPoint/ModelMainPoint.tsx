@@ -12,6 +12,7 @@ export interface getMainPointData {
   modifyByName: string
   zoneName: string
   zoneid: number
+  username:string
 }
 export interface getAllMainPointData {
   data: getMainPointData[]
@@ -59,6 +60,7 @@ export interface GetAllMainPointApi {
   TotalRecords: number
   page: number
   pageSize: number
+  username:string
 }
 
 export type ID = undefined | null | string

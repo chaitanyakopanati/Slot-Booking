@@ -24,6 +24,7 @@ const UserTable = () => {
     setSearchText,
     DataGetAllTyperole,
     DataGetAllTypeZone,
+    DataGetAllTypeCreatedByTypes
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -75,6 +76,7 @@ const UserTable = () => {
   useEffect(() => {
     DataGetAllTyperole()
     DataGetAllTypeZone()
+    DataGetAllTypeCreatedByTypes()
   }, [])
 
   // useEffect(() => {

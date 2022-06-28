@@ -10,7 +10,7 @@ export interface getCompaniesData {
     createdById: number
     createdByName: string
     modifyByName: string
-   
+    username:string
   }
   export interface getAllCompaniesData {
     data: getCompaniesData[]
@@ -56,6 +56,7 @@ export interface getCompaniesData {
     page: number
     pageSize: number
     createdById:number
+    username:string
   }
   
   export type ID = undefined | null | string

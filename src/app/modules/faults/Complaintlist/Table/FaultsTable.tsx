@@ -20,6 +20,7 @@ const FaultsTable = () => {
     searchText,
     setPageNo,
     setSearchText,
+    DataGetAllTypeCreatedByTypes,
     getDataAllType,
   } = ListPageData()
   let {LoderActions} = useLoader()
@@ -70,7 +71,7 @@ const FaultsTable = () => {
 
   useEffect(() => {
     DataGetAllType()
-
+    DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
 

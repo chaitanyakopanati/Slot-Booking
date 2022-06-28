@@ -85,6 +85,12 @@ const getMainPointTypes = () => {
   /* end:: MainPoint:- GetAllZones Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const MainPointservice = {
   getDynamicMainPoint,
   getMainPoint,
@@ -93,6 +99,7 @@ const MainPointservice = {
   editMainPoint,
   GetMainPointById,
   getMainPointTypes,
+  getCreatedByTypes
 }
 
 export default MainPointservice

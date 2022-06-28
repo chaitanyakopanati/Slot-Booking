@@ -75,6 +75,12 @@ const GetBankTypeById = (id: ID) => {
   /* end:: Bank:- getById Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Zoneservice = {
   getDynamicBank,
   getBank,
@@ -82,6 +88,7 @@ const Zoneservice = {
   deleteBank,
   editBank,
   GetBankTypeById,
+  getCreatedByTypes
 }
 
 export default Zoneservice

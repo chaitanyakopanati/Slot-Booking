@@ -20,6 +20,7 @@ const ComplaintTypeTable = () => {
     fetchAllComplaint,
     setPageNo,
     setSearchText,
+    DataGetAllTypeCreatedByTypes
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -34,8 +35,8 @@ const ComplaintTypeTable = () => {
   }
 
   useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
     // DataGetApi()
-    LoderActions(false)
   }, [])
 
   // useEffect(() => {

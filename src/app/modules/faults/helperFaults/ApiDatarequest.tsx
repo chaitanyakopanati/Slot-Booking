@@ -85,6 +85,12 @@ const getFaultsTypes = () => {
   /* end:: Faults:- get Faults type Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Fautlservice = {
   getDynamicFaults,
   getFaults,
@@ -93,6 +99,7 @@ const Fautlservice = {
   editFaults,
   GetFaultsTypeById,
   getFaultsTypes,
+  getCreatedByTypes
 }
 
 export default Fautlservice

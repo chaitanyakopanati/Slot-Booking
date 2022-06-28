@@ -76,12 +76,19 @@ const GetPackagesCategoriesTypeById = (id: ID) => {
   /* end:: Package-Category:- getById Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Complaintservice = {
   getDynamicPackageCategories,
   getPackageCategories,
   postPackageCategories,
   deletePackagesCategories,
   editPackagesCategories,
+  getCreatedByTypes,
   GetPackagesCategoriesTypeById,
 }
 

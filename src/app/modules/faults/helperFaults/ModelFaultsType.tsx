@@ -9,6 +9,8 @@ export interface getFaultsData {
   modifyby: null
   createdById:number
 createdByName:string
+username:string
+
 }
 
 export interface getAllFaultsData {
@@ -54,6 +56,7 @@ export interface GetAllFaulttApi {
   page: number
   pageSize: number
   createdById:number
+  username:string
 }
 
 export type ID = undefined | null | string

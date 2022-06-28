@@ -74,6 +74,12 @@ const GetProductTypeById = (id: ID) => {
   /* end:: Product:- getById Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Complaintservice = {
   getDynamicProduct,
   getProduct,
@@ -81,6 +87,7 @@ const Complaintservice = {
   deleteProduct,
   editProduct,
   GetProductTypeById,
+  getCreatedByTypes,
 }
 
 export default Complaintservice

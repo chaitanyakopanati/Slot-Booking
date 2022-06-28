@@ -75,6 +75,12 @@ const GetZonesTypeById = (id: ID) => {
   /* end:: Zones:- getById Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Zoneservice = {
   getDynamicZones,
   getZones,
@@ -82,6 +88,7 @@ const Zoneservice = {
   deleteZones,
   editZones,
   GetZonesTypeById,
+  getCreatedByTypes
 }
 
 export default Zoneservice

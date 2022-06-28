@@ -15,6 +15,7 @@ const ProductTable = () => {
     pageSize,
     getData,
     searchText,
+    DataGetAllTypeCreatedByTypes,
     DataGetApiProduct,
     setViewIdForUpdate,
     fetchAllProduct,
@@ -34,6 +35,7 @@ const ProductTable = () => {
   }
 
   useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
     // DataGetApiProduct()
     LoderActions(false)
   }, [])

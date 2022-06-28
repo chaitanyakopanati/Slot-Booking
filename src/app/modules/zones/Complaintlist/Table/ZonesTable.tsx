@@ -18,6 +18,7 @@ const ZonesTable = () => {
     fetchAllZone,
     searchText,
     setPageNo,
+    DataGetAllTypeCreatedByTypes,
     setSearchText,
   } = ListPageData()
   let {LoderActions} = useLoader()
@@ -65,6 +66,7 @@ const ZonesTable = () => {
   }
 
   useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
 

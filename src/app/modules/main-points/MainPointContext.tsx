@@ -12,6 +12,7 @@ import {
 export interface ComplaintDataContextModel {
   getData: getMainPointData[]
   getDataMainPoint: getMainPointData[]
+  getDataAllTypeCreatedBy: getMainPointData[]
   getDataAllType: GetAllData[]
   filterShow: boolean
   pageNo: number
@@ -34,11 +35,13 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllMainPoint: () => void
   getDataMainPointAllType: () => void
+  DataGetAllTypeCreatedByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   getDataMainPoint: [],
+  getDataAllTypeCreatedBy: [],
   pageNo: 0,
   setPageNo: () => {},
   pageCount: 0,
@@ -61,11 +64,13 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllType: () => {},
   fetchAllMainPoint: () => {},
   getDataMainPointAllType: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getMainPointData[]>([])
   const [getDataMainPoint, setGetDataMainPoint] = useState<getMainPointData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getMainPointData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -137,12 +142,30 @@ const ListDataProvider: FC = ({children}) => {
     /* End:: Get Api call */
   }
 
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllMainPointApi = await MainPointservice.getCreatedByTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   const value: ComplaintDataContextModel = {
     getData,
     getDataMainPoint,
     itemIdForUpdate,
     setItemIdForUpdate,
+    getDataAllTypeCreatedBy,
     getDataMainPointAllType,
+    DataGetAllTypeCreatedByTypes,
     filterShow,
     setFilterShow,
     viewIdForUpdate,

@@ -8,6 +8,7 @@ export interface getProductData {
   unit: string
   createdById: number
   createdByName: string
+  username:string
 }
 
 export interface getAllProductData {
@@ -40,6 +41,7 @@ export interface GetAllProductApi {
   page: number
   pageSize: number
   createdById: number
+  username:string
 }
 
 export type ID = undefined | null | string

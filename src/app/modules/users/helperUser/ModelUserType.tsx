@@ -43,6 +43,7 @@ export interface GetAllData {
   name: string
   createdById: number
   createdByName: string
+  username:string
 }
 
 export interface GetAllData {

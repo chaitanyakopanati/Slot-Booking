@@ -19,6 +19,7 @@ const BankTable = () => {
     searchText,
     setPageNo,
     setSearchText,
+    DataGetAllTypeCreatedByTypes,
   } = ListPageData()
   let {LoderActions, open} = useLoader()
 
@@ -71,6 +72,7 @@ const BankTable = () => {
   }
 
   useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
 

@@ -20,6 +20,7 @@ const PackagescategoriesTable = () => {
     fetchAllPackagecategories,
     setPageNo,
     setSearchText,
+    DataGetAllTypeCreatedByTypes
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -34,6 +35,7 @@ const PackagescategoriesTable = () => {
   }
 
   useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
     // DataGetApiPackagecategories()
     LoderActions(false)
   }, [])

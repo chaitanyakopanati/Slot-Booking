@@ -29,7 +29,12 @@ const getComplaints = () => {
   /* begin:: Complaint Type:- post Api call(create) */
 }
 const postcomplaints = (obj: postlistData) => {
-  return http.post('SaveComplaintType', obj)
+  return http.post('SaveComplaintType', {
+    name: obj.name,
+    etr: obj.etr,
+    createdby: 1,
+    modifyby: 1,
+  })
 }
 {
   /* end:: Complaint Type:- post Api call(create) */
@@ -69,6 +74,12 @@ const GetComplaintTypeById = (id: ID) => {
   /* end:: Complaint Type:- getById Api call */
 }
 
+//Created by
+
+const getCreatedByTypes = () => {
+  return http.get('GetUserByRole')
+}
+
 const Complaintservice = {
   getDynamicComplaints,
   getComplaints,
@@ -76,6 +87,7 @@ const Complaintservice = {
   deletecomplaints,
   editcomplaints,
   GetComplaintTypeById,
+  getCreatedByTypes
 }
 
 export default Complaintservice
