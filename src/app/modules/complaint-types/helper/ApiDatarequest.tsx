@@ -34,6 +34,7 @@ const postcomplaints = (obj: postlistData) => {
     etr: obj.etr,
     createdby: 1,
     modifyby: 1,
+  
   })
 }
 {

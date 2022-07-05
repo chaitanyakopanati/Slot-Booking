@@ -23,7 +23,6 @@ const UserHeader: FC<Props> = ({category}) => {
     getDataAllType,
     getDataAllTypeRole,
     getDataAllTypeCreatedBy,
-    DataGetAllTypeCreatedByTypes,
     roleId,
     setRoleId,
     searchByUsername,

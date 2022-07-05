@@ -16,6 +16,9 @@ import {PageTitle} from '../../_metronic/layout/core'
 import CustomerFormWrapper from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormWrapper'
 import CustomerFormModal from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormModal'
 import ComplaintFormModal from '../../_metronic/partials/widgets/tables/Complaints/Form/ComplaintFormModal'
+import InquiriesFormWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesFormWrapper'
+import InquiriesViewWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesViewWrapper'
+
 
 const PrivateRoutes = () => {
   const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
@@ -71,7 +74,24 @@ const PrivateRoutes = () => {
         <Route path='forms' element={<FormsWrapper />} />
         <Route path='installations' element={<InstallationsWrapper />} />
         <Route path='inquiries' element={<InquiriesWrapper />} />
-
+        <Route
+          path='inquiries/inquiriesform/:id'
+          element={
+            <>
+              <PageTitle>User Form</PageTitle>
+              <InquiriesFormWrapper />
+            </>
+          }
+        />
+          <Route
+          path='inquiries/inquiriesviewform/:id'
+          element={
+            <>
+              <PageTitle>View User</PageTitle>
+              <InquiriesViewWrapper />
+            </>
+          }
+        />
         <Route path='*' element={<Navigate to='/error/404' />} />
       </Route>
     </Routes>

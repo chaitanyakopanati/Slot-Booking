@@ -367,8 +367,6 @@ const UserFormModal: FC<Props> = ({category}) => {
                         Select Role Type
                       </option>
                       {getDataAllTypeRole.map((TypeDataRole, index) => {
-                        //
-
                         return (
                           <option key={index} value={TypeDataRole?.id}>
                             {TypeDataRole?.name}

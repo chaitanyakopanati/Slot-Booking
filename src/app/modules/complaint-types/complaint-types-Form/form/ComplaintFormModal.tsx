@@ -137,6 +137,8 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                       value={props.values.etr}
                       // onChange={props.handleChange}
                       onChange={(e) => {
+                        // console.log(e.target.value,"number");
+                        
                         if (+e.target.value > 999 ) {
                           return
                         }
