@@ -1,4 +1,5 @@
 export interface getZoneData {
+  fullName: string
   name: string
   createdAt: string
   modifyById: null

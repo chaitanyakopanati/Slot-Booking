@@ -47,31 +47,6 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
     fetchAllPackagecategories()
   }, [pageNo, pageSize, searchText, createdById])
 
-  {
-    /* begin::Created by Filter Map Function */
-  }
-  // function uniqueBy(property: any) {
-  //   let seen = Object.create(null)
-  //   return function (item: any) {
-  //     let key = item[property]
-  //     if (seen[key] == null) {
-  //       seen[key] = 1
-  //       return true
-  //     }
-  //     return false
-  //   }
-  // }
-
-  // const result = getDataPackageCategory.filter(uniqueBy('createdById')).map((product) => {
-  //   return {
-  //     id: product.createdById,
-  //     name: product.createdByName,
-  //   }
-  // })
-  {
-    /* End::Created by Filter Map Function */
-  }
-
   return (
     <>
       {/* begin::Formik Form */}
@@ -181,7 +156,7 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
-                            {TypeData?.username}
+                            {TypeData?.fullName}
                           </option>
                         )
                       })}

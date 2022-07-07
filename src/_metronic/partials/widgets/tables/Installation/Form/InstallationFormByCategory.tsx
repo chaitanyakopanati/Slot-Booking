@@ -1,60 +1,69 @@
-import InstallationFormModal from "./InstallationFormModal"
+import {useQuery} from 'react-query'
+import {useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
+import { isNotEmpty } from '../../../../../helpers'
+import { ListPageData } from '../InstallationContext'
+import InstallationFormModal from './InstallationFormModal'
+import InstallationsService from '../helperInstallation/ApiDatarequest'
 
 
-const InstallationFormByCategory = () =>{
- //     const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
-//   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+const InstallationFormByCategory = () => {
+  let {id} = useParams()
 
-//   {
-//     /* begin:: Api call GetCompanyById */
-//   }
-//   const {data: category, error} = useQuery(
-//     `GetCompanyById-${itemIdForUpdate}`,
-//     () => {
-//       return Zoneservice.GetCompaniesTypeById(itemIdForUpdate)
-//     },
-//     {
-//       cacheTime: 0,
-//       enabled: enabledQuery,
-//       onError: (err) => {
-//         setItemIdForUpdate(undefined)
-//         console.error(err)
-//       },
-//     }
-//   )
-//   {
-//     /* end:: Api call GetCompanyById */
-//   }
+  const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
+  const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
-//   useEffect(() => {
-//     console.log('category', category)
-//     console.log('itemIdForUpdate', itemIdForUpdate)
-//   }, [category])
+  useEffect(() => {
+    if (id === 'add') {
+      setItemIdForUpdate(id)
+    } else {
+      setItemIdForUpdate(id)
+    }
+  }, [id])
 
-//   {
-//     /* begin::Add-Form Model functionality */
-//   }
-//   if (!itemIdForUpdate) {
-//     return <CompaniesFormModal category={{ID: undefined}} />
-//   }
-//   {
-//     /* begin::Add-Form Model functionality */
-//   }
 
-//   {
-//     /* begin::Edit-Form Model functionality */
-//   }
-//   if (!error && category) {
-//     return <CompaniesFormModal category={category} />
-//   }
-//   {
-//     /* end::Edit-Form Model functionality */
-//   }
 
-//   return null
 
-return(
-  <InstallationFormModal/>
-)
+  const {data: category, error} = useQuery(
+    `GetInstallationById/-${itemIdForUpdate}`,
+    () => {
+      return InstallationsService.GetInstallationsTypeById(itemIdForUpdate)
+    },
+    {
+      cacheTime: 0,
+      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null  ),
+      onError: (err) => {
+        setItemIdForUpdate(undefined)
+        
+      },
+    }
+  )
+  {
+    /* end:: Api call GetUserTypeById */
+  }
+
+  useEffect(() => {
+    
+    console.log('itemIdForUpdate****', itemIdForUpdate)
+  }, [category,itemIdForUpdate])
+
+  {
+    /* begin::Add-Form Model functionality */
+  }
+  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
+    return <InstallationFormModal category={{ID: undefined}} />
+  }
+
+
+  if (!error && category) {
+    return <InstallationFormModal category={category} />
+  }
+  {
+    /* end::Edit-Form Model functionality */
+  }
+
+  return null
 }
 export default InstallationFormByCategory
+
+

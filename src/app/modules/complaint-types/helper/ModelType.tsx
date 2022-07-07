@@ -1,5 +1,6 @@
 
 export interface getComplainData {
+    fullName: string
     createdByName: string
     name: string,
     etr: number ,

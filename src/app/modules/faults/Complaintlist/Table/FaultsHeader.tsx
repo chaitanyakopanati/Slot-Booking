@@ -198,7 +198,7 @@ const FaultsHeader: FC<Props> = ({category}) => {
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
-                            {TypeData?.username}
+                            {TypeData?.fullName}
                           </option>
                         )
                       })}

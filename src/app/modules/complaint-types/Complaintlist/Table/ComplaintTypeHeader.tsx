@@ -198,7 +198,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
                         
                         return (
                           <option key={index} value={TypeData?.id}>
-                            {TypeData?.username}
+                            {TypeData?.fullName}
                           </option>
                         )
                       })}

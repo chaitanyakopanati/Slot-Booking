@@ -1,4 +1,5 @@
 export interface getCompaniesData {
+    fullName: string
     name: string
     createdAt: string
     modifyById: null

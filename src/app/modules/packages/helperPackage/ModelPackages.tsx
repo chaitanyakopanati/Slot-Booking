@@ -1,4 +1,5 @@
 export interface getPackagesData {
+    fullName: string
     name: string
     createdAt: string
     modifyById: null

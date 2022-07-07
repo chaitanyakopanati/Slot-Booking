@@ -1,4 +1,5 @@
 export interface getProductData {
+  fullName: string
   name: string
   createdAt: string
   createdby: string

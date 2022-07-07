@@ -279,8 +279,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                         type='text'
                         name='username'
                         autoComplete='off'
-                        disabled
-                        readOnly
+                       
                       />
                     </div>
                   )}
@@ -355,6 +354,20 @@ const UserFormModal: FC<Props> = ({category}) => {
                   <div className='erro2' style={{color: 'red'}}>
                     <ErrorMessage name='zoneId' />
                   </div>
+                 
+                  {/* Status Type */}
+                  {itemIdForUpdate !== 'add' ? (
+                  <div className='col-lg-12'>
+                    <label className='form-label fw-bold '>Status</label>
+                    <select className='form-select form-select-solid'>
+                      <option value='' disabled>
+                        Select Status Type
+                      </option>
+                      <option value='1'>Pending</option>
+                      <option value='2'>Done</option>
+                    </select>
+                  </div>
+                    ) : null}
 
                   {/* begin: input Role Filed */}
                   <div className='col-lg-12'>

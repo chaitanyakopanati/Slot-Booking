@@ -129,10 +129,12 @@ const InquiriesHeader: FC<Props> = ({category}) => {
           id: category.data?.id || '',
           username: category.data?.username || '',
           salesexecutiveId: category.data?.salesexecutiveId || '',
+          fullName: category.data?.fullName || '',
         }}
         validationSchema={Yup.object({
           id: Yup.string().required('This fielld is required'),
           username: Yup.string().required('This fielld is required'),
+          fullName: Yup.string().required('This fielld is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
           console.log(values, 'values')
@@ -290,7 +292,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       {getDataAllTypeCreatedBy?.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
-                            {TypeData?.username}
+                            {TypeData?.fullName}
                           </option>
                         )
                       })}

@@ -18,6 +18,8 @@ import CustomerFormModal from '../../_metronic/partials/widgets/tables/Customer/
 import ComplaintFormModal from '../../_metronic/partials/widgets/tables/Complaints/Form/ComplaintFormModal'
 import InquiriesFormWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesFormWrapper'
 import InquiriesViewWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesViewWrapper'
+import InstallationFormWrapper from '../../_metronic/partials/widgets/tables/Installation/Form/InstallationFormWrapper'
+import InstallationViewWrapper from '../../_metronic/partials/widgets/tables/Installation/Form/InstallationViewWrapper'
 
 
 const PrivateRoutes = () => {
@@ -73,6 +75,24 @@ const PrivateRoutes = () => {
         <Route path='profile-settings' element={<ProfileSettingsWrapper />} />
         <Route path='forms' element={<FormsWrapper />} />
         <Route path='installations' element={<InstallationsWrapper />} />
+        <Route
+          path='installations/installationsform/:id'
+          element={
+            <>
+              <PageTitle>installations Form</PageTitle>
+              <InstallationFormWrapper />
+            </>
+          }
+        />
+          <Route
+          path='installations/installationsviewform/:id'
+          element={
+            <>
+              <PageTitle>View installations</PageTitle>
+              <InstallationViewWrapper />
+            </>
+          }
+        />
         <Route path='inquiries' element={<InquiriesWrapper />} />
         <Route
           path='inquiries/inquiriesform/:id'

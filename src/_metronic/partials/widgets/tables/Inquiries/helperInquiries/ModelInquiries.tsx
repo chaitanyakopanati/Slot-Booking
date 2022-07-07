@@ -36,6 +36,7 @@ export interface postlistData {
 }
 
 export interface GetAllData {
+  fullName: string
   id: number
   name: string
   createdById: number

@@ -1,4 +1,5 @@
 export interface getFaultsData {
+  fullName: string
   name: string
   createdAt: string
   createdby: null

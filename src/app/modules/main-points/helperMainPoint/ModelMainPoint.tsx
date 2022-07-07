@@ -1,4 +1,5 @@
 export interface getMainPointData {
+  fullName: string
   name: string
   createdAt: string
   modifyById: number

@@ -1,5 +1,6 @@
 
 export interface getPackageCategoriesData {
+    fullName:string
     name: string,
     etr: number ,
     createdAt: string
