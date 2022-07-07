@@ -101,7 +101,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
 
   useEffect(() => {
     console.log('StatusData', statusData)
-  }, [statusData, getUserByRole])
+  }, [statusData])
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -176,6 +176,12 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
               onKeyDown={onKeyDown}
               className='form'
               onSubmit={props.handleSubmit}
+              onChange={(event)=>{
+                event.preventDefault()
+                console.clear()
+                console.log("props.valuses",props.values)
+
+              }}
             >
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'
@@ -328,7 +334,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             onBlur={props.handleBlur}
                             name='isnotify'
                             //  value=''
-                            checked={props.values.status === 2 ? true : false}
+                            checked={props.values.statusId === '2' ? true : false}
                           />
                           <label className='form-check-label'>Sales executive</label>
                         </div>
