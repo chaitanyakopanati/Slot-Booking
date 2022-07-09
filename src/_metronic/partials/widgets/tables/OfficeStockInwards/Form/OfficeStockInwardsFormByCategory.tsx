@@ -1,65 +1,67 @@
-import React from 'react'
+import {useQuery} from 'react-query'
+import {useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
+import { isNotEmpty } from '../../../../../helpers'
+import { ListPageData } from '../OfficeStockInwardsContext'
+import Inquiriesservice from '../helperOfficeStockInwards/ApiDataRequest'
 import OfficeStockInwardsFormModal from './OfficeStockInwardsFormModal'
 
+
 const OfficeStockInwardsFormByCategory = () => {
-  //     const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
-  //   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+  let {id} = useParams()
 
+  const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
+  const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+
+  useEffect(() => {
+    if (id === 'add') {
+      setItemIdForUpdate(id)
+    } else {
+      setItemIdForUpdate(id)
+    }
+  }, [id])
+
+
+
+
+  const {data: category, error} = useQuery(
+    `GetInquiry-${itemIdForUpdate}`,
+    () => {
+      return Inquiriesservice.GetInquiriesTypeById(itemIdForUpdate)
+    },
+    {
+      cacheTime: 0,
+      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null  ),
+      onError: (err) => {
+        setItemIdForUpdate(undefined)
+        
+      },
+    }
+  )
   {
-    /* begin:: Api call GetBankById */
-  }
-  //   const {data: category, error} = useQuery(
-  //     `GetBankById-${itemIdForUpdate}`,
-  //     () => {
-  //       return Zoneservice.GetBankTypeById(itemIdForUpdate)
-  //     },
-  //     {
-  //       cacheTime: 0,
-  //       enabled: enabledQuery,
-  //       onError: (err) => {
-  //         setItemIdForUpdate(undefined)
-  //         console.error(err)
-  //       },
-  //     }
-  //   )
-  {
-    /* end:: Api call GetBankById */
+    /* end:: Api call GetUserTypeById */
   }
 
-  //   useEffect(() => {
-  //     console.log('category', category)
-  //     console.log('itemIdForUpdate', itemIdForUpdate)
-  //   }, [category])
+  useEffect(() => {
+    
+    console.log('itemIdForUpdate****', itemIdForUpdate)
+  }, [category,itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
   }
-  //   if (!itemIdForUpdate) {
-  //     return <BankFormModal category={{ID: undefined}} />
-  //   }
-  {
-    /* end::Add-Form Model functionality */
+  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
+    return <OfficeStockInwardsFormModal category={{ID: undefined}} />
   }
 
-  {
-    /* begin::Edit-Form Model functionality */
+
+  if (!error && category) {
+    return <OfficeStockInwardsFormModal category={category} />
   }
-  //   if (!error && category) {
-  //     return <BankFormModal category={category} />
-  //   }
   {
     /* end::Edit-Form Model functionality */
   }
 
-  //   return null
-
-  return (
-    <>
-      <div>
-        <OfficeStockInwardsFormModal />
-      </div>
-    </>
-  )
+  return null
 }
-
 export default OfficeStockInwardsFormByCategory

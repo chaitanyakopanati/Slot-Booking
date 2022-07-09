@@ -1,7 +1,101 @@
-import React from 'react'
+import Swal from 'sweetalert2'
+import {useEffect} from 'react'
+import moment from 'moment'
+import {toast} from 'react-toastify'
+import {useNavigate} from 'react-router-dom'
+import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import {KTSVG} from '../../../../../../helpers'
+import {ListPageData} from '../../OfficeStockInwardsContext'
+import {getInquiriesData} from '../../helperOfficeStockInwards/ModelOfficeStockInwards'
+import Inquiriesservice from '../../helperOfficeStockInwards/ApiDataRequest'
 
 const OfficeStockInwardsTable = () => {
+  const {
+    setItemIdForUpdate,
+    pageNo,
+    getData,
+    pageSize,
+    setViewIdForUpdate,
+    fetchAllUser,
+    statusId,
+    setPageNo,
+    setSearchText,
+    DataGetAllTypeCreatedByTypes,
+    DataGetAllTypeStatus,
+    DataGetAllTypeSalesExecutve,
+    DataGetAllTypeSalesExecutveUserByRole,
+  } = ListPageData()
+  let {LoderActions} = useLoader()
+  const navigate = useNavigate()
+
+  const DataWiseIndex = (pageNo - 1) * pageSize
+
+  const openEditModal = (id: any) => {
+    setItemIdForUpdate(id)
+  }
+
+  const openViewModal = (id: any) => {
+    setViewIdForUpdate(id)
+  }
+
+  {
+    /* begin:: Delete functionlity */
+  }
+  const deleteFaults = (ID: number) => {
+    Swal.fire({
+      title: `Do you want to delete this records ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        LoderActions(true)
+        let payload = await Inquiriesservice.deleteInquiries(ID)
+        if (payload.success === true) {
+          LoderActions(false)
+
+          toast.success(` Data Deleted Successfully`)
+          toast.dismiss('1s')
+        } else {
+          LoderActions(false)
+
+          toast.error(` Failed to Delete Data`)
+          toast.dismiss('1s')
+        }
+        fetchAllUser()
+      }
+    })
+  }
+  {
+    /* end:: Delete functionlity */
+  }
+
+  useEffect(() => {
+    DataGetAllTypeCreatedByTypes()
+    // DataGetAllTypeStatus()
+    DataGetAllTypeStatus()
+    fetchAllUser()
+    DataGetAllTypeSalesExecutve()
+    DataGetAllTypeSalesExecutveUserByRole()
+  }, [])
+
+  // useEffect(() => {
+  //   console.log('enter')
+  //   fetchAllUser()
+  // }, [pageNo, pageSize, searchText, zoneId, roleId])
+
+  // useEffect(() => {
+  //   console.log('getData', getData)
+  // }, [getData])
+
+  const handlesearchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setSearchText(e.target.value)
+  }
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
@@ -10,6 +104,7 @@ const OfficeStockInwardsTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
+              {/* <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th> */}
               <th className='max-w-60px min-w-40px rounded-start ps-4'>Inward no.</th>
               <th className='min-w-150px'>Inward date</th>
               <th className='min-w-200px'>Product</th>
@@ -22,262 +117,227 @@ const OfficeStockInwardsTable = () => {
           {/* end::Table head */}
           {/* begin::Table body */}
           <tbody>
-            <tr>
-              <td>
-                <div className='text-dark fw-bolder fs-6 ps-4'>1</div>
-              </td>
-              <td className='text-dark fw-bold  fs-6'>14-Jun-2022</td>
-              <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
-              <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
+            {getData.length > 0 ? (
+              getData.map((row: getInquiriesData, index: number) => {
+                // console.log("wertyuiop[",row);
 
-              <td className='text-dark fw-bold fs-6'>Komal Tiwari</td>
-              <td className='text-dark fw-bold fs-6'>Varachha</td>
-              <td>
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#view-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                </a>
+                return (
+                  <tr key={index}>
+                    {/* begin:: Index No */}
+                    {/* <td>
+                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                        {DataWiseIndex + index + 1}
+                      </div>
+                    </td> */}
+                    {/* end:: Index No */}
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#edit-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                </a>
+                    {/* begin:: Name Input */}
+                    <td>
+                      <div className='d-flex align-items-center'>
+                        <div className='d-flex justify-content-start flex-column'>
+                          <div className='text-dark fw-bold  fs-6'>{row?.inwardNo || '-'}</div>
+                        </div>
+                      </div>
+                    </td>
+                    {/* end:: Name Input */}
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='text-dark fw-bolder fs-6 ps-4'>2</div>
-              </td>
-              <td className='text-dark fw-bold  fs-6'>14-Jun-2022</td>
-              <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
-              <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
+                    {/* begin:: User Type Input username */}
+                    <td className='text-dark fw-bold  fs-6'>{moment(row?.inwardDate).format('DD-MMMM-YYYY, h:mm a') || '-'}</td>
+                    {/* end:: User Type Input  username */}
 
-              <td className='text-dark fw-bold fs-6'>Komal Tiwari</td>
-              <td className='text-dark fw-bold fs-6'>Varachha</td>
-              <td>
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#view-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                </a>
+                    {/* begin:: User Type Input email */}
+                    <td className='text-dark fw-bold  fs-6'>{row.productName || '-'}</td>
+                    {/* end:: User Type Input  email*/}
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#edit-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                </a>
+                    {/* begin:: User Type Input phone*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.quantity || '-'}</td>
+                    {/* end:: User Type Input  phone*/}
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='text-dark fw-bolder fs-6 ps-4'>3</div>
-              </td>
-              <td className='text-dark fw-bold  fs-6'>14-Jun-2022</td>
-              <td className='text-dark fw-bold  fs-6'>Media convertor-1310-giga</td>
-              <td className='text-dark fw-bold  fs-6'> 3 Pieces</td>
+                    {/* begin:: User Type Input zoneName */}
+                    {/* <td className='text-dark fw-bold  fs-6'>
+                      {' '}
+                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                    </td> */}
+                    {/* end:: User Type Input  zoneName*/}
 
-              <td className='text-dark fw-bold fs-6'>Komal Tiwari</td>
-              <td className='text-dark fw-bold fs-6'>Varachha</td>
-              <td>
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#view-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                </a>
+                    {/* begin:: User Type Input roleName*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.deliveredByName || '-'}</td>
+                    {/* end:: User Type Input  roleName*/}
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#edit-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                </a>
+                    {/* begin:: User Type Input roleName*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
+                    {/* end:: User Type Input  roleName*/}
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                </a>
-              </td>
-            </tr>
+                    {/* begin:: Action */}
+                    <td>
+                      {/* begin:: View Icon */}
+                      <a
+                        className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                        onClick={() => navigate(`inquiriesviewform/${row.id}`)}
+                        // onClick={() => openViewModal(row.id)}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen060.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                      {/* end:: View Icon */}
+
+                      {/* begin:: Edit Icon */}
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                        onClick={() => {
+                          navigate(`inquiriesform/${row.id}`)
+                        }}
+                        // onClick={()=>openEditModal(row.id)}
+                      >
+                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                      </button>
+                      {/* end:: Edit Icon */}
+
+                      {/* begin:: Delete Icon */}
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                        onClick={() => deleteFaults(row.id)}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen027.svg'
+                          className='svg-icon-3'
+                        />
+                      </button>
+                      {/* end:: Delete Icon */}
+                    </td>
+                    {/* end:: Action */}
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan={8}>
+                  <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                    No Records Found !
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
           {/* end::Table body */}
         </table>
         {/* end::Table */}
       </div>
 
-      <div className='row g-5 d-flex d-lg-none py-3'>
-        <div className='col-md-6 mx-0 my-2'>
-          <div className='card card-custom border'>
-            <div className='card-body p-4'>
-              <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
-                <div className='text-dark fw-bolder fs-3 me-2'>1.</div>
-                <div className='fw-bolder fs-3'>Kiritbhai</div>
-                <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
-              </div>
-              <div className='py-1 d-flex'>
-                <div className='fw-bolder '>Delivered by:</div>
-                <div className='text-dark fw-bold  ms-2'>Manis Solanki</div>
-              </div>
+      {/* begin::Mobile Table */}
 
-              <div id='card-id-1' className='collapse'>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Product</div>
-                  <div className='text-dark fw-bold  ms-2'>Switch</div>
-                </div>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Inward Date:</div>
-                  <div className='text-dark fw-bold  ms-2'>06-Jun-2022 09:50 AM</div>
-                </div>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Quantity:</div>
-                  <div className='text-dark fw-bold  ms-2'>2 Pieces</div>
-                </div>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Zone:</div>
-                  <div className='text-dark fw-bold  ms-2'>Varachha</div>
-                </div>
-              </div>
+      <div className='row g-5 d-flex d-lg-none d-md-none py-3'>
+        <div
+          onChange={handlesearchange}
+          className='form-control form-control-solid ps-14'
+          placeholder='Search'
+        />
+        {getData.length > 0 ? (
+          getData?.map((row: getInquiriesData, index: number) => {
+            return (
+              <div key={DataWiseIndex + index + 1}>
+                <div className='col-md-6 mx-0 my-2'>
+                  <div className='card card-custom border'>
+                    <div className='card-body p-4'>
+                      <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                        {/* <div className='text-dark fw-bolder fs-3 me-2'>
+                          {' '}
+                          {DataWiseIndex + index + 1}
+                        </div> */}
+                        <div className='fw-bolder fs-3'>{row?.productName || '-'}</div>
+                        <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
+                      </div>
+                      <div className='py-1 d-flex'>
+                        <div className='fw-bolder '>InwardDate:</div>
+                        <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
+                      </div>
 
-              <div
-                className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
-                data-bs-toggle='collapse'
-                data-bs-target='#card-id-1'
-                aria-expanded='false'
-              >
-                <span>+ &nbsp;</span>More info
-              </div>
-            </div>
+                      <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                        <div className='py-1 d-flex align-items-cenetr'>
+                          <div className='fw-bolder '>inwardNo:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.inwardNo || '-'}</div>
+                        </div>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>quantity :</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.quantity || '-'}</div>
+                        </div>
 
-            <div className='card-footer p-2 py-0 bg-light'>
-              <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
-                <a
-                  href='#'
-                  className='btn btn-icon btn-active-color-success btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#view-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                </a>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>deliveredByName:</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {row.deliveredByName || '-'}
+                          </div>
+                        </div>
 
-                <a
-                  href='#'
-                  className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#edit-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                </a>
-                <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
-                  <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='col-md-6 mx-0 my-2'>
-          <div className='card card-custom border'>
-            <div className='card-body p-4'>
-              <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
-                <div className='text-dark fw-bolder fs-3 me-2'>2.</div>
-                <div className='fw-bolder fs-3'>Kiritbhai</div>
-                <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
-              </div>
-              <div className='py-1 d-flex'>
-                <div className='fw-bolder '>Delivered by:</div>
-                <div className='text-dark fw-bold  ms-2'>Manis Solanki</div>
-              </div>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>zoneName:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
+                        </div>
+                      </div>
 
-              <div id='card-id-2' className='collapse'>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Product</div>
-                  <div className='text-dark fw-bold  ms-2'>Switch</div>
+                      <div
+                        className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                        data-bs-toggle='collapse'
+                        data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
+                        aria-expanded='false'
+                      >
+                        <span>+ &nbsp;</span>More info
+                      </div>
+                    </div>
+
+                    <div className='card-footer p-2 py-0 bg-light'>
+                      <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
+                        <a
+                          className='btn btn-icon btn-active-color-success btn-sm me-1'
+                          // onClick={() => openViewModal(row)}
+                          onClick={() => navigate(`viewform/${row.id}`)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen060.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>
+
+                        <button
+                          className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                          // onClick={() => openEditModal(row.id)}
+                          onClick={() => {
+                            navigate(`form/${row.id}`)
+                          }}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/art/art005.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+
+                        <button
+                          className='btn btn-icon btn-active-color-danger btn-sm'
+                          onClick={() => deleteFaults(row.id)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Inward Date:</div>
-                  <div className='text-dark fw-bold  ms-2'>06-Jun-2022 09:50 AM</div>
-                </div>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Quantity:</div>
-                  <div className='text-dark fw-bold  ms-2'>2 Pieces</div>
-                </div>
-                <div className='py-1 d-flex align-items-cenetr'>
-                  <div className='fw-bolder '>Zone:</div>
-                  <div className='text-dark fw-bold  ms-2'>Varachha</div>
-                </div>
               </div>
-
-              <div
-                className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
-                data-bs-toggle='collapse'
-                data-bs-target='#card-id-2'
-                aria-expanded='false'
-              >
-                <span>+ &nbsp;</span>More info
-              </div>
-            </div>
-
-            <div className='card-footer p-2 py-0 bg-light'>
-              <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
-                <a
-                  href='#'
-                  className='btn btn-icon btn-active-color-success btn-sm me-1'
-                  data-bs-toggle='modal'
-                  data-bs-target='#view-inquiries-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/general/gen060.svg' className='svg-icon-3' />
-                </a>
-
-                <a
-                  href='#'
-                  className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                  data-bs-toggle='modal'
-                  // data-bs-target='#edit-inquiries-modal'
-                  data-bs-target='#create-inquiry-modal'
-                >
-                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                </a>
-                <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
-                  <KTSVG path='/media/icons/duotune/general/gen027.svg' className='svg-icon-3' />
-                </a>
-              </div>
+            )
+          })
+        ) : (
+          <div>
+            <div>
+              <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
             </div>
           </div>
-        </div>
+        )}
       </div>
+      {/* End::Mobile Table */}
     </div>
   )
 }

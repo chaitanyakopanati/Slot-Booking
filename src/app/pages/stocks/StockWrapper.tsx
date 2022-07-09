@@ -9,6 +9,8 @@ import OfficeOldStockOutwardsWrapper from '../../modules/office-old-stock-outwar
 import OfficeOldStockAvailabilityWrapper from '../../modules/office-old-stock-availability/OfficeOldStockAvailabilityWrapper'
 import GodownStockInwardsWrapper from '../../modules/godown-stock-inwards/GodownStockInwardsWrapper'
 import GodownStockAvailabilityWrapper from '../../modules/godown-stock-availability/GodownStockAvailabilityWrapper'
+import OfficeStockInwardsFormWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/Form/OfficeStockInwardsFormWrapper'
+import OfficeStockInwardsViewWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/Form/OfficeStockInwardsViewWrapper'
 // import OfficeStockW from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 
 function StockWrapper() {
@@ -25,6 +27,24 @@ function StockWrapper() {
           }
         />
         {/*  */}
+        <Route
+          path='office-stock-inwards/form/:id'
+          element={
+            <>
+              <PageTitle>User Form</PageTitle>
+              <OfficeStockInwardsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='office-stock-inwards/viewform/:id'
+          element={
+            <>
+              <PageTitle>View office-stock-inwards</PageTitle>
+              <OfficeStockInwardsViewWrapper />
+            </>
+          }
+        />
         <Route
           path='office-stock-outwards'
           element={
