@@ -176,12 +176,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
               onKeyDown={onKeyDown}
               className='form'
               onSubmit={props.handleSubmit}
-              onChange={(event)=>{
-                event.preventDefault()
-                console.clear()
-                console.log("props.valuses",props.values)
-
-              }}
             >
               <div
                 className='d-flex flex-column scroll-y me-n7 pe-7'

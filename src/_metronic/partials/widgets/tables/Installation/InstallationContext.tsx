@@ -1,4 +1,4 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import InstallationsService from './helperInstallation/ApiDatarequest'
 import {
@@ -13,10 +13,11 @@ import {
 
 export interface ComplaintDataContextModel {
   getData: getInstallationsData[]
-  getDataAllType: GetAllData[]
+  // getDataAllType: GetAllData[]
   statusData: GetAllData[]
   getMainPoint: GetAllData[]
   getcableTypeData: GetAllData[]
+  getCompanyTypeData: GetAllData[]
   getInstallations: GetAllData[]
   getUserNameData: GetAllData[]
   salesExecutveAllData: GetAllDataApiSalesExecutve[]
@@ -39,6 +40,7 @@ export interface ComplaintDataContextModel {
   createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
+  setCompanyId: Dispatch<SetStateAction<number>>
   setInstallerId: Dispatch<SetStateAction<number>>
   pageSize: number
   zoneId: number
@@ -47,6 +49,7 @@ export interface ComplaintDataContextModel {
   salesExecutiveId: number
   statusId: number
   mainPointId: number
+  companyId: number
   roleId: string
   createdAt: string
   setPageSize: Dispatch<SetStateAction<number>>
@@ -73,6 +76,7 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeMainPoint: () => void
   DataGetAllTypeCableType: () => void
   DataGetAllTypeUserName: () => void
+  DataGetAllTypeCompany: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -94,9 +98,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   totalData: 0,
   setTotalData: () => {},
   setMainPointId: () => {},
+  setCompanyId: () => {},
   installerId: 0,
   pageSize: 0,
   zoneId: 0,
+  companyId: 0,
   connectionTypeId: 0,
   salesExecutiveId: 0,
   statusId: 0,
@@ -111,12 +117,13 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   searchByUsername: '',
   setSearchText: () => {},
   setSearchByUsername: () => {},
-  getDataAllType: [],
+  // getDataAllType: [],
   getUserByRole: [],
   statusData: [],
   getMainPoint: [],
   getUserNameData: [],
   getcableTypeData: [],
+  getCompanyTypeData: [],
   getInstallations: [],
   salesExecutveAllData: [],
   getDataAllTypeZone: [],
@@ -137,15 +144,17 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeMainPoint: () => {},
   DataGetAllTypeCableType: () => {},
   DataGetAllTypeUserName: () => {},
+  DataGetAllTypeCompany: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInstallationsData[]>([])
-  const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  // const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [getDataAllTypeZone, setGetDataAllTypeZone] = useState<GetAllData[]>([])
   const [statusData, setStatusData] = useState<GetAllData[]>([])
   const [getInstallations, setGetInstallations] = useState<GetAllData[]>([])
   const [getMainPoint, setGetMainPoint] = useState<GetAllData[]>([])
   const [getcableTypeData, setGetcableTypeData] = useState<GetAllData[]>([])
+  const [getCompanyTypeData, setGetCompanyTypeData] = useState<GetAllData[]>([])
   const [getUserNameData, setgetUserNameData] = useState<GetAllData[]>([])
   const [salesExecutveAllData, setSalesExecutveAllData] = useState<GetAllDataApiSalesExecutve[]>([])
   const [getUserByRole, setGetUserByRole] = useState<GetAllDataApiSalesExecutve[]>([])
@@ -170,6 +179,7 @@ const ListDataProvider: FC = ({children}) => {
   const [installerId, setInstallerId] = useState<number>(0)
   const [connectionTypeId, setConnectionTypeId] = useState<number>(0)
   const [mainPointId, setMainPointId] = useState<number>(0)
+  const [companyId, setCompanyId] = useState<number>(0)
   let {LoderActions} = useLoader()
 
   {
@@ -190,7 +200,8 @@ const ListDataProvider: FC = ({children}) => {
         endDate,
         connectionTypeId,
         mainPointId,
-        installerId
+        installerId,
+        companyId
       )
       console.log(response, 'response=========')
 
@@ -294,7 +305,7 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
- // Technician Installation
+  // Technician Installation
 
   const DataGetAllTypeInstallation = async () => {
     LoderActions(true)
@@ -352,17 +363,35 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   //UserName
-  
-  const DataGetAllTypeUserName = async () => {
+
+  const DataGetAllTypeUserName: any = async (username :any) => {
     LoderActions(true)
     try {
-      let payload: GetAllDataApi = await InstallationsService.getUserName()
+      let payload: GetAllDataApi = await InstallationsService.getUserName(username)
       console.log(payload, 'getUserNamegetUserName')
 
       if (payload.success == true) {
         LoderActions(false)
         setgetUserNameData(payload?.data)
         console.log(payload.data, 'getUserName')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+  
+//Company
+  const DataGetAllTypeCompany = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllDataApi = await InstallationsService.getCompany()
+      console.log(payload, 'getCompanygetCompany')
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetCompanyTypeData(payload?.data)
+        console.log(payload.data, 'getCompany')
       }
     } catch (error) {
     } finally {
@@ -376,11 +405,15 @@ const ListDataProvider: FC = ({children}) => {
     setCreatedById,
     getUserByRole,
     setMainPointId,
+    DataGetAllTypeCompany,
     connectionTypeId,
+    setCompanyId,
     getInstallations,
+    getCompanyTypeData,
     installerId,
     setConnectionTypeId,
     setInstallerId,
+    companyId,
     mainPointId,
     searchByUsername,
     DataGetAllTypeUserName,
@@ -408,7 +441,7 @@ const ListDataProvider: FC = ({children}) => {
     viewIdForUpdate,
     salesExecutveAllData,
     setViewIdForUpdate,
-    getDataAllType,
+    // getDataAllType,
     statusData,
     statusId,
     getDataAllTypeZone,

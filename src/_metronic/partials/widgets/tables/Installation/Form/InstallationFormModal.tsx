@@ -14,43 +14,10 @@ type Props = {
 }
 
 let validationSchemaNewForm = Yup.object({
-  userName: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  userid: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  installerName: Yup.string().required('This field is required'),
-  InstallationId: Yup.string().required('This field is required'),
+  installerid: Yup.string().required('This field is required'),
   cablelength: Yup.string().required('This fied is required'),
-  cabletypeName: Yup.string().required('This fied is required'),
   cabletypeid: Yup.string().required('This fied is required'),
-  mainpointName: Yup.string().required('This field is required'),
-  mainpointid: Yup.string().required('This field is required'),
-  remark: Yup.string().required('This field is required'),
-  status: Yup.string().required('This field is required'),
-  iptype: Yup.string().required('This field is required'),
-  accesspointip: Yup.string().required('This field is required'),
-  stationip: Yup.string().required('This field is required'),
-  stationname: Yup.string().required('This field is required'),
-  stationMac: Yup.string().required('This field is required'),
-  connectiontype: Yup.string().required('This field is required'),
-})
-
-let validationSchemaEditForm = Yup.object({
-  userName: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  userid: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  installerName: Yup.string().required('This field is required'),
-  InstallationId: Yup.string().required('This field is required'),
-  cablelength: Yup.string().required('This fied is required'),
-  cabletypeName: Yup.string().required('This fied is required'),
-  cabletypeid: Yup.string().required('This fied is required'),
-  mainpointName: Yup.string().required('This field is required'),
-  mainpointid: Yup.string().required('This field is required'),
+  mainpointid: Yup.number().required('This field is required'),
   remark: Yup.string().required('This field is required'),
   status: Yup.string().required('This field is required'),
   iptype: Yup.string().required('This field is required'),
@@ -70,16 +37,12 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     getInstallations,
     getMainPoint,
     getcableTypeData,
-    getUserNameData,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
+
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
-    userName: '',
-    installerName: '',
-    mainpointName: '',
-    cabletypeName: '',
     cablelength: '',
     remark: '',
     status: '',
@@ -89,64 +52,33 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     stationip: '',
     stationname: '',
     stationMac: '',
-    InstallationId: '',
+    installerid: '',
     mainpointid: '',
     cabletypeid: '',
     userid: '',
     connectiontype: '',
-    connectiontypeId: '',
   })
 
   useEffect(() => {
-    if (itemIdForUpdate === 'add') {
-      setInitialValues({
-        ...category,
-        id: category.data?.id,
-        userName: category.data?.userName || '',
-        userid: category.data?.userid || '',
-        installerName: category.data?.installerName || '',
-        InstallationId: category.data?.InstallationId || '',
-        mainpointName: category.data?.mainpointName || '',
-        mainpointid: category.data?.mainpointid || '',
-        cabletypeName: category.data?.cabletypeName || '',
-        cabletypeid: category.data?.cabletypeid || '',
-        cablelength: category.data?.cablelength || '',
-        status: category.data?.status || '',
-        iptype: category.data?.iptype || '',
-        accesspointip: category.data?.accesspointip || '',
-        remark: category.data?.remark || '',
-        stationip: category.data?.stationip || '',
-        stationname: category.data?.stationname || '',
-        stationMac: category.data?.stationMac || '',
-        connectiontype: category.data?.connectiontype || '',
-        connectiontypeId: category.data?.connectiontypeId || '',
-        isnotifyinstaller: category.data?.isnotifyinstaller || false,
-      })
-    } else {
-      setInitialValues({
-        ...category,
-        id: category.data?.id,
-        status: category.data?.status || '',
-        installerName: category.data?.installerName || '',
-        InstallationId: category.data?.InstallationId || '',
-        mainpointName: category.data?.mainpointName || '',
-        mainpointid: category.data?.mainpointid || '',
-        cabletypeName: category.data?.cabletypeName || '',
-        cabletypeid: category.data?.cabletypeid || '',
-        cablelength: category.data?.cablelength || '',
-        userName: category.data?.userName || '',
-        userid: category.data?.userid || '',
-        iptype: category.data?.iptype || '',
-        accesspointip: category.data?.accesspointip || '',
-        remark: category.data?.remark || '',
-        stationip: category.data?.stationip || '',
-        stationname: category.data?.stationname || '',
-        stationMac: category.data?.stationMac || '',
-        connectiontype: category.data?.connectiontype || '',
-        connectiontypeId: category.data?.connectiontypeId || '',
-        isnotifyinstaller: category.data?.isnotifyinstaller || false,
-      })
-    }
+    console.log(category, 'jaymataji')
+
+    setInitialValues({
+      ...category,
+      id: category.data?.id,
+      status: category.data?.status || '',
+      installerid: category.data?.installerid || '',
+      mainpointid: category.data?.mainpointid || '',
+      cabletypeid: category.data?.cabletypeid || '',
+      cablelength: category.data?.cablelength || '',
+      iptype: category.data?.iptype || '',
+      accesspointip: category.data?.accesspointip || '',
+      remark: category.data?.remark || '',
+      stationip: category.data?.stationip || '',
+      stationname: category.data?.stationname || '',
+      stationMac: category.data?.stationMac || '',
+      connectiontype: category.data?.connectiontype || '',
+      isnotifyinstaller: category.data?.isnotifyinstaller || false,
+    })
   }, [itemIdForUpdate])
 
   useEffect(() => {
@@ -165,21 +97,20 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     }
   }
 
-  // useEffect(() => {}, [category, itemIdForUpdate])
   return (
     <>
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
-        validationSchema={
-          itemIdForUpdate === 'add' ? validationSchemaNewForm : validationSchemaEditForm
-        }
+        validationSchema={itemIdForUpdate === 'add' ? validationSchemaNewForm : ''}
         onSubmit={async (values: any, {resetForm}) => {
           console.log('values', values)
           LoderActions(true)
 
           try {
             if (values.id) {
+              console.log(values.id, 'idddddddddddddd')
+              console.log('editdivyesh', values)
               // Edit Api Response
               let response = await InstallationsService.editInstallations(values)
               console.log('Edit User*****************', response)
@@ -190,12 +121,13 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 toast.success(`Data Updated Successfully`)
               }
               navigation('/installations')
-              // toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
 
               resetForm({})
               cancel()
             } else {
+              console.log('divyesh', values)
+
               let response = await InstallationsService.postInstallations(values)
               console.log('Add User*****************', response)
 
@@ -247,40 +179,18 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                           placeholder='userName'
                           className='form-control form-control-lg form-control-solid'
                           {...props.getFieldProps('userid')}
-                          // value={props.values.userName}
-                          onChange={(e) => {
-                            e.preventDefault()
-                            console.log(e.target.value)
-                            props.handleChange(e)
-                          }}
-                          onBlur={props.handleBlur}
-                          // type='text'
-                          // name='userName'
-                          // autoComplete='off'
                         />
-                        {getUserNameData.map((TypeData: any, index) => {
-                          console.log(TypeData, 'TypeData=====+++')
-
-                          return (
-                            <option key={index} value={TypeData.id}>
-                              {TypeData?.userName}
-                            </option>
-                          )
-                        })}
-                         <div className='erro2' style={{color: 'red'}}>
-                          <ErrorMessage name='userName' />
-                        </div>
-                     </div> 
+                      </div>
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>Installer</label>
                         <select
                           className='form-select form-select-solid'
-                          {...props.getFieldProps('InstallationId')}
+                          {...props.getFieldProps('installerid')}
                         >
                           <option value='' disabled>
                             Select Installer Type
                           </option>
-                          {getInstallations.map((TypeData: any, index) => {
+                          {getInstallations.map((TypeData: any, index: number) => {
                             return (
                               <option key={index} value={TypeData.id}>
                                 {TypeData?.username}
@@ -288,6 +198,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='installerid' />
+                        </div>
                       </div>
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>Main point</label>
@@ -306,20 +219,25 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='mainpointid' />
+                        </div>
                       </div>
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>Connection Type</label>
-                        <select className='form-select form-select-solid'
-                          //  value={props.values.connectiontypeId}
-                          //  onChange={props.handleChange}
-                          //  onBlur={props.handleBlur}
-                          //  name='connectiontype'
-                          {...props.getFieldProps('connectiontypeId')}
+                        <select
+                          className='form-select form-select-solid'
+                          {...props.getFieldProps('connectiontype')}
                         >
-                          <option value=''>Select Connection Type</option>
+                          <option value='' disabled>
+                            Select Connection Type
+                          </option>
                           <option value='1'>Cable</option>
                           <option value='2'>Wireless</option>
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='connectiontype' />
+                        </div>
                       </div>
                     </div>
                     <div className='row w-100 mx-0 mb-4 gy-4'>
@@ -338,6 +256,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='cabletypeid' />
+                        </div>
                       </div>
 
                       <div className='col-lg-3'>
@@ -354,20 +275,29 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                             className='form-control form-control-solid'
                           />
                         </div>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='cablelength' />
+                        </div>
                       </div>
 
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>IP type</label>
-                        <select className='form-select form-select-solid'
-                           value={props.values.iptype}
-                           onChange={props.handleChange}
-                           onBlur={props.handleBlur}
-                           name='iptype'
+                        <select
+                          className='form-select form-select-solid'
+                          value={props.values.iptype}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          name='iptype'
                         >
-                          <option value=''>Select IP Type</option>
+                          <option value='' disabled>
+                            Select IP Type
+                          </option>
                           <option value='1'>Dynamic</option>
                           <option value='2'>Static</option>
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='iptype' />
+                        </div>
                       </div>
 
                       <div className='col-lg-3'>
@@ -440,17 +370,23 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                       </div>
 
                       <div className='col-lg-3'>
-                        <label className='form-label fw-bold required'>Status</label>
-                        <select className='form-select form-select-solid'
-                           value={props.values.status}
-                           onChange={props.handleChange}
-                           onBlur={props.handleBlur}
-                           name='status'
+                        <label className='form-label fw-bold required'>status</label>
+                        <select
+                          className='form-select form-select-solid'
+                          value={props.values.status}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          name='status'
                         >
-                          <option value=''>Select Status Type</option>
+                          <option value='' disabled>
+                            Select status Type
+                          </option>
                           <option value='1'>Pending</option>
                           <option value='2'>Done</option>
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='status' />
+                        </div>
                       </div>
                     </div>
                     <div className='row w-100 mx-0 mb-4 gy-4'>
@@ -478,10 +414,16 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                           <input
                             className='form-check-input h-20px w-30px'
                             type='checkbox'
-                            value=''
-                            id='flexSwitch20x30'
+                            value={props.values.isnotifyinstaller}
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            name='isnotifyinstaller'
+                            checked={props.values.installerid !== '' ? true : false}
                           />
                           <label className='form-check-label'>Installer</label>
+                        </div>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='isnotifyinstaller' />
                         </div>
                       </div>
                     </div>
@@ -515,188 +457,3 @@ const InstallationFormModal: FC<Props> = ({category}) => {
 }
 
 export default InstallationFormModal
-
-// import { KTSVG } from "../../../../../helpers";
-
-// const  InstallationFormModal = () =>{
-//   return(
-//     <>
-//          {/* begin::create form Modal */}
-//    <div className='modal fade' id='create-installation-modal'>
-//    <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
-//      <div className='modal-content'>
-//        <div className='modal-header'>
-//          <h5 className='modal-title'>Create Installation</h5>
-//          <div
-//            className='btn btn-icon btn-sm btn-active-light-primary ms-2'
-//            data-bs-dismiss='modal'
-//            aria-label='Close'
-//          >
-//            <span className='svg-icon svg-icon-2x'>
-//              <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-3' />
-//            </span>
-//          </div>
-//        </div>
-
-//        <div className='modal-body'>
-//          <div className='container-fluid p-0'>
-//            <div className='row w-100 mx-0 mb-4 gy-4'>
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold required'>Username</label>
-//                <input
-//                  className='form-control form-control-lg form-control-solid'
-//                  type='text'
-//                  autoComplete='off'
-//                />
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>Installer</label>
-//                <select className='form-select form-select-solid'>
-//                  <option value='1'></option>
-//                  <option value='2'>Amit</option>
-//                  <option value='3'>Ajay</option>
-//                </select>
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>Main point</label>
-//                <select className='form-select form-select-solid'>
-//                  <option value='1'></option>
-//                  <option value='2'>Not described</option>
-//                  <option value='3'>Angel Square</option>
-//                  <option value='4'>Anjani Sayan</option>
-//                </select>
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>Connection Type</label>
-//                <select className='form-select form-select-solid'>
-//                  <option value='1'></option>
-//                  <option value='2'>Not described</option>
-//                  <option value='3'>Cable</option>
-//                  <option value='4'>Wireless</option>
-//                </select>
-//              </div>
-//            </div>
-
-//            <div className='row w-100 mx-0 mb-4 gy-4'>
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>Cable type</label>
-//                <select className='form-select form-select-solid'>
-//                  <option value='1'></option>
-//                  <option value='2'>2 pair - Single coating</option>
-//                  <option value='3'>2 pair - Double coating</option>
-//                </select>
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>Cable length</label>
-//                <div className='input-group'>
-//                  <span className='input-group-text border-0'>m</span>
-//                  <input type='number' className='form-control form-control-solid' />
-//                </div>
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>IP type</label>
-//                <select className='form-select form-select-solid'>
-//                  <option value='1'></option>
-//                  <option value='2'>Dynamic</option>
-//                  <option value='3'>Static</option>
-//                </select>
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold'>Acces point IP</label>
-//                <input
-//                  className='form-control form-control-lg form-control-solid'
-//                  type='text'
-//                  autoComplete='off'
-//                />
-//              </div>
-//            </div>
-
-//            <div className='row w-100 mx-0 mb-4 gy-4'>
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold required'>Station IP</label>
-//                <input
-//                  className='form-control form-control-lg form-control-solid'
-//                  type='text'
-//                  autoComplete='off'
-//                />
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold required'>Station Name</label>
-//                <input
-//                  className='form-control form-control-lg form-control-solid'
-//                  type='text'
-//                  autoComplete='off'
-//                />
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold required'>Station MAC</label>
-//                <input
-//                  className='form-control form-control-lg form-control-solid'
-//                  type='text'
-//                  autoComplete='off'
-//                />
-//              </div>
-
-//              <div className='col-lg-3'>
-//                <label className='form-label fw-bold required'>Station Name</label>
-//                <select className='form-select form-select-solid'>
-//                  <option value='1'></option>
-//                  <option value='2'>Pending</option>
-//                  <option value='3'>Done</option>
-//                </select>
-//              </div>
-//            </div>
-
-//            <div className='row w-100 mx-0 mb-4 gy-4'>
-//              <div className='col'>
-//                <label className='form-label fw-bold required'>Remark</label>
-//                <input
-//                  className='form-control form-control-lg form-control-solid'
-//                  type='text'
-//                  autoComplete='off'
-//                  placeholder='Remark'
-//                />
-//              </div>
-//            </div>
-
-//            <div className='row w-100 mx-0 mb-4 gy-4'>
-//              <div className='col'>
-//                <label className='form-label fw-bold'>Notification</label>
-//                <div className='form-check form-switch form-check-custom form-check-solid me-10'>
-//                  <input
-//                    className='form-check-input h-20px w-30px'
-//                    type='checkbox'
-//                    value=''
-//                    id='flexSwitch20x30'
-//                  />
-//                  <label className='form-check-label'>Installer</label>
-//                </div>
-//              </div>
-//            </div>
-//          </div>
-//        </div>
-
-//        <div className='modal-footer'>
-//          <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
-//            Close
-//          </button>
-//          <button type='button' className='btn btn-primary'>
-//            Create
-//          </button>
-//        </div>
-//      </div>
-//    </div>
-//  </div>
-//  {/* end::create form Modal */}
-//     </>
-//   )
-// }
-// export default InstallationFormModal

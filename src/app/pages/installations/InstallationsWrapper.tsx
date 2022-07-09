@@ -2,14 +2,14 @@
 import React, { FC, SetStateAction } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
-import { InstallationWrapper } from '../../../_metronic/partials/widgets/tables/Installation/InstallationWrapper1'
+import {  InstallationWrapper1 } from '../../../_metronic/partials/widgets/tables/Installation/InstallationWrapper1'
 
 
 const InstallationsPage: FC = () => (
   <>
     <div className='row gy-5 gx-xl-8'>
       <div className='col-xl-12'>
-        <InstallationWrapper/>
+        <InstallationWrapper1/>
       </div>
     </div>
   </>

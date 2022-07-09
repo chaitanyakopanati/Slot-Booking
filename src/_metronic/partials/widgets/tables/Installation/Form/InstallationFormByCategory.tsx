@@ -6,7 +6,6 @@ import { ListPageData } from '../InstallationContext'
 import InstallationFormModal from './InstallationFormModal'
 import InstallationsService from '../helperInstallation/ApiDatarequest'
 
-
 const InstallationFormByCategory = () => {
   let {id} = useParams()
 
@@ -21,17 +20,14 @@ const InstallationFormByCategory = () => {
     }
   }, [id])
 
-
-
-
   const {data: category, error} = useQuery(
-    `GetInstallationById/-${itemIdForUpdate}`,
+    `GetInstallationById-${itemIdForUpdate}`,
     () => {
       return InstallationsService.GetInstallationsTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null  ),
+      enabled: enabledQuery && (id !== 'add' || id !==undefined || id !== null  ),
       onError: (err) => {
         setItemIdForUpdate(undefined)
         

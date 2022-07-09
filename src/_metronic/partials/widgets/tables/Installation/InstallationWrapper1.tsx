@@ -6,7 +6,7 @@ import InstallationTable from "./Installationlist/Table/InstallationTable"
 import InstalllationFormViewModal from "./Installationlist/Table/InstalllationFormViewModal"
 
 
-const InstallationWrapper1 = () => {
+const InstallationList = () => {
   const {viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
@@ -28,12 +28,12 @@ const InstallationWrapper1 = () => {
   )
 }
 
-function InstallationWrapper() {
+function InstallationWrapper1() {
   return (
     <ListDataProvider>
-      <InstallationWrapper1 />
+      <InstallationList />
     </ListDataProvider>
   )
 }
 
-export { InstallationWrapper }
+export { InstallationWrapper1 }

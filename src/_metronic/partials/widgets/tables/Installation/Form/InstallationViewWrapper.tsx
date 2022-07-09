@@ -4,10 +4,9 @@ import {useParams} from 'react-router-dom'
 import { isNotEmpty, KTCard } from '../../../../../helpers'
 import InstallationsService from '../helperInstallation/ApiDatarequest'
 import { ListDataProvider, ListPageData } from '../InstallationContext'
-import InstalllationFormViewModal from '../Installationlist/Table/InstalllationFormViewModal'
+import InstallationCustomerViewModel from '../Installationlist/Table/InstalllationFormViewModal'
 
-
-function InstallationViewWrapper() {
+function InstallationsView() {
   let {id} = useParams()
   const {viewIdForUpdate, setViewIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
@@ -23,7 +22,7 @@ function InstallationViewWrapper() {
   }, [viewIdForUpdate])
 
   const {data: userDetails, error} = useQuery(
-    `ViewGetInstallationById-${viewIdForUpdate}`,
+    `ViewInstallationById-${viewIdForUpdate}`,
     () => {
       return InstallationsService.GetInstallationsTypeById(viewIdForUpdate)
     },
@@ -40,14 +39,14 @@ function InstallationViewWrapper() {
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        <InstallationFormHeader />
-        {userDetails && <InstalllationFormViewModal category={userDetails} />}
+        <InstallationsFormViewHeader />
+        {userDetails && <InstallationCustomerViewModel category={userDetails} />}
       </KTCard>
     </div>
   )
 }
 
-function InstallationFormHeader() {
+function InstallationsFormViewHeader() {
   return (
     <>
       {/* <div className='modal-header'> */}
@@ -59,12 +58,13 @@ function InstallationFormHeader() {
   )
 }
 
-let InquiriesViewWrapper = () => {
+let InstallationViewWrapper = () => {
   return (
     <ListDataProvider>
-      <InstallationViewWrapper />
+      <InstallationsView />
     </ListDataProvider>
   )
 }
 
 export default InstallationViewWrapper
+

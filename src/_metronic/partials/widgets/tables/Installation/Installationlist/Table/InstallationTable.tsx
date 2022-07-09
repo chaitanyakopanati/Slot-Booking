@@ -6,7 +6,6 @@ import {useNavigate} from 'react-router-dom'
 import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../InstallationContext'
-import Inquiriesservice from '../../helperInstallation/ApiDatarequest'
 import {getInstallationsData} from '../../helperInstallation/ModelInstallation'
 import InstallationsService from '../../helperInstallation/ApiDatarequest'
 
@@ -18,7 +17,6 @@ const InstallationTable = () => {
     pageSize,
     setViewIdForUpdate,
     fetchAllUser,
-    statusId,
     setPageNo,
     setSearchText,
     DataGetAllTypeSalesExecutveUserByRole,
@@ -27,7 +25,8 @@ const InstallationTable = () => {
     DataGetAllTypeMainPoint,
     DataGetAllTypeStatus,
     DataGetAllTypeInstallation,
-    DataGetAllTypeUserName
+    DataGetAllTypeUserName,
+    DataGetAllTypeCompany,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -86,16 +85,8 @@ const InstallationTable = () => {
     fetchAllUser()
     DataGetAllTypeSalesExecutve()
     DataGetAllTypeInstallation()
+    DataGetAllTypeCompany()
   }, [])
-
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllUser()
-  // }, [pageNo, pageSize, searchText, zoneId, roleId])
-
-  // useEffect(() => {
-  //   console.log('getData', getData)
-  // }, [getData])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
@@ -127,7 +118,6 @@ const InstallationTable = () => {
             {getData.length > 0 ? (
               getData.map((row: getInstallationsData, index: number) => {
                 // console.log("wertyuiop[",row);
-
                 return (
                   <tr key={index}>
                     {/* begin:: Index No */}
@@ -138,7 +128,7 @@ const InstallationTable = () => {
                     </td>
                     {/* end:: Index No */}
 
-                    {/* begin:: Name Input */}
+                    {/* begin:: userName Input */}
                     <td>
                       <div className='d-flex align-items-center'>
                         <div className='d-flex justify-content-start flex-column'>
@@ -146,36 +136,36 @@ const InstallationTable = () => {
                         </div>
                       </div>
                     </td>
-                    {/* end:: Name Input */}
+                    {/* end:: userName Input */}
 
-                    {/* begin:: User Type Input username */}
+                    {/* begin:: User Type Input name */}
                     <td className='text-dark fw-bold  fs-6'>{row.name || '-'}</td>
-                    {/* end:: User Type Input  username */}
+                    {/* end:: User Type Input  name */}
 
-                    {/* begin:: User Type Input username */}
+                    {/* begin:: User Type Input address */}
                     <td className='text-dark fw-bold  fs-6'>{row.address || '-'}</td>
-                    {/* end:: User Type Input  username */}
+                    {/* end:: User Type Input  address */}
 
-                    {/* begin:: User Type Input username */}
+                    {/* begin:: User Type Input installerName */}
                     <td className='text-dark fw-bold  fs-6'>{row.installerName || '-'}</td>
-                    {/* end:: User Type Input  username */}
+                    {/* end:: User Type Input  installerName */}
 
-                    {/* begin:: User Type Input username */}
+                    {/* begin:: User Type Input createdAt */}
                     <td className='text-dark fw-bold fs-6'>
                       {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
-                    {/* end:: User Type Input  username */}
+                    {/* end:: User Type Input  createdAt */}
 
-                    {/* begin:: User Type Input email */}
+                    {/* begin:: User Type Input status */}
                     <td className='text-dark fw-bold  fs-6'>{row.status || '-'}</td>
-                    {/* end:: User Type Input  email*/}
+                    {/* end:: User Type Input  status*/}
 
                     {/* begin:: Action */}
                     <td>
                       {/* begin:: View Icon */}
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                        onClick={() => navigate(`inquiriesviewform/${row.id}`)}
+                        onClick={() => navigate(`installationsviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
                       >
                         <KTSVG
@@ -208,6 +198,26 @@ const InstallationTable = () => {
                         />
                       </button>
                       {/* end:: Delete Icon */}
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
+                        data-bs-toggle='modal'
+                        data-bs-target='#view-customer-modal'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/communication/com013.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/arrows/arr065.svg'
+                          className='svg-icon-2'
+                        />
+                      </a>
                     </td>
                     {/* end:: Action */}
                   </tr>
@@ -263,9 +273,7 @@ const InstallationTable = () => {
                         </div>
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>InstallerName:</div>
-                          <div className='text-dark fw-bold  ms-2'>
-                            {row.installerName || '-'}
-                          </div>
+                          <div className='text-dark fw-bold  ms-2'>{row.installerName || '-'}</div>
                         </div>
 
                         <div className='py-1 d-flex'>

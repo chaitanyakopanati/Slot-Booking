@@ -25,12 +25,10 @@ const InstallationHeader: FC<Props> = ({category}) => {
     roleId,
     searchByUsername,
     createdById,
-    setCreatedById,
     fetchAllUser,
     pageNo,
     pageSize,
     statusId,
-    statusData,
     getDataAllTypeZone,
     salesExecutiveId,
     setSalesExecutiveId,
@@ -48,7 +46,10 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setZoneId,
     installerId,
     setInstallerId,
-    getInstallations
+    getInstallations,
+    companyId,
+    setCompanyId,
+    getCompanyTypeData,
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -127,8 +128,9 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* End::handleConnectionTypechange */
   }
 
+  //status
   const handleStatuschange = (e: any) => {
-    // setPageNo(1)
+    setPageNo(1)
     console.log(e.target.value)
     setStatusId(e.target.value)
   }
@@ -137,7 +139,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* begin::Zone */
   }
   const handleZoneChange = (e: any) => {
-    // setPageNo(1)
+    setPageNo(1)
     console.log(e.target.value)
     setZoneId(e.target.value)
   }
@@ -146,11 +148,18 @@ const InstallationHeader: FC<Props> = ({category}) => {
   }
 
   const handleInstallerChange = (e: any) => {
-    // setPageNo(1)
+    setPageNo(1)
     console.log(e.target.value)
     setInstallerId(e.target.value)
   }
 
+  //Company
+
+  const handleCompanyChange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setCompanyId(e.target.value)
+  }
   useEffect(() => {
     fetchAllUser()
   }, [
@@ -167,7 +176,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
     connectionTypeId,
     mainPointId,
     installerId,
-    salesExecutiveId
+    salesExecutiveId,
+    companyId,
   ])
 
   return (
@@ -246,7 +256,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                   </div>
                   {/* end:: Filter */}
 
-                  {/* begin::Create Fault Button*/}
+                  {/* begin::Create Installation Button*/}
                   <div className='d-flex justify-content-end ms-3'>
                     <div title='Click to add new category'>
                       <button
@@ -267,11 +277,11 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       </button>
                     </div>
                   </div>
-                  {/* end::Create Fault Button*/}
+                  {/* end::Create Installation Button*/}
                 </div>
               </div>
 
-              {/* begin:: Filter:- Created By */}
+              {/* begin:: Filter:- Installation By */}
               {filterShow && (
                 <div className='row w-100 mx-0 my-3'>
                   <div className='col-lg-3'>
@@ -280,7 +290,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     >
                       <label className='form-label fw-bold'>Installation date</label>
                       <div
-                      //  onChange={}
                       >
                         <DateRangePicker
                           initialSettings={{
@@ -353,9 +362,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         onChange={handleMainPointchange}
                       >
                         <option value=''>Select MainPoint</option>
-                        {getMainPoint.map((TypeData:any, index: number) => {
-                          // console.log(TypeData,"TypeData======++++===");
-
+                        {getMainPoint.map((TypeData: any, index: number) => {
                           return (
                             <option key={index} value={TypeData?.id}>
                               {TypeData?.name}
@@ -374,8 +381,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       >
                         <option value=''>Select Zone Type</option>
                         {getDataAllTypeZone.map((TypeData, index) => {
-                          // console.log(TypeData, 'TypeDataTypeDataTypeData')
-
                           return (
                             <option key={index} value={TypeData?.id}>
                               {TypeData?.name}
@@ -386,31 +391,39 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     </div>
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Company</label>
-                      <select className='form-select form-select-solid'>
-                        <option value='1'>All</option>
-                        <option value='2'>Earth</option>
-                        <option value='3'>Softnet</option>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('installerid')}
+                        value={companyId}
+                        onChange={handleCompanyChange}
+                      >
+                        <option value=''>Select Company Type</option>
+                        {getCompanyTypeData.map((TypeData: any, index) => {
+                          return (
+                            <option key={index} value={TypeData.id}>
+                              {TypeData?.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Installer</label>
                       <select
-                          className='form-select form-select-solid'
-                          {...props.getFieldProps('installerid')}
-                          value={installerId}
-                          onChange={handleInstallerChange}
-                        >
-                          <option value=''>
-                            Select Installer Type
-                          </option>
-                          {getInstallations.map((TypeData: any, index) => {
-                            return (
-                              <option key={index} value={TypeData.id}>
-                                {TypeData?.username}
-                              </option>
-                            )
-                          })}
-                        </select>
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('installerid')}
+                        value={installerId}
+                        onChange={handleInstallerChange}
+                      >
+                        <option value=''>Select Installer Type</option>
+                        {getInstallations.map((TypeData: any, index) => {
+                          return (
+                            <option key={index} value={TypeData.id}>
+                              {TypeData?.username}
+                            </option>
+                          )
+                        })}
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -426,4 +439,3 @@ const InstallationHeader: FC<Props> = ({category}) => {
   )
 }
 export default InstallationHeader
-

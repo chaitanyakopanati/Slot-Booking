@@ -79,7 +79,7 @@ const PrivateRoutes = () => {
           path='installations/installationsform/:id'
           element={
             <>
-              <PageTitle>installations Form</PageTitle>
+              <PageTitle>User Form</PageTitle>
               <InstallationFormWrapper />
             </>
           }

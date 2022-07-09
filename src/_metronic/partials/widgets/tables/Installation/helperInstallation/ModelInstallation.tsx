@@ -18,7 +18,8 @@ export interface getInstallationsData {
   userName: string
   installerName: string
   connectionTypeId:number
-  InstallationId:number
+  installerid:number
+  zonepointid:number
 }
 
 export interface getAllInstallationsData {
@@ -29,7 +30,8 @@ export interface getAllInstallationsData {
 export interface postlistData {
   userName:string
   zonepointid:number
-  InstallationId:number
+  connectiontype:string
+  installerid:number
   cabletypeid:number
   cablelength:number
   iptype:string
@@ -74,9 +76,10 @@ export interface GetAllDataApi {
 }
 export interface putInstallationsmodel {
   id: number
+  connectiontype:string
   userName:string
   zonepointid:number
-  InstallationId:number
+  installerid:number
   cabletypeid:number
   cablelength:number
   iptype:string
@@ -88,7 +91,9 @@ export interface putInstallationsmodel {
   isnotifyinstaller:boolean
   remark:string
   userid:number
-
+  connectiontypeId:number
+  iptypeId:number
+  statusId:number
 }
 export interface putInstallationsmodel1 {
   data: getInstallationsData
@@ -120,5 +125,7 @@ export interface GetAllInstallationsApi {
 }
 
 export type ID = undefined | null | string
+
+export type USERNAME = undefined | null | string
 
 export type ViewForm = getInstallationsData | undefined

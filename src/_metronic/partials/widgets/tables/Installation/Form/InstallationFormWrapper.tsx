@@ -4,7 +4,7 @@ import InstallationFormHeader from '../component/InstallationFormHeader'
 import { ListDataProvider, ListPageData } from '../InstallationContext'
 import InstallationFormByCategory from './InstallationFormByCategory'
 
-function InstallationFormWrapper() {
+function InstallationForm() {
   const {DataGetAllTypeStatus,DataGetAllTypeInstallation,DataGetAllTypeMainPoint,DataGetAllTypeCableType,DataGetAllTypeUserName,fetchAllUser} = ListPageData()
 
 
@@ -28,12 +28,12 @@ function InstallationFormWrapper() {
   )
 }
 
-let InquiriesFormWrapper = () => {
+let InstallationFormWrapper = () => {
   return (
     <ListDataProvider>
-      <InstallationFormWrapper />
+      <InstallationForm />
     </ListDataProvider>
   )
 }
 
-export default InquiriesFormWrapper
+export default InstallationFormWrapper

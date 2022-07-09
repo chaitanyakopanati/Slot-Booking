@@ -1,5 +1,5 @@
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putInstallationsmodel, roleIdInstallations } from './ModelInstallation'
+import { ID, postlistData, putInstallationsmodel, roleIdInstallations, USERNAME } from './ModelInstallation'
 
 
 {
@@ -17,20 +17,21 @@ const getDynamicInstallations = (
   endDate: string,
   zoneId:number,
   mainPointId:number,
-  installerId:number
+  installerId:number,
+  companyId:number
 ) => {
   if (pageSize <= 0) {
     return http.get(
-      `GetDynamicInstallations/${null}/${null}?searchText=${null}&statusId=${null}&salesExecutiveId=${null}&createdAt=${null}&startDate=${null}&endDate=${null}&connectionTypeId=${null}&zoneId=${null}&mainPointId=${null}&installerId=${null}`
+      `GetDynamicInstallations/${null}/${null}?searchText=${null}&statusId=${null}&salesExecutiveId=${null}&createdAt=${null}&startDate=${null}&endDate=${null}&connectionTypeId=${null}&zoneId=${null}&mainPointId=${null}&installerId=${null}&companyId=${null}`
     )
   } else {
     return http.get(
-      `GetDynamicInstallations/${pageNo}/${pageSize}?searchText=${searchText}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&connectionTypeId=${connectionTypeId}&zoneId=${zoneId}&mainPointId=${mainPointId}&installerId=${installerId}`
+      `GetDynamicInstallations/${pageNo}/${pageSize}?searchText=${searchText}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&connectionTypeId=${connectionTypeId}&zoneId=${zoneId}&mainPointId=${mainPointId}&installerId=${installerId}&companyId=${companyId}`
     )
   }
 }
 {
-  /* end:: User:- getDynamicFaults Api call */
+  /* end:: User:- getDynamicInstallations Api call */
 }
 
 {
@@ -39,9 +40,9 @@ const getDynamicInstallations = (
 const postInstallations = (obj: postlistData) => {
   return http.post('SaveInstallations', {
     userid: obj.userid,
-    userName:obj.userName,
     zonepointid: obj.zonepointid,
-    InstallationId: obj.InstallationId,
+    connectiontype:obj.connectiontype,
+    installerid: obj.installerid,
     cabletypeid:obj.cabletypeid,
     cablelength: obj.cablelength,
     iptype: obj.iptype,
@@ -53,6 +54,7 @@ const postInstallations = (obj: postlistData) => {
     remark: obj.remark,
     isnotifyinstaller: obj.isnotifyinstaller,
     createdbyId: 1,
+    statusId:"1"
   })
 }
 {
@@ -78,8 +80,9 @@ const editInstallations = (obj: putInstallationsmodel) => {
     id:obj.id,
     userName:obj.userName,
     userid: obj.userid,
+    connectiontype:obj.connectiontype,
     zonepointid: obj.zonepointid,
-    InstallationId: obj.InstallationId,
+    installerid: obj.installerid,
     cabletypeid:obj.cabletypeid,
     cablelength: obj.cablelength,
     iptype: obj.iptype,
@@ -91,6 +94,7 @@ const editInstallations = (obj: putInstallationsmodel) => {
     remark: obj.remark,
     isnotifyinstaller: obj.isnotifyinstaller,
     createdbyId: 1,
+    statusId:"1"
   })
 }
 {
@@ -107,14 +111,6 @@ const GetInstallationsTypeById = (id: ID) => {
 }
 {
   /* end:: User:- getById Api call */
-}
-
-{
-  /* begin:: User:- get User type Api call */
-}
-
-{
-  /* end:: User:- get User type Api call */
 }
 
 //getZoneTypes
@@ -157,9 +153,17 @@ const getcableType = () => {
 }
 
 // userName
-const getUserName = () => {
-  return http.get('GetByUserName')
+const getUserName = (username : string) => {
+  console.log("pppppp",username);
+  
+  return http.get(`GetByUserName?userName=${username}`)
 }
+
+// Company
+const getCompany = () => {
+  return http.get('GetAllCompanies')
+}
+
 const InstallationsService = {
   getDynamicInstallations,
   postInstallations,
@@ -173,7 +177,8 @@ const InstallationsService = {
   getInstallationsByTypes,
   getMainPoint,
   getcableType,
-  getUserName
+  getUserName,
+  getCompany
 }
 
 export default InstallationsService
