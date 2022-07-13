@@ -1,8 +1,8 @@
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../OfficeStockInwardsContext'
+import {ListPageData} from '../../OfficeStockInwardsContext'
 
 const OfficeStockInwardsPagination = () => {
-  const {setPageNo, pageNo, pageSize, totalData, setPageSize, pageCount, getData} = ListPageData()
+  const {setPageNo, setPageSize, pageCount, getData, totalData, pageNo, pageSize} = ListPageData()
 
   const handlepageclick = async (pages: any) => {
     const currantPage = (await pages.selected) + 1
@@ -62,11 +62,11 @@ const OfficeStockInwardsPagination = () => {
             {/* begin:: Page Data Result */}
             {pageNo * pageSize <= totalData ? (
               <div className='form-label fw-bold px-4'>
-                Showing {(pageNo - 1) * pageSize + 1}-{pageNo * pageSize}  of {totalData} entries
+                Showing {(pageNo - 1) * pageSize + 1}-{pageNo * pageSize} of of {totalData} entries
               </div>
             ) : (
               <div className='form-label fw-bold px-4'>
-                Showing {(pageNo - 1) * pageSize + 1}-{totalData} o of {totalData} entries
+                Showing {(pageNo - 1) * pageSize + 1}-{totalData} of of {totalData} entries
               </div>
             )}
             {/* end:: Page Data Result */}
@@ -76,5 +76,4 @@ const OfficeStockInwardsPagination = () => {
     </>
   )
 }
-
 export default OfficeStockInwardsPagination

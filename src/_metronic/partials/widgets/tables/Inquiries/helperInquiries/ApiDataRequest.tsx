@@ -106,7 +106,7 @@ const GetInquiriesTypeById = (id: ID) => {
 //Created by
 
 const getCreatedByTypes = () => {
-  return http.get('GetUserByRole/4aebb2c4-648a-4929-95c5-67ae2f012805')
+  return http.get('GetUserByRoleName')
 }
 
 // Status
@@ -120,9 +120,8 @@ const getSalesExecutveByTypes = () => {
 }
 
 // SalesExecutveUserByRole
-const getSalesExecutveByGetUserByRoleTypes = (roleId: roleIdInquiries) => {
-  console.log(roleId, 'roleId=============')
-  return http.get(`GetUserByRole/4cbcd989-f301-4e64-a05e-1680d0c53f8e`)
+const getSalesExecutveByGetUserByRoleTypes = () => {
+  return http.get(`GetUserByRoleName?roleName=SalesExecutve`)
 }
 
 

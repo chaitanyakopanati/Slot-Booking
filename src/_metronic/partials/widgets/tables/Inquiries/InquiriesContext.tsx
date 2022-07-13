@@ -238,11 +238,11 @@ const ListDataProvider: FC = ({children}) => {
 
   //SalesExecutveUserByRole
 
-  const DataGetAllTypeSalesExecutveUserByRole: any = async (roleId: roleIdInquiries) => {
+  const DataGetAllTypeSalesExecutveUserByRole = async () => {
     LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve =
-        await Inquiriesservice.getSalesExecutveByGetUserByRoleTypes(roleId)
+        await Inquiriesservice.getSalesExecutveByGetUserByRoleTypes()
       console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
 
       if (payload.success == true) {

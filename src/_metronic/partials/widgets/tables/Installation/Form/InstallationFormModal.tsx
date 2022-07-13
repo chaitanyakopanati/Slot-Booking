@@ -17,7 +17,7 @@ let validationSchemaNewForm = Yup.object({
   installerid: Yup.string().required('This field is required'),
   cablelength: Yup.string().required('This fied is required'),
   cabletypeid: Yup.string().required('This fied is required'),
-  mainpointid: Yup.number().required('This field is required'),
+  zonepointid: Yup.number().required('This field is required'),
   remark: Yup.string().required('This field is required'),
   status: Yup.string().required('This field is required'),
   iptype: Yup.string().required('This field is required'),
@@ -53,21 +53,20 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     stationname: '',
     stationMac: '',
     installerid: '',
-    mainpointid: '',
+    zonepointid: '',
     cabletypeid: '',
     userid: '',
     connectiontype: '',
   })
 
   useEffect(() => {
-    console.log(category, 'jaymataji')
 
     setInitialValues({
       ...category,
       id: category.data?.id,
       status: category.data?.status || '',
       installerid: category.data?.installerid || '',
-      mainpointid: category.data?.mainpointid || '',
+      zonepointid: category.data?.zonepointid || '',
       cabletypeid: category.data?.cabletypeid || '',
       cablelength: category.data?.cablelength || '',
       iptype: category.data?.iptype || '',
@@ -102,11 +101,14 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
-        validationSchema={itemIdForUpdate === 'add' ? validationSchemaNewForm : ''}
+        validationSchema={validationSchemaNewForm}
         onSubmit={async (values: any, {resetForm}) => {
           console.log('values', values)
           LoderActions(true)
 
+          values.iptype =  values.iptype.toString();
+          values.connectiontype=  values.connectiontype.toString();
+          values.status=values.status.toString();
           try {
             if (values.id) {
               console.log(values.id, 'idddddddddddddd')
@@ -121,10 +123,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 toast.success(`Data Updated Successfully`)
               }
               navigation('/installations')
-              toast.dismiss('1s')
+             
 
-              resetForm({})
-              cancel()
+             
             } else {
               console.log('divyesh', values)
 
@@ -138,8 +139,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
               }
               toast.dismiss('1s')
               navigation('/installations')
-              resetForm({})
-              cancel()
+            
             }
           } catch (error: any) {
             console.log(error, 'error')
@@ -206,7 +206,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                         <label className='form-label fw-bold'>Main point</label>
                         <select
                           className='form-select form-select-solid'
-                          {...props.getFieldProps('mainpointid')}
+                          {...props.getFieldProps('zonepointid')}
                         >
                           <option value='' disabled>
                             Select MainPoint Type
@@ -220,7 +220,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                           })}
                         </select>
                         <div className='erro2' style={{color: 'red'}}>
-                          <ErrorMessage name='mainpointid' />
+                          <ErrorMessage name='zonepointid' />
                         </div>
                       </div>
                       <div className='col-lg-3'>

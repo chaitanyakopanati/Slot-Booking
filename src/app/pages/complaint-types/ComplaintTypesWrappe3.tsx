@@ -2,7 +2,7 @@
 import React, { FC, SetStateAction } from 'react'
 import { useIntl } from 'react-intl'
 import { PageTitle } from '../../../_metronic/layout/core'
-import OfficeStockInwardslistWrapper1 from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/OfficeStockInwardslistWrapper1'
+import OfficeStockInwardslistWrapper1 from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/OfficestockinwardWrapper'
 
 const ComplaintTypesPage: FC = () => (
   <>

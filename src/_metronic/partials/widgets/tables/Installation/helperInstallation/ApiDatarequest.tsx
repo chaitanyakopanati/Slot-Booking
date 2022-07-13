@@ -46,6 +46,7 @@ const postInstallations = (obj: postlistData) => {
     cabletypeid:obj.cabletypeid,
     cablelength: obj.cablelength,
     iptype: obj.iptype,
+    iptypeId: obj.iptypeId,
     accesspointip: obj.accesspointip,
     stationip: obj.stationip,
     stationname: obj.stationname,
@@ -86,6 +87,7 @@ const editInstallations = (obj: putInstallationsmodel) => {
     cabletypeid:obj.cabletypeid,
     cablelength: obj.cablelength,
     iptype: obj.iptype,
+    iptypeId: obj.iptypeId,
     accesspointip: obj.accesspointip,
     stationip: obj.stationip,
     stationname: obj.stationname,
@@ -126,19 +128,18 @@ const getStatusByTypes = () => {
 
 // SalesExecutve
 const getSalesExecutveByTypes = () => {
-  return http.get('GetAllRoles')
+  return http.get('GetUserByRoleName?roleName=SalesExecutve')
 }
 
 // SalesExecutveUserByRole
-const getSalesExecutveByGetUserByRoleTypes = (roleId: roleIdInstallations) => {
-  console.log(roleId, 'roleId=============')
-  return http.get(`GetUserByRole/4cbcd989-f301-4e64-a05e-1680d0c53f8e`)
+const getSalesExecutveByGetUserByRoleTypes = () => {
+  return http.get(`GetUserByRoleName?roleName=SalesExecutve`)
 }
 
 
 // Technician Installations
 const getInstallationsByTypes = () => {
-  return http.get('GetUserByRole/97237d20-ee6a-45db-80f0-a006157d8bcf')
+  return http.get('GetUserByRoleName?roleName=Technician')
 }
 
 // main point

@@ -1,163 +1,127 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
-import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
-import Inquiriesservice from './helperOfficeStockInwards/ApiDataRequest'
-import { GetAllData, GetAllDataApi, GetAllDataApiSalesExecutve, GetAllInquiriesApi, getInquiriesData, ID, roleIdInquiries } from './helperOfficeStockInwards/ModelOfficeStockInwards'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
+import { useLoader } from '../../../../../app/modules/loader/LoaderContext'
+import OfficeStockInwardservice from './helperOfficeStockInwards/ApiDataRequest'
+import { GetAllData, GetAlLlOfficetockInwardsApi, getOfficetockInwardsData, ID, ViewForm } from './helperOfficeStockInwards/ModelOfficeStockInwards'
 
 export interface ComplaintDataContextModel {
-  getData: getInquiriesData[]
+  getData: getOfficetockInwardsData[]
+  getDataMainPoint: getOfficetockInwardsData[]
+  getDataAllTypeCreatedBy: getOfficetockInwardsData[]
   getDataAllType: GetAllData[]
-  statusData: GetAllData[]
-  salesExecutveAllData: GetAllDataApiSalesExecutve[]
-  getUserByRole: GetAllDataApiSalesExecutve[]
-  getDataAllTypeCreatedBy: GetAllData[]
+  getDataAllTypeZone: GetAllData[]
+  getDataAllTypeProduct: GetAllData[]
+  getDataAllTypeDeliveredBy: GetAllData[]
   filterShow: boolean
-  showPasswordFields: boolean
   pageNo: number
   totalData: number
   setTotalData: Dispatch<SetStateAction<number>>
   setPageNo: Dispatch<SetStateAction<number>>
-  setZoneId: Dispatch<SetStateAction<number>>
-  setSalesExecutiveId: Dispatch<SetStateAction<number>>
-  setStatusId: Dispatch<SetStateAction<number>>
-  setRoleId: Dispatch<SetStateAction<string>>
-  setCreatedAt: Dispatch<SetStateAction<string>>
   pageCount: number
-  createdById: number
-  setPageCount: Dispatch<SetStateAction<number>>
-  setCreatedById: Dispatch<SetStateAction<number>>
-  pageSize: number
+  createdBy: number
+  productId: number
   zoneId: number
-  salesExecutiveId: number
-  statusId: number
-  roleId: string
-  createdAt: string
-  setPageSize: Dispatch<SetStateAction<number>>
-  setFilterShow: (filterShow: boolean) => void
-  setShowPasswordFields: (filterShow: boolean) => void
-  itemIdForUpdate: ID
-  viewIdForUpdate: ID
-  setViewIdForUpdate: (_setViewIdForUpdate: ID) => void
-  setItemIdForUpdate: (_itemIdForUpdate: ID) => void
-  searchText: string
   startDate: string
   endDate: string
-  searchByUsername: string
-  setSearchText: Dispatch<SetStateAction<string>>
-  setSearchByUsername: Dispatch<SetStateAction<string>>
-  setStartDate: Dispatch<SetStateAction<string>>
+  setPageCount: Dispatch<SetStateAction<number>>
+  setcreatedById: Dispatch<SetStateAction<number>>
+  setproductId: Dispatch<SetStateAction<number>>
   setEndDate: Dispatch<SetStateAction<string>>
-  fetchAllUser: () => void
+  pageSize: number
+  setPageSize: Dispatch<SetStateAction<number>>
+  setZoneId: Dispatch<SetStateAction<number>>
+  setStartDate: Dispatch<SetStateAction<string>>
+  setFilterShow: (filterShow: boolean) => void
+  itemIdForUpdate: ID
+  viewIdForUpdate: ViewForm
+  setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
+  setItemIdForUpdate: (_itemIdForUpdate: ID) => void
+  DataGetAllType: () => void
+  searchText: string
+  setSearchText: Dispatch<SetStateAction<string>>
+  fetchAllofficestockOutward: () => void
+  getDataofficestockOutwardAllType: () => void
   DataGetAllTypeCreatedByTypes: () => void
-  DataGetAllTypeStatus: () => void
-  DataGetAllTypeSalesExecutve: () => void
-  DataGetAllTypeSalesExecutveUserByRole: () => void
+  DataGetAllTypeZone: () => void
+  DataGetAllTypeProducts: () => void
+  DataGetAllTypeDeliveredByTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataMainPoint: [],
+  getDataAllTypeCreatedBy: [],
   pageNo: 0,
   setPageNo: () => {},
-  setZoneId: () => {},
-  setSalesExecutiveId: () => {},
-  setStatusId: () => {},
-  setRoleId: () => {},
-  setCreatedAt: () => {},
   pageCount: 0,
-  createdById: 0,
+  createdBy: 0,
   setPageCount: () => {},
-  setCreatedById: () => {},
-  totalData: 0,
-  setTotalData: () => {},
+  setStartDate: () => {},
+  setZoneId: () => {},
+  setproductId: () => {},
   pageSize: 0,
   zoneId: 0,
-  salesExecutiveId: 0,
-  statusId: 0,
-  roleId: '',
-  createdAt: '',
+  totalData: 0,
+  productId: 0,
   startDate: '',
   endDate: '',
-  setStartDate: () => {},
-  setEndDate: () => {},
+  setTotalData: () => {},
   setPageSize: () => {},
+  setcreatedById: () => {},
   searchText: '',
-  searchByUsername: '',
   setSearchText: () => {},
-  setSearchByUsername: () => {},
+  setEndDate: () => {},
   getDataAllType: [],
-  getUserByRole: [],
-  statusData: [],
-  salesExecutveAllData: [],
-  getDataAllTypeCreatedBy: [],
+  getDataAllTypeDeliveredBy: [],
+  getDataAllTypeProduct: [],
+  getDataAllTypeZone: [],
   filterShow: false,
-  showPasswordFields: false,
   setFilterShow: (filterShow: boolean) => {},
-  setShowPasswordFields: (filterShow: boolean) => {},
   setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
-  setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
-  fetchAllUser: () => {},
+  setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
+  DataGetAllType: () => {},
+  fetchAllofficestockOutward: () => {},
+  getDataofficestockOutwardAllType: () => {},
   DataGetAllTypeCreatedByTypes: () => {},
-  DataGetAllTypeStatus: () => {},
-  DataGetAllTypeSalesExecutve: () => {},
-  DataGetAllTypeSalesExecutveUserByRole: () => {},
+  DataGetAllTypeZone: () => {},
+  DataGetAllTypeProducts: () => {},
+  DataGetAllTypeDeliveredByTypes: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
-  const [getData, setGetData] = useState<getInquiriesData[]>([])
+  const [getData, setGetData] = useState<getOfficetockInwardsData[]>([])
+  const [getDataMainPoint, setGetDataMainPoint] = useState<getOfficetockInwardsData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
-  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<GetAllData[]>([])
-  const [statusData, setStatusData] = useState<GetAllData[]>([])
-  const [salesExecutveAllData, setSalesExecutveAllData] = useState<GetAllDataApiSalesExecutve[]>([])
-  const [getUserByRole, setGetUserByRole] = useState<GetAllDataApiSalesExecutve[]>([])
+  const [getDataAllTypeZone, setGetDataAllTypeZone] = useState<GetAllData[]>([])
+  const [getDataAllTypeProduct, setGetDataAllTypeProduct] = useState<GetAllData[]>([])
+  const [getDataAllTypeDeliveredBy, setGetDataAllTypeDeliveredBy] = useState<GetAllData[]>([])
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getOfficetockInwardsData[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
-  const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
+  const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
-  const [showPasswordFields, setShowPasswordFields] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
   const [pageSize, setPageSize] = useState<number>(5)
-  const [totalData, setTotalData] = useState<number>(100)
   const [pageCount, setPageCount] = useState<number>(0)
-  const [createdById, setCreatedById] = useState<number>(0)
+  const [totalData, setTotalData] = useState<number>(100)
+  const [createdBy, setcreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  const [searchByUsername, setSearchByUsername] = useState('')
+  const [startDate, setStartDate] = useState<any>('')
+  const [endDate, setEndDate] = useState<any>('')
   const [zoneId, setZoneId] = useState(0)
-  const [salesExecutiveId, setSalesExecutiveId] = useState(0)
-  const [roleId, setRoleId] = useState('')
-  const [createdAt, setCreatedAt] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [statusId, setStatusId] = useState<number>(0)
+  const [productId, setproductId] = useState(0)
   let {LoderActions} = useLoader()
 
   {
-    /* begin:: User:- getDynamicUser Api call */
+    /* begin::  get zone Type Api call */
   }
-  let fetchAllUser = async () => {
+  const DataGetAllType = async () => {
     LoderActions(true)
     try {
-      let response: GetAllInquiriesApi = await Inquiriesservice.getDynamicInquiries(
-        pageNo,
-        pageSize,
-        searchText,
-        zoneId,
-        statusId,
-        roleId,
-        salesExecutiveId,
-        startDate,
-        endDate,
-      )
-      console.log(response, 'response=========')
-
-      if (response.success == true) {
-        setGetData(response.data)
+      let payload: GetAllData = await OfficeStockInwardservice.getOfficeStockInwardsTypes()
+      //
+      if (payload.success == true) {
         LoderActions(false)
-        const PageCout = response?.pages
-        setPageCount(Math.floor(PageCout))
-        setTotalData(response.TotalRecords)
-      } else {
-        setGetData([])
-        LoderActions(false)
-        setPageCount(0)
+        setGetDataAllType(payload.data)
       }
     } catch (error) {
     } finally {
@@ -165,14 +129,57 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
   {
-    /* end:: User:- getDynamicUser Api call */
+    /* end::  get zone Type Api call */
   }
 
-  // Createdby Type
+  {
+    /* begin::  fetchAllofficestockOutward Api call */
+  }
+  let fetchAllofficestockOutward = async () => {
+    LoderActions(true)
+    try {
+      let response: GetAlLlOfficetockInwardsApi = await OfficeStockInwardservice.getDynamicOfficeStockInwards(
+        pageNo,
+        pageSize,
+        searchText,
+        createdBy,
+        startDate,
+        endDate,
+        zoneId,
+        productId
+      )
+      console.log(response, 'response=========')
+
+      if (response.success == true) {
+        LoderActions(false)
+        setGetData(response.data)
+        const PageCout = response?.pages
+        setPageCount(Math.floor(PageCout))
+        setTotalData(response.TotalRecords)
+      }
+    } catch (error) {}
+  }
+  {
+    /* end::  fetchAllofficestockOutward Api call */
+  }
+
+  {
+    /* begin:: Get Api call */
+  }
+  let getDataofficestockOutwardAllType = async () => {
+    let response: GetAlLlOfficetockInwardsApi = await OfficeStockInwardservice.getOfficeStockInwardsTypes()
+    console.log(response, '-==-------====s')
+    setGetDataMainPoint(response.data)
+  }
+  {
+    /* End:: Get Api call */
+  }
+
+  // created by
   const DataGetAllTypeCreatedByTypes = async () => {
     LoderActions(true)
     try {
-      let payload: GetAllDataApi = await Inquiriesservice.getCreatedByTypes()
+      let payload: GetAlLlOfficetockInwardsApi = await OfficeStockInwardservice.getCreatedByTypes()
 
       if (payload.success == true) {
         LoderActions(false)
@@ -184,17 +191,16 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(false)
     }
   }
-
-  // status
-  const DataGetAllTypeStatus = async () => {
+  
+// delivery by
+  const DataGetAllTypeDeliveredByTypes = async () => {
     LoderActions(true)
     try {
-      let payload: GetAllDataApi = await Inquiriesservice.getStatusByTypes()
-      console.log(payload, 'iiiiiiiiiiiii')
+      let payload: GetAllData = await OfficeStockInwardservice.getDeliveredByTypes()
 
       if (payload.success == true) {
         LoderActions(false)
-        setStatusData(payload?.data)
+        setGetDataAllTypeDeliveredBy(payload.data)
         console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
@@ -203,99 +209,93 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
-  //SalesExecutve
-  const DataGetAllTypeSalesExecutve = async () => {
+  {
+    /* begin:: getZoneTypes Api call */
+  }
+  const DataGetAllTypeZone = async () => {
     LoderActions(true)
     try {
-      let payload: GetAllDataApiSalesExecutve = await Inquiriesservice.getSalesExecutveByTypes()
-      console.log(payload, 'getSalesExecutveByTypes')
+      let payload: GetAllData = await OfficeStockInwardservice.getZoneTypes()
 
       if (payload.success == true) {
-        // if(payload.data.name === "SalesExecutve")
-        const salesData = payload.data.filter((e) => {
-          return e.name === 'SalesExecutve'
-        })
-        console.log(salesData[0].id, 'salesDatasalesData')
-        let a: any = salesData[0].id
         LoderActions(false)
-        setSalesExecutveAllData(a)
-        setRoleId(a)
-        console.log(payload.data, 'SalesExecutve')
+        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+
+        setGetDataAllTypeZone(payload.data)
       }
     } catch (error) {
     } finally {
       LoderActions(false)
     }
   }
+  {
+    /* End:: getZoneTypes Api call */
+  }
 
-  //SalesExecutveUserByRole
-
-  const DataGetAllTypeSalesExecutveUserByRole: any = async (roleId: roleIdInquiries) => {
+  {
+    /* begin:: getZoneTypes Api call */
+  }
+  const DataGetAllTypeProducts = async () => {
     LoderActions(true)
     try {
-      let payload: GetAllDataApiSalesExecutve =
-        await Inquiriesservice.getSalesExecutveByGetUserByRoleTypes(roleId)
-      console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
+      let payload: GetAllData = await OfficeStockInwardservice.getProducts()
 
       if (payload.success == true) {
-        setGetUserByRole(payload.data)
-        console.log(payload.data, 'SalesExecutveUserByRole')
+        LoderActions(false)
+        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+
+        setGetDataAllTypeProduct(payload.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
       LoderActions(false)
     }
+  }
+  {
+    /* End:: getZoneTypes Api call */
   }
 
   const value: ComplaintDataContextModel = {
     getData,
-    createdById,
-    setCreatedById,
-    getUserByRole,
-    searchByUsername,
+    getDataMainPoint,
     itemIdForUpdate,
-    salesExecutiveId,
-    createdAt,
+    DataGetAllTypeProducts,
+    setItemIdForUpdate,
+    startDate,
+    zoneId,
+    setZoneId,
+    productId,
+    setproductId,
+    getDataAllTypeDeliveredBy,
+    getDataAllTypeCreatedBy,
+    DataGetAllTypeDeliveredByTypes,
+    getDataofficestockOutwardAllType,
+    DataGetAllTypeCreatedByTypes,
+    filterShow,
+    endDate,
+    getDataAllTypeProduct,
+    setFilterShow,
+    getDataAllTypeZone,
     setStartDate,
     setEndDate,
-    startDate,
-    endDate,
-    setShowPasswordFields,
-    setItemIdForUpdate,
-    filterShow,
-    setCreatedAt,
-    setSalesExecutiveId,
-    DataGetAllTypeSalesExecutve,
-    setFilterShow,
-    DataGetAllTypeCreatedByTypes,
+    DataGetAllTypeZone,
     viewIdForUpdate,
-    salesExecutveAllData,
     setViewIdForUpdate,
+    DataGetAllType,
     getDataAllType,
-    statusData,
-    statusId,
-    getDataAllTypeCreatedBy,
-    DataGetAllTypeSalesExecutveUserByRole,
     pageNo,
-    roleId,
-    DataGetAllTypeStatus,
-    showPasswordFields,
     pageSize,
-    zoneId,
-    setRoleId,
-    setZoneId,
-    setStatusId,
     searchText,
     setPageSize,
     setPageNo,
     pageCount,
     setPageCount,
-    setSearchText,
-    setSearchByUsername,
-    fetchAllUser,
     totalData,
     setTotalData,
+    setSearchText,
+    fetchAllofficestockOutward,
+    createdBy,
+    setcreatedById,
   }
   return (
     <>
@@ -308,3 +308,4 @@ function ListPageData() {
 }
 
 export {ListDataProvider, ListPageData}
+

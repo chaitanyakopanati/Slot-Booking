@@ -189,7 +189,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
           username: category.data?.username || '',
           fullName: category.data?.fullName || '',
           connectiontypeId: category.data?.connectiontypeId || '',
-          mainpointid: category.data?.mainpointid || '',
+          zonepointid: category.data?.zonepointid || '',
           zoneId: category.data?.zoneId || '',
         }}
         validationSchema={Yup.object({
@@ -197,7 +197,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
           username: Yup.string().required('This fielld is required'),
           fullName: Yup.string().required('This fielld is required'),
           connectiontypeId: Yup.string().required('This fielld is required'),
-          mainpointid: Yup.string().required('This fielld is required'),
+          zonepointid: Yup.string().required('This fielld is required'),
           zoneId: Yup.string().required('This fielld is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
@@ -357,7 +357,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       <label className='form-label fw-bold'>Main point</label>
                       <select
                         className='form-select form-select-solid'
-                        {...props.getFieldProps('mainpointid')}
+                        {...props.getFieldProps('zonepointid')}
                         value={mainPointId}
                         onChange={handleMainPointchange}
                       >

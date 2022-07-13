@@ -1,13 +1,12 @@
 import {Formik} from 'formik'
 import {FC, useEffect, useState} from 'react'
-import {Navigate, useNavigate} from 'react-router-dom'
 import * as Yup from 'yup'
-import {Form} from 'react-bootstrap'
-import {ListPageData} from '../../OfficeStockInwardsContext'
 import {KTSVG} from '../../../../../../helpers'
+import {ListPageData} from '../../OfficeStockInwardsContext'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
+import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 
 type Props = {
   category: any
@@ -18,33 +17,30 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
     setItemIdForUpdate,
     setFilterShow,
     filterShow,
-    setPageNo,
     setSearchText,
     searchText,
-    zoneId,
-    roleId,
-    searchByUsername,
-    createdById,
-    setCreatedById,
-    fetchAllUser,
+    setPageNo,
+    getDataofficestockOutwardAllType,
+    createdBy,
+    setcreatedById,
+    fetchAllofficestockOutward,
     pageNo,
     pageSize,
-    statusId,
-    statusData,
-    getDataAllTypeCreatedBy,
-    salesExecutiveId,
-    getUserByRole,
-    setStatusId,
     startDate,
     endDate,
+    getDataAllTypeCreatedBy,
     setStartDate,
+    zoneId,
+    setZoneId,
+    getDataAllTypeProduct,
+    getDataAllTypeZone,
     setEndDate,
+    productId,
+    setproductId,
   } = ListPageData()
 
-  const navigate = useNavigate()
-
-  const [fromDate, setFromDate] = useState(new Date())
-  const [toDate, setToDate] = useState(new Date())
+  const [fromDate, setFromDate] = useState<any>(new Date())
+  const [toDate, setToDate] = useState<any>(new Date())
   const range = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -87,61 +83,60 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
   {
     /* End::Search */
   }
-
   {
-    /* begin::createdBy */
+    /* begin::Product */
   }
-  const handleCreatedBYchange = (e: any) => {
+  const handleProductchange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
-    setCreatedById(e.target.value)
-  }
-  {
-    /* End::createdBy */
+    setproductId(e.target.value)
   }
 
-  const handleStatuschange = (e: any) => {
-    // setPageNo(1)
+  {
+    /* begin::CreatedBy */
+  }
+  const handleCratedBychange = (e: any) => {
+    setPageNo(1)
     console.log(e.target.value)
-    setStatusId(e.target.value)
+    setcreatedById(e.target.value)
+  }
+  {
+    /* End::CreatedBy */
+  }
+
+  {
+    /* begin::Zone */
+  }
+  const handleZoneChange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setZoneId(e.target.value)
   }
 
   useEffect(() => {
-    fetchAllUser()
-  }, [
-    pageNo,
-    pageSize,
-    searchText,
-    zoneId,
-    roleId,
-    searchByUsername,
-    createdById,
-    statusId,
-    startDate,
-    endDate,
-  ])
+    fetchAllofficestockOutward()
+    getDataofficestockOutwardAllType()
+  }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId])
 
   return (
     <>
-      {/* begin::formik Form */}
+      {/* begin::Formik Form */}
       <Formik
         initialValues={{
+          createdById: category.data?.createdById || '',
+          createdByName: category.data?.createdByName || '',
           id: category.data?.id || '',
-          username: category.data?.username || '',
-          salesexecutiveId: category.data?.salesexecutiveId || '',
-          fullName: category.data?.fullName || '',
         }}
         validationSchema={Yup.object({
-          id: Yup.string().required('This fielld is required'),
-          username: Yup.string().required('This fielld is required'),
-          fullName: Yup.string().required('This fielld is required'),
+          createdById: Yup.number().required('This fied is required'),
+          id: Yup.string().required('This fied is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
           console.log(values, 'values')
         }}
       >
         {(props) => (
-          <Form onSubmit={props.handleSubmit}>
+          <form>
             {/* begin::Header */}
             <div className='card-header border-0 pt-5'>
               <div className='card-title d-flex  flex-md-row flex-column gap-3 align-items-center justify-content-between w-100 mx-0'>
@@ -192,16 +187,16 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                   </div>
                   {/* end:: Filter */}
 
-                  {/* begin::Create Fault Button*/}
-                  <div className='d-flex justify-content-end ms-3'>
+                  {/* begin::Create MainPoint Button */}
+                  <div
+                    className='d-flex justify-content-end ms-3'
+                    data-kt-user-table-toolbar='base'
+                  >
                     <div title='Click to add new category'>
                       <button
                         type='button'
                         className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          navigate('office-stock-inwards/add')
-                        }}
-                        // onClick={openAddCategoryModal}
+                        onClick={openAddCategoryModal}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG
@@ -209,34 +204,49 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                             className='svg-icon-3'
                           />
                         </span>
-                        Create Inquiries
+                        Create office stock inward
                       </button>
                     </div>
                   </div>
-                  {/* end::Create Fault Button*/}
+                  {/* end::Create MainPoint Button */}
                 </div>
               </div>
 
               {/* begin:: Filter:- Created By */}
               {filterShow && (
-                <div className='row w-100 mx-0 my-3'>
+                <div className='row w-100 mx-0 my-5'>
                   <div className='col-lg-3'>
                     <div
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
+                      
                     >
-                      <label className='form-label fw-bold'>Inquiry date</label>
-                      <div
-                      //  onChange={}
-                      >
+                      <div>
+                        <label className='form-label fw-bold'>Inward date</label>
+                        <span
+                          role='button'
+                          onClick={() => {
+                            console.log('datatatatat========================\\\\\\\\\\\\')
+                            setFromDate('')
+                            setToDate('')
+                            setStartDate('')
+                            setEndDate('')
+                          }}
+                        >
+                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        </span>
+                      </div>
+
+                      <div>
                         <DateRangePicker
                           initialSettings={{
                             alwaysShowCalendars: false,
                             ranges: range,
+                            // placeholder:"All"
                           }}
                           onEvent={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                            {moment(fromDate).format('YYYY-MM-DD')} ~ {' '}
+                            {moment(fromDate).format('YYYY-MM-DD')} ~{' '}
                             {moment(toDate).format('YYYY-MM-DD')}
                           </div>
                         </DateRangePicker>
@@ -244,52 +254,16 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                  {/* <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Status</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('statusId')}
-                      value={statusId}
-                      onChange={handleStatuschange}
-                    >
-                      <option value=''>Select Status Type</option>
-                      {statusData?.map((row, index) => {
-                        return (
-                          <option key={index} value={row?.id}>
-                            {row.status}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  </div> */}
-                  {/* <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Sales executive</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('salesexecutiveId')}
-                      value={salesExecutiveId}
-                      onChange={handleStatuschange}
-                    >
-                      <option value=''>Select Sales executive</option>
-                      {getUserByRole?.map((row, index) => {
-                        return (
-                          <option key={index} value={row?.id}>
-                            {row.username}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  </div> */}
-                  {/* <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Created by</label>
+                  <div className='col-lg-3 col-md-3'>
+                    <label className='form-label fw-bold'>Created by:</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('id')}
-                      value={createdById}
-                      onChange={handleCreatedBYchange}
+                      value={createdBy}
+                      onChange={handleCratedBychange}
                     >
                       <option value=''>Select Created By</option>
-                      {getDataAllTypeCreatedBy?.map((TypeData, index) => {
+                      {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
                             {TypeData?.fullName}
@@ -297,145 +271,55 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                         )
                       })}
                     </select>
-                  </div> */}
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Product</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...props.getFieldProps('productId')}
+                      value={productId}
+                      onChange={handleProductchange}
+                    >
+                      <option value=''>Select Product Type</option>
+                      {getDataAllTypeProduct.map((TypeData: any, index) => {
+                        return (
+                          <option key={index} value={TypeData.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Zone</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...props.getFieldProps('zoneId')}
+                      value={zoneId}
+                      onChange={handleZoneChange}
+                    >
+                      <option value=''>Select Zone Type</option>
+                      {getDataAllTypeZone.map((TypeData, index) => {
+                        return (
+                          <option key={index} value={TypeData?.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
                 </div>
               )}
               {/* end:: Filter:- Created By */}
             </div>
             {/* end::Header */}
-          </Form>
+          </form>
         )}
       </Formik>
-      {/* End::formik Form */}
+      {/* End::Formik Form */}
     </>
   )
 }
 export default OfficeStockInwardsHeader
-
-
-
-// import React, {useState} from 'react'
-// import {useNavigate} from 'react-router-dom'
-// import {KTSVG} from '../../../../../../helpers'
-
-// const OfficeStockInwardsHeader = () => {
-//   const [filterShow, setFilterShow] = useState(false)
-//   const navigate = useNavigate()
-
-//   return (
-//     <div>
-//       <div className='card-header border-0 pt-5'>
-//         <div className='card-title d-flex flex-md-row flex-column gap-3 align-items-center justify-content-between w-100 mx-0'>
-//           {/* begin::Searchbar */}
-//           <div className='d-flex align-items-center position-relative my-1 col-12 col-md-3'>
-//             <span className='svg-icon svg-icon-1 position-absolute ms-4'>
-//               <KTSVG path='/media/icons/duotune/general/gen021.svg' className='svg-icon-3' />
-//             </span>
-//             <input
-//               type='text'
-//               className='form-control form-control-solid ps-14'
-//               placeholder='Search'
-//             />
-//           </div>
-//           {/* end::Searchbar */}
-
-//           <div className='d-flex align-items-center'>
-//             {/* begin::download */}
-//             <div className='ms-auto'>
-//               <a href='#' className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-//                 <span className='svg-icon svg-icon-gray-500 me-0'>
-//                   <KTSVG
-//                     path='/media/icons/duotune/arrows/arr091.svg'
-//                     className='svg-icon-2 me-0'
-//                   />
-//                 </span>
-//                 <span className='d-none d-sm-block ms-3'>Download</span>
-//               </a>
-//             </div>
-//             {/* end::download */}
-
-//             {/* begin::filter */}
-
-//             <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
-//               <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-//                 <span className='svg-icon svg-icon-gray-500 me-0'>
-//                   <KTSVG
-//                     path='/media/icons/duotune/general/gen031.svg'
-//                     className='svg-icon-2 me-0'
-//                   />
-//                 </span>
-//                 <span className='d-none d-sm-block ms-3'>Filter</span>
-//               </div>
-//             </div>
-
-//             {/* end::filter btn */}
-
-//             {/* begin::add user btn */}
-//             <div className='ms-3'>
-//               <div
-//                 className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-//                 data-bs-toggle='modal'
-//                 data-bs-target='#create-inquiry-modal'
-//                 // onClick={() => {
-//                 //   navigate('form/:id')
-//                 // }}
-//               >
-//                 <span className='svg-icon svg-icon-gray-500 me-1'>
-//                   <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-//                 </span>
-//                 Create office stock inward
-//               </div>
-//             </div>
-//             {/* end::add user btn */}
-//           </div>
-//         </div>
-
-//         {filterShow && (
-//           <>
-//             <div className='row w-100 mx-0 my-3'>
-//               <div className='col-lg-3'>
-//                 <div>
-//                   <label className='form-label fw-bold'>Inward date</label>
-//                   <input
-//                     className='form-control form-control-lg form-control-solid'
-//                     type='date'
-//                     autoComplete='off'
-//                   />
-//                 </div>
-//               </div>
-
-//               <div className='col-lg-3'>
-//                 <label className='form-label fw-bold'>Product</label>
-//                 <select className='form-select form-select-solid'>
-//                   <option value='1'>All</option>
-//                   <option value='2'>Pending</option>
-//                   <option value='3'>Done</option>
-//                 </select>
-//               </div>
-//               <div className='col-lg-3'>
-//                 <label className='form-label fw-bold'>Zone</label>
-//                 <select className='form-select form-select-solid'>
-//                   <option value='1'>All</option>
-//                   <option value='2'>Not described</option>
-//                   <option value='3'>Abalkesh Soft</option>
-//                   <option value='4'>Ajay Sulin</option>
-//                 </select>
-//               </div>
-
-//               <div className='col-lg-3'>
-//                 <label className='form-label fw-bold'>Created by</label>
-//                 <select className='form-select form-select-solid'>
-//                   <option value='1'>All</option>
-//                   <option value='2'>Amit</option>
-//                   <option value='3'>Ajay</option>
-//                 </select>
-//               </div>
-//             </div>
-//           </>
-//         )}
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default OfficeStockInwardsHeader

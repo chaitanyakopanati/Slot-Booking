@@ -287,11 +287,11 @@ const ListDataProvider: FC = ({children}) => {
 
   //SalesExecutveUserByRole
 
-  const DataGetAllTypeSalesExecutveUserByRole: any = async (roleId: roleIdInstallations) => {
+  const DataGetAllTypeSalesExecutveUserByRole = async () => {
     LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve =
-        await InstallationsService.getSalesExecutveByGetUserByRoleTypes(roleId)
+        await InstallationsService.getSalesExecutveByGetUserByRoleTypes()
       console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
 
       if (payload.success == true) {
@@ -364,7 +364,7 @@ const ListDataProvider: FC = ({children}) => {
 
   //UserName
 
-  const DataGetAllTypeUserName: any = async (username :any) => {
+  const DataGetAllTypeUserName: any = async (username: any) => {
     LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getUserName(username)
@@ -380,8 +380,8 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(false)
     }
   }
-  
-//Company
+
+  //Company
   const DataGetAllTypeCompany = async () => {
     LoderActions(true)
     try {

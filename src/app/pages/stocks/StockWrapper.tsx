@@ -1,7 +1,6 @@
 import React from 'react'
 import {Navigate, Outlet, Route, Routes} from 'react-router-dom'
 import {PageTitle} from '../../../_metronic/layout/core'
-import OfficeStockAvailabilityWrapper from '../../modules/office-stock-availability/OfficeStockAvailabilityWrapper'
 import OfficeStockInwardsWrapper from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 import OfficeStockOutwardsWrapper from '../../modules/office-stock-outwords/OfficeStockOutwardsWrapper'
 import OfficeOldStockInwardsWrapper from '../../modules/office-old-stock-inwards/OfficeOldStockInwardsWrapper'
@@ -9,8 +8,8 @@ import OfficeOldStockOutwardsWrapper from '../../modules/office-old-stock-outwar
 import OfficeOldStockAvailabilityWrapper from '../../modules/office-old-stock-availability/OfficeOldStockAvailabilityWrapper'
 import GodownStockInwardsWrapper from '../../modules/godown-stock-inwards/GodownStockInwardsWrapper'
 import GodownStockAvailabilityWrapper from '../../modules/godown-stock-availability/GodownStockAvailabilityWrapper'
-import OfficeStockInwardsFormWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/Form/OfficeStockInwardsFormWrapper'
-import OfficeStockInwardsViewWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/Form/OfficeStockInwardsViewWrapper'
+import OfficeStockAvailabilityWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockAvailability/OfficeStockAvailabilityWrapper'
+
 // import OfficeStockW from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 
 function StockWrapper() {
@@ -27,24 +26,7 @@ function StockWrapper() {
           }
         />
         {/*  */}
-        <Route
-          path='office-stock-inwards/form/:id'
-          element={
-            <>
-              <PageTitle>User Form</PageTitle>
-              <OfficeStockInwardsFormWrapper />
-            </>
-          }
-        />
-        <Route
-          path='office-stock-inwards/viewform/:id'
-          element={
-            <>
-              <PageTitle>View office-stock-inwards</PageTitle>
-              <OfficeStockInwardsViewWrapper />
-            </>
-          }
-        />
+
         <Route
           path='office-stock-outwards'
           element={

@@ -1,4 +1,3 @@
-
 import {FC, useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {ListPageData} from '../../InquiriesContext'
@@ -41,7 +40,6 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
   return (
     <>
       {/* begin::formik Add/Edit form */}
-
       <div className='d-flex flex-column scroll-y me-n7 pe-7'>
         {/* begin: input firstname Filed */}
         <div className='row w-100 mx-0 mb-4 gy-4'>
@@ -73,6 +71,10 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
             </div>
           </div>
           {/* end:: View Modal Header */}
+        </div>
+
+        {/* begin: input username Filed */}
+        <div className='row w-100 mx-0 mb-4 gy-4'>
           {/*  */}
           <div className='col-lg-12'>
             <label className='fw-bold fs-6 mb-2'>Name</label>
@@ -90,10 +92,6 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           </div>
 
           {/* begin: input lastname Filed */}
-        </div>
-
-        {/* begin: input username Filed */}
-        <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-12'>
             <label className='form-label fw-bold'>Address :</label>
             <textarea
@@ -107,51 +105,51 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           </div>
         </div>
 
-<div className='row mx-0 w-100'>
+        <div className='row mx-0 w-100'>
           {/* begin: input email Filed */}
           <div className='col-lg-4  mb-4 gy-4 '>
-          <div className=''>
-            <label className='form-label fw-bold'>Contact No :</label>
-            <input
-              placeholder='contactno'
-              className='form-control form-control-lg form-control-solid'
-              value={initialvalues.contactno}
-              type='text'
-              disabled
-              readOnly
-            />
-          </div>
+            <div className=''>
+              <label className='form-label fw-bold'>Contact No :</label>
+              <input
+                placeholder='contactno'
+                className='form-control form-control-lg form-control-solid'
+                value={initialvalues.contactno}
+                type='text'
+                disabled
+                readOnly
+              />
+            </div>
           </div>
 
-        {/* begin: input phone Filed */}
-        <div className='col-lg-4 mb-4 gy-4'>
-          <div className=''>
-            <label className='form-label fw-bold'>Status :</label>
-            <input
-              placeholder='Mobile no.'
-              className='form-control form-control-lg form-control-solid'
-              type='text'
-              value={initialvalues.status}
-              disabled
-              readOnly
-            />
+          {/* begin: input phone Filed */}
+          <div className='col-lg-4 mb-4 gy-4'>
+            <div className=''>
+              <label className='form-label fw-bold'>Status :</label>
+              <input
+                placeholder='Mobile no.'
+                className='form-control form-control-lg form-control-solid'
+                type='text'
+                value={initialvalues.status}
+                disabled
+                readOnly
+              />
+            </div>
           </div>
-        </div>
 
-        {/*begin:: Zone*/}
-        <div className='col-lg-4 mb-4 gy-4'>
-          <div className=''>
-            <label className='form-label fw-bold'>Sales ExecutiveName:</label>
-            <input
-              placeholder='Zone.'
-              className='form-control form-control-lg form-control-solid'
-              type='text'
-              value={initialvalues.salesexecutiveName}
-              disabled
-              readOnly
-            />
+          {/*begin:: Zone*/}
+          <div className='col-lg-4 mb-4 gy-4'>
+            <div className=''>
+              <label className='form-label fw-bold'>Sales ExecutiveName:</label>
+              <input
+                placeholder='Zone.'
+                className='form-control form-control-lg form-control-solid'
+                type='text'
+                value={initialvalues.salesexecutiveName}
+                disabled
+                readOnly
+              />
+            </div>
           </div>
-        </div>
         </div>
 
         {/*begin:: role*/}

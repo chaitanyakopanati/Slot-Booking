@@ -35,6 +35,7 @@ export interface postlistData {
   cabletypeid:number
   cablelength:number
   iptype:string
+  iptypeId:number
   accesspointip:string
   stationip:string
   stationname:string
