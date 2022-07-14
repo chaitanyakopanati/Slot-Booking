@@ -155,9 +155,7 @@ const getcableType = () => {
 
 // userName
 const getUserName = (username : string) => {
-  console.log("pppppp",username);
-  
-  return http.get(`GetByUserName?userName=${username}`)
+  return http.get(`GetByUserName`,{userName:username})
 }
 
 // Company

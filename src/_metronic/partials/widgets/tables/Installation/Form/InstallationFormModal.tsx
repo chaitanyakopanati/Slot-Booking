@@ -1,6 +1,6 @@
 import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-import {FC, useEffect, useState} from 'react'
+import {FC, useEffect, useRef, useState} from 'react'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
@@ -29,6 +29,7 @@ let validationSchemaNewForm = Yup.object({
 })
 
 const InstallationFormModal: FC<Props> = ({category}) => {
+  const suggestionRef :any = useRef()
   const {
     setItemIdForUpdate,
     itemIdForUpdate,
@@ -37,6 +38,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     getInstallations,
     getMainPoint,
     getcableTypeData,
+    setSuggestionUserText,
+    getUserNameData
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
@@ -81,8 +84,12 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   }, [itemIdForUpdate])
 
   useEffect(() => {
-    console.log('StatusData', statusData)
-  }, [statusData, getUserByRole])
+    if(getUserNameData.length===0){
+      suggestionRef.current.style.display="none"
+    }
+    
+    
+  }, [getUserNameData])
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -95,6 +102,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       keyEvent.preventDefault()
     }
   }
+
+  
 
   return (
     <>
@@ -173,13 +182,45 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     {' '}
                     <div className='row w-100 mx-0 mb-4 gy-4'>
                       {' '}
-                      <div className='col-lg-3'>
+                      <div className='col-lg-3' style={{position:'relative'}}>
                         <label className='form-label fw-bold required'>User Name</label>{' '}
                         <input
+                          name="userid"
                           placeholder='userName'
-                          className='form-control form-control-lg form-control-solid'
-                          {...props.getFieldProps('userid')}
+                          className='form-control form-control-lg form-control-solid auto-complete-input'
+                          value={props.values.userid}
+                          onChange={(e)=>{
+                            setSuggestionUserText(e.target.value)
+                            if(e.target.value){
+                              suggestionRef.current.style.display="block"
+                            }else{
+                              suggestionRef.current.style.display="none"
+                            }
+                            props.handleChange(e)
+                          }}
+                          onBlur={(e)=>{
+                            // suggestionRef.current.
+                            var container = suggestionRef.current;
+                              document.addEventListener('click', function( event ) {
+                                if (container !== event.target && !container.contains(event.target)) {    
+                                }else{
+                                }
+                                suggestionRef.current.style.display="none"
+                                document.removeEventListener('click',()=>{})
+                              });
+                            
+                          }}
                         />
+                        <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
+                          <ul>
+                            {getUserNameData?.length>0 && getUserNameData.map((user,index)=>{
+                              console.log("user",user)
+                              return <li key={user.id} onClick={()=>{
+                                props.setFieldValue('userid',user.firstname)
+                              }}>{user.firstname}</li>
+                            })}
+                          </ul>
+                        </div>
                       </div>
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>Installer</label>

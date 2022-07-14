@@ -5,12 +5,11 @@ import { ListDataProvider, ListPageData } from '../InstallationContext'
 import InstallationFormByCategory from './InstallationFormByCategory'
 
 function InstallationForm() {
-  const {DataGetAllTypeStatus,DataGetAllTypeInstallation,DataGetAllTypeMainPoint,DataGetAllTypeCableType,DataGetAllTypeUserName,fetchAllUser} = ListPageData()
+  const {DataGetAllTypeStatus,DataGetAllTypeInstallation,DataGetAllTypeMainPoint,DataGetAllTypeCableType,fetchAllUser} = ListPageData()
 
 
  useEffect(() => {
   fetchAllUser()
-  DataGetAllTypeUserName()
   DataGetAllTypeCableType()
   DataGetAllTypeMainPoint()
   DataGetAllTypeInstallation()

@@ -1,4 +1,4 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import InstallationsService from './helperInstallation/ApiDatarequest'
 import {
@@ -75,8 +75,9 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeInstallation: () => void
   DataGetAllTypeMainPoint: () => void
   DataGetAllTypeCableType: () => void
-  DataGetAllTypeUserName: () => void
   DataGetAllTypeCompany: () => void
+  suggestionUserText: string
+  setSuggestionUserText: Dispatch<SetStateAction<string>>
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -143,9 +144,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeInstallation: () => {},
   DataGetAllTypeMainPoint: () => {},
   DataGetAllTypeCableType: () => {},
-  DataGetAllTypeUserName: () => {},
   DataGetAllTypeCompany: () => {},
+  suggestionUserText: '',
+  setSuggestionUserText: () => {},
 })
+
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInstallationsData[]>([])
   // const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
@@ -180,6 +183,7 @@ const ListDataProvider: FC = ({children}) => {
   const [connectionTypeId, setConnectionTypeId] = useState<number>(0)
   const [mainPointId, setMainPointId] = useState<number>(0)
   const [companyId, setCompanyId] = useState<number>(0)
+  const [suggestionUserText, setSuggestionUserText] = useState<string>('')
   let {LoderActions} = useLoader()
 
   {
@@ -364,22 +368,30 @@ const ListDataProvider: FC = ({children}) => {
 
   //UserName
 
-  const DataGetAllTypeUserName: any = async (username: any) => {
-    LoderActions(true)
-    try {
-      let payload: GetAllDataApi = await InstallationsService.getUserName(username)
-      console.log(payload, 'getUserNamegetUserName')
+  useEffect(() => {
+    console.log("suggestionUserText",suggestionUserText)
+    if (suggestionUserText) {
+      let fetchSuggestionUser = async() => {
+        LoderActions(true)
+        try {
+          let payload: GetAllDataApi = await InstallationsService.getUserName(suggestionUserText)
+          console.log(payload, 'getUserNamegetUserName')
 
-      if (payload.success == true) {
-        LoderActions(false)
-        setgetUserNameData(payload?.data)
-        console.log(payload.data, 'getUserName')
+          if (payload.success == true) {
+            LoderActions(false)
+            setgetUserNameData(payload?.data)
+            console.log(payload.data, 'getUserName')
+          }else if(payload.message==='No records found'){
+            setgetUserNameData([])
+          }
+        } catch (error) {
+        } finally {
+          LoderActions(false)
+        }
       }
-    } catch (error) {
-    } finally {
-      LoderActions(false)
+      fetchSuggestionUser()
     }
-  }
+  }, [suggestionUserText])
 
   //Company
   const DataGetAllTypeCompany = async () => {
@@ -416,7 +428,6 @@ const ListDataProvider: FC = ({children}) => {
     companyId,
     mainPointId,
     searchByUsername,
-    DataGetAllTypeUserName,
     DataGetAllTypeCableType,
     itemIdForUpdate,
     salesExecutiveId,
@@ -465,6 +476,8 @@ const ListDataProvider: FC = ({children}) => {
     fetchAllUser,
     totalData,
     setTotalData,
+    suggestionUserText,
+    setSuggestionUserText,
   }
   return (
     <>

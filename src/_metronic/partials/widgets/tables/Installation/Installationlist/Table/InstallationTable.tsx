@@ -25,7 +25,6 @@ const InstallationTable = () => {
     DataGetAllTypeMainPoint,
     DataGetAllTypeStatus,
     DataGetAllTypeInstallation,
-    DataGetAllTypeUserName,
     DataGetAllTypeCompany,
   } = ListPageData()
   let {LoderActions} = useLoader()
@@ -77,7 +76,6 @@ const InstallationTable = () => {
 
   useEffect(() => {
     DataGetAllTypeSalesExecutveUserByRole()
-    DataGetAllTypeUserName()
     DataGetAllTypegetZoneTypes()
     DataGetAllTypeStatus()
     DataGetAllTypeMainPoint()

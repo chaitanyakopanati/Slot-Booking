@@ -55,6 +55,7 @@ export interface GetAllData {
   userName: string
   status: string
   fullname:string
+  firstname:string
 }
 
 export interface GetAllDataApiSalesExecutve {
