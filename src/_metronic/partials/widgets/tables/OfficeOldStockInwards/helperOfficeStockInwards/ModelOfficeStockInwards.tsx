@@ -1,4 +1,4 @@
-export interface getOfficetockOutwardsData {
+export interface getOfficetockInwardsData {
   inwardNo: number
   inwardDate: string
   productName: string
@@ -23,8 +23,8 @@ export interface getOfficetockOutwardsData {
   remark: string
   createdBy:number
 }
-export interface getAllOfficetockOutwardsData {
-  data: getOfficetockOutwardsData[]
+export interface getAllOfficetockInwardsData {
+  data: getOfficetockInwardsData[]
   message: string
   success: boolean
   page: number
@@ -65,14 +65,14 @@ export interface putmodel {
   id:number
   inwardNo: number | string
 }
-export interface putOfficetockOutwardsmodel1 {
-  data: getOfficetockOutwardsData
+export interface putOfficetockInwardsmodel1 {
+  data: getOfficetockInwardsData
   message: string
   success: boolean
 }
 
-export interface GetAlLlOfficetockOutwardsApi {
-  data: getOfficetockOutwardsData[]
+export interface GetAlLlOfficetockInwardsApi {
+  data: getOfficetockInwardsData[]
   message: string
   success: boolean
   pages: number
@@ -86,4 +86,4 @@ export interface GetAlLlOfficetockOutwardsApi {
 
 export type ID = undefined | null | string
 
-export type ViewForm = getOfficetockOutwardsData | undefined
+export type ViewForm = getOfficetockInwardsData | undefined

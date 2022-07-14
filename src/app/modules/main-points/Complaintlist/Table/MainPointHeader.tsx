@@ -59,35 +59,6 @@ const MainPointHeader: FC<Props> = ({category}) => {
     getDataMainPointAllType()
   }, [pageNo, pageSize, searchText, createdById])
 
- 
-
-  {
-    /* begin::Created by Filter Map Function */
-  }
-  // function uniqueBy(property: any) {
-  //   let seen = Object.create(null)
-  //   return function (item: any) {
-  //     let key = item[property]
-  //     if (seen[key] == null) {
-  //       seen[key] = 1
-  //       return true
-  //     }
-  //     return false
-  //   }
-  // }
-
-  // const result = getDataMainPoint.filter(uniqueBy('createdById')).map((product) => {
-  //   return {
-  //     id: product.createdById,
-  //     name: product.createdByName,
-  //   }
-  // })
-
-  // console.log(result)
-  {
-    /* End::Created by Filter Map Function */
-  }
-
   return (
     <>
       {/* begin::Formik Form */}
@@ -193,7 +164,7 @@ const MainPointHeader: FC<Props> = ({category}) => {
                       value={createdById}
                       onChange={handleCratedBychange}
                     >
-                      <option value=''>Select Created By</option>
+                      <option value=''>All</option>
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

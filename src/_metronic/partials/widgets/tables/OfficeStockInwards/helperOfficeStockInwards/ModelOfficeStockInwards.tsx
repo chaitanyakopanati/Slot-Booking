@@ -1,4 +1,5 @@
 export interface getOfficetockInwardsData {
+  quantityDisplay: string
   inwardNo: number
   inwardDate: string
   productName: string

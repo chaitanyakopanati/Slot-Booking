@@ -1,10 +1,16 @@
-import React from 'react'
-import OfficeOldStockInwardsFormHeader from '../Component/OfficeOldStockInwardsFormHeader'
-import OfficeOldStockInwardsFormByCategory from './OfficeOldStockInwardsFormByCategory'
+import {useEffect} from 'react'
+import OfficeStockInwardsFormHeader from '../Component/OfficeOldStockInwardsFormHeader'
+import OfficeStockInwardsFormByCategory from './OfficeOldStockInwardsFormByCategory'
 
 const OfficeOldStockInwardsFormWrapper = () => {
+  useEffect(() => {
+    document.body.classList.add('modal-open')
+    return () => {
+      document.body.classList.remove('modal-open')
+    }
+  }, [])
   return (
-    <div>
+    <>
       <div
         className='modal fade show d-block'
         id='kt_modal_add_user'
@@ -12,15 +18,15 @@ const OfficeOldStockInwardsFormWrapper = () => {
         tabIndex={-1}
         aria-modal='true'
       >
-        <div className='modal-dialog modal-dialog-centered modal-x1 mw-md-600px'>
+        <div className='modal-dialog modal-dialog-centered modal-lg modal-xl mw-md-800px '>
           <div className='modal-content'>
             {/* begin::Form Header */}
-            <OfficeOldStockInwardsFormHeader />
+            <OfficeStockInwardsFormHeader />
             {/* end::Form Header */}
 
             {/* begin::Form Body */}
             <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-              <OfficeOldStockInwardsFormByCategory />
+              <OfficeStockInwardsFormByCategory />
             </div>
             {/* end::Form Body */}
           </div>
@@ -29,8 +35,7 @@ const OfficeOldStockInwardsFormWrapper = () => {
       {/* begin::Form Backdrop */}
       <div className='modal-backdrop fade show'></div>
       {/* end::Form Backdrop */}
-    </div>
+    </>
   )
 }
-
 export default OfficeOldStockInwardsFormWrapper

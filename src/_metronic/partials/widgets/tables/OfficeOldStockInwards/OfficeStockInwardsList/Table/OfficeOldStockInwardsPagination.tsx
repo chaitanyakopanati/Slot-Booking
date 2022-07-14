@@ -1,7 +1,7 @@
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../OfficeOldStockOutwardsContext'
+import { ListPageData } from '../../OfficeOldStockInwardsContext'
 
-const OfficeOldStockOutwardsPagination = () => {
+const OfficeOldStockInwardsPagination = () => {
   const {setPageNo, setPageSize, pageCount, getData, totalData, pageNo, pageSize} = ListPageData()
 
   const handlepageclick = async (pages: any) => {
@@ -76,5 +76,4 @@ const OfficeOldStockOutwardsPagination = () => {
     </>
   )
 }
-
-export default OfficeOldStockOutwardsPagination
+export default OfficeOldStockInwardsPagination

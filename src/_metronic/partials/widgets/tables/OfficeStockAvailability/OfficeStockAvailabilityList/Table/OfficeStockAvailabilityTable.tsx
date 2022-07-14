@@ -26,7 +26,7 @@ const OfficeStockAvailabilityTable = () => {
     fetchAllofficestockOutward()
     DataGetAllTypeZone()
     DataGetAllTypeProducts()
-    LoderActions(false)
+    // LoderActions(false)
   }, [])
 
   const handlesearchange = (e: any) => {

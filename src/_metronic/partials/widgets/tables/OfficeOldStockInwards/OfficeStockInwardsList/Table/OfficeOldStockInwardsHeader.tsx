@@ -2,17 +2,17 @@ import {Formik} from 'formik'
 import {FC, useEffect, useState} from 'react'
 import * as Yup from 'yup'
 import {KTSVG} from '../../../../../../helpers'
+import {ListPageData} from '../../OfficeOldStockInwardsContext'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import {ListPageData} from '../../OfficeOldStockOutwardsContext'
 
 type Props = {
   category: any
 }
 
-const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
+const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   const {
     setItemIdForUpdate,
     setFilterShow,
@@ -37,11 +37,10 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
     setEndDate,
     productId,
     setproductId,
-    getDataAllTypeTechnician,
   } = ListPageData()
 
-  const [fromDate, setFromDate] = useState(new Date())
-  const [toDate, setToDate] = useState(new Date())
+  const [fromDate, setFromDate] = useState<any>()
+  const [toDate, setToDate] = useState<any>()
   const range = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -221,28 +220,44 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
                     >
                       <div>
-                        <label className='form-label fw-bold'>Outward date</label>
+                        <label className='form-label fw-bold'>Inward date</label>
                         <span
                           role='button'
                           onClick={() => {
                             console.log('datatatatat========================\\\\\\\\\\\\')
-                            // setFromDate(null)
+                            setFromDate('')
+                            setToDate('')
+                            setStartDate('')
+                            setEndDate('')
                           }}
                         >
                           <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
                         </span>
                       </div>
+
                       <div>
                         <DateRangePicker
                           initialSettings={{
+                            
                             alwaysShowCalendars: false,
                             ranges: range,
+                            // placeholder:"All"
                           }}
-                          onEvent={handleEvent}
+                          onHide={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                            {moment(fromDate).format('YYYY-MM-DD')} ~{' '}
-                            {moment(toDate).format('YYYY-MM-DD')}
+                            <input
+                            style={{ background: '#f5f8fa',
+                            border: 'none'}}
+                              placeholder='All'
+                              value={`${
+                                fromDate && toDate
+                                  ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(
+                                      toDate
+                                    ).format('DD-MM-yyyy')}`
+                                  : ''
+                              }`}
+                            />
                           </div>
                         </DateRangePicker>
                       </div>
@@ -257,7 +272,7 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                       value={createdBy}
                       onChange={handleCratedBychange}
                     >
-                      <option value=''>Select Created By</option>
+                      <option value=''>All</option>
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
@@ -276,7 +291,7 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                       value={productId}
                       onChange={handleProductchange}
                     >
-                      <option value=''>Select Product Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeProduct.map((TypeData: any, index) => {
                         return (
                           <option key={index} value={TypeData.id}>
@@ -288,35 +303,6 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Technician</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('deliveredById')}
-                      // value={productId}
-                      // onChange={handleProductchange}
-                    >
-                      <option value='' >Select Technician </option>
-                      {getDataAllTypeTechnician.map((TypeData, index) => {
-                        return (
-                          <option key={index} value={TypeData?.id}>
-                            {TypeData?.fullName}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  </div>
-
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Username</label>
-                    <input
-                      placeholder='Username'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-
-                  <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Zone</label>
                     <select
                       className='form-select form-select-solid'
@@ -324,7 +310,7 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                       value={zoneId}
                       onChange={handleZoneChange}
                     >
-                      <option value=''>Select Zone Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeZone.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
@@ -346,4 +332,4 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
     </>
   )
 }
-export default OfficeOldStockOutwardsHeader
+export default OfficeOldStockInwardsHeader

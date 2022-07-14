@@ -2,10 +2,10 @@ import moment from 'moment'
 import {useEffect} from 'react'
 import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import {KTSVG} from '../../../../../../helpers'
-import { getOfficetockOutwardsData } from '../../helperOfficeOldStockOutwards/ModelOfficeOldStocksOutwards'
-import { ListPageData } from '../../OfficeOldStockOutwardsContext'
+import { getOfficetockInwardsData } from '../../helperOfficeStockInwards/ModelOfficeStockInwards'
+import { ListPageData } from '../../OfficeOldStockInwardsContext'
 
-const OfficeOldStockOutwardsTable = () => {
+const OfficeOldStockInwardsTable = () => {
   const {
     setItemIdForUpdate,
     getData,
@@ -15,7 +15,7 @@ const OfficeOldStockOutwardsTable = () => {
     DataGetAllType,
     fetchAllofficestockOutward,
     DataGetAllTypeZone,
-    DataGetAllTypegetTechnicianTypesTypes,
+    DataGetAllTypeDeliveredByTypes,
     DataGetAllTypeProducts,
     setPageNo,
     DataGetAllTypeCreatedByTypes,
@@ -39,8 +39,8 @@ const OfficeOldStockOutwardsTable = () => {
     DataGetAllTypeCreatedByTypes()
     DataGetAllTypeZone()
     DataGetAllTypeProducts()
-    DataGetAllTypegetTechnicianTypesTypes()
-    LoderActions(false)
+    DataGetAllTypeDeliveredByTypes()
+    // LoderActions(false)
   }, [])
 
   const handlesearchange = (e: any) => {
@@ -57,13 +57,12 @@ const OfficeOldStockOutwardsTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>Outward no.</th>
-              <th className='min-w-150px'>outward date</th>
+              <th className='max-w-60px min-w-40px rounded-start ps-4'>Inward no.</th>
+              <th className='min-w-150px'>Inward date</th>
               <th className='min-w-200px'>Product</th>
               <th className='min-w-150px'>Quantity</th>
-              <th className='min-w-200px'>Technician</th>
+              <th className='min-w-200px'>Delivered by</th>
               <th className='min-w-150px'>Zone</th>
-              <th className='min-w-150px'>Username</th>
               <th className='min-w-150px rounded-end'>Actions</th>
             </tr>
           </thead>
@@ -71,7 +70,7 @@ const OfficeOldStockOutwardsTable = () => {
           {/* begin::Table body */}
           <tbody>
             {getData.length > 0 ? (
-              getData?.map((row: getOfficetockOutwardsData, index: number) => {
+              getData?.map((row: getOfficetockInwardsData, index: number) => {
                 return (
                   <tr key={index}>
                     {/* begin:: Name Input */}
@@ -107,10 +106,6 @@ const OfficeOldStockOutwardsTable = () => {
                     {/* begin:: zoneName Input */}
                     <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
                     {/* end:: zoneName Input */}
-
-                    {/* begin:: username Input */}
-                    <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
-                    {/* end:: username Input */}
 
                     {/* begin:: Action */}
                     <td>
@@ -161,7 +156,7 @@ const OfficeOldStockOutwardsTable = () => {
             placeholder='Search'
           />
           {getData.length > 0 ? (
-            getData?.map((row: getOfficetockOutwardsData, index: number) => {
+            getData?.map((row: getOfficetockInwardsData, index: number) => {
               return (
                 <div key={DataWiseIndex + index + 1}>
                   <div className='col-md-6 mx-0 my-2'>
@@ -200,11 +195,6 @@ const OfficeOldStockOutwardsTable = () => {
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>zoneName:</div>
                           <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
-                        </div>
-
-                        <div className='py-1 d-flex'>
-                          <div className='fw-bolder '>UserName:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.username || '-'}</div>
                         </div>
                       </div>
 
@@ -259,5 +249,4 @@ const OfficeOldStockOutwardsTable = () => {
     </>
   )
 }
-export default OfficeOldStockOutwardsTable
-
+export default OfficeOldStockInwardsTable

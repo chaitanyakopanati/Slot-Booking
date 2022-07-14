@@ -1,6 +1,5 @@
 import React from 'react'
-import { TablesWidget7 } from '../../../_metronic/partials/widgets'
-import OfficestockoutwardWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockOutwards/OfficestockoutwardWrapper'
+import OfficestockoutwardWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockOutwards/OfficestockoutwardWrapper'
 
 
 
@@ -9,7 +8,7 @@ function OfficeStockOutwardsWrapper() {
     <>
     <div className='row gy-5 gx-xl-8'>
       <div className='col-xl-12'> 
-        <OfficestockoutwardWrapper />
+        <OfficestockoutwardWrapper/>
       </div>
     </div>
   </>

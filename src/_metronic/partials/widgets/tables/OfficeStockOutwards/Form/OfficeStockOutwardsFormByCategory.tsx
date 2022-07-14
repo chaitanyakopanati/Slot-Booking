@@ -1,42 +1,47 @@
-import React from 'react'
+import {useQuery} from 'react-query'
+import {useEffect} from 'react'
+import { isNotEmpty } from '../../../../../helpers'
+import { ListPageData } from '../OfficeStockOutwardsContext'
+import OfficeStockInwardservice from '../helperOfficeStockOutwards/ApiDataRequest'
 import OfficeStockOutwardsFormModal from './OfficeStockOutwardsFormModal'
 
+
 const OfficeStockOutwardsFormByCategory = () => {
-  //     const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
-  //   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+  const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+  const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   {
-    /* begin:: Api call GetBankById */
+    /* begin:: Api call GetOfficeStockInwardById */
   }
-  //   const {data: category, error} = useQuery(
-  //     `GetBankById-${itemIdForUpdate}`,
-  //     () => {
-  //       return Zoneservice.GetBankTypeById(itemIdForUpdate)
-  //     },
-  //     {
-  //       cacheTime: 0,
-  //       enabled: enabledQuery,
-  //       onError: (err) => {
-  //         setItemIdForUpdate(undefined)
-  //         console.error(err)
-  //       },
-  //     }
-  //   )
+  const {data: category, error} = useQuery( 
+    `GetOfficeStockInwardById-${itemIdForUpdate}`,
+    () => {
+      return OfficeStockInwardservice.GetOfficeStockOutwardsTypeById(itemIdForUpdate)
+    },
+    {
+      cacheTime: 0,
+      enabled: enabledQuery,
+      onError: (err) => {
+        setItemIdForUpdate(undefined)
+        console.error(err)
+      },
+    }
+  )
   {
-    /* end:: Api call GetBankById */
+    /* end:: Api call OfficeStockInwardsFormByCategory */
   }
 
-  //   useEffect(() => {
-  //     console.log('category', category)
-  //     console.log('itemIdForUpdate', itemIdForUpdate)
-  //   }, [category])
+  useEffect(() => {
+    console.log('category', category)
+    console.log('itemIdForUpdate', itemIdForUpdate)
+  }, [category])
 
   {
     /* begin::Add-Form Model functionality */
   }
-  //   if (!itemIdForUpdate) {
-  //     return <BankFormModal category={{ID: undefined}} />
-  //   }
+  if (!itemIdForUpdate) {
+    return <OfficeStockOutwardsFormModal category={{ID: undefined}} />
+  }
   {
     /* end::Add-Form Model functionality */
   }
@@ -44,22 +49,14 @@ const OfficeStockOutwardsFormByCategory = () => {
   {
     /* begin::Edit-Form Model functionality */
   }
-  //   if (!error && category) {
-  //     return <BankFormModal category={category} />
-  //   }
+  if (!error && category) {
+    return <OfficeStockOutwardsFormModal category={category} />
+  }
   {
     /* end::Edit-Form Model functionality */
   }
 
-  //   return null
-
-  return (
-    <>
-      <div>
-        <OfficeStockOutwardsFormModal />
-      </div>
-    </>
-  )
+  return null
 }
 
 export default OfficeStockOutwardsFormByCategory

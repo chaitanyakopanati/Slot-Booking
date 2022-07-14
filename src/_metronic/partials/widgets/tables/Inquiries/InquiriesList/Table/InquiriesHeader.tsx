@@ -8,6 +8,7 @@ import {KTSVG} from '../../../../../../helpers'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
+import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 
 type Props = {
   category: any
@@ -43,8 +44,8 @@ const InquiriesHeader: FC<Props> = ({category}) => {
 
   const navigate = useNavigate()
 
-  const [fromDate, setFromDate] = useState(new Date())
-  const [toDate, setToDate] = useState(new Date())
+  const [fromDate, setFromDate] = useState<any>()
+  const [toDate, setToDate] = useState<any>()
   const range = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -225,19 +226,39 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
                     >
                       <label className='form-label fw-bold'>Inquiry date</label>
-                      <div
-                      //  onChange={}
-                      >
+                      <span
+                          role='button'
+                          onClick={() => {
+                            console.log('datatatatat========================\\\\\\\\\\\\')
+                            setFromDate('')
+                            setToDate('')
+                            setStartDate('')
+                            setEndDate('')
+                          }}
+                        >
+                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        </span>
+                      <div>
                         <DateRangePicker
                           initialSettings={{
                             alwaysShowCalendars: false,
                             ranges: range,
                           }}
-                          onEvent={handleEvent}
+                          onHide={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                            {moment(fromDate).format('YYYY-MM-DD')} ~ {' '}
-                            {moment(toDate).format('YYYY-MM-DD')}
+                          <input
+                          style={{ background: '#f5f8fa',
+                          border: 'none'}}
+                              placeholder='All'
+                              value={`${
+                                fromDate && toDate
+                                  ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(
+                                      toDate
+                                    ).format('DD-MM-yyyy')}`
+                                  : ''
+                              }`}
+                            />
                           </div>
                         </DateRangePicker>
                       </div>
@@ -252,7 +273,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       value={statusId}
                       onChange={handleStatuschange}
                     >
-                      <option value=''>Select Status Type</option>
+                      <option value=''>All</option>
                       {statusData?.map((row, index) => {
                         return (
                           <option key={index} value={row?.id}>
@@ -263,14 +284,14 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Sales executive</label>
+                    <label className='form-label fw-bold'>All</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('salesexecutiveId')}
                       value={salesExecutiveId}
                       onChange={handleStatuschange}
                     >
-                      <option value=''>Select Sales executive</option>
+                      <option value=''>All</option>
                       {getUserByRole?.map((row, index) => {
                         return (
                           <option key={index} value={row?.id}>
@@ -281,14 +302,14 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Created by</label>
+                    <label className='form-label fw-bold'>All</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('id')}
                       value={createdById}
                       onChange={handleCreatedBYchange}
                     >
-                      <option value=''>Select Created By</option>
+                      <option value=''>All</option>
                       {getDataAllTypeCreatedBy?.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

@@ -3,12 +3,12 @@ import {Navigate, Outlet, Route, Routes} from 'react-router-dom'
 import {PageTitle} from '../../../_metronic/layout/core'
 import OfficeStockInwardsWrapper from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 import OfficeStockOutwardsWrapper from '../../modules/office-stock-outwords/OfficeStockOutwardsWrapper'
-import OfficeOldStockInwardsWrapper from '../../modules/office-old-stock-inwards/OfficeOldStockInwardsWrapper'
 import OfficeOldStockOutwardsWrapper from '../../modules/office-old-stock-outwards/OfficeOldStockOutwardsWrapper'
 import OfficeOldStockAvailabilityWrapper from '../../modules/office-old-stock-availability/OfficeOldStockAvailabilityWrapper'
 import GodownStockInwardsWrapper from '../../modules/godown-stock-inwards/GodownStockInwardsWrapper'
 import GodownStockAvailabilityWrapper from '../../modules/godown-stock-availability/GodownStockAvailabilityWrapper'
 import OfficeStockAvailabilityWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockAvailability/OfficeStockAvailabilityWrapper'
+import OfficeOldstockinwardWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockInwards/OfficeOldstockinwardWrapper'
 
 // import OfficeStockW from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 
@@ -52,7 +52,7 @@ function StockWrapper() {
           element={
             <>
               <PageTitle>Office old stock inwards</PageTitle>
-              <OfficeOldStockInwardsWrapper />
+              <OfficeOldstockinwardWrapper />
             </>
           }
         />

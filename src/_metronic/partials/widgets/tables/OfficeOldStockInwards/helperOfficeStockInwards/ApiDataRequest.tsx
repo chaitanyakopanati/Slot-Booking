@@ -1,10 +1,10 @@
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putmodel } from './ModelOfficeOldStocksOutwards'
+import {ID, postlistData, putmodel} from './ModelOfficeStockInwards'
 
 {
   /* begin::  getDynamicOfficeStockInwards Api call */
 }
-const getDynamicOfficeStockOutwards = (
+const getDynamicOfficeStockInwards = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
@@ -31,7 +31,7 @@ const getDynamicOfficeStockOutwards = (
 {
   /* begin::  post Api call(create) */
 }
-const postOfficeStockOutwards = (obj: postlistData) => {
+const postOfficeStockInwards = (obj: postlistData) => {
   return http.post('SaveOfficeStockInward', {
     inwardNo: obj.inwardNo,
     inwardDate: obj.inwardDate,
@@ -52,7 +52,7 @@ const postOfficeStockOutwards = (obj: postlistData) => {
 {
   /* begin::  post Api call(edit) */
 }
-const editOfficeStockOutwards = (obj: putmodel) => {
+const editOfficeStockInwards = (obj: putmodel) => {
   return http.post(`SaveOfficeStockInward`, {
     id:obj.id,
     inwardNo: obj.inwardNo,
@@ -74,7 +74,7 @@ const editOfficeStockOutwards = (obj: putmodel) => {
 {
   /* begin::  getById Api call */
 }
-const GetOfficeStockOutwardsTypeById = (inwardNo: ID) => {
+const GetOfficeStockInwardsTypeById = (inwardNo: ID) => {
   return http.get(`GetOfficeStockInwardById/${inwardNo}`)
 }
 {
@@ -84,7 +84,7 @@ const GetOfficeStockOutwardsTypeById = (inwardNo: ID) => {
 {
   /* begin::  GetAllZones Api call */
 }
-const getOfficeStockOutwardsTypes = () => {
+const getOfficeStockInwardsTypes = () => {
   return http.get('GetAllZones')
 }
 {
@@ -107,22 +107,22 @@ const getProducts = () => {
   return http.get('GetAllProducts')
 }
 
-//Technician 
-const getTechnicianTypes = () => {
+//delivery by
+const getDeliveredByTypes = () => {
   return http.get(`GetUserByRoleName?roleName=technician`)
 }
 
-const OfficeStockOutwardservice = {
-  getDynamicOfficeStockOutwards,
-  postOfficeStockOutwards,
-  editOfficeStockOutwards,
+const OfficeStockInwardservice = {
+  getDynamicOfficeStockInwards,
+  postOfficeStockInwards,
+  editOfficeStockInwards,
   // getStatusByTypes,
   getCreatedByTypes,
-  getOfficeStockOutwardsTypes,
-  getTechnicianTypes,
+  getOfficeStockInwardsTypes,
+  getDeliveredByTypes,
   getZoneTypes,
   getProducts,
-  GetOfficeStockOutwardsTypeById,
+  GetOfficeStockInwardsTypeById,
 }
 
-export default OfficeStockOutwardservice
+export default OfficeStockInwardservice

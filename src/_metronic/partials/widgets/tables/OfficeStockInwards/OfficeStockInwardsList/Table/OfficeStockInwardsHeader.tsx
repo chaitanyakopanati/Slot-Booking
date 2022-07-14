@@ -39,8 +39,8 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
     setproductId,
   } = ListPageData()
 
-  const [fromDate, setFromDate] = useState<any>(new Date())
-  const [toDate, setToDate] = useState<any>(new Date())
+  const [fromDate, setFromDate] = useState<any>()
+  const [toDate, setToDate] = useState<any>()
   const range = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -218,7 +218,6 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                   <div className='col-lg-3'>
                     <div
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
-                      
                     >
                       <div>
                         <label className='form-label fw-bold'>Inward date</label>
@@ -243,11 +242,21 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                             ranges: range,
                             // placeholder:"All"
                           }}
-                          onEvent={handleEvent}
+                          onHide={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                            {moment(fromDate).format('YYYY-MM-DD')} ~{' '}
-                            {moment(toDate).format('YYYY-MM-DD')}
+                            <input
+                            style={{ background: '#f5f8fa',
+                              border: 'none'}}
+                              placeholder='All'
+                              value={`${
+                                fromDate && toDate
+                                  ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(
+                                      toDate
+                                    ).format('DD-MM-yyyy')}`
+                                  : ''
+                              }`}
+                            />
                           </div>
                         </DateRangePicker>
                       </div>
@@ -262,7 +271,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                       value={createdBy}
                       onChange={handleCratedBychange}
                     >
-                      <option value=''>Select Created By</option>
+                      <option value=''>All</option>
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
@@ -281,7 +290,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                       value={productId}
                       onChange={handleProductchange}
                     >
-                      <option value=''>Select Product Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeProduct.map((TypeData: any, index) => {
                         return (
                           <option key={index} value={TypeData.id}>
@@ -300,7 +309,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                       value={zoneId}
                       onChange={handleZoneChange}
                     >
-                      <option value=''>Select Zone Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeZone.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

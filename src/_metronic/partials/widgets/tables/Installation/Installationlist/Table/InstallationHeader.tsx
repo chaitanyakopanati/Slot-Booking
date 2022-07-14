@@ -7,6 +7,7 @@ import {KTSVG} from '../../../../../../helpers'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
+import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {ListPageData} from '../../InstallationContext'
 
 type Props = {
@@ -54,8 +55,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
   const navigate = useNavigate()
 
-  const [fromDate, setFromDate] = useState(new Date())
-  const [toDate, setToDate] = useState(new Date())
+  const [fromDate, setFromDate] = useState<any>()
+  const [toDate, setToDate] = useState<any>()
   const range = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -288,19 +289,42 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     <div
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
                     >
-                      <label className='form-label fw-bold'>Installation date</label>
-                      <div
-                      >
+                         <div>
+                        <label className='form-label fw-bold'>Installer date</label>
+                        <span
+                          role='button'
+                          onClick={() => {
+                            console.log('datatatatat========================\\\\\\\\\\\\')
+                            setFromDate('')
+                            setToDate('')
+                            setStartDate('')
+                            setEndDate('')
+                          }}
+                        >
+                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        </span>
+                      </div>
+                         <div>
                         <DateRangePicker
                           initialSettings={{
                             alwaysShowCalendars: false,
                             ranges: range,
                           }}
-                          onEvent={handleEvent}
+                          onHide={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                            {moment(fromDate).format('YYYY-MM-DD')} ~{' '}
-                            {moment(toDate).format('YYYY-MM-DD')}
+                          <input
+                          style={{ background: '#f5f8fa',
+                          border: 'none'}}
+                              placeholder='All'
+                              value={`${
+                                fromDate && toDate
+                                  ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(
+                                      toDate
+                                    ).format('DD-MM-yyyy')}`
+                                  : ''
+                              }`}
+                            />
                           </div>
                         </DateRangePicker>
                       </div>
@@ -315,20 +339,20 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       value={statusId}
                       onChange={handleStatuschange}
                     >
-                      <option value=''>Select Status Type</option>
+                      <option value=''>All</option>
                       <option value='1'>Pending</option>
                       <option value='2'>Done</option>
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Sales executive</label>
+                    <label className='form-label fw-bold'>All</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('salesexecutiveId')}
                       value={salesExecutiveId}
                       onChange={handlesalesExecutiveIdchange}
                     >
-                      <option value=''>Select Sales executive</option>
+                      <option value=''>All</option>
                       {getUserByRole?.map((row, index) => {
                         return (
                           <option key={index} value={row?.id}>
@@ -339,14 +363,14 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Connection Type</label>
+                    <label className='form-label fw-bold'>All</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('connectiontypeId')}
                       value={connectionTypeId}
                       onChange={handleConnectionTypechange}
                     >
-                      <option value=''>Select Connection Type</option>
+                      <option value=''>All</option>
                       <option value='1'>Cable</option>
                       <option value='2'>Wireless</option>
                     </select>
@@ -354,14 +378,14 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
                   <div className='row w-100 mx-0 my-3'>
                     <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>Main point</label>
+                      <label className='form-label fw-bold'>All</label>
                       <select
                         className='form-select form-select-solid'
                         {...props.getFieldProps('zonepointid')}
                         value={mainPointId}
                         onChange={handleMainPointchange}
                       >
-                        <option value=''>Select MainPoint</option>
+                        <option value=''>All</option>
                         {getMainPoint.map((TypeData: any, index: number) => {
                           return (
                             <option key={index} value={TypeData?.id}>
@@ -379,7 +403,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         value={zoneId}
                         onChange={handleZoneChange}
                       >
-                        <option value=''>Select Zone Type</option>
+                        <option value=''>All</option>
                         {getDataAllTypeZone.map((TypeData, index) => {
                           return (
                             <option key={index} value={TypeData?.id}>
@@ -397,7 +421,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         value={companyId}
                         onChange={handleCompanyChange}
                       >
-                        <option value=''>Select Company Type</option>
+                        <option value=''>All</option>
                         {getCompanyTypeData.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>
@@ -415,7 +439,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         value={installerId}
                         onChange={handleInstallerChange}
                       >
-                        <option value=''>Select Installer Type</option>
+                        <option value=''>All</option>
                         {getInstallations.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>

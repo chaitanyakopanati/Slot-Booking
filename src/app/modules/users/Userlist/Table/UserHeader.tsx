@@ -97,32 +97,6 @@ const UserHeader: FC<Props> = ({category}) => {
     fetchAllUser()
   }, [pageNo, pageSize, searchText, zoneId, roleId, searchByUsername, createdById])
 
-  {
-    /* begin::Created by Filter Map Function */
-  }
-
-  // function uniqueBy(property: any) {
-  //   let seen = Object.create(null)
-  //   return function (item: any) {
-  //     let key = item[property]
-  //     if (seen[key] == null) {
-  //       seen[key] = 1
-  //       return true
-  //     }
-  //     return false
-  //   }
-  // }
-
-  // const result = getDataAllType.filter(uniqueBy('createdById')).map((product) => {
-  //   return {
-  //     id: product.createdById,
-  //     name: product.createdByName,
-  //   }
-  // })
-  {
-    /* End::Created by Filter Map Function */
-  }
-
   return (
     <>
       {/* begin::formik Form */}
@@ -252,7 +226,7 @@ const UserHeader: FC<Props> = ({category}) => {
                       value={zoneId}
                       onChange={handleZoneChange}
                     >
-                      <option value=''>Select Zone Type</option>
+                      <option value=''>All</option>
                       {getDataAllType.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
@@ -270,7 +244,7 @@ const UserHeader: FC<Props> = ({category}) => {
                       value={roleId}
                       onChange={handleRoleChange}
                     >
-                      <option value=''>Select Role Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeRole.map((TypeDataRole, index) => {
                         return (
                           <option key={index} value={TypeDataRole?.id}>
@@ -288,7 +262,7 @@ const UserHeader: FC<Props> = ({category}) => {
                       value={createdById}
                       onChange={handleCreatedBYchange}
                     >
-                      <option value=''>Select Created By</option>
+                      <option value=''>All</option>
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

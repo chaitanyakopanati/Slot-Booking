@@ -53,7 +53,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
           inwardNo: category.data?.inwardNo,
           inwardDate: moment(category.inwardDate).format('YYYY-MM-DD'),
           productId: category.data?.productId || 0,
-          quantityDisplay: category.data?.quantityDisplay || '',
+          quantity: category.data?.quantity || '',
           deliveredById: category.data?.deliveredById || '',
           zoneId: category.data?.zoneId || '',
           serialno: category.data?.serialno || '',
@@ -62,7 +62,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         validationSchema={Yup.object({
           inwardDate: Yup.string().required('This field is required'),
           productId: Yup.number().required('This field is required'),
-          quantityDisplay: Yup.string().required('This field is required'),
+          quantity: Yup.string().required('This field is required'),
            deliveredById: Yup.number().required('This fied is required'),
            zoneId: Yup.number().required('This fielld is required'),
            serialno: Yup.string().required('This field is required'),
@@ -168,17 +168,17 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                   <div className=' col-md-6 col-12'>
                     <label className='form-label fw-bold'>Quantity</label>
                     <input
-                      placeholder='quantityDisplay'
+                      placeholder='quantity'
                       className='form-control form-control-lg form-control-solid'
                       type='text'
-                      value={props.values.quantityDisplay}
+                      value={props.values.quantity}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      name='quantityDisplay'
+                      name='quantity'
                       autoComplete='off'
                     />
                     <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='quantityDisplay' />
+                      <ErrorMessage name='quantity' />
                     </div>
                   </div>
 

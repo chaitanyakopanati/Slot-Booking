@@ -152,7 +152,7 @@ const PackagesCategoriesTypeHeader: FC<Props> = ({category}) => {
                       value={createdById}
                       onChange={handleCreatedBychange}
                     >
-                      <option value=''>Select Created By</option>
+                      <option value=''>All</option>
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

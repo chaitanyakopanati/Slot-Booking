@@ -150,7 +150,7 @@ const OfficeStockAvailabilityHeader: FC<Props> = ({category}) => {
                       value={productId}
                       onChange={handleProductchange}
                     >
-                      <option value=''>Select Product Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeProduct.map((TypeData: any, index) => {
                         return (
                           <option key={index} value={TypeData.id}>
@@ -169,7 +169,7 @@ const OfficeStockAvailabilityHeader: FC<Props> = ({category}) => {
                       value={zoneId}
                       onChange={handleZoneChange}
                     >
-                      <option value=''>Select Zone Type</option>
+                      <option value=''>All</option>
                       {getDataAllTypeZone.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

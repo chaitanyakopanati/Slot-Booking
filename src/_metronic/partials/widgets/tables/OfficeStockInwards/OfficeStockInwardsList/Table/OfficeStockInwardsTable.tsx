@@ -40,7 +40,7 @@ const OfficeStockInwardsTable = () => {
     DataGetAllTypeZone()
     DataGetAllTypeProducts()
     DataGetAllTypeDeliveredByTypes()
-    LoderActions(false)
+    // LoderActions(false)
   }, [])
 
   const handlesearchange = (e: any) => {
@@ -96,7 +96,7 @@ const OfficeStockInwardsTable = () => {
                     {/* end:: productName Input */}
 
                     {/* begin:: quantity Input */}
-                    <td className='text-dark fw-bold  fs-6'>{row.quantity || '-'}</td>
+                    <td className='text-dark fw-bold  fs-6'>{row.quantityDisplay || '-'}</td>
                     {/* end:: quantity Input */}
 
                     {/* begin:: deliveredByName Input */}
@@ -182,7 +182,7 @@ const OfficeStockInwardsTable = () => {
                         </div>
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>quantity :</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.quantity || '-'}</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.quantityDisplay || '-'}</div>
                         </div>
 
                         <div className='py-1 d-flex'>

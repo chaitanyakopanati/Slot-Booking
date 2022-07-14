@@ -3,18 +3,19 @@ import moment from 'moment'
 import {FC, useEffect} from 'react'
 import {CustomTooltip} from '../../../../../../../app/routing/customtooltip'
 import {KTSVG} from '../../../../../../helpers'
-import {ListPageData} from '../../OfficeOldStockOutwardsContext'
+import { ListPageData } from '../../OfficeOldStockInwardsContext'
 
 type Props = {
   category: any
 }
 
-const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
+const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
   const {
     viewIdForUpdate,
     setItemIdForUpdate,
     setViewIdForUpdate,
     getDataAllTypeProduct,
+    getDataAllTypeDeliveredBy,
     getDataAllTypeZone,
   } = ListPageData()
 
@@ -47,7 +48,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
       <Formik
         enableReinitialize={true}
         initialValues={{
-          id: category.id || '',
+          id:category.id || '',
           inwardNo: category.inwardNo,
           inwardDate: moment(category.inwardDate).format('YYYY-MM-DD'),
           productId: category.productId || '',
@@ -58,12 +59,8 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
           remark: category.remark || '',
           createByName: category.createByName || '',
           modifiedByName: category.modifiedByName || '',
-          createdDate: moment(category.createdDate, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
-          modifiedDate: moment(category.modifiedDate, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
+          createdDate: moment(category.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+          modifiedDate: moment(category.modifiedDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
         }}
         onSubmit={(values) => console.log(values)}
       >
@@ -90,7 +87,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                         {/* begin:: View Modal Header */}
                         <div className='modal-header'>
                           <div className='d-flex align-items-center'>
-                            <h5 className='modal-title'>View Office stock Outwards</h5>
+                            <h5 className='modal-title'>View Office stock Inwards</h5>
                           </div>
                           <div className='ms-3'>
                             {/* begin::  Edit Bank button */}
@@ -107,7 +104,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                                 path='/media/icons/duotune/art/art005.svg'
                                 className='svg-icon-3'
                               />
-                              Edit Office stock Outwards
+                              Edit Office stock Inwards
                             </button>
                             {/* end::  Edit Bank button */}
 
@@ -134,7 +131,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                           <div className='container-fluid p-0'>
                             <div className='row w-100 mx-0 mb-4 gy-4'>
                               <div className='col-md-6 col-12'>
-                                <label className='form-label fw-bold '>Outward date </label>
+                                <label className='form-label fw-bold '>Inward date </label>
                                 <input
                                   className='form-control form-control-lg form-control-solid'
                                   type='date'
@@ -182,23 +179,14 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                                 />
                               </div>
 
-                              <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Technician</label>
-                                <select className='form-select form-select-solid'>
-                                  <option value='1'>All</option>
-                                  <option value='2'>Not described</option>
-                                  <option value='3'>Abalkesh Soft</option>
-                                  <option value='4'>Ajay Sulin</option>
-                                </select>
-                              </div>
-                              {/* <div className='col-md-6 col-12'>
+                              <div className='col-md-6 col-12'>
                                 <label className='form-label fw-bold'>Delivered by</label>
                                 <select
                                   className='form-select form-select-solid'
                                   {...props.getFieldProps('deliveredById')}
                                   disabled
                                 >
-                                  <option value=''>Select Delivered By</option>
+                                  <option value='' disabled>Select Delivered By</option>
                                   {getDataAllTypeDeliveredBy.map((TypeData, index) => {
                                     return (
                                       <option key={index} value={TypeData?.id}>
@@ -207,28 +195,6 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                                     )
                                   })}
                                 </select>
-                              </div> */}
-                            </div>
-
-                            <div className='row w-100 mx-0 mb-4 gy-4'>
-                              <div className='col-md-6 col-12'>
-                                <label className='form-label fw-bold'>Username</label>
-                                <input
-                                  placeholder='Solved at'
-                                  className='form-control form-control-lg form-control-solid'
-                                  type='text'
-                                  autoComplete='off'
-                                />
-                              </div>
-
-                              <div className='col-md-6 col-12'>
-                                <label className='form-label fw-bold'>Reason</label>
-                                <input
-                                  placeholder='Solved at'
-                                  className='form-control form-control-lg form-control-solid'
-                                  type='text'
-                                  autoComplete='off'
-                                />
                               </div>
                             </div>
 
@@ -373,4 +339,4 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
     </>
   )
 }
-export default OfficeOldStockOutwardsFormViewModal
+export default OfficeOldStockInwardsFormViewModal
