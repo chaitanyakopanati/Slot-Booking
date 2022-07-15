@@ -187,8 +187,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                         <input
                           name="userid"
                           placeholder='userName'
-                          className='form-control form-control-lg form-control-solid auto-complete-input'
+                          className='form-control form-control-lg form-control-solid'
                           value={props.values.userid}
+                          autoComplete="false"
                           onChange={(e)=>{
                             setSuggestionUserText(e.target.value)
                             if(e.target.value){
