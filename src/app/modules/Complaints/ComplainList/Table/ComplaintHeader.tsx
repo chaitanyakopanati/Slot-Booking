@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import { KTSVG } from '../../../../../_metronic/helpers';
+
 // import {useNavigate} from 'react-router-dom'
-import {KTSVG} from '../../../../../../helpers'
+
 
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
+  const navigate = useNavigate()
+
   // const navigate = useNavigate()
 
   return (
@@ -47,23 +52,42 @@ const ComplaintHeader = () => {
             </div>
 
             <div
-              className='ms-3'
-              // onClick={() => {
-              //   navigate('dashboard/form')
-              // }}
+              className='d-flex justify-content-end ms-3'
+              data-kt-user-table-toolbar='base'
             >
-              <a
-                href='#'
-                className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                data-bs-toggle='modal'
-                data-bs-target='#create-modal'
-              >
-                <span className='svg-icon svg-icon-gray-500 me-1'>
-                  <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-                </span>
-                Create Complaint
-              </a>
+              <div title='Click to add new category'>
+                <button
+                  type='button'
+                  className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                  onClick={() => {
+                    navigate('complaintform/add')
+                  }}
+                // onClick={openAddCategoryModal}
+                >
+                  <span className='svg-icon svg-icon-gray-500 me-1'>
+                    <KTSVG
+                      path='/media/icons/duotune/arrows/arr075.svg'
+                      className='svg-icon-3'
+                    />
+                  </span>
+                  Create Complaint
+                </button>
+              </div>
             </div>
+            {/* <div
+              className='ms-3'
+              onClick={() => {
+                navigate('complaintform/add');
+
+              }}
+            >
+
+              <span className='svg-icon svg-icon-gray-500 me-1'>
+                <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+              </span>
+              Create Complaint
+
+            </div> */}
           </div>
         </div>
 

@@ -11,7 +11,7 @@ export function AsideMenuMain() {
   return (
     <>
       <AsideMenuItem
-        to='/dashboard'
+        to='/complaint'
         icon='/media/icons/duotune/general/gen008.svg'
         title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
         fontIcon='bi-app-indicator'

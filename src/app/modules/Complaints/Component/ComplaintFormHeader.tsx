@@ -1,7 +1,6 @@
-import {KTSVG} from '../../../../../helpers'
-import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
-
 import React from 'react'
+import { KTSVG } from '../../../../_metronic/helpers'
+import { CustomTooltip } from '../../../routing/customtooltip'
 
 const ComplaintFormHeader = () => {
   return (

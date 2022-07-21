@@ -9,17 +9,18 @@ import {ProfileSettingsWrapper} from '../pages/profile-settings/ProfileSettingsW
 import {FormsWrapper} from '../pages/forms/FormsWrapper'
 import {InstallationsWrapper} from '../pages/installations/InstallationsWrapper'
 import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
-
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import MasterWrapper from '../pages/master/MasterWrapper'
 import {PageTitle} from '../../_metronic/layout/core'
 import CustomerFormWrapper from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormWrapper'
 import CustomerFormModal from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormModal'
-import ComplaintFormModal from '../../_metronic/partials/widgets/tables/Complaints/Form/ComplaintFormModal'
 import InquiriesFormWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesFormWrapper'
 import InquiriesViewWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesViewWrapper'
 import InstallationFormWrapper from '../../_metronic/partials/widgets/tables/Installation/Form/InstallationFormWrapper'
 import InstallationViewWrapper from '../../_metronic/partials/widgets/tables/Installation/Form/InstallationViewWrapper'
+import ComplaintWrapper from '../modules/Complaints/ComplaintWrapper'
+import ComplaintFormModal from '../modules/Complaints/Form/ComplaintFormModal'
+import ComplaintFormWrapper from '../modules/Complaints/Form/ComplaintFormWrapper'
 
 
 const PrivateRoutes = () => {
@@ -28,17 +29,17 @@ const PrivateRoutes = () => {
     <Routes>
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
-        <Route path='auth/*' element={<Navigate to='/dashboard' />} />
+        <Route path='auth/*' element={<Navigate to='/complaint' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
-
+        <Route path='complaint' element={<ComplaintWrapper />} />
         <Route
-          path='dashboard/form/:id'
+          path='complaint/complaintform/:id'
           element={
             <>
-              <PageTitle>Add User</PageTitle>
+              <PageTitle>Complaint Form</PageTitle>
               {/* <ComplaintFormWrapper /> */}
-              <ComplaintFormModal />
+              <ComplaintFormWrapper />
             </>
           }
         />
@@ -49,8 +50,8 @@ const PrivateRoutes = () => {
           element={
             <>
               <PageTitle>Add Customer</PageTitle>
-              {/* <CustomerFormWrapper /> */}
-              <CustomerFormModal />
+              <CustomerFormWrapper />
+              {/* <CustomerFormModal /> */}
             </>
           }
         />

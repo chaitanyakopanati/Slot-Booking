@@ -57,7 +57,7 @@ export * from './tables/Inquiries/InquiriesWrapper1'
 export * from './tables/Installation/InstallationWrapper1'
 export * from './tables/Forms/FormWrapper'
 export * from './tables/Customer/TablesWidget12'
-export * from './tables/Complaints/TablesWidget13'
+// export * from './tables/Complaints/TablesWidget13'
 
 // engage
 export * from './engage/EngageWidget1'

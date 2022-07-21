@@ -35,7 +35,7 @@ const AppRoutes: FC = () => {
           {auth?.token ? (
             <>
               <Route path='/*' element={<PrivateRoutes />} />
-              <Route index element={<Navigate to='/dashboard' />} />
+              <Route index element={<Navigate to='/complaint' />} />
             </>
           ) : (
             <>
