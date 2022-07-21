@@ -1,12 +1,13 @@
 import React from 'react'
-import {TablesWidget1} from '../../../_metronic/partials/widgets'
+import GodownstockavailabilitiesWrapper from '../../../_metronic/partials/widgets/tables/GodownStockAvailability/GodownstockavailabilitiesWrapper'
+
 
 function GodownStockAvailabilityWrapper() {
   return (
     <>
       <div className='row gy-5 gx-xl-8'>
         <div className='col-xl-12'>
-          <TablesWidget1 className='card-xxl-stretch mb-5 mb-xl-8' />
+          <GodownstockavailabilitiesWrapper/>
         </div>
       </div>
     </>

@@ -3,7 +3,6 @@ import OfficeOldStockInwardsFormWrapper from './Form/OfficeOldStockInwardsFormWr
 import { ListDataProvider, ListPageData } from './OfficeOldStockInwardsContext'
 import OfficeOldStockInwardsFormViewModal from './OfficeStockInwardsList/Table/OfficeOldStockInwardsFormViewModal'
 import OfficeOldStockInwardsHeader from './OfficeStockInwardsList/Table/OfficeOldStockInwardsHeader'
-import OfficeStockInwardsHeader from './OfficeStockInwardsList/Table/OfficeOldStockInwardsHeader'
 import OfficeOldStockInwardsPagination from './OfficeStockInwardsList/Table/OfficeOldStockInwardsPagination'
 import OfficeOldStockInwardsTable from './OfficeStockInwardsList/Table/OfficeOldStockInwardsTable'
 
@@ -12,23 +11,23 @@ const OfficeOldstockinwardlist = () => {
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        {/* begin:: OfficeInwards Header Component */}
-        <OfficeOldStockInwardsHeader category={OfficeStockInwardsHeader} />
-        {/* end:: OfficeInwards Header Component */}
+        {/* begin:: OfficeOldStockInwards  Header Component */}
+        <OfficeOldStockInwardsHeader category={OfficeOldStockInwardsHeader} />
+        {/* end:: OfficeOldStockInwards  Header Component */}
 
-        {/* begin:: OfficeInwards Table Component */}
+        {/* begin:: OfficeOldStockInwards  Table Component */}
         <OfficeOldStockInwardsTable />
-        {/* end:: OfficeInwards Table Component */}
+        {/* end:: OfficeOldStockInwards  Table Component */}
       </KTCard>
-      {/* begin:: OfficeInwards Table-Pagination Component */}
+      {/* begin:: OfficeOldStockInwards  Table-Pagination Component */}
       <OfficeOldStockInwardsPagination />
-      {/* end:: OfficeInwards Table-Pagination Component */}
-      {/* begin:: OfficeInwards Add/Edit Form Component */}
+      {/* end:: OfficeOldStockInwards  Table-Pagination Component */}
+      {/* begin:: OfficeOldStockInwards  Add/Edit Form Component */}
       {itemIdForUpdate !== undefined && <OfficeOldStockInwardsFormWrapper />}{' '}
-      {/* end:: OfficeInwards Add/Edit Form Component */}
-      {/* begin:: OfficeInwards View Form Component */}
+      {/* end:: OfficeOldStockInwards  Add/Edit Form Component */}
+      {/* begin:: OfficeOldStockInwards  View Form Component */}
       {viewIdForUpdate && <OfficeOldStockInwardsFormViewModal category={viewIdForUpdate} />}{' '}
-      {/* end:: OfficeInwards View Form Component */}
+      {/* end:: OfficeOldStockInwards  View Form Component */}
     </div>
   )
 }

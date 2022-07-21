@@ -118,7 +118,7 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
                           <div className='container-fluid p-0'>
                             {/*begin:: Name Filed */}
                             <div className='row mb-4'>
-                              <label className='fw-bold fs-6 mb-2'>Name</label>
+                              <label className='fw-bold fs-6 mb-2 required'>Name</label>
                               <div className='input-group'>
                                 <input
                                   placeholder='Name'
@@ -137,7 +137,7 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
                             {/*begin:: Fault-Type Filed */}
                             <div>
                               <div className='row mb-4'>
-                                <label className=' fw-bold fs-6 mb-2'>Type</label>
+                                <label className=' fw-bold fs-6 mb-2 required'>Type</label>
                                 <div className='input-group'>
                                   <input
                                     className='form-control form-control-lg'
@@ -155,7 +155,7 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
                             <div className='row mb-4'>
                               {/*begin:: Created By Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Created by</label>
+                                <label className='form-label fw-bold required'>Created by</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -171,7 +171,7 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
 
                               {/*begin:: Updated By Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Updated by</label>
+                                <label className='form-label fw-bold required'>Updated by</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -189,7 +189,7 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
                             <div className='row mb-4'>
                               {/* begin:: Created At Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Created at</label>
+                                <label className='form-label fw-bold required'>Created at</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -205,7 +205,7 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
 
                               {/* begin:: Updated At Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Updated at</label>
+                                <label className='form-label fw-bold required'>Updated at</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'

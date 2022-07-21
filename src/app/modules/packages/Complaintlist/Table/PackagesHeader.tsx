@@ -101,23 +101,6 @@ const PackagesHeader: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='d-flex align-items-center'>
-                  {/* begin::Download */}
-                  <div className='ms-auto'>
-                    <a
-                      href='#'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-2 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
-                  </div>
-                  {/* end:: Download */}
-
                   {/* begin::Filter */}
                   <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
                     <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>

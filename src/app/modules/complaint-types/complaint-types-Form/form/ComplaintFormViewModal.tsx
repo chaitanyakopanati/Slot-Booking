@@ -119,7 +119,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                             {/*begin:: Name Filed */}
                             <div className='row mb-4'>
                               <div className='col-lg-12'>
-                                <label className=' fw-bold fs-6 mb-2'>Name</label>
+                                <label className=' fw-bold fs-6 mb-2 required'>Name</label>
                                 <input
                                   placeholder='Name'
                                   value={props.values.name}
@@ -138,7 +138,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                             <div>
                               <div className='row mb-4'>
                                 <div className='col-lg-12'>
-                                  <label className=' fw-bold fs-6 mb-2'>ETR</label>
+                                  <label className=' fw-bold fs-6 mb-2 required'>ETR</label>
                                   <div className='input-group'>
                                     <div className='input-group-text'>Hour</div>
                                     <input
@@ -159,7 +159,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                             <div className='row mb-4'>
                               {/*begin:: Created By Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Created by</label>
+                                <label className='form-label fw-bold required'>Created by</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -175,7 +175,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
 
                               {/*begin:: Updated By Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Updated by</label>
+                                <label className='form-label fw-bold required'>Updated by</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -193,7 +193,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                             <div className='row mb-4'>
                               {/* begin:: Created At Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Created at</label>
+                                <label className='form-label fw-bold required'>Created at</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
@@ -209,7 +209,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
 
                               {/* begin:: Updated At Filed */}
                               <div className='col-lg-6'>
-                                <label className='form-label fw-bold'>Updated at</label>
+                                <label className='form-label fw-bold required'>Updated at</label>
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'

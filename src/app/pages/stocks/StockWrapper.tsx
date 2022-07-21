@@ -4,11 +4,21 @@ import {PageTitle} from '../../../_metronic/layout/core'
 import OfficeStockInwardsWrapper from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 import OfficeStockOutwardsWrapper from '../../modules/office-stock-outwords/OfficeStockOutwardsWrapper'
 import OfficeOldStockOutwardsWrapper from '../../modules/office-old-stock-outwards/OfficeOldStockOutwardsWrapper'
-import OfficeOldStockAvailabilityWrapper from '../../modules/office-old-stock-availability/OfficeOldStockAvailabilityWrapper'
 import GodownStockInwardsWrapper from '../../modules/godown-stock-inwards/GodownStockInwardsWrapper'
 import GodownStockAvailabilityWrapper from '../../modules/godown-stock-availability/GodownStockAvailabilityWrapper'
 import OfficeStockAvailabilityWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockAvailability/OfficeStockAvailabilityWrapper'
 import OfficeOldstockinwardWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockInwards/OfficeOldstockinwardWrapper'
+import OfficeOldStockAvailabilityWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockAvailability/OfficeOldStockAvailabilityWrapper'
+import OfficeStockOutwardsFormWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockOutwards/Form/OfficeStockOutwardsFormWrapper'
+import OfficeStockOutwardsViewWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockOutwards/Form/OfficeStockOutwardsViewWrapper'
+import OfficeStockInwardsFormWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/Form/OfficeStockInwardsFormWrapper'
+import OfficeStockInwardsViewWrapper from '../../../_metronic/partials/widgets/tables/OfficeStockInwards/Form/OfficeStockInwardsViewWrapper'
+import OfficeOldStockInwardsFormWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockInwards/Form/OfficeOldStockInwardsFormWrapper'
+import OfficeOldStockInwardsViewWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockInwards/Form/OfficeOldStockInwardsViewWrapper'
+import OfficeOldStockOutwardsFormWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockOutwards/Form/OfficeOldStockOutwardsFormWrapper'
+import OfficeOldStockOutwardsViewWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockOutwards/Form/OfficeOldStockOutwardsViewWrapper'
+import GodownStockInwardsFormWrapper from '../../../_metronic/partials/widgets/tables/GodownStockInwards/Form/GodownStockInwardsFormWrapper'
+import GodownStockInwardsViewWrapper from '../../../_metronic/partials/widgets/tables/GodownStockInwards/Form/GodownStockInwardsViewWrapper'
 
 // import OfficeStockW from '../../modules/office-stock-inwards/OfficeStockInwardsWrapper'
 
@@ -25,6 +35,24 @@ function StockWrapper() {
             </>
           }
         />
+        <Route
+          path='office-stock-inwards/inwardsform/:id'
+          element={
+            <>
+              <PageTitle>Office Stock Inwards Form</PageTitle>
+              <OfficeStockInwardsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='office-stock-inwards/office-stock-inwardsviewform/:id'
+          element={
+            <>
+              <PageTitle>Office Stock Inwards User</PageTitle>
+              <OfficeStockInwardsViewWrapper />
+            </>
+          }
+        />
         {/*  */}
 
         <Route
@@ -36,6 +64,25 @@ function StockWrapper() {
             </>
           }
         />
+         <Route
+          path='office-stock-outwards/form/:id'
+          element={
+            <>
+              <PageTitle>Office Stock Outwards Form</PageTitle>
+              <OfficeStockOutwardsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='office-stock-outwards/office-stock-outwardsviewform/:id'
+          element={
+            <>
+              <PageTitle>Office Stock Outwards </PageTitle>
+              <OfficeStockOutwardsViewWrapper />
+            </>
+          }
+        />
+        
         {/*  */}
         <Route
           path='office-stock-availability'
@@ -56,6 +103,24 @@ function StockWrapper() {
             </>
           }
         />
+         <Route
+          path='office-old-stock-inwards/inwardsOldform/:id'
+          element={
+            <>
+              <PageTitle>Office Old Stock inwards Form</PageTitle>
+              <OfficeOldStockInwardsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='office-old-stock-inwards/office-stock-inwardsOldviewform/:id'
+          element={
+            <>
+              <PageTitle>Office Old Stock inwards </PageTitle>
+              <OfficeOldStockInwardsViewWrapper />
+            </>
+          }
+        />
         {/*  */}
         <Route
           path='office-old-stock-outwards'
@@ -63,6 +128,24 @@ function StockWrapper() {
             <>
               <PageTitle>Office old stock Outwards</PageTitle>
               <OfficeOldStockOutwardsWrapper />
+            </>
+          }
+        />
+         <Route
+          path='office-old-stock-outwards/OutwardsOldform/:id'
+          element={
+            <>
+              <PageTitle>Office Old Stock Outwards</PageTitle>
+              <OfficeOldStockOutwardsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='office-old-stock-outwards/office-stock-OutwardsOldviewform/:id'
+          element={
+            <>
+              <PageTitle>Office Old Stock Outwards </PageTitle>
+              <OfficeOldStockOutwardsViewWrapper />
             </>
           }
         />
@@ -83,6 +166,24 @@ function StockWrapper() {
             <>
               <PageTitle>Godown stock Inwards</PageTitle>
               <GodownStockInwardsWrapper />
+            </>
+          }
+        />
+        <Route
+          path='godown-stock-inwards/godownInwardsform/:id'
+          element={
+            <>
+              <PageTitle>Godown stock inwards</PageTitle>
+              <GodownStockInwardsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='godown-stock-inwards/godown-stock-inwardsviewform/:id'
+          element={
+            <>
+              <PageTitle>Office Old Stock inwards </PageTitle>
+              <GodownStockInwardsViewWrapper />
             </>
           }
         />

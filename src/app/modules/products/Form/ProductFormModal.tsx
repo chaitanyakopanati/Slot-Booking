@@ -110,7 +110,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
               >
                 {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
-                  <label className=' fw-bold fs-6 mb-2'>Name</label>
+                  <label className=' fw-bold fs-6 mb-2 required'>Name</label>
                   <input
                     placeholder='Name'
                     value={props.values.name}
@@ -129,7 +129,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                 {/*begin:: input Unit Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col'>
-                    <label className='form-label fw-bold'>Unit</label>
+                    <label className='form-label fw-bold required'>Unit</label>
                     <input
                       name='unit'
                     placeholder='Unit'

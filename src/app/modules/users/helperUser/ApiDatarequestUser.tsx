@@ -1,6 +1,8 @@
+import axios from 'axios'
 import http from '../../../../_metronic/helpers/components/http-common'
 import {ID, postlistData, putUsersmodel} from './ModelUserType'
 
+const API_URL_DATA = process.env.REACT_APP_API_URL
 {
   /* begin:: User:- getDynamicUser Api call */
 }
@@ -11,15 +13,16 @@ const getDynamicUser = (
   zoneId: number,
   roleId: string,
   searchByUsername: string,
-  createdById: number
+  createdById: number,
+  orderByColumnName:string
 ) => {
   if (pageSize <= 0) {
     return http.get(
-      `GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}&searchByUsername=${null}&createdById=${null}`
+      `GetAllUsers/${null}/${null}?searchText=${null}&zoneId=${null}&roleId=${null}&searchByUsername=${null}&createdById=${null}&orderByColumnName=${null}`
     )
   } else {
     return http.get(
-      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}`
+      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}orderByColumnName=${orderByColumnName}`
     )
   }
 }
@@ -27,14 +30,20 @@ const getDynamicUser = (
   /* end:: User:- getDynamicFaults Api call */
 }
 
-{
-  /* begin:: User:- get Api call */
-}
-// const getUser = () => {
-//   return http.get('GetAllFaults')
-// }
-{
-  /* end:: User:- get Api call */
+// download 
+
+const getDynamicDownloadFile = (
+  zoneId: number,
+  roleId: string,
+  createdById: number,
+  searchText: string,
+  searchByUsername: string,
+) => {
+    return axios({
+      url: `${API_URL_DATA}/GetUsersExcelSheet?zoneId=${zoneId}&searchText=${searchText}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}`, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+  })
 }
 
 {
@@ -136,6 +145,7 @@ const Userservice = {
   getCreatedByTypes,
   getZoneTypes,
   getroleTypes,
+  getDynamicDownloadFile
 }
 
 export default Userservice

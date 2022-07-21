@@ -7,12 +7,15 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   category: any
 }
 
 const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
+  const navigate = useNavigate()
+
   const {
     setItemIdForUpdate,
     setFilterShow,
@@ -20,10 +23,9 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
     setSearchText,
     searchText,
     setPageNo,
-    getDataofficestockOutwardAllType,
     createdBy,
     setcreatedById,
-    fetchAllofficestockOutward,
+    fetchAllUser,
     pageNo,
     pageSize,
     startDate,
@@ -33,10 +35,12 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
     zoneId,
     setZoneId,
     getDataAllTypeProduct,
-    getDataAllTypeZone,
+    getDataAllType,
     setEndDate,
     productId,
-    setproductId,
+    setProductId,
+    DataGetAllTypeZone,
+    fetchAllDownload
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -89,7 +93,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
   const handleProductchange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
-    setproductId(e.target.value)
+    setProductId(e.target.value)
   }
 
   {
@@ -114,10 +118,17 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-    fetchAllofficestockOutward()
-    getDataofficestockOutwardAllType()
+    fetchAllUser()
+    DataGetAllTypeZone()
   }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId])
 
+   
+  // download
+  const downloadFile = async() => {
+    fetchAllDownload()
+  }
+
+  
   return (
     <>
       {/* begin::Formik Form */}
@@ -158,9 +169,10 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                  <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -169,7 +181,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 
@@ -196,7 +208,9 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                       <button
                         type='button'
                         className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={openAddCategoryModal}
+                        onClick={() => {
+                          navigate('inwardsform/add')
+                        }}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG
@@ -215,6 +229,25 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
               {/* begin:: Filter:- Created By */}
               {filterShow && (
                 <div className='row w-100 mx-0 my-5'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Product</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...props.getFieldProps('productId')}
+                      value={productId}
+                      onChange={handleProductchange}
+                    >
+                      <option value=''>All</option>
+                      {getDataAllTypeProduct.map((TypeData: any, index) => {
+                        return (
+                          <option key={index} value={TypeData.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+
                   <div className='col-lg-3'>
                     <div
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
@@ -246,8 +279,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                         >
                           <div className='form-select form-select-solid'>
                             <input
-                            style={{ background: '#f5f8fa',
-                              border: 'none'}}
+                              style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
                               placeholder='All'
                               value={`${
                                 fromDate && toDate
@@ -263,6 +295,25 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Zone</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...props.getFieldProps('zoneId')}
+                      value={zoneId}
+                      onChange={handleZoneChange}
+                    >
+                      <option value=''>All</option>
+                      {getDataAllType.map((TypeData, index) => {
+                        return (
+                          <option key={index} value={TypeData?.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+
                   <div className='col-lg-3 col-md-3'>
                     <label className='form-label fw-bold'>Created by:</label>
                     <select
@@ -276,44 +327,6 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                         return (
                           <option key={index} value={TypeData?.id}>
                             {TypeData?.fullName}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  </div>
-
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Product</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('productId')}
-                      value={productId}
-                      onChange={handleProductchange}
-                    >
-                      <option value=''>All</option>
-                      {getDataAllTypeProduct.map((TypeData: any, index) => {
-                        return (
-                          <option key={index} value={TypeData.id}>
-                            {TypeData?.name}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  </div>
-
-                  <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Zone</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('zoneId')}
-                      value={zoneId}
-                      onChange={handleZoneChange}
-                    >
-                      <option value=''>All</option>
-                      {getDataAllTypeZone.map((TypeData, index) => {
-                        return (
-                          <option key={index} value={TypeData?.id}>
-                            {TypeData?.name}
                           </option>
                         )
                       })}

@@ -7,12 +7,14 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   category: any
 }
 
 const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
+  const navigate = useNavigate()
   const {
     setItemIdForUpdate,
     setFilterShow,
@@ -20,10 +22,10 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
     setSearchText,
     searchText,
     setPageNo,
-    getDataofficestockOutwardAllType,
+     getDataAllType,
     createdBy,
     setcreatedById,
-    fetchAllofficestockOutward,
+    fetchAllUser,
     pageNo,
     pageSize,
     startDate,
@@ -33,10 +35,11 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
     zoneId,
     setZoneId,
     getDataAllTypeProduct,
-    getDataAllTypeZone,
+     DataGetAllTypeZone,
     setEndDate,
     productId,
-    setproductId,
+    fetchAllDownload,
+    setProductId,
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -89,7 +92,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   const handleProductchange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
-    setproductId(e.target.value)
+    setProductId(e.target.value)
   }
 
   {
@@ -114,9 +117,15 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-    fetchAllofficestockOutward()
-    getDataofficestockOutwardAllType()
+     fetchAllUser()
+     DataGetAllTypeZone()
   }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId])
+
+
+    // download
+    const downloadFile = async() => {
+      fetchAllDownload()
+    }
 
   return (
     <>
@@ -158,9 +167,10 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                   <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -169,7 +179,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 
@@ -196,7 +206,9 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                       <button
                         type='button'
                         className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={openAddCategoryModal}
+                        onClick={() => {
+                          navigate('inwardsOldform/add')
+                        }}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG
@@ -248,7 +260,8 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                           <div className='form-select form-select-solid'>
                             <input
                             style={{ background: '#f5f8fa',
-                            border: 'none'}}
+                            border: 'none',
+                          outline:'none'}}
                               placeholder='All'
                               value={`${
                                 fromDate && toDate
@@ -311,7 +324,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                       onChange={handleZoneChange}
                     >
                       <option value=''>All</option>
-                      {getDataAllTypeZone.map((TypeData, index) => {
+                      {getDataAllType.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>
                             {TypeData?.name}

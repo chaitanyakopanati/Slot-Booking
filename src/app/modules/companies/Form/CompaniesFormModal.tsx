@@ -105,7 +105,7 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
               >
                 {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
-                  <label className=' fw-bold fs-6 mb-2'>Name</label>
+                  <label className=' fw-bold fs-6 mb-2 required'>Name</label>
                   <input
                     placeholder='Name'
                     value={props.values.name}

@@ -77,7 +77,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
         <div className='row w-100 mx-0 mb-4 gy-4'>
           {/*  */}
           <div className='col-lg-12'>
-            <label className='fw-bold fs-6 mb-2'>Name</label>
+            <label className='fw-bold fs-6 mb-2 required'>Name</label>
             <div className='input-group'>
               <input
                 placeholder='name'
@@ -93,7 +93,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
 
           {/* begin: input lastname Filed */}
           <div className='col-lg-12'>
-            <label className='form-label fw-bold'>Address :</label>
+            <label className='form-label fw-bold required'>Address :</label>
             <textarea
               placeholder='address'
               className='form-control form-control-lg form-control-solid'
@@ -109,7 +109,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           {/* begin: input email Filed */}
           <div className='col-lg-4  mb-4 gy-4 '>
             <div className=''>
-              <label className='form-label fw-bold'>Contact No :</label>
+              <label className='form-label fw-bold required'>Contact No :</label>
               <input
                 placeholder='contactno'
                 className='form-control form-control-lg form-control-solid'
@@ -124,7 +124,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           {/* begin: input phone Filed */}
           <div className='col-lg-4 mb-4 gy-4'>
             <div className=''>
-              <label className='form-label fw-bold'>Status :</label>
+              <label className='form-label fw-bold required'>Status :</label>
               <input
                 placeholder='Mobile no.'
                 className='form-control form-control-lg form-control-solid'
@@ -139,7 +139,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           {/*begin:: Zone*/}
           <div className='col-lg-4 mb-4 gy-4'>
             <div className=''>
-              <label className='form-label fw-bold'>Sales ExecutiveName:</label>
+              <label className='form-label fw-bold required'>Sales ExecutiveName:</label>
               <input
                 placeholder='Zone.'
                 className='form-control form-control-lg form-control-solid'
@@ -155,7 +155,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
         {/*begin:: role*/}
         <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-12'>
-            <label className='form-label fw-bold'>Remark:</label>
+            <label className='form-label fw-bold required'>Remark:</label>
             <input
               placeholder='Role'
               className='form-control form-control-lg form-control-solid'
@@ -169,7 +169,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
 
         <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Assign Date</label>
+            <label className='form-label fw-bold required'>Assign Date</label>
             <input
               type='text'
               value={initialvalues.assignDate}
@@ -180,7 +180,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           </div>
 
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>End Date</label>
+            <label className='form-label fw-bold required'>End Date</label>
             <input
               type='text'
               value={initialvalues.endDate}
@@ -194,7 +194,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
         <div className='row w-100 mx-0 mb-4 gy-4'>
           {/*begin:: Created By Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Created by</label>
+            <label className='form-label fw-bold required'>Created by</label>
             <input
               className='form-control form-control-lg'
               type='text'
@@ -209,7 +209,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
 
           {/*begin:: Updated By Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Updated by</label>
+            <label className='form-label fw-bold required'>Updated by</label>
             <input
               className='form-control form-control-lg'
               type='text'
@@ -226,7 +226,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
         <div className='row w-100 mx-0 mb-4 gy-4'>
           {/* begin:: Created At Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Created at</label>
+            <label className='form-label fw-bold required'>Created at</label>
             <input
               className='form-control form-control-lg'
               type='text'
@@ -241,7 +241,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
 
           {/* begin:: Updated At Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Updated at</label>
+            <label className='form-label fw-bold required'>Updated at</label>
             <input
               className='form-control form-control-lg'
               type='text'

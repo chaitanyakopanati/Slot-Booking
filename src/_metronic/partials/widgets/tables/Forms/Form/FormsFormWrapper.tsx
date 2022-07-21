@@ -1,35 +1,33 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { KTCard } from '../../../../../helpers'
 import FormsFormHeader from '../Component/FormsFormHeader'
+import { ListDataProvider, ListPageData } from '../FormsContext'
 import FormsFormByCategory from './FormsFormByCategory'
 
-const FormsFormWrapper = () => {
-  return (
-    <div>
-      <div
-        className='modal fade show d-block'
-        id='kt_modal_add_user'
-        role='dialog'
-        tabIndex={-1}
-        aria-modal='true'
-      >
-        <div className='modal-dialog modal-dialog-centered modal-x1 mw-md-600px'>
-          <div className='modal-content'>
-            {/* begin::Form Header */}
-            <FormsFormHeader />
-            {/* end::Form Header */}
+function InquiriesForm() {
+  const {DataGetAllTypeSalesExecutveUserByRole} = ListPageData()
 
-            {/* begin::Form Body */}
-            <div className='modal-body scroll-y mx-5 mx-xl-15 my-7'>
-              <FormsFormByCategory />
-            </div>
-            {/* end::Form Body */}
-          </div>
-        </div>
-      </div>
-      {/* begin::Form Backdrop */}
-      <div className='modal-backdrop fade show'></div>
-      {/* end::Form Backdrop */}
+
+ useEffect(() => {
+  DataGetAllTypeSalesExecutveUserByRole()
+ }, [])
+ 
+
+  return (
+    <div className='overflow-hidden'>
+      <KTCard className='ms-5 me-5'>
+        <FormsFormHeader />
+        <FormsFormByCategory />
+      </KTCard>
     </div>
+  )
+}
+
+let FormsFormWrapper = () => {
+  return (
+    <ListDataProvider>
+      <InquiriesForm />
+    </ListDataProvider>
   )
 }
 

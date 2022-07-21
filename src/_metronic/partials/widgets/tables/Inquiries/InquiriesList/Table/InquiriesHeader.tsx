@@ -249,6 +249,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                           <div className='form-select form-select-solid'>
                           <input
                           style={{ background: '#f5f8fa',
+                          outline:'none',
                           border: 'none'}}
                               placeholder='All'
                               value={`${
@@ -284,7 +285,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>All</label>
+                    <label className='form-label fw-bold'>Sales Executive </label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('salesexecutiveId')}
@@ -302,7 +303,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>All</label>
+                    <label className='form-label fw-bold'>Created By</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('id')}

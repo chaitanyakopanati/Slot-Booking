@@ -1,46 +1,45 @@
-import moment from 'moment'
 import {useEffect} from 'react'
+import moment from 'moment'
+import {useNavigate} from 'react-router-dom'
 import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import {KTSVG} from '../../../../../../helpers'
-import { getOfficetockInwardsData } from '../../helperOfficeStockInwards/ModelOfficeStockInwards'
+import { getOfficeOldStockInwardsData } from '../../helperOfficeStockInwards/ModelOfficeStockInwards'
 import { ListPageData } from '../../OfficeOldStockInwardsContext'
 
 const OfficeOldStockInwardsTable = () => {
   const {
     setItemIdForUpdate,
-    getData,
     pageNo,
+    getData,
     pageSize,
     setViewIdForUpdate,
-    DataGetAllType,
-    fetchAllofficestockOutward,
-    DataGetAllTypeZone,
-    DataGetAllTypeDeliveredByTypes,
-    DataGetAllTypeProducts,
     setPageNo,
-    DataGetAllTypeCreatedByTypes,
     setSearchText,
+    DataGetAllTypeCreatedByTypes,
+    DataGetAllTypeTechnician,
+    fetchAllUser,
+    DataGetAllTypeZone,
+    DataGetAllTypeProduct
   } = ListPageData()
-  let {LoderActions, open} = useLoader()
+  let {LoderActions} = useLoader()
+  const navigate = useNavigate()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
-  const openEditModal = (inwardNo: any) => {
-    setItemIdForUpdate(inwardNo)
+  const openEditModal = (id: any) => {
+    setItemIdForUpdate(id)
   }
 
-  const openViewModal = (inwardNo: any) => {
-    setViewIdForUpdate(inwardNo)
+  const openViewModal = (id: any) => {
+    setViewIdForUpdate(id)
   }
 
   useEffect(() => {
-    DataGetAllType()
-    fetchAllofficestockOutward()
     DataGetAllTypeCreatedByTypes()
+    fetchAllUser()
+    DataGetAllTypeTechnician()
     DataGetAllTypeZone()
-    DataGetAllTypeProducts()
-    DataGetAllTypeDeliveredByTypes()
-    // LoderActions(false)
+    DataGetAllTypeProduct()
   }, [])
 
   const handlesearchange = (e: any) => {
@@ -50,19 +49,21 @@ const OfficeOldStockInwardsTable = () => {
   }
 
   return (
-    <>
-      <div className='table-responsive'>
+    <div>
+      <div className='table-responsive d-none d-lg-block'>
         {/* begin::Table */}
-        <table className='d-none d-md-table table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 table-rounded border table-striped'>
+        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
           {/* begin::Table head */}
           <thead>
-            <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>Inward no.</th>
+          <tr className='fw-bolder text-muted  bg-dark'>
+              <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
+              <th className='max-w-60px '>Inward no.</th>
               <th className='min-w-150px'>Inward date</th>
               <th className='min-w-200px'>Product</th>
               <th className='min-w-150px'>Quantity</th>
               <th className='min-w-200px'>Delivered by</th>
               <th className='min-w-150px'>Zone</th>
+              <th className='min-w-150px'>UserName</th>
               <th className='min-w-150px rounded-end'>Actions</th>
             </tr>
           </thead>
@@ -70,9 +71,14 @@ const OfficeOldStockInwardsTable = () => {
           {/* begin::Table body */}
           <tbody>
             {getData.length > 0 ? (
-              getData?.map((row: getOfficetockInwardsData, index: number) => {
+              getData?.map((row: getOfficeOldStockInwardsData, index: number) => {
                 return (
                   <tr key={index}>
+                  <td>
+                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                        {DataWiseIndex + index + 1}
+                      </div>
+                    </td>
                     {/* begin:: Name Input */}
                     <td>
                       <div className='d-flex align-items-center'>
@@ -96,7 +102,7 @@ const OfficeOldStockInwardsTable = () => {
                     {/* end:: productName Input */}
 
                     {/* begin:: quantity Input */}
-                    <td className='text-dark fw-bold  fs-6'>{row.quantity || '-'}</td>
+                    <td className='text-dark fw-bold  fs-6'>{row.quantityDisplay || '-'}</td>
                     {/* end:: quantity Input */}
 
                     {/* begin:: deliveredByName Input */}
@@ -107,12 +113,17 @@ const OfficeOldStockInwardsTable = () => {
                     <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
                     {/* end:: zoneName Input */}
 
+                     {/* begin:: username Input */}
+                     <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
+                    {/* end:: username Input */}
+
                     {/* begin:: Action */}
                     <td>
                       {/* begin:: View Icon */}
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                        onClick={() => openViewModal(row)}
+                        onClick={() => navigate(`office-stock-inwardsOldviewform/${row.id}`)}
+                        // onClick={() => openViewModal(row.id)}
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -124,7 +135,10 @@ const OfficeOldStockInwardsTable = () => {
                       {/* begin:: Edit Icon */}
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                        onClick={() => openEditModal(row.inwardNo)}
+                        onClick={() => {
+                          navigate(`inwardsOldform/${row.id}`)
+                        }}
+                        // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -147,106 +161,113 @@ const OfficeOldStockInwardsTable = () => {
           {/* end::Table body */}
         </table>
         {/* end::Table */}
+      </div>
 
-        {/* begin::Mobile Table */}
-        <div className='row g-5 d-flex d-lg-none d-md-none py-3'>
-          <div
-            onChange={handlesearchange}
-            className='form-control form-control-solid ps-14'
-            placeholder='Search'
-          />
-          {getData.length > 0 ? (
-            getData?.map((row: getOfficetockInwardsData, index: number) => {
-              return (
-                <div key={DataWiseIndex + index + 1}>
-                  <div className='col-md-6 mx-0 my-2'>
-                    <div className='card card-custom border'>
-                      <div className='card-body p-4'>
-                        <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
-                          <div className='text-dark fw-bolder fs-3 me-2'>
-                            {' '}
-                            {DataWiseIndex + index + 1}
-                          </div>
-                          <div className='fw-bolder fs-3'>{row?.productName || '-'}</div>
-                        <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
+      {/* begin::Mobile Table */}
+
+      <div className='row g-5 d-flex d-lg-none d-md-none py-3'>
+        <div
+          onChange={handlesearchange}
+          className='form-control form-control-solid ps-14'
+          placeholder='Search'
+        />
+        {getData.length > 0 ? (
+          getData?.map((row: getOfficeOldStockInwardsData, index: number) => {
+            return (
+              <div key={DataWiseIndex + index + 1}>
+              <div className='col-md-6 mx-0 my-2'>
+                <div className='card card-custom border'>
+                  <div className='card-body p-4'>
+                    <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                      <div className='text-dark fw-bolder fs-3 me-2'>
+                        {' '}
+                        {DataWiseIndex + index + 1}
                       </div>
-                      <div className='py-1 d-flex'>
-                        <div className='fw-bolder '>InwardDate:</div>
-                        <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
+                      <div className='fw-bolder fs-3'>{row?.productName || '-'}</div>
+                    <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
+                  </div>
+                  <div className='py-1 d-flex'>
+                    <div className='fw-bolder '>InwardDate:</div>
+                    <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
+                  </div>
+
+                  <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                    <div className='py-1 d-flex align-items-cenetr'>
+                      <div className='fw-bolder '>inwardNo:</div>
+                      <div className='text-dark fw-bold  ms-2'>{row.inwardNo || '-'}</div>
+                    </div>
+                    <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>quantity :</div>
+                      <div className='text-dark fw-bold  ms-2'>{row.quantityDisplay || '-'}</div>
+                    </div>
+
+                    <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>deliveredByName:</div>
+                      <div className='text-dark fw-bold  ms-2'>
+                        {row.deliveredByName || '-'}
                       </div>
+                    </div>
 
-                      <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
-                        <div className='py-1 d-flex align-items-cenetr'>
-                          <div className='fw-bolder '>inwardNo:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.inwardNo || '-'}</div>
-                        </div>
-                        <div className='py-1 d-flex'>
-                          <div className='fw-bolder '>quantity :</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.quantity || '-'}</div>
-                        </div>
+                    <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>zoneName:</div>
+                      <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
+                    </div>
 
-                        <div className='py-1 d-flex'>
-                          <div className='fw-bolder '>deliveredByName:</div>
-                          <div className='text-dark fw-bold  ms-2'>
-                            {row.deliveredByName || '-'}
-                          </div>
-                        </div>
+                    <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>UserName:</div>
+                      <div className='text-dark fw-bold  ms-2'>{row.username || '-'}</div>
+                    </div>
+                  </div>
 
-                        <div className='py-1 d-flex'>
-                          <div className='fw-bolder '>zoneName:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
-                        </div>
+                      <div
+                        className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                        data-bs-toggle='collapse'
+                        data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
+                        aria-expanded='false'
+                      >
+                        <span>+ &nbsp;</span>More info
                       </div>
+                    </div>
 
-                        <div
-                          className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
-                          data-bs-toggle='collapse'
-                          data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
-                          aria-expanded='false'
+                    <div className='card-footer p-2 py-0 bg-light'>
+                      <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
+                        <a
+                          className='btn btn-icon btn-active-color-success btn-sm me-1'
+                          onClick={() => navigate(`office-stock-inwardsOldviewform/${row.id}`)}
                         >
-                          <span>+ &nbsp;</span>More info
-                        </div>
-                      </div>
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen060.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>
 
-                      <div className='card-footer p-2 py-0 bg-light'>
-                        <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
-                          <a
-                            className='btn btn-icon btn-active-color-success btn-sm me-1'
-                            onClick={() => openViewModal(row)}
-                          >
-                            <KTSVG
-                              path='/media/icons/duotune/general/gen060.svg'
-                              className='svg-icon-3'
-                            />
-                          </a>
-
-                          <button
-                            className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                            onClick={() => openEditModal(row.inwardNo)}
-                          >
-                            <KTSVG
-                              path='/media/icons/duotune/art/art005.svg'
-                              className='svg-icon-3'
-                            />
-                          </button>
-                        </div>
+                        <button
+                          className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                          onClick={() => navigate(`inwardsOldform/${row.id}`)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/art/art005.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              )
-            })
-          ) : (
-            <div>
-              <div>
-                <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
               </div>
+            )
+          })
+        ) : (
+          <div>
+            <div>
+              <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
             </div>
-          )}
-        </div>
-        {/* End::Mobile Table */}
+          </div>
+        )}
       </div>
-    </>
+      {/* End::Mobile Table */}
+    </div>
   )
 }
+
 export default OfficeOldStockInwardsTable

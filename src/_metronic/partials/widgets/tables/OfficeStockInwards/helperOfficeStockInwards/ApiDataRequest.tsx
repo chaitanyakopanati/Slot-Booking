@@ -1,8 +1,10 @@
+import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
-import {ID, postlistData, putmodel} from './ModelOfficeStockInwards'
+import { ID, postlistData, putUsersmodel } from './ModelOfficeStockInwards'
 
+const API_URL_DATA = process.env.REACT_APP_API_URL
 {
-  /* begin::  getDynamicOfficeStockInwards Api call */
+  /* begin:: getDynamicOfficeStockInwards Api call */
 }
 const getDynamicOfficeStockInwards = (
   pageNo: number,
@@ -25,13 +27,33 @@ const getDynamicOfficeStockInwards = (
   }
 }
 {
-  /* end::  getDynamicOfficeStockInwards Api call */
+  /* end:: getDynamicFaults Api call */
+}
+
+// download
+
+const getDynamicDownloadFile = (
+  productId: number,
+  zoneId: number,
+  createdBy: number,
+  searchText: string,
+  startDate: string,
+  endDate: string,
+) => {
+    return axios({
+      url: `${API_URL_DATA}/GetOfficeStockInwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+  })
 }
 
 {
-  /* begin::  post Api call(create) */
+  /* begin:: post Api call(create) */
 }
-const postOfficeStockInwards = (obj: postlistData) => {
+const postOfficeStockInwards:any = (obj: postlistData) => {
+  console.log(obj,"obj");
+
+  // var userData:any =  getUserName(obj.id)
   return http.post('SaveOfficeStockInward', {
     inwardNo: obj.inwardNo,
     inwardDate: obj.inwardDate,
@@ -46,13 +68,13 @@ const postOfficeStockInwards = (obj: postlistData) => {
   })
 }
 {
-  /* end::  post Api call(create) */
+  /* end:: post Api call(create) */
 }
 
 {
-  /* begin::  post Api call(edit) */
+  /* begin:: post Api call(edit) */
 }
-const editOfficeStockInwards = (obj: putmodel) => {
+const editOfficeStockInwards = (obj: putUsersmodel) => {
   return http.post(`SaveOfficeStockInward`, {
     id:obj.id,
     inwardNo: obj.inwardNo,
@@ -65,30 +87,21 @@ const editOfficeStockInwards = (obj: putmodel) => {
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
+    modifyById: 1,
   })
 }
 {
-  /* end::  post Api call(edit) */
+  /* begin:: post Api call(edit) */
 }
 
 {
-  /* begin::  getById Api call */
+  /* begin:: getById Api call */
 }
 const GetOfficeStockInwardsTypeById = (inwardNo: ID) => {
   return http.get(`GetOfficeStockInwardById/${inwardNo}`)
 }
 {
-  /* end::  getById Api call */
-}
-
-{
-  /* begin::  GetAllZones Api call */
-}
-const getOfficeStockInwardsTypes = () => {
-  return http.get('GetAllZones')
-}
-{
-  /* end::  GetAllZones Api call */
+  /* end:: getById Api call */
 }
 
 //Created by
@@ -102,9 +115,19 @@ const getZoneTypes = () => {
   return http.get('GetAllZones')
 }
 
-//Zones
+//getProducts
 const getProducts = () => {
   return http.get('GetAllProducts')
+}
+
+//getTechnicianTypes
+const getTechnicianTypes = () => {
+  return http.get(`GetUserByRoleName?roleName=technician`)
+}
+
+// userName
+const getUserName = (username: string) => {
+  return http.get(`GetByUserName`, {userName: username})
 }
 
 //delivery by
@@ -112,17 +135,21 @@ const getDeliveredByTypes = () => {
   return http.get(`GetUserByRoleName?roleName=technician`)
 }
 
-const OfficeStockInwardservice = {
+const OfficeStockInwardsService = {
   getDynamicOfficeStockInwards,
   postOfficeStockInwards,
   editOfficeStockInwards,
-  // getStatusByTypes,
-  getCreatedByTypes,
-  getOfficeStockInwardsTypes,
-  getDeliveredByTypes,
-  getZoneTypes,
   getProducts,
+  getTechnicianTypes,
+  getUserName,
   GetOfficeStockInwardsTypeById,
+  getCreatedByTypes,
+  getZoneTypes,
+  getDynamicDownloadFile,
+  getDeliveredByTypes
 }
 
-export default OfficeStockInwardservice
+export default OfficeStockInwardsService
+
+
+

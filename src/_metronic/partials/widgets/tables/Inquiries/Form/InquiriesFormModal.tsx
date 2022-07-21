@@ -207,7 +207,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         </div>
                       </div>
                       <div className='col-12 col-lg-12'>
-                        <label className='form-label fw-bold'>Address</label>
+                        <label className='form-label fw-bold required'>Address</label>
                         <textarea
                           className='form-control form-control form-control-solid'
                           name='address'
@@ -224,7 +224,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                     </div>
                     <div className='row w-100 mx-0 mb-4 gy-4'>
                       <div className='col-lg-4'>
-                        <label className='form-label fw-bold required'>Contact no.</label>
+                        <label className='form-label fw-bold required required'>Contact no.</label>
                         <input
                           className='form-control form-control-lg form-control-solid'
                           name='contactno'
@@ -245,7 +245,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         </div>
                       </div>
                       <div className='col-lg-4'>
-                        <label className='form-label fw-bold'>Status</label>
+                        <label className='form-label fw-bold required'>Status</label>
                         <select
                           className='form-select form-select-solid'
                           {...props.getFieldProps('statusId')}
@@ -265,7 +265,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         </select>
                       </div>
                       <div className='col-lg-4'>
-                        <label className='form-label fw-bold'>Sales executive</label>
+                        <label className='form-label fw-bold required'>Sales executive</label>
                         <select
                           className='form-select form-select-solid'
                           {...props.getFieldProps('salesexecutiveId')}
@@ -284,7 +284,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                       </div>
 
                       <div className='col-12 col-lg-12'>
-                        <label className='form-label fw-bold'>Description</label>
+                        <label className='form-label fw-bold required'>Description</label>
                         <textarea
                           className='form-control form-control form-control-solid'
                           name='description'
@@ -300,7 +300,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                       </div>
 
                       <div className='col-12 col-lg-12'>
-                        <label className='form-label fw-bold'>Remark</label>
+                        <label className='form-label fw-bold required'>Remark</label>
                         <textarea
                           className='form-control form-control form-control-solid'
                           name='remark'
@@ -318,7 +318,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
 
                     <div className='row w-100 mx-0 mb-4 gy-4'>
                       <div className='col'>
-                        <label className='form-label fw-bold'>Notification</label>
+                        <label className='form-label fw-bold required'>Notification</label>
                         <div className='form-check form-switch form-check-custom form-check-solid me-10'>
                           <input
                             className='form-check-input h-20px w-30px'

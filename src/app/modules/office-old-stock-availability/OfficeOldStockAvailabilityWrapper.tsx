@@ -1,16 +1,18 @@
 import React from 'react'
-import {TablesWidget3} from '../../../_metronic/partials/widgets'
+import OfficeOldStockAvailabilityWrapper from '../../../_metronic/partials/widgets/tables/OfficeOldStockAvailability/OfficeOldStockAvailabilityWrapper'
 
-function OfficeOldStockAvailabilityWrapper() {
+
+
+function OfficeoldStockAvailabilityWrapper() {
   return (
     <>
       <div className='row gy-5 gx-xl-8'>
         <div className='col-xl-12'>
-          <TablesWidget3 className='card-xxl-stretch mb-5 mb-xl-8' />
+          <OfficeOldStockAvailabilityWrapper />
         </div>
       </div>
     </>
   )
 }
 
-export default OfficeOldStockAvailabilityWrapper
+export default OfficeoldStockAvailabilityWrapper

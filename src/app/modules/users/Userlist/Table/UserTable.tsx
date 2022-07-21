@@ -24,7 +24,7 @@ const UserTable = () => {
     setSearchText,
     DataGetAllTyperole,
     DataGetAllTypeZone,
-    DataGetAllTypeCreatedByTypes
+    DataGetAllTypeCreatedByTypes,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -78,15 +78,6 @@ const UserTable = () => {
     DataGetAllTypeZone()
     DataGetAllTypeCreatedByTypes()
   }, [])
-
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllUser()
-  // }, [pageNo, pageSize, searchText, zoneId, roleId])
-
-  // useEffect(() => {
-  //   console.log('getData', getData)
-  // }, [getData])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)

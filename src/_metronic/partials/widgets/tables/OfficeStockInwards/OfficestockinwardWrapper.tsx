@@ -1,6 +1,6 @@
 import {KTCard} from '../../../../helpers'
 import OfficeStockInwardsFormWrapper from './Form/OfficeStockInwardsFormWrapper'
-import {ListDataProvider, ListPageData} from './OfficeStockInwardsContext'
+import { ListDataProvider, ListPageData } from './OfficeStockInwardsContext'
 import OfficeStockInwardsFormViewModal from './OfficeStockInwardsList/Table/OfficeStockInwardsFormViewModal'
 import OfficeStockInwardsHeader from './OfficeStockInwardsList/Table/OfficeStockInwardsHeader'
 import OfficeStockInwardsPagination from './OfficeStockInwardsList/Table/OfficeStockInwardsPagination'
@@ -11,23 +11,23 @@ const Officestockinwardlist = () => {
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        {/* begin:: OfficeInwards Header Component */}
+        {/* begin:: OfficeStockInwards  Header Component */}
         <OfficeStockInwardsHeader category={OfficeStockInwardsHeader} />
-        {/* end:: OfficeInwards Header Component */}
+        {/* end:: OfficeStockInwards  Header Component */}
 
-        {/* begin:: OfficeInwards Table Component */}
+        {/* begin:: OfficeStockInwards  Table Component */}
         <OfficeStockInwardsTable />
-        {/* end:: OfficeInwards Table Component */}
+        {/* end:: OfficeStockInwards  Table Component */}
       </KTCard>
-      {/* begin:: OfficeInwards Table-Pagination Component */}
+      {/* begin:: OfficeStockInwards  Table-Pagination Component */}
       <OfficeStockInwardsPagination />
-      {/* end:: OfficeInwards Table-Pagination Component */}
-      {/* begin:: OfficeInwards Add/Edit Form Component */}
+      {/* end:: OfficeStockInwards  Table-Pagination Component */}
+      {/* begin:: OfficeStockInwards  Add/Edit Form Component */}
       {itemIdForUpdate !== undefined && <OfficeStockInwardsFormWrapper />}{' '}
-      {/* end:: OfficeInwards Add/Edit Form Component */}
-      {/* begin:: OfficeInwards View Form Component */}
+      {/* end:: OfficeStockInwards  Add/Edit Form Component */}
+      {/* begin:: OfficeStockInwards  View Form Component */}
       {viewIdForUpdate && <OfficeStockInwardsFormViewModal category={viewIdForUpdate} />}{' '}
-      {/* end:: OfficeInwards View Form Component */}
+      {/* end:: OfficeStockInwards  View Form Component */}
     </div>
   )
 }

@@ -1,54 +1,56 @@
 import {useQuery} from 'react-query'
-import {useEffect} from 'react'
-import { isNotEmpty } from '../../../../../helpers'
+import {useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
 import { ListPageData } from '../OfficeStockOutwardsContext'
-import OfficeStockInwardservice from '../helperOfficeStockOutwards/ApiDataRequest'
+import { isNotEmpty } from '../../../../../helpers'
+import OfficeStockOutwardsViewService from '../helperOfficeStockOutwards/ApiDataRequest'
 import OfficeStockOutwardsFormModal from './OfficeStockOutwardsFormModal'
 
-
 const OfficeStockOutwardsFormByCategory = () => {
-  const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+  let {id} = useParams()
+
+  useEffect(() => {
+    if (id === 'add') {
+      setItemIdForUpdate(id)
+    } else {
+      setItemIdForUpdate(id)
+    }
+  }, [id])
+
+  const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
-  {
-    /* begin:: Api call GetOfficeStockInwardById */
-  }
-  const {data: category, error} = useQuery( 
-    `GetOfficeStockInwardById-${itemIdForUpdate}`,
+  const {data: category, error} = useQuery(
+    `GetOfficeStockOutwardsById-${itemIdForUpdate}`,
     () => {
-      return OfficeStockInwardservice.GetOfficeStockOutwardsTypeById(itemIdForUpdate)
+      return OfficeStockOutwardsViewService.GetOfficeStockOutwardsTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery,
+      enabled: enabledQuery && id !== 'add',
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
+        
       },
     }
   )
   {
-    /* end:: Api call OfficeStockInwardsFormByCategory */
+    /* end:: Api call GetOfficeStockOutwardsTypeById */
   }
 
   useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
+    
+    console.log('itemIdForUpdate****', itemIdForUpdate)
+  }, [category,itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
   }
-  if (!itemIdForUpdate) {
+  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <OfficeStockOutwardsFormModal category={{ID: undefined}} />
   }
-  {
-    /* end::Add-Form Model functionality */
-  }
 
-  {
-    /* begin::Edit-Form Model functionality */
-  }
+
   if (!error && category) {
     return <OfficeStockOutwardsFormModal category={category} />
   }
@@ -58,5 +60,6 @@ const OfficeStockOutwardsFormByCategory = () => {
 
   return null
 }
-
 export default OfficeStockOutwardsFormByCategory
+
+

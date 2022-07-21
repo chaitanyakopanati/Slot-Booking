@@ -5,6 +5,7 @@ import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../UserContext'
 import * as Yup from 'yup'
 import {Form} from 'react-bootstrap'
+import  {saveAs}  from 'file-saver'
 
 type Props = {
   category: any
@@ -32,6 +33,8 @@ const UserHeader: FC<Props> = ({category}) => {
     fetchAllUser,
     pageNo,
     pageSize,
+    fetchAllDownload,
+    getDataDownload,
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -97,6 +100,13 @@ const UserHeader: FC<Props> = ({category}) => {
     fetchAllUser()
   }, [pageNo, pageSize, searchText, zoneId, roleId, searchByUsername, createdById])
 
+
+  // download
+  const downloadFile = async() => {
+    fetchAllDownload()
+  }
+
+
   return (
     <>
       {/* begin::formik Form */}
@@ -138,9 +148,10 @@ const UserHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                    <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -149,7 +160,7 @@ const UserHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 

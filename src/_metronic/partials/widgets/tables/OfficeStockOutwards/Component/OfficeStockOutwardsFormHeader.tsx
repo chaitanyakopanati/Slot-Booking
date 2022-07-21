@@ -1,33 +1,21 @@
-import { CustomTooltip } from "../../../../../../app/routing/customtooltip"
-import { KTSVG } from "../../../../../helpers"
 import { ListPageData } from "../OfficeStockOutwardsContext"
 
-
 const OfficeStockOutwardsFormHeader = () => {
-  const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+  const {itemIdForUpdate} = ListPageData()
 
   return (
     <>
       <div className='modal-header'>
         {/* begin::Modal title */}
-        <h2 className='fw-bolder'>{itemIdForUpdate ? 'Edit office stock Outward' : 'Create  office stock Outward'}</h2>
-        {/* end::Modal title */}
 
-        {/* begin::Close Icon */}
-        <CustomTooltip title='Close'>
-          <div
-            className='btn btn-icon btn-sm btn-active-icon-primary'
-            onClick={() => setItemIdForUpdate(undefined)}
-            style={{cursor: 'pointer'}}
-          >
-            <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
-          </div>
-        </CustomTooltip>
-        {/* end::Close Icon */}
+        <h2 className='fw-bolder'>{itemIdForUpdate === 'add' ? 'Create Office stock outwards' : 'Edit Office stock outwards'}</h2>
+
+        {/* end::Modal title */}
       </div>
     </>
   )
 }
+
 export default OfficeStockOutwardsFormHeader
 
 

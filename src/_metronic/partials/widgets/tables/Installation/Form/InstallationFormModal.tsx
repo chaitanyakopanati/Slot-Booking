@@ -73,6 +73,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       cabletypeid: category.data?.cabletypeid || '',
       cablelength: category.data?.cablelength || '',
       iptype: category.data?.iptype || '',
+      userid: category.data?.userid || '',
       accesspointip: category.data?.accesspointip || '',
       remark: category.data?.remark || '',
       stationip: category.data?.stationip || '',
@@ -223,6 +224,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                           </ul>
                         </div>
                       </div>
+
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>Installer</label>
                         <select

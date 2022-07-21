@@ -2,10 +2,7 @@ import {Formik} from 'formik'
 import {FC, useEffect, useState} from 'react'
 import * as Yup from 'yup'
 import {KTSVG} from '../../../../../../helpers'
-import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
-import moment from 'moment'
-import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {ListPageData} from '../../OfficeStockAvailabilityContext'
 
 type Props = {
@@ -29,6 +26,7 @@ const OfficeStockAvailabilityHeader: FC<Props> = ({category}) => {
     getDataAllTypeZone,
     productId,
     setproductId,
+    fetchAllDownload,
   } = ListPageData()
 
   {
@@ -66,6 +64,11 @@ const OfficeStockAvailabilityHeader: FC<Props> = ({category}) => {
     fetchAllofficestockOutward()
 
   }, [pageNo, pageSize, searchText, zoneId, productId])
+
+    // download
+    const downloadFile = async() => {
+      fetchAllDownload()
+    }
 
   return (
     <>
@@ -107,9 +110,10 @@ const OfficeStockAvailabilityHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                  <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -118,7 +122,7 @@ const OfficeStockAvailabilityHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 

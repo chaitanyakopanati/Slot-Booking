@@ -99,7 +99,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
           {/* end:: View Modal Header */}
           {/*  */}
           <div className='col-lg-12'>
-            <label className='fw-bold fs-6 mb-2'>FullName</label>
+            <label className='fw-bold fs-6 mb-2 required'>FullName</label>
             <div className='input-group'>
               <input
                 placeholder='FullName'
@@ -119,7 +119,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         {/* begin: input username Filed */}
         <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Username :</label>
+            <label className='form-label fw-bold required'>Username :</label>
             <input
               placeholder='username'
               className='form-control form-control-lg form-control-solid'
@@ -132,7 +132,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
 
           {/* begin: input email Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Email :</label>
+            <label className='form-label fw-bold required'>Email :</label>
             <input
               placeholder='email'
               className='form-control form-control-lg form-control-solid'
@@ -147,7 +147,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         {/* begin: input phone Filed */}
         <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-12'>
-            <label className='form-label fw-bold'>Mobile no:</label>
+            <label className='form-label fw-bold required'>Mobile no:</label>
             <input
               placeholder='Mobile no.'
               className='form-control form-control-lg form-control-solid'
@@ -162,7 +162,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         {/*begin:: Zone*/}
         <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-12'>
-            <label className='form-label fw-bold'>Zone:</label>
+            <label className='form-label fw-bold required'>Zone:</label>
             <input
               placeholder='Zone.'
               className='form-control form-control-lg form-control-solid'
@@ -177,7 +177,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         {/*begin:: role*/}
         <div className='row w-100 mx-0 mb-4 gy-4'>
           <div className='col-lg-12'>
-            <label className='form-label fw-bold'>Role:</label>
+            <label className='form-label fw-bold required'>Role:</label>
             <input
               placeholder='Role'
               className='form-control form-control-lg form-control-solid'
@@ -192,7 +192,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         <div className='row w-100 mx-0 mb-4 gy-4'>
           {/*begin:: Created By Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Created by</label>
+            <label className='form-label fw-bold required'>Created by</label>
             <input
               className='form-control form-control-lg'
               type='text'
@@ -207,7 +207,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
 
           {/*begin:: Updated By Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Updated by</label>
+            <label className='form-label fw-bold required'>Updated by</label>
             <input
               className='form-control form-control-lg'
               type='text'
@@ -224,7 +224,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
         <div className='row w-100 mx-0 mb-4 gy-4'>
           {/* begin:: Created At Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Created at</label>
+            <label className='form-label fw-bold required'>Created at</label>
             <input
               className='form-control form-control-lg'
               type='text'
@@ -239,7 +239,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
 
           {/* begin:: Updated At Filed */}
           <div className='col-lg-6'>
-            <label className='form-label fw-bold'>Updated at</label>
+            <label className='form-label fw-bold required'>Updated at</label>
             <input
               className='form-control form-control-lg'
               type='text'

@@ -2,9 +2,12 @@ import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useS
 import {useLoader} from '../loader/LoaderContext'
 import Userservice from './helperUser/ApiDatarequestUser'
 import {GetAllData, GetAllUserApi, getUserData, ID, ViewForm} from './helperUser/ModelUserType'
+import {saveAs} from 'file-saver'
+import axios from 'axios'
 
 export interface ComplaintDataContextModel {
   getData: getUserData[]
+  getDataDownload: getUserData[]
   getDataAllType: GetAllData[]
   getDataAllTypeCreatedBy: GetAllData[]
   getDataAllTypeRole: GetAllData[]
@@ -32,16 +35,19 @@ export interface ComplaintDataContextModel {
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
   searchText: string
   searchByUsername: string
+  orderByColumnName: string
   setSearchText: Dispatch<SetStateAction<string>>
   setSearchByUsername: Dispatch<SetStateAction<string>>
   fetchAllUser: () => void
   DataGetAllTypeZone: () => void
   DataGetAllTyperole: () => void
   DataGetAllTypeCreatedByTypes: () => void
+  fetchAllDownload: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getDataDownload: [],
   pageNo: 0,
   setPageNo: () => {},
   setZoneId: () => {},
@@ -55,6 +61,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   pageSize: 0,
   zoneId: 0,
   roleId: '',
+  orderByColumnName: '',
   setPageSize: () => {},
   searchText: '',
   searchByUsername: '',
@@ -75,9 +82,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeZone: () => {},
   DataGetAllTyperole: () => {},
   DataGetAllTypeCreatedByTypes: () => {},
+  fetchAllDownload: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getUserData[]>([])
+  const [getDataDownload, setGetDataDownload] = useState<getUserData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<GetAllData[]>([])
   const [getDataAllTypeRole, setGetDataAllTypeRole] = useState<GetAllData[]>([])
@@ -94,25 +103,28 @@ const ListDataProvider: FC = ({children}) => {
   const [searchByUsername, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
   const [roleId, setRoleId] = useState('')
+  const [orderByColumnName, setorderByColumnName] = useState('')
   let {LoderActions} = useLoader()
-  {
-    /* begin:: Fault:- get Faults Type Api call */
-  }
-  // const DataGetAllType = async () => {
-  //   LoderActions(true)
-  //   try {
-  //     let payload: GetAllData = await Userservice.getUser()
-  //     //
-  //     if (payload.success == true) {
-  //       setGetDataAllType(payload.data)
-  //     }
-  //   } catch (error) {
-  //   } finally {
-  //     LoderActions(false)
-  //   }
-  // }
-  {
-    /* end:: Fault:- get Faults type Api call */
+
+  // Download fill
+
+  let fetchAllDownload = async () => {
+    console.log('Enter')
+    LoderActions(true)
+    try {
+      let response: any = await Userservice.getDynamicDownloadFile(
+        zoneId,
+        roleId,
+        createdById,
+        searchText,
+        searchByUsername
+      )
+      saveAs(response.data, 'users.xlsx')
+    } catch (error) {
+      console.log('Error', error)
+    } finally {
+      LoderActions(false)
+    }
   }
 
   {
@@ -128,7 +140,8 @@ const ListDataProvider: FC = ({children}) => {
         zoneId,
         roleId,
         searchByUsername,
-        createdById
+        createdById,
+        orderByColumnName
       )
       console.log(response, 'response=========')
 
@@ -215,9 +228,12 @@ const ListDataProvider: FC = ({children}) => {
 
   const value: ComplaintDataContextModel = {
     getData,
+    getDataDownload,
+    fetchAllDownload,
     createdById,
     setCreatedById,
     searchByUsername,
+    orderByColumnName,
     itemIdForUpdate,
     setShowPasswordFields,
     setItemIdForUpdate,

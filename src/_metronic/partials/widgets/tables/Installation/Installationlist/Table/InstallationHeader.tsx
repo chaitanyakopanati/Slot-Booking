@@ -315,6 +315,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                           <div className='form-select form-select-solid'>
                           <input
                           style={{ background: '#f5f8fa',
+                          outline:'none',
                           border: 'none'}}
                               placeholder='All'
                               value={`${
@@ -345,7 +346,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>All</label>
+                    <label className='form-label fw-bold'>Sales Executive</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('salesexecutiveId')}
@@ -363,7 +364,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>All</label>
+                    <label className='form-label fw-bold'>connetion Type</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('connectiontypeId')}
@@ -378,7 +379,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
                   <div className='row w-100 mx-0 my-3'>
                     <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>All</label>
+                      <label className='form-label fw-bold'>Zone Point</label>
                       <select
                         className='form-select form-select-solid'
                         {...props.getFieldProps('zonepointid')}

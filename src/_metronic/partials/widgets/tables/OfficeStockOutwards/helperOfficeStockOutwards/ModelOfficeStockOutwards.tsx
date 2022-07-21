@@ -1,53 +1,66 @@
-export interface getOfficetockOutwardsData {
-  technician: string
-  inwardNo: number
-  inwardDate: string
-  productName: string
-  quantity: string
-  deliveredByName: string
+export interface getOfficeStockOutwardsData {
+  name: string
   createdAt: string
-  modifyById: number
+  createdby: number
   id: number
   faulttypeid: number
   faultTypeName: string
-  modifyAt: string
-  modifyby: string
+  modifyAt: number
+  modifyby: number
+  username: string
+  email: string
+  phone: string
+  zoneName: string
+  roleName: string
+  firstname: string
+  lastname: string
+  roleId: string
+  zoneId: number
+  technician: string
+  inwardDate: string
+  productName: string
+  quantity: number
+  deliveredByName: string
+  modifyById: number
   createdById: number
   createdByName: string
   modifyByName: string
-  zoneName: string
   zoneid: number
-  username: string
-  name: string
   fullName: string
   serialno: string
   remark: string
-  createdBy:number
+  createdBy: number
+  outwardDate:string
+technicianName:string
 }
-export interface getAllOfficetockOutwardsData {
-  data: getOfficetockOutwardsData[]
+
+export interface getAllgetOfficeStockOutwardsDataData {
+  data: getOfficeStockOutwardsData[]
   message: string
   success: boolean
-  page: number
-  pageSize: number
-  pages: number
 }
 export interface postlistData {
-  inwardDate: string
   productId: number
-  quantity: string
-  deliveredById: number
+  quantity: number
   zoneId: number
   serialno: number
   remark: string
-  id: number | string
-  inwardNo: number | string
+  id: number
+  outwardDate: string
+  technicianId: number
+  userId: number
+  reason: string
+  username:string
 }
 
 export interface GetAllData {
   fullName: string
   id: number
   name: string
+  createdById: number
+  createdByName: string
+  username:string
+  firstname:string
 }
 
 export interface GetAllData {
@@ -55,36 +68,41 @@ export interface GetAllData {
   success: boolean
   message: string
 }
-export interface putmodel {
-  inwardDate: string
+export interface putgetOfficeStockOutwardsDatasmodel {
   productId: number
-  quantity: string
-  deliveredById: number
+  quantity: number
   zoneId: number
   serialno: number
   remark: string
-  id:number
-  inwardNo: number | string
+  id: number
+  outwardDate: string
+  technicianId: number
+  userId: number
+  reason: string
+  username:string
+
 }
-export interface putOfficetockOutwardsmodel1 {
-  data: getOfficetockOutwardsData
+export interface putgetOfficeStockOutwardsDatamodel1 {
+  data: getOfficeStockOutwardsData
   message: string
   success: boolean
 }
 
-export interface GetAllOfficetockOutwardsApi {
-  data: getOfficetockOutwardsData[]
+export interface GetAllgetOfficeStockOutwardsDataApi {
+  data: getOfficeStockOutwardsData[]
   message: string
   success: boolean
   pages: number
   TotalRecords: number
   page: number
   pageSize: number
-  username: string
-  startDate: number
-  endDate: number
+  zoneId: number 
+  roleId: string
+  searchByUsername: string
 }
 
 export type ID = undefined | null | string
 
-export type ViewForm = getOfficetockOutwardsData | undefined
+export type username = undefined | null | string
+
+export type ViewForm = getOfficeStockOutwardsData | undefined

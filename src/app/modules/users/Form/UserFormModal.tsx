@@ -213,7 +213,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 {/* begin: input firstname Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>First Name:</label>
+                    <label className='form-label fw-bold required'>First Name:</label>
                     <input
                       placeholder='First name'
                       className='form-control form-control-lg form-control-solid'
@@ -231,7 +231,7 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                   {/* begin: input lastname Filed */}
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Last Name:</label>
+                    <label className='form-label fw-bold required'>Last Name:</label>
                     <input
                       placeholder='Last name'
                       className='form-control form-control-lg form-control-solid'
@@ -252,7 +252,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   {itemIdForUpdate === 'add' ? (
                     <div className='col-lg-6'>
-                      <label className='form-label fw-bold'>Username :</label>
+                      <label className='form-label fw-bold required'>Username :</label>
                       <input
                         placeholder='username'
                         className='form-control form-control-lg form-control-solid'
@@ -269,7 +269,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                     </div>
                   ) : (
                     <div className='col-lg-6'>
-                      <label className='form-label fw-bold'>Username :</label>
+                      <label className='form-label fw-bold required'>Username :</label>
                       <input
                         placeholder='username'
                         className='form-control form-control-lg form-control-solid'
@@ -286,7 +286,7 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                   {/* begin: input email Filed */}
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Email :</label>
+                    <label className='form-label fw-bold required'>Email :</label>
                     <input
                       placeholder='email'
                       className='form-control form-control-lg form-control-solid'
@@ -306,7 +306,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 {/* begin: input phone Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-12'>
-                    <label className='form-label fw-bold'>Mobile no:</label>
+                    <label className='form-label fw-bold required'>Mobile no:</label>
                     <input
                       placeholder='Mobile no.'
                       className='form-control form-control-lg form-control-solid'
@@ -329,7 +329,7 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                   {/* begin: input Zone Filed */}
                   <div className='col-lg-12'>
-                    <label className='form-label fw-bold'>Zone</label>
+                    <label className='form-label fw-bold required'>Zone</label>
                     <select
                       // name="zoneId"
                       // value={props.values.zoneId}
@@ -358,7 +358,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                   {/* Status Type */}
                   {itemIdForUpdate !== 'add' ? (
                   <div className='col-lg-12'>
-                    <label className='form-label fw-bold '>Status</label>
+                    <label className='form-label fw-bold required'>Status</label>
                     <select className='form-select form-select-solid'>
                       <option value='' disabled>
                         Select Status Type
@@ -371,7 +371,7 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                   {/* begin: input Role Filed */}
                   <div className='col-lg-12'>
-                    <label className='form-label fw-bold'>Role</label>
+                    <label className='form-label fw-bold required'>Role</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('roleId')}
@@ -397,7 +397,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                 {itemIdForUpdate === 'add' ? (
                   <div className='row w-100 mx-0 mb-4 gy-4'>
                     <div className='col-lg-6'>
-                      <label className='form-label fw-bold'>Password:</label>
+                      <label className='form-label fw-bold required'>Password:</label>
                       <input
                         placeholder='Password'
                         className='form-control form-control-lg form-control-solid'
@@ -415,7 +415,7 @@ const UserFormModal: FC<Props> = ({category}) => {
 
                     {/* begin: input confirmPassword Filed */}
                     <div className='col-lg-6'>
-                      <label className='form-label fw-bold'>Confirm Password:</label>
+                      <label className='form-label fw-bold required'>Confirm Password:</label>
                       <input
                         placeholder='Confirm Password'
                         className='form-control form-control-lg form-control-solid'

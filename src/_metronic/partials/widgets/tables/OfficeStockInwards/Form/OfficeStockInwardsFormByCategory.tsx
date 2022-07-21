@@ -2,53 +2,55 @@ import {useQuery} from 'react-query'
 import {useEffect} from 'react'
 import { ListPageData } from '../OfficeStockInwardsContext'
 import { isNotEmpty } from '../../../../../helpers'
-import MainPointservice from '../helperOfficeStockInwards/ApiDataRequest'
+import { useParams } from 'react-router-dom'
 import OfficeStockInwardsFormModal from './OfficeStockInwardsFormModal'
-import OfficeStockInwardservice from '../helperOfficeStockInwards/ApiDataRequest'
+import OfficeStockInwardsService from '../helperOfficeStockInwards/ApiDataRequest'
 
 const OfficeStockInwardsFormByCategory = () => {
-  const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+  let {id} = useParams()
+
+  useEffect(() => {
+    if (id === 'add') {
+      setItemIdForUpdate(id)
+    } else {
+      setItemIdForUpdate(id)
+    }
+  }, [id])
+
+  const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
-  {
-    /* begin:: Api call GetOfficeStockInwardById */
-  }
-  const {data: category, error} = useQuery( 
-    `GetOfficeStockInwardById-${itemIdForUpdate}`,
+  const {data: category, error} = useQuery(
+    `GetOfficeStockInwardsTypeById-${itemIdForUpdate}`,
     () => {
-      return OfficeStockInwardservice.GetOfficeStockInwardsTypeById(itemIdForUpdate)
+      return OfficeStockInwardsService.GetOfficeStockInwardsTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery,
+      enabled: enabledQuery && id !== 'add',
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
+        
       },
     }
   )
   {
-    /* end:: Api call OfficeStockInwardsFormByCategory */
+    /* end:: Api call GetOfficeStockOutwardsTypeById */
   }
 
   useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
+    
+    console.log('itemIdForUpdate****', itemIdForUpdate)
+  }, [category,itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
   }
-  if (!itemIdForUpdate) {
+  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <OfficeStockInwardsFormModal category={{ID: undefined}} />
   }
-  {
-    /* end::Add-Form Model functionality */
-  }
 
-  {
-    /* begin::Edit-Form Model functionality */
-  }
+
   if (!error && category) {
     return <OfficeStockInwardsFormModal category={category} />
   }

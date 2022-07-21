@@ -2,6 +2,7 @@ import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardservice from './helperOfficeStockAvailability/ApiDataRequest'
 import { GetAllData, GetAlLlOfficetockAvailabilitApi, getOfficetockAvailabilityData, ID, ViewForm } from './helperOfficeStockAvailability/ModelOfficeStockAvailability'
+import {saveAs} from 'file-saver'
 
 export interface ComplaintDataContextModel {
   getData: getOfficetockAvailabilityData[]
@@ -29,6 +30,7 @@ export interface ComplaintDataContextModel {
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllofficestockOutward: () => void
   DataGetAllTypeZone: () => void
+  fetchAllDownload: () => void
   DataGetAllTypeProducts: () => void
 }
 
@@ -59,6 +61,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   fetchAllofficestockOutward: () => {},
   DataGetAllTypeZone: () => {},
   DataGetAllTypeProducts: () => {},
+  fetchAllDownload: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getOfficetockAvailabilityData[]>([])
@@ -75,6 +78,22 @@ const ListDataProvider: FC = ({children}) => {
   const [zoneId, setZoneId] = useState(0)
   const [productId, setproductId] = useState(0)
   let {LoderActions} = useLoader()
+
+
+  // Download fill
+
+  let fetchAllDownload = async () => {
+    console.log('Enter')
+    LoderActions(true)
+    try {
+      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(productId, zoneId,searchText)
+      saveAs(response.data, 'officestockavailabilities.xlsx ')
+    } catch (error) {
+      console.log('Error', error)
+    } finally {
+      LoderActions(false)
+    }
+  }
 
   {
     /* begin::  fetchAllofficestockOutward Api call */
@@ -161,6 +180,7 @@ const ListDataProvider: FC = ({children}) => {
     productId,
     setproductId,
     filterShow,
+    fetchAllDownload,
     getDataAllTypeProduct,
     setFilterShow,
     getDataAllTypeZone,

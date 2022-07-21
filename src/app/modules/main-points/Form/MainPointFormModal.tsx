@@ -109,7 +109,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
               >
                 {/* begin: input name Filed */}
                 <div className='fv-row mb-7'>
-                  <label className=' fw-bold fs-6 mb-2'>Name</label>
+                  <label className=' fw-bold fs-6 mb-2 required'>Name</label>
                   <input
                     placeholder='Name'
                     value={props.values.name}
@@ -127,7 +127,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
 
                 {/* begin: MainPoint Zone Filed */}
                 <div className='col-lg-12'>
-                  <label className='form-label fw-bold'>Zone</label>
+                  <label className='form-label fw-bold required'>Zone</label>
                   <select
                     className='form-select form-select-solid'
                     {...props.getFieldProps('zoneid')}
