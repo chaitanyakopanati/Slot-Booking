@@ -1,5 +1,5 @@
-import { KTSVG } from "../../../../../../helpers"
-import ImageSelect from '../../../../../../../app/images/error-profile.svg'
+import { KTSVG } from "../../../../../_metronic/helpers"
+import ImageSelect from '../../../../../app/images/error-profile.svg'
 
 const CustomerFormViewModal = () =>{
     return(

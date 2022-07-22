@@ -3,7 +3,7 @@ import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
 import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
-import {CustomersWrapper} from '../pages/customers/CustomersWrapper'
+import CustomersWrapper from '../modules/Customer/CustomersWrapper'
 import {ComplaintTypesWrapper} from '../pages/complaint-types/ComplaintTypesWrapper'
 import {ProfileSettingsWrapper} from '../pages/profile-settings/ProfileSettingsWrapper'
 import {FormsWrapper} from '../pages/forms/FormsWrapper'
@@ -12,8 +12,8 @@ import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import MasterWrapper from '../pages/master/MasterWrapper'
 import {PageTitle} from '../../_metronic/layout/core'
-import CustomerFormWrapper from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormWrapper'
-import CustomerFormModal from '../../_metronic/partials/widgets/tables/Customer/Form/CustomerFormModal'
+import CustomerFormWrapper from '../modules/Customer/Form/CustomerFormWrapper'
+import CustomerFormModal from '../modules/Customer/Form/CustomerFormModal'
 import InquiriesFormWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesFormWrapper'
 import InquiriesViewWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesViewWrapper'
 import InstallationFormWrapper from '../../_metronic/partials/widgets/tables/Installation/Form/InstallationFormWrapper'
@@ -32,6 +32,7 @@ const PrivateRoutes = () => {
         <Route path='auth/*' element={<Navigate to='/complaint' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
+        {/*  */}
         <Route path='complaint' element={<ComplaintWrapper />} />
         <Route
           path='complaint/complaintform/:id'
@@ -46,7 +47,7 @@ const PrivateRoutes = () => {
 
         <Route path='customers' element={<CustomersWrapper />} />
         <Route
-          path='customers/form/:id'
+          path='customers/customersform/:id'
           element={
             <>
               <PageTitle>Add Customer</PageTitle>
