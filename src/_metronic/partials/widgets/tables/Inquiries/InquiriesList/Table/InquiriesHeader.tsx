@@ -39,6 +39,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     startDate,
     endDate,
     setStartDate,
+    fetchAllDownload,
     setEndDate,
   } = ListPageData()
 
@@ -107,6 +108,11 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     setStatusId(e.target.value)
   }
 
+  // download
+  const downloadFile = async () => {
+    fetchAllDownload()
+  }
+
   useEffect(() => {
     fetchAllUser()
   }, [
@@ -164,9 +170,10 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                    <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -175,7 +182,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 
@@ -227,17 +234,17 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                     >
                       <label className='form-label fw-bold'>Inquiry date</label>
                       <span
-                          role='button'
-                          onClick={() => {
-                            console.log('datatatatat========================\\\\\\\\\\\\')
-                            setFromDate('')
-                            setToDate('')
-                            setStartDate('')
-                            setEndDate('')
-                          }}
-                        >
-                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
-                        </span>
+                        role='button'
+                        onClick={() => {
+                          console.log('datatatatat========================\\\\\\\\\\\\')
+                          setFromDate('')
+                          setToDate('')
+                          setStartDate('')
+                          setEndDate('')
+                        }}
+                      >
+                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                      </span>
                       <div>
                         <DateRangePicker
                           initialSettings={{
@@ -247,10 +254,8 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                           onHide={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                          <input
-                          style={{ background: '#f5f8fa',
-                          outline:'none',
-                          border: 'none'}}
+                            <input
+                              style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
                               placeholder='All'
                               value={`${
                                 fromDate && toDate

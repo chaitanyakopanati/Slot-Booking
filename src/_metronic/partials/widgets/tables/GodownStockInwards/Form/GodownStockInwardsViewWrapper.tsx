@@ -1,15 +1,14 @@
 import {useEffect} from 'react'
 import {useQuery} from 'react-query'
 import {useParams} from 'react-router-dom'
-import { isNotEmpty, KTCard } from '../../../../../helpers'
-import { ListDataProvider, ListPageData } from '../GodownStockInwardsContext'
+import {isNotEmpty, KTCard} from '../../../../../helpers'
+import {ListDataProvider, ListPageData} from '../GodownStockInwardsContext'
 import GodownStockInwardsFormViewModal from '../GodownStockInwardsList/Table/GodownStockInwardsFormViewModal'
 import OfficeStockInwardsService from '../helperGodownStockInwards/ApiDataRequest'
 
-
 function GodownStockInwards() {
   let {id} = useParams()
-  const {viewIdForUpdate, setViewIdForUpdate,DataGetAllTypeProduct} = ListPageData()
+  const {viewIdForUpdate, setViewIdForUpdate, DataGetAllTypeProduct} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
     console.log('id', id)
@@ -22,14 +21,14 @@ function GodownStockInwards() {
     console.log('viewIdForUpdate', viewIdForUpdate)
   }, [viewIdForUpdate])
 
- useEffect(() =>{
-  DataGetAllTypeProduct()
- },[])
+  useEffect(() => {
+    DataGetAllTypeProduct()
+  }, [])
 
   const {data: userDetails, error} = useQuery(
-    `ViewGetOfficeStockInwardsTypeById-${viewIdForUpdate}`,
+    `ViewGetGodownStockInwardsById-${viewIdForUpdate}`,
     () => {
-      return OfficeStockInwardsService.GetOfficeStockInwardsTypeById(viewIdForUpdate)
+      return OfficeStockInwardsService.GetGodownStockInwardsTypeById(viewIdForUpdate)
     },
     {
       cacheTime: 0,
@@ -51,15 +50,7 @@ function GodownStockInwards() {
 }
 
 function OfficeStockInwardsFormViewHeader() {
-  return (
-    <>
-      {/* <div className='modal-header'> */}
-        {/* begin::Modal title */}
-        {/* <h2 className='fw-bolder'>View User</h2> */}
-        {/* end::Modal title */}
-      {/* </div> */}
-    </>
-  )
+  return <></>
 }
 
 let GodownStockInwardsViewWrapper = () => {

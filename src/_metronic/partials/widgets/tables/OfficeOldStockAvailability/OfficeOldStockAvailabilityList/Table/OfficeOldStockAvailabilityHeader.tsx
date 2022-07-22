@@ -6,7 +6,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import { ListPageData } from '../../OfficeOldStockAvailabilityContext'
+import {ListPageData} from '../../OfficeOldStockAvailabilityContext'
 
 type Props = {
   category: any
@@ -52,8 +52,6 @@ const OfficeOldStockAvailabilityHeader: FC<Props> = ({category}) => {
     setproductId(e.target.value)
   }
 
-  
-
   {
     /* begin::Zone */
   }
@@ -65,15 +63,12 @@ const OfficeOldStockAvailabilityHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     fetchAllofficestockOutward()
-
   }, [pageNo, pageSize, searchText, zoneId, productId])
 
-  
   // download
-  const downloadFile = async() => {
+  const downloadFile = async () => {
     fetchAllDownload()
   }
-
 
   return (
     <>
@@ -115,7 +110,7 @@ const OfficeOldStockAvailabilityHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                  <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}
@@ -150,7 +145,6 @@ const OfficeOldStockAvailabilityHeader: FC<Props> = ({category}) => {
               {/* begin:: Filter:- Created By */}
               {filterShow && (
                 <div className='row w-100 mx-0 my-5'>
-
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Product</label>
                     <select

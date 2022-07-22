@@ -1,9 +1,6 @@
 import {useEffect} from 'react'
-import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
-import { ListPageData } from '../../GodownStockAvailabilityContext'
-import { getGodownstockavailabilitiesData } from '../../helperGodownStockAvailability/ModelGodownStockAvailability'
-
-
+import {ListPageData} from '../../GodownStockAvailabilityContext'
+import {getGodownstockavailabilitiesData} from '../../helperGodownStockAvailability/ModelGodownStockAvailability'
 
 const GodownStockAvailabilityTable = () => {
   const {
@@ -15,7 +12,6 @@ const GodownStockAvailabilityTable = () => {
     setPageNo,
     setSearchText,
   } = ListPageData()
-  let {LoderActions, open} = useLoader()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -38,7 +34,7 @@ const GodownStockAvailabilityTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
+              <th className='max-w-60px rounded-start ps-8'>No.</th>
               <th className='min-w-200px'>Product</th>
               <th className='min-w-150px'>Quantity</th>
             </tr>
@@ -52,7 +48,7 @@ const GodownStockAvailabilityTable = () => {
                   <tr key={index}>
                     {/* begin:: index Input */}
                     <td>
-                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                      <div className='text-dark fw-bolder fs-6 ps-8'>
                         {DataWiseIndex + index + 1}
                       </div>
                     </td>

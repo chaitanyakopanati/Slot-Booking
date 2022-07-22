@@ -1,6 +1,6 @@
 import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putgetOfficeStockOutwardsDatasmodel } from './ModelOfficeOldStocksOutwards'
+import {ID, postlistData, putgetOfficeStockOutwardsDatasmodel} from './ModelOfficeOldStocksOutwards'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 {
@@ -16,7 +16,7 @@ const getDynamicOfficeOldStockOutwards = (
   productId: number,
   TechnicianId: number,
   startDate: string,
-  endDate: string,
+  endDate: string
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -42,27 +42,27 @@ const getDynamicDownloadFile = (
   Username: string,
   startDate: string,
   endDate: string,
-  createdBy:number
+  createdBy: number
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetOfficeOldStockOutwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&TechnicianId=${TechnicianId}&Username=${Username}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetOfficeOldStockOutwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&TechnicianId=${TechnicianId}&Username=${Username}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
 {
   /* begin:: post Api call(create) */
 }
-const postOfficeOldStockOutwards:any = (obj: postlistData) => {
-  console.log(obj,"obj");
+const postOfficeOldStockOutwards: any = (obj: postlistData) => {
+  console.log(obj, 'obj')
 
   return http.post('SaveOfficeOldStockOutwards', {
     outwardDate: obj.outwardDate,
     productId: obj.productId,
     quantity: obj.quantity,
     technicianId: obj.technicianId,
-    userid: obj.userid,
+    userId: obj.userId,
     reason: obj.reason,
     statusId: 1,
     zoneId: obj.zoneId,
@@ -85,14 +85,14 @@ const editOfficeOldStockOutwards = (obj: putgetOfficeStockOutwardsDatasmodel) =>
     productId: obj.productId,
     quantity: obj.quantity,
     technicianId: obj.technicianId,
-    userid: obj.userid,
+    userId: obj.userId,
     reason: obj.reason,
     statusId: 1,
     zoneId: obj.zoneId,
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
-    modifyById:1,
+    modifyById: 1,
   })
 }
 {
@@ -137,6 +137,13 @@ const getUserName = (username: string) => {
   return http.get(`GetByUserName`, {userName: username})
 }
 
+//  product Zone quntity
+
+const getProductZoneQuntityTypes = (productId: number, zoneId: number) => {
+  return http.get(`GetProductCountByZone/${productId}/${zoneId}`)
+}
+
+
 const OfficeStockOutwardsViewService = {
   getDynamicOfficeOldStockOutwards,
   postOfficeOldStockOutwards,
@@ -148,9 +155,7 @@ const OfficeStockOutwardsViewService = {
   getCreatedByTypes,
   getZoneTypes,
   getDynamicDownloadFile,
+  getProductZoneQuntityTypes,
 }
 
 export default OfficeStockOutwardsViewService
-
-
-

@@ -1,5 +1,9 @@
+import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
 import {ID, postlistData, putInquiriesmodel, roleIdInquiries} from './ModelInquiries'
+
+const API_URL_DATA = process.env.REACT_APP_API_URL
+
 
 {
   /* begin:: User:- getDynamicUser Api call */
@@ -27,6 +31,23 @@ const getDynamicInquiries = (
 }
 {
   /* end:: User:- getDynamicFaults Api call */
+}
+
+// download
+
+const getDynamicDownloadFile = (
+  searchText: string,
+  startDate: string,
+  endDate: string,
+  createdById:number,
+  statusId:number,
+  salesExecutiveId:number,
+) => {
+    return axios({
+      url: `${API_URL_DATA}/GetInquiriesExcelSheet?&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdById=${createdById}&statusId=${statusId}salesExecutiveId=${salesExecutiveId}`, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+  })
 }
 
 {
@@ -95,14 +116,6 @@ const GetInquiriesTypeById = (id: ID) => {
   /* end:: User:- getById Api call */
 }
 
-{
-  /* begin:: User:- get User type Api call */
-}
-
-{
-  /* end:: User:- get User type Api call */
-}
-
 //Created by
 
 const getCreatedByTypes = () => {
@@ -136,6 +149,7 @@ const Inquiriesservice = {
   getCreatedByTypes,
   getSalesExecutveByTypes,
   getSalesExecutveByGetUserByRoleTypes,
+  getDynamicDownloadFile,
 }
 
 export default Inquiriesservice

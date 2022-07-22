@@ -51,10 +51,10 @@ export interface postlistData {
   technicianId: number
   userid: number
   reason: string
-  username:string
-  inwardNo:number
-inwardDate:string
-deliveredById:number
+  username: string
+  inwardNo: number
+  inwardDate: string
+  deliveredById: number
 }
 
 export interface GetAllData {
@@ -63,8 +63,8 @@ export interface GetAllData {
   name: string
   createdById: number
   createdByName: string
-  username:string
-  firstname:string
+  username: string
+  firstname: string
 }
 
 export interface GetAllData {
@@ -84,10 +84,10 @@ export interface putOfficeOldStockInwardsmodel {
   technicianId: number
   userid: number
   reason: string
-  username:string
-  inwardNo:number
-  inwardDate:string
-  deliveredById:number
+  username: string
+  inwardNo: number
+  inwardDate: string
+  deliveredById: number
 }
 export interface putOfficeOldStockInwardsmodel1 {
   data: getOfficeOldStockInwardsData
@@ -103,7 +103,7 @@ export interface GetAllOfficeOldStockInwardsApi {
   TotalRecords: number
   page: number
   pageSize: number
-  zoneId: number 
+  zoneId: number
   roleId: string
   searchByUsername: string
 }

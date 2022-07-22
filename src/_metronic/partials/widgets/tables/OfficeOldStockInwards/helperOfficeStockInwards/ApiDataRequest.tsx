@@ -1,6 +1,6 @@
 import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putOfficeOldStockInwardsmodel } from './ModelOfficeStockInwards'
+import {ID, postlistData, putOfficeOldStockInwardsmodel} from './ModelOfficeStockInwards'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 {
@@ -11,10 +11,10 @@ const getDynamicOfficeOldStockInwards = (
   pageSize: number,
   searchText: string = '',
   createdBy: number,
-  startDate:string,
-  endDate:string,
-  zoneId:number,
-  productId:number
+  startDate: string,
+  endDate: string,
+  zoneId: number,
+  productId: number
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -38,20 +38,20 @@ const getDynamicDownloadFile = (
   createdBy: number,
   searchText: string,
   startDate: string,
-  endDate: string,
+  endDate: string
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetOfficeOldStockInwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetOfficeOldStockInwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
 {
   /* begin:: post Api call(create) */
 }
-const postOfficeOldStockInwards:any = (obj: postlistData) => {
-  console.log(obj,"obj");
+const postOfficeOldStockInwards: any = (obj: postlistData) => {
+  console.log(obj, 'obj')
 
   // var userData:any =  getUserName(obj.id)
   return http.post('SaveOfficeOldStockInwards', {
@@ -77,7 +77,7 @@ const postOfficeOldStockInwards:any = (obj: postlistData) => {
 }
 const editOfficeOldStockInwards = (obj: putOfficeOldStockInwardsmodel) => {
   return http.post(`SaveOfficeOldStockInwards`, {
-    id:obj.id,
+    id: obj.id,
     inwardNo: obj.inwardNo,
     inwardDate: obj.inwardDate,
     productId: obj.productId,
@@ -89,7 +89,7 @@ const editOfficeOldStockInwards = (obj: putOfficeOldStockInwardsmodel) => {
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
-    modifyById:1,
+    modifyById: 1,
   })
 }
 {
@@ -148,10 +148,7 @@ const OfficeStockInwardsService = {
   getCreatedByTypes,
   getZoneTypes,
   getDynamicDownloadFile,
-  getDeliveredByTypes
+  getDeliveredByTypes,
 }
 
 export default OfficeStockInwardsService
-
-
-

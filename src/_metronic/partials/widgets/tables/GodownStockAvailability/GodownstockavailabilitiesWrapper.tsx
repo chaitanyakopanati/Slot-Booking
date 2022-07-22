@@ -1,11 +1,10 @@
-import { KTCard } from "../../../../helpers"
-import { ListDataProvider, ListPageData } from "./GodownStockAvailabilityContext"
-import GodownStockAvailabilityHeader from "./GodownStockAvailabilityList/Table/GodownStockAvailabilityHeader"
-import GodownStockAvailabilityPagination from "./GodownStockAvailabilityList/Table/GodownStockAvailabilityPagination"
-import GodownStockAvailabilityTable from "./GodownStockAvailabilityList/Table/GodownStockAvailabilityTable"
+import {KTCard} from '../../../../helpers'
+import {ListDataProvider} from './GodownStockAvailabilityContext'
+import GodownStockAvailabilityHeader from './GodownStockAvailabilityList/Table/GodownStockAvailabilityHeader'
+import GodownStockAvailabilityPagination from './GodownStockAvailabilityList/Table/GodownStockAvailabilityPagination'
+import GodownStockAvailabilityTable from './GodownStockAvailabilityList/Table/GodownStockAvailabilityTable'
 
 const GodownstockavailabilitiesList = () => {
-  const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>

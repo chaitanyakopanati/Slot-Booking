@@ -1,10 +1,9 @@
 import {useEffect} from 'react'
 import moment from 'moment'
 import {useNavigate} from 'react-router-dom'
-import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import {KTSVG} from '../../../../../../helpers'
-import { getOfficeOldStockInwardsData } from '../../helperOfficeStockInwards/ModelOfficeStockInwards'
-import { ListPageData } from '../../OfficeOldStockInwardsContext'
+import {getOfficeOldStockInwardsData} from '../../helperOfficeStockInwards/ModelOfficeStockInwards'
+import {ListPageData} from '../../OfficeOldStockInwardsContext'
 
 const OfficeOldStockInwardsTable = () => {
   const {
@@ -19,20 +18,11 @@ const OfficeOldStockInwardsTable = () => {
     DataGetAllTypeTechnician,
     fetchAllUser,
     DataGetAllTypeZone,
-    DataGetAllTypeProduct
+    DataGetAllTypeProduct,
   } = ListPageData()
-  let {LoderActions} = useLoader()
   const navigate = useNavigate()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
-
-  const openEditModal = (id: any) => {
-    setItemIdForUpdate(id)
-  }
-
-  const openViewModal = (id: any) => {
-    setViewIdForUpdate(id)
-  }
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
@@ -55,7 +45,7 @@ const OfficeOldStockInwardsTable = () => {
         <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
           {/* begin::Table head */}
           <thead>
-          <tr className='fw-bolder text-muted  bg-dark'>
+            <tr className='fw-bolder text-muted  bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
               <th className='max-w-60px '>Inward no.</th>
               <th className='min-w-150px'>Inward date</th>
@@ -74,7 +64,7 @@ const OfficeOldStockInwardsTable = () => {
               getData?.map((row: getOfficeOldStockInwardsData, index: number) => {
                 return (
                   <tr key={index}>
-                  <td>
+                    <td>
                       <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
                         {DataWiseIndex + index + 1}
                       </div>
@@ -113,8 +103,8 @@ const OfficeOldStockInwardsTable = () => {
                     <td className='text-dark fw-bold  fs-6'>{row.zoneName || '-'}</td>
                     {/* end:: zoneName Input */}
 
-                     {/* begin:: username Input */}
-                     <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
+                    {/* begin:: username Input */}
+                    <td className='text-dark fw-bold  fs-6'>{row.username || '-'}</td>
                     {/* end:: username Input */}
 
                     {/* begin:: Action */}
@@ -175,49 +165,51 @@ const OfficeOldStockInwardsTable = () => {
           getData?.map((row: getOfficeOldStockInwardsData, index: number) => {
             return (
               <div key={DataWiseIndex + index + 1}>
-              <div className='col-md-6 mx-0 my-2'>
-                <div className='card card-custom border'>
-                  <div className='card-body p-4'>
-                    <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
-                      <div className='text-dark fw-bolder fs-3 me-2'>
-                        {' '}
-                        {DataWiseIndex + index + 1}
+                <div className='col-md-6 mx-0 my-2'>
+                  <div className='card card-custom border'>
+                    <div className='card-body p-4'>
+                      <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
+                        <div className='text-dark fw-bolder fs-3 me-2'>
+                          {' '}
+                          {DataWiseIndex + index + 1}
+                        </div>
+                        <div className='fw-bolder fs-3'>{row?.productName || '-'}</div>
+                        <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                       </div>
-                      <div className='fw-bolder fs-3'>{row?.productName || '-'}</div>
-                    <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
-                  </div>
-                  <div className='py-1 d-flex'>
-                    <div className='fw-bolder '>InwardDate:</div>
-                    <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
-                  </div>
-
-                  <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
-                    <div className='py-1 d-flex align-items-cenetr'>
-                      <div className='fw-bolder '>inwardNo:</div>
-                      <div className='text-dark fw-bold  ms-2'>{row.inwardNo || '-'}</div>
-                    </div>
-                    <div className='py-1 d-flex'>
-                      <div className='fw-bolder '>quantity :</div>
-                      <div className='text-dark fw-bold  ms-2'>{row.quantityDisplay || '-'}</div>
-                    </div>
-
-                    <div className='py-1 d-flex'>
-                      <div className='fw-bolder '>deliveredByName:</div>
-                      <div className='text-dark fw-bold  ms-2'>
-                        {row.deliveredByName || '-'}
+                      <div className='py-1 d-flex'>
+                        <div className='fw-bolder '>InwardDate:</div>
+                        <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
                       </div>
-                    </div>
 
-                    <div className='py-1 d-flex'>
-                      <div className='fw-bolder '>zoneName:</div>
-                      <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
-                    </div>
+                      <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                        <div className='py-1 d-flex align-items-cenetr'>
+                          <div className='fw-bolder '>inwardNo:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.inwardNo || '-'}</div>
+                        </div>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>quantity :</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {row.quantityDisplay || '-'}
+                          </div>
+                        </div>
 
-                    <div className='py-1 d-flex'>
-                      <div className='fw-bolder '>UserName:</div>
-                      <div className='text-dark fw-bold  ms-2'>{row.username || '-'}</div>
-                    </div>
-                  </div>
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>deliveredByName:</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {row.deliveredByName || '-'}
+                          </div>
+                        </div>
+
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>zoneName:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
+                        </div>
+
+                        <div className='py-1 d-flex'>
+                          <div className='fw-bolder '>UserName:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.username || '-'}</div>
+                        </div>
+                      </div>
 
                       <div
                         className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'

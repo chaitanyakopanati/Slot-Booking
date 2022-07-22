@@ -7,7 +7,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   category: any
@@ -16,13 +16,12 @@ type Props = {
 const GodownStockInwardsHeader: FC<Props> = ({category}) => {
   const navigate = useNavigate()
   const {
-    setItemIdForUpdate,
     setFilterShow,
     filterShow,
     setSearchText,
     searchText,
     setPageNo,
-    // getDataofficestockOutwardAllType,
+
     createdBy,
     setcreatedById,
     fetchAllUser,
@@ -33,13 +32,14 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
     getDataAllTypeCreatedBy,
     setStartDate,
     zoneId,
-    setZoneId,
+
     getDataAllTypeProduct,
     setEndDate,
     productId,
-   setProductId,
-   setSupplierId,
-   supplierId
+    setProductId,
+    setSupplierName,
+    fetchAllDownload,
+    supplierName,
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -70,11 +70,6 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
-
-  const openAddCategoryModal = () => {
-    setItemIdForUpdate(null)
-  }
-
   {
     /* begin::Search */
   }
@@ -112,12 +107,17 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
   const handleSuppplierNamechange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
-    setSupplierId(e.target.value)
+    setSupplierName(e.target.value)
+  }
+
+  // download
+  const downloadFile = async () => {
+    fetchAllDownload()
   }
 
   useEffect(() => {
     fetchAllUser()
-  }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId,supplierId])
+  }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId, supplierName])
 
   return (
     <>
@@ -159,9 +159,10 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                    <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -170,7 +171,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 
@@ -308,7 +309,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='text'
-                      value={supplierId}
+                      value={supplierName}
                       onChange={handleSuppplierNamechange}
                       placeholder='supplier Name'
                       autoComplete='off'

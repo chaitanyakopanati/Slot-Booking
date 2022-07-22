@@ -91,8 +91,12 @@ const ListDataProvider: FC = ({children}) => {
     console.log('Enter')
     LoderActions(true)
     try {
-      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(productId, zoneId,searchText)
-      saveAs(response.data, 'officeOldstockavailabilities.xlsx ')
+      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(
+        productId,
+        zoneId,
+        searchText
+      )
+      saveAs(response.data, 'officeOldstockavailabilities.xlsx')
     } catch (error) {
       console.log('Error', error)
     } finally {

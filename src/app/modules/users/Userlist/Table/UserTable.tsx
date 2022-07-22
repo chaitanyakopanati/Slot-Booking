@@ -1,7 +1,6 @@
 import {KTSVG} from '../../../../../_metronic/helpers'
 import Swal from 'sweetalert2'
 import {useEffect} from 'react'
-import moment from 'moment'
 import {toast} from 'react-toastify'
 import {useLoader} from '../../../loader/LoaderContext'
 import {ListPageData} from '../../UserContext'
@@ -11,15 +10,10 @@ import {useNavigate} from 'react-router-dom'
 
 const UserTable = () => {
   const {
-    setItemIdForUpdate,
     getData,
     pageNo,
     pageSize,
-    setViewIdForUpdate,
-    zoneId,
-    roleId,
     fetchAllUser,
-    searchText,
     setPageNo,
     setSearchText,
     DataGetAllTyperole,
@@ -30,14 +24,6 @@ const UserTable = () => {
   const navigate = useNavigate()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
-
-  const openEditModal = (id: any) => {
-    setItemIdForUpdate(id)
-  }
-
-  const openViewModal = (id: any) => {
-    setViewIdForUpdate(id)
-  }
 
   {
     /* begin:: Delete functionlity */
@@ -261,7 +247,7 @@ const UserTable = () => {
                           data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
                           aria-expanded='false'
                         >
-                          <span>+ &nbsp;</span>More info
+                         <span>+ &nbsp;</span>More info
                         </div>
                       </div>
 
@@ -269,7 +255,6 @@ const UserTable = () => {
                         <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
                           <a
                             className='btn btn-icon btn-active-color-success btn-sm me-1'
-                            // onClick={() => openViewModal(row)}
                             onClick={() => navigate(`viewform/${row.id}`)}
                           >
                             <KTSVG
@@ -280,7 +265,6 @@ const UserTable = () => {
 
                           <button
                             className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                            // onClick={() => openEditModal(row.id)}
                             onClick={() => {
                               navigate(`form/${row.id}`)
                             }}

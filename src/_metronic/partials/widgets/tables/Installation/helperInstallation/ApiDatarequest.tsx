@@ -79,7 +79,6 @@ const deleteInstallations = (Id: number) => {
 const editInstallations = (obj: putInstallationsmodel) => {
   return http.post(`SaveInstallations`, {
     id:obj.id,
-    userName:obj.userName,
     userid: obj.userid,
     connectiontype:obj.connectiontype,
     zonepointid: obj.zonepointid,

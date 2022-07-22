@@ -1,9 +1,14 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardservice from './helperGodownStockAvailability/ApiDataRequest'
-import { GetAllData, GetAlLlGodownstockavailabilitiesApi, getGodownstockavailabilitiesData, ID, ViewForm } from './helperGodownStockAvailability/ModelGodownStockAvailability'
+import {
+  GetAllData,
+  GetAlLlGodownstockavailabilitiesApi,
+  getGodownstockavailabilitiesData,
+  ID,
+  ViewForm,
+} from './helperGodownStockAvailability/ModelGodownStockAvailability'
 import {saveAs} from 'file-saver'
-
 
 export interface ComplaintDataContextModel {
   getData: getGodownstockavailabilitiesData[]
@@ -75,14 +80,16 @@ const ListDataProvider: FC = ({children}) => {
   const [productId, setproductId] = useState(0)
   let {LoderActions} = useLoader()
 
-  
   // Download fill
 
   let fetchAllDownload = async () => {
     console.log('Enter')
     LoderActions(true)
     try {
-      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(productId,searchText)
+      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(
+        productId,
+        searchText
+      )
       saveAs(response.data, 'GodownstockAvailability.xlsx')
     } catch (error) {
       console.log('Error', error)
@@ -90,7 +97,6 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(false)
     }
   }
-
 
   {
     /* begin::  fetchAllofficestockOutward Api call */

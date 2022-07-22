@@ -1,9 +1,8 @@
-import { KTCard } from "../../../../helpers"
-import { ListDataProvider, ListPageData } from "./OfficeStockAvailabilityContext"
-import OfficeStockAvailabilityHeader from "./OfficeStockAvailabilityList/Table/OfficeStockAvailabilityHeader"
-import OfficeStockAvailabilityPagination from "./OfficeStockAvailabilityList/Table/OfficeStockAvailabilityPagination"
-import OfficeStockAvailabilityTable from "./OfficeStockAvailabilityList/Table/OfficeStockAvailabilityTable"
-
+import {KTCard} from '../../../../helpers'
+import {ListDataProvider, ListPageData} from './OfficeStockAvailabilityContext'
+import OfficeStockAvailabilityHeader from './OfficeStockAvailabilityList/Table/OfficeStockAvailabilityHeader'
+import OfficeStockAvailabilityPagination from './OfficeStockAvailabilityList/Table/OfficeStockAvailabilityPagination'
+import OfficeStockAvailabilityTable from './OfficeStockAvailabilityList/Table/OfficeStockAvailabilityTable'
 
 const OfficeAvailabilityList = () => {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()

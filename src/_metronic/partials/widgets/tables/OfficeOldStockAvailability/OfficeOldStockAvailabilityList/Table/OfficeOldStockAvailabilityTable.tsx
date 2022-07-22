@@ -1,25 +1,19 @@
 import moment from 'moment'
 import {useEffect} from 'react'
-import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
-import {KTSVG} from '../../../../../../helpers'
-import { getOfficetockAvailabilityData } from '../../helperOfficeOldStockAvailability/ModelOfficeOldStockAvailability'
-import { ListPageData } from '../../OfficeOldStockAvailabilityContext'
-
+import {getOfficetockAvailabilityData} from '../../helperOfficeOldStockAvailability/ModelOfficeOldStockAvailability'
+import {ListPageData} from '../../OfficeOldStockAvailabilityContext'
 
 const OfficeOldStockAvailabilityTable = () => {
   const {
-    setItemIdForUpdate,
     getData,
     pageNo,
     pageSize,
-    setViewIdForUpdate,
     fetchAllofficestockOutward,
     DataGetAllTypeZone,
     DataGetAllTypeProducts,
     setPageNo,
     setSearchText,
   } = ListPageData()
-  let {LoderActions, open} = useLoader()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -27,7 +21,6 @@ const OfficeOldStockAvailabilityTable = () => {
     fetchAllofficestockOutward()
     DataGetAllTypeZone()
     DataGetAllTypeProducts()
-    // LoderActions(false)
   }, [])
 
   const handlesearchange = (e: any) => {
@@ -44,7 +37,7 @@ const OfficeOldStockAvailabilityTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
+              <th className='max-w-60px min-w-40px rounded-start ps-8'>No.</th>
               <th className='min-w-200px'>Product</th>
               <th className='min-w-150px'>Quantity</th>
               <th className='min-w-150px'>Zone</th>
@@ -59,7 +52,7 @@ const OfficeOldStockAvailabilityTable = () => {
                   <tr key={index}>
                     {/* begin:: index Input */}
                     <td>
-                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                      <div className='text-dark fw-bolder fs-6 ps-4 ps-8'>
                         {DataWiseIndex + index + 1}
                       </div>
                     </td>

@@ -1,9 +1,13 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react' 
-import  {saveAs}  from 'file-saver'
-import { useLoader } from '../../../../../app/modules/loader/LoaderContext'
-import { GetAllData, GetAllgetOfficeStockOutwardsDataApi, getOfficeOldStockOutwardsData, ID } from './helperOfficeOldStockOutwards/ModelOfficeOldStocksOutwards'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
+import {saveAs} from 'file-saver'
+import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
+import {
+  GetAllData,
+  GetAllgetOfficeStockOutwardsDataApi,
+  getOfficeOldStockOutwardsData,
+  ID,
+} from './helperOfficeOldStockOutwards/ModelOfficeOldStocksOutwards'
 import OfficeStockOutwardsViewService from './helperOfficeOldStockOutwards/ApiDataRequest'
-
 
 export interface ComplaintDataContextModel {
   getData: getOfficeOldStockOutwardsData[]
@@ -122,7 +126,7 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [Username, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
-   const [productId, setProductId] = useState(0)
+  const [productId, setProductId] = useState(0)
   const [TechnicianId, setTechnicianId] = useState(0)
   const [getUserNameData, setgetUserNameData] = useState<GetAllData[]>([])
   const [startDate, setStartDate] = useState<any>('')
@@ -135,21 +139,22 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log("Enter")
+    console.log('Enter')
     LoderActions(true)
     try {
-      let response:any = await OfficeStockOutwardsViewService.getDynamicDownloadFile(productId,
+      let response: any = await OfficeStockOutwardsViewService.getDynamicDownloadFile(
+        productId,
         zoneId,
         TechnicianId,
         searchText,
         Username,
         startDate,
         endDate,
-        createdBy,
-        )
-      saveAs(response.data,"OfficeOldStockOutwards.xlsx")
+        createdBy
+      )
+      saveAs(response.data, 'OfficeOldStockOutwards.xlsx')
     } catch (error) {
-      console.log("Error",error)
+      console.log('Error', error)
     } finally {
       LoderActions(false)
     }
@@ -182,18 +187,19 @@ const ListDataProvider: FC = ({children}) => {
   let fetchAllUser = async () => {
     LoderActions(true)
     try {
-      let response: GetAllgetOfficeStockOutwardsDataApi = await OfficeStockOutwardsViewService.getDynamicOfficeOldStockOutwards(
-        pageNo,
-        pageSize,
-        searchText,
-        zoneId,
-        Username,
-        createdBy,
-        productId,
-        TechnicianId,
-        startDate,
-        endDate
-      )
+      let response: GetAllgetOfficeStockOutwardsDataApi =
+        await OfficeStockOutwardsViewService.getDynamicOfficeOldStockOutwards(
+          pageNo,
+          pageSize,
+          searchText,
+          zoneId,
+          Username,
+          createdBy,
+          productId,
+          TechnicianId,
+          startDate,
+          endDate
+        )
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -273,19 +279,21 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   useEffect(() => {
-    console.log("suggestionUserText",suggestionUserText)
+    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
-      let fetchSuggestionUser = async() => {
+      let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
-          let payload: GetAllData = await OfficeStockOutwardsViewService.getUserName(suggestionUserText)
+          let payload: GetAllData = await OfficeStockOutwardsViewService.getUserName(
+            suggestionUserText
+          )
           console.log(payload, 'getUserNamegetUserName')
 
           if (payload.success == true) {
             LoderActions(false)
             setgetUserNameData(payload?.data)
             console.log(payload.data, 'getUserName')
-          }else if(payload.message==='No records found'){
+          } else if (payload.message === 'No records found') {
             setgetUserNameData([])
           }
         } catch (error) {
@@ -344,7 +352,7 @@ const ListDataProvider: FC = ({children}) => {
     totalData,
     setTotalData,
     suggestionUserText,
-setSuggestionUserText
+    setSuggestionUserText,
   }
   return (
     <>
@@ -357,4 +365,3 @@ function ListPageData() {
 }
 
 export {ListDataProvider, ListPageData}
-

@@ -39,8 +39,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
     setEndDate,
     productId,
     setProductId,
-    DataGetAllTypeZone,
-    fetchAllDownload
+    fetchAllDownload,
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -119,16 +118,13 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     fetchAllUser()
-    DataGetAllTypeZone()
   }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId])
 
-   
   // download
-  const downloadFile = async() => {
+  const downloadFile = async () => {
     fetchAllDownload()
   }
 
-  
   return (
     <>
       {/* begin::Formik Form */}
@@ -169,7 +165,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                  <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}

@@ -1,11 +1,11 @@
 import {useEffect} from 'react'
-import { KTCard } from '../../../../../helpers'
+import {KTCard} from '../../../../../helpers'
 import OfficeStockInwardsFormHeader from '../Component/OfficeStockInwardsFormHeader'
-import { ListDataProvider, ListPageData } from '../OfficeStockInwardsContext'
+import {ListDataProvider, ListPageData} from '../OfficeStockInwardsContext'
 import OfficeStockInwardsFormByCategory from './OfficeStockInwardsFormByCategory'
 
 const OfficeStockinwardsForm = () => {
-  const {DataGetAllTypeZone,DataGetAllTypeProduct,DataGetAllTypeDeliveredByTypes} = ListPageData()
+  const {DataGetAllTypeZone, DataGetAllTypeProduct, DataGetAllTypeDeliveredByTypes} = ListPageData()
   useEffect(() => {
     DataGetAllTypeZone()
     DataGetAllTypeProduct()

@@ -1,34 +1,33 @@
 import {KTCard} from '../../../../helpers'
 import GodownStockInwardsFormWrapper from './Form/GodownStockInwardsFormWrapper'
-import { ListDataProvider, ListPageData } from './GodownStockInwardsContext'
+import {ListDataProvider, ListPageData} from './GodownStockInwardsContext'
 import GodownStockInwardsFormViewModal from './GodownStockInwardsList/Table/GodownStockInwardsFormViewModal'
 import GodownStockInwardsHeader from './GodownStockInwardsList/Table/GodownStockInwardsHeader'
 import GodownStockInwardsPagination from './GodownStockInwardsList/Table/GodownStockInwardsPagination'
 import GodownStockInwardsTable from './GodownStockInwardsList/Table/GodownStockInwardsTable'
-
 
 const Officestockinwardlist = () => {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        {/* begin:: OfficeStockInwards  Header Component */}
+        {/* begin:: GodownStockInwards  Header Component */}
         <GodownStockInwardsHeader category={GodownStockInwardsHeader} />
-        {/* end:: OfficeStockInwards  Header Component */}
+        {/* end:: GodownStockInwards  Header Component */}
 
-        {/* begin:: OfficeStockInwards  Table Component */}
+        {/* begin:: GodownStockInwards  Table Component */}
         <GodownStockInwardsTable />
-        {/* end:: OfficeStockInwards  Table Component */}
+        {/* end:: GodownStockInwards  Table Component */}
       </KTCard>
-      {/* begin:: OfficeStockInwards  Table-Pagination Component */}
+      {/* begin:: GodownStockInwards  Table-Pagination Component */}
       <GodownStockInwardsPagination />
-      {/* end:: OfficeStockInwards  Table-Pagination Component */}
-      {/* begin:: OfficeStockInwards  Add/Edit Form Component */}
+      {/* end:: GodownStockInwards  Table-Pagination Component */}
+      {/* begin:: GodownStockInwards  Add/Edit Form Component */}
       {itemIdForUpdate !== undefined && <GodownStockInwardsFormWrapper />}{' '}
-      {/* end:: OfficeStockInwards  Add/Edit Form Component */}
-      {/* begin:: OfficeStockInwards  View Form Component */}
+      {/* end:: GodownStockInwards  Add/Edit Form Component */}
+      {/* begin:: GodownStockInwards  View Form Component */}
       {viewIdForUpdate && <GodownStockInwardsFormViewModal category={viewIdForUpdate} />}{' '}
-      {/* end:: OfficeStockInwards  View Form Component */}
+      {/* end:: GodownStockInwards  View Form Component */}
     </div>
   )
 }

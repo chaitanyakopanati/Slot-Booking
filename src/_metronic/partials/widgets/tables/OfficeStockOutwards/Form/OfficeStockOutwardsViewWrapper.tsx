@@ -43,22 +43,9 @@ function OfficeStockOutwardsView() {
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>
-        <UserFormViewHeader />
         {userDetails && <OfficeStockOutwardsFormViewModal category={userDetails} />}
       </KTCard>
     </div>
-  )
-}
-
-function UserFormViewHeader() {
-  return (
-    <>
-      {/* <div className='modal-header'> */}
-        {/* begin::Modal title */}
-        {/* <h2 className='fw-bolder'>View User</h2> */}
-        {/* end::Modal title */}
-      {/* </div> */}
-    </>
   )
 }
 

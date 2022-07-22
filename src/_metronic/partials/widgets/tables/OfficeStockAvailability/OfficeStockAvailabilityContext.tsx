@@ -1,7 +1,13 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardservice from './helperOfficeStockAvailability/ApiDataRequest'
-import { GetAllData, GetAlLlOfficetockAvailabilitApi, getOfficetockAvailabilityData, ID, ViewForm } from './helperOfficeStockAvailability/ModelOfficeStockAvailability'
+import {
+  GetAllData,
+  GetAlLlOfficetockAvailabilitApi,
+  getOfficetockAvailabilityData,
+  ID,
+  ViewForm,
+} from './helperOfficeStockAvailability/ModelOfficeStockAvailability'
 import {saveAs} from 'file-saver'
 
 export interface ComplaintDataContextModel {
@@ -79,15 +85,18 @@ const ListDataProvider: FC = ({children}) => {
   const [productId, setproductId] = useState(0)
   let {LoderActions} = useLoader()
 
-
   // Download fill
 
   let fetchAllDownload = async () => {
     console.log('Enter')
     LoderActions(true)
     try {
-      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(productId, zoneId,searchText)
-      saveAs(response.data, 'officestockavailabilities.xlsx ')
+      let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(
+        productId,
+        zoneId,
+        searchText
+      )
+      saveAs(response.data, 'officestockAvailabilities.xlsx')
     } catch (error) {
       console.log('Error', error)
     } finally {

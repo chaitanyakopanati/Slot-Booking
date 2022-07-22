@@ -10,8 +10,8 @@ const getDynamicGodownstockavailabilities = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
-  zoneId:number,
-  productId:number
+  zoneId: number,
+  productId: number
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -27,17 +27,13 @@ const getDynamicGodownstockavailabilities = (
   /* end::  getDynamicGodownstockavailabilities Api call */
 }
 
-
 // Download
 
-const getDynamicDownloadFile = (
-  productId: number,
-  searchText: string,
-) => {
-    return axios({
-      url: `${API_URL_DATA}/GetGodownStockAvailabilitiesExcelSheetData?productId=${productId}&searchText=${searchText}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+const getDynamicDownloadFile = (productId: number, searchText: string) => {
+  return axios({
+    url: `${API_URL_DATA}/GetGodownStockAvailabilitiesExcelSheetData?productId=${productId}&searchText=${searchText}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
@@ -49,7 +45,7 @@ const getProducts = () => {
 const OfficeStockOutwardservice = {
   getDynamicGodownstockavailabilities,
   getProducts,
-  getDynamicDownloadFile
+  getDynamicDownloadFile,
 }
 
 export default OfficeStockOutwardservice

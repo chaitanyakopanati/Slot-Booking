@@ -1,7 +1,12 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react' 
-import  {saveAs}  from 'file-saver'
-import { useLoader } from '../../../../../app/modules/loader/LoaderContext'
-import { GetAllData, GetAllOfficeOldStockInwardsApi, getOfficeOldStockInwardsData, ID } from './helperOfficeStockInwards/ModelOfficeStockInwards'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
+import {saveAs} from 'file-saver'
+import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
+import {
+  GetAllData,
+  GetAllOfficeOldStockInwardsApi,
+  getOfficeOldStockInwardsData,
+  ID,
+} from './helperOfficeStockInwards/ModelOfficeStockInwards'
 import OfficeStockInwardsService from './helperOfficeStockInwards/ApiDataRequest'
 
 export interface ComplaintDataContextModel {
@@ -121,7 +126,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageCount, setPageCount] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
   const [zoneId, setZoneId] = useState(0)
-   const [productId, setProductId] = useState(0)
+  const [productId, setProductId] = useState(0)
   const [TechnicianId, setTechnicianId] = useState(0)
   const [getUserNameData, setgetUserNameData] = useState<GetAllData[]>([])
   const [startDate, setStartDate] = useState<any>('')
@@ -134,18 +139,20 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log("Enter")
+    console.log('Enter')
     LoderActions(true)
     try {
-      let response:any = await OfficeStockInwardsService.getDynamicDownloadFile(productId,
+      let response: any = await OfficeStockInwardsService.getDynamicDownloadFile(
+        productId,
         zoneId,
         createdBy,
         searchText,
         startDate,
-        endDate)
-      saveAs(response.data,"OfficeStockInwards.xlsx")
+        endDate
+      )
+      saveAs(response.data, 'OfficeStockInwards.xlsx')
     } catch (error) {
-      console.log("Error",error)
+      console.log('Error', error)
     } finally {
       LoderActions(false)
     }
@@ -178,16 +185,17 @@ const ListDataProvider: FC = ({children}) => {
   let fetchAllUser = async () => {
     LoderActions(true)
     try {
-      let response: GetAllOfficeOldStockInwardsApi = await OfficeStockInwardsService.getDynamicOfficeOldStockInwards(
-        pageNo,
-        pageSize,
-        searchText,
-        createdBy,
-        startDate,
-        endDate,
-        zoneId,
-        productId
-      )
+      let response: GetAllOfficeOldStockInwardsApi =
+        await OfficeStockInwardsService.getDynamicOfficeOldStockInwards(
+          pageNo,
+          pageSize,
+          searchText,
+          createdBy,
+          startDate,
+          endDate,
+          zoneId,
+          productId
+        )
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -267,9 +275,9 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   useEffect(() => {
-    console.log("suggestionUserText",suggestionUserText)
+    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
-      let fetchSuggestionUser = async() => {
+      let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
           let payload: GetAllData = await OfficeStockInwardsService.getUserName(suggestionUserText)
@@ -279,7 +287,7 @@ const ListDataProvider: FC = ({children}) => {
             LoderActions(false)
             setgetUserNameData(payload?.data)
             console.log(payload.data, 'getUserName')
-          }else if(payload.message==='No records found'){
+          } else if (payload.message === 'No records found') {
             setgetUserNameData([])
           }
         } catch (error) {
@@ -355,7 +363,7 @@ const ListDataProvider: FC = ({children}) => {
     totalData,
     setTotalData,
     suggestionUserText,
-setSuggestionUserText
+    setSuggestionUserText,
   }
   return (
     <>
@@ -368,4 +376,3 @@ function ListPageData() {
 }
 
 export {ListDataProvider, ListPageData}
-

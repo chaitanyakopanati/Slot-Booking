@@ -1,38 +1,26 @@
 import {useEffect} from 'react'
 import moment from 'moment'
 import {useNavigate} from 'react-router-dom'
-import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../OfficeStockOutwardsContext'
 import {getOfficeStockOutwardsData} from '../../helperOfficeStockOutwards/ModelOfficeStockOutwards'
 
 const OfficeStockOutwardsTable = () => {
   const {
-    setItemIdForUpdate,
     pageNo,
     getData,
     pageSize,
-    setViewIdForUpdate,
     setPageNo,
     setSearchText,
     DataGetAllTypeCreatedByTypes,
     DataGetAllTypeTechnician,
     fetchAllUser,
     DataGetAllTypeZone,
-    DataGetAllTypeProduct
+    DataGetAllTypeProduct,
   } = ListPageData()
-  let {LoderActions} = useLoader()
   const navigate = useNavigate()
 
   const DataWiseIndex = (pageNo - 1) * pageSize
-
-  const openEditModal = (id: any) => {
-    setItemIdForUpdate(id)
-  }
-
-  const openViewModal = (id: any) => {
-    setViewIdForUpdate(id)
-  }
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
@@ -203,9 +191,7 @@ const OfficeStockOutwardsTable = () => {
 
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Technician:</div>
-                          <div className='text-dark fw-bold  ms-2'>
-                            {row.technicianName || '-'}
-                          </div>
+                          <div className='text-dark fw-bold  ms-2'>{row.technicianName || '-'}</div>
                         </div>
 
                         <div className='py-1 d-flex'>

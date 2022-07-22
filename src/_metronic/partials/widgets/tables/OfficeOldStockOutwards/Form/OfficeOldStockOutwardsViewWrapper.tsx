@@ -1,14 +1,15 @@
 import {useEffect} from 'react'
 import {useQuery} from 'react-query'
 import {useParams} from 'react-router-dom'
-import { isNotEmpty, KTCard } from '../../../../../helpers'
+import {isNotEmpty, KTCard} from '../../../../../helpers'
 import OfficeStockOutwardsViewService from '../helperOfficeOldStockOutwards/ApiDataRequest'
-import { ListDataProvider, ListPageData } from '../OfficeOldStockOutwardsContext'
+import {ListDataProvider, ListPageData} from '../OfficeOldStockOutwardsContext'
 import OfficeOldStockOutwardsFormViewModal from '../OfficeOldStockOutwardsList/Table/OfficeOldStockOutwardsFormViewModal'
 
 function OfficeOldStockOutwardsView() {
   let {id} = useParams()
-  const {viewIdForUpdate, setViewIdForUpdate,  DataGetAllTypeProduct,DataGetAllTypeTechnician} = ListPageData()
+  const {viewIdForUpdate, setViewIdForUpdate, DataGetAllTypeProduct, DataGetAllTypeTechnician} =
+    ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
     console.log('id', id)
@@ -36,10 +37,10 @@ function OfficeOldStockOutwardsView() {
     }
   )
 
-  useEffect(() =>{
+  useEffect(() => {
     DataGetAllTypeProduct()
     DataGetAllTypeTechnician()
-  },[])
+  }, [])
   return (
     <div className='overflow-hidden'>
       <KTCard className='ms-5 me-5'>

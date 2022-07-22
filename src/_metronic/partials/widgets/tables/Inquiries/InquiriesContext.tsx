@@ -8,8 +8,8 @@ import {
   getInquiriesData,
   ID,
   GetAllDataApiSalesExecutve,
-  roleIdInquiries,
 } from './helperInquiries/ModelInquiries'
+import {saveAs} from 'file-saver'
 
 export interface ComplaintDataContextModel {
   getData: getInquiriesData[]
@@ -59,6 +59,7 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeStatus: () => void
   DataGetAllTypeSalesExecutve: () => void
   DataGetAllTypeSalesExecutveUserByRole: () => void
+  fetchAllDownload: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -109,6 +110,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeStatus: () => {},
   DataGetAllTypeSalesExecutve: () => {},
   DataGetAllTypeSalesExecutveUserByRole: () => {},
+  fetchAllDownload: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInquiriesData[]>([])
@@ -137,6 +139,28 @@ const ListDataProvider: FC = ({children}) => {
   const [statusId, setStatusId] = useState<number>(0)
   let {LoderActions} = useLoader()
 
+  // Download fill
+
+  let fetchAllDownload = async () => {
+    console.log('Enter')
+    LoderActions(true)
+    try {
+      let response: any = await Inquiriesservice.getDynamicDownloadFile(
+        searchText,
+        startDate,
+        endDate,
+        createdById,
+        statusId,
+        salesExecutiveId
+      )
+      saveAs(response.data, 'Inquiries.xlsx')
+    } catch (error) {
+      console.log('Error', error)
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   {
     /* begin:: User:- getDynamicUser Api call */
   }
@@ -152,7 +176,7 @@ const ListDataProvider: FC = ({children}) => {
         roleId,
         salesExecutiveId,
         startDate,
-        endDate,
+        endDate
       )
       console.log(response, 'response=========')
 
@@ -266,6 +290,7 @@ const ListDataProvider: FC = ({children}) => {
     salesExecutiveId,
     createdAt,
     setStartDate,
+    fetchAllDownload,
     setEndDate,
     startDate,
     endDate,

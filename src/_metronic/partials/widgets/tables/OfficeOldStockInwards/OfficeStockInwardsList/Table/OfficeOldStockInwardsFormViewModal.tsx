@@ -1,9 +1,9 @@
-import {FC, useEffect, useState} from 'react'
+import {FC} from 'react'
 import {useNavigate} from 'react-router-dom'
 import moment from 'moment'
 import {KTSVG} from '../../../../../../helpers'
 import {Formik} from 'formik'
-import { ListPageData } from '../../OfficeOldStockInwardsContext'
+import {ListPageData} from '../../OfficeOldStockInwardsContext'
 
 type Props = {
   category: any
@@ -15,7 +15,7 @@ function onKeyDown(keyEvent: any) {
 }
 
 const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, setViewIdForUpdate} = ListPageData()
+  const {setViewIdForUpdate} = ListPageData()
   const navigate = useNavigate()
 
   return (
@@ -24,7 +24,7 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.data?.id || '',
           inwardNo: category.data?.inwardNo || '',
-          inwardDate: moment(category.inwardDate).format('YYYY-MM-DD'),
+          inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
           productName: category.data?.productName || 0,
           quantity: category.data?.quantity || '',
           deliveredByName: category.data?.deliveredByName || '',
@@ -71,7 +71,7 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                         setViewIdForUpdate(undefined)
                         console.log('tttttttttttttttttttttttttttt', category)
                         console.log('tttttttttttttttttttttttttttt', category.data.id)
-                        navigate(`/stocks/office-stock-inwards/inwardsform/${category.data.id}`)
+                        navigate(`/stocks/office-old-stock-inwards/inwardsOldform/${category.data.id}`)
                         // openEditModal(category.id)
                       }}
                     >
@@ -88,7 +88,7 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
               <div className='modal-body'>
                 <div className='container-fluid p-0'>
                   <div className='row w-100 mx-0 mb-4 gy-4'>
-                    <div className='col-md-6 col-12'>
+                    <div className='col-md-3'>
                       <label className='form-label fw-bold '>Inward date </label>
                       <input
                         className='form-control form-control-lg form-control-solid'
@@ -102,7 +102,7 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                       />
                     </div>
 
-                    <div className='col-md-6 col-12'>
+                    <div className='col-md-3'>
                       <label className='form-label fw-bold required'>Product</label>
                       <input
                         className='form-control form-control-lg form-control-solid'
@@ -116,7 +116,7 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                       />
                     </div>
 
-                    <div className='col-md-6 col-12'>
+                    <div className='col-md-3'>
                       <label className='form-label fw-bold required'>Quantity</label>
                       <input
                         placeholder='Quantity'
@@ -131,7 +131,20 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                       />
                     </div>
 
-                    <div className='col-md-6 col-12'>
+                    <div className='col-md-3'>
+                      <label className='form-label fw-bold required'>Zone </label>
+                      <input
+                        className='form-control form-control-lg form-control-solid'
+                        type='text'
+                        value={props.values.zoneName}
+                        onBlur={props.handleBlur}
+                        name='zoneName'
+                        autoComplete='off'
+                        disabled
+                      />
+                    </div>
+
+                    <div className=' col-12'>
                       <label className='form-label fw-bold required'>Delivered by</label>
                       <input
                         className='form-control form-control-lg form-control-solid'
@@ -144,18 +157,7 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                       />
                     </div>
 
-                    <div className=' col-12'>
-                      <label className='form-label fw-bold required'>Zone </label>
-                      <input
-                        className='form-control form-control-lg form-control-solid'
-                        type='text'
-                        value={props.values.zoneName}
-                        onBlur={props.handleBlur}
-                        name='zoneName'
-                        autoComplete='off'
-                        disabled
-                      />
-                    </div>
+                  
                   </div>
 
                   <div className='col-12 col-lg-12'>

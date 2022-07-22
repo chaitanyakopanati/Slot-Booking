@@ -29,7 +29,7 @@ let validationSchemaNewForm = Yup.object({
 })
 
 const InstallationFormModal: FC<Props> = ({category}) => {
-  const suggestionRef :any = useRef()
+  const suggestionRef: any = useRef()
   const {
     setItemIdForUpdate,
     itemIdForUpdate,
@@ -39,7 +39,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     getMainPoint,
     getcableTypeData,
     setSuggestionUserText,
-    getUserNameData
+    getUserNameData,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
@@ -60,36 +60,56 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     cabletypeid: '',
     userid: '',
     connectiontype: '',
+    userName: '',
   })
 
   useEffect(() => {
-
-    setInitialValues({
-      ...category,
-      id: category.data?.id,
-      status: category.data?.status || '',
-      installerid: category.data?.installerid || '',
-      zonepointid: category.data?.zonepointid || '',
-      cabletypeid: category.data?.cabletypeid || '',
-      cablelength: category.data?.cablelength || '',
-      iptype: category.data?.iptype || '',
-      userid: category.data?.userid || '',
-      accesspointip: category.data?.accesspointip || '',
-      remark: category.data?.remark || '',
-      stationip: category.data?.stationip || '',
-      stationname: category.data?.stationname || '',
-      stationMac: category.data?.stationMac || '',
-      connectiontype: category.data?.connectiontype || '',
-      isnotifyinstaller: category.data?.isnotifyinstaller || false,
-    })
+    if (itemIdForUpdate === 'add') {
+      setInitialValues({
+        ...category,
+        id: category.data?.id,
+        status: category.data?.status || '',
+        installerid: category.data?.installerid || '',
+        zonepointid: category.data?.zonepointid || '',
+        cabletypeid: category.data?.cabletypeid || '',
+        cablelength: category.data?.cablelength || '',
+        iptype: category.data?.iptype || '',
+        userid: category.data?.userid || '',
+        accesspointip: category.data?.accesspointip || '',
+        remark: category.data?.remark || '',
+        stationip: category.data?.stationip || '',
+        stationname: category.data?.stationname || '',
+        stationMac: category.data?.stationMac || '',
+        connectiontype: category.data?.connectiontype || '',
+        isnotifyinstaller: category.data?.isnotifyinstaller || false,
+      })
+    } else {
+      setInitialValues({
+        ...category,
+        id: category.data?.id,
+        status: category.data?.status || '',
+        installerid: category.data?.installerid || '',
+        zonepointid: category.data?.zonepointid || '',
+        cabletypeid: category.data?.cabletypeid || '',
+        cablelength: category.data?.cablelength || '',
+        iptype: category.data?.iptype || '',
+        userid: category.data?.userid || '',
+        userName: category.data?.userName || '',
+        accesspointip: category.data?.accesspointip || '',
+        remark: category.data?.remark || '',
+        stationip: category.data?.stationip || '',
+        stationname: category.data?.stationname || '',
+        stationMac: category.data?.stationMac || '',
+        connectiontype: category.data?.connectiontype || '',
+        isnotifyinstaller: category.data?.isnotifyinstaller || false,
+      })
+    }
   }, [itemIdForUpdate])
 
   useEffect(() => {
-    if(getUserNameData.length===0){
-      suggestionRef.current.style.display="none"
+    if (getUserNameData.length === 0) {
+      suggestionRef.current.style.display = 'none'
     }
-    
-    
   }, [getUserNameData])
 
   const cancel = (withRefresh?: boolean) => {
@@ -104,7 +124,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     }
   }
 
-  
 
   return (
     <>
@@ -116,9 +135,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
           console.log('values', values)
           LoderActions(true)
 
-          values.iptype =  values.iptype.toString();
-          values.connectiontype=  values.connectiontype.toString();
-          values.status=values.status.toString();
+          values.iptype = values.iptype.toString()
+          values.connectiontype = values.connectiontype.toString()
+          values.status = values.status.toString()
           try {
             if (values.id) {
               console.log(values.id, 'idddddddddddddd')
@@ -133,9 +152,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 toast.success(`Data Updated Successfully`)
               }
               navigation('/installations')
-             
-
-             
             } else {
               console.log('divyesh', values)
 
@@ -149,7 +165,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
               }
               toast.dismiss('1s')
               navigation('/installations')
-            
             }
           } catch (error: any) {
             console.log(error, 'error')
@@ -183,48 +198,66 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     {' '}
                     <div className='row w-100 mx-0 mb-4 gy-4'>
                       {' '}
-                      <div className='col-lg-3' style={{position:'relative'}}>
-                        <label className='form-label fw-bold required'>User Name</label>{' '}
-                        <input
-                          name="userid"
-                          placeholder='userName'
-                          className='form-control form-control-lg form-control-solid'
-                          value={props.values.userid}
-                          autoComplete="false"
-                          onChange={(e)=>{
-                            setSuggestionUserText(e.target.value)
-                            if(e.target.value){
-                              suggestionRef.current.style.display="block"
-                            }else{
-                              suggestionRef.current.style.display="none"
-                            }
-                            props.handleChange(e)
-                          }}
-                          onBlur={(e)=>{
-                            // suggestionRef.current.
-                            var container = suggestionRef.current;
-                              document.addEventListener('click', function( event ) {
-                                if (container !== event.target && !container.contains(event.target)) {    
-                                }else{
+                      <div className='col-lg-3' style={{position: 'relative'}}>
+                        {/* <div className='col-lg-6 col-12'>
+                          <label className='form-label fw-bold required'>User Name</label>{' '}
+                          <input
+                            name='username'
+                            placeholder='userName'
+                            className='form-control form-control-lg form-control-solid'
+                            value={formik.values.username || ''}
+                            autoComplete='off'
+                            onChange={(e) => {
+                              setSuggestionUserText(e.target.value)
+                              if (e.target.value) {
+                                suggestionRef.current.style.display = 'block'
+                              } else {
+                                suggestionRef.current.style.display = 'none'
+                                console.log('Elseeeeeee__________________________', suggestionRef)
+                              }
+                              formik.handleChange(e)
+                            }}
+                            onBlur={(e) => {
+                              // suggestionRef.current.
+                              var container = suggestionRef.current
+                              document.addEventListener('click', function (event) {
+                                if (suggestionRef.current) {
+                                  suggestionRef.current.style.display = 'none'
                                 }
-                                suggestionRef.current.style.display="none"
-                                document.removeEventListener('click',()=>{})
-                              });
-                            
-                          }}
-                        />
-                        <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
-                          <ul>
-                            {getUserNameData?.length>0 && getUserNameData.map((user,index)=>{
-                              console.log("user",user)
-                              return <li key={user.id} onClick={()=>{
-                                props.setFieldValue('userid',user.firstname)
-                              }}>{user.firstname}</li>
-                            })}
-                          </ul>
-                        </div>
+                                console.log(
+                                  suggestionRef,
+                                  '=====================-------===----==--'
+                                )
+                                document.removeEventListener('click', () => {})
+                              })
+                            }}
+                          />
+                          <div className='erro2' style={{color: 'red'}}>
+                            {formik.touched.username && formik.errors.username
+                              ? formik.errors.username
+                              : null}
+                          </div>
+                          <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
+                            <ul>
+                              {getUserNameData?.length > 0 &&
+                                getUserNameData.map((user, index) => {
+                                  console.log('user', user)
+                                  return (
+                                    <li
+                                      key={user.id}
+                                      onClick={() => {
+                                        formik.setFieldValue('userId', user.id)
+                                        formik.setFieldValue('username', user.firstname)
+                                      }}
+                                    >
+                                      {user.firstname}
+                                    </li>
+                                  )
+                                })}
+                            </ul>
+                          </div>
+                        </div> */}
                       </div>
-
                       <div className='col-lg-3'>
                         <label className='form-label fw-bold'>Installer</label>
                         <select
@@ -232,7 +265,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                           {...props.getFieldProps('installerid')}
                         >
                           <option value='' disabled>
-                            Select Installer Type
+                            Select Installer
                           </option>
                           {getInstallations.map((TypeData: any, index: number) => {
                             return (
@@ -253,7 +286,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                           {...props.getFieldProps('zonepointid')}
                         >
                           <option value='' disabled>
-                            Select MainPoint Type
+                            Select MainPoint
                           </option>
                           {getMainPoint.map((TypeData: any, index) => {
                             return (
@@ -314,7 +347,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                             value={props.values.cablelength}
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
-                            name='cablelength'
+                            name='cable length'
                             autoComplete='off'
                             className='form-control form-control-solid'
                           />

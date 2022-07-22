@@ -7,7 +7,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   category: any
@@ -22,7 +22,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
     setSearchText,
     searchText,
     setPageNo,
-     getDataAllType,
+    getDataAllType,
     createdBy,
     setcreatedById,
     fetchAllUser,
@@ -35,7 +35,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
     zoneId,
     setZoneId,
     getDataAllTypeProduct,
-     DataGetAllTypeZone,
+
     setEndDate,
     productId,
     fetchAllDownload,
@@ -69,10 +69,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
 
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
-  }
-
-  const openAddCategoryModal = () => {
-    setItemIdForUpdate(null)
   }
 
   {
@@ -117,15 +113,13 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-     fetchAllUser()
-     DataGetAllTypeZone()
+    fetchAllUser()
   }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId])
 
-
-    // download
-    const downloadFile = async() => {
-      fetchAllDownload()
-    }
+  // download
+  const downloadFile = async () => {
+    fetchAllDownload()
+  }
 
   return (
     <>
@@ -167,7 +161,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                   <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}
@@ -250,7 +244,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                       <div>
                         <DateRangePicker
                           initialSettings={{
-                            
                             alwaysShowCalendars: false,
                             ranges: range,
                             // placeholder:"All"
@@ -259,9 +252,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                         >
                           <div className='form-select form-select-solid'>
                             <input
-                            style={{ background: '#f5f8fa',
-                            border: 'none',
-                          outline:'none'}}
+                              style={{background: '#f5f8fa', border: 'none', outline: 'none'}}
                               placeholder='All'
                               value={`${
                                 fromDate && toDate

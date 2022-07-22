@@ -1,8 +1,8 @@
 import {useQuery} from 'react-query'
 import {useEffect} from 'react'
-import { isNotEmpty } from '../../../../../helpers'
-import { useParams } from 'react-router-dom'
-import { ListPageData } from '../GodownStockInwardsContext'
+import {isNotEmpty} from '../../../../../helpers'
+import {useParams} from 'react-router-dom'
+import {ListPageData} from '../GodownStockInwardsContext'
 import OfficeStockInwardsService from '../helperGodownStockInwards/ApiDataRequest'
 import GodownStockInwardsFormModal from './GodownStockInwardsFormModal'
 
@@ -21,16 +21,15 @@ const GodownStockInwardsFormByCategory = () => {
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   const {data: category, error} = useQuery(
-    `GetOfficeStockInwardsTypeById-${itemIdForUpdate}`,
+    `GetGodownStockInwardsById-${itemIdForUpdate}`,
     () => {
-      return OfficeStockInwardsService.GetOfficeStockInwardsTypeById(itemIdForUpdate)
+      return OfficeStockInwardsService.GetGodownStockInwardsTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
       enabled: enabledQuery && id !== 'add',
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        
       },
     }
   )
@@ -39,9 +38,8 @@ const GodownStockInwardsFormByCategory = () => {
   }
 
   useEffect(() => {
-    
     console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category,itemIdForUpdate])
+  }, [category, itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
@@ -49,7 +47,6 @@ const GodownStockInwardsFormByCategory = () => {
   if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <GodownStockInwardsFormModal category={{ID: undefined}} />
   }
-
 
   if (!error && category) {
     return <GodownStockInwardsFormModal category={category} />

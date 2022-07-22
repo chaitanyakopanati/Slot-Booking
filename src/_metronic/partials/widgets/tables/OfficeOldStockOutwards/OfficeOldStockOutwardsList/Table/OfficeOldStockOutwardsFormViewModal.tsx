@@ -4,7 +4,7 @@ import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import moment from 'moment'
 import {KTSVG} from '../../../../../../helpers'
 import {Formik} from 'formik'
-import { ListPageData } from '../../OfficeOldStockOutwardsContext'
+import {ListPageData} from '../../OfficeOldStockOutwardsContext'
 
 type Props = {
   category: any
@@ -16,9 +16,7 @@ function onKeyDown(keyEvent: any) {
 }
 
 const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
-  const {
-    setViewIdForUpdate
-  } = ListPageData()
+  const {setViewIdForUpdate} = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
 
@@ -27,7 +25,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
       <Formik
         initialValues={{
           id: category.data?.id || '',
-          outwardDate: moment(category.outwardDate).format('YYYY-MM-DD'),
+          outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
           productName: category.data?.productName || 0,
           quantity: category.data?.quantity || '',
           zoneName: category.data?.zoneName || '',
@@ -76,7 +74,9 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                         setViewIdForUpdate(undefined)
                         console.log('tttttttttttttttttttttttttttt', category)
                         console.log('tttttttttttttttttttttttttttt', category.data.id)
-                        navigate(`/stocks/office-old-stock-outwards/OutwardsOldform/${category.data.id}`)
+                        navigate(
+                          `/stocks/office-old-stock-outwards/OutwardsOldform/${category.data.id}`
+                        )
                         // openEditModal(category.id)
                       }}
                     >
@@ -134,8 +134,8 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-lg-6'>
-                    <label className='form-label fw-bold required'>Technician</label>
-                    <input
+                      <label className='form-label fw-bold required'>Technician</label>
+                      <input
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         value={props.values.technicianName}
@@ -144,7 +144,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                         autoComplete='off'
                         disabled
                       />
-                  </div>
+                    </div>
                   </div>
 
                   <div className='row w-100 mx-0 mb-4 gy-4'>
@@ -180,14 +180,14 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold required'>Zone </label>
                     <input
-                        className='form-control form-control-lg form-control-solid'
-                        type='text'
-                        value={props.values.zoneName}
-                        onBlur={props.handleBlur}
-                        name='zoneName'
-                        autoComplete='off'
-                        disabled
-                      />
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      value={props.values.zoneName}
+                      onBlur={props.handleBlur}
+                      name='zoneName'
+                      autoComplete='off'
+                      disabled
+                    />
                   </div>
 
                   <div className='col-12 col-lg-12'>

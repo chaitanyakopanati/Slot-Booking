@@ -17,10 +17,10 @@ type Props = {
 let validationSchemaNewForm = Yup.object({
   inwardDate: Yup.string().required('This field is required'),
   productId: Yup.number().required('This field is required'),
-  quantity: Yup.string().required('This field is required'),
+  quantity: Yup.number().required('This field is required'),
   deliveredById: Yup.number().required('This fied is required'),
   zoneId: Yup.number().required('This fielld is required'),
-  // userId: Yup.string().required('This field is required'),
+  username: Yup.string().required('This field is required'),
 })
 
 const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
@@ -57,7 +57,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         ...category,
         id: category.data?.id || '',
         inwardNo: category.data?.inwardNo || '',
-        inwardDate: moment(category.inwardDate).format('YYYY-MM-DD'),
+        inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
         userId: category.data?.userId || '',
         productId: category.data?.productId || 0,
         quantity: category.data?.quantity || '',
@@ -71,7 +71,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         ...category,
         id: category.data?.id || '',
         inwardNo: category.data?.inwardNo || '',
-        inwardDate: moment(category.inwardDate).format('YYYY-MM-DD'),
+        inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
         productId: category.data?.productId || 0,
         username: category.data?.username || '',
         userId: category.data?.userId || '',
@@ -166,7 +166,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               >
                 {/* begin: input name Filed */}
                 <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className=' col-md-6 col-12'>
+                  <div className=' col-md-3'>
                     <label className='form-label fw-bold required'>Inward date </label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -182,13 +182,13 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                  <div className=' col-md-6 col-12'>
+                  <div className=' col-md-3'>
                     <label className='form-label fw-bold required'>Product</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('productId')}
                     >
-                      <option value=''>Select Product Type</option>
+                      <option value=''>Select Product</option>
                       {getDataAllTypeProduct.map((TypeData: any, index) => {
                         return (
                           <option key={index} value={TypeData.id}>
@@ -202,12 +202,12 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                  <div className=' col-md-6 col-12'>
+                  <div className=' col-md-3'>
                     <label className='form-label fw-bold required'>Quantity</label>
                     <input
                       placeholder='quantity'
                       className='form-control form-control-lg form-control-solid'
-                      type='text'
+                      type='number'
                       value={props.values.quantity}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
@@ -219,25 +219,25 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                  <div className='  col-md-6 col-12'>
-                    <label className='form-label fw-bold required'>Delivered by</label>
+                  <div className=' col-md-3'>
+                    <label className='form-label fw-bold required'>Zone </label>
                     <select
                       className='form-select form-select-solid'
-                      {...props.getFieldProps('deliveredById')}
+                      {...props.getFieldProps('zoneId')}
                     >
                       <option value='' disabled>
-                        Select Delivered By
+                        Select Zone
                       </option>
-                      {getDataAllTypeDeliveredBy.map((TypeData, index) => {
+                      {getDataAllType.map((TypeData: any, index) => {
                         return (
-                          <option key={index} value={TypeData?.id}>
-                            {TypeData?.fullName}
+                          <option key={index} value={TypeData.id}>
+                            {TypeData?.name}
                           </option>
                         )
                       })}
                     </select>
                     <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='deliveredById' />
+                      <ErrorMessage name='zoneId' />
                     </div>
                   </div>
 
@@ -249,7 +249,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                         placeholder='userName'
                         className='form-control form-control-lg form-control-solid'
                         value={props.values.username}
-                        autoComplete='false'
+                        autoComplete='off'
                         onChange={(e) => {
                           setSuggestionUserText(e.target.value)
                           if (e.target.value) {
@@ -263,10 +263,10 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                           // suggestionRef.current.
                           var container = suggestionRef.current
                           document.addEventListener('click', function (event) {
-                            if (container !== event.target && !container.contains(event.target)) {
-                            } else {
+                            if (suggestionRef.current) {
+                              suggestionRef.current.style.display = 'none'
                             }
-                            suggestionRef.current.style.display = 'none'
+                            console.log(suggestionRef, '=====================-------===----==--')
                             document.removeEventListener('click', () => {})
                           })
                         }}
@@ -290,33 +290,35 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                             })}
                         </ul>
                       </div>
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='username' />
+                      </div>
                     </div>
                   </div>
 
-                  <div className=' col-12'>
-                    <label className='form-label fw-bold required'>Zone </label>
+                  <div className='col-12'>
+                    <label className='form-label fw-bold required'>Delivered by</label>
                     <select
                       className='form-select form-select-solid'
-                      {...props.getFieldProps('zoneId')}
+                      {...props.getFieldProps('deliveredById')}
                     >
                       <option value='' disabled>
-                        Select Zone Type
+                        Select Delivered By
                       </option>
-                      {getDataAllType.map((TypeData: any, index) => {
+                      {getDataAllTypeDeliveredBy.map((TypeData, index) => {
                         return (
-                          <option key={index} value={TypeData.id}>
-                            {TypeData?.name}
+                          <option key={index} value={TypeData?.id}>
+                            {TypeData?.fullName}
                           </option>
                         )
                       })}
                     </select>
                     <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='zoneId' />
+                      <ErrorMessage name='deliveredById' />
                     </div>
                   </div>
-                </div>
 
-                <div className='col-12'>
+                  <div className='col-12'>
                   <label className='form-label fw-bold '>Serial no</label>
                   <textarea
                     className='form-control form-control-lg form-control-solid'
@@ -343,6 +345,9 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     />
                   </div>
                 </div>
+                </div>
+
+              
               </div>
 
               <div className='modal-footer border-0'>

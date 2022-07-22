@@ -1,8 +1,8 @@
 import {useQuery} from 'react-query'
 import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
-import { isNotEmpty } from '../../../../../helpers'
-import { ListPageData } from '../OfficeOldStockOutwardsContext'
+import {isNotEmpty} from '../../../../../helpers'
+import {ListPageData} from '../OfficeOldStockOutwardsContext'
 import OfficeStockOutwardsViewService from '../helperOfficeOldStockOutwards/ApiDataRequest'
 import OfficeOldStockOutwardsFormModal from './OfficeOldStockOutwardsFormModal'
 
@@ -30,7 +30,6 @@ const OfficeOldStockOutwardsFormByCategory = () => {
       enabled: enabledQuery && id !== 'add',
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        
       },
     }
   )
@@ -39,9 +38,8 @@ const OfficeOldStockOutwardsFormByCategory = () => {
   }
 
   useEffect(() => {
-    
     console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category,itemIdForUpdate])
+  }, [category, itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
@@ -49,7 +47,6 @@ const OfficeOldStockOutwardsFormByCategory = () => {
   if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <OfficeOldStockOutwardsFormModal category={{ID: undefined}} />
   }
-
 
   if (!error && category) {
     return <OfficeOldStockOutwardsFormModal category={category} />

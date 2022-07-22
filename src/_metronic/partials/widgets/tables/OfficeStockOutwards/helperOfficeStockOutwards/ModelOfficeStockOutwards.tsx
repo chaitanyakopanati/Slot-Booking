@@ -30,8 +30,8 @@ export interface getOfficeStockOutwardsData {
   serialno: string
   remark: string
   createdBy: number
-  outwardDate:string
-technicianName:string
+  outwardDate: string
+  technicianName: string
 }
 
 export interface getAllgetOfficeStockOutwardsDataData {
@@ -50,7 +50,7 @@ export interface postlistData {
   technicianId: number
   userId: number
   reason: string
-  username:string
+  username: string
 }
 
 export interface GetAllData {
@@ -59,8 +59,8 @@ export interface GetAllData {
   name: string
   createdById: number
   createdByName: string
-  username:string
-  firstname:string
+  username: string
+  firstname: string
 }
 
 export interface GetAllData {
@@ -79,8 +79,7 @@ export interface putgetOfficeStockOutwardsDatasmodel {
   technicianId: number
   userId: number
   reason: string
-  username:string
-
+  username: string
 }
 export interface putgetOfficeStockOutwardsDatamodel1 {
   data: getOfficeStockOutwardsData
@@ -96,7 +95,7 @@ export interface GetAllgetOfficeStockOutwardsDataApi {
   TotalRecords: number
   page: number
   pageSize: number
-  zoneId: number 
+  zoneId: number
   roleId: string
   searchByUsername: string
 }

@@ -1,7 +1,5 @@
 import {Formik, ErrorMessage, useFormik} from 'formik'
-import * as Yup from 'yup'
 import {FC, useEffect, useRef, useState} from 'react'
-import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
 import {ListPageData} from '../OfficeStockOutwardsContext'
@@ -14,18 +12,7 @@ type formik = {
   category: any
 }
 
-let validationSchemaNewForm = Yup.object({
-  outwardDate: Yup.string().required('This field is required'),
-  productId: Yup.number().required('This field is required'),
-  quantity: Yup.number().required('This field is required'),
-  zoneId: Yup.number().required('This fielld is required'),
-  technicianId: Yup.string().required('This field is required'),
-  reason: Yup.string().required('This field is required'),
-  // userId: Yup.number().required('This field is required'),
-})
-
 const UserFormModal: FC<formik> = ({category}) => {
-  // const navigation = useNavigate()
   const suggestionRef: any = useRef()
 
   const {
@@ -39,6 +26,7 @@ const UserFormModal: FC<formik> = ({category}) => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
+  const [validationForm, setvalidationForm] = useState<any>()
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     userId: '',
@@ -52,13 +40,14 @@ const UserFormModal: FC<formik> = ({category}) => {
     serialno: '',
     remark: '',
   })
+  const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(null)
 
   useEffect(() => {
     if (itemIdForUpdate === 'add') {
       setInitialValues({
         ...category,
         id: category.data?.id || '',
-        outwardDate: moment(category.outwardDate).format('YYYY-MM-DD'),
+        outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
         productId: category.data?.productId || 0,
         quantity: category.data?.quantity || '',
         zoneId: category.data?.zoneId || '',
@@ -72,7 +61,7 @@ const UserFormModal: FC<formik> = ({category}) => {
       setInitialValues({
         ...category,
         id: category.data?.id || '',
-        outwardDate: moment(category.outwardDate).format('YYYY-MM-DD'),
+        outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
         productId: category.data?.productId || 0,
         quantity: category.data?.quantity || '',
         zoneId: category.data?.zoneId || '',
@@ -86,6 +75,38 @@ const UserFormModal: FC<formik> = ({category}) => {
     }
   }, [itemIdForUpdate])
 
+  // useEffect(() => {
+  //   if (itemIdForUpdate === 'add') {
+  //     setvalidationForm({
+  //       validationSchema: Yup.object({
+  //         outwardDate: Yup.string().required('This field is required'),
+  //         productId: Yup.number().required('This field is required'),
+  //         quantity: Yup.number()
+  //           .max(QuntityData)
+  //           .required('This field is required'),
+  //         zoneId: Yup.number().required('This fielld is required'),
+  //         technicianId: Yup.string().required('This field is required'),
+  //         reason: Yup.string().required('This field is required'),
+  //         userId: Yup.number().required('This field is required'),
+  //       }),
+  //     })
+  //   } else {
+  //     setvalidationForm({
+  //       validationSchema: Yup.object({
+  //         outwardDate: Yup.string().required('This field is required'),
+  //         productId: Yup.number().required('This field is required'),
+  //         quantity: Yup.number()
+  //           .max(QuntityData + EditQuntityData)
+  //           .required('This field is required'),
+  //         zoneId: Yup.number().required('This fielld is required'),
+  //         technicianId: Yup.string().required('This field is required'),
+  //         reason: Yup.string().required('This field is required'),
+  //         userId: Yup.number().required('This field is required'),
+  //       }),
+  //     })
+  //   }
+  // }, [itemIdForUpdate])
+
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
     }
@@ -98,10 +119,16 @@ const UserFormModal: FC<formik> = ({category}) => {
     }
   }
 
+  var QuntityData: any = getProductZoneQuntity
+  console.log(QuntityData, 'QuntityData')
+
+  var EditQuntityData: any = category.data?.quantity
+  console.log(EditQuntityData, 'EditQuntityDataEditQuntityData')
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
-    validationSchema: validationSchemaNewForm,
+    validationSchema: validationForm,
     onSubmit: async (values: any, {resetForm}) => {
       LoderActions(true)
       values.zoneId = +values.zoneId
@@ -117,7 +144,6 @@ const UserFormModal: FC<formik> = ({category}) => {
             toast.success(`Data Updated Successfully`)
           }
           navigation('/stocks/office-stock-outwards')
-          // toast.success(` Data Updated Successfully`)
           toast.dismiss('1s')
         } else {
           let response = await OfficeStockOutwardsViewService.postOfficeStockOutwards(values)
@@ -142,16 +168,21 @@ const UserFormModal: FC<formik> = ({category}) => {
 
   useEffect(() => {
     if ((formik.values.productId, formik.values.zoneId)) {
-      // call api
-      // http://192.168.1.181:8080/v1/softnetcrm/GetProductCountByZone/${formik.values.productId}/${formik.values.zoneId}
-      let payload = OfficeStockOutwardsViewService.getProductZoneQuntityTypes(
-        formik.values.productId,
-        formik.values.zoneId
-      )
-      
-      console.log(payload, 'payloadpayload')
+      const ProductZoneAllData = async () => {
+        let payload = await OfficeStockOutwardsViewService.getProductZoneQuntityTypes(
+          formik.values.productId,
+          formik.values.zoneId
+        )
+        console.log(payload, 'payloadpayload')
+        if (payload.success == true) {
+          LoderActions(false)
+          setGetProductZoneQuntity(payload?.data)
+          console.log(payload.data, 'getProductZoneQuntityName')
+        }
+      }
+      // formik.setFieldValue('quantity',10)
 
-      formik.setFieldValue('quantity', 10)
+      ProductZoneAllData()
     }
   }, [formik.values.productId, formik.values.zoneId])
 
@@ -177,7 +208,7 @@ const UserFormModal: FC<formik> = ({category}) => {
           >
             {/* begin: input name Filed */}
             <div className='row w-100 mx-0 mb-4 gy-4'>
-              <div className='col-md-6 col-12'>
+              <div className='col-md-3'>
                 <label className='form-label fw-bold required'>Outward date </label>
                 <input
                   className='form-control form-control-lg form-control-solid'
@@ -195,13 +226,13 @@ const UserFormModal: FC<formik> = ({category}) => {
                 </div>
               </div>
 
-              <div className=' col-md-6 col-12'>
+              <div className=' col-md-3'>
                 <label className='form-label fw-bold required'>Product</label>
                 <select
                   className='form-select form-select-solid'
                   {...formik.getFieldProps('productId')}
                 >
-                  <option value=''>Select Product Type</option>
+                  <option value=''>Select Product</option>
                   {getDataAllTypeProduct.map((TypeData: any, index) => {
                     return (
                       <option key={index} value={TypeData.id}>
@@ -211,61 +242,71 @@ const UserFormModal: FC<formik> = ({category}) => {
                   })}
                 </select>
                 <div className='erro2' style={{color: 'red'}}>
-                  {/* // <ErrorMessage name='productId' /> */}
                   {formik.touched.productId && formik.errors.productId
                     ? formik.errors.productId
                     : null}
                 </div>
               </div>
 
-              <div className=' col-md-6 col-12'>
+              <div className=' col-md-3'>
+                <label className='form-label fw-bold required'>Zone </label>
+                <select
+                  className='form-select form-select-solid'
+                  {...formik.getFieldProps('zoneId')}
+                >
+                  <option value='' disabled>
+                    Select Zone
+                  </option>
+                  {getDataAllType.map((TypeData: any, index) => {
+                    //
+
+                    return (
+                      <option key={index} value={TypeData.id}>
+                        {TypeData?.name}
+                      </option>
+                    )
+                  })}
+                </select>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.zoneId && formik.errors.zoneId ? formik.errors.zoneId : null}
+                </div>
+              </div>
+
+              <div className=' col-md-3'>
                 <label className='form-label fw-bold required'>Quantity</label>
+                {
+                  <label
+                    className='form-label fw-bold'
+                    style={{
+                      color: 'blue',
+                    }}
+                  >
+                    {getProductZoneQuntity != null
+                      ? `(${getProductZoneQuntity} Quantity Available)`
+                      : ''}
+                  </label>
+                }
                 <input
                   placeholder='quantity'
                   className='form-control form-control-lg form-control-solid'
-                  type='text'
+                  type='number'
                   value={formik.values.quantity || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   name='quantity'
                   autoComplete='off'
                 />
+
                 <div className='erro2' style={{color: 'red'}}>
-                  {/* <ErrorMessage name='quantity' /> */}
                   {formik.touched.quantity && formik.errors.quantity
                     ? formik.errors.quantity
                     : null}
                 </div>
               </div>
-
-              <div className='col-lg-6'>
-                <label className='form-label fw-bold required'>Technician</label>
-                <select
-                  className='form-select form-select-solid'
-                  {...formik.getFieldProps('technicianId')}
-                >
-                  <option value='' disabled>
-                    All
-                  </option>
-                  {getDataAllTypeTechnician.map((TypeData, index) => {
-                    return (
-                      <option key={index} value={TypeData?.id}>
-                        {TypeData?.fullName}
-                      </option>
-                    )
-                  })}
-                </select>
-                <div className='erro2' style={{color: 'red'}}>
-                  {/* <ErrorMessage name='technicianId' /> */}
-                  {formik.touched.technicianId && formik.errors.technicianId
-                    ? formik.errors.technicianId
-                    : null}
-                </div>
-              </div>
             </div>
 
-            <div className='col-12' style={{position: 'relative'}}>
-              <div className='col-lg-12'>
+            <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
+              <div className='col-lg-6 col-12'>
                 <label className='form-label fw-bold required'>User Name</label>{' '}
                 <input
                   name='username'
@@ -277,11 +318,9 @@ const UserFormModal: FC<formik> = ({category}) => {
                     setSuggestionUserText(e.target.value)
                     if (e.target.value) {
                       suggestionRef.current.style.display = 'block'
-                     
-                      
                     } else {
                       suggestionRef.current.style.display = 'none'
-                      console.log("Elseeeeeee__________________________",suggestionRef);
+                      console.log('Elseeeeeee__________________________', suggestionRef)
                     }
                     formik.handleChange(e)
                   }}
@@ -289,10 +328,10 @@ const UserFormModal: FC<formik> = ({category}) => {
                     // suggestionRef.current.
                     var container = suggestionRef.current
                     document.addEventListener('click', function (event) {
-                      if (container !== event.target && !container.contains(event.target)) {
-                      } else {
+                      if (suggestionRef.current) {
+                        suggestionRef.current.style.display = 'none'
                       }
-                      suggestionRef.current.style.display = 'none'
+                      console.log(suggestionRef, '=====================-------===----==--')
                       document.removeEventListener('click', () => {})
                     })
                   }}
@@ -316,9 +355,12 @@ const UserFormModal: FC<formik> = ({category}) => {
                       })}
                   </ul>
                 </div>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.userId && formik.errors.userId ? formik.errors.userId : null}
+                </div>
               </div>
 
-              <div className='col-12'>
+              <div className='col-md-6 col-12'>
                 <label className='form-label fw-bold required'>Reason</label>
                 <input
                   placeholder='reason'
@@ -332,64 +374,63 @@ const UserFormModal: FC<formik> = ({category}) => {
                 />
               </div>
               <div className='erro2' style={{color: 'red'}}>
-                {/* <ErrorMessage name='reason' /> */}
                 {formik.touched.reason && formik.errors.reason ? formik.errors.reason : null}
               </div>
-            </div>
 
-            <div className=' col-12'>
-              <label className='form-label fw-bold required'>Zone </label>
-              <select className='form-select form-select-solid' {...formik.getFieldProps('zoneId')}>
-                <option value='' disabled>
-                  Select Zone Type
-                </option>
-                {getDataAllType.map((TypeData: any, index) => {
-                  //
-
-                  return (
-                    <option key={index} value={TypeData.id}>
-                      {TypeData?.name}
-                    </option>
-                  )
-                })}
-              </select>
-              <div className='erro2' style={{color: 'red'}}>
-                {/* <ErrorMessage name='zoneId' /> */}
-                {formik.touched.zoneId && formik.errors.zoneId ? formik.errors.zoneId : null}
+              <div className='col-lg-12'>
+                <label className='form-label fw-bold required'>Technician</label>
+                <select
+                  className='form-select form-select-solid'
+                  {...formik.getFieldProps('technicianId')}
+                >
+                  <option value='' disabled>
+                    All
+                  </option>
+                  {getDataAllTypeTechnician.map((TypeData, index) => {
+                    return (
+                      <option key={index} value={TypeData?.id}>
+                        {TypeData?.fullName}
+                      </option>
+                    )
+                  })}
+                </select>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.technicianId && formik.errors.technicianId
+                    ? formik.errors.technicianId
+                    : null}
+                </div>
               </div>
-            </div>
 
-            <div className='col-12 '>
-              <label className='form-label fw-bold required'>Serial no</label>
-              <textarea
-                className='form-control form-control form-control-solid'
-                value={formik.values.serialno || ''}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                name='serialno'
-                placeholder='Serial no'
-              ></textarea>
-              <div className='erro2' style={{color: 'red'}}>
-                {/* <ErrorMessage name='serialno' /> */}
-              </div>
-            </div>
-
-            <div className='col-12 col-lg-12'>
-              <div className='col'>
-                <label className='form-label fw-bold required'>Remark</label>
-                <input
-                  placeholder='Remark'
-                  className='form-control form-control-lg form-control-solid'
-                  value={formik.values.remark || ''}
+              <div className='col-12 '>
+                <label className='form-label fw-bold'>Serial no</label>
+                <textarea
+                  className='form-control form-control form-control-solid'
+                  value={formik.values.serialno || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  type='text'
-                  name='remark'
-                  autoComplete='off'
-                />
-                <div className='erro2' style={{color: 'red'}}>
-                  {/* <ErrorMessage name='remark' /> */}
-                  {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}
+                  name='serialno'
+                  placeholder='Serial no'
+                ></textarea>
+                <div className='erro2' style={{color: 'red'}}></div>
+              </div>
+
+              <div className='col-12 col-lg-12'>
+                <div className='col'>
+                  <label className='form-label fw-bold'>Remark</label>
+                  <input
+                    placeholder='Remark'
+                    className='form-control form-control-lg form-control-solid'
+                    value={formik.values.remark || ''}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    type='text'
+                    name='remark'
+                    autoComplete='off'
+                  />
+                  <div className='erro2' style={{color: 'red'}}>
+                    {/* <ErrorMessage name='remark' /> */}
+                    {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}
+                  </div>
                 </div>
               </div>
             </div>

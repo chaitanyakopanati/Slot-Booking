@@ -1,11 +1,11 @@
 import {useEffect} from 'react'
-import { KTCard } from '../../../../../helpers'
+import {KTCard} from '../../../../../helpers'
 import GodownStockInwardsFormHeader from '../Component/GodownStockInwardsFormHeader'
-import { ListDataProvider, ListPageData } from '../GodownStockInwardsContext'
+import {ListDataProvider, ListPageData} from '../GodownStockInwardsContext'
 import GodownStockInwardsFormByCategory from './GodownStockInwardsFormByCategory'
 
 const GodownStockinwardsForm = () => {
-  const {DataGetAllTypeZone,DataGetAllTypeProduct,DataGetAllTypeDeliveredByTypes} = ListPageData()
+  const {DataGetAllTypeZone, DataGetAllTypeProduct, DataGetAllTypeDeliveredByTypes} = ListPageData()
   useEffect(() => {
     DataGetAllTypeZone()
     DataGetAllTypeProduct()
@@ -29,6 +29,5 @@ let GodownStockInwardsFormWrapper = () => {
     </ListDataProvider>
   )
 }
-
 
 export default GodownStockInwardsFormWrapper

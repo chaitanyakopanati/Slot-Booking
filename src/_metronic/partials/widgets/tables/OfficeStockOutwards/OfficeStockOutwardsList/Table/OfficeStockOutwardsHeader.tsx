@@ -17,7 +17,6 @@ const OfficeStockOutwardsHeader: FC<Props> = ({category}) => {
   const navigate = useNavigate()
 
   const {
-    setItemIdForUpdate,
     setFilterShow,
     filterShow,
     setSearchText,
@@ -45,7 +44,6 @@ const OfficeStockOutwardsHeader: FC<Props> = ({category}) => {
     startDate,
     endDate,
     fetchAllDownload,
-    DataGetAllTypeZone,
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -75,10 +73,6 @@ const OfficeStockOutwardsHeader: FC<Props> = ({category}) => {
 
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
-  }
-
-  const openAddCategoryModal = () => {
-    setItemIdForUpdate(null)
   }
 
   {
@@ -129,14 +123,13 @@ const OfficeStockOutwardsHeader: FC<Props> = ({category}) => {
     setTechnicianId(e.target.value)
   }
 
-   // download
-   const downloadFile = async() => {
+  // download
+  const downloadFile = async () => {
     fetchAllDownload()
   }
 
   useEffect(() => {
     fetchAllUser()
-    DataGetAllTypeZone()
   }, [
     pageNo,
     pageSize,
@@ -195,7 +188,7 @@ const OfficeStockOutwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                  <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}

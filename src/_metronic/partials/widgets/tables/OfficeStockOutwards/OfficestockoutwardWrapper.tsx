@@ -1,11 +1,10 @@
 import {KTCard} from '../../../../helpers'
 import OfficeStockOutwardsFormWrapper from './Form/OfficeStockOutwardsFormWrapper'
-import { ListDataProvider, ListPageData } from './OfficeStockOutwardsContext'
+import {ListDataProvider, ListPageData} from './OfficeStockOutwardsContext'
 import OfficeStockOutwardsFormViewModal from './OfficeStockOutwardsList/Table/OfficeStockOutwardsFormViewModal'
 import OfficeStockOutwardsHeader from './OfficeStockOutwardsList/Table/OfficeStockOutwardsHeader'
 import OfficeStockOutwardsPagination from './OfficeStockOutwardsList/Table/OfficeStockOutwardsPagination'
 import OfficeStockOutwardsTable from './OfficeStockOutwardsList/Table/OfficeStockOutwardsTable'
-
 
 const OfficestockOutwardlist = () => {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()

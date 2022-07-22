@@ -41,7 +41,9 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
     setSearchByUsername,
     setProductId,
     getDataAllTypeTechnician,
-    fetchAllDownload
+    fetchAllDownload,
+    TechnicianId,
+    setTechnicianId
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -130,15 +132,23 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
     setZoneId(e.target.value)
   }
 
-  useEffect(() => {
-    fetchAllUser()
-  }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId, Username])
-
-   // download
-   const downloadFile = async() => {
-    fetchAllDownload()
+  {
+    /* begin::technicianId */
+  }
+  const handletechnicianchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setTechnicianId(e.target.value)
   }
 
+  useEffect(() => {
+    fetchAllUser()
+  }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId, Username,TechnicianId])
+
+  // download
+  const downloadFile = async () => {
+    fetchAllDownload()
+  }
 
   return (
     <>
@@ -180,7 +190,7 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                  <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}
@@ -310,7 +320,9 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Technician</label>
                     <select
                       className='form-select form-select-solid'
-                      {...props.getFieldProps('deliveredById')}
+                      {...props.getFieldProps('technicianId')}
+                      value={TechnicianId}
+                      onChange={handletechnicianchange}
                     >
                       <option value=''>All</option>
                       {getDataAllTypeTechnician.map((TypeData, index) => {

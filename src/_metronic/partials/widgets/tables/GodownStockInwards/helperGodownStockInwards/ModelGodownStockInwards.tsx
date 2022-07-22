@@ -1,4 +1,4 @@
-export interface getOfficeStockInwardsData {
+export interface getGodownStockInwardsData {
   quantityDisplay: string
   name: string
   createdAt: string
@@ -32,12 +32,12 @@ export interface getOfficeStockInwardsData {
   remark: string
   createdBy: number
   inwardNo: number
-  supplierId:number
-  supplierName:string
+  supplierId: number
+  supplierName: string
 }
 
-export interface getAllOfficeStockInwardsData {
-  data: getOfficeStockInwardsData[]
+export interface getAllGodownStockInwardsData {
+  data: getGodownStockInwardsData[]
   message: string
   success: boolean
 }
@@ -52,10 +52,10 @@ export interface postlistData {
   technicianId: number
   userid: number
   reason: string
-  username:string
-  inwardNo:number
-inwardDate:string
-supplierName:string
+  username: string
+  inwardNo: number
+  inwardDate: string
+  supplierName: string
 }
 
 export interface GetAllData {
@@ -64,8 +64,8 @@ export interface GetAllData {
   name: string
   createdById: number
   createdByName: string
-  username:string
-  firstname:string
+  username: string
+  firstname: string
 }
 
 export interface GetAllData {
@@ -73,10 +73,10 @@ export interface GetAllData {
   success: boolean
   message: string
 }
-export interface putUsersmodel {
+export interface putGodownStockInwardssmodel {
   productId: number
   quantity: number
-  supplierId:number
+  supplierId: number
   serialno: number
   remark: string
   id: number
@@ -84,26 +84,26 @@ export interface putUsersmodel {
   technicianId: number
   userid: number
   reason: string
-  username:string
-  inwardNo:number
-  inwardDate:string
-  supplierName:string
+  username: string
+  inwardNo: number
+  inwardDate: string
+  supplierName: string
 }
-export interface putUsermodel1 {
-  data: getOfficeStockInwardsData
+export interface putputGodownStockInwardssmodel1 {
+  data: getGodownStockInwardsData
   message: string
   success: boolean
 }
 
-export interface GetAllOfficeStockInwardsApi {
-  data: getOfficeStockInwardsData[]
+export interface GetAllGodownStockInwardsApi {
+  data: getGodownStockInwardsData[]
   message: string
   success: boolean
   pages: number
   TotalRecords: number
   page: number
   pageSize: number
-  zoneId: number 
+  zoneId: number
   roleId: string
   searchByUsername: string
 }
@@ -112,4 +112,4 @@ export type ID = undefined | null | string
 
 export type username = undefined | null | string
 
-export type ViewForm = getOfficeStockInwardsData | undefined
+export type ViewForm = getGodownStockInwardsData | undefined

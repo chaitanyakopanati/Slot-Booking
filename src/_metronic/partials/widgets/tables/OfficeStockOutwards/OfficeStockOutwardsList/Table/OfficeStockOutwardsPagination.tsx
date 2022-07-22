@@ -1,7 +1,5 @@
-// import ReactPaginate from 'react-paginate'
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../OfficeStockOutwardsContext'
-
+import {ListPageData} from '../../OfficeStockOutwardsContext'
 
 const OfficeStockOutwardsPagination = () => {
   const {setPageNo, setPageSize, pageCount, getData, totalData, pageNo, pageSize} = ListPageData()

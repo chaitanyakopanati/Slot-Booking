@@ -1,4 +1,4 @@
-import { ListPageData } from "../GodownStockInwardsContext"
+import {ListPageData} from '../GodownStockInwardsContext'
 
 const GodownStockInwardsFormHeader = () => {
   const {itemIdForUpdate} = ListPageData()
@@ -8,7 +8,9 @@ const GodownStockInwardsFormHeader = () => {
       <div className='modal-header'>
         {/* begin::Modal title */}
 
-        <h2 className='fw-bolder'>{itemIdForUpdate === 'add' ? 'Create godown stock inward' : 'Edit godown stock inward'}</h2>
+        <h2 className='fw-bolder'>
+          {itemIdForUpdate === 'add' ? 'Create godown stock inward' : 'Edit godown stock inward'}
+        </h2>
 
         {/* end::Modal title */}
       </div>

@@ -1,7 +1,12 @@
-import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react' 
-import  {saveAs}  from 'file-saver'
-import { GetAllData, GetAllgetOfficeStockOutwardsDataApi, getOfficeStockOutwardsData, ID } from './helperOfficeStockOutwards/ModelOfficeStockOutwards'
-import { useLoader } from '../../../../../app/modules/loader/LoaderContext'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
+import {saveAs} from 'file-saver'
+import {
+  GetAllData,
+  GetAllgetOfficeStockOutwardsDataApi,
+  getOfficeStockOutwardsData,
+  ID,
+} from './helperOfficeStockOutwards/ModelOfficeStockOutwards'
+import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardsViewService from './helperOfficeStockOutwards/ApiDataRequest'
 
 export interface ComplaintDataContextModel {
@@ -22,7 +27,6 @@ export interface ComplaintDataContextModel {
   setZoneId: Dispatch<SetStateAction<number>>
   setTechnicianId: Dispatch<SetStateAction<number>>
   pageCount: number
-  createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
@@ -69,7 +73,6 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   getDataAllTypeProduct: [],
   pageCount: 0,
   productId: 0,
-  createdById: 0,
   setPageCount: () => {},
   setCreatedById: () => {},
   setStartDate: () => {},
@@ -126,7 +129,7 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [Username, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
-   const [productId, setProductId] = useState(0)
+  const [productId, setProductId] = useState(0)
   const [TechnicianId, setTechnicianId] = useState(0)
   const [getUserNameData, setgetUserNameData] = useState<GetAllData[]>([])
   const [startDate, setStartDate] = useState<any>('')
@@ -139,20 +142,22 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log("Enter")
+    console.log('Enter')
     LoderActions(true)
     try {
-      let response:any = await OfficeStockOutwardsViewService.getDynamicDownloadFile(productId,
+      let response: any = await OfficeStockOutwardsViewService.getDynamicDownloadFile(
+        productId,
         zoneId,
         TechnicianId,
         searchText,
         Username,
         startDate,
         endDate,
-        createdBy)
-      saveAs(response.data,"OfficeStockOutwards.xlsx")
+        createdBy
+      )
+      saveAs(response.data, 'OfficeStockOutwards.xlsx')
     } catch (error) {
-      console.log("Error",error)
+      console.log('Error', error)
     } finally {
       LoderActions(false)
     }
@@ -185,15 +190,19 @@ const ListDataProvider: FC = ({children}) => {
   let fetchAllUser = async () => {
     LoderActions(true)
     try {
-      let response: GetAllgetOfficeStockOutwardsDataApi = await OfficeStockOutwardsViewService.getDynamicOfficeStockOutwards(
-        pageNo,
-        pageSize,
-        searchText,
-        zoneId,
-        Username,
-        createdById,
-        TechnicianId
-      )
+      let response: GetAllgetOfficeStockOutwardsDataApi =
+        await OfficeStockOutwardsViewService.getDynamicOfficeStockOutwards(
+          pageNo,
+          pageSize,
+          searchText,
+          zoneId,
+          Username,
+          startDate,
+          endDate,
+          createdBy,
+          productId,
+          TechnicianId
+        )
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -272,22 +281,22 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
-
-
   useEffect(() => {
-    console.log("suggestionUserText",suggestionUserText)
+    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
-      let fetchSuggestionUser = async() => {
+      let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
-          let payload: GetAllData = await OfficeStockOutwardsViewService.getUserName(suggestionUserText)
+          let payload: GetAllData = await OfficeStockOutwardsViewService.getUserName(
+            suggestionUserText
+          )
           console.log(payload, 'getUserNamegetUserName')
 
           if (payload.success == true) {
             LoderActions(false)
             setgetUserNameData(payload?.data)
             console.log(payload.data, 'getUserName')
-          }else if(payload.message==='No records found'){
+          } else if (payload.message === 'No records found') {
             setgetUserNameData([])
           }
         } catch (error) {
@@ -303,7 +312,6 @@ const ListDataProvider: FC = ({children}) => {
     getData,
     getDataDownload,
     fetchAllDownload,
-    createdById,
     setCreatedById,
     setTechnicianId,
     Username,
@@ -348,7 +356,7 @@ const ListDataProvider: FC = ({children}) => {
     totalData,
     setTotalData,
     suggestionUserText,
-setSuggestionUserText
+    setSuggestionUserText,
   }
   return (
     <>

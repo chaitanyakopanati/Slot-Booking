@@ -1,6 +1,6 @@
 import {KTCard} from '../../../../helpers'
 import OfficeStockInwardsFormWrapper from './Form/OfficeStockInwardsFormWrapper'
-import { ListDataProvider, ListPageData } from './OfficeStockInwardsContext'
+import {ListDataProvider, ListPageData} from './OfficeStockInwardsContext'
 import OfficeStockInwardsFormViewModal from './OfficeStockInwardsList/Table/OfficeStockInwardsFormViewModal'
 import OfficeStockInwardsHeader from './OfficeStockInwardsList/Table/OfficeStockInwardsHeader'
 import OfficeStockInwardsPagination from './OfficeStockInwardsList/Table/OfficeStockInwardsPagination'

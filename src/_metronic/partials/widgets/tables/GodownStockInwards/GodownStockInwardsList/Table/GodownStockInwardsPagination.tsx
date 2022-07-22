@@ -1,5 +1,5 @@
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../GodownStockInwardsContext'
+import {ListPageData} from '../../GodownStockInwardsContext'
 
 const GodownStockInwardsPagination = () => {
   const {setPageNo, setPageSize, pageCount, getData, totalData, pageNo, pageSize} = ListPageData()

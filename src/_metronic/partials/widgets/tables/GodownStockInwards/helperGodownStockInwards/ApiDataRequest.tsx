@@ -1,34 +1,34 @@
 import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putUsersmodel } from './ModelGodownStockInwards'
+import {ID, postlistData, putGodownStockInwardssmodel} from './ModelGodownStockInwards'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 {
-  /* begin:: getDynamicOfficeStockInwards Api call */
+  /* begin:: getDynamicGodownStockInwards Api call */
 }
-const getDynamicOfficeStockInwards = (
+const getDynamicGodownStockInwards = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
   createdBy: number,
-  startDate:string,
-  endDate:string,
-  zoneId:number,
-  productId:number,
-  supplierId:string = '',
+  startDate: string,
+  endDate: string,
+  zoneId: number,
+  productId: number,
+  supplierName: string = ''
 ) => {
   if (pageSize <= 0) {
     return http.get(
-      `GetDynamicGodownStockInwards/${null}/${null}?searchText=${null}&createdBy=${null}&startDate=${null}&endDate=${null}&zoneId=${null}&productId=${null}&supplierId=${null}`
+      `GetDynamicGodownStockInwards/${null}/${null}?searchText=${null}&createdBy=${null}&startDate=${null}&endDate=${null}&zoneId=${null}&productId=${null}&supplierName=${null}`
     )
   } else {
     return http.get(
-      `GetDynamicGodownStockInwards/${pageNo}/${pageSize}?searchText=${searchText}&createdBy=${createdBy}&startDate=${startDate}&endDate=${endDate}&zoneId=${zoneId}&productId=${productId}&supplierId=${supplierId}`
+      `GetDynamicGodownStockInwards/${pageNo}/${pageSize}?searchText=${searchText}&createdBy=${createdBy}&startDate=${startDate}&endDate=${endDate}&zoneId=${zoneId}&productId=${productId}&supplierName=${supplierName}`
     )
   }
 }
 {
-  /* end:: getDynamicFaults Api call */
+  /* end:: getDynamicGodownStockInwards Api call */
 }
 
 // download
@@ -39,29 +39,26 @@ const getDynamicDownloadFile = (
   createdBy: number,
   searchText: string,
   startDate: string,
-  endDate: string,
+  endDate: string
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetGodownStockInwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetGodownStockInwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
 {
   /* begin:: post Api call(create) */
 }
-const postOfficeStockInwards:any = (obj: postlistData) => {
-  console.log(obj,"obj");
-
-  // var userData:any =  getUserName(obj.id)
+const postGodownStockInwards: any = (obj: postlistData) => {
+  console.log(obj, 'obj')
   return http.post('SaveGodownStockInwards', {
     inwardDate: obj.inwardDate,
     productId: obj.productId,
     quantity: obj.quantity,
-    supplierName: obj.supplierName,
-    statusId: 1,
     supplierId: obj.supplierId,
+    statusId: 1,
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
@@ -74,19 +71,18 @@ const postOfficeStockInwards:any = (obj: postlistData) => {
 {
   /* begin:: post Api call(edit) */
 }
-const editOfficeStockInwards = (obj: putUsersmodel) => {
+const editGodownStockInwards = (obj: putGodownStockInwardssmodel) => {
   return http.post(`SaveGodownStockInwards`, {
-    id:obj.id,
+    id: obj.id,
     inwardDate: obj.inwardDate,
     productId: obj.productId,
     quantity: obj.quantity,
-    supplierName: obj.supplierName,
-    statusId: 1,
     supplierId: obj.supplierId,
+    statusId: 1,
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
-    modifyById:1,
+    modifyById: 1,
   })
 }
 {
@@ -96,7 +92,7 @@ const editOfficeStockInwards = (obj: putUsersmodel) => {
 {
   /* begin:: getById Api call */
 }
-const GetOfficeStockInwardsTypeById = (inwardNo: ID) => {
+const GetGodownStockInwardsTypeById = (inwardNo: ID) => {
   return http.get(`GetGodownStockInwardsById/${inwardNo}`)
 }
 {
@@ -135,20 +131,17 @@ const getDeliveredByTypes = () => {
 }
 
 const OfficeStockInwardsService = {
-  getDynamicOfficeStockInwards,
-  postOfficeStockInwards,
-  editOfficeStockInwards,
+  getDynamicGodownStockInwards,
+  postGodownStockInwards,
+  editGodownStockInwards,
   getProducts,
   getTechnicianTypes,
   getUserName,
-  GetOfficeStockInwardsTypeById,
+  GetGodownStockInwardsTypeById,
   getCreatedByTypes,
   getZoneTypes,
   getDynamicDownloadFile,
-  getDeliveredByTypes
+  getDeliveredByTypes,
 }
 
 export default OfficeStockInwardsService
-
-
-

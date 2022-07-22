@@ -12,16 +12,19 @@ const getDynamicOfficeStockOutwards = (
   searchText: string = '',
   zoneId: number,
   Username: string,
-  createdById: number,
+  startDate: string,
+  endDate: string,
+  createdBy: number,
+  productId: number,
   TechnicianId: number
 ) => {
   if (pageSize <= 0) {
     return http.get(
-      `GetDynamicOfficeStockOutwards/${null}/${null}?searchText=${null}&zoneId=${null}&Username=${null}&createdById=${null}&&TechnicianId=${null}`
+      `GetDynamicOfficeStockOutwards/${null}/${null}?searchText=${null}&zoneId=${null}&Username=${null}&createdBy=${null}&&TechnicianId=${null}&productId=${null}&startDate=${null}&endDate=${null}`
     )
   } else {
     return http.get(
-      `GetDynamicOfficeStockOutwards/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&createdById=${createdById}&TechnicianId=${TechnicianId}`
+      `GetDynamicOfficeStockOutwards/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&createdBy=${createdBy}&TechnicianId=${TechnicianId}&productId=${productId}&startDate=${startDate}&endDate=${endDate}`
     )
   }
 }
@@ -39,20 +42,20 @@ const getDynamicDownloadFile = (
   Username: string,
   startDate: string,
   endDate: string,
-  createdBy:number
+  createdBy: number
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetOfficeStockOutwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&TechnicianId=${TechnicianId}&Username=${Username}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetOfficeStockOutwardsExcelSheetData?productId=${productId}&zoneId=${zoneId}&searchText=${searchText}&TechnicianId=${TechnicianId}&Username=${Username}&startDate=${startDate}&endDate=${endDate}&createdBy=${createdBy}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
 {
   /* begin:: post Api call(create) */
 }
-const postOfficeStockOutwards:any = (obj: postlistData) => {
-  console.log(obj,"obj");
+const postOfficeStockOutwards: any = (obj: postlistData) => {
+  console.log(obj, 'obj')
 
   return http.post('SaveOfficeStockOutwards', {
     outwardDate: obj.outwardDate,
@@ -89,7 +92,7 @@ const editOfficeStockOutwards = (obj: putgetOfficeStockOutwardsDatasmodel) => {
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
-    modifyById:1,
+    modifyById: 1,
   })
 }
 {
@@ -136,7 +139,7 @@ const getUserName = (username: string) => {
 
 //  product Zone quntity
 
-const getProductZoneQuntityTypes = (productId:number,zoneId :number) => {
+const getProductZoneQuntityTypes = (productId: number, zoneId: number) => {
   return http.get(`GetProductCountByZone/${productId}/${zoneId}`)
 }
 
@@ -151,10 +154,7 @@ const OfficeStockOutwardsViewService = {
   getCreatedByTypes,
   getZoneTypes,
   getDynamicDownloadFile,
-  getProductZoneQuntityTypes
+  getProductZoneQuntityTypes,
 }
 
 export default OfficeStockOutwardsViewService
-
-
-
