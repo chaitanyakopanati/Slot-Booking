@@ -16,14 +16,7 @@ type formik = {
 let validationFormSchema =   Yup.object({
   outwardDate: Yup.string().required('This field is required'),
   productId: Yup.number().required('This field is required'),
-  quantity: Yup.number().when(['maxQuantity'], {
-    is:(maxQuantity:any)=>maxQuantity,
-    then:(result)=>{
-      console.log("result",result)
-      return Yup.number().required()
-    }
-  }),
-  
+  quantity: Yup.number().max(Yup.ref("maxQuantity")).required('This field is required'),
   zoneId: Yup.number().required('This fielld is required'),
   technicianId: Yup.string().required('This field is required'),
   reason: Yup.string().required('This field is required'),
@@ -62,7 +55,6 @@ const UserFormModal: FC<formik> = ({category}) => {
   const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(0)
 
   useEffect(() => {
-    if (itemIdForUpdate === 'add') {
       setInitialValues({
         ...category,
         id: category.data?.id || '',
@@ -71,28 +63,13 @@ const UserFormModal: FC<formik> = ({category}) => {
         quantity: category.data?.quantity || '',
         zoneId: category.data?.zoneId || '',
         userId: category.data?.userId || '',
+        username: category.data?.username || '',
         reason: category.data?.reason || '',
         technicianId: category.data?.technicianId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
         maxQuantity:0
       })
-    } else {
-      setInitialValues({
-        ...category,
-        id: category.data?.id || '',
-        outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
-        productId: category.data?.productId || '',
-        quantity: category.data?.quantity || '',
-        zoneId: category.data?.zoneId || '',
-        username: category.data?.username || '',
-        userId: category.data?.userId || '',
-        reason: category.data?.reason || '',
-        technicianId: category.data?.technicianId || '',
-        serialno: category.data?.serialno || '',
-        remark: category.data?.remark || '',
-      })
-    }
   }, [itemIdForUpdate])
 
 
