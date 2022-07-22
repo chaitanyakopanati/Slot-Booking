@@ -14,6 +14,7 @@ export interface getGodownstockavailabilitiesData {
   serialno: string
   remark: string
   createdBy: number
+  quantityDisplay:string
 }
 export interface getAllGodownstockavailabilitiesData {
   data: getGodownstockavailabilitiesData[]

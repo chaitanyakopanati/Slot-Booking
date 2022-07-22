@@ -154,23 +154,40 @@ const MainPointFormViewModal: FC<Props> = ({category}) => {
 
                             <div className='row mb-4'>
                               {/*begin:: Created By Filed */}
-                              <div className='col-lg-6'>
-                                <label className='form-label fw-bold required'>Created by</label>
+                              {props.values.createdby != null ? (
+                                <div className='col-lg-6'>
+                                  <label className='form-label fw-bold required'>Created by</label>
 
-                                <input
-                                  className='form-control form-control-lg'
-                                  type='text'
-                                  placeholder='createdby'
-                                  value={props.values.createdby}
-                                  onChange={props.handleChange}
-                                  name='createdby'
-                                  autoComplete='off'
-                                  disabled
-                                />
-                              </div>
+                                  <input
+                                    className='form-control form-control-lg'
+                                    type='text'
+                                    placeholder='createdby'
+                                    value={props.values.createdby}
+                                    onChange={props.handleChange}
+                                    name='createdby'
+                                    autoComplete='off'
+                                    disabled
+                                  />
+                                </div>
+                              ) : (
+                                <div className='col-lg-6'>
+                                  <label className='form-label fw-bold required'>Created by</label>
+
+                                  <input
+                                    className='form-control form-control-lg'
+                                    type='text'
+                                    value=''
+                                    placeholder='createdby'
+                                    name='createdby'
+                                    autoComplete='off'
+                                    disabled
+                                  />
+                                </div>
+                              )}
                               {/*end:: Created By Filed */}
 
                               {/*begin:: Updated By Filed */}
+
                               <div className='col-lg-6'>
                                 <label className='form-label fw-bold required'>Updated by</label>
                                 <input
@@ -189,35 +206,59 @@ const MainPointFormViewModal: FC<Props> = ({category}) => {
 
                             <div className='row mb-4'>
                               {/* begin:: Created At Filed */}
-                              <div className='col-lg-6'>
-                                <label className='form-label fw-bold required'>Created at</label>
+                              {props.values.createdAt ? (
+                                <div className='col-lg-6'>
+                                  <label className='form-label fw-bold required'>Created at</label>
+                                  <input
+                                    className='form-control form-control-lg'
+                                    type='text'
+                                    placeholder='createdAt'
+                                    value={props.values.createdAt}
+                                    onChange={props.handleChange}
+                                    name='createdAt'
+                                    autoComplete='off'
+                                    disabled
+                                  />
+                                </div>
+                              ) : (
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
                                   placeholder='createdAt'
-                                  value={props.values.createdAt}
-                                  onChange={props.handleChange}
+                                  value=''
                                   name='createdAt'
                                   autoComplete='off'
                                   disabled
                                 />
-                              </div>
+                              )}
                               {/* end:: Created At Filed */}
 
                               {/* begin:: Updated At Filed */}
-                              <div className='col-lg-6'>
-                                <label className='form-label fw-bold required'>Updated at</label>
+                              {props.values.modifyAt ? (
+                                <div className='col-lg-6'>
+                                  <label className='form-label fw-bold required'>Updated at</label>
+                                  <input
+                                    className='form-control form-control-lg'
+                                    type='text'
+                                    placeholder='modifyAt'
+                                    value={props.values.modifyAt}
+                                    onChange={props.handleChange}
+                                    name='modifyAt'
+                                    autoComplete='off'
+                                    disabled
+                                  />
+                                </div>
+                              ) : (
                                 <input
                                   className='form-control form-control-lg'
                                   type='text'
                                   placeholder='modifyAt'
-                                  value={props.values.modifyAt}
-                                  onChange={props.handleChange}
+                                  value=''
                                   name='modifyAt'
                                   autoComplete='off'
                                   disabled
                                 />
-                              </div>
+                              )}
                               {/* end:: Updated At Filed */}
                             </div>
                           </div>

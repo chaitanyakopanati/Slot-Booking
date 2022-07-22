@@ -59,7 +59,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         inwardNo: category.data?.inwardNo || '',
         inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
         userId: category.data?.userId || '',
-        productId: category.data?.productId || 0,
+        productId: category.data?.productId || '',
         quantity: category.data?.quantity || '',
         deliveredById: category.data?.deliveredById || '',
         zoneId: category.data?.zoneId || '',
@@ -72,7 +72,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         id: category.data?.id || '',
         inwardNo: category.data?.inwardNo || '',
         inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
-        productId: category.data?.productId || 0,
+        productId: category.data?.productId || '',
         username: category.data?.username || '',
         userId: category.data?.userId || '',
         quantity: category.data?.quantity || '',
@@ -203,23 +203,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className=' col-md-3'>
-                    <label className='form-label fw-bold required'>Quantity</label>
-                    <input
-                      placeholder='quantity'
-                      className='form-control form-control-lg form-control-solid'
-                      type='number'
-                      value={props.values.quantity}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      name='quantity'
-                      autoComplete='off'
-                    />
-                    <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='quantity' />
-                    </div>
-                  </div>
-
-                  <div className=' col-md-3'>
                     <label className='form-label fw-bold required'>Zone </label>
                     <select
                       className='form-select form-select-solid'
@@ -241,8 +224,25 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                  <div className='col-12'>
-                    <div className='col-lg-12' style={{position: 'relative'}}>
+                  <div className=' col-md-3'>
+                    <label className='form-label fw-bold required'>Quantity</label>
+                    <input
+                      placeholder='quantity'
+                      className='form-control form-control-lg form-control-solid'
+                      type='number'
+                      value={props.values.quantity}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      name='quantity'
+                      autoComplete='off'
+                    />
+                    <div className='erro2' style={{color: 'red'}}>
+                      <ErrorMessage name='quantity' />
+                    </div>
+                  </div>
+
+                  <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
+                    <div className='col-lg-6 col-12'>
                       <label className='form-label fw-bold required'>User Name</label>{' '}
                       <input
                         name='username'
@@ -294,60 +294,57 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                         <ErrorMessage name='username' />
                       </div>
                     </div>
-                  </div>
 
-                  <div className='col-12'>
-                    <label className='form-label fw-bold required'>Delivered by</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('deliveredById')}
-                    >
-                      <option value='' disabled>
-                        Select Delivered By
-                      </option>
-                      {getDataAllTypeDeliveredBy.map((TypeData, index) => {
-                        return (
-                          <option key={index} value={TypeData?.id}>
-                            {TypeData?.fullName}
-                          </option>
-                        )
-                      })}
-                    </select>
-                    <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='deliveredById' />
+                    <div className='col-md-6 col-12'>
+                      <label className='form-label fw-bold required'>Delivered by</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('deliveredById')}
+                      >
+                        <option value='' disabled>
+                          Select Delivered By
+                        </option>
+                        {getDataAllTypeDeliveredBy.map((TypeData, index) => {
+                          return (
+                            <option key={index} value={TypeData?.id}>
+                              {TypeData?.fullName}
+                            </option>
+                          )
+                        })}
+                      </select>
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='deliveredById' />
+                      </div>
                     </div>
                   </div>
 
                   <div className='col-12'>
-                  <label className='form-label fw-bold '>Serial no</label>
-                  <textarea
-                    className='form-control form-control-lg form-control-solid'
-                    value={props.values.serialno}
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    name='serialno'
-                    placeholder='Serial no'
-                  ></textarea>
-                </div>
-
-                <div className='col-12 col-lg-12'>
-                  <div className='col'>
-                    <label className='form-label fw-bold '>Remark</label>
+                    <label className='form-label fw-bold '>Serial no</label>
                     <input
-                      placeholder='Remark'
                       className='form-control form-control-lg form-control-solid'
-                      value={props.values.remark}
+                      value={props.values.serialno}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      type='text'
-                      name='remark'
-                      autoComplete='off'
+                      name='serialno'
+                      placeholder='Serial no'
                     />
                   </div>
-                </div>
-                </div>
 
-              
+                  <div className='col-12 col-lg-12'>
+                    <div className='col'>
+                      <label className='form-label fw-bold '>Remark</label>
+                      <textarea
+                        placeholder='Remark'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.remark}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        name='remark'
+                        autoComplete='off'
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className='modal-footer border-0'>

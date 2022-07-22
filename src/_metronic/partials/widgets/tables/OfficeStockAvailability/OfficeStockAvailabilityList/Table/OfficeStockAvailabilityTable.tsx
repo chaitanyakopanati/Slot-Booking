@@ -62,7 +62,7 @@ const OfficeStockAvailabilityTable = () => {
                     {/* end:: productName Input */}
 
                     {/* begin:: quantity Input */}
-                    <td className='text-dark fw-bold  fs-6'>{row.quantity || '-'}</td>
+                    <td className='text-dark fw-bold  fs-6'>{row.quantityDisplay || '-'}</td>
                     {/* end:: quantity Input */}
 
                     {/* begin:: zoneName Input */}

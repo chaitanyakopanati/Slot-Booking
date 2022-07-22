@@ -222,6 +222,30 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
               </div>
 
               <div className=' col-md-3'>
+                <label className='form-label fw-bold required'>Zone </label>
+                <select
+                  className='form-select form-select-solid'
+                  {...formik.getFieldProps('zoneId')}
+                >
+                  <option value='' disabled>
+                    Select Zone Type
+                  </option>
+                  {getDataAllType.map((TypeData: any, index) => {
+                    //
+
+                    return (
+                      <option key={index} value={TypeData.id}>
+                        {TypeData?.name}
+                      </option>
+                    )
+                  })}
+                </select>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.zoneId && formik.errors.zoneId ? formik.errors.zoneId : null}
+                </div>
+              </div>
+
+              <div className=' col-md-3'>
                 <label className='form-label fw-bold required'>Quantity</label>
                 {
                   <label
@@ -252,34 +276,10 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                     : null}
                 </div>
               </div>
-
-              <div className=' col-md-3'>
-                <label className='form-label fw-bold required'>Zone </label>
-                <select
-                  className='form-select form-select-solid'
-                  {...formik.getFieldProps('zoneId')}
-                >
-                  <option value='' disabled>
-                    Select Zone Type
-                  </option>
-                  {getDataAllType.map((TypeData: any, index) => {
-                    //
-
-                    return (
-                      <option key={index} value={TypeData.id}>
-                        {TypeData?.name}
-                      </option>
-                    )
-                  })}
-                </select>
-                <div className='erro2' style={{color: 'red'}}>
-                  {formik.touched.zoneId && formik.errors.zoneId ? formik.errors.zoneId : null}
-                </div>
-              </div>
             </div>
 
             <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
-              <div className='col-lg-6 col-12'>
+              <div className='col-lg-4 col-12'>
                 <label className='form-label fw-bold required'>User Name</label>{' '}
                 <input
                   name='username'
@@ -335,24 +335,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                 </div>
               </div>
 
-              <div className='col-lg-6 col-12'>
-                <label className='form-label fw-bold required'>Reason</label>
-                <input
-                  placeholder='reason'
-                  className='form-control form-control-lg form-control-solid'
-                  type='text'
-                  value={formik.values.reason || ''}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  name='reason'
-                  autoComplete='off'
-                />
-              </div>
-              <div className='erro2' style={{color: 'red'}}>
-                {formik.touched.reason && formik.errors.reason ? formik.errors.reason : null}
-              </div>
-
-              <div className='col-12'>
+              <div className='col-lg-4 col-12'>
                 <label className='form-label fw-bold required'>Technician</label>
                 <select
                   className='form-select form-select-solid'
@@ -376,32 +359,47 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                 </div>
               </div>
 
-              <div className='col-12 '>
+              <div className='col-lg-4 col-12 '>
                 <label className='form-label fw-bold'>Serial no</label>
-                <textarea
+                <input
                   className='form-control form-control form-control-solid'
                   value={formik.values.serialno || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   name='serialno'
                   placeholder='Serial no'
-                ></textarea>
+                />
                 <div className='erro2' style={{color: 'red'}}></div>
               </div>
 
-              <div className='col-12 col-lg-12'>
+              <div className='col-lg-6 col-12'>
+                <label className='form-label fw-bold required'>Reason</label>
+                <textarea
+                  placeholder='reason'
+                  className='form-control form-control-lg form-control-solid'
+                  value={formik.values.reason || ''}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  name='reason'
+                  autoComplete='off'
+                ></textarea>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.reason && formik.errors.reason ? formik.errors.reason : null}
+                </div>
+              </div>
+
+              <div className='col-lg-6 col-12'>
                 <div className='col'>
                   <label className='form-label fw-bold'>Remark</label>
-                  <input
+                  <textarea
                     placeholder='Remark'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.remark || ''}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    type='text'
                     name='remark'
                     autoComplete='off'
-                  />
+                  ></textarea>
                   <div className='erro2' style={{color: 'red'}}>
                     {/* <ErrorMessage name='remark' /> */}
                     {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}

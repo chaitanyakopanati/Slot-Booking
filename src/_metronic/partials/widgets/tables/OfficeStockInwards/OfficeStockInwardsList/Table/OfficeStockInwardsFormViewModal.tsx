@@ -131,7 +131,6 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                       />
                     </div>
 
-                   
                     <div className=' col-md-3'>
                       <label className='form-label fw-bold required'>Zone </label>
                       <input
@@ -157,7 +156,6 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                         disabled
                       />
                     </div>
-
                   </div>
 
                   <div className='col-12 col-lg-12'>
@@ -191,21 +189,34 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='row mb-4'>
-                    {/*begin:: Created By Filed */}
-                    <div className='col-lg-6'>
-                      <label className='form-label fw-bold required'>Created by</label>
-
-                      <input
-                        className='form-control form-control-lg'
-                        type='text'
-                        placeholder='createByName'
-                        value={props.values.createByName}
-                        onChange={props.handleChange}
-                        name='createByName'
-                        autoComplete='off'
-                        disabled
-                      />
-                    </div>
+                    {props.values.createByName ? (
+                      <div className='col-lg-6'>
+                        <label className='form-label fw-bold required'>Created by</label>
+                        <input
+                          className='form-control form-control-lg'
+                          type='text'
+                          placeholder='createByName'
+                          value={props.values.createByName}
+                          onChange={props.handleChange}
+                          name='createByName'
+                          autoComplete='off'
+                          disabled
+                        />
+                      </div>
+                    ) : (
+                      <div className='col-lg-6'>
+                        <label className='form-label fw-bold required'>Created by</label>
+                        <input
+                          className='form-control form-control-lg'
+                          type='text'
+                          placeholder='createByName'
+                          onChange={props.handleChange}
+                          name='createByName'
+                          autoComplete='off'
+                          disabled
+                        />
+                      </div>
+                    )}
                     {/*end:: Created By Filed */}
 
                     {/*begin:: Updated By Filed */}

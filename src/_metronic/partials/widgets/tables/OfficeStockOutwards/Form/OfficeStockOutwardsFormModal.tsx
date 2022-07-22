@@ -7,10 +7,28 @@ import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardsViewService from '../helperOfficeStockOutwards/ApiDataRequest'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import moment from 'moment'
+import * as Yup from 'yup';
 
 type formik = {
   category: any
 }
+
+let validationFormSchema =   Yup.object({
+  outwardDate: Yup.string().required('This field is required'),
+  productId: Yup.number().required('This field is required'),
+  quantity: Yup.number().when(['maxQuantity'], {
+    is:(maxQuantity:any)=>maxQuantity,
+    then:(result)=>{
+      console.log("result",result)
+      return Yup.number().required()
+    }
+  }),
+  
+  zoneId: Yup.number().required('This fielld is required'),
+  technicianId: Yup.string().required('This field is required'),
+  reason: Yup.string().required('This field is required'),
+  userId: Yup.number().required('This field is required'),
+})
 
 const UserFormModal: FC<formik> = ({category}) => {
   const suggestionRef: any = useRef()
@@ -26,7 +44,7 @@ const UserFormModal: FC<formik> = ({category}) => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
-  const [validationForm, setvalidationForm] = useState<any>()
+  const [validationForm, setvalidationForm] = useState<any>(validationFormSchema)
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     userId: '',
@@ -39,8 +57,9 @@ const UserFormModal: FC<formik> = ({category}) => {
     technicianId: '',
     serialno: '',
     remark: '',
+    maxQuantity:0
   })
-  const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(null)
+  const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(0)
 
   useEffect(() => {
     if (itemIdForUpdate === 'add') {
@@ -48,7 +67,7 @@ const UserFormModal: FC<formik> = ({category}) => {
         ...category,
         id: category.data?.id || '',
         outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
-        productId: category.data?.productId || 0,
+        productId: category.data?.productId || '',
         quantity: category.data?.quantity || '',
         zoneId: category.data?.zoneId || '',
         userId: category.data?.userId || '',
@@ -56,13 +75,14 @@ const UserFormModal: FC<formik> = ({category}) => {
         technicianId: category.data?.technicianId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        maxQuantity:0
       })
     } else {
       setInitialValues({
         ...category,
         id: category.data?.id || '',
         outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
-        productId: category.data?.productId || 0,
+        productId: category.data?.productId || '',
         quantity: category.data?.quantity || '',
         zoneId: category.data?.zoneId || '',
         username: category.data?.username || '',
@@ -75,37 +95,7 @@ const UserFormModal: FC<formik> = ({category}) => {
     }
   }, [itemIdForUpdate])
 
-  // useEffect(() => {
-  //   if (itemIdForUpdate === 'add') {
-  //     setvalidationForm({
-  //       validationSchema: Yup.object({
-  //         outwardDate: Yup.string().required('This field is required'),
-  //         productId: Yup.number().required('This field is required'),
-  //         quantity: Yup.number()
-  //           .max(QuntityData)
-  //           .required('This field is required'),
-  //         zoneId: Yup.number().required('This fielld is required'),
-  //         technicianId: Yup.string().required('This field is required'),
-  //         reason: Yup.string().required('This field is required'),
-  //         userId: Yup.number().required('This field is required'),
-  //       }),
-  //     })
-  //   } else {
-  //     setvalidationForm({
-  //       validationSchema: Yup.object({
-  //         outwardDate: Yup.string().required('This field is required'),
-  //         productId: Yup.number().required('This field is required'),
-  //         quantity: Yup.number()
-  //           .max(QuntityData + EditQuntityData)
-  //           .required('This field is required'),
-  //         zoneId: Yup.number().required('This fielld is required'),
-  //         technicianId: Yup.string().required('This field is required'),
-  //         reason: Yup.string().required('This field is required'),
-  //         userId: Yup.number().required('This field is required'),
-  //       }),
-  //     })
-  //   }
-  // }, [itemIdForUpdate])
+
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -119,11 +109,9 @@ const UserFormModal: FC<formik> = ({category}) => {
     }
   }
 
-  var QuntityData: any = getProductZoneQuntity
-  console.log(QuntityData, 'QuntityData')
+  // var QuntityData: any = getProductZoneQuntity
 
-  var EditQuntityData: any = category.data?.quantity
-  console.log(EditQuntityData, 'EditQuntityDataEditQuntityData')
+  // var EditQuntityData: any = category.data?.quantity
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -167,7 +155,7 @@ const UserFormModal: FC<formik> = ({category}) => {
   })
 
   useEffect(() => {
-    if ((formik.values.productId, formik.values.zoneId)) {
+    if ((formik.values.productId && formik.values.zoneId)) {
       const ProductZoneAllData = async () => {
         let payload = await OfficeStockOutwardsViewService.getProductZoneQuntityTypes(
           formik.values.productId,
@@ -176,8 +164,7 @@ const UserFormModal: FC<formik> = ({category}) => {
         console.log(payload, 'payloadpayload')
         if (payload.success == true) {
           LoderActions(false)
-          setGetProductZoneQuntity(payload?.data)
-          console.log(payload.data, 'getProductZoneQuntityName')
+          formik.setFieldValue('maxQuantity',payload?.data || 0)
         }
       }
       // formik.setFieldValue('quantity',10)
@@ -281,15 +268,17 @@ const UserFormModal: FC<formik> = ({category}) => {
                       color: 'blue',
                     }}
                   >
-                    {getProductZoneQuntity != null
+                    {formik.values.maxQuantity&&`(${formik.values.maxQuantity} Quantity Available)`}
+                    {/* {getProductZoneQuntity != null
                       ? `(${getProductZoneQuntity} Quantity Available)`
-                      : ''}
+                      : ''} */}
                   </label>
                 }
                 <input
                   placeholder='quantity'
                   className='form-control form-control-lg form-control-solid'
                   type='number'
+                  max='50'
                   value={formik.values.quantity || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -306,7 +295,7 @@ const UserFormModal: FC<formik> = ({category}) => {
             </div>
 
             <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
-              <div className='col-lg-6 col-12'>
+              <div className='col-lg-4 col-12'>
                 <label className='form-label fw-bold required'>User Name</label>{' '}
                 <input
                   name='username'
@@ -360,24 +349,7 @@ const UserFormModal: FC<formik> = ({category}) => {
                 </div>
               </div>
 
-              <div className='col-md-6 col-12'>
-                <label className='form-label fw-bold required'>Reason</label>
-                <input
-                  placeholder='reason'
-                  className='form-control form-control-lg form-control-solid'
-                  type='text'
-                  value={formik.values.reason || ''}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  name='reason'
-                  autoComplete='off'
-                />
-              </div>
-              <div className='erro2' style={{color: 'red'}}>
-                {formik.touched.reason && formik.errors.reason ? formik.errors.reason : null}
-              </div>
-
-              <div className='col-lg-12'>
+              <div className='col-lg-4 col-12'>
                 <label className='form-label fw-bold required'>Technician</label>
                 <select
                   className='form-select form-select-solid'
@@ -401,36 +373,49 @@ const UserFormModal: FC<formik> = ({category}) => {
                 </div>
               </div>
 
-              <div className='col-12 '>
+              <div className='col-lg-4 col-12 '>
                 <label className='form-label fw-bold'>Serial no</label>
-                <textarea
+                <input
                   className='form-control form-control form-control-solid'
                   value={formik.values.serialno || ''}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   name='serialno'
                   placeholder='Serial no'
-                ></textarea>
+                />
                 <div className='erro2' style={{color: 'red'}}></div>
               </div>
 
-              <div className='col-12 col-lg-12'>
-                <div className='col'>
-                  <label className='form-label fw-bold'>Remark</label>
-                  <input
-                    placeholder='Remark'
-                    className='form-control form-control-lg form-control-solid'
-                    value={formik.values.remark || ''}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    type='text'
-                    name='remark'
-                    autoComplete='off'
-                  />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {/* <ErrorMessage name='remark' /> */}
-                    {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}
-                  </div>
+              <div className='col-12'>
+                <label className='form-label fw-bold required'>Reason</label>
+                <textarea
+                  placeholder='reason'
+                  className='form-control form-control-lg form-control-solid'
+                  value={formik.values.reason || ''}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  name='reason'
+                  autoComplete='off'
+                ></textarea>
+              </div>
+              <div className='erro2' style={{color: 'red'}}>
+                {formik.touched.reason && formik.errors.reason ? formik.errors.reason : null}
+              </div>
+
+              <div className=' col-12'>
+                <label className='form-label fw-bold'>Remark</label>
+                <textarea
+                  placeholder='Remark'
+                  className='form-control form-control-lg form-control-solid'
+                  value={formik.values.remark || ''}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  name='remark'
+                  autoComplete='off'
+                ></textarea>
+                <div className='erro2' style={{color: 'red'}}>
+                  {/* <ErrorMessage name='remark' /> */}
+                  {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}
                 </div>
               </div>
             </div>

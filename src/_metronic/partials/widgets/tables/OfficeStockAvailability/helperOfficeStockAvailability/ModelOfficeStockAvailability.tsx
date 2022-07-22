@@ -14,6 +14,7 @@ export interface getOfficetockAvailabilityData {
   serialno: string
   remark: string
   createdBy: number
+  quantityDisplay:string
 }
 export interface getAllOfficetockAvailabilitData {
   data: getOfficetockAvailabilityData[]
