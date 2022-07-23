@@ -39,7 +39,7 @@ const UserFormModal: FC<formik> = ({category}) => {
   const navigation = useNavigate()
   const [validationForm, setvalidationForm] = useState<any>(validationFormSchema)
   const [initialValues, setInitialValues] = useState<any>({
-    id: '',
+    id: null,
     userId: '',
     username: '',
     outwardDate: '',
@@ -57,7 +57,7 @@ const UserFormModal: FC<formik> = ({category}) => {
   useEffect(() => {
       setInitialValues({
         ...category,
-        id: category.data?.id || '',
+        id: category.data?.id || null,
         outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
         productId: category.data?.productId || '',
         quantity: category.data?.quantity || '',
@@ -68,7 +68,7 @@ const UserFormModal: FC<formik> = ({category}) => {
         technicianId: category.data?.technicianId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
-        maxQuantity:0
+        maxQuantity:0,
       })
   }, [itemIdForUpdate])
 
@@ -141,7 +141,11 @@ const UserFormModal: FC<formik> = ({category}) => {
         console.log(payload, 'payloadpayload')
         if (payload.success == true) {
           LoderActions(false)
-          formik.setFieldValue('maxQuantity',payload?.data || 0)
+          if(formik.values.id){
+            formik.setFieldValue('maxQuantity',payload?.data + category.data?.quantity  || 0)
+          }else{
+            formik.setFieldValue('maxQuantity',payload?.data || 0)
+          }
         }
       }
       // formik.setFieldValue('quantity',10)
