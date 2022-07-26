@@ -1,63 +1,50 @@
 import React from 'react'
 
-// function ModelComplaint() {
-//   return <div>ModelComplaint</div>
-// }
 
-// export default ModelComplaint
-
-
-export interface getUserData {
-  name: string
-  createdAt: string
-  createdby: number
+export interface getComplaintsData {
+  address: string
+  assignToId: number
+  assignTechnicianName: string
+  complaintTypeId: number
+  complaintTypeName: string
+  createByName: string
+  createdByUserId: number
+  createdDate: string
+  description: string
+  faultId: number
+  faultName: string
   id: number
-  faulttypeid: number
-  faultTypeName: string
-  modifyAt: number
-  modifyby: number
-  username: string
-  email: string
-  phone: string
-  zoneName: string
-  roleName: string
-  firstname: string
-  lastname: string
-  roleId: string
-  zoneId: number
-  technician: string
-  inwardDate: string
-  productName: string
-  quantity: number
-  deliveredByName: string
-  modifyById: number
-  createdById: number
-  createdByName: string
-  modifyByName: string
-  zoneid: number
-  fullName: string
-  serialno: string
+  isnotifycustomer: boolean
+  isnotifytechinician: boolean
+  name: string
+  packageCategorieId: number
+  packageCategorieName: string
   remark: string
-  createdBy: number
+  statusId: number
+  statusName: string
+  userId: number
+  username: string
+  zoneId: number
+  zoneName: string
 }
 
-export interface getAllUserData {
-  data: getUserData[]
+export interface getAllgetComplaintsDataData {
+  data: getComplaintsData[]
   message: string
   success: boolean
 }
 export interface postlistData {
-  productId: number
-  quantity: number
-  zoneId: number
-  serialno: number
-  remark: string
-  id: number
-  outwardDate: string
-  technicianId: number
-  userid: number
-  reason: string
-  username: string
+  id: number,
+  complainttypeid: number,
+  username: string,
+  description: string,
+  status: number,
+  remark: string,
+  assigntechnicianid: number,
+  faultid: number,
+  isnotifycustomer: boolean,
+  isnotifytechinician: boolean,
+  userId: number
 }
 
 export interface GetAllData {
@@ -75,28 +62,25 @@ export interface GetAllData {
   success: boolean
   message: string
 }
-export interface putUsersmodel {
-  productId: number
-  quantity: number
+export interface putgetComplaintsDatasmodel {
+
   zoneId: number
-  serialno: number
   remark: string
   id: number
-  outwardDate: string
   technicianId: number
-  userid: number
+  userId: number
   reason: string
   username: string
 
 }
-export interface putUsermodel1 {
-  data: getUserData
+export interface putgetComplaintsDatamodel1 {
+  data: getComplaintsData
   message: string
   success: boolean
 }
 
-export interface GetAllUserApi {
-  data: getUserData[]
+export interface GetAllgetComplaintsDataApi {
+  data: getComplaintsData[]
   message: string
   success: boolean
   pages: number
@@ -106,10 +90,39 @@ export interface GetAllUserApi {
   zoneId: number
   roleId: string
   searchByUsername: string
+  complainttypeid: number
 }
+
+
+export interface getUserData {
+  name: string
+  createdAt: string
+  createdby: number
+  id: number
+  faulttypeid: number
+  faultTypeName: string
+  username: string
+  phone: string
+  zoneName: string
+  roleName: string
+  firstname: string
+  lastname: string
+  roleId: string
+  zoneId: number
+  technician: string
+  createdById: number
+  createdByName: string
+  modifyByName: string
+  zoneid: number
+  fullName: string
+  remark: string
+  createdBy: number
+}
+
+
 
 export type ID = undefined | null | string
 
 export type username = undefined | null | string
 
-export type ViewForm = getUserData | undefined
+export type ViewForm = getComplaintsData | undefined

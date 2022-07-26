@@ -1,19 +1,17 @@
-import {lazy, FC, Suspense} from 'react'
-import {Route, Routes, Navigate} from 'react-router-dom'
-import {MasterLayout} from '../../_metronic/layout/MasterLayout'
+import { lazy, FC, Suspense } from 'react'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { MasterLayout } from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
-import {DashboardWrapper} from '../pages/dashboard/DashboardWrapper'
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
 import CustomersWrapper from '../modules/Customer/CustomersWrapper'
-import {ComplaintTypesWrapper} from '../pages/complaint-types/ComplaintTypesWrapper'
-import {ProfileSettingsWrapper} from '../pages/profile-settings/ProfileSettingsWrapper'
-import {FormsWrapper} from '../pages/forms/FormsWrapper'
-import {InstallationsWrapper} from '../pages/installations/InstallationsWrapper'
-import {InquiriesWrapper} from '../pages/inquiries/InquiriesWrapper'
-import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
+import { ComplaintTypesWrapper } from '../pages/complaint-types/ComplaintTypesWrapper'
+import { ProfileSettingsWrapper } from '../pages/profile-settings/ProfileSettingsWrapper'
+import { FormsWrapper } from '../pages/forms/FormsWrapper'
+import { InstallationsWrapper } from '../pages/installations/InstallationsWrapper'
+import { InquiriesWrapper } from '../pages/inquiries/InquiriesWrapper'
+import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
 import MasterWrapper from '../pages/master/MasterWrapper'
-import {PageTitle} from '../../_metronic/layout/core'
-import CustomerFormWrapper from '../modules/Customer/Form/CustomerFormWrapper'
-import CustomerFormModal from '../modules/Customer/Form/CustomerFormModal'
+import { PageTitle } from '../../_metronic/layout/core'
 import InquiriesFormWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesFormWrapper'
 import InquiriesViewWrapper from '../../_metronic/partials/widgets/tables/Inquiries/Form/InquiriesViewWrapper'
 import InstallationFormWrapper from '../../_metronic/partials/widgets/tables/Installation/Form/InstallationFormWrapper'
@@ -21,8 +19,10 @@ import InstallationViewWrapper from '../../_metronic/partials/widgets/tables/Ins
 import ComplaintWrapper from '../modules/Complaints/ComplaintWrapper'
 import ComplaintFormModal from '../modules/Complaints/Form/ComplaintFormModal'
 import ComplaintFormWrapper from '../modules/Complaints/Form/ComplaintFormWrapper'
+import ComplaintViewWrapper from '../modules/Complaints/Form/ComplaintViewWrapper'
 import FormsFormWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormsFormWrapper'
 import FormViewWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormViewWrapper'
+import CustomerFormWrapper from '../modules/Customer/Form/CustomerFormWrapper'
 
 const PrivateRoutes = () => {
   const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
@@ -33,8 +33,9 @@ const PrivateRoutes = () => {
         <Route path='auth/*' element={<Navigate to='/complaint' />} />
         {/* Pages */}
         <Route path='dashboard' element={<DashboardWrapper />} />
-        {/*  */}
+
         <Route path='complaint' element={<ComplaintWrapper />} />
+        <Route path='complaint/complaintviewform/:id' element={<ComplaintViewWrapper />} />
         <Route
           path='complaint/complaintform/:id'
           element={
@@ -48,7 +49,7 @@ const PrivateRoutes = () => {
 
         <Route path='customers' element={<CustomersWrapper />} />
         <Route
-          path='customers/customersform/:id'
+          path='customers/form/:id'
           element={
             <>
               <PageTitle>Add Customer</PageTitle>
@@ -141,7 +142,7 @@ const PrivateRoutes = () => {
   )
 }
 
-const SuspensedView: FC = ({children}) => {
+const SuspensedView: FC = ({ children }) => {
   const baseColor = getCSSVariableValue('--bs-primary')
   TopBarProgress.config({
     barColors: {
@@ -153,4 +154,4 @@ const SuspensedView: FC = ({children}) => {
   return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>
 }
 
-export {PrivateRoutes}
+export { PrivateRoutes }

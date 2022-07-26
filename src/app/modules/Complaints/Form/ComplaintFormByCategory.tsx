@@ -1,65 +1,63 @@
-import React from 'react'
+import { useQuery } from 'react-query'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { ListPageData } from '../ComplaintContext'
+import { isNotEmpty } from '../../../../_metronic/helpers'
 import ComplaintFormModal from './ComplaintFormModal'
+import ComplaintsViewService from '../helperComplaint/ApiDataRequest'
 
-const ComplaintFormByCategory = () => {
-  //     const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
-  //   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
-  {
-    /* begin:: Api call GetBankById */
-  }
-  //   const {data: category, error} = useQuery(
-  //     `GetBankById-${itemIdForUpdate}`,
-  //     () => {
-  //       return Zoneservice.GetBankTypeById(itemIdForUpdate)
-  //     },
-  //     {
-  //       cacheTime: 0,
-  //       enabled: enabledQuery,
-  //       onError: (err) => {
-  //         setItemIdForUpdate(undefined)
-  //         console.error(err)
-  //       },
-  //     }
-  //   )
-  {
-    /* end:: Api call GetBankById */
-  }
+const OfficeStockOutwardsFormByCategory = () => {
+  let { id } = useParams()
 
-  //   useEffect(() => {
-  //     console.log('category', category)
-  //     console.log('itemIdForUpdate', itemIdForUpdate)
-  //   }, [category])
+  useEffect(() => {
+    if (id === 'add') {
+      setItemIdForUpdate(id)
+    } else {
+      setItemIdForUpdate(id)
+    }
+  }, [id])
 
-  {
-    /* begin::Add-Form Model functionality */
-  }
-  //   if (!itemIdForUpdate) {
-  //     return <BankFormModal category={{ID: undefined}} />
-  //   }
-  {
-    /* end::Add-Form Model functionality */
-  }
+  const { setItemIdForUpdate, itemIdForUpdate } = ListPageData()
+  const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
-  {
-    /* begin::Edit-Form Model functionality */
-  }
-  //   if (!error && category) {
-  //     return <BankFormModal category={category} />
-  //   }
-  {
-    /* end::Edit-Form Model functionality */
-  }
+  const { data: category, error } = useQuery(
+    `GetOfficeStockOutwardsById-${itemIdForUpdate}`,
+    () => {
+      return ComplaintsViewService.GetComplaintsTypeById(itemIdForUpdate)
+    },
+    {
+      cacheTime: 0,
+      enabled: enabledQuery && id !== 'add',
+      onError: (err) => {
+        setItemIdForUpdate(undefined)
 
-  //   return null
-
-  return (
-    <>
-      <div>
-        <ComplaintFormModal />
-      </div>
-    </>
+      },
+    }
   )
-}
+  {
+  }
 
-export default ComplaintFormByCategory
+  useEffect(() => {
+
+    console.log('itemIdForUpdate****', itemIdForUpdate)
+  }, [category, itemIdForUpdate])
+
+  {
+  }
+  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
+    return <ComplaintFormModal category={{ ID: undefined }} />
+  }
+
+
+  if (!error && category) {
+    return <ComplaintFormModal category={category.data[0]} />
+  }
+  {
+  }
+
+  return null
+}
+export default OfficeStockOutwardsFormByCategory
+
+
