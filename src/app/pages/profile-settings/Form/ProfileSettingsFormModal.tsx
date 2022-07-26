@@ -1,15 +1,17 @@
-import {ErrorMessage, Formik} from 'formik'
+import {ErrorMessage, Form, Formik} from 'formik'
 import React, {FC, useEffect, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import * as Yup from 'yup'
 import {KTSVG} from '../../../../_metronic/helpers'
+import {useAuth} from '../../../modules/auth/core/Auth'
+import {useLoader} from '../../../modules/loader/LoaderContext'
 import Profileservice from './ApiDatarequestProfile'
 import {ID} from './ModelProfile'
 
 const ProfileSettingsFormModal: FC = () => {
   const [userId, setUserId] = useState()
-  const navigator = useNavigate()
+  const navigation = useNavigate()
   const [userId1, setUserId1] = useState({
     id: '',
     firstname: '',
@@ -18,9 +20,13 @@ const ProfileSettingsFormModal: FC = () => {
     email: '',
     phone: '',
   })
+  const {auth} = useAuth()
+  let {LoderActions} = useLoader()
 
   useEffect(() => {
-    GetUserTypeByIdAllData()
+    if (auth) {
+      GetUserTypeByIdAllData(auth.userId)
+    }
   }, [])
   // useEffect(() => {
   //   if (userId) {
@@ -34,8 +40,8 @@ const ProfileSettingsFormModal: FC = () => {
     }
   }, [userId1])
 
-  const GetUserTypeByIdAllData: any = async () => {
-    let response = await Profileservice.GetUserTypeById()
+  const GetUserTypeByIdAllData: any = async (userId: number) => {
+    let response = await Profileservice.GetUserTypeById(userId)
     // console.log(response, 'papppppppppppppp')
     setUserId(response.data)
     setUserId1({
@@ -48,10 +54,6 @@ const ProfileSettingsFormModal: FC = () => {
     })
   }
 
-  useEffect(() => {
-    GetUserTypeByIdAllData()
-  }, [])
-
   return (
     <>
       <Formik
@@ -61,37 +63,49 @@ const ProfileSettingsFormModal: FC = () => {
           name: Yup.string()
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
+          firstname: Yup.string()
+            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .required('This field is required'),
+          lastname: Yup.string()
+            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .required('This field is required'),
+          email: Yup.string().email('Invalid email format').required('This field is required'),
+          phone: Yup.string()
+            .min(10, 'Invalid Phone Number')
+            .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
+            .required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
           console.log('values', values)
+          LoderActions(true)
 
           try {
-            if (values.id) {
-              // Edit Api Response
-              let response = await Profileservice.editUser(values)
-              console.log('Edit User*****************', response)
+            // Edit Api Response
+            let response = await Profileservice.editUser(values)
+            console.log('Edit User*****************', response)
 
-              if (response.success === false) {
-                toast.error(response.message)
-              } else {
-                toast.success(`Data Updated Successfully`)
-              }
-
-              toast.dismiss('1s')
-
-              resetForm({})
+            if (response.success === false) {
+              toast.error(response.message)
+            } else {
+              toast.success(`Data Updated Successfully`)
+              toast.success(response.message)
             }
+            navigation('/master/users')
+            toast.dismiss('1s')
+
+            resetForm({})
           } catch (error: any) {
             console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
+            LoderActions(false)
           }
         }}
       >
         {(props) => {
-          console.log("props.values:",props.values);
+          console.log('props.values:', props.values)
           return (
-            <form onSubmit={props.handleSubmit}>
+            <Form onSubmit={props.handleSubmit}>
               <div className='row gy-5 gx-xl-8'>
                 <div className='col-xl-12'>
                   <div className='card mb-5 mb-xl-10 card-xxl-stretch'>
@@ -173,6 +187,7 @@ const ProfileSettingsFormModal: FC = () => {
                                     type='text'
                                     name='username'
                                     autoComplete='off'
+                                    disabled
                                   />
                                   <div className='erro2' style={{color: 'red'}}>
                                     <ErrorMessage name='username' />
@@ -226,15 +241,12 @@ const ProfileSettingsFormModal: FC = () => {
                           <button
                             type='reset'
                             // onClick={navigator(-1)}
+                            onClick={() => navigation('/master/users')}
                             className='btn btn-light btn-active-light-primary me-2'
                           >
                             Discard
                           </button>
-                          <button
-                            type='submit'
-                            className='btn btn-primary'
-                            id='kt_account_profile_details_submit'
-                          >
+                          <button type='submit' className='btn btn-primary'>
                             Save Changes
                           </button>
                         </div>
@@ -245,7 +257,7 @@ const ProfileSettingsFormModal: FC = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            </Form>
           )
         }}
       </Formik>

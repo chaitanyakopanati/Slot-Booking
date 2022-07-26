@@ -8,10 +8,10 @@ import {
   Dispatch,
   SetStateAction,
 } from 'react'
-import { LayoutSplashScreen } from '../../../../_metronic/layout/core'
-import { AuthModel, UserModel } from './_models'
+import {LayoutSplashScreen} from '../../../../_metronic/layout/core'
+import {AuthModel, UserModel} from './_models'
 import * as authHelper from './AuthHelpers'
-import { getUserByToken } from './_requests'
+import {getUserByToken} from './_requests'
 
 type AuthContextProps = {
   auth: AuthModel | undefined
@@ -23,10 +23,10 @@ type AuthContextProps = {
 
 const initAuthContextPropsState = {
   auth: authHelper.getAuth(),
-  saveAuth: () => { },
+  saveAuth: () => {},
   currentUser: undefined,
-  setCurrentUser: () => { },
-  logout: () => { },
+  setCurrentUser: () => {},
+  logout: () => {},
 }
 
 const AuthContext = createContext<AuthContextProps>(initAuthContextPropsState)
@@ -35,10 +35,23 @@ const useAuth = () => {
   return useContext(AuthContext)
 }
 
-const AuthProvider: FC = ({ children }) => {
+const AuthProvider: FC = ({children}) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
+
+  // useEffect(() => {
+  //   if (auth) {
+  //     console.log('auth', auth)
+  //   }
+  // }, [auth])
+  useEffect(() => {
+    if (currentUser) {
+      console.log('currentUser', currentUser)
+    }
+  }, [currentUser])
+
   const saveAuth = (auth: AuthModel | undefined) => {
+    console.log('auth::::::::::::::::::', auth)
     setAuth(auth)
     if (auth) {
       authHelper.setAuth(auth)
@@ -53,14 +66,14 @@ const AuthProvider: FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ auth, saveAuth, currentUser, setCurrentUser, logout }}>
+    <AuthContext.Provider value={{auth, saveAuth, currentUser, setCurrentUser, logout}}>
       {children}
     </AuthContext.Provider>
   )
 }
 
-const AuthInit: FC = ({ children }) => {
-  const { auth, logout, setCurrentUser } = useAuth()
+const AuthInit: FC = ({children}) => {
+  const {auth, logout, setCurrentUser} = useAuth()
   const didRequest = useRef(false)
   const [showSplashScreen, setShowSplashScreen] = useState(true)
   // We should request user by authToken (IN OUR EXAMPLE IT'S API_TOKEN) before rendering the application
@@ -68,7 +81,7 @@ const AuthInit: FC = ({ children }) => {
     if (!auth?.token) {
       logout()
       setShowSplashScreen(false)
-    }else{
+    } else {
       setShowSplashScreen(false)
     }
     // eslint-disable-next-line
@@ -77,4 +90,4 @@ const AuthInit: FC = ({ children }) => {
   return showSplashScreen ? <LayoutSplashScreen /> : <>{children}</>
 }
 
-export { AuthProvider, AuthInit, useAuth }
+export {AuthProvider, AuthInit, useAuth}

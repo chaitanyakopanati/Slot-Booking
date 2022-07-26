@@ -28,7 +28,7 @@ const UserTable = () => {
   {
     /* begin:: Delete functionlity */
   }
-  const deleteFaults = (ID: number, username: string) => {
+  const deleteUsers = (ID: number, username: string) => {
     Swal.fire({
       title: `Do you want to delete this records ?`,
       icon: 'warning',
@@ -39,16 +39,22 @@ const UserTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Userservice.deleteUser(ID, username)
-        if (payload.success === true) {
-          LoderActions(false)
-
-          toast.success(` Data Deleted Successfully`)
-          toast.dismiss('1s')
-        } else {
-          LoderActions(false)
-
-          toast.error(` Failed to Delete Data`)
+        try {
+          let payload = await Userservice.deleteUser(ID, username)
+          if (payload.success === true) {
+            LoderActions(false)
+            // toast.success(` Data Deleted Successfully`)
+            toast.success(payload.message)
+            toast.dismiss('1s')
+          } else {
+            LoderActions(false)
+            // toast.error(` Failed to Delete Data`)
+            toast.success(payload.message)
+            toast.dismiss('1s')
+          }
+        } catch (error: any) {
+          console.log('error', error.data.message)
+          toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
         fetchAllUser()
@@ -166,7 +172,7 @@ const UserTable = () => {
                       {/* begin:: Delete Icon */}
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                        onClick={() => deleteFaults(row.id, row.username)}
+                        onClick={() => deleteUsers(row.id, row.username)}
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'
@@ -247,7 +253,7 @@ const UserTable = () => {
                           data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
                           aria-expanded='false'
                         >
-                         <span>+ &nbsp;</span>More info
+                          <span>+ &nbsp;</span>More info
                         </div>
                       </div>
 
@@ -277,7 +283,7 @@ const UserTable = () => {
 
                           <button
                             className='btn btn-icon btn-active-color-danger btn-sm'
-                            onClick={() => deleteFaults(row.id, row.username)}
+                            onClick={() => deleteUsers(row.id, row.username)}
                           >
                             <KTSVG
                               path='/media/icons/duotune/general/gen027.svg'

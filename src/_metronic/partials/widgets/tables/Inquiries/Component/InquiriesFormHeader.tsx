@@ -1,18 +1,26 @@
-import { ListPageData } from '../InquiriesContext'
+import {ListPageData} from '../InquiriesContext'
+import {KTSVG} from '../../../../../../_metronic/helpers'
+import {useNavigate} from 'react-router-dom'
 
 const InquiriesFormHeader = () => {
   const {itemIdForUpdate} = ListPageData()
+  const navigation = useNavigate()
 
   return (
     <>
       <div className='modal-header'>
         {/* begin::Modal title */}
 
-        {/* <span className='svg-icon svg-icon-2x' onClick={() => navigation(-1)}>
+        <div className='d-flex align-items-center'>
+          <span className='svg-icon svg-icon-2x' onClick={() => navigation('/inquiries')}>
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-          </span> */}
+            {/* <KTSVG path='/media/icons/duotune/arrows/arr096.svg' /> */}
+          </span>
 
-        <h2 className='fw-bolder'>{itemIdForUpdate === 'add' ? 'Create Inquiries' : 'Edit Inquiries'}</h2>
+          <h2 className='modal-title fw-bolder'>
+            {itemIdForUpdate === 'add' ? 'Create Inquiries' : 'Edit Inquiries'}
+          </h2>
+        </div>
 
         {/* end::Modal title */}
       </div>
@@ -20,4 +28,3 @@ const InquiriesFormHeader = () => {
   )
 }
 export default InquiriesFormHeader
-

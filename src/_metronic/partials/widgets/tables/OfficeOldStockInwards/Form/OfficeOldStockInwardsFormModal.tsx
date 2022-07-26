@@ -350,7 +350,11 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               <div className='modal-footer border-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>
-                  <button type='reset' onClick={() => navigation(-1)} className='btn btn-light'>
+                  <button
+                    type='reset'
+                    onClick={() => navigation('/stocks/office-old-stock-inwards')}
+                    className='btn btn-light'
+                  >
                     Close
                   </button>
                 </CustomTooltip>

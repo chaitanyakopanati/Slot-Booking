@@ -48,16 +48,24 @@ const MainPointTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await MainPointservice.deleteMainPoint(ID)
-        if (payload.success === true) {
-          LoderActions(false)
+        try {
+          let payload = await MainPointservice.deleteMainPoint(ID)
+          if (payload.success === true) {
+            LoderActions(false)
+            console.log('payload', payload)
+            // toast.success(` Data Deleted Successfully`)
+            toast.error(payload.message)
+            toast.dismiss('1s')
+          } else {
+            LoderActions(false)
 
-          toast.success(` Data Deleted Successfully`)
-          toast.dismiss('1s')
-        } else {
-          LoderActions(false)
-
-          toast.error(` Failed to Delete Data`)
+            // toast.error(` Failed to Delete Data`)
+            toast.error(payload.message)
+            toast.dismiss('1s')
+          }
+        } catch (error: any) {
+          console.log('error', error.data)
+          toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
         fetchAllMainPoint()

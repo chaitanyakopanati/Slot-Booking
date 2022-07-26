@@ -58,7 +58,10 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                 {/* begin:: View Modal Header */}
                 <div className='modal-header'>
                   <div className='d-flex align-items-center'>
-                    <span className='svg-icon svg-icon-2x' onClick={() => navigate(-1)}>
+                    <span
+                      className='svg-icon svg-icon-2x'
+                      onClick={() => navigate('/stocks/office-stock-outwards')}
+                    >
                       <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
                     </span>
                     <h5 className='modal-title'>View office stock outwards</h5>

@@ -20,7 +20,7 @@ const ComplaintTypeTable = () => {
     fetchAllComplaint,
     setPageNo,
     setSearchText,
-    DataGetAllTypeCreatedByTypes
+    DataGetAllTypeCreatedByTypes,
   } = ListPageData()
   let {LoderActions} = useLoader()
 
@@ -47,6 +47,7 @@ const ComplaintTypeTable = () => {
     /* begin:: Delete functionlity */
   }
   const deletecomplaints = (ID: number) => {
+    console.log('ID', ID)
     Swal.fire({
       title: `Do you want to delete this records ?`,
       icon: 'warning',
@@ -55,19 +56,29 @@ const ComplaintTypeTable = () => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Delete',
     }).then(async (result) => {
+      console.log('result', result)
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Complaintservice.deletecomplaints(ID)
-        if (payload.success === true) {
-          LoderActions(false)
-          toast.success(` Data Deleted Successfully`)
+        try {
+          let payload = await Complaintservice.deletecomplaints(ID)
+          console.log('payload', payload)
+          if (payload.success === true) {
+            LoderActions(false)
+            // toast.success(` Data Deleted Successfully`)
+            toast.success(payload.message)
+            toast.dismiss('1s')
+          } else {
+            LoderActions(false)
+            // toast.error(` Failed to Delete Data`)
+            toast.error(payload.message)
+            toast.dismiss('1s')
+          }
+        } catch (error: any) {
+          console.log('error', error.data)
+          toast.error(error?.data?.message)
           toast.dismiss('1s')
-        } else {
-          LoderActions(false)
-          toast.error(` Failed to Delete Data`)
-          toast.dismiss('1s')
+          // toast.error(`The record has a reference to another module. Transaction failed!`)
         }
-
         fetchAllComplaint()
       }
     })
@@ -96,7 +107,7 @@ const ComplaintTypeTable = () => {
             <tr className='fw-bolder text-muted  bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4 text-center'>No</th>
               <th className='min-w-150px'>Name</th>
-              <th className='min-w-150px'>ETR</th>
+              <th className='min-w-150px'>ETR(Hour)</th>
               <th className='min-w-200px'>Created at</th>
               <th className='min-w-125px rounded-end'>Actions</th>
             </tr>
@@ -222,7 +233,8 @@ const ComplaintTypeTable = () => {
                             <div className='fw-bolder '>Created at:</div>
                             <div className='text-dark fw-bold  ms-2'>
                               {' '}
-                              {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                              {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') ||
+                                '-'}
                             </div>
                           </div>
                         </div>

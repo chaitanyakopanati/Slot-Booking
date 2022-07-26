@@ -12,13 +12,16 @@ const UserFormHeader = () => {
     <>
       <div className='modal-header'>
         {/* begin::Modal title */}
-
-        {/* <span className='svg-icon svg-icon-2x' onClick={() => navigation(-1)}>
+        <div className='d-flex align-items-center'>
+          <span className='svg-icon svg-icon-2x' onClick={() => navigation('/master/users')}>
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-          </span> */}
+            {/* <KTSVG path='/media/icons/duotune/arrows/arr096.svg' /> */}
+          </span>
 
-        <h2 className='fw-bolder'>{itemIdForUpdate === 'add' ? 'Create User' : 'Edit User'}</h2>
-
+          <h2 className='modal-title fw-bolder'>
+            {itemIdForUpdate === 'add' ? 'Create User' : 'Edit User'}
+          </h2>
+        </div>
         {/* end::Modal title */}
       </div>
     </>

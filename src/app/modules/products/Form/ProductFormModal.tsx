@@ -46,7 +46,8 @@ const ProductFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
+            .max(25, 'Max 25 Characters Allowed')
             .required('This field is required'),
           unit: Yup.string()
             // .min(1, 'Etr must be of 3digit ')
@@ -61,23 +62,36 @@ const ProductFormModal: FC<Props> = ({category}) => {
 
               // Edit Api Response
               let response = await Complaintservice.editProduct(values)
-              console.log(response, 'res======')
-              toast.success(` Data Updated Successfully`)
-              toast.dismiss('1s')
-              fetchAllProduct()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res======')
+                // toast.success(` Data Updated Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllProduct()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+              }
             } else {
               console.log(values, 'valuespost')
 
               // Create Api Response
               let response = await Complaintservice.postProduct(values)
-              console.log(response, 'res=----------====')
-              toast.success(` Data Added Successfully`)
-              toast.dismiss('1s')
-              fetchAllProduct()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res=----------====')
+                // toast.success(` Data Added Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllProduct()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+                resetForm({})
+              }
             }
           } catch (error: any) {
             console.log(error, 'error')
@@ -132,7 +146,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold required'>Unit</label>
                     <input
                       name='unit'
-                    placeholder='Unit'
+                      placeholder='Unit'
                       value={props.values.unit}
                       onChange={props.handleChange}
                       className='form-control form-control-lg form-control-solid'

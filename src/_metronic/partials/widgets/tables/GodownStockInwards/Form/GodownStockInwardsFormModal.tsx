@@ -239,7 +239,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                           })
                         }}
                       />
-                      
                       <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
                         <ul>
                           {getUserNameData?.length > 0 &&
@@ -266,41 +265,43 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-12 col-lg-12'>
-                  <label className='form-label fw-bold '>Serial no</label>
-                  <textarea
-                    className='form-control form-control-lg form-control-solid'
-                    value={props.values.serialno}
-                    onChange={props.handleChange}
-                    onBlur={props.handleBlur}
-                    name='serialno'
-                    placeholder='Serial no'
-                  ></textarea>
-                </div>
-
-                <div className='col-12 col-lg-12'>
-                  <div className='col'>
-                    <label className='form-label fw-bold '>Remark</label>
-                    <input
-                      placeholder='Remark'
+                    <label className='form-label fw-bold '>Serial no</label>
+                    <textarea
                       className='form-control form-control-lg form-control-solid'
-                      value={props.values.remark}
+                      value={props.values.serialno}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      type='text'
-                      name='remark'
-                      autoComplete='off'
-                    />
+                      name='serialno'
+                      placeholder='Serial no'
+                    ></textarea>
+                  </div>
+
+                  <div className='col-12 col-lg-12'>
+                    <div className='col'>
+                      <label className='form-label fw-bold '>Remark</label>
+                      <input
+                        placeholder='Remark'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.remark}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        type='text'
+                        name='remark'
+                        autoComplete='off'
+                      />
+                    </div>
                   </div>
                 </div>
-                </div>
-
-               
               </div>
 
               <div className='modal-footer border-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>
-                  <button type='reset' onClick={() => navigation(-1)} className='btn btn-light'>
+                  <button
+                    type='reset'
+                    onClick={() => navigation('/stocks/godown-stock-inwards')}
+                    className='btn btn-light'
+                  >
                     Close
                   </button>
                 </CustomTooltip>

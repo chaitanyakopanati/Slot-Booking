@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import {Link} from 'react-router-dom'
 import {useFormik} from 'formik'
 import {requestPassword} from '../core/_requests'
-import { toast } from 'react-toastify'
+import {toast} from 'react-toastify'
 
 const initialValues = {
   username: 'admin',
@@ -13,8 +13,8 @@ const initialValues = {
 const forgotPasswordSchema = Yup.object().shape({
   email: Yup.string()
     .email('Wrong email format')
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
+    // .min(3, 'Minimum 3 symbols')
+    // .max(50, 'Maximum 50 symbols')
     .required('Email is required'),
 })
 
@@ -27,7 +27,7 @@ export function ForgotPassword() {
     onSubmit: (values, {setStatus, setSubmitting}) => {
       setLoading(true)
       setHasErrors(undefined)
-      toast.success("Data Successfully")
+      toast.success('Data Successfully')
       setTimeout(() => {
         requestPassword(values.username)
           .then(({data: {result}}) => {
@@ -37,7 +37,7 @@ export function ForgotPassword() {
           .catch(() => {
             setHasErrors(true)
             setLoading(false)
-          toast.error("Wrong UserName")
+            toast.error('Wrong UserName')
             setSubmitting(false)
             setStatus('The login detail is incorrect')
           })
@@ -64,7 +64,7 @@ export function ForgotPassword() {
         </div>
 
         <div className='fv-row mb-10'>
-          <label className='form-label fw-bolder text-gray-900 fs-6'>Username</label>
+          <label className='form-label fw-bolder text-gray-900 fs-6'>Email</label>
           <input
             type='email'
             placeholder=''
@@ -81,7 +81,9 @@ export function ForgotPassword() {
           {formik.touched.username && formik.errors.username && (
             <div className='fv-plugins-message-container'>
               <div className='fv-help-block'>
-                <span role='alert' style={{color:'red'}}>{formik.errors.username}</span>
+                <span role='alert' style={{color: 'red'}}>
+                  {formik.errors.username}
+                </span>
               </div>
             </div>
           )}

@@ -1,21 +1,21 @@
-import { Formik, ErrorMessage } from 'formik'
+import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-import { FC, useEffect } from 'react'
+import {FC, useEffect} from 'react'
 
-import { Form } from 'react-bootstrap'
-import { toast } from 'react-toastify'
-import { useLoader } from '../../loader/LoaderContext'
-import { ListPageData } from '../CompaniesContext'
+import {Form} from 'react-bootstrap'
+import {toast} from 'react-toastify'
+import {useLoader} from '../../loader/LoaderContext'
+import {ListPageData} from '../CompaniesContext'
 import Zoneservice from '../helperCompanies/ApiDatarequest'
-import { CustomTooltip } from '../../../routing/customtooltip'
+import {CustomTooltip} from '../../../routing/customtooltip'
 
 type Props = {
   category: any
 }
 
-const CompaniesFormModal: FC<Props> = ({ category }) => {
-  const { setItemIdForUpdate, itemIdForUpdate, fetchAllCompanies } = ListPageData()
-  let { LoderActions } = useLoader()
+const CompaniesFormModal: FC<Props> = ({category}) => {
+  const {setItemIdForUpdate, itemIdForUpdate, fetchAllCompanies} = ListPageData()
+  let {LoderActions} = useLoader()
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -45,10 +45,11 @@ const CompaniesFormModal: FC<Props> = ({ category }) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
+            .max(25, 'Max 25 Characters Allowed')
             .required('This field is required'),
         })}
-        onSubmit={async (values: any, { resetForm }) => {
+        onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
 
           try {
@@ -57,26 +58,40 @@ const CompaniesFormModal: FC<Props> = ({ category }) => {
 
               // Edit Api Response
               let response = await Zoneservice.editCompanies(values)
-              console.log(response, 'res======')
-              toast.success(` Data Updated Successfully`)
-              toast.dismiss('1s')
-              fetchAllCompanies()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res======')
+                // toast.success(` Data Updated Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllCompanies()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+              }
             } else {
               console.log(values, 'valuespost')
 
               // Create Api Response
               let response = await Zoneservice.postCompanies(values)
-              console.log(response, 'res=----------====')
-              toast.success(` Data Added Successfully`)
-              toast.dismiss('1s')
-              fetchAllCompanies()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res=----------====')
+                // toast.success(`Data Added Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllCompanies()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+                resetForm({})
+              }
             }
           } catch (error: any) {
             console.log(error, 'error')
+            toast.error(error.data.message)
           } finally {
             LoderActions(false)
           }
@@ -115,7 +130,7 @@ const CompaniesFormModal: FC<Props> = ({ category }) => {
                     className='form-control form-control-lg form-control-solid'
                     autoComplete='off'
                   />
-                  <div className='erro2' style={{ color: 'red' }}>
+                  <div className='erro2' style={{color: 'red'}}>
                     <ErrorMessage name='name' />
                   </div>
                 </div>
@@ -136,15 +151,9 @@ const CompaniesFormModal: FC<Props> = ({ category }) => {
                   {/* end::close button */}
 
                   {/* begin::create/update Button */}
-                  {/* <CustomTooltip title='Submit form'>
+                  <CustomTooltip title='Submit form'>
                     <button type='submit' className='btn btn-primary' data-bs-dismiss='modal'>
                       {itemIdForUpdate ? 'Update' : 'Create'}
-                    </button>
-                  </CustomTooltip> */}
-
-                  <CustomTooltip title='Submit form'>
-                    <button type='submit' className='btn btn-primary'>
-                      {itemIdForUpdate !== 'add' ? 'Update' : 'Create'}
                     </button>
                   </CustomTooltip>
                   {/* end::create/update Button */}

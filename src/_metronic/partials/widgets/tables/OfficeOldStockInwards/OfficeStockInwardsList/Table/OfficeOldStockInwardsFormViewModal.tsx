@@ -57,7 +57,10 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                 {/* begin:: View Modal Header */}
                 <div className='modal-header'>
                   <div className='d-flex align-items-center'>
-                    <span className='svg-icon svg-icon-2x' onClick={() => navigate(-1)}>
+                    <span
+                      className='svg-icon svg-icon-2x'
+                      onClick={() => navigate('/stocks/office-old-stock-inwards')}
+                    >
                       <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
                     </span>
                     <h5 className='modal-title'>View office stock inwards</h5>
@@ -71,7 +74,9 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                         setViewIdForUpdate(undefined)
                         console.log('tttttttttttttttttttttttttttt', category)
                         console.log('tttttttttttttttttttttttttttt', category.data.id)
-                        navigate(`/stocks/office-old-stock-inwards/inwardsOldform/${category.data.id}`)
+                        navigate(
+                          `/stocks/office-old-stock-inwards/inwardsOldform/${category.data.id}`
+                        )
                         // openEditModal(category.id)
                       }}
                     >
@@ -156,8 +161,6 @@ const OfficeOldStockInwardsFormViewModal: FC<Props> = ({category}) => {
                         disabled
                       />
                     </div>
-
-                  
                   </div>
 
                   <div className='col-12 col-lg-12'>

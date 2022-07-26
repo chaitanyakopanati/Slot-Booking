@@ -46,7 +46,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
             .required('This field is required'),
           etr: Yup.number()
             .min(1, 'etr must be between 1 to 999.')
@@ -61,23 +61,36 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
               // Edit Api Response
               let response = await Complaintservice.editcomplaints(values)
-              console.log(response, 'res======')
-              toast.success(` Data Updated Successfully`)
-              toast.dismiss('1s')
-              fetchAllComplaint()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res======')
+                // toast.success(` Data Updated Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllComplaint()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+              }
             } else {
               console.log(values, 'valuespost')
 
               // Create Api Response
               let response = await Complaintservice.postcomplaints(values)
-              console.log(response, 'res=----------====')
-              toast.success(` Data Added Successfully`)
-              toast.dismiss('1s')
-              fetchAllComplaint()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res=----------====')
+                // toast.success(` Data Added Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllComplaint()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+                resetForm({})
+              }
             }
           } catch (error: any) {
             console.log(error, 'error')
@@ -138,8 +151,8 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                       // onChange={props.handleChange}
                       onChange={(e) => {
                         // console.log(e.target.value,"number");
-                        
-                        if (+e.target.value > 999 ) {
+
+                        if (+e.target.value > 999) {
                           return
                         }
                         props.handleChange(e)

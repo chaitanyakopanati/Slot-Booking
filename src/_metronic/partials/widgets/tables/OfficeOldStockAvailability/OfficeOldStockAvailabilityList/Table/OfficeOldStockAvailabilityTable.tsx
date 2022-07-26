@@ -111,22 +111,27 @@ const OfficeOldStockAvailabilityTable = () => {
 
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>quantity :</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.quantity || '-'}</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {row.quantityDisplay || '-'}
+                          </div>
+                        </div>
+
+                        <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                          <div className='py-1 d-flex'>
+                            <div className='fw-bolder '>zoneName:</div>
+                            <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
+                          </div>
+                        </div>
+
+                        <div
+                          className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
+                          data-bs-toggle='collapse'
+                          data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
+                          aria-expanded='false'
+                        >
+                          <span>+ &nbsp;</span>More info
                         </div>
                       </div>
-                      <div className='py-1 d-flex'>
-                        <div className='fw-bolder '>zoneName:</div>
-                        <div className='text-dark fw-bold  ms-2'>{row.zoneName || '-'}</div>
-                      </div>
-                    </div>
-
-                    <div
-                      className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
-                      data-bs-toggle='collapse'
-                      data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
-                      aria-expanded='false'
-                    >
-                      <span>+ &nbsp;</span>More info
                     </div>
                   </div>
 

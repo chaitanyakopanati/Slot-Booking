@@ -1,21 +1,29 @@
-import { useNavigate } from 'react-router-dom'
-import { KTSVG } from '../../../../../helpers'
 import {ListPageData} from '../OfficeStockInwardsContext'
+import {KTSVG} from '../../../../../helpers'
+import {useNavigate} from 'react-router-dom'
 
 const OfficeStockInwardsFormHeader = () => {
   const {itemIdForUpdate} = ListPageData()
-  const navigate = useNavigate()
+  const navigation = useNavigate()
 
   return (
     <>
       <div className='modal-header'>
         {/* begin::Modal title */}
-        <h2 className='fw-bolder'>
-        <span className='svg-icon svg-icon-2x' onClick={() => navigate(-1)}>
-          <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-        </span>
-          {itemIdForUpdate === 'add' ? 'Create Office stock inwards' : 'Edit Office stock inwards'}
-        </h2>
+        <div className='d-flex align-items-center'>
+          <span
+            className='svg-icon svg-icon-2x'
+            onClick={() => navigation('/stocks/office-stock-inwards')}
+          >
+            <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+            {/* <KTSVG path='/media/icons/duotune/arrows/arr096.svg' /> */}
+          </span>
+          <h2 className='modal-title fw-bolder'>
+            {itemIdForUpdate === 'add'
+              ? 'Create Office stock inwards'
+              : 'Edit Office stock inwards'}
+          </h2>
+        </div>
 
         {/* end::Modal title */}
       </div>

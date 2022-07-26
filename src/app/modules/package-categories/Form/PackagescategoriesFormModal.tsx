@@ -51,7 +51,8 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
+            .max(25, 'Max 25 Characters Allowed')
             .required('This field is required'),
           etr: Yup.number()
             .min(1, 'Etr must be between 1 to 999.')
@@ -66,23 +67,36 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
 
               // Edit Api Response
               let response = await Complaintservice.editPackagesCategories(values)
-              console.log(response, 'res======')
-              toast.success(` Data Updated Successfully`)
-              toast.dismiss('1s')
-              fetchAllPackagecategories()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res======')
+                // toast.success(` Data Updated Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllPackagecategories()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+              }
             } else {
               console.log(values, 'valuespost')
 
               // Create Api Response
               let response = await Complaintservice.postPackageCategories(values)
-              console.log(response, 'res=----------====')
-              toast.success(` Data Added Successfully`)
-              toast.dismiss('1s')
-              fetchAllPackagecategories()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res=----------====')
+                // toast.success(` Data Added Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllPackagecategories()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+                resetForm({})
+              }
             }
           } catch (error: any) {
             console.log(error, 'error')
@@ -142,7 +156,7 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                       value={props.values.etr}
                       // onChange={props.handleChange}
                       onChange={(e) => {
-                        if (+e.target.value > 999 ) {
+                        if (+e.target.value > 999) {
                           return
                         }
                         props.handleChange(e)

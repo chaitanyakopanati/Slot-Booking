@@ -45,7 +45,8 @@ const BankFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
+            .max(25, 'Max 25 Characters Allowed')
             .required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
@@ -57,23 +58,37 @@ const BankFormModal: FC<Props> = ({category}) => {
 
               // Edit Api Response
               let response = await Zoneservice.editBank(values)
-              console.log(response, 'res======')
-              toast.success(` Data Updated Successfully`)
-              toast.dismiss('1s')
-              fetchAllBank()
-              resetForm({})
-              cancel()
+              console.log('response', response)
+              if (response.success === true) {
+                console.log(response, 'res======')
+                // toast.success(` Data Updated Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllBank()
+                resetForm({})
+                cancel()
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+              }
             } else {
               console.log(values, 'valuespost')
 
               // Create Api Response
               let response = await Zoneservice.postBank(values)
-              console.log(response, 'res=----------====')
-              toast.success(` Data Added Successfully`)
-              toast.dismiss('1s')
-              fetchAllBank()
-              resetForm({})
-              cancel()
+              if (response.success === true) {
+                console.log(response, 'res=----------====')
+                // toast.success(` Data Added Successfully`)
+                toast.success(response.message)
+                toast.dismiss('1s')
+                fetchAllBank()
+                cancel()
+                resetForm({})
+              } else {
+                console.log(response, 'res=----------====')
+                toast.error(response.message)
+                resetForm({})
+              }
             }
           } catch (error: any) {
             console.log(error, 'error')

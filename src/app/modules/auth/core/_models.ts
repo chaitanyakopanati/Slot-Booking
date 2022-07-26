@@ -1,6 +1,8 @@
 export interface AuthModel {
   token: string
   expiration?: string
+  userId?: number
+  username?: string
 }
 
 export interface UserAddressModel {
@@ -66,6 +68,6 @@ export interface UserModel {
   socialNetworks?: UserSocialNetworksModel
 }
 export interface JwtDecoded {
-  user:UserModel
-  iat:string
+  user: UserModel
+  iat: string
 }

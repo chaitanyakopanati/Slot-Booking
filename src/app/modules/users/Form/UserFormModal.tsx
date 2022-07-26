@@ -8,6 +8,8 @@ import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../UserContext'
 import Userservice from '../helperUser/ApiDatarequestUser'
 import {useNavigate} from 'react-router-dom'
+import showPwdImg from '../../../../app/images/eye-fill.svg'
+import hidePwdImg from '../../../../app/images/eye-slash-fill.svg'
 
 type Props = {
   category: any
@@ -88,6 +90,8 @@ const UserFormModal: FC<Props> = ({category}) => {
     password: '',
     confirmPassword: '',
   })
+  const [isRevealPwd, setIsRevealPwd] = useState(false)
+  const [isRevealConfPwd, setIsRevealConfPwd] = useState(false)
 
   useEffect(() => {
     if (itemIdForUpdate === 'add') {
@@ -160,7 +164,8 @@ const UserFormModal: FC<Props> = ({category}) => {
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                toast.success(`Data Updated Successfully`)
+                // toast.success(`Data Updated Successfully`)
+                toast.success(response.message)
               }
               navigation('/master/users')
               // toast.success(` Data Updated Successfully`)
@@ -175,7 +180,8 @@ const UserFormModal: FC<Props> = ({category}) => {
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                toast.success(` Data Added Successfully`)
+                // toast.success(` Data Added Successfully`)
+                toast.success(response.message)
               }
               toast.dismiss('1s')
               navigation('/master/users')
@@ -279,7 +285,6 @@ const UserFormModal: FC<Props> = ({category}) => {
                         type='text'
                         name='username'
                         autoComplete='off'
-                       
                       />
                     </div>
                   )}
@@ -354,20 +359,20 @@ const UserFormModal: FC<Props> = ({category}) => {
                   <div className='erro2' style={{color: 'red'}}>
                     <ErrorMessage name='zoneId' />
                   </div>
-                 
+
                   {/* Status Type */}
                   {itemIdForUpdate !== 'add' ? (
-                  <div className='col-lg-12'>
-                    <label className='form-label fw-bold required'>Status</label>
-                    <select className='form-select form-select-solid'>
-                      <option value='' disabled>
-                        Select Status Type
-                      </option>
-                      <option value='1'>Pending</option>
-                      <option value='2'>Done</option>
-                    </select>
-                  </div>
-                    ) : null}
+                    <div className='col-lg-12'>
+                      <label className='form-label fw-bold required'>Status</label>
+                      <select className='form-select form-select-solid'>
+                        <option value='' disabled>
+                          Select Status Type
+                        </option>
+                        <option value='1'>Pending</option>
+                        <option value='2'>Done</option>
+                      </select>
+                    </div>
+                  ) : null}
 
                   {/* begin: input Role Filed */}
                   <div className='col-lg-12'>
@@ -398,16 +403,30 @@ const UserFormModal: FC<Props> = ({category}) => {
                   <div className='row w-100 mx-0 mb-4 gy-4'>
                     <div className='col-lg-6'>
                       <label className='form-label fw-bold required'>Password:</label>
-                      <input
-                        placeholder='Password'
-                        className='form-control form-control-lg form-control-solid'
-                        type='Password'
-                        value={props.values.password}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                        name='password'
-                        autoComplete='off'
-                      />
+                      <div className='d-flex flex-stack mb-2 position-relative'>
+                        <input
+                          placeholder='Password'
+                          className='form-control form-control-lg form-control-solid'
+                          // type='Password'
+                          type={isRevealPwd ? 'text' : 'password'}
+                          value={props.values.password}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          name='password'
+                          autoComplete='off'
+                        />
+                        <img
+                          style={{position: 'absolute', right: '15px'}}
+                          title={isRevealPwd ? 'Hide password' : 'Show password'}
+                          src={isRevealPwd ? hidePwdImg : showPwdImg}
+                          onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                        />
+                      </div>
+                      {/* <input
+                        type='button'
+                        title={isRevealPwd ? 'Hide password' : 'Show password'}
+                        onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                      /> */}
                       <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='password' />
                       </div>
@@ -416,16 +435,25 @@ const UserFormModal: FC<Props> = ({category}) => {
                     {/* begin: input confirmPassword Filed */}
                     <div className='col-lg-6'>
                       <label className='form-label fw-bold required'>Confirm Password:</label>
-                      <input
-                        placeholder='Confirm Password'
-                        className='form-control form-control-lg form-control-solid'
-                        value={props.values.confirmPassword}
-                        onChange={props.handleChange}
-                        name='confirmPassword'
-                        onBlur={props.handleBlur}
-                        type='password'
-                        autoComplete='off'
-                      />
+                      <div className='d-flex flex-stack mb-2 position-relative'>
+                        <input
+                          placeholder='Confirm Password'
+                          className='form-control form-control-lg form-control-solid'
+                          value={props.values.confirmPassword}
+                          onChange={props.handleChange}
+                          name='confirmPassword'
+                          onBlur={props.handleBlur}
+                          // type='password'
+                          type={isRevealConfPwd ? 'text' : 'password'}
+                          autoComplete='off'
+                        />
+                        <img
+                          style={{position: 'absolute', right: '15px'}}
+                          title={isRevealConfPwd ? 'Hide password' : 'Show password'}
+                          src={isRevealConfPwd ? hidePwdImg : showPwdImg}
+                          onClick={() => setIsRevealConfPwd((prevState) => !prevState)}
+                        />
+                      </div>
                       <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='confirmPassword' />
                       </div>
@@ -437,7 +465,11 @@ const UserFormModal: FC<Props> = ({category}) => {
               <div className='modal-footer border-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>
-                  <button type='reset' onClick={() => navigation(-1)} className='btn btn-light'>
+                  <button
+                    type='reset'
+                    onClick={() => navigation('/master/users')}
+                    className='btn btn-light'
+                  >
                     Close
                   </button>
                 </CustomTooltip>

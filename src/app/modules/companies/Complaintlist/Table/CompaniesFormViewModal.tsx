@@ -1,16 +1,16 @@
-import { Form, Formik } from 'formik'
+import {Form, Formik} from 'formik'
 import moment from 'moment'
-import { FC, useEffect } from 'react'
-import { KTSVG } from '../../../../../_metronic/helpers'
-import { CustomTooltip } from '../../../../routing/customtooltip'
-import { ListPageData } from '../../CompaniesContext'
+import {FC, useEffect} from 'react'
+import {KTSVG} from '../../../../../_metronic/helpers'
+import {CustomTooltip} from '../../../../routing/customtooltip'
+import {ListPageData} from '../../CompaniesContext'
 
 type Props = {
   category: any
 }
 
-const CompaniesFormViewModal: FC<Props> = ({ category }) => {
-  const { viewIdForUpdate, setItemIdForUpdate, setViewIdForUpdate } = ListPageData()
+const CompaniesFormViewModal: FC<Props> = ({category}) => {
+  const {viewIdForUpdate, setItemIdForUpdate, setViewIdForUpdate} = ListPageData()
 
   useEffect(() => {
     document.body.classList.add('modal-open')
@@ -100,7 +100,7 @@ const CompaniesFormViewModal: FC<Props> = ({ category }) => {
                               <div
                                 className='btn btn-icon btn-sm btn-active-icon-primary'
                                 onClick={() => setViewIdForUpdate(undefined)}
-                                style={{ cursor: 'pointer' }}
+                                style={{cursor: 'pointer'}}
                               >
                                 <KTSVG
                                   path='/media/icons/duotune/arrows/arr061.svg'

@@ -46,7 +46,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
           {/* begin:: View Modal Header */}
           <div className='modal-header'>
             <div className='d-flex align-items-center'>
-              <span className='svg-icon svg-icon-2x' onClick={() => navigate(-1)}>
+              <span className='svg-icon svg-icon-2x' onClick={() => navigate('/inquiries')}>
                 <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
               </span>
               <h5 className='modal-title'>View Inquiries</h5>
