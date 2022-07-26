@@ -1,17 +1,15 @@
 import React, {useEffect} from 'react'
-import { KTCard } from '../../../../../helpers'
+import {KTCard} from '../../../../../helpers'
 import FormsFormHeader from '../Component/FormsFormHeader'
-import { ListDataProvider, ListPageData } from '../FormsContext'
+import {ListDataProvider, ListPageData} from '../FormsContext'
 import FormsFormByCategory from './FormsFormByCategory'
 
 function InquiriesForm() {
   const {DataGetAllTypeSalesExecutveUserByRole} = ListPageData()
 
-
- useEffect(() => {
-  DataGetAllTypeSalesExecutveUserByRole()
- }, [])
- 
+  useEffect(() => {
+    DataGetAllTypeSalesExecutveUserByRole()
+  }, [])
 
   return (
     <div className='overflow-hidden'>

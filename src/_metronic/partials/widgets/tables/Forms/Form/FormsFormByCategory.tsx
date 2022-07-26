@@ -1,8 +1,8 @@
 import {useQuery} from 'react-query'
 import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
-import { ListPageData } from '../FormsContext'
-import { isNotEmpty } from '../../../../../helpers'
+import {ListPageData} from '../FormsContext'
+import {isNotEmpty} from '../../../../../helpers'
 import Inquiriesservice from '../helperForms/ApiDataRequest'
 import FormsFormModal from './FormsFormModal'
 
@@ -20,20 +20,16 @@ const FormsFormByCategory = () => {
     }
   }, [id])
 
-
-
-
   const {data: category, error} = useQuery(
-    `GetInquiry-${itemIdForUpdate}`,
+    `GetFormById-${itemIdForUpdate}`,
     () => {
-      return Inquiriesservice.GetInquiriesTypeById(itemIdForUpdate)
+      return Inquiriesservice.GetFormsTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null  ),
+      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null),
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        
       },
     }
   )
@@ -42,9 +38,8 @@ const FormsFormByCategory = () => {
   }
 
   useEffect(() => {
-    
     console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category,itemIdForUpdate])
+  }, [category, itemIdForUpdate])
 
   {
     /* begin::Add-Form Model functionality */
@@ -52,7 +47,6 @@ const FormsFormByCategory = () => {
   if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <FormsFormModal category={{ID: undefined}} />
   }
-
 
   if (!error && category) {
     return <FormsFormModal category={category} />

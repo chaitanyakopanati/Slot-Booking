@@ -1,10 +1,13 @@
+import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
 import { ID, postlistData, putInquiriesmodel } from './ModelForms'
+
+const API_URL_DATA = process.env.REACT_APP_API_URL
 
 {
   /* begin:: User:- getDynamicUser Api call */
 }
-const getDynamicInquiries = (
+const getDynamicForm = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
@@ -12,16 +15,28 @@ const getDynamicInquiries = (
   statusId: number,
   roleId: string,
   salesExecutiveId: number,
-  startDate: string,
-  endDate: string,
+  zoneId:number,
+  companyId:number,
+  paymentTypeId:number,
+  createdStartDate:string,
+  createdEndDate:string,
+  formStartDate:string,
+  formEndDate:string,
+  expiryStartDate:string,
+  expiryEndDate:string,
+  packageCategoryId:number,
+  connectionTypeId:number,
+  formTypeId:number,
+  searchByUserName:string,
+  formSubmitTypeId:number
 ) => {
   if (pageSize <= 0) {
     return http.get(
-      `GetAllInquiries/${null}/${null}?searchText=${null}&createdById=${null}&statusId=${null}&roleId=${null}&salesExecutiveId=${null}&createdAt=${null}&startDate=${null}&endDate=${null}`
+      `GetDynamicForms/${null}/${null}?searchText=${null}&createdById=${null}&statusId=${null}&roleId=${null}&salesExecutiveId=${null}&createdAt=${null}&zoneId=${null}&companyId=${null}&paymentTypeId=${null}&createdStartDate=${null}&createdEndDate=${null}&formStartDate=${null}&formEndDate=${null}&expiryStartDate=${null}&expiryEndDate=${null}&packageCategoryId=${null}&connectionTypeId=${null}&formTypeId=${null}&searchByUserName=${null}&formSubmitTypeId=${null}`
     )
   } else {
     return http.get(
-      `GetAllInquiries/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&statusId=${statusId}&roleId=${roleId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}`
+      `GetDynamicForms/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&statusId=${statusId}&roleId=${roleId}&salesExecutiveId=${salesExecutiveId}&zoneId=${zoneId}&companyId=${companyId}&paymentTypeId=${paymentTypeId}&createdStartDate=${createdStartDate}&createdEndDate=${createdEndDate}&formStartDate=${formStartDate}&formEndDate=${formEndDate}&expiryStartDate=${expiryStartDate}&expiryEndDate=${expiryEndDate}&packageCategoryId=${packageCategoryId}&connectionTypeId=${connectionTypeId}&formTypeId=${formTypeId}&searchByUserName=${searchByUserName}&formSubmitTypeId=${formSubmitTypeId}`
     )
   }
 }
@@ -29,11 +44,38 @@ const getDynamicInquiries = (
   /* end:: User:- getDynamicFaults Api call */
 }
 
+
+// download
+
+const getDynamicDownloadFile = (
+  searchText: string,
+  salesExecutiveId:number,
+  zoneId:number,
+  companyId:number,
+  connectionTypeId:number,
+  formTypeId:number,
+  paymentTypeId:number,
+  createdStartDate:string,
+  createdEndDate:string,
+  formStartDate:string,
+  formEndDate:string,
+  expiryStartDate:string,
+  expiryEndDate:string,
+  packageCategoryId:number,
+  formSubmitTypeId:number,
+) => {
+    return axios({
+      url: `${API_URL_DATA}/GetFormsExcelSheet?&searchText=${searchText}&salesExecutiveId=${salesExecutiveId}&zoneId=${zoneId}&companyId=${companyId}&connectionTypeId=${connectionTypeId}&formTypeId=${formTypeId}&paymentTypeId=${paymentTypeId}&createdStartDate=${createdStartDate}&createdEndDate=${createdEndDate}&formStartDate=${formStartDate}&formEndDate=${formEndDate}&expiryStartDate=${expiryStartDate}&expiryEndDate=${expiryEndDate}&packageCategoryId=${packageCategoryId}&formSubmitTypeId=${formSubmitTypeId}`, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+  })
+}
+
 {
   /* begin:: User:- post Api call(create) */
 }
-const postInquiries = (obj: postlistData) => {
-  return http.post('SaveInquiry', {
+const postForms = (obj: postlistData) => {
+  return http.post('SaveForm', {
     name: obj.name,
     address: obj.address,
     contactno: obj.contactno,
@@ -53,8 +95,8 @@ const postInquiries = (obj: postlistData) => {
 {
   /* begin:: User:- delete Api call */
 }
-const deleteInquiries = (Id: number) => {
-  return http.delet(`DeleteInquiry/${Id}`)
+const deleteForms = (Id: number) => {
+  return http.delet(`DeleteFormById/${Id}`)
 }
 
 {
@@ -64,8 +106,8 @@ const deleteInquiries = (Id: number) => {
 {
   /* begin:: User:- post Api call(edit) */
 }
-const editInquiries = (obj: putInquiriesmodel) => {
-  return http.post(`SaveInquiry`, {
+const editForms = (obj: putInquiriesmodel) => {
+  return http.post(`SaveForm`, {
     id: obj.id,
     name: obj.name,
     address: obj.address,
@@ -86,21 +128,13 @@ const editInquiries = (obj: putInquiriesmodel) => {
 {
   /* begin:: User:- getById Api call */
 }
-const GetInquiriesTypeById = (id: ID) => {
+const GetFormsTypeById = (id: ID) => {
   console.log(id, 'id===============')
 
-  return http.get(`GetInquiry/${id}`)
+  return http.get(`GetFormById/${id}`)
 }
 {
   /* end:: User:- getById Api call */
-}
-
-{
-  /* begin:: User:- get User type Api call */
-}
-
-{
-  /* end:: User:- get User type Api call */
 }
 
 // SalesExecutve
@@ -118,16 +152,29 @@ const getZoneTypes = () => {
   return http.get('GetAllZones')
 }
 
+// Company
+const getCompany = () => {
+  return http.get('GetAllCompanies')
+}
+
+// Packages category
+const getPackagesCategory = () => {
+  return http.get('GetAllPackageCategories')
+}
+
 
 const Inquiriesservice = {
-  getDynamicInquiries,
-  postInquiries,
-  deleteInquiries,
-  editInquiries,
-  GetInquiriesTypeById,
+  getDynamicForm,
+  postForms,
+  deleteForms,
+  editForms,
+  GetFormsTypeById,
   getSalesExecutveByTypes,
   getZoneTypes,
   getSalesExecutveByGetUserByRoleTypes,
+  getCompany,
+  getPackagesCategory,
+  getDynamicDownloadFile
 }
 
 export default Inquiriesservice

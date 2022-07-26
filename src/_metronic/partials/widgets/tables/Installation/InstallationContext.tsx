@@ -10,10 +10,11 @@ import {
   ID,
   roleIdInstallations,
 } from './helperInstallation/ModelInstallation'
+import {saveAs} from 'file-saver'
+
 
 export interface ComplaintDataContextModel {
   getData: getInstallationsData[]
-  // getDataAllType: GetAllData[]
   statusData: GetAllData[]
   getMainPoint: GetAllData[]
   getcableTypeData: GetAllData[]
@@ -76,6 +77,7 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeMainPoint: () => void
   DataGetAllTypeCableType: () => void
   DataGetAllTypeCompany: () => void
+  fetchAllDownload: () => void
   suggestionUserText: string
   setSuggestionUserText: Dispatch<SetStateAction<string>>
 }
@@ -118,7 +120,6 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   searchByUsername: '',
   setSearchText: () => {},
   setSearchByUsername: () => {},
-  // getDataAllType: [],
   getUserByRole: [],
   statusData: [],
   getMainPoint: [],
@@ -147,11 +148,11 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeCompany: () => {},
   suggestionUserText: '',
   setSuggestionUserText: () => {},
+  fetchAllDownload: () => {},
 })
 
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInstallationsData[]>([])
-  // const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [getDataAllTypeZone, setGetDataAllTypeZone] = useState<GetAllData[]>([])
   const [statusData, setStatusData] = useState<GetAllData[]>([])
   const [getInstallations, setGetInstallations] = useState<GetAllData[]>([])
@@ -185,6 +186,34 @@ const ListDataProvider: FC = ({children}) => {
   const [companyId, setCompanyId] = useState<number>(0)
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
   let {LoderActions} = useLoader()
+
+
+    // Download fill
+
+    let fetchAllDownload = async () => {
+      console.log('Enter')
+      LoderActions(true)
+      try {
+        let response: any = await InstallationsService.getDynamicDownloadFile(
+          searchText,
+          startDate,
+          endDate,
+          createdById,
+          statusId,
+          salesExecutiveId,
+          installerId,
+          zoneId,
+          companyId,
+          mainPointId,
+          connectionTypeId,
+        )
+        saveAs(response.data, 'Installations.xlsx')
+      } catch (error) {
+        console.log('Error', error)
+      } finally {
+        LoderActions(false)
+      }
+    }
 
   {
     /* begin:: User:- getDynamicUser Api call */
@@ -421,6 +450,7 @@ const ListDataProvider: FC = ({children}) => {
     connectionTypeId,
     setCompanyId,
     getInstallations,
+    fetchAllDownload,
     getCompanyTypeData,
     installerId,
     setConnectionTypeId,

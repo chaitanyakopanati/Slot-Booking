@@ -1,9 +1,11 @@
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putInstallationsmodel, roleIdInstallations, USERNAME } from './ModelInstallation'
+import axios from 'axios'
+import { ID, postlistData, putInstallationsmodel } from './ModelInstallation'
+const API_URL_DATA = process.env.REACT_APP_API_URL
 
 
 {
-  /* begin:: User:- getDynamicInstallations Api call */
+  /* begin:: getDynamicInstallations Api call */
 }
 const getDynamicInstallations = (
   pageNo: number,
@@ -31,7 +33,7 @@ const getDynamicInstallations = (
   }
 }
 {
-  /* end:: User:- getDynamicInstallations Api call */
+  /* end:: getDynamicInstallations Api call */
 }
 
 {
@@ -59,7 +61,7 @@ const postInstallations = (obj: postlistData) => {
   })
 }
 {
-  /* end:: User:- post Api call(create) */
+  /* end:: post Api call(create) */
 }
 
 {
@@ -70,7 +72,7 @@ const deleteInstallations = (Id: number) => {
 }
 
 {
-  /* end:: User:- delete Api call */
+  /* end:: delete Api call */
 }
 
 {
@@ -80,26 +82,50 @@ const editInstallations = (obj: putInstallationsmodel) => {
   return http.post(`SaveInstallations`, {
     id:obj.id,
     userid: obj.userid,
-    connectiontype:obj.connectiontype,
+    // userName: obj.userName,
     zonepointid: obj.zonepointid,
+    connectiontype:obj.connectiontype.toString(),
     installerid: obj.installerid,
     cabletypeid:obj.cabletypeid,
     cablelength: obj.cablelength,
-    iptype: obj.iptype,
-    iptypeId: obj.iptypeId,
+    iptype: obj.iptype.toString(),
+    // iptypeId: obj.iptypeId,
     accesspointip: obj.accesspointip,
     stationip: obj.stationip,
     stationname: obj.stationname,
+    status:"1",
     stationMac: obj.stationMac,
-    status: obj.status,
     remark: obj.remark,
     isnotifyinstaller: obj.isnotifyinstaller,
     createdbyId: 1,
-    statusId:"1"
+    modifyby:1
   })
 }
+
 {
-  /* begin:: User:- post Api call(edit) */
+  /* begin:: post Api call(edit) */
+}
+
+// download
+
+const getDynamicDownloadFile = (
+  searchText: string,
+  startDate: string,
+  endDate: string,
+  createdById:number,
+  statusId:number,
+  salesExecutiveId:number,
+  installerId:number,
+  zoneId:number,
+  companyId:number,
+  mainPointId:number,
+  connectionTypeId:number,
+) => {
+    return axios({
+      url: `${API_URL_DATA}/GetInstallationsExcelSheet?&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdById=${createdById}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&installerId=${installerId}&zoneId=${zoneId}&companyId=${companyId}&mainPointId=${mainPointId}&connectionTypeId=${connectionTypeId}`, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+  })
 }
 
 {
@@ -111,7 +137,7 @@ const GetInstallationsTypeById = (id: ID) => {
   return http.get(`GetInstallationById/${id}`)
 }
 {
-  /* end:: User:- getById Api call */
+  /* end:: getById Api call */
 }
 
 //getZoneTypes
@@ -176,7 +202,8 @@ const InstallationsService = {
   getMainPoint,
   getcableType,
   getUserName,
-  getCompany
+  getCompany,
+  getDynamicDownloadFile
 }
 
 export default InstallationsService

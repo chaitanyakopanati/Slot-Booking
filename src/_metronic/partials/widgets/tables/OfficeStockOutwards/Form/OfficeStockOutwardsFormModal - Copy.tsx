@@ -141,11 +141,7 @@ const UserFormModal: FC<formik> = ({category}) => {
         console.log(payload, 'payloadpayload')
         if (payload.success == true) {
           LoderActions(false)
-          if(formik.values.id){
-            formik.setFieldValue('maxQuantity',payload?.data + category.data?.quantity  || 0)
-          }else{
-            formik.setFieldValue('maxQuantity',payload?.data || 0)
-          }
+          formik.setFieldValue('maxQuantity',payload?.data || 0)
         }
       }
       // formik.setFieldValue('quantity',10)

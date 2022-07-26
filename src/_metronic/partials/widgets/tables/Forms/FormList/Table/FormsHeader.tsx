@@ -24,7 +24,8 @@ const FormsHeader: FC<Props> = ({category}) => {
     searchText,
     zoneId,
     roleId,
-    searchByUsername,
+    searchByUserName,
+    setSearchByUsername,
     createdById,
     setCreatedById,
     fetchAllUser,
@@ -34,16 +35,47 @@ const FormsHeader: FC<Props> = ({category}) => {
     salesExecutiveId,
     getUserByRole,
     setStatusId,
-    startDate,
-    endDate,
-    setStartDate,
-    setEndDate,
+    getDataAllType,
+    setZoneId,
+    getDataAllTypeCompany,
+    setCompanyId,
+    companyId,
+    setPaymentTypeId,
+    setSalesExecutiveId,
+    paymentTypeId,
+    setCreatedEndDate,
+    createdEndDate,
+    setCreatedStartDate,
+    createdStartDate,
+    setFormEndDate,
+    formEndDate,
+    setFormStartDate,
+    formStartDate,
+    setExpiryEndDate,
+    expiryEndDate,
+    setExpiryStartDate,
+    expiryStartDate,
+    getPackagesCategory,
+    setPackageCategoryId,
+    packageCategoryId,
+    connectionTypeId,
+    setConnectionTypeId,
+    formTypeId,
+    setFormTypeId,
+    formSubmitTypeId,
+    setFormSubmitTypeId,
+    fetchAllDownload
   } = ListPageData()
 
   const navigate = useNavigate()
 
-  const [fromDate, setFromDate] = useState<any>()
-  const [toDate, setToDate] = useState<any>()
+  const [fromCreatedAtDate, setFromCreatedAtDate] = useState<any>()
+  const [toCreatedAtDate, setToCreatedAtDate] = useState<any>()
+  const [fromsDate, setFromsDate] = useState<any>()
+  const [toFormsDate, setToFormsDate] = useState<any>()
+  const [expiryDate, setExpiryDate] = useState<any>()
+  const [toexpiryDate, setToExpiryDate] = useState<any>()
+
   const range = {
     Today: [moment(), moment()],
     Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -60,19 +92,47 @@ const FormsHeader: FC<Props> = ({category}) => {
     ],
   }
 
-  const handleEvent = (event: any, picker: any) => {
+  // created at
+  const handleEventCreatedAt = (event: any, picker: any) => {
     console.log('start: ', picker.startDate._d)
     console.log('end: ', picker.endDate._d)
     console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setFromDate(picker.startDate._d)
-    setToDate(picker.endDate._d)
+    setFromCreatedAtDate(picker.startDate._d)
+    setToCreatedAtDate(picker.endDate._d)
 
-    setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+    setCreatedStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
+    setCreatedEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
 
-  const openAddCategoryModal = () => {
-    setItemIdForUpdate(null)
+  // form date
+  const handleEventFormDate = (event: any, picker: any) => {
+    console.log('start: ', picker.startDate._d)
+    console.log('end: ', picker.endDate._d)
+    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
+    setFromsDate(picker.startDate._d)
+    setToFormsDate(picker.endDate._d)
+
+    setFormStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
+    setFormEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+  }
+
+  // expiry Date
+  const handleEventExpiryDate = (event: any, picker: any) => {
+    console.log('start: ', picker.startDate._d)
+    console.log('end: ', picker.endDate._d)
+    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
+    setExpiryDate(picker.startDate._d)
+    setToExpiryDate(picker.endDate._d)
+
+    setExpiryStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
+    setExpiryEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+  }
+
+  //sales executive
+  const handlesalesExecutiveIdchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setSalesExecutiveId(e.target.value)
   }
 
   {
@@ -88,22 +148,77 @@ const FormsHeader: FC<Props> = ({category}) => {
   }
 
   {
-    /* begin::createdBy */
+    /* begin::Zone */
   }
-  const handleCreatedBYchange = (e: any) => {
-    setPageNo(1)
-    console.log(e.target.value)
-    setCreatedById(e.target.value)
-  }
-  {
-    /* End::createdBy */
-  }
-
-  const handleStatuschange = (e: any) => {
+  const handleZoneChange = (e: any) => {
     // setPageNo(1)
     console.log(e.target.value)
-    setStatusId(e.target.value)
+    setZoneId(e.target.value)
   }
+  {
+    /* emd::Zone */
+  }
+
+  //Company
+
+  const handleCompanyChange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setCompanyId(e.target.value)
+  }
+
+  //Payment
+  const handlePaymentchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setPaymentTypeId(e.target.value)
+  }
+
+  // packages Category
+  const handlePackagesCategoryIdchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setPackageCategoryId(e.target.value)
+  }
+
+  // form type
+  const handleFormTypechange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setFormTypeId(e.target.value)
+  }
+
+  // form sumbit
+  const handleFormSumbitchange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setFormSubmitTypeId(e.target.value)
+  }
+
+   // search by username
+   const handlesearchByUserNamechange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setSearchByUsername(e.target.value)
+  }
+
+  {
+    /* begin::handleConnectionTypechange */
+  }
+  const handleConnectionTypechange = (e: any) => {
+    setPageNo(1)
+    console.log(e.target.value)
+    setConnectionTypeId(e.target.value)
+  }
+  {
+    /* End::handleConnectionTypechange */
+  }
+
+   // download
+   const downloadFile = async () => {
+    fetchAllDownload()
+  }
+
 
   useEffect(() => {
     fetchAllUser()
@@ -113,11 +228,22 @@ const FormsHeader: FC<Props> = ({category}) => {
     searchText,
     zoneId,
     roleId,
-    searchByUsername,
+    searchByUserName,
     createdById,
     statusId,
-    startDate,
-    endDate,
+    companyId,
+    salesExecutiveId,
+    createdEndDate,
+    createdStartDate,
+    formStartDate,
+    formEndDate,
+    expiryStartDate,
+    expiryStartDate,
+    packageCategoryId,
+    connectionTypeId,
+    formTypeId,
+    formSubmitTypeId,
+    paymentTypeId
   ])
 
   return (
@@ -129,6 +255,7 @@ const FormsHeader: FC<Props> = ({category}) => {
           username: category.data?.username || '',
           salesexecutiveId: category.data?.salesexecutiveId || '',
           fullName: category.data?.fullName || '',
+          companyid: category.data?.companyid || '',
         }}
         validationSchema={Yup.object({
           id: Yup.string().required('This fielld is required'),
@@ -162,9 +289,10 @@ const FormsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                  <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -173,7 +301,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 
@@ -198,7 +326,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                         type='button'
                         className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                         onClick={() => {
-                          navigate('inquiriesform/add')
+                          navigate('formsform/add')
                         }}
                         // onClick={openAddCategoryModal}
                       >
@@ -219,19 +347,143 @@ const FormsHeader: FC<Props> = ({category}) => {
               {/* begin:: Filter:- Created By */}
               {filterShow && (
                 <div className='row w-100 mx-0 my-3'>
-                  <div className='col-lg-3'>
-                    <div
-                      style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
-                    >
-                      <label className='form-label fw-bold'>Inquiry date</label>
+                  <div className='row w-100 mx-0 my-3'>
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Username</label>
+                      <input
+                        placeholder='Search username'
+                        className='form-control form-control-lg form-control-solid'
+                        type='text'
+                        value={searchByUserName}
+                    onChange={handlesearchByUserNamechange}
+                        autoComplete='off'
+                      />
+                    </div>
+
+                    <div className='col-lg-3 col-md-3'>
+                      <label className='form-label fw-bold'>Zone:</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('zoneId')}
+                        value={zoneId}
+                        onChange={handleZoneChange}
+                      >
+                        <option value=''>All</option>
+                        {getDataAllType.map((TypeData, index) => {
+                          return (
+                            <option key={index} value={TypeData?.id}>
+                              {TypeData?.name}
+                            </option>
+                          )
+                        })}
+                      </select>
+                    </div>
+
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Company</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('companyid')}
+                        value={companyId}
+                        onChange={handleCompanyChange}
+                      >
+                        <option value=''>All</option>
+                        {getDataAllTypeCompany.map((TypeData: any, index) => {
+                          return (
+                            <option key={index} value={TypeData.id}>
+                              {TypeData?.name}
+                            </option>
+                          )
+                        })}
+                      </select>
+                    </div>
+
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Sales Executive</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('salesexecutiveid')}
+                        value={salesExecutiveId}
+                        onChange={handlesalesExecutiveIdchange}
+                      >
+                        <option value=''>All</option>
+                        {getUserByRole?.map((row, index) => {
+                          return (
+                            <option key={index} value={row?.id}>
+                              {row.fullName}
+                            </option>
+                          )
+                        })}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className='row w-100 mx-0 my-3'>
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Payment</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('paymentId')}
+                        value={paymentTypeId}
+                        onChange={handlePaymentchange}
+                      >
+                        <option>All</option>
+                        <option value='1'>Due</option>
+                        <option value='2'>Clear</option>
+                      </select>
+                    </div>
+
+                    <div className='col-lg-3'>
+                      <div>
+                        <label className='form-label fw-bold'>Created at</label>
+                        <span
+                          role='button'
+                          onClick={() => {
+                            console.log('datatatatat========================\\\\\\\\\\\\')
+                            setFromCreatedAtDate('')
+                            setToCreatedAtDate('')
+                            setCreatedStartDate('')
+                            setCreatedEndDate('')
+                          }}
+                        >
+                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        </span>
+                        <div>
+                          <DateRangePicker
+                            initialSettings={{
+                              alwaysShowCalendars: false,
+                              ranges: range,
+                            }}
+                            onHide={handleEventCreatedAt}
+                          >
+                            <div className='form-select form-select-solid'>
+                              <input
+                                style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
+                                placeholder='All'
+                                value={`${
+                                  fromCreatedAtDate && toCreatedAtDate
+                                    ? `${moment(fromCreatedAtDate).format('DD-MM-yyyy')}-${moment(
+                                        toCreatedAtDate
+                                      ).format('DD-MM-yyyy')}`
+                                    : ''
+                                }`}
+                              />
+                            </div>
+                          </DateRangePicker>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Form date</label>
                       <span
                         role='button'
                         onClick={() => {
                           console.log('datatatatat========================\\\\\\\\\\\\')
-                          setFromDate('')
-                          setToDate('')
-                          setStartDate('')
-                          setEndDate('')
+                          setFromsDate('')
+                          setToFormsDate('')
+                          setFormStartDate('')
+                          setFormEndDate('')
                         }}
                       >
                         <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
@@ -242,16 +494,55 @@ const FormsHeader: FC<Props> = ({category}) => {
                             alwaysShowCalendars: false,
                             ranges: range,
                           }}
-                          onHide={handleEvent}
+                          onHide={handleEventFormDate}
                         >
                           <div className='form-select form-select-solid'>
                             <input
                               style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
                               placeholder='All'
                               value={`${
-                                fromDate && toDate
-                                  ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(
-                                      toDate
+                                fromsDate && toFormsDate
+                                  ? `${moment(fromsDate).format('DD-MM-yyyy')}-${moment(
+                                      toFormsDate
+                                    ).format('DD-MM-yyyy')}`
+                                  : ''
+                              }`}
+                            />
+                          </div>
+                        </DateRangePicker>
+                      </div>
+                    </div>
+
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Expiry date</label>
+                      <span
+                        role='button'
+                        onClick={() => {
+                          console.log('datatatatat========================\\\\\\\\\\\\')
+                          setExpiryDate('')
+                          setToExpiryDate('')
+                          setExpiryStartDate('')
+                          setExpiryEndDate('')
+                        }}
+                      >
+                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                      </span>
+                      <div>
+                        <DateRangePicker
+                          initialSettings={{
+                            alwaysShowCalendars: false,
+                            ranges: range,
+                          }}
+                          onHide={handleEventExpiryDate}
+                        >
+                          <div className='form-select form-select-solid'>
+                            <input
+                              style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
+                              placeholder='All'
+                              value={`${
+                                expiryDate && toexpiryDate
+                                  ? `${moment(expiryDate).format('DD-MM-yyyy')}-${moment(
+                                      toexpiryDate
                                     ).format('DD-MM-yyyy')}`
                                   : ''
                               }`}
@@ -262,136 +553,68 @@ const FormsHeader: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                
-
-                  <div className='row w-100 mx-0 my-3'>
-                    <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>Username</label>
-                      <input
-                        placeholder='Search username'
-                        className='form-control form-control-lg form-control-solid'
-                        type='text'
-                        autoComplete='off'
-                      />
-                    </div>
-                    <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>Zone</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
-                        <option value='1'>All</option>
-                        <option value='2'>Katargam</option>
-                        <option value='3'>Ring Road</option>
-                        <option value='4'>Varachha</option>
-                      </select>
-                    </div>
-                    <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>Company</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
-                        <option value='1'>All</option>
-                        <option value='2'>Earth</option>
-                        <option value='3'>Softnet</option>
-                      </select>
-                    </div>
-
-                    <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Sales Executive </label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('salesexecutiveId')}
-                      value={salesExecutiveId}
-                      onChange={handleStatuschange}
-                    >
-                      <option value=''>All</option>
-                      {getUserByRole?.map((row, index) => {
-                        return (
-                          <option key={index} value={row?.id}>
-                            {row.username}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  </div>
-                  </div>
-
-                  <div className='row w-100 mx-0 my-3'>
-                    <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>Payment</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
-                        <option value='1'>All</option>
-                        <option value='2'>Due</option>
-                        <option value='3'>Clear</option>
-                      </select>
-                    </div>
-                    <div className='col-lg-3'>
-                      <div>
-                        <label className='form-label fw-bold'>Created at</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='date'
-                          autoComplete='off'
-                        />
-                      </div>
-                    </div>
-                    <div className='col-lg-3'>
-                      <div>
-                        <label className='form-label fw-bold'>Form date</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='date'
-                          autoComplete='off'
-                        />
-                      </div>
-                    </div>
-                    <div className='col-lg-3'>
-                      <div>
-                        <label className='form-label fw-bold'>Expiry date</label>
-                        <input
-                          className='form-control form-control-lg form-control-solid'
-                          type='date'
-                          autoComplete='off'
-                        />
-                      </div>
-                    </div>
-                  </div>
-
                   <div className='row w-100 mx-0 my-3'>
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Package Category</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
-                        <option>All</option>
-                        <option value='1'>Not described</option>
-                        <option value='2'>Broadband</option>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('packagecatid')}
+                        value={packageCategoryId}
+                        onChange={handlePackagesCategoryIdchange}
+                      >
+                        <option value=''>All</option>
+                        {getPackagesCategory?.map((row, index) => {
+                          return (
+                            <option key={index} value={row?.id}>
+                              {row.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Connection type</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('connectiontype')}
+                        value={connectionTypeId}
+                        onChange={handleConnectionTypechange}
+                      >
                         <option>All</option>
-                        <option value='1'>Not described</option>
-                        <option value='2'>Cable</option>
+                        <option value='1'>FormCable </option>
+                        <option value='2'>Wireless </option>
+                        <option value='3'>NotDescribed </option>
+                        <option value='4'>NotInstalled </option>
                       </select>
                     </div>
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Form type</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
-                        <option value='1'>All</option>
-                        <option value='2'>New</option>
-                        <option value='3'>Renew</option>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('formtype')}
+                        value={formTypeId}
+                        onChange={handleFormTypechange}
+                      >
+                        <option>All</option>
+                        <option value='1'>New</option>
+                        <option value='2'>Renew</option>
+                        <option value='3'>Upgrade </option>
+                        <option value='4'>Shifting </option>
+                        <option value='5'>Other </option>
                       </select>
                     </div>
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Form submit</label>
-                      <select className='form-select form-select-solid'>
-                        <option></option>
-                        <option value='1'>All</option>
-                        <option value='2'>Pending</option>
-                        <option value='3'>Done</option>
-                        <option value='4'>Cancel</option>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('status')}
+                        value={formSubmitTypeId}
+                        onChange={handleFormSumbitchange}
+                      >
+                        <option>All</option>
+                        <option value='1'>Pending</option>
+                        <option value='2'>Done</option>
+                        <option value='3'>Cancel</option>
                       </select>
                     </div>
                   </div>

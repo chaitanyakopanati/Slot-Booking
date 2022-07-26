@@ -95,7 +95,6 @@ export interface putInstallationsmodel {
   userid:number
   connectiontypeId:number
   iptypeId:number
-  statusId:number
 }
 export interface putInstallationsmodel1 {
   data: getInstallationsData

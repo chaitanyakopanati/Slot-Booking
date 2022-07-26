@@ -44,7 +44,7 @@ const getDynamicDownloadFile = (
   salesExecutiveId:number,
 ) => {
     return axios({
-      url: `${API_URL_DATA}/GetInquiriesExcelSheet?&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdById=${createdById}&statusId=${statusId}salesExecutiveId=${salesExecutiveId}`, //your url
+      url: `${API_URL_DATA}/GetInquiriesExcelSheet?&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdById=${createdById}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}`, //your url
       method: 'GET',
       responseType: 'blob', // important
   })

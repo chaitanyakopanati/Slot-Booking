@@ -417,19 +417,16 @@
 
 // export default FormsTable
 
-
 import Swal from 'sweetalert2'
 import {useEffect} from 'react'
 import moment from 'moment'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
-import { ListPageData } from '../../FormsContext'
-import { useLoader } from '../../../../../../../app/modules/loader/LoaderContext'
+import {ListPageData} from '../../FormsContext'
+import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import Inquiriesservice from '../../helperForms/ApiDataRequest'
-import { getInquiriesData } from '../../helperForms/ModelForms'
-import { KTSVG } from '../../../../../../helpers'
-
-
+import {getInquiriesData} from '../../helperForms/ModelForms'
+import {KTSVG} from '../../../../../../helpers'
 
 const FormsTable = () => {
   const {
@@ -444,6 +441,9 @@ const FormsTable = () => {
     setSearchText,
     DataGetAllTypeSalesExecutve,
     DataGetAllTypeSalesExecutveUserByRole,
+    DataGetAllTypeZone,
+    DataGetAllTypeCompany,
+    DataGetAllTypePackagesCategory,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -472,7 +472,7 @@ const FormsTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Inquiriesservice.deleteInquiries(ID)
+        let payload = await Inquiriesservice.deleteForms(ID)
         if (payload.success === true) {
           LoderActions(false)
 
@@ -496,6 +496,9 @@ const FormsTable = () => {
     fetchAllUser()
     DataGetAllTypeSalesExecutve()
     DataGetAllTypeSalesExecutveUserByRole()
+    DataGetAllTypeZone()
+    DataGetAllTypeCompany()
+    DataGetAllTypePackagesCategory()
   }, [])
 
   const handlesearchange = (e: any) => {
@@ -512,13 +515,13 @@ const FormsTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>Inquiry No.</th>
-              <th className='min-w-150px'>Name</th>
-              <th className='min-w-200px'>Address</th>
-              <th className='min-w-150px'>Contact no.</th>
-              <th className='min-w-200px'>Sales Executive</th>
-              <th className='min-w-150px'>Created at</th>
-              <th className='min-w-100px'>Status</th>
+              <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
+              <th className='max-w-60px ps-4'>File no.</th>
+              <th className='min-w-150px'>Username</th>
+              <th className='min-w-200px'>Name</th>
+              <th className='min-w-150px'>Sales executive.</th>
+              <th className='min-w-200px'>Form date</th>
+              <th className='min-w-150px'> Form type</th>
               <th className='min-w-150px rounded-end'>Actions</th>
             </tr>
           </thead>
@@ -539,45 +542,45 @@ const FormsTable = () => {
                     </td>
                     {/* end:: Index No */}
 
-                    {/* begin:: Name Input */}
+                    {/* begin:: fileNo Input */}
                     <td>
                       <div className='d-flex align-items-center'>
                         <div className='d-flex justify-content-start flex-column'>
-                          <div className='text-dark fw-bold  fs-6'>{row?.name || '-'}</div>
+                          <div className='text-dark fw-bold  fs-6'>{row?.fileNo || '-'}</div>
                         </div>
                       </div>
                     </td>
-                    {/* end:: Name Input */}
+                    {/* end:: fileNo Input */}
 
-                    {/* begin:: User Type Input username */}
-                    <td className='text-dark fw-bold  fs-6'>{row.address || '-'}</td>
-                    {/* end:: User Type Input  username */}
+                    {/* begin:: User Type Input userName */}
+                    <td className='text-dark fw-bold  fs-6'>{row.userName || '-'}</td>
+                    {/* end:: User Type Input  userName */}
 
-                    {/* begin:: User Type Input email */}
-                    <td className='text-dark fw-bold  fs-6'>{row.contactno || '-'}</td>
-                    {/* end:: User Type Input  email*/}
+                    {/* begin:: User Type Input name */}
+                    <td className='text-dark fw-bold  fs-6'>{row.name || '-'}</td>
+                    {/* end:: User Type Input  name*/}
 
-                    {/* begin:: User Type Input phone*/}
+                    {/* begin:: User Type Input salesexecutiveName*/}
                     <td className='text-dark fw-bold  fs-6'>{row.salesexecutiveName || '-'}</td>
-                    {/* end:: User Type Input  phone*/}
+                    {/* end:: User Type Input  salesexecutiveName*/}
 
-                    {/* begin:: User Type Input zoneName */}
+                    {/* begin:: User Type Input formdate */}
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
-                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment(row?.formdate).format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
-                    {/* end:: User Type Input  zoneName*/}
+                    {/* end:: User Type Input  formdate*/}
 
-                    {/* begin:: User Type Input roleName*/}
-                    <td className='text-dark fw-bold  fs-6'>{row.status || '-'}</td>
-                    {/* end:: User Type Input  roleName*/}
+                    {/* begin:: User Type Input formtype*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.formtype || '-'}</td>
+                    {/* end:: User Type Input  formtype*/}
 
                     {/* begin:: Action */}
                     <td>
                       {/* begin:: View Icon */}
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                        onClick={() => navigate(`inquiriesviewform/${row.id}`)}
+                        onClick={() => navigate(`formsviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
                       >
                         <KTSVG
@@ -591,7 +594,7 @@ const FormsTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                         onClick={() => {
-                          navigate(`inquiriesform/${row.id}`)
+                          navigate(`formsform/${row.id}`)
                         }}
                         // onClick={()=>openEditModal(row.id)}
                       >
@@ -654,14 +657,14 @@ const FormsTable = () => {
                         <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                       </div>
                       <div className='py-1 d-flex'>
-                        <div className='fw-bolder '>Address:</div>
-                        <div className='text-dark fw-bold  ms-2'>{row.address || '-'}</div>
+                        <div className='fw-bolder '>userName:</div>
+                        <div className='text-dark fw-bold  ms-2'>{row.userName || '-'}</div>
                       </div>
 
                       <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
                         <div className='py-1 d-flex align-items-cenetr'>
-                          <div className='fw-bolder '>Contact no:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.contactno || '-'}</div>
+                          <div className='fw-bolder '>FileNo:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.fileNo || '-'}</div>
                         </div>
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Sales Executive:</div>
@@ -671,13 +674,16 @@ const FormsTable = () => {
                         </div>
 
                         <div className='py-1 d-flex'>
-                          <div className='fw-bolder '>Created at:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.createdAt || '-'}</div>
+                          <div className='fw-bolder '>Form Date:</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {' '}
+                            {moment(row?.formdate).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                          </div>
                         </div>
 
                         <div className='py-1 d-flex'>
-                          <div className='fw-bolder '>Status:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.status || '-'}</div>
+                          <div className='fw-bolder '>Form Type:</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.formtype || '-'}</div>
                         </div>
                       </div>
 
@@ -696,7 +702,7 @@ const FormsTable = () => {
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
                           // onClick={() => openViewModal(row)}
-                          onClick={() => navigate(`viewform/${row.id}`)}
+                          onClick={() => navigate(`formsviewform/${row.id}`)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen060.svg'
@@ -708,7 +714,7 @@ const FormsTable = () => {
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
                           // onClick={() => openEditModal(row.id)}
                           onClick={() => {
-                            navigate(`form/${row.id}`)
+                            navigate(`formsform/${row.id}`)
                           }}
                         >
                           <KTSVG

@@ -1,17 +1,29 @@
 import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import Inquiriesservice from './helperForms/ApiDataRequest'
-import { GetAllData, GetAllDataApi, GetAllDataApiSalesExecutve, GetAllInquiriesApi, getInquiriesData, ID } from './helperForms/ModelForms'
+import {
+  GetAllData,
+  GetAllDataApi,
+  GetAllDataApiSalesExecutve,
+  GetAllInquiriesApi,
+  getInquiriesData,
+  ID,
+} from './helperForms/ModelForms'
+import {saveAs} from 'file-saver'
+
 
 export interface ComplaintDataContextModel {
   getData: getInquiriesData[]
   getDataAllType: GetAllData[]
+  getDataAllTypeCompany: GetAllData[]
+  getPackagesCategory: GetAllData[]
   salesExecutveAllData: GetAllDataApiSalesExecutve[]
   getUserByRole: GetAllDataApiSalesExecutve[]
   filterShow: boolean
   showPasswordFields: boolean
   pageNo: number
   totalData: number
+  companyId: number
   setTotalData: Dispatch<SetStateAction<number>>
   setPageNo: Dispatch<SetStateAction<number>>
   setZoneId: Dispatch<SetStateAction<number>>
@@ -19,17 +31,30 @@ export interface ComplaintDataContextModel {
   setStatusId: Dispatch<SetStateAction<number>>
   setRoleId: Dispatch<SetStateAction<string>>
   setCreatedAt: Dispatch<SetStateAction<string>>
+  setCreatedStartDate: Dispatch<SetStateAction<string>>
   pageCount: number
   createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
+  setFormSubmitTypeId: Dispatch<SetStateAction<number>>
   pageSize: number
   zoneId: number
   salesExecutiveId: number
+  paymentTypeId: number
+  packageCategoryId: number
   statusId: number
+  formTypeId: number
+  connectionTypeId: number
+  formSubmitTypeId: number
   roleId: string
   createdAt: string
+  createdStartDate: string
   setPageSize: Dispatch<SetStateAction<number>>
+  setCompanyId: Dispatch<SetStateAction<number>>
+  setPaymentTypeId: Dispatch<SetStateAction<number>>
+  setPackageCategoryId: Dispatch<SetStateAction<number>>
+  setConnectionTypeId: Dispatch<SetStateAction<number>>
+  setFormTypeId: Dispatch<SetStateAction<number>>
   setFilterShow: (filterShow: boolean) => void
   setShowPasswordFields: (filterShow: boolean) => void
   itemIdForUpdate: ID
@@ -37,20 +62,31 @@ export interface ComplaintDataContextModel {
   setViewIdForUpdate: (_setViewIdForUpdate: ID) => void
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
   searchText: string
-  startDate: string
-  endDate: string
-  searchByUsername: string
+  createdEndDate: string
+  searchByUserName: string
+  formStartDate: string
+  formEndDate: string
+  expiryStartDate: string
+  expiryEndDate: string
   setSearchText: Dispatch<SetStateAction<string>>
   setSearchByUsername: Dispatch<SetStateAction<string>>
-  setStartDate: Dispatch<SetStateAction<string>>
-  setEndDate: Dispatch<SetStateAction<string>>
+  setExpiryEndDate: Dispatch<SetStateAction<string>>
+  setCreatedEndDate: Dispatch<SetStateAction<string>>
+  setFormStartDate: Dispatch<SetStateAction<string>>
+  setFormEndDate: Dispatch<SetStateAction<string>>
+  setExpiryStartDate: Dispatch<SetStateAction<string>>
   fetchAllUser: () => void
   DataGetAllTypeSalesExecutve: () => void
   DataGetAllTypeSalesExecutveUserByRole: () => void
+  DataGetAllTypeZone: () => void
+  DataGetAllTypeCompany: () => void
+  DataGetAllTypePackagesCategory: () => void
+  fetchAllDownload: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
+  getPackagesCategory: [],
   pageNo: 0,
   setPageNo: () => {},
   setZoneId: () => {},
@@ -58,25 +94,46 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   setStatusId: () => {},
   setRoleId: () => {},
   setCreatedAt: () => {},
+  setPaymentTypeId: () => {},
+  setFormStartDate: () => {},
+  getDataAllTypeCompany: [],
   pageCount: 0,
   createdById: 0,
+  companyId: 0,
+  paymentTypeId: 0,
+  formSubmitTypeId: 0,
+  packageCategoryId: 0,
   setPageCount: () => {},
   setCreatedById: () => {},
+  setFormEndDate: () => {},
+  setFormSubmitTypeId: () => {},
+  formEndDate: '',
+  setCompanyId: () => {},
+  setCreatedStartDate: () => {},
+  setPackageCategoryId: () => {},
+  setFormTypeId: () => {},
   totalData: 0,
+  formTypeId: 0,
   setTotalData: () => {},
+  setExpiryStartDate: () => {},
+  setExpiryEndDate: () => {},
+  setConnectionTypeId: () => {},
   pageSize: 0,
+  connectionTypeId: 0,
   zoneId: 0,
   salesExecutiveId: 0,
   statusId: 0,
   roleId: '',
   createdAt: '',
-  startDate: '',
-  endDate: '',
-  setStartDate: () => {},
-  setEndDate: () => {},
+  expiryEndDate: '',
+  expiryStartDate: '',
+  createdStartDate: '',
+  createdEndDate: '',
+  formStartDate: '',
+  setCreatedEndDate: () => {},
   setPageSize: () => {},
   searchText: '',
-  searchByUsername: '',
+  searchByUserName: '',
   setSearchText: () => {},
   setSearchByUsername: () => {},
   getDataAllType: [],
@@ -93,11 +150,17 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   fetchAllUser: () => {},
   DataGetAllTypeSalesExecutve: () => {},
   DataGetAllTypeSalesExecutveUserByRole: () => {},
+  DataGetAllTypeZone: () => {},
+  DataGetAllTypeCompany: () => {},
+  DataGetAllTypePackagesCategory: () => {},
+  fetchAllDownload: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInquiriesData[]>([])
-  const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
   const [salesExecutveAllData, setSalesExecutveAllData] = useState<GetAllDataApiSalesExecutve[]>([])
+  const [getDataAllTypeCompany, setGetDataAllTypeCompany] = useState<GetAllData[]>([])
+  const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
+  const [getPackagesCategory, setGetPackagesCategory] = useState<GetAllData[]>([])
   const [getUserByRole, setGetUserByRole] = useState<GetAllDataApiSalesExecutve[]>([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
@@ -109,14 +172,25 @@ const ListDataProvider: FC = ({children}) => {
   const [pageCount, setPageCount] = useState<number>(0)
   const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  const [searchByUsername, setSearchByUsername] = useState('')
+  const [searchByUserName, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
   const [salesExecutiveId, setSalesExecutiveId] = useState(0)
   const [roleId, setRoleId] = useState('')
   const [createdAt, setCreatedAt] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
+  const [createdStartDate, setCreatedStartDate] = useState('')
+  const [createdEndDate, setCreatedEndDate] = useState('')
+  const [formStartDate, setFormStartDate] = useState('')
+  const [formEndDate, setFormEndDate] = useState('')
+  const [expiryStartDate, setExpiryStartDate] = useState('')
+  const [expiryEndDate, setExpiryEndDate] = useState('')
   const [statusId, setStatusId] = useState<number>(0)
+  const [companyId, setCompanyId] = useState<number>(0)
+  const [paymentTypeId, setPaymentTypeId] = useState<number>(0)
+  const [packageCategoryId, setPackageCategoryId] = useState<number>(0)
+  const [connectionTypeId, setConnectionTypeId] = useState<number>(0)
+  const [formTypeId, setFormTypeId] = useState<number>(0)
+  const [formSubmitTypeId, setFormSubmitTypeId] = useState<number>(0)
+
   let {LoderActions} = useLoader()
 
   {
@@ -125,16 +199,28 @@ const ListDataProvider: FC = ({children}) => {
   let fetchAllUser = async () => {
     LoderActions(true)
     try {
-      let response: GetAllInquiriesApi = await Inquiriesservice.getDynamicInquiries(
+      let response: GetAllInquiriesApi = await Inquiriesservice.getDynamicForm(
         pageNo,
         pageSize,
         searchText,
-        zoneId,
+        createdById,
         statusId,
         roleId,
         salesExecutiveId,
-        startDate,
-        endDate,
+        zoneId,
+        companyId,
+        paymentTypeId,
+        createdStartDate,
+        createdEndDate,
+        formStartDate,
+        formEndDate,
+        expiryStartDate,
+        expiryEndDate,
+        packageCategoryId,
+        connectionTypeId,
+        formTypeId,
+        searchByUserName,
+        formSubmitTypeId
       )
       console.log(response, 'response=========')
 
@@ -156,6 +242,78 @@ const ListDataProvider: FC = ({children}) => {
   }
   {
     /* end:: User:- getDynamicUser Api call */
+  }
+
+  // Download fill
+
+  let fetchAllDownload = async () => {
+    console.log('Enter')
+    LoderActions(true)
+    try {
+      let response: any = await Inquiriesservice.getDynamicDownloadFile(
+        searchText,
+        salesExecutiveId,
+        zoneId,
+        companyId,
+        connectionTypeId,
+        formTypeId,
+        paymentTypeId,
+        createdStartDate,
+        createdEndDate,
+        formStartDate,
+        formEndDate,
+        expiryStartDate,
+        expiryEndDate,
+        packageCategoryId,
+        formSubmitTypeId
+      )
+      saveAs(response.data, 'Forms.xlsx')
+    } catch (error) {
+      console.log('Error', error)
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+  {
+    /* begin:: User:- getZoneTypes Api call */
+  }
+  const DataGetAllTypeZone = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await Inquiriesservice.getZoneTypes()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
+
+        setGetDataAllType(payload?.data)
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+  {
+    /* End:: User:- getZoneTypes Api call */
+  }
+
+  //Company
+  const DataGetAllTypeCompany = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllDataApi = await Inquiriesservice.getCompany()
+      console.log(payload, 'getCompanygetCompany')
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeCompany(payload?.data)
+        console.log(payload.data, 'getCompany')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
   }
 
   //SalesExecutve
@@ -203,24 +361,66 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
-  
+  //packages category
+
+  const DataGetAllTypePackagesCategory = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await Inquiriesservice.getPackagesCategory()
+      console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
+
+      if (payload.success == true) {
+        setGetPackagesCategory(payload?.data)
+        console.log(payload.data, 'SalesExecutveUserByRole')
+      }
+    } catch (error) {
+      LoderActions(false)
+    } finally {
+      LoderActions(false)
+    }
+  }
 
   const value: ComplaintDataContextModel = {
     getData,
     createdById,
     setCreatedById,
     getUserByRole,
-    searchByUsername,
+    searchByUserName,
     itemIdForUpdate,
+    createdEndDate,
     salesExecutiveId,
+    setCreatedStartDate,
     createdAt,
-    setStartDate,
-    setEndDate,
-    startDate,
-    endDate,
+    getPackagesCategory,
+    packageCategoryId,
+    setExpiryStartDate,
+    setConnectionTypeId,
+    DataGetAllTypeCompany,
+    setFormSubmitTypeId,
+    formSubmitTypeId,
+    formTypeId,
+    setExpiryEndDate,
+    connectionTypeId,
+    setCreatedEndDate,
+    DataGetAllTypeZone,
+    expiryEndDate,
+    setPackageCategoryId,
+    setFormEndDate,
+    DataGetAllTypePackagesCategory,
+    formEndDate,
+    setFormTypeId,
+    companyId,
+    paymentTypeId,
+    setCompanyId,
+    getDataAllTypeCompany,
+    setPaymentTypeId,
+    setFormStartDate,
+    createdStartDate,
+    expiryStartDate,
     setShowPasswordFields,
     setItemIdForUpdate,
     filterShow,
+    formStartDate,
     setCreatedAt,
     setSalesExecutiveId,
     DataGetAllTypeSalesExecutve,
@@ -249,6 +449,7 @@ const ListDataProvider: FC = ({children}) => {
     fetchAllUser,
     totalData,
     setTotalData,
+    fetchAllDownload,
   }
   return (
     <>

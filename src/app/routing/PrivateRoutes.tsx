@@ -21,7 +21,8 @@ import InstallationViewWrapper from '../../_metronic/partials/widgets/tables/Ins
 import ComplaintWrapper from '../modules/Complaints/ComplaintWrapper'
 import ComplaintFormModal from '../modules/Complaints/Form/ComplaintFormModal'
 import ComplaintFormWrapper from '../modules/Complaints/Form/ComplaintFormWrapper'
-
+import FormsFormWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormsFormWrapper'
+import FormViewWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormViewWrapper'
 
 const PrivateRoutes = () => {
   const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
@@ -76,17 +77,37 @@ const PrivateRoutes = () => {
         />
         <Route path='profile-settings' element={<ProfileSettingsWrapper />} />
         <Route path='forms' element={<FormsWrapper />} />
+
+        <Route
+          path='forms/formsform/:id'
+          element={
+            <>
+              <PageTitle>forms Form</PageTitle>
+              <FormsFormWrapper />
+            </>
+          }
+        />
+        <Route
+          path='forms/formsviewform/:id'
+          element={
+            <>
+              <PageTitle>View forms</PageTitle>
+              <FormViewWrapper />
+            </>
+          }
+        />
+
         <Route path='installations' element={<InstallationsWrapper />} />
         <Route
           path='installations/installationsform/:id'
           element={
             <>
-              <PageTitle>User Form</PageTitle>
+              <PageTitle>installations Form</PageTitle>
               <InstallationFormWrapper />
             </>
           }
         />
-          <Route
+        <Route
           path='installations/installationsviewform/:id'
           element={
             <>
@@ -105,7 +126,7 @@ const PrivateRoutes = () => {
             </>
           }
         />
-          <Route
+        <Route
           path='inquiries/inquiriesviewform/:id'
           element={
             <>

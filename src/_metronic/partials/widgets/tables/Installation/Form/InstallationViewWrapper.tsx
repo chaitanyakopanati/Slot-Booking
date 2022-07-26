@@ -1,9 +1,9 @@
 import {useEffect} from 'react'
 import {useQuery} from 'react-query'
 import {useParams} from 'react-router-dom'
-import { isNotEmpty, KTCard } from '../../../../../helpers'
+import {isNotEmpty, KTCard} from '../../../../../helpers'
 import InstallationsService from '../helperInstallation/ApiDatarequest'
-import { ListDataProvider, ListPageData } from '../InstallationContext'
+import {ListDataProvider, ListPageData} from '../InstallationContext'
 import InstallationCustomerViewModel from '../Installationlist/Table/InstalllationFormViewModal'
 
 function InstallationsView() {
@@ -50,9 +50,9 @@ function InstallationsFormViewHeader() {
   return (
     <>
       {/* <div className='modal-header'> */}
-        {/* begin::Modal title */}
-        {/* <h2 className='fw-bolder'>View User</h2> */}
-        {/* end::Modal title */}
+      {/* begin::Modal title */}
+      {/* <h2 className='fw-bolder'>View User</h2> */}
+      {/* end::Modal title */}
       {/* </div> */}
     </>
   )
@@ -67,4 +67,3 @@ let InstallationViewWrapper = () => {
 }
 
 export default InstallationViewWrapper
-

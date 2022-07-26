@@ -1,11 +1,10 @@
 import {useEffect} from 'react'
 import {useQuery} from 'react-query'
 import {useParams} from 'react-router-dom'
-import { isNotEmpty, KTCard } from '../../../../../helpers'
+import {isNotEmpty, KTCard} from '../../../../../helpers'
 import FormsFormViewModal from '../FormList/Table/FormsFormViewModal'
-import { ListDataProvider, ListPageData } from '../FormsContext'
+import {ListDataProvider, ListPageData} from '../FormsContext'
 import Inquiriesservice from '../helperForms/ApiDataRequest'
-
 
 function InquiriesView() {
   let {id} = useParams()
@@ -23,9 +22,9 @@ function InquiriesView() {
   }, [viewIdForUpdate])
 
   const {data: userDetails, error} = useQuery(
-    `ViewInquiriesbyId-${viewIdForUpdate}`,
+    `ViewGetFormById-${viewIdForUpdate}`,
     () => {
-      return Inquiriesservice.GetInquiriesTypeById(viewIdForUpdate)
+      return Inquiriesservice.GetFormsTypeById(viewIdForUpdate)
     },
     {
       cacheTime: 0,
@@ -51,9 +50,9 @@ function FormViewHeader() {
   return (
     <>
       {/* <div className='modal-header'> */}
-        {/* begin::Modal title */}
-        {/* <h2 className='fw-bolder'>View User</h2> */}
-        {/* end::Modal title */}
+      {/* begin::Modal title */}
+      {/* <h2 className='fw-bolder'>View User</h2> */}
+      {/* end::Modal title */}
       {/* </div> */}
     </>
   )

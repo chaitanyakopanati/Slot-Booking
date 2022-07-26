@@ -22,11 +22,29 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
     address: category.data?.address || '',
     contactno: category.data?.contactno || '',
     status: category.data?.status || '',
+    installerName: category.data?.installerName || '',
     salesexecutiveName: category.data?.salesexecutiveName || '',
     description: category.data?.description || '',
     remark: category.data?.remark || '',
-    createdby: category.data.createdByName || '',
-    modifyby: category.data.modifyByName || '',
+    cabletypeName: category.data?.cabletypeName || '',
+    iptypeName: category.data?.iptypeName || '',
+    accesspointip: category.data?.accesspointip || '',
+    stationip: category.data?.stationip || '',
+    stationname: category.data?.stationname || '',
+    stationMac: category.data?.stationMac || '',
+    statusName: category.data?.statusName || '',
+    companyName: category.data?.companyName || '',
+    zoneName: category.data?.zoneName || '',
+    mobileNo: category.data?.mobileNo || '',
+    contactNo: category.data?.contactNo || '',
+    email: category.data?.email || '',
+    totalAmount: category.data?.totalAmount || '',
+    remainingAmount: category.data?.remainingAmount || '',
+    cablelength: category.data?.cablelength || '',
+    zonepointName: category.data?.zonepointName || '',
+    connectiontypeName: category.data?.connectiontypeName || '',
+    createdByName: category.data.createdByName || '',
+    modifyByName: category.data.modifyByName || '',
     createdAt: moment(category.data.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
     modifyAt: moment(category.data.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
     assignDate: moment(category.data.createdAt, 'YYYY-MM-DD').format('YYYY-MM-DD'),
@@ -76,9 +94,9 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
 
           <div className='row w-100 mx-0 mb-4 gy-4'>
             <div className='col-lg-3'>
-              <label className='form-label fw-bold'>Username</label>
+              <label className='form-label fw-bold'>UserName</label>
               <input
-                placeholder='Username'
+                placeholder='userName'
                 value={initialvalues.userName}
                 type='text'
                 name='userName'
@@ -91,7 +109,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
             <div className='col-lg-3'>
               <label className='form-label fw-bold'>Name</label>
               <input
-                placeholder='Username'
+                placeholder='name'
                 value={initialvalues.name}
                 type='text'
                 name='name'
@@ -105,8 +123,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Company name</label>
               <input
                 placeholder='CompanyName'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.companyName}
+                name='companyName'
                 type='text'
                 className='form-control form-control-lg form-control-solid'
                 disabled
@@ -118,8 +136,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Zone</label>
               <input
                 placeholder='Zone'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.zoneName}
+                name='zoneName'
                 type='text'
                 className='form-control form-control-lg form-control-solid'
                 disabled
@@ -131,8 +149,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Mobile no.</label>
               <input
                 placeholder='Mobile no.'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.mobileNo}
+                name='mobileNo'
                 type='number'
                 className='form-control form-control-lg form-control-solid'
                 disabled
@@ -144,8 +162,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Contact no.</label>
               <input
                 placeholder='Contact no.'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.contactNo}
+                name='contactNo'
                 type='number'
                 className='form-control form-control-lg form-control-solid'
                 disabled
@@ -157,8 +175,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Email</label>
               <input
                 placeholder='Email'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.email}
+                name='email'
                 type='text'
                 className='form-control form-control-lg form-control-solid'
                 disabled
@@ -170,8 +188,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Address</label>
               <input
                 placeholder='Address'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.address}
+                name='address'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 readOnly
@@ -185,8 +203,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
                 <span className='input-group-text border-0'>₹</span>
                 <input
                   type='number'
-                  //  value={initialvalues.name}
-                  //  name='name'
+                  value={initialvalues.totalAmount}
+                  name='totalAmount'
                   className='form-control form-control-lg form-control-solid'
                   disabled
                   placeholder='Total amount'
@@ -200,8 +218,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
                 <span className='input-group-text border-0'>₹</span>
                 <input
                   type='number'
-                  //  value={initialvalues.name}
-                  //  name='name'
+                  value={initialvalues.remainingAmount}
+                  name='remainingAmount'
                   className='form-control form-control-lg form-control-solid'
                   disabled
                   placeholder='Remaining amount'
@@ -213,8 +231,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Installer</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.installerName}
+                name='installerName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Installer'
@@ -225,8 +243,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Company</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.companyName}
+                name='companyName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Company'
@@ -237,8 +255,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Main point</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.zonepointName}
+                name='zonepointName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Main point'
@@ -249,8 +267,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Connection type</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.connectiontypeName}
+                name='connectiontypeName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Connection type'
@@ -261,8 +279,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Cable type</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.cabletypeName}
+                name='cabletypeName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Cable type'
@@ -275,8 +293,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
                 <span className='input-group-text border-0'>m</span>
                 <input
                   type='number'
-                  //  value={initialvalues.name}
-                  //  name='name'
+                  value={initialvalues.cablelength}
+                  name='cablelength'
                   className='form-control form-control-lg form-control-solid'
                   disabled
                   placeholder='Cable length'
@@ -288,8 +306,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>IP type</label>
               <input
                 type='number'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.iptypeName}
+                name='iptypeName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='IP type'
@@ -300,8 +318,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Acces point IP</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.accesspointip}
+                name='accesspointip'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Acces point IP'
@@ -312,8 +330,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Station IP</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.stationip}
+                name='stationip'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Station IP'
@@ -324,8 +342,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Station Name</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.stationname}
+                name='stationname'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Station Name'
@@ -336,8 +354,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Station MAC</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.stationMac}
+                name='stationMac'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Station MAC'
@@ -348,8 +366,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <label className='form-label fw-bold'>Status</label>
               <input
                 type='text'
-                //  value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.statusName}
+                name='statusName'
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Status'
@@ -361,8 +379,8 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <input
                 className='form-control form-control-lg form-control-solid'
                 type='text'
-                // value={initialvalues.name}
-                //  name='name'
+                value={initialvalues.remark}
+                name='remark'
                 autoComplete='off'
                 placeholder='Remark'
               />
@@ -375,9 +393,9 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <input
                 className='form-control form-control-lg'
                 type='text'
-                value={initialvalues.createdby}
-                name='createdby'
-                placeholder='CreatedBy'
+                value={initialvalues.createdByName}
+                name='createdByName'
+                placeholder='createdByName'
                 autoComplete='off'
                 disabled
               />
@@ -401,9 +419,9 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <input
                 className='form-control form-control-lg'
                 type='text'
-                value={initialvalues.modifyby}
-                name='modifyby'
-                placeholder='UpdatedBy'
+                value={initialvalues.modifyByName}
+                name='modifyByName'
+                placeholder='Updated By'
                 autoComplete='off'
                 disabled
               />
@@ -423,7 +441,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
             </div>
 
             <div className='modal-footer'>
-              <button type='button' className='btn btn-light' data-bs-dismiss='modal'>
+              <button type='reset' onClick={() => navigate(-1)} className='btn btn-light'>
                 Close
               </button>
             </div>

@@ -14,7 +14,7 @@ const getDynamicUser = (
   roleId: string,
   searchByUsername: string,
   createdById: number,
-  orderByColumnName:string
+  orderByColumnName: string
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -22,7 +22,7 @@ const getDynamicUser = (
     )
   } else {
     return http.get(
-      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}orderByColumnName=${orderByColumnName}`
+      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}&orderByColumnName=${orderByColumnName}`
     )
   }
 }
@@ -30,19 +30,19 @@ const getDynamicUser = (
   /* end:: User:- getDynamicFaults Api call */
 }
 
-// download 
+// download
 
 const getDynamicDownloadFile = (
   zoneId: number,
   roleId: string,
   createdById: number,
   searchText: string,
-  searchByUsername: string,
+  searchByUsername: string
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetUsersExcelSheet?zoneId=${zoneId}&searchText=${searchText}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetUsersExcelSheet?zoneId=${zoneId}&searchText=${searchText}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
@@ -93,7 +93,6 @@ const editUser = (obj: putUsersmodel) => {
     createdby: 1,
     status: '1',
     id: obj.id,
-    
   })
 }
 {
@@ -145,7 +144,7 @@ const Userservice = {
   getCreatedByTypes,
   getZoneTypes,
   getroleTypes,
-  getDynamicDownloadFile
+  getDynamicDownloadFile,
 }
 
 export default Userservice

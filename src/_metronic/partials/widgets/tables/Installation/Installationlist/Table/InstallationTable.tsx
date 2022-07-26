@@ -32,14 +32,6 @@ const InstallationTable = () => {
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
-  const openEditModal = (id: any) => {
-    setItemIdForUpdate(id)
-  }
-
-  const openViewModal = (id: any) => {
-    setViewIdForUpdate(id)
-  }
-
   {
     /* begin:: Delete functionlity */
   }
@@ -247,7 +239,8 @@ const InstallationTable = () => {
         {getData.length > 0 ? (
           getData?.map((row: getInstallationsData, index: number) => {
             return (
-              <div key={DataWiseIndex + index + 1}>
+              // <div key={DataWiseIndex + index + 1}>
+              <div key={row.id}>
                 <div className='col-md-6 mx-0 my-2'>
                   <div className='card card-custom border'>
                     <div className='card-body p-4'>
@@ -264,7 +257,7 @@ const InstallationTable = () => {
                         <div className='text-dark fw-bold  ms-2'>{row.name || '-'}</div>
                       </div>
 
-                      <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                      <div id={`card-id-${row.id}`} className='collapse'>
                         <div className='py-1 d-flex align-items-cenetr'>
                           <div className='fw-bolder '>Address:</div>
                           <div className='text-dark fw-bold  ms-2'>{row.address || '-'}</div>
@@ -288,7 +281,7 @@ const InstallationTable = () => {
                       <div
                         className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
                         data-bs-toggle='collapse'
-                        data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
+                        data-bs-target={`#card-id-${row.id}`}
                         aria-expanded='false'
                       >
                         <span>+ &nbsp;</span>More info

@@ -51,6 +51,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
     companyId,
     setCompanyId,
     getCompanyTypeData,
+    fetchAllDownload,
+  
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -84,10 +86,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
 
-  const openAddCategoryModal = () => {
-    setItemIdForUpdate(null)
-  }
-
   {
     /* begin::Search */
   }
@@ -100,6 +98,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* End::Search */
   }
 
+  //sales executive
   const handlesalesExecutiveIdchange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
@@ -161,6 +160,12 @@ const InstallationHeader: FC<Props> = ({category}) => {
     console.log(e.target.value)
     setCompanyId(e.target.value)
   }
+
+   // download
+   const downloadFile = async () => {
+    fetchAllDownload()
+  }
+
   useEffect(() => {
     fetchAllUser()
   }, [
@@ -228,9 +233,10 @@ const InstallationHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                    <a
-                      href='#'
+                  <button
+                      type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                      onClick={downloadFile}
                     >
                       <span className='svg-icon svg-icon-gray-500 me-0'>
                         <KTSVG
@@ -239,7 +245,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         />
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download</span>
-                    </a>
+                    </button>
                   </div>
                   {/* end:: Download */}
 
@@ -266,7 +272,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         onClick={() => {
                           navigate('installationsform/add')
                         }}
-                        // onClick={openAddCategoryModal}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG

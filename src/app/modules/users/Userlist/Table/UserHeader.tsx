@@ -39,10 +39,6 @@ const UserHeader: FC<Props> = ({category}) => {
 
   const navigate = useNavigate()
 
-  const openAddCategoryModal = () => {
-    setItemIdForUpdate(null)
-  }
-
   {
     /* begin::Search */
   }
