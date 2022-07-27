@@ -3,6 +3,11 @@ import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../CustomerContext'
+import {useFormik} from 'formik'
+import {useRef} from 'react'
+import {toast} from 'react-toastify'
+import {saveCustomer} from '../../helperCustomer/ApiDataRequest'
+import {customerFormType, formInitialValues} from '../../helperCustomer/ModelCustomer'
 
 function CustomerHeader() {
   let {
@@ -30,6 +35,60 @@ function CustomerHeader() {
     fetchUserByRoleName('SalesExecutve')
     fetchMainPoint()
   }, [])
+
+  // const [initialValues, setInitialValues] = useState<customerFormType>(formInitialValues)
+
+  // useEffect(() => {
+  //   console.log("customerById", customerById)
+  //   setInitialValues({
+  //     Id: customerById.id || null,
+  //     UserName: customerById.userName || '',
+  //     FirstName: customerById.firstName || '',
+  //     LastName: customerById.lastName || '',
+  //     Email: customerById.email || '',
+  //     MobileNo: customerById.mobileNo || '',
+  //     Middlename: customerById.middlename || '',
+  //     CompanyName: customerById.companyName || '',
+  //     Userid: customerById.userid || '',
+  //     ZoneId: customerById.zoneId || '',
+  //     Gstno: customerById.gstno || '',
+  //     Contactno: customerById.contactno || '',
+  //     Address: customerById.address || '',
+  //     Remark: customerById.remark || '',
+  //     Description: '',
+  //     IdproofImageFile: '',
+  //     AddressproofImageFile: '',
+  //     GstcerificateImageFile: '',
+  //     CreatedBy: customerById.createdById || '',
+  //     ModifyBy: customerById.modifyById || '',
+  //     IsMasterUser: false,
+  //   })
+  // }, [customerById])
+
+  const suggestionRef: any = useRef()
+
+  // const formik = useFormik({
+  //   enableReinitialize: true,
+  //   initialValues: initialValues,
+  //   // validationSchema: validationSchema,
+  //   onSubmit: async (values) => {
+  //     let formData: any = new FormData()
+  //     Object.entries(values).forEach(([key, value]) => {
+  //       if (value) formData.append(key, value as string)
+  //     })
+  //     !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
+  //     let response = await saveCustomer(formData)
+  //     if (response.success) {
+  //       toast.success(response.message)
+  //     } else {
+  //       toast.error(response.message)
+  //     }
+  //   },
+  // })
+
+  useEffect(() => {
+    console.log('filter', filter)
+  }, [filter])
 
   return (
     <>
@@ -100,6 +159,35 @@ function CustomerHeader() {
                   })
                 }
               />
+
+              {/* <input
+                placeholder='Username'
+                name='UserName'
+                className='form-control form-control-lg form-control-solid'
+                type='text'
+                autoComplete='off'
+                value={formik.values.UserName}
+                onChange={(e) => {
+                  formik.setFieldValue('IsMasterUser', false)
+                  if (e.target.value) {
+                    suggestionRef.current.style.display = 'block'
+                  } else {
+                    suggestionRef.current.style.display = 'none'
+                  }
+                  formik.handleChange(e)
+                }}
+                onBlur={(e) => {
+                  var container = suggestionRef.current
+                  document.addEventListener('click', function (event) {
+                    suggestionRef.current.style.display = 'none'
+                    document.removeEventListener('click', () => {
+                      suggestionRef.current.style.display = 'none'
+                      document.removeEventListener('click', () => {})
+                    })
+                  })
+                  formik.handleBlur(e)
+                }}
+              /> */}
             </div>
             {/* zone */}
             <div className='col-lg-3'>

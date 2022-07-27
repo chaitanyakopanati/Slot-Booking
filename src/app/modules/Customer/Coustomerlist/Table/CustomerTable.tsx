@@ -1,6 +1,10 @@
 import {useEffect} from 'react'
 import {KTSVG, toAbsoluteUrl} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../CustomerContext'
+import {useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2'
+import {toast} from 'react-toastify'
+import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 
 const CustomerTable = () => {
   let {filter, fetchCustomer, customerTableData} = ListPageData()
@@ -9,7 +13,35 @@ const CustomerTable = () => {
     fetchCustomer()
   }, [filter])
 
-  
+  const navigate = useNavigate()
+
+  const deletedCustomerData = (ID: number, username: string) => {
+    Swal.fire({
+      title: `Do you want to delete this records ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // LoderActions(true)
+        let payload = await deleteCustomer(ID, username)
+        if (payload.success === true) {
+          // LoderActions(false)
+
+          toast.success(` Data Deleted Successfully`)
+          toast.dismiss('1s')
+        } else {
+          // LoderActions(false)
+
+          toast.error(` Failed to Delete Data`)
+          toast.dismiss('1s')
+        }
+        fetchCustomer()
+      }
+    })
+  }
 
   return (
     <div>
@@ -40,9 +72,10 @@ const CustomerTable = () => {
               return (
                 <tr key={customer.id}>
                   <td>
-                    <div className='text-dark fw-bolder fs-6 ps-4'></div>
+                    <div className='text-dark fw-bolder fs-6 ps-4'>{index + 1}</div>
                   </td>
-                  <td className='text-dark fw-bold  fs-6'>{customer.firstName}</td>
+
+                  <td className='text-dark fw-bold  fs-6'>{customer.userName}</td>
                   <td>
                     <div className='d-flex align-items-center'>
                       <div className='symbol symbol-50px me-5 d-none'>
@@ -60,14 +93,17 @@ const CustomerTable = () => {
                     </div>
                   </td>
                   <td className='text-dark fw-bold  fs-6'>{customer.address}</td>
-                  <td className='text-dark fw-bold fs-6'>{'-'}</td>
-                  <td className='text-dark fw-bold fs-6'>{'-'}</td>
+                  <td className='text-dark fw-bold fs-6'>{customer.packageName}</td>
+                  <td className='text-dark fw-bold fs-6'>{customer.expiryDate}</td>
                   <td>
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_1'
+                      onClick={() => {
+                        navigate(`customersform/${customer.id}`)
+                      }}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen055.svg'
@@ -79,6 +115,9 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_3'
+                      onClick={() => {
+                        navigate(`customerviewform/${customer.id}`)
+                      }}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
@@ -88,6 +127,7 @@ const CustomerTable = () => {
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                      onClick={() => deletedCustomerData(customer.id, customer.userName)}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
@@ -97,6 +137,9 @@ const CustomerTable = () => {
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                      onClick={() => {
+                        navigate(`/forms/formsform/add`)
+                      }}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen005.svg'
@@ -106,6 +149,9 @@ const CustomerTable = () => {
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                      onClick={() => {
+                        navigate(`/installations/installationsform/add`)
+                      }}
                     >
                       <KTSVG
                         path='/media/icons/duotune/electronics/elc008.svg'
@@ -115,6 +161,9 @@ const CustomerTable = () => {
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                      onClick={() => {
+                        navigate(`/complaint/complaintform/add`)
+                      }}
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>
@@ -132,10 +181,10 @@ const CustomerTable = () => {
       <div className='row g-5 d-flex d-lg-none py-3'>
         {customerTableData.length === 0 && (
           <div>
-          <div>
-            <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+            <div>
+              <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+            </div>
           </div>
-        </div>
           // <div className='col-md-12 p-5 my-2'>
           //   <div className='card card-custom border'>
           //     <div className='card-body p-4 '>
@@ -154,7 +203,9 @@ const CustomerTable = () => {
                 <div className='card-body p-4'>
                   <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                     {/* <div className='text-dark fw-bolder fs-3 me-2'></div> */}
-                    <div className='text-dark fw-bolder fs-3'>{`${customer.firstName} ${customer.lastName}`} </div>
+                    <div className='text-dark fw-bolder fs-3'>
+                      {`${customer.firstName} ${customer.lastName}`}{' '}
+                    </div>
                     <div className='text-muted fw-bold ms-2'>- {customer.name}</div>
                   </div>
                   <div className='text-dark fw-bold py-1'>
@@ -173,10 +224,7 @@ const CustomerTable = () => {
                     </div>
                     <div className='py-1 d-flex'>
                       <div className='fw-bolder '>Address:</div>
-                      <div className='text-dark fw-bold  ms-2'>
-                        {' '}
-                        {customer.address}
-                      </div>
+                      <div className='text-dark fw-bold  ms-2'> {customer.address}</div>
                     </div>
                     <div className='py-1 d-flex align-items-cenetr'>
                       {/* <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-2 me-2' /> */}
@@ -250,4 +298,3 @@ const CustomerTable = () => {
   )
 }
 export default CustomerTable
-

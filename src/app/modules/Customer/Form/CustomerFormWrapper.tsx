@@ -1,11 +1,11 @@
-import {useEffect} from 'react'
-import {KTCard} from '../../../../_metronic/helpers'
+import { useEffect } from 'react'
+import { KTCard } from '../../../../_metronic/helpers'
 import CustomerFormHeader from '../component/CustomerFormHeader'
-import {CustomerContext, ListPageData} from '../CustomerContext'
+import { CustomerContext, ListPageData } from '../CustomerContext'
 import CustomerFormByCategory from './CustomerFormByCategory'
 
 function CustomerForm() {
-  let {fetchZone} = ListPageData()
+  let { fetchZone } = ListPageData()
 
   useEffect(() => {
     fetchZone()

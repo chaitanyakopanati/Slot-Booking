@@ -1,85 +1,110 @@
 import React, {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
-import { getCompaniesTypes, getCustomerList, getMainPoint, getUserByRoleName, getZoneTypes } from './helperCustomer/ApiDataRequest'
-import {companiesTypes, companiesTypesApi, customerType, customerTypeApi, filterTable, mainPoinnTypesApi, mainPointType, userType, userTypesApi, zoneTypes, zoneTypesApi} from './helperCustomer/ModelCustomer'
+import {
+  getCompaniesTypes,
+  getCustomerList,
+  getMainPoint,
+  getUserByRoleName,
+  getZoneTypes,
+} from './helperCustomer/ApiDataRequest'
+import {
+  companiesTypes,
+  companiesTypesApi,
+  customerType,
+  customerTypeApi,
+  filterTable,
+  mainPoinnTypesApi,
+  mainPointType,
+  userType,
+  userTypesApi,
+  zoneTypes,
+  zoneTypesApi,
+  ID,
+} from './helperCustomer/ModelCustomer'
 
 export interface CustomerDataContextModel {
   fetchZone: () => void
   zoneType: zoneTypes[]
-  filter:filterTable
-  setFilter:Dispatch<SetStateAction<filterTable>>
-  pageNo:number
-  pageSize:number
-  setPageNo:Dispatch<SetStateAction<number>>
-  setPageSize:Dispatch<SetStateAction<number>>
-  fetchCustomer:()=> void
-  totalData:number
-  customerTableData:customerType[]
-  setPageCount:Dispatch<SetStateAction<number>>
-  pageCount:number
-  fetchCompanies:()=> void
-  companies:companiesTypes[]
-  createdBy:userType[]
-  installer:userType[]
-  salesExecutve:userType[]
-  customer:userType[]
-  fetchUserByRoleName:(value:string)=> void
-  fetchMainPoint:()=> void
-  mainPoint:mainPointType[]
+  filter: filterTable
+  setFilter: Dispatch<SetStateAction<filterTable>>
+  pageNo: number
+  pageSize: number
+  setPageNo: Dispatch<SetStateAction<number>>
+  setPageSize: Dispatch<SetStateAction<number>>
+  fetchCustomer: () => void
+  totalData: number
+  customerTableData: customerType[]
+  setPageCount: Dispatch<SetStateAction<number>>
+  pageCount: number
+  fetchCompanies: () => void
+  companies: companiesTypes[]
+  createdBy: userType[]
+  installer: userType[]
+  salesExecutve: userType[]
+  customer: userType[]
+  fetchUserByRoleName: (value: string) => void
+  fetchMainPoint: () => void
+  fetchUsetByRoleNameWithSearch: (text: string) => void
+  mainPoint: mainPointType[]
+
+  viewIdForUpdate: ID
+  setViewIdForUpdate: (_setViewIdForUpdate: ID) => void
 }
 
 let ListDataContext = createContext<CustomerDataContextModel>({
   fetchZone: () => {},
   zoneType: [],
-  filter:{
-    searchText:'',
-    orderByColumnName:'firstName',
-    sortColumnDir:'asc',
-    installerId:'',
-    salesExecutiveId:'',
-    zoneId:'',
-    companyId:'',
-    mainPointId:'',
-    connectionTypeId:'',
-    userName:'',
-    createdById:''
+  filter: {
+    searchText: '',
+    orderByColumnName: 'firstName',
+    sortColumnDir: 'asc',
+    installerId: '',
+    salesExecutiveId: '',
+    zoneId: '',
+    companyId: '',
+    mainPointId: '',
+    connectionTypeId: '',
+    userName: '',
+    createdById: '',
   },
-  setFilter:(filterTable)=>{},
-  pageNo:1,
-  pageSize:5,
-  setPageNo:(number)=>{},
-  setPageSize:(number)=>{},
-  fetchCustomer:()=>{},
-  totalData:0,
-  customerTableData:[],
-  setPageCount:(number)=>{},
-  pageCount:0,
-  fetchCompanies:()=>{},
-  companies:[],
-  createdBy:[],
-  installer:[],
-  salesExecutve:[],
-  fetchUserByRoleName:(string)=>{},
-  fetchMainPoint:()=>{},
-  mainPoint:[],
-  customer:[]
+  setFilter: (filterTable) => {},
+  pageNo: 1,
+  pageSize: 5,
+  setPageNo: (number) => {},
+  setPageSize: (number) => {},
+  fetchCustomer: () => {},
+  totalData: 0,
+  customerTableData: [],
+  setPageCount: (number) => {},
+  pageCount: 0,
+  fetchCompanies: () => {},
+  companies: [],
+  createdBy: [],
+  installer: [],
+  salesExecutve: [],
+  fetchUserByRoleName: (string) => {},
+  fetchMainPoint: () => {},
+  mainPoint: [],
+  customer: [],
+  fetchUsetByRoleNameWithSearch: (string) => {},
 
-
+  viewIdForUpdate: undefined,
+  setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
 })
 
 const CustomerContext: FC = ({children}) => {
   const [zoneType, setZoneType] = useState<zoneTypes[]>([])
   const [filter, setFilter] = useState<filterTable>({
-    searchText:'',
-    orderByColumnName:'firstName',
-    sortColumnDir:'asc',
-    installerId:'',
-    salesExecutiveId:'',
-    zoneId:'',
-    companyId:'',
-    mainPointId:'',
-    connectionTypeId:'',
-    userName:'',
-    createdById:''
+    searchText: '',
+    orderByColumnName: 'firstName',
+    sortColumnDir: 'asc',
+    installerId: '',
+    salesExecutiveId: '',
+    zoneId: '',
+    companyId: '',
+    mainPointId: '',
+    connectionTypeId: '',
+    userName: '',
+    createdById: '',
   })
   const [customerTableData, setCustomerTableData] = useState<customerType[]>([])
   const [companies, setCompanies] = useState<companiesTypes[]>([])
@@ -93,6 +118,8 @@ const CustomerContext: FC = ({children}) => {
   const [totalData, setTotalData] = useState<number>(0)
   const [pageCount, setPageCount] = useState<number>(0)
 
+  const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
+
   // fetch zone api
   let fetchZone = async () => {
     let response: zoneTypesApi = await getZoneTypes()
@@ -101,47 +128,61 @@ const CustomerContext: FC = ({children}) => {
     }
   }
 
-  let fetchCustomer = async() =>{
-    let response:customerTypeApi = await getCustomerList(filter)
-    if(response.success){
-      setTotalData(response.TotalRecords)
+  let fetchCustomer = async () => {
+    let response: customerTypeApi = await getCustomerList(filter, pageNo, pageSize)
+    // if (response.success) {
+    //   setTotalData(response.TotalRecords)
+    //   setCustomerTableData(response.data)
+    // }
+    if (response.success == true) {
       setCustomerTableData(response.data)
+      // LoderActions(false)
+      const PageCout = response?.pages
+
+      setPageCount(Math.floor(PageCout))
+      setTotalData(response.TotalRecords)
+    } else {
+      setCustomerTableData([])
+      // LoderActions(false)
+      setPageCount(0)
     }
   }
 
-  let fetchCompanies = async()=>{
-    let response:companiesTypesApi = await getCompaniesTypes()
-    if(response.success){
+  let fetchCompanies = async () => {
+    let response: companiesTypesApi = await getCompaniesTypes()
+    if (response.success) {
       setCompanies(response.data)
     }
   }
 
-  let fetchUserByRoleName = async(rolename:string)=>{
-    let response:userTypesApi = await getUserByRoleName(rolename)
-    if(response.success){
-      if(rolename==='Admin'){
+  let fetchUsetByRoleNameWithSearch = async (searchText: string) => {
+    let response: userTypesApi = await getUserByRoleName('Customer', searchText)
+    if (response.success) {
+      setCustomer(response.data)
+    }
+  }
+
+  let fetchUserByRoleName = async (rolename: string) => {
+    let response: userTypesApi = await getUserByRoleName(rolename)
+    if (response.success) {
+      if (rolename === 'Admin') {
         setCreatedBy(response.data)
         return
       }
-      if(rolename==='Technician'){
+      if (rolename === 'Technician') {
         setInstaller(response.data)
         return
       }
-      if(rolename==='SalesExecutve'){
+      if (rolename === 'SalesExecutve') {
         setSalesExecutve(response.data)
-        return
-      }
-      if(rolename==='Customer'){
-        setCustomer(response.data)
         return
       }
     }
   }
 
-
-  let fetchMainPoint = async()=>{
-    let response:mainPoinnTypesApi = await getMainPoint()
-    if(response.success){
+  let fetchMainPoint = async () => {
+    let response: mainPoinnTypesApi = await getMainPoint()
+    if (response.success) {
       setMainPoint(response.data)
     }
   }
@@ -168,7 +209,10 @@ const CustomerContext: FC = ({children}) => {
     fetchUserByRoleName,
     fetchMainPoint,
     mainPoint,
-    customer
+    customer,
+    fetchUsetByRoleNameWithSearch,
+    viewIdForUpdate,
+    setViewIdForUpdate,
   }
 
   return <ListDataContext.Provider value={value}>{children}</ListDataContext.Provider>

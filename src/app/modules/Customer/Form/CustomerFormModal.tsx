@@ -3,42 +3,83 @@ import React, {ElementType, useEffect, useState} from 'react'
 import ImageSelect from '../../../../app/images/error-profile.svg'
 import {ListPageData} from '../CustomerContext'
 import * as Yup from 'yup'
-import {customerFormType} from '../helperCustomer/ModelCustomer'
-import { useRef } from 'react'
+import {customerFormType, formInitialValues} from '../helperCustomer/ModelCustomer'
+import {useRef} from 'react'
+import {saveCustomer} from '../helperCustomer/ApiDataRequest'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
-const validationSchema = Yup.object({
-  Userid: Yup.string().required().label('UserName'),
-  Contactno: Yup.string().min(10).max(10).required().label('This value is required.'),
-  ZoneId: Yup.string().required().label('This value is required.'),
-})
+interface customerProps {
+  customerById: any
+}
 
-function CustomerFormModal() {
+function CustomerFormModal({customerById}: customerProps) {
+  const navigate = useNavigate()
+  const suggestionRef: any = useRef()
+  const {customer, fetchUsetByRoleNameWithSearch} = ListPageData()
+
+  const validationSchema = Yup.object({
+    Userid: Yup.string().when(['UserName'], {
+      is: (UserName: any) => !UserName,
+      then: Yup.string().required().label('UserName'),
+    }),
+    MobileNo: Yup.string().min(10).max(10).required().label('MobileNo'),
+    ZoneId: Yup.string().required().label('Zone'),
+    Email: Yup.string().email('Must be a valid email').max(255),
+    Address: Yup.string().required().label('Address'),
+    FirstName: Yup.string().required().label('FirstName'),
+    LastName: Yup.string().required().label('LastName'),
+    Middlename: Yup.string().required().label('Middlename'),
+  })
+
   let {zoneType} = ListPageData()
 
-  const [initialValues, setInitialValues] = useState<customerFormType>({
-    Middlename: '',
-    CompanyName: '',
-    Userid: '',
-    ZoneId: '',
-    Gstno: '',
-    Contactno: '',
-    Address: '',
-    Remark: '',
-    Description: '',
-    IdproofImageFile: '',
-    AddressproofImageFile: '',
-    GstcerificateImageFile: '',
-    CreatedBy: '',
-    ModifyBy: '',
-    IsMasterUser: false,
-  })
+  const [initialValues, setInitialValues] = useState<customerFormType>(formInitialValues)
+
+  useEffect(() => {
+    console.log('customerById', customerById)
+    setInitialValues({
+      Id: customerById.id || null,
+      UserName: customerById.userName || '',
+      FirstName: customerById.firstName || '',
+      LastName: customerById.lastName || '',
+      Email: customerById.email || '',
+      MobileNo: customerById.mobileNo || '',
+      Middlename: customerById.middlename || '',
+      CompanyName: customerById.companyName || '',
+      Userid: customerById.userid || '',
+      ZoneId: customerById.zoneId || '',
+      Gstno: customerById.gstno || '',
+      Contactno: customerById.contactno || '',
+      Address: customerById.address || '',
+      Remark: customerById.remark || '',
+      Description: '',
+      IdproofImageFile: '',
+      AddressproofImageFile: '',
+      GstcerificateImageFile: '',
+      CreatedBy: customerById.createdById || '',
+      ModifyBy: customerById.modifyById || '',
+      IsMasterUser: false,
+    })
+  }, [customerById])
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      
+    onSubmit: async (values) => {
+      let formData: any = new FormData()
+      Object.entries(values).forEach(([key, value]) => {
+        if (value) formData.append(key, value as string)
+      })
+      !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
+      let response = await saveCustomer(formData)
+      if (response.success) {
+        toast.success(response.message)
+        navigate('/customers')
+      } else {
+        toast.error(response.message)
+      }
     },
   })
 
@@ -46,15 +87,14 @@ function CustomerFormModal() {
   const [addressProofImage, setAddressProofImage] = useState<any>(null)
   const [gstCerificateImage, setGstCerificateImage] = useState<any>(null)
 
-
-
-
-  let fetchFilePath=async(file:any)=>{
+  let fetchFilePath = async (file: any) => {
     const objectUrl = URL.createObjectURL(file[0])
     return objectUrl
   }
-  
-  
+
+  useEffect(() => {
+    fetchUsetByRoleNameWithSearch(formik.values.UserName)
+  }, [formik.values.UserName])
 
   return (
     <>
@@ -70,7 +110,11 @@ function CustomerFormModal() {
                 </div>
                 <div
                   className='image-input image-input-empty'
-                  style={{backgroundImage: `url(${idProofImage?idProofImage:formik.values.IdproofImageFile || ImageSelect})`}}
+                  style={{
+                    backgroundImage: `url(${
+                      idProofImage ? idProofImage : customerById.idproofImage || ImageSelect
+                    })`,
+                  }}
                 >
                   <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -83,19 +127,19 @@ function CustomerFormModal() {
                   >
                     <i className='bi bi-pencil-fill fs-7'></i>
                     <input
-                     type='file'
-                     name='IdproofImageFile'
-                     accept='.png, .jpg, .jpeg'
-                     onChange={async(e)=>{
-                      if(!e.target.files){
-                        return
-                      }
-                      let url = await fetchFilePath(e.target.files)
-                      setIdProofImage(url)
-                      formik.setFieldValue("IdproofImageFile",e.target.files)
-                     }}
-                     onBlur={formik.handleBlur}
-                     />
+                      type='file'
+                      name='IdproofImageFile'
+                      accept='.png, .jpg, .jpeg'
+                      onChange={async (e) => {
+                        if (!e.target.files) {
+                          return
+                        }
+                        let url = await fetchFilePath(e.target.files)
+                        setIdProofImage(url)
+                        formik.setFieldValue('IdproofImageFile', e.target.files[0])
+                      }}
+                      onBlur={formik.handleBlur}
+                    />
                   </label>
                 </div>
               </div>
@@ -108,7 +152,13 @@ function CustomerFormModal() {
                 <div
                   className='image-input image-input-empty'
                   data-kt-image-input='true'
-                  style={{backgroundImage: `url(${addressProofImage?addressProofImage:formik.values.AddressproofImageFile || ImageSelect})`}}
+                  style={{
+                    backgroundImage: `url(${
+                      addressProofImage
+                        ? addressProofImage
+                        : customerById.addressproofImage || ImageSelect
+                    })`,
+                  }}
                 >
                   <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -122,20 +172,19 @@ function CustomerFormModal() {
                     <i className='bi bi-pencil-fill fs-7'></i>
 
                     <input
-                     type='file'
-                     name='AddressproofImageFile'
-                     accept='.png, .jpg, .jpeg'
-                     onChange={async(e)=>{
-                      if(!e.target.files){
-                        return
-                      }
-                      let url = await fetchFilePath(e.target.files)
-                      setAddressProofImage(url)
-                      formik.setFieldValue("AddressproofImageFile",e.target.files)
-                     }}
-                     onBlur={formik.handleBlur}
-                     />
-                    
+                      type='file'
+                      name='AddressproofImageFile'
+                      accept='.png, .jpg, .jpeg'
+                      onChange={async (e) => {
+                        if (!e.target.files) {
+                          return
+                        }
+                        let url = await fetchFilePath(e.target.files)
+                        setAddressProofImage(url)
+                        formik.setFieldValue('AddressproofImageFile', e.target.files[0])
+                      }}
+                      onBlur={formik.handleBlur}
+                    />
                   </label>
                 </div>
               </div>
@@ -147,7 +196,13 @@ function CustomerFormModal() {
                 <div
                   className='image-input image-input-empty'
                   data-kt-image-input='true'
-                  style={{backgroundImage: `url(${gstCerificateImage?gstCerificateImage:formik.values.GstcerificateImageFile || ImageSelect})`}}
+                  style={{
+                    backgroundImage: `url(${
+                      gstCerificateImage
+                        ? gstCerificateImage
+                        : customerById.gstcerificateImage || ImageSelect
+                    })`,
+                  }}
                 >
                   <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -159,24 +214,21 @@ function CustomerFormModal() {
                     title='Change avatar'
                   >
                     <i className='bi bi-pencil-fill fs-7'></i>
-
                     <input
-                     type='file'
-                     name='GstcerificateImageFile'
-                     accept='.png, .jpg, .jpeg'
-                     onChange={async(e)=>{
-                      if(!e.target.files){
-                        return
-                      }
-                      let url = await fetchFilePath(e.target.files)
-                      setGstCerificateImage(url)
-                      formik.setFieldValue("GstcerificateImageFile",e.target.files)
-                     }}
-                     onBlur={formik.handleBlur}
-                     />
+                      type='file'
+                      name='GstcerificateImageFile'
+                      accept='.png, .jpg, .jpeg'
+                      onChange={async (e) => {
+                        if (!e.target.files) {
+                          return
+                        }
+                        let url = await fetchFilePath(e.target.files)
+                        setGstCerificateImage(url)
+                        formik.setFieldValue('GstcerificateImageFile', e.target.files[0])
+                      }}
+                      onBlur={formik.handleBlur}
+                    />
                   </label>
-
-                  
                 </div>
               </div>
               {/* First Name */}
@@ -187,7 +239,20 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
+                  name='FirstName'
+                  value={formik.values.FirstName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.touched.FirstName && formik.errors.FirstName && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.FirstName}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
               {/* Middle name */}
               <div className='col-lg-4'>
@@ -197,10 +262,20 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
+                  name='Middlename'
                   value={formik.values.Middlename}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
+                {formik.touched.Middlename && formik.errors.Middlename && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.Middlename}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
               {/* Last Name */}
               <div className='col-lg-4'>
@@ -210,7 +285,20 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
+                  name='LastName'
+                  value={formik.values.LastName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.touched.LastName && formik.errors.LastName && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.LastName}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             {/* Company name */}
@@ -222,6 +310,7 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
+                  name='CompanyName'
                   value={formik.values.CompanyName}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -235,6 +324,7 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
+                  name='Gstno'
                   value={formik.values.Gstno}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -248,30 +338,76 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
-                  value={formik.values.Gstno}
+                  name='Email'
+                  value={formik.values.Email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
+                {formik.touched.Email && formik.errors.Email && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.Email}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             {/* Username */}
             <div className='row w-100 mx-0 mb-4 gy-4'>
+              {/*  */}
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Username</label>
                 <input
                   placeholder='Username'
-                  name='Userid'
+                  name='UserName'
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
-                  value={formik.values.Userid}
+                  value={formik.values.UserName}
                   onChange={(e) => {
+                    formik.setFieldValue('IsMasterUser', false)
+                    if (e.target.value) {
+                      suggestionRef.current.style.display = 'block'
+                    } else {
+                      suggestionRef.current.style.display = 'none'
+                    }
                     formik.handleChange(e)
                   }}
                   onBlur={(e) => {
+                    var container = suggestionRef.current
+                    document.addEventListener('click', function (event) {
+                      suggestionRef.current.style.display = 'none'
+                      document.removeEventListener('click', () => {
+                        suggestionRef.current.style.display = 'none'
+                        document.removeEventListener('click', () => {})
+                      })
+                    })
                     formik.handleBlur(e)
                   }}
                 />
+                <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
+                  <ul>
+                    {customer?.length > 0 &&
+                      customer.map((user, index) => {
+                        return (
+                          <li
+                            key={user.id}
+                            onClick={() => {
+                              console.log('user*****', user)
+                              // IsMasterUser
+                              formik.setFieldValue('IsMasterUser', true)
+                              formik.setFieldValue('Userid', user.id)
+                              formik.setFieldValue('UserName', user.firstname)
+                            }}
+                          >
+                            {user.firstname}
+                          </li>
+                        )
+                      })}
+                  </ul>
+                </div>
                 {formik.touched.Userid && formik.errors.Userid && (
                   <div className='fv-plugins-message-container'>
                     <div className='fv-help-block'>
@@ -290,7 +426,20 @@ function CustomerFormModal() {
                   className='form-control form-control-lg form-control-solid'
                   type='number'
                   autoComplete='off'
+                  name='MobileNo'
+                  value={formik.values.MobileNo}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.touched.MobileNo && formik.errors.MobileNo && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.MobileNo}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
               {/* Contact no. */}
               <div className='col-lg-3'>
@@ -301,6 +450,10 @@ function CustomerFormModal() {
                     className='form-control form-control-lg form-control-solid'
                     type='number'
                     autoComplete='off'
+                    name='Contactno'
+                    value={formik.values.Contactno}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   />
                 </div>
               </div>
@@ -311,6 +464,7 @@ function CustomerFormModal() {
                   <div data-select2-id='select-zone'>
                     <select
                       className='form-select form-select-solid'
+                      name='ZoneId'
                       value={formik.values.ZoneId}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
@@ -326,6 +480,15 @@ function CustomerFormModal() {
                     </select>
                   </div>
                 </div>
+                {formik.touched.ZoneId && formik.errors.ZoneId && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.ZoneId}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
               {/* Address */}
               <div className='col-lg-12'>
@@ -334,10 +497,20 @@ function CustomerFormModal() {
                   className='form-control form-control form-control-solid'
                   data-kt-autosize='true'
                   placeholder='Address here'
+                  name='Address'
                   value={formik.values.Address}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 ></textarea>
+                {formik.touched.Address && formik.errors.Address && (
+                  <div className='fv-plugins-message-container'>
+                    <div className='fv-help-block'>
+                      <span role='alert' style={{color: 'red'}}>
+                        {formik.errors.Address}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
               {/* Remark */}
               <div className='col-lg-12'>
@@ -346,6 +519,7 @@ function CustomerFormModal() {
                   className='form-control form-control form-control-solid'
                   data-kt-autosize='true'
                   placeholder='Remark here'
+                  name='Remark'
                   value={formik.values.Remark}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -354,9 +528,16 @@ function CustomerFormModal() {
             </div>
           </div>
           {/*  */}
-          <button type='submit' className='btn btn-secondary'>
-            Create
-          </button>
+
+          {formik.values.Id ? (
+            <button type='submit' className='btn btn-secondary'>
+              update
+            </button>
+          ) : (
+            <button type='submit' className='btn btn-secondary'>
+              Create
+            </button>
+          )}
         </div>
       </form>
     </>

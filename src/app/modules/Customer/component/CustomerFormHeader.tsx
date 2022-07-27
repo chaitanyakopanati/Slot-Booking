@@ -2,8 +2,8 @@ import { CustomTooltip } from "../../../routing/customtooltip"
 import { KTSVG } from "../../../../_metronic/helpers"
 
 
-const CustomerFormHeader = () =>{
-    // const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+const CustomerFormHeader = () => {
+  // const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
 
   return (
     <>
