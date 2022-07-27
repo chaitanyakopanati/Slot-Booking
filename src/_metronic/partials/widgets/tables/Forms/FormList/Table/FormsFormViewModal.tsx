@@ -89,7 +89,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   console.log('tttttttttttttttttttttttttttt', category)
                   console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/forms/formsform/${category.data.id}`)
-                  // openEditModal(category.id)
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
@@ -104,7 +103,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
         <div className='modal-body'>
           <div className='container-fluid p-0'>
             <div className='row w-100 mx-0 mb-4 gy-4'>
-              <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
+              {/* <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
                 <div
                   className='image-input image-input-outline mx-auto'
                   data-kt-image-input='true'
@@ -119,11 +118,11 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     }}
                   ></div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className='col-md-9'>
+              <div className='col-md-12'>
                 <div className='row mb-6 gy-4'>
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold required'>Username</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -136,7 +135,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
 
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold '>Name</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -149,7 +148,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
 
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold '>Company name</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -161,10 +160,46 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                       autoComplete='off'
                     />
                   </div>
-                </div>
 
-                <div className='row mb-6 gy-4'>
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>File no.</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      placeholder='File no'
+                      value={initialvalues.fileNo}
+                      disabled
+                      readOnly
+                      autoComplete='off'
+                    />
+                  </div>
+
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Form no.</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='text'
+                      placeholder='Form no.'
+                      value={initialvalues.formno}
+                      disabled
+                      readOnly
+                      autoComplete='off'
+                    />
+                  </div>
+                  <div className='col-md-3'>
+                    <label className='form-label fw-bold'>Form date</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      type='date'
+                      placeholder='Form date'
+                      value={initialvalues.formdate}
+                      disabled
+                      readOnly
+                      autoComplete='off'
+                    />
+                  </div>
+                
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold '>GST no.</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -177,7 +212,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
 
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold'>Mobile no.</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -190,7 +225,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
 
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold'>Contact no.</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -202,10 +237,8 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                       autoComplete='off'
                     />
                   </div>
-                </div>
-
-                <div className='row mb-6 gy-4'>
-                  <div className='col-md-4'>
+                
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold '>Address</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -218,7 +251,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
 
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold '>Email</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -231,7 +264,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
 
-                  <div className='col-md-4'>
+                  <div className='col-md-3'>
                     <label className='form-label fw-bold '>Zone</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
@@ -243,47 +276,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                       autoComplete='off'
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className='row mb-6 gy-4'>
-              <div className='col-md-2'>
-                <label className='form-label fw-bold'>File no.</label>
-                <input
-                  className='form-control form-control-lg form-control-solid'
-                  type='text'
-                  placeholder='File no'
-                  value={initialvalues.fileNo}
-                  disabled
-                  readOnly
-                  autoComplete='off'
-                />
-              </div>
-              <div className='col-md-2'>
-                <label className='form-label fw-bold'>Form no.</label>
-                <input
-                  className='form-control form-control-lg form-control-solid'
-                  type='text'
-                  placeholder='Form no.'
-                  value={initialvalues.formno}
-                  disabled
-                  readOnly
-                  autoComplete='off'
-                />
-              </div>
-              <div className='col-md-2'>
-                <label className='form-label fw-bold'>Form date</label>
-                <input
-                  className='form-control form-control-lg form-control-solid'
-                  type='date'
-                  placeholder='Form date'
-                  value={initialvalues.formdate}
-                  disabled
-                  readOnly
-                  autoComplete='off'
-                />
-              </div>
-              <div className='col-md-2'>
+                  <div className='col-md-3'>
                 <label className='form-label fw-bold'>Form type</label>
                 <input
                   className='form-control form-control-lg form-control-solid'
@@ -296,7 +289,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                 />
               </div>
 
-              <div className='col-md-2'>
+              <div className='col-md-3'>
                 <label className='form-label fw-bold'>Sales Executive</label>
                 <input
                   className='form-control form-control-lg form-control-solid'
@@ -308,7 +301,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   autoComplete='off'
                 />
               </div>
-              <div className='col-md-2'>
+              <div className='col-md-3'>
                 <label className='form-label fw-bold'>Comapny</label>
                 <input
                   className='form-control form-control-lg form-control-solid'
@@ -320,9 +313,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   autoComplete='off'
                 />
               </div>
-            </div>
-
-            <div className='row mb-6 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold'>Package category</label>
                 <input
@@ -377,9 +367,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   />
                 </div>
               </div>
-            </div>
-
-            <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold'>Package Cost</label>
                 <div className='input-group'>
@@ -443,9 +430,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   />
                 </div>
               </div>
-            </div>
-
-            <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold'>GST Amount</label>
                 <div className='input-group'>
@@ -509,9 +493,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   />
                 </div>
               </div>
-            </div>
-
-            <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold'>Remaining Amount</label>
                 <div className='input-group'>
@@ -566,9 +547,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   className='form-control form-control-solid'
                 />
               </div>
-            </div>
-
-            <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold'>Receiver</label>
                 <input
@@ -620,9 +598,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   className='form-control form-control-solid'
                 />
               </div>
-            </div>
-
-            <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold'>Note</label>
                 <input
@@ -649,7 +624,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                 />
               </div>
 
-              <div className='col-md-4'>
+              <div className='col-md-3'>
                 <label className='form-label fw-bold'>Remark</label>
                 <input
                   type='text'
@@ -661,8 +636,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   className='form-control form-control-solid'
                 />
               </div>
-
-              <div className='col-md-2'>
+              <div className='col-md-3'>
                 <label className='form-label fw-bold'>Form submit</label>
                 <input
                   type='text'
@@ -674,9 +648,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   className='form-control form-control-solid'
                 />
               </div>
-            </div>
-
-            <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-lg-3'>
                 <label className='form-label fw-bold'>Created by</label>
                 <input
@@ -729,7 +700,11 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   disabled
                 />
               </div>
+                </div>
+              </div>
             </div>
+
+            
           </div>
         </div>
       </div>

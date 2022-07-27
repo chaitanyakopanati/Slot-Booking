@@ -76,16 +76,36 @@ const getDynamicDownloadFile = (
 }
 const postForms = (obj: postlistData) => {
   return http.post('SaveForm', {
-    name: obj.name,
-    address: obj.address,
-    contactno: obj.contactno,
-    statusId: 1,
-    salesexecutiveName:obj.salesexecutiveName,
-    salesexecutiveId: obj.salesexecutiveId,
-    description: obj.description,
-    remark: obj.remark,
-    isnotify: obj.isnotify,
-    createdbyId: 1,
+   userid:obj.userid,
+   formno:obj.formno,
+   formdate:obj.formdate,
+   formtype:obj.formtype,
+   salesexecutiveid:+obj.salesexecutiveid,
+   companyid:+obj.companyid,
+   pacakgetype:obj.pacakgetype.toString(),
+   packageid:obj.packageid,
+   packagecatid:+obj.packagecatid,
+   packagevalidity:obj.packagevalidity,
+   packagecost:obj.packagecost,
+   installationcost:obj.installationcost,
+   othercost:obj.othercost,
+   discount:obj.discount,
+   gstamount:obj.gstamount,
+   totalamount:obj.totalamount,
+   cashamount:obj.cashamount,
+   chequeamount:obj.chequeamount,
+   remaningamount:obj.remaningamount,
+   bankid:+obj.bankid,
+   chequeno:obj.chequeno.toString(),
+   chequedate:obj.chequedate,
+   receiverid:+obj.receiverid,
+   activationdate:obj.activationdate,
+   expirydate:obj.expirydate,
+   iptype:obj.iptype,
+   note:obj.note,
+   thirdparty:obj.thirdparty,
+   remark:obj.remark,
+   status:obj.status,
   })
 }
 {
@@ -109,16 +129,39 @@ const deleteForms = (Id: number) => {
 const editForms = (obj: putInquiriesmodel) => {
   return http.post(`SaveForm`, {
     id: obj.id,
-    name: obj.name,
-    address: obj.address,
-    contactno: obj.contactno,
-    statusId: 1,
-    salesexecutiveName:obj.salesexecutiveName,
-    salesexecutiveId:obj.salesexecutiveId,
-    description: obj.description,
-    remark: obj.remark,
-    isnotify: obj.isnotify,
-    createdbyId: 1,
+    userid:obj.userid,
+    userName:obj.userName,
+   formno:obj.formno,
+   formdate:obj.formdate,
+   packageid:obj.packageid,
+   formtype:obj.formtype.toString(),
+   pacakgetype:obj.pacakgetype.toString(),
+   salesexecutiveid:obj.salesexecutiveid,
+   companyid:obj.companyid,
+   packagecatid:obj.packagecatid,
+   packagevalidity:obj.packagevalidity,
+   packagecost:obj.packagecost,
+   installationcost:obj.installationcost,
+   othercost:obj.othercost,
+   discount:obj.discount,
+   gstamount:obj.gstamount,
+   totalamount:obj.totalamount,
+   cashamount:obj.cashamount,
+   chequeamount:obj.chequeamount,
+   remaningamount:obj.remaningamount,
+   bankid:obj.bankid,
+   chequeno:obj.chequeno,
+   chequedate:obj.chequedate,
+   receiverid:obj.receiverid,
+   activationdate:obj.activationdate,
+   expirydate:obj.expirydate,
+   iptype:obj.iptype.toString(),
+   note:obj.note,
+   thirdparty:obj.thirdparty,
+   remark:obj.remark,
+   status:obj.status.toString(),
+  createdbyId: 1,
+  modifyby: 1,
   })
 }
 {
@@ -162,6 +205,26 @@ const getPackagesCategory = () => {
   return http.get('GetAllPackageCategories')
 }
 
+// Packages
+const getPackage = () => {
+  return http.get('GetAllPackages')
+}
+
+// Bank
+const getBank = () => {
+  return http.get('GetAllBanks')
+}
+
+// userName
+const getUserName = (username: string) => {
+  return http.get(`GetByUserName`, {userName: username})
+}
+
+//Reciever
+const getReciever = () => {
+  return http.get(`GetUserByRoleName?roleName=Technician`)
+}
+
 
 const Inquiriesservice = {
   getDynamicForm,
@@ -174,7 +237,11 @@ const Inquiriesservice = {
   getSalesExecutveByGetUserByRoleTypes,
   getCompany,
   getPackagesCategory,
-  getDynamicDownloadFile
+  getDynamicDownloadFile,
+  getUserName,
+  getPackage,
+  getBank,
+  getReciever
 }
 
 export default Inquiriesservice

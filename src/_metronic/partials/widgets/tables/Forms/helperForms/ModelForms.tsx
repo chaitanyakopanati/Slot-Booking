@@ -27,19 +27,42 @@ export interface getAllInquiriesData {
   success: boolean
 }
 export interface postlistData {
-  name: string
-  address: string
-  contactno: string
-  statusId: number
-  salesexecutiveId: number
-  description: string
+  userid: number
+  formno: string
+  formdate: string
+  formtype: string
+  salesexecutiveid: number
+  pacakgetype:string
+  packageid:number
+  companyid: number
+  packagecatid: number
+  packagevalidity: number
+  packagecost: number
+  installationcost: number
+  othercost: number
+  discount: number
+  gstamount: number
+  totalamount: number
+  cashamount: number
+  chequeamount: number
+  remaningamount: number
+  bankid: number
+  chequeno: string
+  chequedate: string
+  receiverid: number
+  activationdate: string
+  expirydate: string
+  iptype: string
+  note: string
+  thirdparty: string
   remark: string
-  isnotify: boolean
-  salesexecutiveName: string
+  status: string
 }
 
 export interface GetAllData {
-  data:any
+  firstname: string
+  message: string
+  data: any
   success: boolean
   fullName: string
   id: number
@@ -69,15 +92,37 @@ export interface GetAllDataApi {
 }
 export interface putInquiriesmodel {
   id: number
-  name: string
-  address: string
-  contactno: string
-  statusId: number
-  salesexecutiveId: number
-  description: string
+  userid: number
+  formno: string
+  formdate: string
+  packageid:number
+  userName:string
+  formtype: string
+  pacakgetype:string
+  salesexecutiveid: number
+  companyid: number
+  packagecatid: number
+  packagevalidity: number
+  packagecost: number
+  installationcost: number
+  othercost: number
+  discount: number
+  gstamount: number
+  totalamount: number
+  cashamount: number
+  chequeamount: number
+  remaningamount: number
+  bankid: number
+  chequeno: string
+  chequedate: string
+  receiverid: number
+  activationdate: string
+  expirydate: string
+  iptype: string
+  note: string
+  thirdparty: string
   remark: string
-  isnotify: boolean
-  salesexecutiveName: string
+  status: string
 }
 export interface putInquiriesmodel1 {
   data: getInquiriesData

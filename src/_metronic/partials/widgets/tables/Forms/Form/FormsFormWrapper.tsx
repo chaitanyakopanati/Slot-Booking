@@ -5,10 +5,15 @@ import {ListDataProvider, ListPageData} from '../FormsContext'
 import FormsFormByCategory from './FormsFormByCategory'
 
 function InquiriesForm() {
-  const {DataGetAllTypeSalesExecutveUserByRole} = ListPageData()
+  const {DataGetAllTypeSalesExecutveUserByRole,DataGetAllTypeCompany,DataGetAllTypePackages,DataGetAllTypeBank,DataGetAllTypePackagesCategory,DataGetAllTypeReciever} = ListPageData()
 
   useEffect(() => {
     DataGetAllTypeSalesExecutveUserByRole()
+    DataGetAllTypeCompany()
+    DataGetAllTypePackagesCategory()
+    DataGetAllTypePackages()
+    DataGetAllTypeBank()
+    DataGetAllTypeReciever()
   }, [])
 
   return (

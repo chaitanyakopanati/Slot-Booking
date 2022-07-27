@@ -28,11 +28,6 @@ const ProfileSettingsFormModal: FC = () => {
       GetUserTypeByIdAllData(auth.userId)
     }
   }, [])
-  // useEffect(() => {
-  //   if (userId) {
-  //     console.log('userId:', userId)
-  //   }
-  // }, [userId])
 
   useEffect(() => {
     if (userId1) {
@@ -76,34 +71,34 @@ const ProfileSettingsFormModal: FC = () => {
             .required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
-          LoderActions(true)
+          console.log('values++++++++++++++++++++++', values)
+          // LoderActions(true)
 
-          try {
-            // Edit Api Response
-            let response = await Profileservice.editUser(values)
-            console.log('Edit User*****************', response)
+          // try {
+          //   // Edit Api Response
+          //   let response = await Profileservice.editUser(values)
+          //   console.log('Edit User*****************', response)
 
-            if (response.success === false) {
-              toast.error(response.message)
-            } else {
-              toast.success(`Data Updated Successfully`)
-              toast.success(response.message)
-            }
-            navigation('/master/users')
-            toast.dismiss('1s')
+          //   if (response.success === false) {
+          //     toast.error(response.message)
+          //   } else {
+          //     toast.success(`Data Updated Successfully`)
+          //     toast.success(response.message)
+          //   }
+          //   navigation('/master/users')
+          //   toast.dismiss('1s')
 
-            resetForm({})
-          } catch (error: any) {
-            console.log(error, 'error')
-            toast.error(error.data.message)
-          } finally {
-            LoderActions(false)
-          }
+          //   resetForm({})
+          // } catch (error: any) {
+          //   console.log(error, 'error')
+          //   toast.error(error.data.message)
+          // } finally {
+          //   LoderActions(false)
+          // }
         }}
       >
         {(props) => {
-          console.log('props.values:', props.values)
+          console.log('props.values:', props)
           return (
             <Form onSubmit={props.handleSubmit}>
               <div className='row gy-5 gx-xl-8'>
@@ -131,7 +126,7 @@ const ProfileSettingsFormModal: FC = () => {
                       </div>
                     </div>
                     <div id='kt_account_settings_profile_details' className='collapse show'>
-                      <form id='kt_account_profile_details_form' className='form'>
+                      {/* <form id='kt_account_profile_details_form' className='form'> */}
                         <div className='card-body border-top p-9'>
                           <div className='row mb-6'>
                             <div className='col-lg-12'>
@@ -252,7 +247,7 @@ const ProfileSettingsFormModal: FC = () => {
                         </div>
                         <input type='hidden' />
                         <div></div>
-                      </form>
+                      {/* </form> */}
                     </div>
                   </div>
                 </div>

@@ -17,6 +17,10 @@ export interface ComplaintDataContextModel {
   getDataAllType: GetAllData[]
   getDataAllTypeCompany: GetAllData[]
   getPackagesCategory: GetAllData[]
+  getUserNameData: GetAllData[]
+  getPackages: GetAllData[]
+  getBank: GetAllData[]
+  getReciever: GetAllData[]
   salesExecutveAllData: GetAllDataApiSalesExecutve[]
   getUserByRole: GetAllDataApiSalesExecutve[]
   filterShow: boolean
@@ -32,6 +36,7 @@ export interface ComplaintDataContextModel {
   setRoleId: Dispatch<SetStateAction<string>>
   setCreatedAt: Dispatch<SetStateAction<string>>
   setCreatedStartDate: Dispatch<SetStateAction<string>>
+  setSuggestionUserText: Dispatch<SetStateAction<string>>
   pageCount: number
   createdById: number
   setPageCount: Dispatch<SetStateAction<number>>
@@ -68,6 +73,7 @@ export interface ComplaintDataContextModel {
   formEndDate: string
   expiryStartDate: string
   expiryEndDate: string
+  suggestionUserText: string
   setSearchText: Dispatch<SetStateAction<string>>
   setSearchByUsername: Dispatch<SetStateAction<string>>
   setExpiryEndDate: Dispatch<SetStateAction<string>>
@@ -82,20 +88,28 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeCompany: () => void
   DataGetAllTypePackagesCategory: () => void
   fetchAllDownload: () => void
+  DataGetAllTypePackages: () => void
+  DataGetAllTypeBank: () => void
+  DataGetAllTypeReciever: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
   getData: [],
   getPackagesCategory: [],
+  getUserNameData: [],
+  getBank: [],
+  getReciever: [],
   pageNo: 0,
   setPageNo: () => {},
   setZoneId: () => {},
+  getPackages: [],
   setSalesExecutiveId: () => {},
   setStatusId: () => {},
   setRoleId: () => {},
   setCreatedAt: () => {},
   setPaymentTypeId: () => {},
   setFormStartDate: () => {},
+  setSuggestionUserText: () => {},
   getDataAllTypeCompany: [],
   pageCount: 0,
   createdById: 0,
@@ -124,6 +138,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   salesExecutiveId: 0,
   statusId: 0,
   roleId: '',
+  suggestionUserText: '',
   createdAt: '',
   expiryEndDate: '',
   expiryStartDate: '',
@@ -154,6 +169,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeCompany: () => {},
   DataGetAllTypePackagesCategory: () => {},
   fetchAllDownload: () => {},
+  DataGetAllTypePackages: () => {},
+  DataGetAllTypeBank: () => {},
+  DataGetAllTypeReciever: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInquiriesData[]>([])
@@ -190,6 +208,11 @@ const ListDataProvider: FC = ({children}) => {
   const [connectionTypeId, setConnectionTypeId] = useState<number>(0)
   const [formTypeId, setFormTypeId] = useState<number>(0)
   const [formSubmitTypeId, setFormSubmitTypeId] = useState<number>(0)
+  const [suggestionUserText, setSuggestionUserText] = useState<string>('')
+  const [getUserNameData, setgetUserNameData] = useState<GetAllData[]>([])
+  const [getPackages, setGetPackages] = useState<GetAllData[]>([])
+  const [getBank, setGetBank] = useState<GetAllData[]>([])
+  const [getReciever, setGetReciever] = useState<GetAllData[]>([])
 
   let {LoderActions} = useLoader()
 
@@ -380,23 +403,117 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
+    //packages 
+
+    const DataGetAllTypePackages = async () => {
+      LoderActions(true)
+      try {
+        let payload: GetAllData = await Inquiriesservice.getPackage()
+        console.log(payload, 'SalepackagesSalepackages')
+  
+        if (payload.success == true) {
+          setGetPackages(payload?.data)
+          console.log(payload.data, 'Salepackages')
+        }
+      } catch (error) {
+        LoderActions(false)
+      } finally {
+        LoderActions(false)
+      }
+    }
+
+    //Bank
+
+    const DataGetAllTypeBank = async () => {
+      LoderActions(true)
+      try {
+        let payload: GetAllData = await Inquiriesservice.getBank()
+        console.log(payload, 'getBankgetBank')
+  
+        if (payload.success == true) {
+          setGetBank(payload?.data)
+          console.log(payload.data, 'getBank')
+        }
+      } catch (error) {
+        LoderActions(false)
+      } finally {
+        LoderActions(false)
+      }
+    }
+
+      //Reciever
+
+      const DataGetAllTypeReciever = async () => {
+        LoderActions(true)
+        try {
+          let payload: GetAllData = await Inquiriesservice.getReciever()
+          console.log(payload, 'getBankgetBank')
+    
+          if (payload.success == true) {
+            setGetReciever(payload?.data)
+            console.log(payload.data, 'getBank')
+          }
+        } catch (error) {
+          LoderActions(false)
+        } finally {
+          LoderActions(false)
+        }
+      }
+
+  //User name
+
+  useEffect(() => {
+    console.log('suggestionUserText', suggestionUserText)
+    if (suggestionUserText) {
+      let fetchSuggestionUser = async () => {
+        LoderActions(true)
+        try {
+          let payload: GetAllData = await Inquiriesservice.getUserName(
+            suggestionUserText
+          )
+          console.log(payload, 'getUserNamegetUserName')
+
+          if (payload.success == true) {
+            LoderActions(false)
+            setgetUserNameData(payload?.data)
+            console.log(payload.data, 'getUserName')
+          } else if (payload.message === 'No records found') {
+            setgetUserNameData([])
+          }
+        } catch (error) {
+        } finally {
+          LoderActions(false)
+        }
+      }
+      fetchSuggestionUser()
+    }
+  }, [suggestionUserText])
+
   const value: ComplaintDataContextModel = {
     getData,
     createdById,
     setCreatedById,
     getUserByRole,
     searchByUserName,
+    DataGetAllTypeBank,
+    DataGetAllTypeReciever,
     itemIdForUpdate,
     createdEndDate,
+    getReciever,
     salesExecutiveId,
     setCreatedStartDate,
+    DataGetAllTypePackages,
     createdAt,
     getPackagesCategory,
+    suggestionUserText,
     packageCategoryId,
     setExpiryStartDate,
+    setSuggestionUserText,
     setConnectionTypeId,
     DataGetAllTypeCompany,
+    getPackages,
     setFormSubmitTypeId,
+    getBank,
     formSubmitTypeId,
     formTypeId,
     setExpiryEndDate,
@@ -409,6 +526,7 @@ const ListDataProvider: FC = ({children}) => {
     DataGetAllTypePackagesCategory,
     formEndDate,
     setFormTypeId,
+    getUserNameData,
     companyId,
     paymentTypeId,
     setCompanyId,
