@@ -1,8 +1,8 @@
 import clsx from 'clsx'
-import React, { FC } from 'react'
-import { KTSVG, toAbsoluteUrl } from '../../../helpers'
-import { HeaderNotificationsMenu, HeaderUserMenu, QuickLinks, Search } from '../../../partials'
-import { useLayout } from '../../core'
+import React, {FC} from 'react'
+import {KTSVG, toAbsoluteUrl} from '../../../helpers'
+import {HeaderNotificationsMenu, HeaderUserMenu, QuickLinks, Search} from '../../../partials'
+import {useLayout} from '../../core'
 
 const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
   toolbarButtonHeightClass = 'w-30px h-30px w-md-40px h-md-40px',
@@ -10,11 +10,11 @@ const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
   toolbarButtonIconSizeClass = 'svg-icon-1'
 
 const Topbar: FC = () => {
-  const { config } = useLayout()
+  const {config} = useLayout()
 
   return (
     <div className='d-flex align-items-stretch flex-shrink-0'>
-{/* 
+      {/* 
       <div
         className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
         id='kt_header_user_menu_toggle'
@@ -32,8 +32,6 @@ const Topbar: FC = () => {
         <HeaderNotificationsMenu />
       </div> */}
 
-
-
       {/* begin::User */}
       <div
         className={clsx('d-flex align-items-center', toolbarButtonMarginClass)}
@@ -47,7 +45,7 @@ const Topbar: FC = () => {
           data-kt-menu-placement='bottom-end'
           data-kt-menu-flip='bottom'
         >
-          <img src={toAbsoluteUrl('/media/avatars/300-1.jpg')} alt='metronic' />
+          <img src={toAbsoluteUrl('/media/avatars/profile.png')} alt='metronic' />
         </div>
         <HeaderUserMenu />
         {/* end::Toggle */}
@@ -69,4 +67,4 @@ const Topbar: FC = () => {
   )
 }
 
-export { Topbar }
+export {Topbar}

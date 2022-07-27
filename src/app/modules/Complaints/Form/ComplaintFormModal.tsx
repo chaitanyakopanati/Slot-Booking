@@ -135,7 +135,8 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
           if (response.success === false) {
             toast.error(response.message)
           } else {
-            toast.success(`Data Updated Successfully`)
+            toast.success(response.message)
+            // toast.success(`Data Updated Successfully`)
           }
           navigate('/complaint')
           // toast.success(` Data Updated Successfully`)
@@ -147,7 +148,8 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
           if (response.success === false) {
             toast.error(response.message)
           } else {
-            toast.success(` Data Added Successfully`)
+            toast.success(response.message)
+            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
           navigate('/complaint')

@@ -46,10 +46,12 @@ let validationSchemaNewForm = Yup.object({
       passwordRegExp,
       'Password should Have 1 Uppercase,1 Lowercase,1 digit,1 special character'
     ),
-  confirmPassword: Yup.string().when('password', {
-    is: (val: any) => (val && val.length > 0 ? true : false),
-    then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
-  }),
+  confirmPassword: Yup.string()
+    .required('This field is required')
+    .when('password', {
+      is: (val: any) => (val && val.length > 0 ? true : false),
+      then: Yup.string().oneOf([Yup.ref('password')], 'Both password need to be the same'),
+    }),
 })
 
 let validationSchemaEditForm = Yup.object({
@@ -285,27 +287,45 @@ const UserFormModal: FC<Props> = ({category}) => {
                         type='text'
                         name='username'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   )}
 
                   {/* begin: input email Filed */}
-                  <div className='col-lg-6'>
-                    <label className='form-label fw-bold required'>Email :</label>
-                    <input
-                      placeholder='email'
-                      className='form-control form-control-lg form-control-solid'
-                      value={props.values.email}
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      type='text'
-                      name='email'
-                      autoComplete='off'
-                    />
-                    <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='email' />
+                  {itemIdForUpdate === 'add' ? (
+                    <div className='col-lg-6'>
+                      <label className='form-label fw-bold required'>Email :</label>
+                      <input
+                        placeholder='email'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.email}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        type='text'
+                        name='email'
+                        autoComplete='off'
+                      />
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='email' />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className='col-lg-6'>
+                      <label className='form-label fw-bold required'>Email :</label>
+                      <input
+                        placeholder='email'
+                        className='form-control form-control-lg form-control-solid'
+                        value={props.values.email}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        type='text'
+                        name='email'
+                        autoComplete='off'
+                        disabled
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* begin: input phone Filed */}

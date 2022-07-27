@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { KTSVG } from '../../../../../_metronic/helpers'
-import { ListPageData } from '../../ComplaintContext'
+import React, {useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {KTSVG} from '../../../../../_metronic/helpers'
+import {ListPageData} from '../../ComplaintContext'
 import Swal from 'sweetalert2'
 import moment from 'moment'
-import { toast } from 'react-toastify'
+import {toast} from 'react-toastify'
 import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
+import {useLoader} from '../../../loader/LoaderContext'
 const ComplaintTable = () => {
-
   const {
     getData,
     setPageNo,
@@ -18,6 +18,7 @@ const ComplaintTable = () => {
     // DataGetAllTypeZone,
   } = ListPageData()
   let navigate = useNavigate()
+  let {LoderActions} = useLoader()
 
   const openViewPage = () => {
     navigate('complaintviewform')
@@ -32,8 +33,7 @@ const ComplaintTable = () => {
     fetchAllComplaint()
     // DataGetAllTypeTechnician()
     // DataGetAllTypeZone()
-    console.log("fffffffddddd", getData);
-
+    console.log('fffffffddddd', getData)
   }, [])
 
   const handlesearchange = (e: any) => {
@@ -52,17 +52,24 @@ const ComplaintTable = () => {
       confirmButtonText: 'Delete',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // LoderActions(true)
-        let payload = await ComplaintsViewService.deleteComplaint(ID)
-        if (payload.success === true) {
-          // LoderActions(false)
+        LoderActions(true)
+        try {
+          let payload = await ComplaintsViewService.deleteComplaint(ID)
+          if (payload.success === true) {
+            LoderActions(false)
+            toast.success(payload.message)
+            // toast.success(` Data Deleted Successfully`)
+            toast.dismiss('1s')
+          } else {
+            LoderActions(false)
 
-          toast.success(` Data Deleted Successfully`)
-          toast.dismiss('1s')
-        } else {
-          // LoderActions(false)
-
-          toast.error(` Failed to Delete Data`)
+            toast.error(payload.message)
+            // toast.error(` Failed to Delete Data`)
+            toast.dismiss('1s')
+          }
+        } catch (error: any) {
+          console.log('error', error.data)
+          toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
         fetchAllComplaint()
@@ -97,9 +104,7 @@ const ComplaintTable = () => {
                 return (
                   <tr key={index}>
                     <td>
-                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
-                        {index + 1}
-                      </div>
+                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>{index + 1}</div>
                     </td>
                     {/* begin:: Name Input */}
                     <td>
@@ -113,9 +118,7 @@ const ComplaintTable = () => {
                     </td>
                     {/* end:: Name Input */}
 
-
                     <td className='text-dark fw-bold  fs-6'>{row.name || '-'}</td>
-
 
                     <td className='text-dark fw-bold  fs-6'>{row.address || '-'}</td>
 
@@ -126,14 +129,17 @@ const ComplaintTable = () => {
                     <td className='text-dark fw-bold  fs-6'>{row.assignTechnicianName || '-'}</td>
                     <td className='text-dark fw-bold  fs-6'>{row.statusName || '-'}</td>
 
-                    <td className='text-dark fw-bold  fs-6'> {moment(row?.outwardDate).format('DD-MMMM-YYYY') || '-'}</td>
+                    <td className='text-dark fw-bold  fs-6'>
+                      {' '}
+                      {moment(row?.outwardDate).format('DD-MMMM-YYYY') || '-'}
+                    </td>
                     {/* {moment(row?.outwardDate).format('DD-MMMM-YYYY') || '-'} */}
 
                     <td>
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`complaintviewform/${row.id}`)}
-                      // onClick={() => openViewModal(row.id)}
+                        // onClick={() => openViewModal(row.id)}
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -175,8 +181,6 @@ const ComplaintTable = () => {
           </tbody>
         </table>
       </div>
-
-
     </div>
   )
 }

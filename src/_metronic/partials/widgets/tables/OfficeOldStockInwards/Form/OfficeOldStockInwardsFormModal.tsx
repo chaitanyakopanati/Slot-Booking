@@ -120,7 +120,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                toast.success(`Data Updated Successfully`)
+                toast.success(response.message)
+                // toast.success(`Data Updated Successfully`)
               }
               navigation('/stocks/office-old-stock-inwards')
               toast.dismiss('1s')
@@ -131,7 +132,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                toast.success(` Data Added Successfully`)
+                toast.success(response.message)
+                // toast.success(` Data Added Successfully`)
               }
               toast.dismiss('1s')
               navigation('/stocks/office-old-stock-inwards')

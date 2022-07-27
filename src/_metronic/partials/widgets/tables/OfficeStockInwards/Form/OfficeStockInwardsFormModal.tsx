@@ -106,7 +106,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                toast.success(`Data Updated Successfully`)
+                toast.success(response.message)
+                // toast.success(`Data Updated Successfully`)
               }
               navigation('/stocks/office-stock-inwards')
               toast.dismiss('1s')
@@ -117,7 +118,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                toast.success(` Data Added Successfully`)
+                // toast.success(` Data Added Successfully`)
+                toast.success(response.message)
               }
               toast.dismiss('1s')
               navigation('/stocks/office-stock-inwards')
@@ -261,6 +263,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       onBlur={props.handleBlur}
                       name='serialno'
                       placeholder='Serial no'
+                      autoComplete='off'
                     />
                   </div>
 

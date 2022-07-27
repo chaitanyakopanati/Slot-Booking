@@ -114,7 +114,8 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
           if (response.success === false) {
             toast.error(response.message)
           } else {
-            toast.success(`Data Updated Successfully`)
+            // toast.success(`Data Updated Successfully`)
+            toast.success(response.message)
           }
           navigation('/stocks/office-old-stock-outwards')
           toast.dismiss('1s')
@@ -125,7 +126,8 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
           if (response.success === false) {
             toast.error(response.message)
           } else {
-            toast.success(` Data Added Successfully`)
+            // toast.success(` Data Added Successfully`)
+            toast.success(response.message)
           }
           toast.dismiss('1s')
           navigation('/stocks/office-old-stock-outwards')
@@ -304,7 +306,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                       if (suggestionRef.current) {
                         suggestionRef.current.style.display = 'none'
                       }
-                      console.log(suggestionRef, '=====================-------===----==--')
+                      // console.log(suggestionRef, '=====================-------===----==--')
                       document.removeEventListener('click', () => {})
                     })
                   }}

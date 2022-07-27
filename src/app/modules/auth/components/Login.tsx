@@ -56,7 +56,7 @@ export function Login() {
           }
         }
         saveAuth(auth)
-        toast.success('Login Successful')
+        toast.success('Sign in Successfully')
       } catch (error) {
         let {data}: any = error
         console.log(data, 'response')
