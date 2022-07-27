@@ -23,8 +23,8 @@ import ComplaintViewWrapper from '../modules/Complaints/Form/ComplaintViewWrappe
 import FormsFormWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormsFormWrapper'
 import FormViewWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormViewWrapper'
 import CustomerFormWrapper from '../modules/Customer/Form/CustomerFormWrapper'
-// import CustomerFormViewModal from '../modules/Customer/Coustomerlist/Table/CustomerFormViewModal'
 import CustomerViewWrapper from '../modules/Customer/Form/CustomerViewWrapper'
+// import CustomerFormViewModal from '../modules/Customer/Coustomerlist/Table/CustomerFormViewModal'
 
 const PrivateRoutes = () => {
   const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
