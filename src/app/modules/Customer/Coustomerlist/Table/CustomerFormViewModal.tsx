@@ -3,26 +3,29 @@ import ImageSelect from '../../../../../app/images/error-profile.svg'
 import {FC, useEffect} from 'react'
 import {Formik} from 'formik'
 import moment from 'moment'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   category: any
 }
 
-const API_URL_DATA = process.env.REACT_APP_API_URL
+const API_URL_DATA = process.env.REACT_APP_IMG_PATH
 
 // const API_URL_DATA = `${process.env.REACT_APP_API_URL}/Mediaupload/Customer/IDProof//`
 
 const idProofPath: string = `${API_URL_DATA}Mediaupload/Customer/IDProof//`
-const gstProofPath: string = 'http://192.168.1.181:8080/MediaUpload/Customer/GSTCertificate//'
-const addressProofPath: string = 'http://192.168.1.181:8080/MediaUpload/Customer/AddressProof/'
+const gstProofPath: string = `${API_URL_DATA}MediaUpload/Customer/GSTCertificate//`
+const addressProofPath: string = `${API_URL_DATA}MediaUpload/Customer/AddressProof/`
 const CustomerFormViewModal: FC<Props> = ({category}) => {
   useEffect(() => {
     console.log('category', category)
   }, [])
 
   useEffect(() => {
-    console.log('cccc', process.env.REACT_APP_VERSION)
+    console.log('cccc', `${API_URL_DATA}MediaUpload/Customer/AddressProof/`)
   }, [])
+
+  const navigation = useNavigate()
   return (
     <>
       {/* View Complain::Modal */}
@@ -88,7 +91,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                   data-bs-dismiss='modal'
                   aria-label='Close'
                 >
-                  <span className='svg-icon svg-icon-2x'>
+                  <span className='svg-icon svg-icon-2x' onClick={() => navigation('/customers')}>
                     <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
                   </span>
                 </div>
@@ -100,6 +103,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                   className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                   data-bs-toggle='modal'
                   data-bs-target='#kt_modal_1'
+                  onClick={() => navigation(`/customers/customersform/${props.values.id}`)}
                 >
                   <span className='svg-icon svg-icon-gray-500 me-1'>
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

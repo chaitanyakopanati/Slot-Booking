@@ -259,7 +259,7 @@ function CustomerHeader() {
                     {createdBy.map((user) => {
                       return (
                         <option key={user.id} value={user.id}>
-                          {user.firstname}
+                          {user.fullName}
                         </option>
                       )
                     })}
@@ -284,7 +284,7 @@ function CustomerHeader() {
                     {installer.map((user) => {
                       return (
                         <option key={user.id} value={user.id}>
-                          {user.firstname}
+                          {user.fullName}
                         </option>
                       )
                     })}
@@ -356,9 +356,9 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
-                    <option value={1}>Not described</option>
-                    <option value={2}>Cable</option>
-                    <option value={3}>Wireless</option>
+                    <option value={3}>Not described</option>
+                    <option value={1}>Cable</option>
+                    <option value={2}>Wireless</option>
                   </select>
                 </div>
               </div>

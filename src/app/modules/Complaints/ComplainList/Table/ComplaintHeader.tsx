@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
-import { KTSVG } from '../../../../../_metronic/helpers';
-import { ListPageData } from '../../ComplaintContext';
-import { Formik, Form } from 'formik';
+import React, {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {KTSVG} from '../../../../../_metronic/helpers'
+import {ListPageData} from '../../ComplaintContext'
+import {Formik, Form} from 'formik'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../app/images/closeIcon.svg'
 
-
-
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
   const navigate = useNavigate()
-
 
   const {
     setPageNo,
@@ -59,7 +56,7 @@ const ComplaintHeader = () => {
     setStartDate,
     setEndDate,
     startDate,
-    endDate
+    endDate,
   } = ListPageData()
 
   useEffect(() => {
@@ -70,8 +67,7 @@ const ComplaintHeader = () => {
     DataGetCompaniesName()
     DataGetPackagesName()
     DataGetAllTypeCreatedByTypes()
-    console.log("kkk", packagesName);
-
+    console.log('kkk', packagesName)
   }, [])
 
   const [fromDate, setFromDate] = useState<any>()
@@ -112,16 +108,14 @@ const ComplaintHeader = () => {
 
   const downloadFileComplaint = () => {
     fetchAllDownload()
-    console.log(`fffffffffffffffff`, "fffffffffffffffff");
-
+    console.log(`fffffffffffffffff`, 'fffffffffffffffff')
   }
   const handleComplaintType = (e: any) => {
     console.log(e.target.value)
     setPageNo(1)
 
     setComplainttypeid(e.target.value)
-    console.log("complainttypeid", e.target.value);
-
+    console.log('complainttypeid', e.target.value)
   }
 
   const handleStatus = (e: any) => {
@@ -129,8 +123,7 @@ const ComplaintHeader = () => {
     setPageNo(1)
 
     setStatus(e.target.value)
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handleDate = (e: any) => {
@@ -138,8 +131,7 @@ const ComplaintHeader = () => {
     setPageNo(1)
 
     setCreatedDate(e.target.value)
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handleAssign = (e: any) => {
@@ -147,8 +139,7 @@ const ComplaintHeader = () => {
     setPageNo(1)
 
     setassignToId(e.target.value)
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handleZoneId = (e: any) => {
@@ -156,8 +147,7 @@ const ComplaintHeader = () => {
     setPageNo(1)
 
     setZoneId(e.target.value)
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handleFaultId = (e: any) => {
@@ -165,8 +155,7 @@ const ComplaintHeader = () => {
     setPageNo(1)
 
     setFaultid(e.target.value)
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handleCompanyId = (e: any) => {
@@ -175,8 +164,7 @@ const ComplaintHeader = () => {
 
     setCompanyId(e.target.value)
 
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handlePackageId = (e: any) => {
@@ -185,8 +173,7 @@ const ComplaintHeader = () => {
 
     setPackageCategoryId(e.target.value)
 
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   const handleCreaterId = (e: any) => {
@@ -195,21 +182,34 @@ const ComplaintHeader = () => {
 
     setcreatedById(e.target.value)
 
-    console.log("handleStatus", e.target.value);
-
+    console.log('handleStatus', e.target.value)
   }
 
   useEffect(() => {
     fetchAllComplaint()
-
-  }, [pageNo, pageSize, searchText, createdBy, zoneId, PackageCategoryId, CompanyId, faultid, zoneId, assignToId, createdDate, status, complainttypeid, startDate,
-    endDate])
+  }, [
+    pageNo,
+    pageSize,
+    searchText,
+    createdBy,
+    zoneId,
+    PackageCategoryId,
+    CompanyId,
+    faultid,
+    zoneId,
+    assignToId,
+    createdDate,
+    status,
+    complainttypeid,
+    startDate,
+    endDate,
+  ])
 
   return (
     <>
       <Formik
         initialValues={{
-          complainttypeid: complainttypeid
+          complainttypeid: complainttypeid,
           // zoneId: category.data?.zoneId || '',
           // roleId: category.data?.roleId || '',
           // id: category.data?.id || '',
@@ -219,7 +219,7 @@ const ComplaintHeader = () => {
         //   roleId: Yup.string().required('This fielld is required'),
         //   id: Yup.string().required('This fielld is required'),
         // })}
-        onSubmit={async (values: any, { resetForm }) => {
+        onSubmit={async (values: any, {resetForm}) => {
           console.log(values, 'values')
         }}
       >
@@ -242,8 +242,6 @@ const ComplaintHeader = () => {
                 </div>
 
                 <div className='d-flex align-items-center'>
-
-
                   <div className='ms-auto'>
                     <button
                       type='button'
@@ -283,7 +281,7 @@ const ComplaintHeader = () => {
                         onClick={() => {
                           navigate('complaintform/add')
                         }}
-                      // onClick={openAddCategoryModal}
+                        // onClick={openAddCategoryModal}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG
@@ -295,7 +293,6 @@ const ComplaintHeader = () => {
                       </button>
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -304,10 +301,13 @@ const ComplaintHeader = () => {
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Status:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('status')}
                         value={status}
-                        onChange={handleStatus}>
+                        onChange={handleStatus}
+                      >
+                        <option value='0'>All</option>
                         <option value='1'>Solved</option>
                         <option value='2'>Unsolved</option>
                       </select>
@@ -327,7 +327,7 @@ const ComplaintHeader = () => {
                           setEndDate('')
                         }}
                       >
-                        <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
+                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
                       </span>
                       <DateRangePicker
                         initialSettings={{
@@ -339,14 +339,15 @@ const ComplaintHeader = () => {
                       >
                         <div className='form-select form-select-solid'>
                           <input
-                            style={{ background: '#f5f8fa', border: 'none', outline: 'none' }}
+                            style={{background: '#f5f8fa', border: 'none', outline: 'none'}}
                             placeholder='All'
-                            value={`${fromDate && toDate
-                              ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(
-                                toDate
-                              ).format('DD-MM-yyyy')}`
-                              : ''
-                              }`}
+                            value={`${
+                              fromDate && toDate
+                                ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(toDate).format(
+                                    'DD-MM-yyyy'
+                                  )}`
+                                : ''
+                            }`}
                           />
                         </div>
                       </DateRangePicker>
@@ -355,169 +356,146 @@ const ComplaintHeader = () => {
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Assign to:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('assignToId')}
                         value={assignToId}
                         onChange={handleAssign}
                       >
-                        <option>Select Techanicial</option>
-                        {
-                          getDataAllTypeTechnician.map((getDataAllTypeTechnician: any, index) => {
-                            return (
-                              <option key={index} value={getDataAllTypeTechnician.id}>
-                                {getDataAllTypeTechnician?.fullName}
-                              </option>
-                            )
+                        <option value='0'>All</option>
 
-                          })
-
-                        }
-
+                        {getDataAllTypeTechnician.map((getDataAllTypeTechnician: any, index) => {
+                          return (
+                            <option key={index} value={getDataAllTypeTechnician.id}>
+                              {getDataAllTypeTechnician?.fullName}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Complaint type:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('complainttypeid')}
                         value={complainttypeid}
                         onChange={handleComplaintType}
                       >
-                        <option> select complaint type</option>
-                        {
-                          getDataAllTypeComplaint.map((complaintData: any, index) => {
-                            return (
-                              <option key={index} value={complaintData.id}>
-                                {complaintData?.name}
-                              </option>
-                            )
+                        <option value='0'>All</option>
 
-                          })
-
-                        }
+                        {getDataAllTypeComplaint.map((complaintData: any, index) => {
+                          return (
+                            <option key={index} value={complaintData.id}>
+                              {complaintData?.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Zone:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('zoneId')}
                         value={zoneId}
                         onChange={handleZoneId}
                       >
-                        <option>Select Zone</option>
-                        {
-                          getDataAllType.map((getDataAllType: any, index) => {
+                        <option value='0'>All</option>
 
-                            return (
-                              <option key={index} value={getDataAllType.id}>
-                                {getDataAllType?.name}
-                              </option>
-                            )
-
-                          })
-
-                        }
+                        {getDataAllType.map((getDataAllType: any, index) => {
+                          return (
+                            <option key={index} value={getDataAllType.id}>
+                              {getDataAllType?.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Company:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('CompanyId')}
                         value={CompanyId}
                         onChange={handleCompanyId}
                       >
-                        <option>Select Company</option>
+                        <option value='0'>All</option>
 
-
-                        {
-                          companiesName.map((companiesName: any, index) => {
-
-
-                            return (
-                              <option key={index} value={companiesName.id}>
-                                {companiesName?.name}
-                              </option>
-                            )
-
-                          })
-
-                        }
+                        {companiesName.map((companiesName: any, index) => {
+                          return (
+                            <option key={index} value={companiesName.id}>
+                              {companiesName?.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Fault:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('faultid')}
                         value={faultid}
                         onChange={handleFaultId}
                       >
-                        <option>Select Fault</option>
-                        {
-                          getDataAllFault.map((getDataAllFault: any, index) => {
+                        <option value='0'>All</option>
 
-                            return (
-                              <option key={index} value={getDataAllFault.id}>
-                                {getDataAllFault?.name}
-                              </option>
-                            )
-
-                          })
-
-                        }
+                        {getDataAllFault.map((getDataAllFault: any, index) => {
+                          return (
+                            <option key={index} value={getDataAllFault.id}>
+                              {getDataAllFault?.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Package category:</label>
                     <div data-select2-id='select-zone'>
-                      <select className='form-select form-select-solid'
+                      <select
+                        className='form-select form-select-solid'
                         {...props.getFieldProps('PackageCategoryId')}
                         value={PackageCategoryId}
                         onChange={handlePackageId}
                       >
-                        <option>Select Package</option>
-                        {
-                          packagesName.map((packagesName: any, index) => {
+                        <option value='0'>All</option>
 
-                            return (
-                              <option key={index} value={packagesName.id}>
-                                {packagesName?.name}
-                              </option>
-                            )
-
-                          })
-
-                        }
+                        {packagesName.map((packagesName: any, index) => {
+                          return (
+                            <option key={index} value={packagesName.id}>
+                              {packagesName?.name}
+                            </option>
+                          )
+                        })}
                       </select>
                     </div>
                   </div>
                   <div className='col-lg-3'>
                     <label className='form-label fw-bold'>Created by:</label>
-                    <select className='form-select form-select-solid'
+                    <select
+                      className='form-select form-select-solid'
                       {...props.getFieldProps('createdBy')}
                       value={createdBy}
                       onChange={handleCreaterId}
                     >
-                      <option>Select Creater</option>
-                      {
-                        getDataAllTypeCreatedBy.map((getDataAllTypeCreatedBy: any, index) => {
+                      <option value='0'>All</option>
 
-                          return (
-                            <option key={index} value={getDataAllTypeCreatedBy.id}>
-                              {getDataAllTypeCreatedBy?.fullName}
-                            </option>
-                          )
-
-                        })
-
-                      }
+                      {getDataAllTypeCreatedBy.map((getDataAllTypeCreatedBy: any, index) => {
+                        return (
+                          <option key={index} value={getDataAllTypeCreatedBy.id}>
+                            {getDataAllTypeCreatedBy?.fullName}
+                          </option>
+                        )
+                      })}
                     </select>
                   </div>
                 </div>

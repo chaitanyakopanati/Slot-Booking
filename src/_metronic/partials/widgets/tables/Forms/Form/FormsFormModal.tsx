@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import {FC, useEffect, useRef, useState} from 'react'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../FormsContext'
@@ -64,6 +64,8 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
+  const location: any = useLocation()
+
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     userid: '',
@@ -104,7 +106,8 @@ const FormsFormModal: FC<Props> = ({category}) => {
       setInitialValues({
         ...category,
         id: category.data?.id,
-        userid: category.data?.userid || '',
+        userid: category?.data?.userid || location?.state?.userid,
+        userName: category?.data?.userName || location?.state?.userName,
         formno: category.data?.formno || '',
         formdate: moment(category.data?.formdate).format('YYYY-MM-DD'),
         formtype: category.data?.formtype || '',
@@ -349,7 +352,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         placeholder='Form No.'
                         autoComplete='off'
                       />
-                       <div className='erro2' style={{color: 'red'}}>
+                      <div className='erro2' style={{color: 'red'}}>
                         {formik.touched.formno && formik.errors.formno
                           ? formik.errors.formno
                           : null}
@@ -368,7 +371,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         placeholder='Form date'
                         autoComplete='off'
                       />
-                         <div className='erro2' style={{color: 'red'}}>
+                      <div className='erro2' style={{color: 'red'}}>
                         {formik.touched.formdate && formik.errors.formdate
                           ? formik.errors.formdate
                           : null}
@@ -528,11 +531,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           placeholder='Package validity'
                         />
                       </div>
-                        <div className='erro2' style={{color: 'red'}}>
-                          {formik.touched.packagevalidity && formik.errors.packagevalidity
-                            ? formik.errors.packagevalidity
-                            : null}
-                        </div>
+                      <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.packagevalidity && formik.errors.packagevalidity
+                          ? formik.errors.packagevalidity
+                          : null}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -553,11 +556,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Package Cost'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.packagecost && formik.errors.packagecost
-                        ? formik.errors.packagecost
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.packagecost && formik.errors.packagecost
+                      ? formik.errors.packagecost
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -574,11 +577,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Installation cost'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.installationcost && formik.errors.installationcost
-                        ? formik.errors.installationcost
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.installationcost && formik.errors.installationcost
+                      ? formik.errors.installationcost
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -595,11 +598,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.othercost && formik.errors.othercost
-                        ? formik.errors.othercost
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.othercost && formik.errors.othercost
+                      ? formik.errors.othercost
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -616,11 +619,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.discount && formik.errors.discount
-                        ? formik.errors.discount
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.discount && formik.errors.discount
+                      ? formik.errors.discount
+                      : null}
+                  </div>
                 </div>
               </div>
 
@@ -639,11 +642,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.gstamount && formik.errors.gstamount
-                        ? formik.errors.gstamount
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.gstamount && formik.errors.gstamount
+                      ? formik.errors.gstamount
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -660,11 +663,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.totalamount && formik.errors.totalamount
-                        ? formik.errors.totalamount
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.totalamount && formik.errors.totalamount
+                      ? formik.errors.totalamount
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -681,11 +684,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.cashamount && formik.errors.cashamount
-                        ? formik.errors.cashamount
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.cashamount && formik.errors.cashamount
+                      ? formik.errors.cashamount
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -702,11 +705,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.chequeamount && formik.errors.chequeamount
-                        ? formik.errors.chequeamount
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.chequeamount && formik.errors.chequeamount
+                      ? formik.errors.chequeamount
+                      : null}
+                  </div>
                 </div>
               </div>
 
@@ -725,11 +728,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.remaningamount && formik.errors.remaningamount
-                        ? formik.errors.remaningamount
-                        : null}
-                    </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.remaningamount && formik.errors.remaningamount
+                      ? formik.errors.remaningamount
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -865,9 +868,9 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     <option value='1'>Dynmaic</option>
                     <option value='2'>Static</option>
                   </select>
-                <div className='erro2' style={{color: 'red'}}>
-                  {formik.touched.iptype && formik.errors.iptype ? formik.errors.iptype : null}
-                </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.iptype && formik.errors.iptype ? formik.errors.iptype : null}
+                  </div>
                 </div>
               </div>
 

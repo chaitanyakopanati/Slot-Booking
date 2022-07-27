@@ -138,7 +138,7 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
-                        navigate(`/forms/formsform/add`)
+                        navigate('/forms/formsform/add', {state: customer})
                       }}
                     >
                       <KTSVG
@@ -150,7 +150,7 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
-                        navigate(`/installations/installationsform/add`)
+                        navigate('/installations/installationsform/add', {state: customer})
                       }}
                     >
                       <KTSVG
@@ -162,7 +162,9 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                       onClick={() => {
-                        navigate(`/complaint/complaintform/add`)
+                        navigate('/complaint/complaintform/add', {
+                          state: customer,
+                        })
                       }}
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />

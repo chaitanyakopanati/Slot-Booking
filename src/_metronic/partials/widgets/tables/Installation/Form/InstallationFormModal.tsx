@@ -8,10 +8,13 @@ import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../InstallationContext'
 import InstallationsService from '../helperInstallation/ApiDatarequest'
 import {useFormik} from 'formik'
+import {useLocation} from 'react-router-dom'
 
 type Props = {
   category: any
 }
+
+// const location: any = useLocation()
 
 let validationSchemaNewForm = Yup.object({
   installerid: Yup.string().required('This field is required'),
@@ -41,6 +44,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
+  const location: any = useLocation()
 
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
@@ -72,7 +76,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         cabletypeid: category.data?.cabletypeid || '',
         cablelength: category.data?.cablelength || '',
         iptype: category.data?.iptype || '',
-        userid: category.data?.userid || '',
+        userid: category?.data?.userid || location?.state?.userid,
+        userName: category?.data?.userName || location?.state?.userName,
+
         accesspointip: category.data?.accesspointip || '',
         remark: category.data?.remark || '',
         stationip: category.data?.stationip || '',

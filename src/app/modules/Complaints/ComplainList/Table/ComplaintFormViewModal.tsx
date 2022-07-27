@@ -1,15 +1,15 @@
-import React, { FC } from 'react'
-import { KTSVG } from '../../../../../_metronic/helpers'
-import { Formik } from 'formik'
+import React, {FC} from 'react'
+import {KTSVG} from '../../../../../_metronic/helpers'
+import {Formik} from 'formik'
 import moment from 'moment'
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   category: any
 }
 
-const ComplaintFormViewModal: FC<Props> = ({ category }) => {
-  console.log("hh", category);
+const ComplaintFormViewModal: FC<Props> = ({category}) => {
+  console.log('hh', category)
   const navigate = useNavigate()
 
   return (
@@ -21,7 +21,7 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
           username: category.data[0]?.username || 0,
           name: category.data[0]?.name || 0,
           complaintTypeName: category.data[0]?.complaintTypeName || 0,
-          address: category.data[0]?.address || " ",
+          address: category.data[0]?.address || ' ',
           description: category.data[0]?.description || 0,
           assignTechnicianName: category.data[0]?.assignTechnicianName || 0,
           statusName: category.data[0]?.statusName || 0,
@@ -29,10 +29,14 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
           remark: category.data[0]?.remark || 0,
           createByName: category.data[0]?.createByName || 0,
           mobileNo: category.data[0]?.mobileNo || 0,
-          companyName: category.data[0]?.companyName || " ",
+          companyName: category.data[0]?.companyName || ' ',
           contactNo: category.data[0]?.contactNo || 0,
-          solvedAt: moment(category.data[0]?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') || "",
-          createdDate: moment(category.data[0]?.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+          solvedAt:
+            moment(category.data[0]?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') ||
+            '',
+          createdDate: moment(category.data[0]?.createdDate, 'YYYY-MM-DD,h:mm a').format(
+            'YYYY-MM-DD,h:mm a'
+          ),
         }}
         onSubmit={(values) => console.log(values)}
       >
@@ -44,7 +48,6 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
             onSubmit={props.handleSubmit}
             noValidate
           >
-
             <div className='modal-header'>
               <div className='d-flex align-items-center'>
                 <div
@@ -52,9 +55,12 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
                   data-bs-dismiss='modal'
                   aria-label='Close'
                 >
-                  <span className='svg-icon svg-icon-2x' onClick={() => {
-                    navigate('/complaint')
-                  }}>
+                  <span
+                    className='svg-icon svg-icon-2x'
+                    onClick={() => {
+                      navigate('/complaint')
+                    }}
+                  >
                     <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
                   </span>
                 </div>
@@ -67,6 +73,7 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
                   data-bs-toggle='modal'
                   // data-bs-target='#kt_modal_2'
                   data-bs-target='#create-modal'
+                  onClick={() => navigate(`/complaint/complaintform/${props.values.id}`)}
                 >
                   <span className='svg-icon svg-icon-gray-500 me-1'>
                     <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
@@ -84,7 +91,6 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
                     <input
                       placeholder='123456'
                       value={props.values.id}
-
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
@@ -95,7 +101,6 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
                     <input
                       placeholder='Name Here'
                       value={props.values.username}
-
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
@@ -257,7 +262,6 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
                       className='form-control form-control-lg form-control-solid'
                       // type='date'
                       type='text'
-
                       autoComplete='off'
                     />
                   </div>
@@ -282,7 +286,6 @@ const ComplaintFormViewModal: FC<Props> = ({ category }) => {
                 </div>
               </div>
             </div>
-
           </form>
         )}
       </Formik>
