@@ -144,7 +144,7 @@ const PackagescategoriesTable = () => {
 
                     {/* begin:: Created At Date & Time */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: Created At Date & Time */}
 
@@ -231,7 +231,8 @@ const PackagescategoriesTable = () => {
                           <div className='py-1 d-flex align-items-cenetr'>
                             <div className='fw-bolder '>Created At:</div>
                             <div className='text-dark fw-bold  ms-2'>
-                              {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                              {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') ||
+                                '-'}
                             </div>
                           </div>
                         </div>

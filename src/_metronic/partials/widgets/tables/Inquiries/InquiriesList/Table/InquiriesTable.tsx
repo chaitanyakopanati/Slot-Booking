@@ -164,7 +164,7 @@ const InquiriesTable = () => {
                     {/* begin:: User Type Input zoneName */}
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
-                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: User Type Input  zoneName*/}
 
@@ -272,7 +272,10 @@ const InquiriesTable = () => {
 
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Created at:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.createdAt || '-'}</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') ||
+                              '-'}
+                          </div>
                         </div>
 
                         <div className='py-1 d-flex'>

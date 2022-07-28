@@ -65,7 +65,7 @@ const postOfficeOldStockInwards: any = (obj: postlistData) => {
     zoneId: obj.zoneId,
     serialno: obj.serialno,
     remark: obj.remark,
-    createdbyId: 1,
+    createdbyId: obj.createdbyId,
   })
 }
 {
@@ -88,8 +88,7 @@ const editOfficeOldStockInwards = (obj: putOfficeOldStockInwardsmodel) => {
     zoneId: obj.zoneId,
     serialno: obj.serialno,
     remark: obj.remark,
-    createdbyId: 1,
-    modifyById: 1,
+    modifyById: obj.modifyById,
   })
 }
 {

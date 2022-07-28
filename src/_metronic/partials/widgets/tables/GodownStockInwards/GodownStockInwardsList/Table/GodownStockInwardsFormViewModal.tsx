@@ -32,12 +32,14 @@ const GodownStockInwardsFormViewModal: FC<Props> = ({category}) => {
           remark: category.data?.remark || '',
           createByName: category.data?.createByName || '',
           modifiedByName: category.data?.modifiedByName || '',
-          createdDate: moment(category.data?.createdDate, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
-          modifiedDate: moment(category.data?.modifiedDate, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
+          createdDate: moment
+            .utc(category.data?.createdDate, 'YYYY-MM-DD,h:mm a')
+            .local()
+            .format('YYYY-MM-DD,h:mm a'),
+          modifiedDate: moment
+            .utc(category.data?.modifiedDate, 'YYYY-MM-DD,h:mm a')
+            .local()
+            .format('YYYY-MM-DD,h:mm a'),
         }}
         onSubmit={(values) => console.log(values)}
       >

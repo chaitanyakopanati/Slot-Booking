@@ -145,7 +145,7 @@ const MainPointTable = () => {
 
                     {/* begin:: Created At Date & Time */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: Created At Date & Time */}
 
@@ -237,7 +237,8 @@ const MainPointTable = () => {
                             <div className='fw-bolder '>Created at:</div>
                             <div className='text-dark fw-bold  ms-2'>
                               {' '}
-                              {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                              {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') ||
+                                '-'}
                             </div>
                           </div>
                         </div>

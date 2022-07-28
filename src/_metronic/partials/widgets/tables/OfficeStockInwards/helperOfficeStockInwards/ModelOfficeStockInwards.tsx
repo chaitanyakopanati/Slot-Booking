@@ -40,6 +40,7 @@ export interface getAllOfficeStockInwardsData {
   success: boolean
 }
 export interface postlistData {
+  createdbyId: any
   productId: number
   quantity: number
   zoneId: number
@@ -72,6 +73,7 @@ export interface GetAllData {
   message: string
 }
 export interface putUsersmodel {
+  modifyById: any
   productId: number
   quantity: number
   zoneId: number

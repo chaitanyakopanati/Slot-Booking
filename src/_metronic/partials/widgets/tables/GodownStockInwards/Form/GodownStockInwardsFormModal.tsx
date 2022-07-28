@@ -9,6 +9,7 @@ import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import moment from 'moment'
 import {ListPageData} from '../GodownStockInwardsContext'
 import OfficeStockInwardsService from '../helperGodownStockInwards/ApiDataRequest'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -33,6 +34,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
+  const {auth} = useAuth()
+
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     inwardNo: '',
@@ -57,6 +60,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         supplierId: category.data?.supplierId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        createdbyId: auth?.userId,
       })
     } else {
       setInitialValues({
@@ -70,6 +74,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         supplierName: category.data?.supplierName || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        modifyById: auth?.userId,
       })
     }
   }, [itemIdForUpdate])

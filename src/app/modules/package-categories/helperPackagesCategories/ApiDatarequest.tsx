@@ -4,9 +4,16 @@ import {ID, postlistData, putPackagecategoriesmodel} from './ModelTypePackagesCa
 {
   /* begin:: Package-Category:- GetDynamicPackageCategoriesData Api call */
 }
-const getDynamicPackageCategories = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicPackageCategories = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicPackageCategoriesData/${null}/${null}?searchText=${null}&createdById=${null}`)
+    return http.get(
+      `GetDynamicPackageCategoriesData/${null}/${null}?searchText=${null}&createdById=${null}`
+    )
   } else {
     return http.get(
       `GetDynamicPackageCategoriesData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`

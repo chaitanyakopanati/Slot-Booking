@@ -68,7 +68,7 @@ const postOfficeOldStockOutwards: any = (obj: postlistData) => {
     zoneId: obj.zoneId,
     serialno: obj.serialno,
     remark: obj.remark,
-    createdbyId: 1,
+    createdbyId: obj.createdbyId,
   })
 }
 {
@@ -92,7 +92,7 @@ const editOfficeOldStockOutwards = (obj: putgetOfficeStockOutwardsDatasmodel) =>
     serialno: obj.serialno,
     remark: obj.remark,
     createdbyId: 1,
-    modifyById: 1,
+    modifyById: obj.modifyById,
   })
 }
 {
@@ -142,7 +142,6 @@ const getUserName = (username: string) => {
 const getProductZoneQuntityTypes = (productId: number, zoneId: number) => {
   return http.get(`GetProductCountByZone/${productId}/${zoneId}`)
 }
-
 
 const OfficeStockOutwardsViewService = {
   getDynamicOfficeOldStockOutwards,

@@ -10,7 +10,6 @@ import {ListPageData} from '../../UserContext'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import moment from 'moment'
 import {CustomTooltip} from '../../../../routing/customtooltip'
-import { useAuth } from '../../../auth'
 
 type Props = {
   category: any
@@ -28,9 +27,6 @@ const UserFormViewModal: FC<Props> = ({category}) => {
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
 
-  const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
-
   const [initialvalues, setInitialvalues] = useState<any>({
     ...category,
     id: category.data?.id,
@@ -46,9 +42,14 @@ const UserFormViewModal: FC<Props> = ({category}) => {
     roleName: category.data?.roleName || '',
     createdby: category.data.createdByName || '',
     modifyby: category.data.modifyByName || '',
-    createdAt: moment(category.data.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
-    modifyAt: moment(category.data.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
-    
+    createdAt: moment
+      .utc(category.data.createdAt, 'YYYY-MM-DD,h:mm a')
+      .local()
+      .format('YYYY-MM-DD,h:mm a'),
+    modifyAt: moment
+      .utc(category.data.modifyAt, 'YYYY-MM-DD,h:mm a')
+      .local()
+      .format('YYYY-MM-DD,h:mm a'),
   })
 
   const openEditModal = (id: any) => {

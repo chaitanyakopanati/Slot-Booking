@@ -61,7 +61,7 @@ const postGodownStockInwards: any = (obj: postlistData) => {
     statusId: 1,
     serialno: obj.serialno,
     remark: obj.remark,
-    createdbyId: 1,
+    createdbyId: obj.createdbyId,
   })
 }
 {
@@ -81,8 +81,7 @@ const editGodownStockInwards = (obj: putGodownStockInwardssmodel) => {
     statusId: 1,
     serialno: obj.serialno,
     remark: obj.remark,
-    createdbyId: 1,
-    modifyById: 1,
+    modifyById: obj.modifyById,
   })
 }
 {

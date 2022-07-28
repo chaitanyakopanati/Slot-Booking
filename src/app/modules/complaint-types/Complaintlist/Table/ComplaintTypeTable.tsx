@@ -145,7 +145,7 @@ const ComplaintTypeTable = () => {
 
                     {/* begin:: Created At Date & Time */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment(row?.createdAt).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: Created At Date & Time */}
 

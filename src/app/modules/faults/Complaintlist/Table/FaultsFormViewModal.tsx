@@ -50,7 +50,10 @@ const FaultsFormViewModal: FC<Props> = ({category}) => {
             .utc(category.createdAt, 'YYYY-MM-DD,h:mm a')
             .local()
             .format('YYYY-MM-DD,h:mm a'),
-          modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+          modifyAt: moment
+            .utc(category.modifyAt, 'YYYY-MM-DD,h:mm a')
+            .local()
+            .format('YYYY-MM-DD,h:mm a'),
         }}
         onSubmit={(values) => console.log(values)}
       >

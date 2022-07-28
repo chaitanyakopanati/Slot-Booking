@@ -45,8 +45,14 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
     connectiontypeName: category.data?.connectiontypeName || '',
     createdByName: category.data.createdByName || '',
     modifyByName: category.data.modifyByName || '',
-    createdAt: moment(category.data.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
-    modifyAt: moment(category.data.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+    createdAt: moment
+      .utc(category.data.createdAt, 'YYYY-MM-DD,h:mm a')
+      .local()
+      .format('YYYY-MM-DD,h:mm a'),
+    modifyAt: moment
+      .utc(category.data.modifyAt, 'YYYY-MM-DD,h:mm a')
+      .local()
+      .format('YYYY-MM-DD,h:mm a'),
     assignDate: moment(category.data.createdAt, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     endDate: moment(category.data.modifyAt, 'YYYY-MM-DD').format('YYYY-MM-DD'),
   })

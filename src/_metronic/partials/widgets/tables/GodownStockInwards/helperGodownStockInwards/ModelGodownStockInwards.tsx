@@ -42,6 +42,7 @@ export interface getAllGodownStockInwardsData {
   success: boolean
 }
 export interface postlistData {
+  createdbyId: any
   productId: number
   quantity: number
   supplierId: number
@@ -74,6 +75,7 @@ export interface GetAllData {
   message: string
 }
 export interface putGodownStockInwardssmodel {
+  modifyById: any
   productId: number
   quantity: number
   supplierId: number

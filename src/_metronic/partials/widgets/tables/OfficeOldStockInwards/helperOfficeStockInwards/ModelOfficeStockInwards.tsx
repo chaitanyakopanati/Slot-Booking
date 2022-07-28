@@ -40,6 +40,7 @@ export interface getAllOfficeOldStockInwardsData {
   success: boolean
 }
 export interface postlistData {
+  createdbyId: any
   productId: number
   quantity: number
   userId: number
@@ -73,6 +74,7 @@ export interface GetAllData {
   message: string
 }
 export interface putOfficeOldStockInwardsmodel {
+  modifyById: any
   productId: number
   quantity: number
   userId: number

@@ -3,7 +3,7 @@ import * as Yup from 'yup'
 import {FC, useEffect, useRef, useState} from 'react'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
-import {useLocation, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../FormsContext'
@@ -23,28 +23,7 @@ let validationSchemaNewForm = Yup.object({
   pacakgetype: Yup.string().required('This fied is required'),
   companyid: Yup.string().required('This fied is required'),
   packagecatid: Yup.string().required('This fied is required'),
-  packagevalidity: Yup.string().required('This fied is required'),
-  packagecost: Yup.string().required('This fied is required'),
-  packageid: Yup.string().required('This fied is required'),
-  installationcost: Yup.string().required('This fied is required'),
-  othercost: Yup.string().required('This fied is required'),
-  discount: Yup.string().required('This fied is required'),
-  gstamount: Yup.string().required('This fied is required'),
   totalamount: Yup.string().required('This fied is required'),
-  cashamount: Yup.string().required('This fied is required'),
-  chequeamount: Yup.string().required('This fied is required'),
-  remaningamount: Yup.string().required('This fied is required'),
-  bankid: Yup.string().required('This fied is required'),
-  chequeno: Yup.string().required('This fied is required'),
-  chequedate: Yup.string().required('This fied is required'),
-  receiverid: Yup.string().required('This fied is required'),
-  activationdate: Yup.string().required('This fied is required'),
-  expirydate: Yup.string().required('This fied is required'),
-  iptype: Yup.string().required('This fied is required'),
-  note: Yup.string().required('This fied is required'),
-  thirdparty: Yup.string().required('This fied is required'),
-  remark: Yup.string().required('This fied is required'),
-  status: Yup.string().required('This fied is required'),
 })
 
 const FormsFormModal: FC<Props> = ({category}) => {
@@ -64,8 +43,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
-  const location: any = useLocation()
-
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     userid: '',
@@ -77,16 +54,16 @@ const FormsFormModal: FC<Props> = ({category}) => {
     companyid: '',
     packagecatid: '',
     packagevalidity: '',
-    packagecost: '',
+    packagecost: 0,
     packageid: '',
-    installationcost: '',
-    othercost: '',
-    discount: '',
-    gstamount: '',
-    totalamount: '',
-    cashamount: '',
-    chequeamount: '',
-    remaningamount: '',
+    installationcost: 0,
+    othercost: 0,
+    discount: 0,
+    gstamount: 0,
+    totalamount: 0,
+    cashamount: 0,
+    chequeamount: 0,
+    remaningamount: 0,
     bankid: '',
     chequeno: '',
     chequedate: '',
@@ -106,8 +83,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
       setInitialValues({
         ...category,
         id: category.data?.id,
-        userid: category?.data?.userid || location?.state?.userid,
-        userName: category?.data?.userName || location?.state?.userName,
+        userid: category.data?.userid || '',
         formno: category.data?.formno || '',
         formdate: moment(category.data?.formdate).format('YYYY-MM-DD'),
         formtype: category.data?.formtype || '',
@@ -116,16 +92,16 @@ const FormsFormModal: FC<Props> = ({category}) => {
         companyid: category.data?.companyid || '',
         packagecatid: category.data?.packagecatid || '',
         packagevalidity: category.data?.packagevalidity || '',
-        packagecost: category.data?.packagecost || '',
+        packagecost: category.data?.packagecost || 0,
         packageid: category.data?.packageid || '',
-        installationcost: category.data?.installationcost || '',
-        othercost: category.data?.othercost || '',
-        discount: category.data?.discount || '',
-        gstamount: category.data?.gstamount || '',
-        totalamount: category.data?.totalamount || '',
-        cashamount: category.data?.cashamount || '',
-        chequeamount: category.data?.chequeamount || '',
-        remaningamount: category.data?.remaningamount || '',
+        installationcost: category.data?.installationcost || 0,
+        othercost: category.data?.othercost || 0,
+        discount: category.data?.discount || 0,
+        gstamount: category.data?.gstamount || 0,
+        totalamount: category.data?.totalamount || 0,
+        cashamount: category.data?.cashamount || 0,
+        chequeamount: category.data?.chequeamount || 0,
+        remaningamount: category.data?.remaningamount || 0,
         bankid: category.data?.bankid || '',
         chequeno: category.data?.chequeno || '',
         chequedate: moment(category.data?.chequedate).format('YYYY-MM-DD'),
@@ -152,17 +128,17 @@ const FormsFormModal: FC<Props> = ({category}) => {
         companyid: category.data?.companyid || '',
         packagecatid: category.data?.packagecatid || '',
         packagevalidity: category.data?.packagevalidity || '',
-        packagecost: category.data?.packagecost || '',
+        packagecost: category.data?.packagecost || 0,
         packageName: category.data?.packageName || '',
         packageid: category.data?.packageid || '',
-        installationcost: category.data?.installationcost || '',
-        othercost: category.data?.othercost || '',
-        discount: category.data?.discount || '',
-        gstamount: category.data?.gstamount || '',
-        totalamount: category.data?.totalamount || '',
-        cashamount: category.data?.cashamount || '',
-        chequeamount: category.data?.chequeamount || '',
-        remaningamount: category.data?.remaningamount || '',
+        installationcost: category.data?.installationcost || 0,
+        othercost: category.data?.othercost || 0,
+        discount: category.data?.discount || 0,
+        gstamount: category.data?.gstamount || 0,
+        totalamount: category.data?.totalamount || 0,
+        cashamount: category.data?.cashamount || 0,
+        chequeamount: category.data?.chequeamount || 0,
+        remaningamount: category.data?.remaningamount || 0,
         bankid: category.data?.bankid || '',
         chequeno: category.data?.chequeno || '',
         chequedate: moment(category.data?.chequedate).format('YYYY-MM-DD'),
@@ -195,6 +171,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
     initialValues: initialValues,
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
+      console.log('Values::', values)
       LoderActions(true)
 
       try {
@@ -206,7 +183,8 @@ const FormsFormModal: FC<Props> = ({category}) => {
           if (response.success === false) {
             toast.error(response.message)
           } else {
-            toast.success(`Data Updated Successfully`)
+            toast.success(response.message)
+            // toast.success(`Data Updated Successfully`)
           }
           navigation('/forms')
           toast.dismiss('1s')
@@ -217,7 +195,8 @@ const FormsFormModal: FC<Props> = ({category}) => {
           if (response.success === false) {
             toast.error(response.message)
           } else {
-            toast.success(` Data Added Successfully`)
+            toast.success(response.message)
+            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
           navigation('/forms')
@@ -228,6 +207,55 @@ const FormsFormModal: FC<Props> = ({category}) => {
       }
     },
   })
+
+  useEffect(() => {
+    let {packagecost, installationcost, othercost, gstamount, totalamount, discount} = formik.values
+
+    if (
+      packagecost >= 0 ||
+      installationcost >= 0 ||
+      othercost >= 0 ||
+      gstamount >= 0 ||
+      discount >= 0
+    ) {
+      let total_amount = Number(totalamount)
+      total_amount =
+        Number(packagecost) +
+        Number(installationcost) +
+        Number(othercost) +
+        Number(gstamount) -
+        Number(discount)
+      formik.setFieldValue('totalamount', total_amount)
+      formik.setFieldValue('remaningamount', total_amount)
+    }
+  }, [
+    formik.values.packagecost,
+    formik.values.installationcost,
+    formik.values.othercost,
+    formik.values.gstamount,
+    formik.values.discount,
+  ])
+
+  useEffect(() => {
+    let {cashamount, chequeamount, remaningamount, totalamount} = formik.values
+    if (cashamount >= 0 || chequeamount >= 0) {
+      let remaining_amount = Number(remaningamount)
+      remaining_amount = Number(totalamount) - Number(cashamount) - Number(chequeamount)
+      formik.setFieldValue('remaningamount', remaining_amount)
+    }
+  }, [formik.values.cashamount, formik.values.chequeamount])
+
+  useEffect(() => {
+    if (formik.values.packagevalidity >= 1) {
+      formik.setFieldValue(
+        'expirydate',
+        moment(new Date())
+          .add(formik.values.packagevalidity, 'months')
+          .subtract(1, 'days')
+          .format('YYYY-MM-DD')
+      )
+    }
+  }, [formik.values.packagevalidity])
 
   return (
     <>
@@ -288,7 +316,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       <label className='form-label fw-bold required'>User Name</label>{' '}
                       <input
                         name='userName'
-                        placeholder='userName'
+                        placeholder='Username'
                         className='form-control form-control-lg form-control-solid'
                         value={formik.values.userName || ''}
                         autoComplete='off'
@@ -341,7 +369,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-md-3'>
-                      <label className='form-label fw-bold '>Form no.</label>
+                      <label className='form-label fw-bold required'>Form no.</label>
                       <input
                         className='form-control form-control-lg form-control-solid'
                         type='text'
@@ -360,7 +388,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-md-3'>
-                      <label className='form-label fw-bold '>Form date</label>
+                      <label className='form-label fw-bold required'>Form date</label>
                       <input
                         className='form-control form-control-lg form-control-solid'
                         type='date'
@@ -379,7 +407,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-md-3'>
-                      <label className='form-label fw-bold '>Form type</label>
+                      <label className='form-label fw-bold required'>Form type</label>
                       <select
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('formtype')}
@@ -403,7 +431,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
                   <div className='row mb-6 gy-4'>
                     <div className='col-md-4 col-12'>
-                      <label className='form-label fw-bold'>Sales Executive</label>
+                      <label className='form-label fw-bold required'>Sales Executive</label>
                       <select
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('salesexecutiveid')}
@@ -425,7 +453,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-md-4 col-12'>
-                      <label className='form-label fw-bold'>Company</label>
+                      <label className='form-label fw-bold required'>Company</label>
                       <select
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('companyid')}
@@ -465,11 +493,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           )
                         })}
                       </select>
-                      <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.packagecatid && formik.errors.packagecatid
-                          ? formik.errors.packagecatid
-                          : null}
-                      </div>
                     </div>
                   </div>
 
@@ -484,11 +507,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         <option value='1'>Unlimited</option>
                         <option value='2'>Limited</option>
                       </select>
-                      <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.pacakgetype && formik.errors.pacakgetype
-                          ? formik.errors.pacakgetype
-                          : null}
-                      </div>
                     </div>
 
                     <div className='col-md-4'>
@@ -508,11 +526,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           )
                         })}
                       </select>
-                      <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.packageid && formik.errors.packageid
-                          ? formik.errors.packageid
-                          : null}
-                      </div>
                     </div>
 
                     <div className='col-md-4'>
@@ -530,11 +543,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           className='form-control form-control-solid'
                           placeholder='Package validity'
                         />
-                      </div>
-                      <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.packagevalidity && formik.errors.packagevalidity
-                          ? formik.errors.packagevalidity
-                          : null}
                       </div>
                     </div>
                   </div>
@@ -556,11 +564,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Package Cost'
                     />
                   </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.packagecost && formik.errors.packagecost
-                      ? formik.errors.packagecost
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -576,11 +579,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                       placeholder='Installation cost'
                     />
-                  </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.installationcost && formik.errors.installationcost
-                      ? formik.errors.installationcost
-                      : null}
                   </div>
                 </div>
 
@@ -598,11 +596,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.othercost && formik.errors.othercost
-                      ? formik.errors.othercost
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -618,11 +611,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Discount'
                       className='form-control form-control-solid'
                     />
-                  </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.discount && formik.errors.discount
-                      ? formik.errors.discount
-                      : null}
                   </div>
                 </div>
               </div>
@@ -642,15 +630,10 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.gstamount && formik.errors.gstamount
-                      ? formik.errors.gstamount
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Total Amount</label>
+                  <label className='form-label fw-bold required'>Total Amount</label>
                   <div className='input-group'>
                     <span className='input-group-text border-0'>₹</span>
                     <input
@@ -684,11 +667,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.cashamount && formik.errors.cashamount
-                      ? formik.errors.cashamount
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -704,11 +682,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Cheque Amount'
                       className='form-control form-control-solid'
                     />
-                  </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.chequeamount && formik.errors.chequeamount
-                      ? formik.errors.chequeamount
-                      : null}
                   </div>
                 </div>
               </div>
@@ -726,12 +699,8 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       onBlur={formik.handleBlur}
                       placeholder='Remaining Amount'
                       className='form-control form-control-solid'
+                      disabled
                     />
-                  </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.remaningamount && formik.errors.remaningamount
-                      ? formik.errors.remaningamount
-                      : null}
                   </div>
                 </div>
 
@@ -752,9 +721,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       )
                     })}
                   </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.bankid && formik.errors.bankid ? formik.errors.bankid : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -768,11 +734,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     placeholder='Cheque no'
                     className='form-control form-control-solid'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.chequeno && formik.errors.chequeno
-                      ? formik.errors.chequeno
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -786,11 +747,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     placeholder='Cheque date'
                     className='form-control form-control-solid'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.chequedate && formik.errors.chequedate
-                      ? formik.errors.chequedate
-                      : null}
-                  </div>
                 </div>
               </div>
 
@@ -812,11 +768,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       )
                     })}
                   </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.receiverid && formik.errors.receiverid
-                      ? formik.errors.receiverid
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -830,11 +781,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     placeholder='Activation date'
                     className='form-control form-control-solid'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.activationdate && formik.errors.activationdate
-                      ? formik.errors.activationdate
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -848,11 +794,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     placeholder='Expiry date'
                     className='form-control form-control-solid'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.expirydate && formik.errors.expirydate
-                      ? formik.errors.expirydate
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -868,9 +809,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     <option value='1'>Dynmaic</option>
                     <option value='2'>Static</option>
                   </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.iptype && formik.errors.iptype ? formik.errors.iptype : null}
-                  </div>
                 </div>
               </div>
 
@@ -887,9 +825,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     autoComplete='off'
                     className='form-control form-control-solid'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.note && formik.errors.note ? formik.errors.note : null}
-                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -904,11 +839,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     className='form-control form-control-solid'
                     autoComplete='off'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.thirdparty && formik.errors.thirdparty
-                      ? formik.errors.thirdparty
-                      : null}
-                  </div>
                 </div>
 
                 <div className='col-md-4'>
@@ -923,9 +853,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     className='form-control form-control-solid'
                     autoComplete='off'
                   />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}
-                  </div>
                 </div>
 
                 <div className='col-md-2'>
@@ -942,9 +869,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     <option value='2'>Pending</option>
                     <option value='3'>Cancel</option>
                   </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.status && formik.errors.status ? formik.errors.status : null}
-                  </div>
                 </div>
               </div>
             </div>

@@ -9,6 +9,7 @@ import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import moment from 'moment'
 import OfficeStockInwardsService from '../helperOfficeStockInwards/ApiDataRequest'
 import {ListPageData} from '../OfficeOldStockInwardsContext'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -50,6 +51,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
     userId: '',
     username: '',
   })
+  const {auth} = useAuth()
 
   useEffect(() => {
     if (itemIdForUpdate === 'add') {
@@ -65,6 +67,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         zoneId: category.data?.zoneId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        createdbyId: auth?.userId,
       })
     } else {
       setInitialValues({
@@ -80,6 +83,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         zoneId: category.data?.zoneId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        modifyById: auth?.userId,
       })
     }
   }, [itemIdForUpdate])
@@ -329,6 +333,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       onBlur={props.handleBlur}
                       name='serialno'
                       placeholder='Serial no'
+                      autoComplete='off'
                     />
                   </div>
 

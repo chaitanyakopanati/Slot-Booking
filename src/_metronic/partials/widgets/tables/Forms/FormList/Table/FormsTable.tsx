@@ -472,16 +472,24 @@ const FormsTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         LoderActions(true)
-        let payload = await Inquiriesservice.deleteForms(ID)
-        if (payload.success === true) {
-          LoderActions(false)
+        try {
+          let payload = await Inquiriesservice.deleteForms(ID)
+          if (payload.success === true) {
+            LoderActions(false)
 
-          toast.success(` Data Deleted Successfully`)
-          toast.dismiss('1s')
-        } else {
-          LoderActions(false)
+            toast.success(payload.message)
+            // toast.success(` Data Deleted Successfully`)
+            toast.dismiss('1s')
+          } else {
+            LoderActions(false)
 
-          toast.error(` Failed to Delete Data`)
+            toast.error(payload.message)
+            // toast.error(` Failed to Delete Data`)
+            toast.dismiss('1s')
+          }
+        } catch (error: any) {
+          console.log('error', error.data)
+          toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
         fetchAllUser()
@@ -567,7 +575,7 @@ const FormsTable = () => {
                     {/* begin:: User Type Input formdate */}
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
-                      {moment(row?.formdate).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.formdate).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: User Type Input  formdate*/}
 
@@ -677,7 +685,8 @@ const FormsTable = () => {
                           <div className='fw-bolder '>Form Date:</div>
                           <div className='text-dark fw-bold  ms-2'>
                             {' '}
-                            {moment(row?.formdate).format('DD-MMMM-YYYY, h:mm a') || '-'}
+                            {moment.utc(row?.formdate).local().format('DD-MMMM-YYYY, h:mm a') ||
+                              '-'}
                           </div>
                         </div>
 

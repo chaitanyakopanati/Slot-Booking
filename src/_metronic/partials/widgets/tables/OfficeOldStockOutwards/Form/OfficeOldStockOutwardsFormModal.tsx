@@ -8,6 +8,7 @@ import moment from 'moment'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../OfficeOldStockOutwardsContext'
 import OfficeStockOutwardsViewService from '../helperOfficeOldStockOutwards/ApiDataRequest'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -40,6 +41,8 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
     serialno: '',
     remark: '',
   })
+  const {auth} = useAuth()
+
   const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(null)
 
   useEffect(() => {
@@ -56,6 +59,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
         technicianId: category.data?.technicianId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        createdbyId: auth?.userId,
       })
     } else {
       setInitialValues({
@@ -71,6 +75,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
         technicianId: category.data?.technicianId || '',
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
+        modifyById: auth?.userId,
       })
     }
   }, [itemIdForUpdate])
@@ -370,6 +375,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                   onBlur={formik.handleBlur}
                   name='serialno'
                   placeholder='Serial no'
+                  autoComplete='off'
                 />
                 <div className='erro2' style={{color: 'red'}}></div>
               </div>

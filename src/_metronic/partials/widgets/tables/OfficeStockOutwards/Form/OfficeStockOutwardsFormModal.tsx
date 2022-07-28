@@ -8,6 +8,7 @@ import OfficeStockOutwardsViewService from '../helperOfficeStockOutwards/ApiData
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import moment from 'moment'
 import * as Yup from 'yup'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type formik = {
   category: any
@@ -53,6 +54,7 @@ const UserFormModal: FC<formik> = ({category}) => {
     maxQuantity: '',
   })
   const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(0)
+  const {auth} = useAuth()
 
   useEffect(() => {
     setInitialValues({
@@ -69,6 +71,8 @@ const UserFormModal: FC<formik> = ({category}) => {
       serialno: category.data?.serialno || '',
       remark: category.data?.remark || '',
       maxQuantity: category.data?.maxQuantity || '',
+      createdbyId: auth?.userId,
+      modifyById: auth?.userId,
     })
   }, [itemIdForUpdate])
 
