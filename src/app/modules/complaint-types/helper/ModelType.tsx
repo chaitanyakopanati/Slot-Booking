@@ -19,10 +19,12 @@ export interface getAllComplainData {
     success: boolean
 }
 export interface postlistData {
+    createdby: any
     name: string,
     etr: number
 }
 export interface putcomplaintsmodel {
+    modifyby: any
     name: string,
     etr: number,
     id: number | string,

@@ -32,7 +32,7 @@ const postFaults = (obj: postlistData) => {
   return http.post('SaveFault', {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    createdby: 1,
+    createdby: obj.createdby,
   
   })
 }
@@ -57,7 +57,7 @@ const editFaults = (obj: putFaultsmodel) => {
   return http.post(`SaveFault`, {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    modifyby: 1,
+    modifyby: obj.modifyby,
     id: obj.id,
   })
 }

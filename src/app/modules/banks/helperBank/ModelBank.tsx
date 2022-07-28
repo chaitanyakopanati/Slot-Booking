@@ -37,6 +37,8 @@ export interface getBankData {
     message: string
   }
   export interface putBankmodel {
+    createdby: any
+    modifyby: any
     name: string
     faulttypeid: number
     id: number | string

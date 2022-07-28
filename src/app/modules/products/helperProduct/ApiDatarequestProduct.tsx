@@ -32,8 +32,7 @@ const postProduct = (obj: postlistData) => {
   return http.post('SaveProduct', {
     name: obj.name,
     unit: obj.unit,
-    createdby: 1,
-    modifyby: 1,
+    createdby: obj.createdby,
   })
 }
 {
@@ -58,6 +57,7 @@ const editProduct = (obj: putProductmodel) => {
     name: obj.name,
     unit: obj.unit,
     id: obj.id,
+    modifyby: obj.modifyby,
   })
 }
 {

@@ -20,6 +20,7 @@ export interface getAllFaultsData {
   success: boolean
 }
 export interface postlistData {
+  createdby: any
   name: string
   faulttypeid: number
 }
@@ -38,6 +39,7 @@ export interface GetAllData {
   message: string
 }
 export interface putFaultsmodel {
+  modifyby: any
   name: string
   faulttypeid: number
   id: number | string

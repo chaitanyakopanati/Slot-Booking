@@ -22,6 +22,7 @@ export interface getAllZoneData {
   pages: number
 }
 export interface postlistData {
+  createdby: any
   name: string
   faulttypeid: number
 }
@@ -37,6 +38,7 @@ export interface GetAllData {
   message: string
 }
 export interface putZonemodel {
+  modifyby: any
   name: string
   faulttypeid: number
   id: number | string

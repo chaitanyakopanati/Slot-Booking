@@ -8,6 +8,7 @@ import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../CompaniesContext'
 import Zoneservice from '../helperCompanies/ApiDatarequest'
 import {CustomTooltip} from '../../../routing/customtooltip'
+import { useAuth } from '../../auth'
 
 type Props = {
   category: any
@@ -16,6 +17,9 @@ type Props = {
 const CompaniesFormModal: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, itemIdForUpdate, fetchAllCompanies} = ListPageData()
   let {LoderActions} = useLoader()
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -42,6 +46,8 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.data?.id,
           name: category.data?.name || '',
+          modifyby: auth?.userId,
+          createdby: auth?.userId,
         }}
         validationSchema={Yup.object({
           name: Yup.string()

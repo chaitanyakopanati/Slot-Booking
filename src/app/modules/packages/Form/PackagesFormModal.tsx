@@ -7,6 +7,7 @@ import {useLoader} from '../../loader/LoaderContext'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {ListPageData} from '../PackageContext'
 import Zoneservice from '../helperPackage/ApiDatarequest'
+import { useAuth } from '../../auth'
 
 type Props = {
   category: any
@@ -21,6 +22,9 @@ const PackagesFormModal: FC<Props> = ({category}) => {
     }
     setItemIdForUpdate(undefined)
   }
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
 
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -42,6 +46,8 @@ const PackagesFormModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.data?.id,
           name: category.data?.name || '',
+          modifyby: auth?.userId,
+          createdby: auth?.userId,
         }}
         validationSchema={Yup.object({
           name: Yup.string()

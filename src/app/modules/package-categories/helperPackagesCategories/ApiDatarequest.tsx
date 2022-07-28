@@ -41,8 +41,7 @@ const postPackageCategories = (obj: postlistData) => {
   return http.post('SavePackageCategory', {
     name: obj.name,
     etr: obj.etr,
-    createdby: 1,
-    modifyby: 1,
+    createdby: obj.createdby,
   })
 }
 {
@@ -67,6 +66,7 @@ const editPackagesCategories = (obj: putPackagecategoriesmodel) => {
     name: obj.name,
     etr: obj.etr,
     id: obj.id,
+    modifyby: obj.modifyby,
   })
 }
 {

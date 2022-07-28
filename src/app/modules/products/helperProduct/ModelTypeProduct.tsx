@@ -18,11 +18,13 @@ export interface getAllProductData {
   success: boolean
 }
 export interface postlistData {
+  createdby: any
   name: string
   unit: string
 }
 
 export interface putProductmodel {
+  modifyby: any
   name: string
   unit: string
   id: number | string

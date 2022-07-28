@@ -32,8 +32,8 @@ const postcomplaints = (obj: postlistData) => {
   return http.post('SaveComplaintType', {
     name: obj.name,
     etr: obj.etr,
-    createdby: 1,
-    modifyby: 1,
+    createdby: obj.createdby,
+   
   
   })
 }
@@ -59,6 +59,7 @@ const editcomplaints = (obj: putcomplaintsmodel) => {
     name: obj.name,
     etr: obj.etr,
     id: obj.id,
+    modifyby: obj.modifyby,
   })
 }
 {

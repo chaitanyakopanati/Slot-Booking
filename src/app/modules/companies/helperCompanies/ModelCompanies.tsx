@@ -38,6 +38,8 @@ export interface getCompaniesData {
     message: string
   }
   export interface putCompaniesmodel {
+    createdby: any
+    modifyby: any
     name: string
     faulttypeid: number
     id: number | string

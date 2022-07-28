@@ -32,8 +32,7 @@ const postZones = (obj: postlistData) => {
   return http.post('SaveZone', {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    createdby: 1,
-    Updatedby: 1,
+    createdby: obj.createdby,
   })
 }
 {
@@ -57,7 +56,7 @@ const editZones = (obj: putZonemodel) => {
   return http.post(`SaveZone`, {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    modifyby: 1,
+    modifyby: obj.modifyby,
     id: obj.id,
   })
 }

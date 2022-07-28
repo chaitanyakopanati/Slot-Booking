@@ -24,6 +24,7 @@ export interface getAllMainPointData {
   pages: number
 }
 export interface postlistData {
+  createdby: any
   name: string
   zoneName: string
   faulttypeid: number
@@ -41,6 +42,7 @@ export interface GetAllData {
   message: string
 }
 export interface putMainPointmodel {
+  modifyby: any
   name: string
   zoneid: number
   zoneName: string

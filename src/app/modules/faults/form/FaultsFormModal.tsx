@@ -7,6 +7,7 @@ import Complaintservice from '../helperFaults/ApiDatarequest'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../FaultsContext'
+import { useAuth } from '../../auth'
 
 type Props = {
   category: any
@@ -15,6 +16,9 @@ type Props = {
 const FaultsFormModal: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, itemIdForUpdate, fetchAllFault, getDataAllType} = ListPageData()
   let {LoderActions} = useLoader()
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -43,6 +47,8 @@ const FaultsFormModal: FC<Props> = ({category}) => {
           id: category.data?.id,
           name: category.data?.name || '',
           faulttypeid: category.data?.faulttypeid || '',
+          modifyby: auth?.userId,
+          createdby: auth?.userId,
         }}
         validationSchema={Yup.object({
           name: Yup.string()

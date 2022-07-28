@@ -18,10 +18,12 @@ export interface getAllPackagecategoriesData {
   success: boolean
 }
 export interface postlistData {
+  createdby: any
   name: string
   etr: number
 }
 export interface putPackagecategoriesmodel {
+  modifyby: any
   name: string
   etr: number
   id: number | string

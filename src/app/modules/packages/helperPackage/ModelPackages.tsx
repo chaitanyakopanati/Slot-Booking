@@ -37,6 +37,8 @@ export interface getPackagesData {
     message: string
   }
   export interface putPackagesmodel {
+    createdby: any
+    modifyby: any
     name: string
     faulttypeid: number
     id: number | string
