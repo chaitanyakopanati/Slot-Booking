@@ -24,6 +24,7 @@ export interface getAllInquiriesData {
   success: boolean
 }
 export interface postlistData {
+  createdbyId: any
   name: string
   address: string
   contactno: string
@@ -62,6 +63,7 @@ export interface GetAllDataApi {
   message: string
 }
 export interface putInquiriesmodel {
+  modifybyId: any
   id:number
   name: string
   address: string

@@ -9,6 +9,7 @@ import {ListPageData} from '../InstallationContext'
 import InstallationsService from '../helperInstallation/ApiDatarequest'
 import {useFormik} from 'formik'
 import {useLocation} from 'react-router-dom'
+import { useAuth } from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -86,6 +87,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         stationMac: category.data?.stationMac || '',
         connectiontype: category.data?.connectiontype || '',
         isnotifyinstaller: category.data?.isnotifyinstaller || false,
+       createdbyId:auth?.userId
+
       })
     } else {
       setInitialValues({
@@ -106,6 +109,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         stationMac: category.data?.stationMac || '',
         connectiontype: category.data?.connectiontype || '',
         isnotifyinstaller: category.data?.isnotifyinstaller || false,
+        modifyby:auth?.userId
       })
     }
   }, [itemIdForUpdate])
@@ -115,6 +119,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       suggestionRef.current.style.display = 'none'
     }
   }, [getUserNameData])
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {

@@ -64,7 +64,7 @@ const postInquiries = (obj: postlistData) => {
     description: obj.description,
     remark: obj.remark,
     isnotify: obj.isnotify,
-    createdbyId: 1,
+    createdbyId: obj.createdbyId,
   })
 }
 {
@@ -97,7 +97,7 @@ const editInquiries = (obj: putInquiriesmodel) => {
     description: obj.description,
     remark: obj.remark,
     isnotify: obj.isnotify,
-    createdbyId: 1,
+    modifybyId: obj.modifybyId,
   })
 }
 {

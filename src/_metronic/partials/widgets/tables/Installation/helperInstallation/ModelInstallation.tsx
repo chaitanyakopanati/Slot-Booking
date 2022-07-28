@@ -28,6 +28,7 @@ export interface getAllInstallationsData {
   success: boolean
 }
 export interface postlistData {
+  createdbyId: any
   userName:string
   zonepointid:number
   connectiontype:string
@@ -77,6 +78,7 @@ export interface GetAllDataApi {
   message: string
 }
 export interface putInstallationsmodel {
+  modifyby: any
   id: number
   connectiontype:string
   userName:string

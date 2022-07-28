@@ -31,6 +31,7 @@ export interface postlistData {
   formno: string
   formdate: string
   formtype: string
+  createdbyId:any
   salesexecutiveid: number
   pacakgetype:string
   packageid:number
@@ -91,6 +92,7 @@ export interface GetAllDataApi {
   message: string
 }
 export interface putInquiriesmodel {
+  modifyby: any
   id: number
   userid: number
   formno: string

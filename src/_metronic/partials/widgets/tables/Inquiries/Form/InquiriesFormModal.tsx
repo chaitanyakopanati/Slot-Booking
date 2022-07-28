@@ -8,6 +8,7 @@ import Inquiriesservice from '../helperInquiries/ApiDataRequest'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import {ListPageData} from '../InquiriesContext'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
+import { useAuth } from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -80,6 +81,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         description: category.data?.description || '',
         remark: category.data?.remark || '',
         isnotify: category.data?.isnotify || false,
+        createdbyId:auth?.userId
       })
     } else {
       setInitialValues({
@@ -95,9 +97,14 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         description: category.data?.description || '',
         remark: category.data?.remark || '',
         isnotify: category.data?.isnotify || false,
+        modifybyId:auth?.userId
+
       })
     }
   }, [itemIdForUpdate])
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
 
   useEffect(() => {
     console.log('StatusData', statusData)

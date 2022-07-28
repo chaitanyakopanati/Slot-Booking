@@ -9,6 +9,7 @@ import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../FormsContext'
 import Inquiriesservice from '../helperForms/ApiDataRequest'
 import moment from 'moment'
+import { useAuth } from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -113,6 +114,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         thirdparty: category.data?.thirdparty || '',
         remark: category.data?.remark || '',
         status: category.data?.status || '',
+        createdbyId: auth?.userId,
       })
     } else {
       setInitialValues({
@@ -150,6 +152,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         thirdparty: category.data?.thirdparty || '',
         remark: category.data?.remark || '',
         status: category.data?.status || '',
+        modifyby: auth?.userId,
       })
     }
   }, [itemIdForUpdate])
@@ -165,6 +168,9 @@ const FormsFormModal: FC<Props> = ({category}) => {
       keyEvent.preventDefault()
     }
   }
+
+  const {auth} = useAuth()
+  console.log(auth?.userId, 'auth')
 
   const formik = useFormik({
     enableReinitialize: true,
