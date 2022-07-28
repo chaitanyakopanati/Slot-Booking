@@ -10,6 +10,7 @@ import {useNavigate} from 'react-router-dom'
 import {CustomTooltip} from '../../../../app/routing/customtooltip'
 import * as Yup from 'yup'
 import {useLocation} from 'react-router-dom'
+import {useAuth} from '../../auth'
 
 type Props = {
   category: any
@@ -28,7 +29,9 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
   })
 
   const navigate = useNavigate()
-  const location: any = useLocation()
+  const {auth} = useAuth()
+
+  // const location: any = useLocation()
 
   const suggestionRef: any = useRef()
 
@@ -43,6 +46,8 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
     faultid: '',
     isnotifytechinician: '',
     isnotifycustomer: '',
+    CreatedBy: '',
+    ModifyBy: '',
   })
 
   const {
@@ -69,8 +74,10 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         ...category,
         id: category.id || '',
         complainttypeid: category.complaintTypeId || 0,
-        username: category?.username || location?.state?.userName || '',
-        userId: category?.userId || location?.state?.userid || '',
+        username: category?.username || '',
+        userId: category?.userId || '',
+        // username: category?.username || localStorage?.getItem('UserName') || '',
+        // userId: category?.userId || localStorage?.getItem('id') || '',
         description: category?.description || '',
         status: category.statusId || '',
         assigntechnicianid: category.assignTechnicianId || '',
@@ -78,12 +85,27 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         isnotifycustomer: category.isnotifycustomer || '',
         remark: category.remark || '',
         isnotifytechinician: category.isnotifytechinician || false,
+        CreatedBy: auth?.userId || '',
       })
-    }
-    // else(itemIdForUpdate === `add+${searchParams.get('id')}`) {
-    //   userId: searchParams.get('id') || '',
-    // }
-    else {
+    } else if (itemIdForUpdate == 'true') {
+      setInitialValues({
+        ...category,
+        id: category?.id || '',
+        complainttypeid: category?.complaintTypeId || 0,
+        username: category?.username || '',
+        userId: category?.userId || '',
+        // username: category?.username || localStorage?.getItem('UserName') || '',
+        // userId: category?.userId || localStorage?.getItem('id') || '',
+        description: category?.description || '',
+        status: category?.statusId || '',
+        assigntechnicianid: category?.assignTechnicianId || '',
+        faultid: category?.faultId || '',
+        isnotifycustomer: category?.isnotifycustomer || '',
+        remark: category?.remark || '',
+        isnotifytechinician: category?.isnotifytechinician || false,
+        CreatedBy: auth?.userId || '',
+      })
+    } else {
       setInitialValues({
         ...category,
         id: category.id || '',
@@ -98,6 +120,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         isnotifycustomer: category.isnotifycustomer || '',
         remark: category.remark || '',
         isnotifytechinician: category.isnotifytechinician || false,
+        ModifyBy: auth?.userId || '',
       })
     }
   }, [itemIdForUpdate])
@@ -180,7 +203,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         >
           <div className='card'>
             <div className='modal-header'>
-              {itemIdForUpdate === 'add' ? (
+              {itemIdForUpdate === 'add' || itemIdForUpdate == 'true' ? (
                 <h5 className='modal-title'>Create Complaint</h5>
               ) : (
                 <h5 className='modal-title'>Edit Complaint</h5>
@@ -439,7 +462,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
               <CustomTooltip title='Submit form'>
                 <button type='submit' className='btn btn-primary'>
-                  {itemIdForUpdate !== 'add' ? 'Update' : 'Create'}
+                  {itemIdForUpdate === 'add' || itemIdForUpdate == 'true' ? 'Create' : 'Update'}
                 </button>
               </CustomTooltip>
             </div>

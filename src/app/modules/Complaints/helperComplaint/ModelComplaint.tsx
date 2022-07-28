@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export interface getComplaintsData {
   address: string
   assignToId: number
@@ -34,17 +33,19 @@ export interface getAllgetComplaintsDataData {
   success: boolean
 }
 export interface postlistData {
-  id: number,
-  complainttypeid: number,
-  username: string,
-  description: string,
-  status: number,
-  remark: string,
-  assigntechnicianid: number,
-  faultid: number,
-  isnotifycustomer: boolean,
-  isnotifytechinician: boolean,
+  id: number
+  complainttypeid: number
+  username: string
+  description: string
+  status: number
+  remark: string
+  assigntechnicianid: number
+  faultid: number
+  isnotifycustomer: boolean
+  isnotifytechinician: boolean
   userId: number
+  ModifyBy: number
+  CreatedBy: number
 }
 
 export interface GetAllData {
@@ -63,7 +64,6 @@ export interface GetAllData {
   message: string
 }
 export interface putgetComplaintsDatasmodel {
-
   zoneId: number
   remark: string
   id: number
@@ -71,7 +71,6 @@ export interface putgetComplaintsDatasmodel {
   userId: number
   reason: string
   username: string
-
 }
 export interface putgetComplaintsDatamodel1 {
   data: getComplaintsData
@@ -92,7 +91,6 @@ export interface GetAllgetComplaintsDataApi {
   searchByUsername: string
   complainttypeid: number
 }
-
 
 export interface getUserData {
   name: string
@@ -118,8 +116,6 @@ export interface getUserData {
   remark: string
   createdBy: number
 }
-
-
 
 export type ID = undefined | null | string
 

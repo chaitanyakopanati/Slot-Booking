@@ -64,6 +64,8 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
           address: category.address || '',
           remark: category.remark || '',
           createdby: category.createdby || '',
+          modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+          modifyby: category.modifyby || '',
           createdAt:
             moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') || '',
           activationDate:
@@ -316,7 +318,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       placeholder='Username'
                       value={props.values.userName}
                       className='form-control form-control-lg form-control-solid'
-                      type='number'
+                      type='text'
                       autoComplete='off'
                     />
                   </div>
@@ -442,7 +444,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         value={props.values.createdby}
                         placeholder='Akshay Patel'
                         className='form-control form-control-lg form-control-solid'
-                        type='number'
+                        type='text'
                         autoComplete='off'
                       />
                     </div>
@@ -461,9 +463,9 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       </span>
                       <input
                         type='text'
-                        value={props.values.createdAt}
+                        value={props.values.createdby}
                         className='form-control'
-                        placeholder='Username'
+                        placeholder='Created at'
                         aria-label='Username'
                         aria-describedby='basic-addon1'
                       />
@@ -473,9 +475,10 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     <div data-select2-id='select-role'>
                       <label className='form-label fw-bold'>Updated by</label>
                       <input
-                        placeholder='Akshay Patel'
+                        placeholder='Updated by'
+                        value={props.values.modifyby}
                         className='form-control form-control-lg form-control-solid'
-                        type='number'
+                        type='text'
                         autoComplete='off'
                       />
                     </div>
@@ -491,8 +494,9 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       </span>
                       <input
                         type='text'
+                        value={props.values.modifyAt}
                         className='form-control'
-                        placeholder='Username'
+                        placeholder='Updated at'
                         aria-label='Username'
                         aria-describedby='basic-addon1'
                       />

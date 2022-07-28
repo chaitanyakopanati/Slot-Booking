@@ -5,15 +5,17 @@ import {ListPageData} from '../CustomerContext'
 import * as Yup from 'yup'
 import {customerFormType, formInitialValues} from '../helperCustomer/ModelCustomer'
 import {useRef} from 'react'
-import {saveCustomer} from '../helperCustomer/ApiDataRequest'
+import {editCustomer, saveCustomer} from '../helperCustomer/ApiDataRequest'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
+import {useAuth} from '../../auth'
 
 interface customerProps {
   customerById: any
 }
 
 function CustomerFormModal({customerById}: customerProps) {
+  const {auth} = useAuth()
   const navigate = useNavigate()
   const suggestionRef: any = useRef()
   const {customer, fetchUsetByRoleNameWithSearch} = ListPageData()
@@ -38,6 +40,7 @@ function CustomerFormModal({customerById}: customerProps) {
 
   useEffect(() => {
     console.log('customerById', customerById)
+
     setInitialValues({
       Id: customerById.id || null,
       UserName: customerById.userName || '',
@@ -57,8 +60,8 @@ function CustomerFormModal({customerById}: customerProps) {
       IdproofImageFile: '',
       AddressproofImageFile: '',
       GstcerificateImageFile: '',
-      CreatedBy: customerById.createdById || '',
-      ModifyBy: customerById.modifyById || '',
+      CreatedBy: auth?.userId || '',
+      ModifyBy: auth?.userId || '',
       IsMasterUser: false,
     })
   }, [customerById])
@@ -68,20 +71,97 @@ function CustomerFormModal({customerById}: customerProps) {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      let formData: any = new FormData()
-      Object.entries(values).forEach(([key, value]) => {
-        if (value) formData.append(key, value as string)
-      })
-      !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
-      let response = await saveCustomer(formData)
-      if (response.success) {
-        toast.success(response.message)
-        navigate('/customers')
+      if (values.Id) {
+        let formData: any = new FormData()
+        console.log('kkk', formData)
+
+        delete formData.CreatedBy
+
+        Object.entries(values).forEach(([key, value]) => {
+          if (value) formData.append(key, value as string)
+        })
+        !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
+        delete formData.CreatedBy
+
+        let response = await editCustomer(formData)
+        if (response.success) {
+          toast.success(response.message)
+          navigate('/customers')
+        } else {
+          toast.error(response.message)
+        }
       } else {
-        toast.error(response.message)
+        let formData: any = new FormData()
+        delete formData.ModifyBy
+        console.log('kkk', formData)
+
+        Object.entries(values).forEach(([key, value]) => {
+          if (value) formData.append(key, value as string)
+        })
+        !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
+        delete formData.ModifyBy
+
+        let response = await saveCustomer(formData)
+        if (response.success) {
+          toast.success(response.message)
+          navigate('/customers')
+        } else {
+          toast.error(response.message)
+        }
       }
     },
   })
+
+  // const formik = useFormik({
+  //   enableReinitialize: true,
+  //   initialValues: initialValues,
+  //   validationSchema: validationSchema,
+
+  //   onSubmit: async (values: any, {resetForm}) => {
+  //     // LoderActions(true)
+  //     // values.complainttypeid = +values.complainttypeid
+  //     // values.assigntechnicianid = +values.assigntechnicianid
+  //     // values.faultid = +values.faultid
+  //     // values.status = +values.status
+  //     // values.userId = +values.userId
+
+  //     console.log('ccccc', values.id)
+  //     try {
+  //       if (values.id) {
+  //         // Edit Api Response
+  //         let response = await saveCustomer(values)
+  //         console.log('Edit User*****************', response)
+
+  //         if (response.success === false) {
+  //           toast.error(response.message)
+  //         } else {
+  //           toast.success(response.message)
+  //           // toast.success(`Data Updated Successfully`)
+  //         }
+  //         navigate('/customers')
+  //         // toast.success(` Data Updated Successfully`)
+  //         toast.dismiss('1s')
+  //       } else {
+  //         let response = await saveCustomer(values)
+  //         console.log('Add User*****************', response)
+
+  //         if (response.success === false) {
+  //           toast.error(response.message)
+  //         } else {
+  //           toast.success(response.message)
+  //           // toast.success(` Data Added Successfully`)
+  //         }
+  //         toast.dismiss('1s')
+  //         navigate('/customers')
+  //       }
+  //     } catch (error: any) {
+  //       console.log(error, 'error')
+  //       toast.error(error.data.message)
+  //     } finally {
+  //       // LoderActions(false)
+  //     }
+  //   },
+  // })
 
   const [idProofImage, setIdProofImage] = useState<any>(null)
   const [addressProofImage, setAddressProofImage] = useState<any>(null)

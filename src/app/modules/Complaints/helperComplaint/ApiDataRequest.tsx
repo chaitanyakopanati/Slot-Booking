@@ -1,7 +1,6 @@
 import axios from 'axios'
 import http from '../../../../_metronic/helpers/components/http-common'
-import { ID, postlistData, putgetComplaintsDatasmodel } from './ModelComplaint'
-
+import {ID, postlistData, putgetComplaintsDatasmodel} from './ModelComplaint'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 
@@ -21,8 +20,6 @@ const getDynamicComplaintData = (
   PackageCategoryId: number,
   startDate: string,
   endDate: string
-
-
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -30,7 +27,7 @@ const getDynamicComplaintData = (
     )
   } else {
     return http.get(
-      `GetDynamicComplaintData/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&complainttypeid=${complainttypeid}&status=${status}&assignToId=${assigntechnicianid}&faultid=${faultid}&CompanyId=${CompanyId}&createdBy=${createdBy}&PackageCategoryId=${PackageCategoryId}&startDate=${startDate}&endDate=${endDate}&orderBYColumnName=${"createdDate"}&orderByColumnDir=${"desc"}`
+      `GetDynamicComplaintData/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&complainttypeid=${complainttypeid}&status=${status}&assignToId=${assigntechnicianid}&faultid=${faultid}&CompanyId=${CompanyId}&createdBy=${createdBy}&PackageCategoryId=${PackageCategoryId}&startDate=${startDate}&endDate=${endDate}&orderBYColumnName=${'createdDate'}&orderByColumnDir=${'desc'}`
     )
   }
 }
@@ -41,7 +38,6 @@ const getDynamicComplaintData = (
 // download
 
 const getDynamicDownloadFile = (
-
   pageNo: number,
   pageSize: number,
   searchText: string,
@@ -57,9 +53,6 @@ const getDynamicDownloadFile = (
   PackageCategoryId: number,
   startDate: string,
   endDate: string
-
-
-
 ) => {
   return axios({
     url: `${API_URL_DATA}/GetComplaintExcelSheetData?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&complainttypeid=${complainttypeid}&status=${status}&createdDate=${createdDate}&assignToId=${assigntechnicianid}&faultid=${faultid}&CompanyId=${CompanyId}&createdBy=${createdBy}&PackageCategoryId=${PackageCategoryId}&startDate=${startDate}&endDate=${endDate}`, //your url
@@ -68,18 +61,15 @@ const getDynamicDownloadFile = (
   })
 }
 
-
-
 const deleteComplaint = (Id: number) => {
   return http.delet(`DeleteComplaintById/${Id}`)
 }
-
 
 {
   /* begin:: post Api call(create) */
 }
 const postComplaint: any = (obj: postlistData) => {
-  console.log(obj, "obj");
+  console.log(obj, 'obj')
 
   return http.post('SaveComplaint', {
     complainttypeid: obj.complainttypeid,
@@ -92,8 +82,7 @@ const postComplaint: any = (obj: postlistData) => {
     faultid: obj.faultid,
     isnotifycustomer: obj.isnotifycustomer,
     isnotifytechinician: obj.isnotifytechinician,
-
-
+    CreatedBy: obj.CreatedBy,
   })
 }
 {
@@ -117,6 +106,7 @@ const editComplaints = (obj: postlistData) => {
     faultid: obj.faultid,
     isnotifycustomer: obj.isnotifycustomer,
     isnotifytechinician: obj.isnotifytechinician,
+    ModifyBy: obj.ModifyBy,
   })
 }
 {
@@ -166,15 +156,12 @@ const getAllCompanies = () => {
 
 // userName
 const getUserName = (username: string) => {
-  return http.get(`GetByUserName`, { userName: username })
+  return http.get(`GetByUserName`, {userName: username})
 }
 
 const getAllPackages = () => {
   return http.get(`GetAllPackages`)
 }
-
-
-
 
 const ComplaintsViewService = {
   getDynamicComplaintData,
@@ -190,7 +177,7 @@ const ComplaintsViewService = {
   getAllFaults,
   getAllCompanies,
   getAllPackages,
-  deleteComplaint
+  deleteComplaint,
 }
 
 export default ComplaintsViewService

@@ -26,6 +26,9 @@ const saveCustomer = (formdata: any) => {
   return http.post('SaveCustomer', formdata)
 }
 
+const editCustomer = (formdata: any) => {
+  return http.post('SaveCustomer', formdata)
+}
 const GetCustomerById = (id: any) => {
   return http.get(`GetCustomerById/${id}`).then((result) => result.data)
 }
@@ -43,4 +46,5 @@ export {
   saveCustomer,
   GetCustomerById,
   deleteCustomer,
+  editCustomer,
 }

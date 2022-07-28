@@ -13,6 +13,10 @@ const CustomerTable = () => {
     fetchCustomer()
   }, [filter])
 
+  useEffect(() => {
+    console.log('ooooo', process.env.REACT_APP_THEME_DEMO)
+  }, [])
+
   const navigate = useNavigate()
 
   const deletedCustomerData = (ID: number, username: string) => {
@@ -101,8 +105,10 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_1'
+                      // target='_blank'
                       onClick={() => {
-                        navigate(`customersform/${customer.id}`)
+                        window.open(`/customers/customersform/${customer.id}`, '_blank')
+                        //  navigate(`customersform/${customer.id}`)
                       }}
                     >
                       <KTSVG
@@ -116,7 +122,9 @@ const CustomerTable = () => {
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_3'
                       onClick={() => {
-                        navigate(`customerviewform/${customer.id}`)
+                        window.open(`/customers/customerviewform/${customer.id}`, '_blank')
+
+                        // navigate(`customerviewform/${customer.id}`)
                       }}
                     >
                       <KTSVG
@@ -138,6 +146,10 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
+                        // window.open(`/forms/formsform/add`, '_blank')
+                        // localStorage.setItem('UserName', `${customer.userName}`)
+                        // localStorage.setItem('Id', `${customer.id}`)
+
                         navigate('/forms/formsform/add', {state: customer})
                       }}
                     >
@@ -150,6 +162,9 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
+                        // window.open(`/installations/installationsform/add`, '_blank')
+                        // localStorage.setItem('UserName', `${customer.userName}`)
+                        // localStorage.setItem('Id', `${customer.id}`)
                         navigate('/installations/installationsform/add', {state: customer})
                       }}
                     >
@@ -162,6 +177,13 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                       onClick={() => {
+                        // window.open(
+                        //   `/complaint/complaintform/${customer.userName}&${customer.id}`,
+                        //   '_blank'
+                        // )
+                        // localStorage.setItem('UserName', `${customer.userName}`)
+                        // localStorage.setItem('Id', `${customer.id}`)
+
                         navigate('/complaint/complaintform/add', {
                           state: customer,
                         })
