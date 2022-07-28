@@ -10,6 +10,7 @@ import Userservice from '../helperUser/ApiDatarequestUser'
 import {useNavigate} from 'react-router-dom'
 import showPwdImg from '../../../../app/images/eye-fill.svg'
 import hidePwdImg from '../../../../app/images/eye-slash-fill.svg'
+import { useAuth } from '../../auth'
 
 type Props = {
   category: any
@@ -79,6 +80,10 @@ const UserFormModal: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, itemIdForUpdate, getDataAllType, getDataAllTypeRole} = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
+
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     firstname: '',
@@ -110,6 +115,8 @@ const UserFormModal: FC<Props> = ({category}) => {
         roleId: category.data?.roleId || '',
         password: category.data?.password || '',
         confirmPassword: '',
+        createdby: auth?.userId,
+       
       })
     } else {
       setInitialValues({
@@ -123,6 +130,7 @@ const UserFormModal: FC<Props> = ({category}) => {
         zoneId: category.data?.zoneId || '',
         zoneName: category.data?.zoneName || '',
         roleId: category.data?.roleId || '',
+        modifyby: auth?.userId,
       })
     }
   }, [itemIdForUpdate])

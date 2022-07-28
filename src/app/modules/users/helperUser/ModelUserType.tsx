@@ -27,6 +27,7 @@ export interface getAllUserData {
   success: boolean
 }
 export interface postlistData {
+  createdby: any
   name: string
   zoneId: number
   roleId: string
@@ -53,6 +54,7 @@ export interface GetAllData {
   message: string
 }
 export interface putUsersmodel {
+  modifyby: any
   name: string
   zoneId: number 
   roleId: string

@@ -60,7 +60,7 @@ const postUser = (obj: postlistData) => {
     roleId: obj.roleId,
     zoneId: obj.zoneId,
     status: '1',
-    createdby: 1,
+    createdby: obj.createdby,
   })
 }
 {
@@ -90,7 +90,7 @@ const editUser = (obj: putUsersmodel) => {
     phone: obj.phone,
     zoneId: obj.zoneId,
     roleId: obj.roleId,
-    createdby: 1,
+    modifyby: obj.modifyby,
     status: '1',
     id: obj.id,
   })

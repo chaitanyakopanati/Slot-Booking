@@ -10,6 +10,7 @@ import {ListPageData} from '../../UserContext'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import moment from 'moment'
 import {CustomTooltip} from '../../../../routing/customtooltip'
+import { useAuth } from '../../../auth'
 
 type Props = {
   category: any
@@ -26,6 +27,9 @@ const UserFormViewModal: FC<Props> = ({category}) => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
+
+  const {auth} = useAuth()
+  console.log(auth?.userId,"auth");
 
   const [initialvalues, setInitialvalues] = useState<any>({
     ...category,
@@ -44,6 +48,7 @@ const UserFormViewModal: FC<Props> = ({category}) => {
     modifyby: category.data.modifyByName || '',
     createdAt: moment(category.data.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
     modifyAt: moment(category.data.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+    
   })
 
   const openEditModal = (id: any) => {
