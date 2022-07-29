@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
 import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
+import moment from 'moment'
 
 const CustomerTable = () => {
   let {filter, fetchCustomer, customerTableData, pageNo, pageSize} = ListPageData()
@@ -225,8 +226,8 @@ const CustomerTable = () => {
                     <div className='text-muted fw-bold ms-2'>- {customer.name}</div>
                   </div>
                   <div className='text-dark fw-bold py-1'>
-                    <span className='fw-bolder'>Package name: </span>
-                    <span className='mx-2'>{'-'}</span>
+                    <span className='fw-bolder'>userName: </span>
+                    <span className='mx-2'>{customer.userName}</span>
                   </div>
                   <div id={`card-id-${customer.id}`} className='collapse'>
                     <div className='d-flex align-items-center justify-content-evenly py-1 my-1 flex-wrap d-none'>
@@ -239,13 +240,25 @@ const CustomerTable = () => {
                       </div>
                     </div>
                     <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>Name:</div>
+                      <div className='text-dark fw-bold  ms-2'> {customer.name}</div>
+                    </div>
+                    <div className='py-1 d-flex'>
                       <div className='fw-bolder '>Address:</div>
                       <div className='text-dark fw-bold  ms-2'> {customer.address}</div>
+                    </div>
+                    <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>Package Name:</div>
+                      <div className='text-dark fw-bold  ms-2'> {customer.packageName}</div>
                     </div>
                     <div className='py-1 d-flex align-items-cenetr'>
                       {/* <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-2 me-2' /> */}
                       <span className='fw-bolder'>Expiry date:</span>
-                      <span className='text-dark fw-bold  ms-2'>{'-'}</span>
+                      <span className='text-dark fw-bold  ms-2'>
+                        {' '}
+                        {moment.utc(customer?.expiryDate).local().format('DD-MMMM-YYYY, h:mm a') ||
+                          '-'}
+                      </span>
                     </div>
                   </div>
                   <div
