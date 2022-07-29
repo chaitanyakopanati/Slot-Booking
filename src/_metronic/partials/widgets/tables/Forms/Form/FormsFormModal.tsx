@@ -25,6 +25,7 @@ let validationSchemaNewForm = Yup.object({
   companyid: Yup.string().required('This fied is required'),
   packagecatid: Yup.string().required('This fied is required'),
   totalamount: Yup.string().required('This fied is required'),
+  status: Yup.string().required('This fied is required'),
 })
 
 const FormsFormModal: FC<Props> = ({category}) => {
@@ -770,7 +771,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     {...formik.getFieldProps('receiverid')}
                   >
                     <option value='' disabled>
-                      select Bank Name
+                      select Reciever Name
                     </option>
                     {getReciever?.map((row, index) => {
                       return (
@@ -868,7 +869,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-md-2'>
-                  <label className='form-label fw-bold'>Form submit</label>
+                  <label className='form-label fw-bold required'>Form submit</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('status')}
@@ -881,6 +882,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     <option value='2'>Pending</option>
                     <option value='3'>Cancel</option>
                   </select>
+                  <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.status && formik.errors.status
+                          ? formik.errors.status
+                          : null}
+                      </div>
                 </div>
               </div>
             </div>

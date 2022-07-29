@@ -105,7 +105,7 @@ const postForms = (obj: postlistData) => {
    note:obj.note,
    thirdparty:obj.thirdparty,
    remark:obj.remark,
-   status:obj.status,
+   status:obj.status.toString(),
    createdbyId:obj.createdbyId
   })
 }

@@ -171,7 +171,7 @@ const ListDataProvider: FC = ({children}) => {
         pageNo,
         pageSize,
         searchText,
-        zoneId,
+        createdById,
         statusId,
         roleId,
         salesExecutiveId,
