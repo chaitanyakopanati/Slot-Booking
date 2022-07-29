@@ -101,7 +101,7 @@ const postForms = (obj: postlistData) => {
    receiverid:+obj.receiverid,
    activationdate:obj.activationdate,
    expirydate:obj.expirydate,
-   iptype:obj.iptype,
+   iptype:obj.iptype.toString(),
    note:obj.note,
    thirdparty:obj.thirdparty,
    remark:obj.remark,
