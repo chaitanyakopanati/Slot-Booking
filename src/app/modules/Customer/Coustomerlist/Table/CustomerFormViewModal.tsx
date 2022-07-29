@@ -246,6 +246,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                 </div>
@@ -259,6 +260,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-3'>
@@ -269,6 +271,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-3'>
@@ -279,6 +282,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                 </div>
@@ -292,6 +296,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-3'>
@@ -302,6 +307,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='number'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-3'>
@@ -313,6 +319,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='number'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -325,6 +332,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         // type='number'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -335,6 +343,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control form-control-solid'
                       data-kt-autosize='true'
                       placeholder='165, Gf, Block No-2, New Gidc, Mahakali Baug Katargam'
+                      disabled
                     ></textarea>
                   </div>
                   <div className='col-lg-4'>
@@ -346,6 +355,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='number'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -368,6 +378,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         placeholder='Username'
                         aria-label='Username'
                         aria-describedby='basic-addon1'
+                        disabled
                       />
                     </div>
                   </div>
@@ -388,6 +399,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         placeholder='Username'
                         aria-label='Username'
                         aria-describedby='basic-addon1'
+                        disabled
                       />
                     </div>
                   </div>
@@ -398,6 +410,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control form-control-solid'
                       data-kt-autosize='true'
                       placeholder='Remark here'
+                      disabled
                     ></textarea>
                   </div>
                   <div className='col-lg-3'>
@@ -409,6 +422,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -431,6 +445,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         placeholder='Created at'
                         aria-label='Username'
                         aria-describedby='basic-addon1'
+                        disabled
                       />
                     </div>
                   </div>
@@ -443,6 +458,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -462,6 +478,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         placeholder='Updated at'
                         aria-label='Username'
                         aria-describedby='basic-addon1'
+                        disabled
                       />
                     </div>
                   </div>

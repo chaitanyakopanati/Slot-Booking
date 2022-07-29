@@ -95,6 +95,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Complaint no.</label>
                     <input
                       placeholder='123456'
+                      disabled
                       value={props.values.id}
                       className='form-control form-control-lg form-control-solid'
                       type='text'
@@ -109,6 +110,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                 </div>
@@ -122,6 +124,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                 </div>
@@ -135,6 +138,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-6'>
@@ -146,6 +150,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -158,6 +163,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -170,6 +176,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         autoComplete='off'
+                        disabled
                       />
                     </div>
                   </div>
@@ -182,6 +189,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control form-control-solid'
                       data-kt-autosize='true'
                       placeholder='address here'
+                      disabled
                     ></textarea>
                   </div>
                 </div>
@@ -193,6 +201,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control form-control-solid'
                       data-kt-autosize='true'
                       placeholder='description here'
+                      disabled
                     ></textarea>
                   </div>
                 </div>
@@ -206,6 +215,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -216,6 +226,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -226,6 +237,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -236,6 +248,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -246,6 +259,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -256,6 +270,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -268,6 +283,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       // type='date'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -278,6 +294,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                   <div className='col-lg-4'>
@@ -288,6 +305,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       // type='date'
                       autoComplete='off'
+                      disabled
                     />
                   </div>
                 </div>

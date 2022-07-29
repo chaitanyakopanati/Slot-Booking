@@ -9,6 +9,7 @@ import {editCustomer, saveCustomer} from '../helperCustomer/ApiDataRequest'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {useAuth} from '../../auth'
+import {CustomTooltip} from '../../../routing/customtooltip'
 
 interface customerProps {
   customerById: any
@@ -26,6 +27,7 @@ function CustomerFormModal({customerById}: customerProps) {
       then: Yup.string().required().label('UserName'),
     }),
     MobileNo: Yup.string().min(10).max(10).required().label('MobileNo'),
+    Contactno: Yup.string().min(10).max(10).label('Contactno'),
     ZoneId: Yup.string().required().label('Zone'),
     Email: Yup.string().email('Must be a valid email').max(255),
     Address: Yup.string().required().label('Address'),
@@ -262,7 +264,7 @@ function CustomerFormModal({customerById}: customerProps) {
               </div>
               {/* First Name */}
               <div className='col-lg-4'>
-                <label className='form-label fw-bold'>First Name</label>
+                <label className='form-label fw-bold required'>First Name</label>
                 <input
                   placeholder='First name'
                   className='form-control form-control-lg form-control-solid'
@@ -285,7 +287,7 @@ function CustomerFormModal({customerById}: customerProps) {
               </div>
               {/* Middle name */}
               <div className='col-lg-4'>
-                <label className='form-label fw-bold'>Middle name</label>
+                <label className='form-label fw-bold required'>Middle name</label>
                 <input
                   placeholder='Middle name'
                   className='form-control form-control-lg form-control-solid'
@@ -308,7 +310,7 @@ function CustomerFormModal({customerById}: customerProps) {
               </div>
               {/* Last Name */}
               <div className='col-lg-4'>
-                <label className='form-label fw-bold'>Last Name</label>
+                <label className='form-label fw-bold required'>Last Name</label>
                 <input
                   placeholder='Last name'
                   className='form-control form-control-lg form-control-solid'
@@ -387,7 +389,7 @@ function CustomerFormModal({customerById}: customerProps) {
             <div className='row w-100 mx-0 mb-4 gy-4'>
               {/*  */}
               <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Username</label>
+                <label className='form-label fw-bold required'>Username</label>
                 <input
                   placeholder='Username'
                   name='UserName'
@@ -449,7 +451,7 @@ function CustomerFormModal({customerById}: customerProps) {
               </div>
               {/* Mobile no. */}
               <div className='col-lg-3'>
-                <label className='form-label fw-bold'>Mobile no.</label>
+                <label className='form-label fw-bold required'>Mobile no.</label>
                 <input
                   placeholder='Mobile no.'
                   className='form-control form-control-lg form-control-solid'
@@ -484,12 +486,21 @@ function CustomerFormModal({customerById}: customerProps) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
+                  {formik.touched.MobileNo && formik.errors.MobileNo && (
+                    <div className='fv-plugins-message-container'>
+                      <div className='fv-help-block'>
+                        <span role='alert' style={{color: 'red'}}>
+                          {formik.errors.Contactno}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               {/* Zone */}
               <div className='col-lg-3'>
                 <div data-select2-id='select-zone'>
-                  <label className='form-label fw-bold'>Zone</label>
+                  <label className='form-label fw-bold required'>Zone</label>
                   <div data-select2-id='select-zone'>
                     <select
                       className='form-select form-select-solid'
@@ -558,15 +569,19 @@ function CustomerFormModal({customerById}: customerProps) {
           </div>
           {/*  */}
 
-          {formik.values.Id ? (
-            <button type='submit' className='btn btn-secondary'>
-              update
-            </button>
-          ) : (
-            <button type='submit' className='btn btn-secondary'>
-              Create
-            </button>
-          )}
+          <div className='modal-footer'>
+            <CustomTooltip title='Close form'>
+              <button type='reset' onClick={() => navigate('/customers')} className='btn btn-light'>
+                Close
+              </button>
+            </CustomTooltip>
+
+            <CustomTooltip title='Submit form'>
+              <button type='submit' className='btn btn-primary'>
+                {formik.values.Id ? 'Update' : 'Create'}
+              </button>
+            </CustomTooltip>
+          </div>
         </div>
       </form>
     </>

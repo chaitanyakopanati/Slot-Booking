@@ -345,7 +345,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
               </div>
               <div className='col-lg-4'>
                 <div data-select2-id='select-zone'>
-                  <label className='form-label fw-bold'>Status</label>
+                  <label className='form-label fw-bold required'>Status</label>
                   <div data-select2-id='select-zone'>
                     <select
                       className='form-select form-select-solid'
