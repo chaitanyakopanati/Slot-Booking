@@ -146,9 +146,10 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
-                        // window.open(`/forms/formsform/add`, '_blank')
-
-                        navigate('/forms/formsform/add', {state: customer})
+                        window.open(
+                          `/forms/formsform/${customer.userName}&${customer.userid}`,
+                          '_blank'
+                        )
                       }}
                     >
                       <KTSVG
@@ -157,12 +158,13 @@ const CustomerTable = () => {
                       />
                     </a>
                     <a
-                      href='#'
+                      // href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
-                        // window.open(`/installations/installationsform/add`, '_blank')
-
-                        navigate('/installations/installationsform/add', {state: customer})
+                        window.open(
+                          `/installations/installationsform/${customer.userName}&${customer.userid}`,
+                          '_blank'
+                        )
                       }}
                     >
                       <KTSVG
@@ -175,7 +177,7 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                       onClick={() => {
                         window.open(
-                          `/complaint/complaintform/${customer.userName}&${customer.id}`,
+                          `/complaint/complaintform/${customer.userName}&${customer.userid}`,
                           '_blank'
                         )
                       }}

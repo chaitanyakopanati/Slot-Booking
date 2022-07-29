@@ -7,55 +7,51 @@ import Inquiriesservice from '../helperForms/ApiDataRequest'
 import FormsFormModal from './FormsFormModal'
 
 const FormsFormByCategory = () => {
-  let {id} = useParams()
-
   const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
-  const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+
+  let {id} = useParams()
+  const username: any = id?.split('&')[0]
+  const userId: any = id?.split('&')[1]
 
   useEffect(() => {
-    if (id === 'add') {
+    if (id == 'add') {
       setItemIdForUpdate(id)
+    } else if (username && userId) {
+      setItemIdForUpdate('add')
     } else {
       setItemIdForUpdate(id)
     }
   }, [id])
 
+  const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
+
   const {data: category, error} = useQuery(
-    `GetFormById-${itemIdForUpdate}`,
+    `GetOfficeStockOutwardsById-${itemIdForUpdate}`,
     () => {
       return Inquiriesservice.GetFormsTypeById(itemIdForUpdate)
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null),
+      enabled: enabledQuery && id !== 'add' && id !== `${username}&${userId}`,
       onError: (err) => {
         setItemIdForUpdate(undefined)
       },
     }
   )
-  {
-    /* end:: Api call GetUserTypeById */
-  }
-
-  useEffect(() => {
-    console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category, itemIdForUpdate])
 
   {
-    /* begin::Add-Form Model functionality */
-  }
-  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
-    return <FormsFormModal category={{ID: undefined}} />
   }
 
-  if (!error && category) {
+  if (itemIdForUpdate == 'add' && username && userId) {
+    return <FormsFormModal category={{data: {ID: undefined, userName: username, userid: userId}}} />
+  }
+  if (itemIdForUpdate === 'add') {
+    return <FormsFormModal category={{data: {ID: undefined}}} />
+  } else {
     return <FormsFormModal category={category} />
   }
-  {
-    /* end::Edit-Form Model functionality */
-  }
 
-  return null
+  // return null
 }
 
 export default FormsFormByCategory

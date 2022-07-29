@@ -8,6 +8,8 @@ import InstallationsService from '../helperInstallation/ApiDatarequest'
 
 const InstallationFormByCategory = () => {
   let {id} = useParams()
+  const username: any = id?.split('&')[0]
+  const userId: any = id?.split('&')[1]
 
   const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
@@ -15,11 +17,12 @@ const InstallationFormByCategory = () => {
   useEffect(() => {
     if (id === 'add') {
       setItemIdForUpdate(id)
+    } else if (username && userId) {
+      setItemIdForUpdate('add')
     } else {
       setItemIdForUpdate(id)
     }
-  }, [id])
-
+  }, [])
   const {data: category, error} = useQuery(
     `GetInstallationById-${itemIdForUpdate}`,
     () => {
@@ -27,7 +30,10 @@ const InstallationFormByCategory = () => {
     },
     {
       cacheTime: 0,
-      enabled: enabledQuery && (id !== 'add' || id !== undefined || id !== null),
+      enabled:
+        enabledQuery &&
+        (id !== 'add' || id !== undefined || id !== null) &&
+        id !== `${username}&${userId}`,
       onError: (err) => {
         setItemIdForUpdate(undefined)
       },
@@ -37,24 +43,26 @@ const InstallationFormByCategory = () => {
     /* end:: Api call GetUserTypeById */
   }
 
-  useEffect(() => {
-    console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category, itemIdForUpdate])
-
   {
     /* begin::Add-Form Model functionality */
   }
-  if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
-    return <InstallationFormModal category={{ID: undefined}} />
-  }
 
-  if (!error && category) {
+  if (itemIdForUpdate == 'add' && username && userId) {
+    return (
+      <InstallationFormModal
+        category={{data: {ID: undefined, userName: username, userid: userId}}}
+      />
+    )
+  }
+  if (itemIdForUpdate == 'add') {
+    return <InstallationFormModal category={{data: {ID: undefined}}} />
+  } else {
     return <InstallationFormModal category={category} />
   }
   {
     /* end::Edit-Form Model functionality */
   }
 
-  return null
+  // return null
 }
 export default InstallationFormByCategory

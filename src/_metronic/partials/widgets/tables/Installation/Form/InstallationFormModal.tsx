@@ -9,7 +9,7 @@ import {ListPageData} from '../InstallationContext'
 import InstallationsService from '../helperInstallation/ApiDatarequest'
 import {useFormik} from 'formik'
 import {useLocation} from 'react-router-dom'
-import { useAuth } from '../../../../../../app/modules/auth'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -47,6 +47,10 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   const navigation = useNavigate()
   const location: any = useLocation()
 
+  useEffect(() => {
+    console.log('catagary', category)
+  }, [])
+
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     cablelength: '',
@@ -67,18 +71,18 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   })
 
   useEffect(() => {
-    if (itemIdForUpdate === 'add') {
+    if (itemIdForUpdate == 'add' && category.data.userName && category.data.userid) {
       setInitialValues({
         ...category,
-        id: category.data?.id,
+        id: category?.data?.id,
         status: category.data?.status || '',
         installerid: category.data?.installerid || '',
         zonepointid: category.data?.zonepointid || '',
         cabletypeid: category.data?.cabletypeid || '',
         cablelength: category.data?.cablelength || '',
         iptype: category.data?.iptype || '',
-        userid: category?.data?.userid || location?.state?.userid,
-        userName: category?.data?.userName || location?.state?.userName,
+        userid: category?.data?.userid || '',
+        userName: category?.data?.userName || '',
 
         accesspointip: category.data?.accesspointip || '',
         remark: category.data?.remark || '',
@@ -87,32 +91,54 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         stationMac: category.data?.stationMac || '',
         connectiontype: category.data?.connectiontype || '',
         isnotifyinstaller: category.data?.isnotifyinstaller || false,
-       createdbyId:auth?.userId
+        createdbyId: auth?.userId,
+      })
+    }
+    if (itemIdForUpdate == 'add') {
+      setInitialValues({
+        ...category,
+        id: category?.data?.id,
+        status: category.data?.status || '',
+        installerid: category.data?.installerid || '',
+        zonepointid: category.data?.zonepointid || '',
+        cabletypeid: category.data?.cabletypeid || '',
+        cablelength: category.data?.cablelength || '',
+        iptype: category.data?.iptype || '',
+        userid: category?.data?.userid || '',
+        userName: category?.data?.userName || '',
 
+        accesspointip: category.data?.accesspointip || '',
+        remark: category.data?.remark || '',
+        stationip: category.data?.stationip || '',
+        stationname: category.data?.stationname || '',
+        stationMac: category.data?.stationMac || '',
+        connectiontype: category.data?.connectiontype || '',
+        isnotifyinstaller: category.data?.isnotifyinstaller || false,
+        createdbyId: auth?.userId,
       })
     } else {
       setInitialValues({
         ...category,
-        id: category.data?.id,
-        status: category.data?.status || '',
-        installerid: category.data?.installerid || '',
-        zonepointid: category.data?.zonepointid || '',
-        cabletypeid: category.data?.cabletypeid || '',
-        cablelength: category.data?.cablelength || '',
-        iptype: category.data?.iptype || '',
-        userid: category.data?.userid || '',
-        userName: category.data?.userName || '',
-        accesspointip: category.data?.accesspointip || '',
-        remark: category.data?.remark || '',
-        stationip: category.data?.stationip || '',
-        stationname: category.data?.stationname || '',
-        stationMac: category.data?.stationMac || '',
-        connectiontype: category.data?.connectiontype || '',
-        isnotifyinstaller: category.data?.isnotifyinstaller || false,
-        modifyby:auth?.userId
+        id: category?.data?.id,
+        status: category?.data?.status || '',
+        installerid: category?.data?.installerid || '',
+        zonepointid: category?.data?.zonepointid || '',
+        cabletypeid: category?.data?.cabletypeid || '',
+        cablelength: category?.data?.cablelength || '',
+        iptype: category?.data?.iptype || '',
+        userid: +category?.data?.userid || '',
+        userName: category?.data?.userName || '',
+        accesspointip: category?.data?.accesspointip || '',
+        remark: category?.data?.remark || '',
+        stationip: category?.data?.stationip || '',
+        stationname: category?.data?.stationname || '',
+        stationMac: category?.data?.stationMac || '',
+        connectiontype: category?.data?.connectiontype || '',
+        isnotifyinstaller: category?.data?.isnotifyinstaller || false,
+        modifyby: auth?.userId,
       })
     }
-  }, [itemIdForUpdate])
+  }, [itemIdForUpdate, category])
 
   useEffect(() => {
     if (getUserNameData.length === 0) {
@@ -121,7 +147,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   }, [getUserNameData])
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {

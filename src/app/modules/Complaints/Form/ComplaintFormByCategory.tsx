@@ -16,7 +16,6 @@ const ComplaintFormByCategory = () => {
     console.log('gggggggggggg', username)
 
     if (id === 'add') {
-      console.log('iddd::::::::', id)
       setItemIdForUpdate(id)
     } else if (username && userId) {
       setItemIdForUpdate('add')

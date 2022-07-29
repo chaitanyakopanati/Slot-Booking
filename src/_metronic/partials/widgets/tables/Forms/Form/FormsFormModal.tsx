@@ -9,7 +9,7 @@ import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../FormsContext'
 import Inquiriesservice from '../helperForms/ApiDataRequest'
 import moment from 'moment'
-import { useAuth } from '../../../../../../app/modules/auth'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -80,6 +80,45 @@ const FormsFormModal: FC<Props> = ({category}) => {
   })
 
   useEffect(() => {
+    if (itemIdForUpdate === 'add' && category?.data?.userName && category?.data?.userid) {
+      setInitialValues({
+        ...category,
+        id: category.data?.id,
+        userid: category.data?.userid || '',
+        userName: category?.data?.userName || '',
+
+        formno: category.data?.formno || '',
+        formdate: moment(category.data?.formdate).format('YYYY-MM-DD'),
+        formtype: category.data?.formtype || '',
+        salesexecutiveid: category.data?.salesexecutiveid || '',
+        pacakgetype: category.data?.pacakgetype || '',
+        companyid: category.data?.companyid || '',
+        packagecatid: category.data?.packagecatid || '',
+        packagevalidity: category.data?.packagevalidity || '',
+        packagecost: category.data?.packagecost || 0,
+        packageid: category.data?.packageid || '',
+        installationcost: category.data?.installationcost || 0,
+        othercost: category.data?.othercost || 0,
+        discount: category.data?.discount || 0,
+        gstamount: category.data?.gstamount || 0,
+        totalamount: category.data?.totalamount || 0,
+        cashamount: category.data?.cashamount || 0,
+        chequeamount: category.data?.chequeamount || 0,
+        remaningamount: category.data?.remaningamount || 0,
+        bankid: category.data?.bankid || '',
+        chequeno: category.data?.chequeno || '',
+        chequedate: moment(category.data?.chequedate).format('YYYY-MM-DD'),
+        receiverid: category.data?.receiverid || '',
+        activationdate: moment(category.data?.activationdate).format('YYYY-MM-DD'),
+        expirydate: moment(category.data?.expirydate).format('YYYY-MM-DD'),
+        iptype: category.data?.iptype || '',
+        note: category.data?.note || '',
+        thirdparty: category.data?.thirdparty || '',
+        remark: category.data?.remark || '',
+        status: category.data?.status || '',
+        createdbyId: auth?.userId,
+      })
+    }
     if (itemIdForUpdate === 'add') {
       setInitialValues({
         ...category,
@@ -115,47 +154,48 @@ const FormsFormModal: FC<Props> = ({category}) => {
         remark: category.data?.remark || '',
         status: category.data?.status || '',
         createdbyId: auth?.userId,
+        userName: category?.data?.userName || '',
       })
     } else {
       setInitialValues({
         ...category,
-        id: category.data?.id,
-        userid: category.data?.userid || '',
-        userName: category.data?.userName || '',
-        formno: category.data?.formno || '',
-        formdate: moment(category.data?.formdate).format('YYYY-MM-DD'),
-        formtype: category.data?.formtype || '',
-        pacakgetype: category.data?.pacakgetype || '',
-        salesexecutiveid: category.data?.salesexecutiveid || '',
-        companyid: category.data?.companyid || '',
-        packagecatid: category.data?.packagecatid || '',
-        packagevalidity: category.data?.packagevalidity || '',
-        packagecost: category.data?.packagecost || 0,
-        packageName: category.data?.packageName || '',
-        packageid: category.data?.packageid || '',
-        installationcost: category.data?.installationcost || 0,
-        othercost: category.data?.othercost || 0,
-        discount: category.data?.discount || 0,
-        gstamount: category.data?.gstamount || 0,
-        totalamount: category.data?.totalamount || 0,
-        cashamount: category.data?.cashamount || 0,
-        chequeamount: category.data?.chequeamount || 0,
-        remaningamount: category.data?.remaningamount || 0,
-        bankid: category.data?.bankid || '',
-        chequeno: category.data?.chequeno || '',
-        chequedate: moment(category.data?.chequedate).format('YYYY-MM-DD'),
-        receiverid: category.data?.receiverid || '',
-        activationdate: moment(category.data?.activationdate).format('YYYY-MM-DD'),
-        expirydate: moment(category.data?.expirydate).format('YYYY-MM-DD'),
-        iptype: category.data?.iptype || '',
-        note: category.data?.note || '',
-        thirdparty: category.data?.thirdparty || '',
-        remark: category.data?.remark || '',
-        status: category.data?.status || '',
+        id: category?.data?.id,
+        userid: category?.data?.userid || '',
+        userName: category?.data?.userName || '',
+        formno: category?.data?.formno || '',
+        formdate: moment(category?.data?.formdate).format('YYYY-MM-DD'),
+        formtype: category?.data?.formtype || '',
+        pacakgetype: category?.data?.pacakgetype || '',
+        salesexecutiveid: category?.data?.salesexecutiveid || '',
+        companyid: category?.data?.companyid || '',
+        packagecatid: category?.data?.packagecatid || '',
+        packagevalidity: category?.data?.packagevalidity || '',
+        packagecost: category?.data?.packagecost || 0,
+        packageName: category?.data?.packageName || '',
+        packageid: category?.data?.packageid || '',
+        installationcost: category?.data?.installationcost || 0,
+        othercost: category?.data?.othercost || 0,
+        discount: category?.data?.discount || 0,
+        gstamount: category?.data?.gstamount || 0,
+        totalamount: category?.data?.totalamount || 0,
+        cashamount: category?.data?.cashamount || 0,
+        chequeamount: category?.data?.chequeamount || 0,
+        remaningamount: category?.data?.remaningamount || 0,
+        bankid: category?.data?.bankid || '',
+        chequeno: category?.data?.chequeno || '',
+        chequedate: moment(category?.data?.chequedate).format('YYYY-MM-DD'),
+        receiverid: category?.data?.receiverid || '',
+        activationdate: moment(category?.data?.activationdate).format('YYYY-MM-DD'),
+        expirydate: moment(category?.data?.expirydate).format('YYYY-MM-DD'),
+        iptype: category?.data?.iptype || '',
+        note: category?.data?.note || '',
+        thirdparty: category?.data?.thirdparty || '',
+        remark: category?.data?.remark || '',
+        status: category?.data?.status || '',
         modifyby: auth?.userId,
       })
     }
-  }, [itemIdForUpdate])
+  }, [itemIdForUpdate, category])
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -284,38 +324,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
           <div className='modal-body'>
             <div className='container-fluid p-0'>
               <div className='row w-100 mx-0 mb-4 gy-4'>
-                {/* <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
-                  <div
-                    className='image-input image-input-outline mx-auto'
-                    data-kt-image-input='true'
-                    style={{
-                      backgroundImage: "url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')",
-                    }}
-                  >
-                    <div
-                      className='image-input-wrapper w-125px h-125px'
-                      style={{
-                        backgroundImage: 'url(/metronic8/demo1/assets/media/avatars/300-1.jpg)',
-                      }}
-                    ></div>
-                    <label
-                      className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
-                      data-kt-image-input-action='change'
-                    >
-                      <i className='bi bi-pencil-fill fs-7'></i>
-                      <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
-                      <input type='hidden' name='avatar_remove' />
-                    </label>
-                    <span
-                      className='btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow'
-                      data-kt-image-input-action='remove'
-                    >
-                      <i className='bi bi-x fs-2'></i>
-                    </span>
-                  </div>
-                  <div className='form-text'>Choose an image</div>
-                </div> */}
-
                 <div className='col-md-12'>
                   <div className='row mb-6'>
                     <div className='col-md-3'>
@@ -332,7 +340,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                             suggestionRef.current.style.display = 'block'
                           } else {
                             suggestionRef.current.style.display = 'none'
-                            console.log('Elseeeeeee__________________________', suggestionRef)
                           }
                           formik.handleChange(e)
                         }}
@@ -343,7 +350,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                             if (suggestionRef.current) {
                               suggestionRef.current.style.display = 'none'
                             }
-                            console.log(suggestionRef, '=====================-------===----==--')
                             document.removeEventListener('click', () => {})
                           })
                         }}
