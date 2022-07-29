@@ -103,7 +103,9 @@ const CustomerTable = () => {
                   <td className='text-dark fw-bold fs-6'>{customer.packageName}</td>
                   <td className='text-dark fw-bold fs-6'>
                     {' '}
-                    {moment.utc(customer?.expiryDate).local().format('DD-MMMM-YYYY') || '-'}
+                    {customer?.expiryDate
+                      ? moment.utc(customer?.expiryDate).local().format('DD-MMMM-YYYY')
+                      : '-'}
                   </td>
                   <td>
                     <a
