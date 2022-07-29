@@ -147,8 +147,6 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
                         // window.open(`/forms/formsform/add`, '_blank')
-                        // localStorage.setItem('UserName', `${customer.userName}`)
-                        // localStorage.setItem('Id', `${customer.id}`)
 
                         navigate('/forms/formsform/add', {state: customer})
                       }}
@@ -163,8 +161,7 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
                         // window.open(`/installations/installationsform/add`, '_blank')
-                        // localStorage.setItem('UserName', `${customer.userName}`)
-                        // localStorage.setItem('Id', `${customer.id}`)
+
                         navigate('/installations/installationsform/add', {state: customer})
                       }}
                     >
@@ -174,19 +171,13 @@ const CustomerTable = () => {
                       />
                     </a>
                     <a
-                      href='#'
+                      // href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                       onClick={() => {
-                        // window.open(
-                        //   `/complaint/complaintform/${customer.userName}&${customer.id}`,
-                        //   '_blank'
-                        // )
-                        // localStorage.setItem('UserName', `${customer.userName}`)
-                        // localStorage.setItem('Id', `${customer.id}`)
-
-                        navigate('/complaint/complaintform/add', {
-                          state: customer,
-                        })
+                        window.open(
+                          `/complaint/complaintform/${customer.userName}&${customer.id}`,
+                          '_blank'
+                        )
                       }}
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />

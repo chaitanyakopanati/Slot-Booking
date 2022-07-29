@@ -31,8 +31,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
   const navigate = useNavigate()
   const {auth} = useAuth()
 
-  // const location: any = useLocation()
-
   const suggestionRef: any = useRef()
 
   const [initialValues, setInitialValues] = useState<any>({
@@ -69,33 +67,30 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
   }, [])
 
   useEffect(() => {
-    if (itemIdForUpdate === 'add') {
-      setInitialValues({
-        ...category,
-        id: category.id || '',
-        complainttypeid: category.complaintTypeId || 0,
-        username: category?.username || '',
-        userId: category?.userId || '',
-        // username: category?.username || localStorage?.getItem('UserName') || '',
-        // userId: category?.userId || localStorage?.getItem('id') || '',
-        description: category?.description || '',
-        status: category.statusId || '',
-        assigntechnicianid: category.assignTechnicianId || '',
-        faultid: category.faultId || '',
-        isnotifycustomer: category.isnotifycustomer || '',
-        remark: category.remark || '',
-        isnotifytechinician: category.isnotifytechinician || false,
-        CreatedBy: auth?.userId || '',
-      })
-    } else if (itemIdForUpdate == 'true') {
+    if (itemIdForUpdate === 'add' && category.username && category.userId) {
       setInitialValues({
         ...category,
         id: category?.id || '',
         complainttypeid: category?.complaintTypeId || 0,
         username: category?.username || '',
         userId: category?.userId || '',
-        // username: category?.username || localStorage?.getItem('UserName') || '',
-        // userId: category?.userId || localStorage?.getItem('id') || '',
+        description: category?.description || '',
+        status: category?.statusId || '',
+        assigntechnicianid: category?.assignTechnicianId || '',
+        faultid: category?.faultId || '',
+        isnotifycustomer: category?.isnotifycustomer || '',
+        remark: category?.remark || '',
+        isnotifytechinician: category?.isnotifytechinician || false,
+        CreatedBy: auth?.userId || '',
+      })
+    }
+    if (itemIdForUpdate === 'add') {
+      setInitialValues({
+        ...category,
+        id: category?.id || '',
+        complainttypeid: category?.complaintTypeId || 0,
+        username: category?.username || '',
+        userId: category?.userId || '',
         description: category?.description || '',
         status: category?.statusId || '',
         assigntechnicianid: category?.assignTechnicianId || '',
@@ -106,24 +101,25 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         CreatedBy: auth?.userId || '',
       })
     } else {
+      console.log('edit complaint from data:::::')
+      console.log('category', category)
       setInitialValues({
         ...category,
-        id: category.id || '',
-        // outwardDate: moment(category.outwardDate).format('YYYY-MM-DD'),
-        complainttypeid: category.complaintTypeId || 0,
-        username: category.username || '',
-        userId: category.userId || '',
+        id: category?.id || '',
+        complainttypeid: category?.complaintTypeId || 0,
+        username: category?.username || '',
+        userId: category?.userId || '',
         description: category?.description || '',
-        status: category.statusId || '',
-        assigntechnicianid: category.assignTechnicianId || '',
-        faultid: category.faultId || '',
-        isnotifycustomer: category.isnotifycustomer || '',
-        remark: category.remark || '',
-        isnotifytechinician: category.isnotifytechinician || false,
+        status: category?.statusId || '',
+        assigntechnicianid: category?.assignTechnicianId || '',
+        faultid: category?.faultId || '',
+        isnotifycustomer: category?.isnotifycustomer || '',
+        remark: category?.remark || '',
+        isnotifytechinician: category?.isnotifytechinician || false,
         ModifyBy: auth?.userId || '',
       })
     }
-  }, [itemIdForUpdate])
+  }, [itemIdForUpdate, category])
 
   const cancel = (withRefresh?: boolean) => {
     navigate('/complaint')
@@ -203,7 +199,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         >
           <div className='card'>
             <div className='modal-header'>
-              {itemIdForUpdate === 'add' || itemIdForUpdate == 'true' ? (
+              {itemIdForUpdate === 'add' ? (
                 <h5 className='modal-title'>Create Complaint</h5>
               ) : (
                 <h5 className='modal-title'>Edit Complaint</h5>
@@ -234,7 +230,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                             suggestionRef.current.style.display = 'block'
                           } else {
                             suggestionRef.current.style.display = 'none'
-                            console.log('Elseeeeeee__________________________', suggestionRef)
                           }
                           formik.handleChange(e)
                         }}
@@ -462,7 +457,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
               <CustomTooltip title='Submit form'>
                 <button type='submit' className='btn btn-primary'>
-                  {itemIdForUpdate === 'add' || itemIdForUpdate == 'true' ? 'Create' : 'Update'}
+                  {itemIdForUpdate === 'add' ? 'Create' : 'Update'}
                 </button>
               </CustomTooltip>
             </div>

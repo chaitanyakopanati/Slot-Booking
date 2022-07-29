@@ -96,9 +96,7 @@ const editComplaints = (obj: postlistData) => {
   return http.post(`SaveComplaint`, {
     id: obj.id,
     complainttypeid: obj.complainttypeid,
-    // username: obj.username,
     userId: obj.userId,
-
     description: obj.description,
     status: obj.status,
     remark: obj.remark,
@@ -117,8 +115,6 @@ const editComplaints = (obj: postlistData) => {
   /* begin:: getById Api call */
 }
 const GetComplaintsTypeById = (id: ID) => {
-  console.log(id, 'id===============')
-
   return http.get(`GetComplaintById/${id}`)
 }
 {

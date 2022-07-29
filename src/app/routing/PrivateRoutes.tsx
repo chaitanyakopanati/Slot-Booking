@@ -49,16 +49,15 @@ const PrivateRoutes = () => {
           }
         />
 
-        <Route
+        {/* <Route
           path='complaint/complaintform/:id&name'
           element={
             <>
               <PageTitle>Complaint Form</PageTitle>
-              {/* <ComplaintFormWrapper /> */}
               <ComplaintFormWrapper />
             </>
           }
-        />
+        /> */}
 
         <Route path='customers' element={<CustomersWrapper />} />
         <Route path='customers/customerviewform/:id' element={<CustomerViewWrapper />} />

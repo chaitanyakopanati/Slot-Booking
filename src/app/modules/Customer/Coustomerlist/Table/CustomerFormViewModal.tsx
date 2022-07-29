@@ -11,8 +11,6 @@ type Props = {
 
 const API_URL_DATA = process.env.REACT_APP_IMG_PATH
 
-// const API_URL_DATA = `${process.env.REACT_APP_API_URL}/Mediaupload/Customer/IDProof//`
-
 const idProofPath: string = `${API_URL_DATA}Mediaupload/Customer/IDProof//`
 const gstProofPath: string = `${API_URL_DATA}MediaUpload/Customer/GSTCertificate//`
 const addressProofPath: string = `${API_URL_DATA}MediaUpload/Customer/AddressProof/`
@@ -35,23 +33,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
 
       <Formik
         initialValues={{
-          // id: category.data[0]?.id || 0,
-          // complaintTypeId: category.data[0]?.complaintTypeId || 0,
-          // username: category.data[0]?.username || 0,
-          // name: category.data[0]?.name || 0,
-          // complaintTypeName: category.data[0]?.complaintTypeName || 0,
-          // address: category.data[0]?.address || "",
-          // description: category.data[0]?.description || 0,
-          // assignTechnicianName: category.data[0]?.assignTechnicianName || 0,
-          // statusName: category.data[0]?.statusName || 0,
-          // faultName: category.data[0]?.faultName || 0,
-          // remark: category.data[0]?.remark || 0,
-          // createByName: category.data[0]?.createByName || 0,
-          // mobileNo: category.data[0]?.mobileNo || 0,
-          // companyName: category.data[0]?.companyName || " ",
-          // contactNo: category.data[0]?.contactNo || 0,
-          // solvedAt: moment(category.data[0]?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') || "",
-          // createdDate: moment(category.data[0]?.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
           id: category.id || 0,
           userName: category.userName || '',
           companyName: category.companyName || '',
@@ -126,7 +107,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
                       style={{
-                        // backgroundImage: `url("http://192.168.1.181:8080/Mediaupload/Customer/IDProof//${props.values.docNameIdProof}")`,
                         backgroundImage: `url("${idProofPath}${props.values.docNameIdProof}")`,
                       }}
                     >
@@ -174,16 +154,9 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       data-kt-image-input='true'
                       // style={{backgroundImage: `url(${ImageSelect})`}}
                       style={{
-                        // backgroundImage: `url("http://192.168.1.181:8080/MediaUpload/Customer/AddressProof/download (1)220114229.jpg")`,
                         backgroundImage: `url("${addressProofPath}${props.values.docNameAddressproofImage}")`,
-
-                        // backgroundImage: `url(${https://images.pexels.com/photos/20787/pexels-photo.jpg})`,
                       }}
                     >
-                      {/* <img
-                        src='http://192.168.1.181:8080/MediaUpload/Customer/AddressProof/download (1)220114229.jpg'
-                        alt='new'
-                      /> */}
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
                       <label
@@ -226,7 +199,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      // style={{backgroundImage: `url(${ImageSelect})`}}
                       style={{
                         backgroundImage: `url("${gstProofPath}${props.values.docNameGstcerificateImage}")`,
                       }}
@@ -354,15 +326,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         // type='number'
                         autoComplete='off'
                       />
-                      {/* <div data-select2-id='select-zone'>
-                        <select className='form-select form-select-solid'>
-                          <option>Select Zone</option>
-                          <option value='1'>All</option>
-                          <option value='2'>Katargam</option>
-                          <option value='3'>Ring Road</option>
-                          <option value='4'>Varachha</option>
-                        </select>
-                      </div> */}
                     </div>
                   </div>
                   <div className='col-lg-12'>

@@ -112,57 +112,6 @@ function CustomerFormModal({customerById}: customerProps) {
     },
   })
 
-  // const formik = useFormik({
-  //   enableReinitialize: true,
-  //   initialValues: initialValues,
-  //   validationSchema: validationSchema,
-
-  //   onSubmit: async (values: any, {resetForm}) => {
-  //     // LoderActions(true)
-  //     // values.complainttypeid = +values.complainttypeid
-  //     // values.assigntechnicianid = +values.assigntechnicianid
-  //     // values.faultid = +values.faultid
-  //     // values.status = +values.status
-  //     // values.userId = +values.userId
-
-  //     console.log('ccccc', values.id)
-  //     try {
-  //       if (values.id) {
-  //         // Edit Api Response
-  //         let response = await saveCustomer(values)
-  //         console.log('Edit User*****************', response)
-
-  //         if (response.success === false) {
-  //           toast.error(response.message)
-  //         } else {
-  //           toast.success(response.message)
-  //           // toast.success(`Data Updated Successfully`)
-  //         }
-  //         navigate('/customers')
-  //         // toast.success(` Data Updated Successfully`)
-  //         toast.dismiss('1s')
-  //       } else {
-  //         let response = await saveCustomer(values)
-  //         console.log('Add User*****************', response)
-
-  //         if (response.success === false) {
-  //           toast.error(response.message)
-  //         } else {
-  //           toast.success(response.message)
-  //           // toast.success(` Data Added Successfully`)
-  //         }
-  //         toast.dismiss('1s')
-  //         navigate('/customers')
-  //       }
-  //     } catch (error: any) {
-  //       console.log(error, 'error')
-  //       toast.error(error.data.message)
-  //     } finally {
-  //       // LoderActions(false)
-  //     }
-  //   },
-  // })
-
   const [idProofImage, setIdProofImage] = useState<any>(null)
   const [addressProofImage, setAddressProofImage] = useState<any>(null)
   const [gstCerificateImage, setGstCerificateImage] = useState<any>(null)
