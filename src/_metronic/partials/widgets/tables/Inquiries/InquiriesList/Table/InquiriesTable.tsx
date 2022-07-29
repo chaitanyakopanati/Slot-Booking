@@ -24,6 +24,7 @@ const InquiriesTable = () => {
     DataGetAllTypeStatus,
     DataGetAllTypeSalesExecutve,
     DataGetAllTypeSalesExecutveUserByRole,
+    
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()

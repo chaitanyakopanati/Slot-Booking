@@ -34,6 +34,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     statusData,
     getDataAllTypeCreatedBy,
     salesExecutiveId,
+    setSalesExecutiveId,
     getUserByRole,
     setStatusId,
     startDate,
@@ -108,6 +109,13 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     setStatusId(e.target.value)
   }
 
+  // sale excutive
+  const handleSaleExcutivechange = (e: any) => {
+    // setPageNo(1)
+    console.log(e.target.value)
+    setSalesExecutiveId(e.target.value)
+  }
+
   // download
   const downloadFile = async () => {
     fetchAllDownload()
@@ -126,6 +134,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     statusId,
     startDate,
     endDate,
+    salesExecutiveId
   ])
 
   return (
@@ -295,7 +304,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       className='form-select form-select-solid'
                       {...props.getFieldProps('salesexecutiveId')}
                       value={salesExecutiveId}
-                      onChange={handleStatuschange}
+                      onChange={handleSaleExcutivechange}
                     >
                       <option value=''>All</option>
                       {getUserByRole?.map((row, index) => {

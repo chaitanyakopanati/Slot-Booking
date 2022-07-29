@@ -12,7 +12,6 @@ import {
 } from './helperInstallation/ModelInstallation'
 import {saveAs} from 'file-saver'
 
-
 export interface ComplaintDataContextModel {
   getData: getInstallationsData[]
   statusData: GetAllData[]
@@ -187,33 +186,32 @@ const ListDataProvider: FC = ({children}) => {
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
   let {LoderActions} = useLoader()
 
+  // Download fill
 
-    // Download fill
-
-    let fetchAllDownload = async () => {
-      console.log('Enter')
-      LoderActions(true)
-      try {
-        let response: any = await InstallationsService.getDynamicDownloadFile(
-          searchText,
-          startDate,
-          endDate,
-          createdById,
-          statusId,
-          salesExecutiveId,
-          installerId,
-          zoneId,
-          companyId,
-          mainPointId,
-          connectionTypeId,
-        )
-        saveAs(response.data, 'Installations.xlsx')
-      } catch (error) {
-        console.log('Error', error)
-      } finally {
-        LoderActions(false)
-      }
+  let fetchAllDownload = async () => {
+    console.log('Enter')
+    LoderActions(true)
+    try {
+      let response: any = await InstallationsService.getDynamicDownloadFile(
+        searchText,
+        startDate,
+        endDate,
+        createdById,
+        statusId,
+        salesExecutiveId,
+        installerId,
+        zoneId,
+        companyId,
+        mainPointId,
+        connectionTypeId
+      )
+      saveAs(response.data, 'Installations.xlsx')
+    } catch (error) {
+      console.log('Error', error)
+    } finally {
+      LoderActions(false)
     }
+  }
 
   {
     /* begin:: User:- getDynamicUser Api call */
@@ -398,9 +396,9 @@ const ListDataProvider: FC = ({children}) => {
   //UserName
 
   useEffect(() => {
-    console.log("suggestionUserText",suggestionUserText)
+    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
-      let fetchSuggestionUser = async() => {
+      let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
           let payload: GetAllDataApi = await InstallationsService.getUserName(suggestionUserText)
@@ -410,7 +408,7 @@ const ListDataProvider: FC = ({children}) => {
             LoderActions(false)
             setgetUserNameData(payload?.data)
             console.log(payload.data, 'getUserName')
-          }else if(payload.message==='No records found'){
+          } else if (payload.message === 'No records found') {
             setgetUserNameData([])
           }
         } catch (error) {

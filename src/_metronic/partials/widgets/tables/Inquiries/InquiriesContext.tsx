@@ -270,7 +270,7 @@ const ListDataProvider: FC = ({children}) => {
       console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
 
       if (payload.success == true) {
-        setGetUserByRole(payload.data)
+        setGetUserByRole(payload?.data)
         console.log(payload.data, 'SalesExecutveUserByRole')
       }
     } catch (error) {
