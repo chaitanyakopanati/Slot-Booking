@@ -7,7 +7,7 @@ import {toast} from 'react-toastify'
 import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 
 const CustomerTable = () => {
-  let {filter, fetchCustomer, customerTableData} = ListPageData()
+  let {filter, fetchCustomer, customerTableData, pageNo, pageSize} = ListPageData()
 
   useEffect(() => {
     fetchCustomer()
@@ -47,6 +47,8 @@ const CustomerTable = () => {
     })
   }
 
+  const DataWiseIndex = (pageNo - 1) * pageSize
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
@@ -76,7 +78,7 @@ const CustomerTable = () => {
               return (
                 <tr key={customer.id}>
                   <td>
-                    <div className='text-dark fw-bolder fs-6 ps-4'>{index + 1}</div>
+                    <div className='text-dark fw-bolder fs-6 ps-4'>{DataWiseIndex + index + 1}</div>
                   </td>
 
                   <td className='text-dark fw-bold  fs-6'>{customer.userName}</td>
@@ -108,7 +110,6 @@ const CustomerTable = () => {
                       // target='_blank'
                       onClick={() => {
                         window.open(`/customers/customersform/${customer.id}`, '_blank')
-                        //  navigate(`customersform/${customer.id}`)
                       }}
                     >
                       <KTSVG
@@ -123,8 +124,6 @@ const CustomerTable = () => {
                       data-bs-target='#kt_modal_3'
                       onClick={() => {
                         window.open(`/customers/customerviewform/${customer.id}`, '_blank')
-
-                        // navigate(`customerviewform/${customer.id}`)
                       }}
                     >
                       <KTSVG
@@ -265,6 +264,9 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-active-color-primary btn-sm me-1'
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_1'
+                      onClick={() => {
+                        window.open(`/customers/customersform/${customer.id}`, '_blank')
+                      }}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen055.svg'
@@ -276,31 +278,65 @@ const CustomerTable = () => {
                       className='btn btn-icon btn-active-color-success btn-sm me-1'
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_3'
+                      onClick={() => {
+                        window.open(`/customers/customerviewform/${customer.id}`, '_blank')
+                      }}
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
                         className='svg-icon-3'
                       />
                     </a>
-                    <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <a
+                      href='#'
+                      className='btn btn-icon btn-active-color-danger btn-sm me-1'
+                      onClick={() => deletedCustomerData(customer.id, customer.userName)}
+                    >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
                         className='svg-icon-3'
                       />
                     </a>
-                    <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <a
+                      href='#'
+                      className='btn btn-icon btn-active-color-danger btn-sm me-1'
+                      onClick={() => {
+                        window.open(
+                          `/forms/formsform/${customer.userName}&${customer.userid}`,
+                          '_blank'
+                        )
+                      }}
+                    >
                       <KTSVG
                         path='/media/icons/duotune/general/gen005.svg'
                         className='svg-icon-3'
                       />
                     </a>
-                    <a href='#' className='btn btn-icon btn-active-color-danger btn-sm me-1'>
+                    <a
+                      href='#'
+                      className='btn btn-icon btn-active-color-danger btn-sm me-1'
+                      onClick={() => {
+                        window.open(
+                          `/installations/installationsform/${customer.userName}&${customer.userid}`,
+                          '_blank'
+                        )
+                      }}
+                    >
                       <KTSVG
                         path='/media/icons/duotune/electronics/elc008.svg'
                         className='svg-icon-3'
                       />
                     </a>
-                    <a href='#' className='btn btn-icon btn-active-color-danger btn-sm'>
+                    <a
+                      href='#'
+                      className='btn btn-icon btn-active-color-danger btn-sm'
+                      onClick={() => {
+                        window.open(
+                          `/complaint/complaintform/${customer.userName}&${customer.userid}`,
+                          '_blank'
+                        )
+                      }}
+                    >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>
                   </div>
