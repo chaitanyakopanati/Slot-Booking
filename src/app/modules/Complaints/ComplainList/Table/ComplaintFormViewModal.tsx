@@ -244,7 +244,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Solved at</label>
                     <input
                       placeholder='Solved at'
-                      value={props.values?.solvedAt}
+                      value={''}
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'
