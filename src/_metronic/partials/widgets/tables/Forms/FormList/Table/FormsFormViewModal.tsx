@@ -39,7 +39,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
     totalamount: category.data?.totalamount || '',
     cashamount: category.data?.cashamount || '',
     chequeamount: category.data?.chequeamount || '',
-    remaningamount: category.data?.remaningamount || '',
+    remaningamount: category.data?.remaningamount || 0,
     bankName: category.data?.bankName || '',
     chequeno: category.data?.chequeno || '',
     receiverName: category.data?.receiverName || '',

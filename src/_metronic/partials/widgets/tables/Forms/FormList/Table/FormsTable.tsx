@@ -31,17 +31,10 @@ const FormsTable = () => {
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
-  const openEditModal = (id: any) => {
-    setItemIdForUpdate(id)
-  }
-
-  const openViewModal = (id: any) => {
-    setViewIdForUpdate(id)
-  }
-
   {
     /* begin:: Delete functionlity */
   }
+
   const deleteFaults = (ID: number) => {
     Swal.fire({
       title: `Do you want to delete this records ?`,
@@ -59,13 +52,11 @@ const FormsTable = () => {
             LoderActions(false)
 
             toast.success(payload.message)
-            // toast.success(` Data Deleted Successfully`)
             toast.dismiss('1s')
           } else {
             LoderActions(false)
 
             toast.error(payload.message)
-            // toast.error(` Failed to Delete Data`)
             toast.dismiss('1s')
           }
         } catch (error: any) {
@@ -96,11 +87,37 @@ const FormsTable = () => {
     setSearchText(e.target.value)
   }
 
+  const handleColor = (row: any) => {
+    var formDate = moment(row.formdate).format('YYYY-MM-DD')
+    console.log(formDate, 'FormDate')
+
+    let currDate = moment().format('YYYY-MM-DD')
+    console.log(typeof currDate, 'currDate')
+    let currDay = moment(currDate).diff(formDate, 'days')
+    console.log(currDay, 'currDay')
+
+    if (row.remaningamount <= 0) {
+      console.log('white')
+
+      return '#fff'
+    }
+    if (row.remaningamount > 0 && Number(currDay) < 15) {
+      console.log('light')
+      return '#f5c6cb'
+    }
+    if (row.remaningamount > 0 && Number(currDay) >= 15) {
+      console.log('tomato')
+
+      return 'tomato'
+    }
+    return '#fff'
+  }
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
         {/* begin::Table */}
-        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
+        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border '>
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
@@ -119,10 +136,8 @@ const FormsTable = () => {
           <tbody>
             {getData.length > 0 ? (
               getData.map((row: getInquiriesData, index: number) => {
-                // console.log("wertyuiop[",row);
-
                 return (
-                  <tr key={index}>
+                  <tr key={index} style={{backgroundColor: handleColor(row)}}>
                     {/* begin:: Index No */}
                     <td>
                       <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
@@ -160,9 +175,9 @@ const FormsTable = () => {
                     </td>
                     {/* end:: User Type Input  formdate*/}
 
-                    {/* begin:: User Type Input formtype*/}
-                    <td className='text-dark fw-bold  fs-6'>{row.formtype || '-'}</td>
-                    {/* end:: User Type Input  formtype*/}
+                    {/* begin:: User Type Input formtypeName*/}
+                    <td className='text-dark fw-bold  fs-6'>{row.formtypeName || '-'}</td>
+                    {/* end:: User Type Input  formtypeName*/}
 
                     {/* begin:: Action */}
                     <td>
@@ -273,7 +288,7 @@ const FormsTable = () => {
 
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Form Type:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.formtype || '-'}</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.formtypeName || '-'}</div>
                         </div>
                       </div>
 

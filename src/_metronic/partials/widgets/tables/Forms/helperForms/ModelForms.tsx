@@ -19,6 +19,9 @@ export interface getInquiriesData {
   userName: string
   formdate: string
   formtype: string
+  formtypeName:string
+  remaningamount: number
+  
 }
 
 export interface getAllInquiriesData {
