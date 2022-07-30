@@ -254,7 +254,7 @@ const ComplaintHeader = () => {
                           className='svg-icon-3 me-0'
                         />
                       </span>
-                      <span className='d-none d-sm-block ms-3'>Download</span>
+                      <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
                   </div>
 
@@ -299,7 +299,7 @@ const ComplaintHeader = () => {
               {filterShow && (
                 <div className='row gy-2 w-100 mx-0 mt-5'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Status:</label>
+                    <label className='form-label fw-bold'>Status</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -308,8 +308,8 @@ const ComplaintHeader = () => {
                         onChange={handleStatus}
                       >
                         <option value='0'>All</option>
-                        <option value='1'>Solved</option>
-                        <option value='2'>Unsolved</option>
+                        <option value='2'>Solved</option>
+                        <option value='1'>Unsolved</option>
                       </select>
                     </div>
                   </div>
@@ -354,7 +354,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Assign to:</label>
+                    <label className='form-label fw-bold'>Assign to</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -375,7 +375,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Complaint type:</label>
+                    <label className='form-label fw-bold'>Complaint type</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -396,7 +396,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Zone:</label>
+                    <label className='form-label fw-bold'>Zone</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -417,7 +417,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Company:</label>
+                    <label className='form-label fw-bold'>Company</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -438,7 +438,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Fault:</label>
+                    <label className='form-label fw-bold'>Fault</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -459,7 +459,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Package category:</label>
+                    <label className='form-label fw-bold'>Package category</label>
                     <div data-select2-id='select-zone'>
                       <select
                         className='form-select form-select-solid'
@@ -480,7 +480,7 @@ const ComplaintHeader = () => {
                     </div>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Created by:</label>
+                    <label className='form-label fw-bold'>Created by</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('createdBy')}

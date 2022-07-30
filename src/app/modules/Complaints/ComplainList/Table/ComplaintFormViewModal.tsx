@@ -31,16 +31,20 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
           mobileNo: category.data[0]?.mobileNo || 0,
           companyName: category.data[0]?.companyName || ' ',
           contactNo: category.data[0]?.contactNo || 0,
-          solvedAt: moment(category.data[0]?.solvedAt, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
+          solvedAt: category.data[0]?.solvedAt
+            ? moment(category.data[0]?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            : '',
 
-          createdDate: moment(category.data[0]?.createdDate, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
-          modifiedDate: moment(category.data[0]?.modifiedDate, 'YYYY-MM-DD,h:mm a').format(
-            'YYYY-MM-DD,h:mm a'
-          ),
+          createdDate: category.data[0]?.createdDate
+            ? moment(category.data[0]?.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            : '',
+
+          modifiedDate: category.data[0]?.modifiedDate
+            ? moment(category.data[0]?.modifiedDate, 'YYYY-MM-DD,h:mm a').format(
+                'YYYY-MM-DD,h:mm a'
+              )
+            : '',
+
           modifiedByName: category.data[0]?.modifiedByName || ' ',
         }}
         onSubmit={(values) => console.log(values)}
@@ -244,7 +248,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Solved at</label>
                     <input
                       placeholder='Solved at'
-                      value={''}
+                      value={props.values.solvedAt}
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       autoComplete='off'

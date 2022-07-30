@@ -45,14 +45,19 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
           address: category.address || '',
           remark: category.remark || '',
           createdby: category.createdby || '',
-          modifyAt: moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a'),
+          modifyAt: category.modifyAt
+            ? moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            : '',
           modifyby: category.modifyby || '',
-          createdAt:
-            moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') || '',
-          activationDate:
-            moment(category.activationDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') || '',
-          expiryDate:
-            moment(category.expiryDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a') || '',
+          createdAt: category.createdAt
+            ? moment(category.createdAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            : '',
+          activationDate: category.activationDate
+            ? moment(category.activationDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            : '',
+          expiryDate: category.expiryDate
+            ? moment(category.expiryDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            : '',
           docNameAddressproofImage: category.docNameAddressproofImage || '',
           docNameGstcerificateImage: category.docNameGstcerificateImage || '',
           docNameIdProof: category.docNameIdProof || '',

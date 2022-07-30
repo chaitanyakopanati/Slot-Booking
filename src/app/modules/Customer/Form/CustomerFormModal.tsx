@@ -35,6 +35,11 @@ function CustomerFormModal({customerById}: customerProps) {
     LastName: Yup.string().required().label('LastName'),
     Middlename: Yup.string().required().label('Middlename'),
   })
+  const API_URL_DATA = process.env.REACT_APP_IMG_PATH
+
+  const idProofPath: string = `${API_URL_DATA}Mediaupload/Customer/IDProof//`
+  const gstProofPath: string = `${API_URL_DATA}MediaUpload/Customer/GSTCertificate//`
+  const addressProofPath: string = `${API_URL_DATA}MediaUpload/Customer/AddressProof/`
 
   let {zoneType} = ListPageData()
 
@@ -59,9 +64,13 @@ function CustomerFormModal({customerById}: customerProps) {
       Address: customerById.address || '',
       Remark: customerById.remark || '',
       Description: '',
-      IdproofImageFile: '',
-      AddressproofImageFile: '',
-      GstcerificateImageFile: '',
+      IdproofImageFile: customerById?.docNameIdProof ? customerById?.docNameIdProof : '',
+      AddressproofImageFile: customerById?.docNameAddressproofImage
+        ? customerById?.docNameAddressproofImage
+        : '',
+      GstcerificateImageFile: customerById?.docNameGstcerificateImage
+        ? customerById?.docNameGstcerificateImage
+        : '',
       CreatedBy: auth?.userId || '',
       ModifyBy: auth?.userId || '',
       IsMasterUser: false,
@@ -146,6 +155,11 @@ function CustomerFormModal({customerById}: customerProps) {
                       idProofImage ? idProofImage : customerById.idproofImage || ImageSelect
                     })`,
                   }}
+                  // style={{
+                  //   backgroundImage: idProofPath
+                  //     ? `url("${idProofPath}${formik?.values?.IdproofImageFile}")`
+                  //     : ImageSelect,
+                  // }}
                 >
                   <div className='image-input-wrapper w-125px h-125px'></div>
 
@@ -161,6 +175,7 @@ function CustomerFormModal({customerById}: customerProps) {
                       type='file'
                       name='IdproofImageFile'
                       accept='.png, .jpg, .jpeg'
+                      // value={`${idProofPath}${formik?.values?.IdproofImageFile}`}
                       onChange={async (e) => {
                         if (!e.target.files) {
                           return

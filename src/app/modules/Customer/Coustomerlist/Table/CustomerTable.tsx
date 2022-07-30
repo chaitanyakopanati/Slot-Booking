@@ -61,6 +61,7 @@ const CustomerTable = () => {
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
               <th className='min-w-100px'>package name</th>
+              <th className='min-w-100px'>Mobile No</th>
               <th className='min-w-120px'>Expiry date</th>
               <th className='min-w-125px rounded-end'>Options</th>
             </tr>
@@ -101,6 +102,8 @@ const CustomerTable = () => {
                   </td>
                   <td className='text-dark fw-bold  fs-6'>{customer.address}</td>
                   <td className='text-dark fw-bold fs-6'>{customer.packageName}</td>
+                  <td className='text-dark fw-bold fs-6'>{customer.mobileNo}</td>
+
                   <td className='text-dark fw-bold fs-6'>
                     {' '}
                     {customer?.expiryDate

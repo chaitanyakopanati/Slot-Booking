@@ -12,10 +12,8 @@ const ComplaintTable = () => {
     getData,
     setPageNo,
     setSearchText,
-    // DataGetAllTypeCreatedByTypes,
-    // DataGetAllTypeTechnician,
+
     fetchAllComplaint,
-    // DataGetAllTypeZone,
     pageNo,
     pageSize,
   } = ListPageData()
@@ -29,18 +27,21 @@ const ComplaintTable = () => {
   const openEditPage = () => {
     navigate('complaintform/add')
   }
+  var currentTime: any = moment(new Date())
+  var created = moment(getData[1]?.createdDate)
 
   useEffect(() => {
-    // DataGetAllTypeCreatedByTypes()
     fetchAllComplaint()
-    // DataGetAllTypeTechnician()
-    // DataGetAllTypeZone()
-    console.log('fffffffddddd', getData)
+    console.log('currentTime', currentTime)
+    console.log('created', created)
+    console.log('hhh', getData)
+
+    console.log('currentTime', currentTime.diff(created, 'hours'))
+    console.log('5456456456456454', created.diff(currentTime, 'minutes'))
   }, [])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -70,7 +71,6 @@ const ComplaintTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -80,15 +80,30 @@ const ComplaintTable = () => {
   }
 
   const DataWiseIndex = (pageNo - 1) * pageSize
+
+  const setBackgrondColour = (row: any) => {
+    console.log('ddd', row)
+    if (
+      currentTime.diff(moment(row?.createdDate), 'hours') >= 24 &&
+      row.statusName === 'Unsolved'
+    ) {
+      return `#f5c6cb`
+    } else if (row.statusName === 'Unsolved') {
+      return `#b8daff`
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
         {/* begin::Table */}
-        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
+        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border thead-light'>
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>no.</th>
+              <th className='max-w-60px min-w-40px rounded-start ps-4'>Complaint no.</th>
               <th className='max-w-60px '>Username</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
@@ -106,7 +121,20 @@ const ComplaintTable = () => {
             {getData.length > 0 ? (
               getData?.map((row: any, index: number) => {
                 return (
-                  <tr key={index}>
+                  <tr
+                    key={index}
+                    className={
+                      currentTime.diff(moment(row?.createdDate), 'hours') >= 24 &&
+                      row.statusName === 'Unsolved'
+                        ? 'p-3 mb-2 text-white'
+                        : '' || row.statusName === 'Unsolved'
+                        ? 'p-3 mb-2 text-white'
+                        : ''
+                    }
+                    style={{
+                      backgroundColor: setBackgrondColour(row),
+                    }}
+                  >
                     <td>
                       <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
                         {DataWiseIndex + index + 1}
@@ -122,7 +150,6 @@ const ComplaintTable = () => {
                         </div>
                       </div>
                     </td>
-                    {/* end:: Name Input */}
 
                     <td className='text-dark fw-bold  fs-6'>{row.name || '-'}</td>
 
@@ -137,13 +164,14 @@ const ComplaintTable = () => {
 
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
-                      {moment(row?.outwardDate).format('DD-MMMM-YYYY') || '-'}
+                      {moment(row?.createdDate).format('DD-MMMM-YYYY, h:mm:ss a') || '-'}
                     </td>
                     {/* {moment(row?.outwardDate).format('DD-MMMM-YYYY') || '-'} */}
 
                     <td>
                       <a
-                        className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                        // className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
+                        className='btn btn-icon btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`complaintviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
                       >
@@ -154,7 +182,7 @@ const ComplaintTable = () => {
                       </a>
 
                       <button
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                        className='btn btn-icon btn-active-color-primary btn-sm me-1'
                         onClick={() => {
                           navigate(`complaintform/${row.id}`)
                         }}
