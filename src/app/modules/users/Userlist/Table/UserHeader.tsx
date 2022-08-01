@@ -5,7 +5,7 @@ import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../UserContext'
 import * as Yup from 'yup'
 import {Form} from 'react-bootstrap'
-import  {saveAs}  from 'file-saver'
+import {saveAs} from 'file-saver'
 
 type Props = {
   category: any
@@ -96,12 +96,10 @@ const UserHeader: FC<Props> = ({category}) => {
     fetchAllUser()
   }, [pageNo, pageSize, searchText, zoneId, roleId, searchByUsername, createdById])
 
-
   // download
-  const downloadFile = async() => {
+  const downloadFile = async () => {
     fetchAllDownload()
   }
-
 
   return (
     <>
@@ -155,7 +153,7 @@ const UserHeader: FC<Props> = ({category}) => {
                           className='svg-icon-3 me-0'
                         />
                       </span>
-                      <span className='d-none d-sm-block ms-3'>Download</span>
+                      <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
                   </div>
                   {/* end:: Download */}

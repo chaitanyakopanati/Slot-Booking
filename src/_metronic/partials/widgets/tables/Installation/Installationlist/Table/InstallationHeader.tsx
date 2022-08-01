@@ -52,7 +52,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setCompanyId,
     getCompanyTypeData,
     fetchAllDownload,
-  
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -161,8 +160,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setCompanyId(e.target.value)
   }
 
-   // download
-   const downloadFile = async () => {
+  // download
+  const downloadFile = async () => {
     fetchAllDownload()
   }
 
@@ -233,7 +232,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                  <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}
@@ -244,7 +243,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                           className='svg-icon-3 me-0'
                         />
                       </span>
-                      <span className='d-none d-sm-block ms-3'>Download</span>
+                      <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
                   </div>
                   {/* end:: Download */}
@@ -294,7 +293,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     <div
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
                     >
-                         <div>
+                      <div>
                         <label className='form-label fw-bold'>Installer date</label>
                         <span
                           role='button'
@@ -309,7 +308,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                           <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
                         </span>
                       </div>
-                         <div>
+                      <div>
                         <DateRangePicker
                           initialSettings={{
                             alwaysShowCalendars: false,
@@ -318,10 +317,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
                           onHide={handleEvent}
                         >
                           <div className='form-select form-select-solid'>
-                          <input
-                          style={{ background: '#f5f8fa',
-                          outline:'none',
-                          border: 'none'}}
+                            <input
+                              style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
                               placeholder='All'
                               value={`${
                                 fromDate && toDate

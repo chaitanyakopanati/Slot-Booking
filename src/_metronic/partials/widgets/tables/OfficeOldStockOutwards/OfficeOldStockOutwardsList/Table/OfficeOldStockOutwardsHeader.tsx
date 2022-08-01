@@ -43,7 +43,7 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
     getDataAllTypeTechnician,
     fetchAllDownload,
     TechnicianId,
-    setTechnicianId
+    setTechnicianId,
   } = ListPageData()
 
   const [fromDate, setFromDate] = useState<any>()
@@ -143,7 +143,18 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
 
   useEffect(() => {
     fetchAllUser()
-  }, [pageNo, pageSize, searchText, createdBy, startDate, endDate, zoneId, productId, Username,TechnicianId])
+  }, [
+    pageNo,
+    pageSize,
+    searchText,
+    createdBy,
+    startDate,
+    endDate,
+    zoneId,
+    productId,
+    Username,
+    TechnicianId,
+  ])
 
   // download
   const downloadFile = async () => {
@@ -201,7 +212,7 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                           className='svg-icon-3 me-0'
                         />
                       </span>
-                      <span className='d-none d-sm-block ms-3'>Download</span>
+                      <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
                   </div>
                   {/* end:: Download */}

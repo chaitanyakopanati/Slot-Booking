@@ -28,16 +28,9 @@ const ComplaintTable = () => {
     navigate('complaintform/add')
   }
   var currentTime: any = moment(new Date())
-  var created = moment(getData[1]?.createdDate)
 
   useEffect(() => {
     fetchAllComplaint()
-    console.log('currentTime', currentTime)
-    console.log('created', created)
-    console.log('hhh', getData)
-
-    console.log('currentTime', currentTime.diff(created, 'hours'))
-    console.log('5456456456456454', created.diff(currentTime, 'minutes'))
   }, [])
 
   const handlesearchange = (e: any) => {

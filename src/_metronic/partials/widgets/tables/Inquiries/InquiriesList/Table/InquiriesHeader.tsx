@@ -134,7 +134,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     statusId,
     startDate,
     endDate,
-    salesExecutiveId
+    salesExecutiveId,
   ])
 
   return (
@@ -190,7 +190,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                           className='svg-icon-3 me-0'
                         />
                       </span>
-                      <span className='d-none d-sm-block ms-3'>Download</span>
+                      <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
                   </div>
                   {/* end:: Download */}
