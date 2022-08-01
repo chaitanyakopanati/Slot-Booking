@@ -1,10 +1,16 @@
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {KTSVG} from '../../../../_metronic/helpers'
 import {useNavigate} from 'react-router-dom'
+import {ListPageData} from '../CustomerContext'
+import {useEffect} from 'react'
 
 const CustomerFormHeader = () => {
-  // const {itemIdForUpdate, setItemIdForUpdate} = ListPageData()
+  const {viewIdForUpdate, setItemIdForUpdate, itemIdForUpdate} = ListPageData()
   const navigation = useNavigate()
+
+  useEffect(() => {
+    console.log(`itemIdForUpdate`, itemIdForUpdate)
+  }, [])
   return (
     <>
       <div className='modal-header'>
@@ -20,7 +26,9 @@ const CustomerFormHeader = () => {
               <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
             </span>
           </div>
-          <h5 className='modal-title'>Customer Form</h5>
+          <h2 className='modal-title fw-bolder'>
+            {itemIdForUpdate === 'new' ? 'Create User' : 'Edit User'}
+          </h2>
         </div>
 
         {/* end::Modal title */}

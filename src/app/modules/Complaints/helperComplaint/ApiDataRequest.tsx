@@ -1,6 +1,6 @@
 import axios from 'axios'
 import http from '../../../../_metronic/helpers/components/http-common'
-import {ID, postlistData, putgetComplaintsDatasmodel} from './ModelComplaint'
+import {ID, postlistData, putgetComplaintsDatasmodel, username} from './ModelComplaint'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 
@@ -117,6 +117,10 @@ const editComplaints = (obj: postlistData) => {
 const GetComplaintsTypeById = (id: ID) => {
   return http.get(`GetComplaintById/${id}`)
 }
+
+const GetComplaintsByUserId = (id: ID) => {
+  return http.get(`GetComplaintsByUserId/${id}`)
+}
 {
   /* end:: getById Api call */
 }
@@ -174,6 +178,7 @@ const ComplaintsViewService = {
   getAllCompanies,
   getAllPackages,
   deleteComplaint,
+  GetComplaintsByUserId,
 }
 
 export default ComplaintsViewService

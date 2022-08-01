@@ -9,43 +9,40 @@ type Props = {
 }
 
 const ComplaintFormViewModal: FC<Props> = ({category}) => {
-  console.log('hh', category)
   const navigate = useNavigate()
 
   return (
     <>
       <Formik
         initialValues={{
-          id: category.data[0]?.id || 0,
-          complaintTypeId: category.data[0]?.complaintTypeId || 0,
-          username: category.data[0]?.username || 0,
-          name: category.data[0]?.name || 0,
-          complaintTypeName: category.data[0]?.complaintTypeName || 0,
-          address: category.data[0]?.address || ' ',
-          description: category.data[0]?.description || 0,
-          assignTechnicianName: category.data[0]?.assignTechnicianName || 0,
-          statusName: category.data[0]?.statusName || 0,
-          faultName: category.data[0]?.faultName || 0,
-          remark: category.data[0]?.remark || 0,
-          createByName: category.data[0]?.createByName || 0,
-          mobileNo: category.data[0]?.mobileNo || 0,
-          companyName: category.data[0]?.companyName || ' ',
-          contactNo: category.data[0]?.contactNo || 0,
-          solvedAt: category.data[0]?.solvedAt
-            ? moment(category.data[0]?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+          id: category.data?.id || 0,
+          complaintTypeId: category.data?.complaintTypeId || 0,
+          username: category.data?.username || 0,
+          name: category.data?.name || 0,
+          complaintTypeName: category.data?.complaintTypeName || 0,
+          address: category.data?.address || ' ',
+          description: category.data?.description || 0,
+          assignTechnicianName: category.data?.assignTechnicianName || 0,
+          statusName: category.data?.statusName || 0,
+          faultName: category.data?.faultName || 0,
+          remark: category.data?.remark || 0,
+          createByName: category.data?.createByName || 0,
+          mobileNo: category.data?.mobileNo || 0,
+          companyName: category.data?.companyName || ' ',
+          contactNo: category.data?.contactNo || 0,
+          solvedAt: category.data?.solvedAt
+            ? moment(category.data?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
             : '',
 
-          createdDate: category.data[0]?.createdDate
-            ? moment(category.data[0]?.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+          createdDate: category.data?.createdDate
+            ? moment(category.data?.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
             : '',
 
-          modifiedDate: category.data[0]?.modifiedDate
-            ? moment(category.data[0]?.modifiedDate, 'YYYY-MM-DD,h:mm a').format(
-                'YYYY-MM-DD,h:mm a'
-              )
+          modifiedDate: category.data?.modifiedDate
+            ? moment(category.data?.modifiedDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
             : '',
 
-          modifiedByName: category.data[0]?.modifiedByName || ' ',
+          modifiedByName: category.data?.modifiedByName || ' ',
         }}
         onSubmit={(values) => console.log(values)}
       >

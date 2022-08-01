@@ -7,14 +7,11 @@ import ComplaintFormModal from './ComplaintFormModal'
 import ComplaintsViewService from '../helperComplaint/ApiDataRequest'
 
 const ComplaintFormByCategory = () => {
-  console.log('params:', useParams())
   let {id} = useParams()
   const username: any = id?.split('&')[0]
   const userId: any = id?.split('&')[1]
 
   useEffect(() => {
-    console.log('gggggggggggg', username)
-
     if (id === 'add') {
       setItemIdForUpdate(id)
     } else if (username && userId) {
@@ -25,10 +22,8 @@ const ComplaintFormByCategory = () => {
   }, [])
 
   const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
-  console.log('itemIdForUpdate', itemIdForUpdate)
 
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
-  console.log('enabledQuery', enabledQuery)
 
   const {data: category, error} = useQuery(
     `GetOfficeStockOutwardsById-${itemIdForUpdate}`,
@@ -53,7 +48,7 @@ const ComplaintFormByCategory = () => {
   if (itemIdForUpdate === 'add') {
     return <ComplaintFormModal category={{ID: undefined}} />
   } else {
-    return <ComplaintFormModal category={category?.data[0]} />
+    return <ComplaintFormModal category={category?.data} />
   }
 
   {

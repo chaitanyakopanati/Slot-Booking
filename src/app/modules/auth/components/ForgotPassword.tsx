@@ -7,7 +7,7 @@ import {requestPassword} from '../core/_requests'
 import {toast} from 'react-toastify'
 
 const initialValues = {
-  username: 'admin',
+  username: '',
 }
 
 const forgotPasswordSchema = Yup.object().shape({
@@ -22,9 +22,11 @@ export function ForgotPassword() {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | undefined>(undefined)
   const formik = useFormik({
-    initialValues,
+    initialValues: initialValues,
     validationSchema: forgotPasswordSchema,
     onSubmit: (values, {setStatus, setSubmitting}) => {
+      console.log('kkkk')
+
       setLoading(true)
       setHasErrors(undefined)
       toast.success('Data Successfully')
@@ -48,9 +50,13 @@ export function ForgotPassword() {
   return (
     <>
       <form
-        className='form w-100 fv-plugins-bootstrap5 fv-plugins-framework'
-        noValidate
-        id='kt_login_password_reset_form'
+        // className='form w-100 fv-plugins-bootstrap5 fv-plugins-framework'
+        // noValidate
+        // id='kt_login_password_reset_form'
+        // onSubmit={formik.handleSubmit}
+
+        id='kt_modal_add_user_form'
+        className='form'
         onSubmit={formik.handleSubmit}
       >
         <div className='text-center mb-10'>
@@ -69,7 +75,10 @@ export function ForgotPassword() {
             type='email'
             placeholder=''
             autoComplete='off'
-            {...formik.getFieldProps('email')}
+            // name='username'
+            {...formik.getFieldProps('username')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className={clsx(
               'form-control form-control-lg form-control-solid',
               {'is-invalid': formik.touched.username && formik.errors.username},

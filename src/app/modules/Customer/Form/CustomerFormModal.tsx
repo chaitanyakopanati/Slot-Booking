@@ -20,6 +20,8 @@ function CustomerFormModal({customerById}: customerProps) {
   const navigate = useNavigate()
   const suggestionRef: any = useRef()
   const {customer, fetchUsetByRoleNameWithSearch} = ListPageData()
+  // const GSTINFORMAT_REGEX: any =
+  //   '[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9a-zA-Z]{1}'
 
   const validationSchema = Yup.object({
     Userid: Yup.string().when(['UserName'], {
@@ -34,6 +36,7 @@ function CustomerFormModal({customerById}: customerProps) {
     FirstName: Yup.string().required().label('FirstName'),
     LastName: Yup.string().required().label('LastName'),
     Middlename: Yup.string().required().label('Middlename'),
+    // Gstno: Yup.string().required(GSTINFORMAT_REGEX).label('Gstno'),
   })
   const API_URL_DATA = process.env.REACT_APP_IMG_PATH
 

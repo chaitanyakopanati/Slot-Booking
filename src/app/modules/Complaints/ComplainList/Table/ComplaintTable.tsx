@@ -115,7 +115,7 @@ const ComplaintTable = () => {
               getData?.map((row: any, index: number) => {
                 return (
                   <tr
-                    key={index}
+                    key={DataWiseIndex + index + 1}
                     className={
                       currentTime.diff(moment(row?.createdDate), 'hours') >= 24 &&
                       row.statusName === 'Unsolved'
@@ -167,6 +167,7 @@ const ComplaintTable = () => {
                         className='btn btn-icon btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`complaintviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
+                        title='View complaint'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -179,6 +180,7 @@ const ComplaintTable = () => {
                         onClick={() => {
                           navigate(`complaintform/${row.id}`)
                         }}
+                        title='Edit complaint'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -186,12 +188,28 @@ const ComplaintTable = () => {
                       <button
                         className='btn btn-icon btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
+                        title='Deleted complaint'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'
                           className='svg-icon-3'
                         />
                       </button>
+
+                      {/* <a
+                        className='btn btn-icon btn-active-color-success btn-sm me-1'
+                        data-bs-toggle='modal'
+                        data-bs-target='#kt_modal_3'
+                        onClick={() => {
+                          window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                        }}
+                        title='View customer'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen060.svg'
+                          className='svg-icon-3'
+                        />
+                      </a> */}
                     </td>
                   </tr>
                 )
@@ -219,7 +237,7 @@ const ComplaintTable = () => {
           getData?.map((row: any, index: number) => {
             return (
               // <div key={DataWiseIndex + index + 1}>
-              <div key={row.id}>
+              <div key={index}>
                 <div className='col-md-6 mx-0 my-2'>
                   <div className='card card-custom border'>
                     <div className='card-body p-4'>
@@ -295,7 +313,8 @@ const ComplaintTable = () => {
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
                           // onClick={() => openViewModal(row)}
-                          onClick={() => navigate(`viewform/${row.id}`)}
+                          onClick={() => navigate(`complaintviewform/${row.id}`)}
+                          title='Edit Complain'
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen060.svg'
@@ -307,8 +326,9 @@ const ComplaintTable = () => {
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
                           // onClick={() => openEditModal(row.id)}
                           onClick={() => {
-                            navigate(`form/${row.id}`)
+                            navigate(`complaintform/${row.id}`)
                           }}
+                          title='view Complain'
                         >
                           <KTSVG
                             path='/media/icons/duotune/art/art005.svg'
@@ -319,6 +339,7 @@ const ComplaintTable = () => {
                         <button
                           className='btn btn-icon btn-active-color-danger btn-sm'
                           onClick={() => deleteFaults(row.id)}
+                          title='Deleted Complain'
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen027.svg'

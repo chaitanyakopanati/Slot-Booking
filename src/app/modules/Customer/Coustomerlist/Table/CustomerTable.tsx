@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
 import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 import moment from 'moment'
+import ReactTooltip from 'react-tooltip'
 
 const CustomerTable = () => {
   let {filter, fetchCustomer, customerTableData, pageNo, pageSize} = ListPageData()
@@ -120,6 +121,7 @@ const CustomerTable = () => {
                       onClick={() => {
                         window.open(`/customers/customersform/${customer.id}`, '_blank')
                       }}
+                      title='Edit customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen055.svg'
@@ -134,6 +136,7 @@ const CustomerTable = () => {
                       onClick={() => {
                         window.open(`/customers/customerviewform/${customer.id}`, '_blank')
                       }}
+                      title='View customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
@@ -144,6 +147,7 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => deletedCustomerData(customer.id, customer.userName)}
+                      title='Deleted customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
@@ -159,12 +163,14 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
+                      title='Create form'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen005.svg'
                         className='svg-icon-3'
                       />
                     </a>
+
                     <a
                       // href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
@@ -174,12 +180,14 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
+                      title='Create installation'
                     >
                       <KTSVG
                         path='/media/icons/duotune/electronics/elc008.svg'
                         className='svg-icon-3'
                       />
                     </a>
+
                     <a
                       // href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
@@ -189,6 +197,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
+                      title='Created complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>
@@ -288,6 +297,7 @@ const CustomerTable = () => {
                       onClick={() => {
                         window.open(`/customers/customersform/${customer.id}`, '_blank')
                       }}
+                      title='Edit customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen055.svg'
@@ -302,6 +312,7 @@ const CustomerTable = () => {
                       onClick={() => {
                         window.open(`/customers/customerviewform/${customer.id}`, '_blank')
                       }}
+                      title='View customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen060.svg'
@@ -312,6 +323,7 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-active-color-danger btn-sm me-1'
                       onClick={() => deletedCustomerData(customer.id, customer.userName)}
+                      title='Deleted customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'
@@ -327,6 +339,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
+                      title='Create form'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen005.svg'
@@ -342,6 +355,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
+                      title='Create installation'
                     >
                       <KTSVG
                         path='/media/icons/duotune/electronics/elc008.svg'
@@ -357,6 +371,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
+                      title='Created complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>

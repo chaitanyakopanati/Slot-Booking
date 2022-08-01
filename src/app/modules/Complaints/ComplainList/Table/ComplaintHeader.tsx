@@ -7,6 +7,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../app/images/closeIcon.svg'
+import ReactTooltip from 'react-tooltip'
 
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
@@ -67,7 +68,6 @@ const ComplaintHeader = () => {
     DataGetCompaniesName()
     DataGetPackagesName()
     DataGetAllTypeCreatedByTypes()
-    console.log('kkk', packagesName)
   }, [])
 
   const [fromDate, setFromDate] = useState<any>()
@@ -89,9 +89,6 @@ const ComplaintHeader = () => {
   }
 
   const handleEvent = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFromDate(picker.startDate._d)
     setToDate(picker.endDate._d)
 
@@ -101,88 +98,65 @@ const ComplaintHeader = () => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
     // fetchAllUser()
   }
 
   const downloadFileComplaint = () => {
     fetchAllDownload()
-    console.log(`fffffffffffffffff`, 'fffffffffffffffff')
   }
   const handleComplaintType = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setComplainttypeid(e.target.value)
-    console.log('complainttypeid', e.target.value)
   }
 
   const handleStatus = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setStatus(e.target.value)
-    console.log('handleStatus', e.target.value)
   }
 
   const handleDate = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setCreatedDate(e.target.value)
-    console.log('handleStatus', e.target.value)
   }
 
   const handleAssign = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setassignToId(e.target.value)
-    console.log('handleStatus', e.target.value)
   }
 
   const handleZoneId = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setZoneId(e.target.value)
-    console.log('handleStatus', e.target.value)
   }
 
   const handleFaultId = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setFaultid(e.target.value)
-    console.log('handleStatus', e.target.value)
   }
 
   const handleCompanyId = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setCompanyId(e.target.value)
-
-    console.log('handleStatus', e.target.value)
   }
 
   const handlePackageId = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setPackageCategoryId(e.target.value)
-
-    console.log('handleStatus', e.target.value)
   }
 
   const handleCreaterId = (e: any) => {
-    console.log(e.target.value)
     setPageNo(1)
 
     setcreatedById(e.target.value)
-
-    console.log('handleStatus', e.target.value)
   }
 
   useEffect(() => {
@@ -219,9 +193,7 @@ const ComplaintHeader = () => {
         //   roleId: Yup.string().required('This fielld is required'),
         //   id: Yup.string().required('This fielld is required'),
         // })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <Form>
@@ -320,7 +292,6 @@ const ComplaintHeader = () => {
                       <span
                         role='button'
                         onClick={() => {
-                          console.log('datatatatat========================\\\\\\\\\\\\')
                           setFromDate('')
                           setToDate('')
                           setStartDate('')

@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import {useQuery} from 'react-query'
 import {useNavigate, useParams} from 'react-router-dom'
 import {isNotEmpty} from '../../../../_metronic/helpers'
@@ -8,6 +9,16 @@ import CustomerFormModal from './CustomerFormModal'
 
 const CustomerFormByCategory = () => {
   let {id} = useParams()
+  const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
+
+  useEffect(() => {
+    if (id === 'add') {
+      setItemIdForUpdate(id)
+    } else {
+      setItemIdForUpdate(id)
+    }
+  }, [])
+
   const navigate = useNavigate()
   const enabledQuery: boolean = isNotEmpty(id)
   const {data: customer, error} = useQuery(

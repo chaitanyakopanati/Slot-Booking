@@ -42,6 +42,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
           mobileNo: category.mobileNo || '',
           contactno: category.contactno || '',
           zoneId: category.zoneId || 0,
+          zoneName: category.zoneName || '',
           address: category.address || '',
           remark: category.remark || '',
           createdby: category.createdby || '',
@@ -333,7 +334,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       <label className='form-label fw-bold'>Zone</label>
                       <input
                         placeholder='Zone'
-                        value={props.values.zoneId}
+                        value={props.values.zoneName}
                         className='form-control form-control-lg form-control-solid'
                         // type='number'
                         autoComplete='off'

@@ -48,6 +48,8 @@ export interface CustomerDataContextModel {
 
   viewIdForUpdate: ID
   setViewIdForUpdate: (_setViewIdForUpdate: ID) => void
+  itemIdForUpdate: ID
+  setItemIdForUpdate: (_itemIdForUpdate: ID) => void
 }
 
 let ListDataContext = createContext<CustomerDataContextModel>({
@@ -89,6 +91,8 @@ let ListDataContext = createContext<CustomerDataContextModel>({
 
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
+  setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
+  itemIdForUpdate: undefined,
 })
 
 const CustomerContext: FC = ({children}) => {
@@ -117,6 +121,7 @@ const CustomerContext: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [totalData, setTotalData] = useState<number>(0)
   const [pageCount, setPageCount] = useState<number>(0)
+  const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
 
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
 
@@ -213,6 +218,8 @@ const CustomerContext: FC = ({children}) => {
     fetchUsetByRoleNameWithSearch,
     viewIdForUpdate,
     setViewIdForUpdate,
+    setItemIdForUpdate,
+    itemIdForUpdate,
   }
 
   return <ListDataContext.Provider value={value}>{children}</ListDataContext.Provider>
