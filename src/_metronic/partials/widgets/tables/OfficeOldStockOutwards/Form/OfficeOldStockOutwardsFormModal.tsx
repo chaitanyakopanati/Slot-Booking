@@ -285,7 +285,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
               </div>
             </div>
 
-            <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
+            <div className=' w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
               <div className='col-lg-4 col-12'>
                 <label className='form-label fw-bold required'>User Name</label>{' '}
                 <input

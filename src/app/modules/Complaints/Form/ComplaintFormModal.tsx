@@ -35,6 +35,8 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
   const suggestionRef: any = useRef()
 
+  var regex = new RegExp('^[a-zA-Z0-9]+$')
+
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     complainttypeid: '',
@@ -455,6 +457,11 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                       value={formik.values.remark || ''}
                       name='remark'
                       onChange={formik.handleChange}
+                      // onChange={(e) => {
+                      //   if (e.target.value.match(regex)) {
+                      //     return formik.handleChange(e)
+                      //   }
+                      // }}
                       onBlur={formik.handleBlur}
                       placeholder='Remark'
                       className='form-control form-control-lg form-control-solid'

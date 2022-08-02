@@ -26,6 +26,7 @@ const InstallationTable = () => {
     DataGetAllTypeStatus,
     DataGetAllTypeInstallation,
     DataGetAllTypeCompany,
+    fetchAllDownload,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -90,6 +91,10 @@ const InstallationTable = () => {
     setPageNo(1)
     console.log(e.target.value)
     setSearchText(e.target.value)
+  }
+
+  const downloadInstallationData = () => {
+    fetchAllDownload()
   }
 
   return (
@@ -206,7 +211,7 @@ const InstallationTable = () => {
                         data-bs-target='#view-customer-modal'
                         title='View Customer'
                         onClick={() => {
-                          window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                          window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
                         }}
                       >
                         <KTSVG
@@ -218,6 +223,7 @@ const InstallationTable = () => {
                         href='#'
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
                         title='Download Installation Report'
+                        onClick={downloadInstallationData}
                       >
                         <KTSVG
                           path='/media/icons/duotune/arrows/arr065.svg'
@@ -347,7 +353,7 @@ const InstallationTable = () => {
                           className='btn btn-icon btn-active-color-danger btn-sm'
                           title='View Customer'
                           onClick={() => {
-                            window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                            window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
                           }}
                         >
                           <KTSVG
@@ -359,6 +365,7 @@ const InstallationTable = () => {
                         <button
                           className='btn btn-icon btn-active-color-danger btn-sm'
                           title='Download Installation Report'
+                          onClick={downloadInstallationData}
                         >
                           <KTSVG
                             path='/media/icons/duotune/arrows/arr065.svg'

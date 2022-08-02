@@ -19,9 +19,9 @@ export interface getInquiriesData {
   userName: string
   formdate: string
   formtype: string
-  formtypeName:string
+  formtypeName: string
   remaningamount: number
-  
+  customerId: number
 }
 
 export interface getAllInquiriesData {
@@ -34,10 +34,10 @@ export interface postlistData {
   formno: string
   formdate: string
   formtype: string
-  createdbyId:any
+  createdbyId: any
   salesexecutiveid: number
-  pacakgetype:string
-  packageid:number
+  pacakgetype: string
+  packageid: number
   companyid: number
   packagecatid: number
   packagevalidity: number
@@ -100,10 +100,10 @@ export interface putInquiriesmodel {
   userid: number
   formno: string
   formdate: string
-  packageid:number
-  userName:string
+  packageid: number
+  userName: string
   formtype: string
-  pacakgetype:string
+  pacakgetype: string
   salesexecutiveid: number
   companyid: number
   packagecatid: number

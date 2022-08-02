@@ -200,7 +200,7 @@ const ComplaintTable = () => {
                         data-bs-target='#view-customer-modal'
                         title='Created Customer'
                         onClick={() => {
-                          window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                          window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
                         }}
                       >
                         <KTSVG
@@ -349,7 +349,7 @@ const ComplaintTable = () => {
                           className='btn btn-icon btn-active-color-danger btn-sm'
                           title='Created Customer'
                           onClick={() => {
-                            window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                            window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
                           }}
                         >
                           <KTSVG

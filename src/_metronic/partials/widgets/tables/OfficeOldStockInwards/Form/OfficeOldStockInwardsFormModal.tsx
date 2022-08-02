@@ -247,80 +247,78 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
 
-                  <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
-                    <div className='col-lg-6 col-12'>
-                      <label className='form-label fw-bold required'>User Name</label>{' '}
-                      <input
-                        name='username'
-                        placeholder='userName'
-                        className='form-control form-control-lg form-control-solid'
-                        value={props.values.username}
-                        autoComplete='off'
-                        onChange={(e) => {
-                          setSuggestionUserText(e.target.value)
-                          if (e.target.value) {
-                            suggestionRef.current.style.display = 'block'
-                          } else {
+                  <div className='col-lg-6 col-12'>
+                    <label className='form-label fw-bold required'>User Name</label>{' '}
+                    <input
+                      name='username'
+                      placeholder='userName'
+                      className='form-control form-control-lg form-control-solid'
+                      value={props.values.username}
+                      autoComplete='off'
+                      onChange={(e) => {
+                        setSuggestionUserText(e.target.value)
+                        if (e.target.value) {
+                          suggestionRef.current.style.display = 'block'
+                        } else {
+                          suggestionRef.current.style.display = 'none'
+                        }
+                        props.handleChange(e)
+                      }}
+                      onBlur={(e) => {
+                        // suggestionRef.current.
+                        var container = suggestionRef.current
+                        document.addEventListener('click', function (event) {
+                          if (suggestionRef.current) {
                             suggestionRef.current.style.display = 'none'
                           }
-                          props.handleChange(e)
-                        }}
-                        onBlur={(e) => {
-                          // suggestionRef.current.
-                          var container = suggestionRef.current
-                          document.addEventListener('click', function (event) {
-                            if (suggestionRef.current) {
-                              suggestionRef.current.style.display = 'none'
-                            }
-                            console.log(suggestionRef, '=====================-------===----==--')
-                            document.removeEventListener('click', () => {})
-                          })
-                        }}
-                      />
-                      <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
-                        <ul>
-                          {getUserNameData?.length > 0 &&
-                            getUserNameData.map((user, index) => {
-                              console.log('user', user)
-                              return (
-                                <li
-                                  key={user.id}
-                                  onClick={() => {
-                                    props.setFieldValue('userId', user.id)
-                                    props.setFieldValue('username', user.firstname)
-                                  }}
-                                >
-                                  {user.firstname}
-                                </li>
-                              )
-                            })}
-                        </ul>
-                      </div>
-                      <div className='erro2' style={{color: 'red'}}>
-                        <ErrorMessage name='username' />
-                      </div>
+                          console.log(suggestionRef, '=====================-------===----==--')
+                          document.removeEventListener('click', () => {})
+                        })
+                      }}
+                    />
+                    <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
+                      <ul>
+                        {getUserNameData?.length > 0 &&
+                          getUserNameData.map((user, index) => {
+                            console.log('user', user)
+                            return (
+                              <li
+                                key={user.id}
+                                onClick={() => {
+                                  props.setFieldValue('userId', user.id)
+                                  props.setFieldValue('username', user.firstname)
+                                }}
+                              >
+                                {user.firstname}
+                              </li>
+                            )
+                          })}
+                      </ul>
                     </div>
+                    <div className='erro2' style={{color: 'red'}}>
+                      <ErrorMessage name='username' />
+                    </div>
+                  </div>
 
-                    <div className='col-md-6 col-12'>
-                      <label className='form-label fw-bold required'>Delivered by</label>
-                      <select
-                        className='form-select form-select-solid'
-                        {...props.getFieldProps('deliveredById')}
-                      >
-                        <option value='' disabled>
-                          Select Delivered By
-                        </option>
-                        {getDataAllTypeDeliveredBy.map((TypeData, index) => {
-                          return (
-                            <option key={index} value={TypeData?.id}>
-                              {TypeData?.fullName}
-                            </option>
-                          )
-                        })}
-                      </select>
-                      <div className='erro2' style={{color: 'red'}}>
-                        <ErrorMessage name='deliveredById' />
-                      </div>
+                  <div className='col-md-6 col-12'>
+                    <label className='form-label fw-bold required'>Delivered by</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...props.getFieldProps('deliveredById')}
+                    >
+                      <option value='' disabled>
+                        Select Delivered By
+                      </option>
+                      {getDataAllTypeDeliveredBy.map((TypeData, index) => {
+                        return (
+                          <option key={index} value={TypeData?.id}>
+                            {TypeData?.fullName}
+                          </option>
+                        )
+                      })}
+                    </select>
+                    <div className='erro2' style={{color: 'red'}}>
+                      <ErrorMessage name='deliveredById' />
                     </div>
                   </div>
 

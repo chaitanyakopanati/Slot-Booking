@@ -49,7 +49,8 @@ let validationSchemaEditForm = Yup.object({
 })
 
 const InquiriesFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate, statusData, getUserByRole} = ListPageData()
+  const {setItemIdForUpdate, itemIdForUpdate, statusData, getUserByRole, DataGetAllTypeStatus} =
+    ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
   const [initialValues, setInitialValues] = useState<any>({
@@ -67,6 +68,8 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
   })
 
   useEffect(() => {
+    console.log('catagary', category)
+
     if (itemIdForUpdate === 'add') {
       setInitialValues({
         ...category,
@@ -106,8 +109,14 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
   console.log(auth?.userId, 'auth')
 
   useEffect(() => {
+    // DataGetAllTypeStatus()
     console.log('StatusData', statusData)
-  }, [statusData])
+  }, [])
+
+  useEffect(() => {
+    DataGetAllTypeStatus()
+    console.log('StatusData', statusData)
+  }, [])
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -133,6 +142,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         onSubmit={async (values: any, {resetForm}) => {
           console.log('values', values)
           LoderActions(true)
+
           values.salesexecutiveId = +values.salesexecutiveId
           // values.phone = values.phone.toString()
 
@@ -252,26 +262,27 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           <ErrorMessage name='contactno' />
                         </div>
                       </div>
+
                       <div className='col-lg-4'>
                         <label className='form-label fw-bold required'>Status</label>
                         <select
                           className='form-select form-select-solid'
                           {...props.getFieldProps('statusId')}
                         >
+                          <option> Select Status</option>
                           <option value='' disabled>
                             Select Status Type
                           </option>
                           {statusData?.map((row, index) => {
-                            // console.log('rowwwwww', row)
-                            // console.log('rowwwwww')
                             return (
                               <option key={index} value={row?.id}>
-                                {row.id}
+                                {row.status}
                               </option>
                             )
                           })}
                         </select>
                       </div>
+
                       <div className='col-lg-4'>
                         <label className='form-label fw-bold required'>Sales executive</label>
                         <select

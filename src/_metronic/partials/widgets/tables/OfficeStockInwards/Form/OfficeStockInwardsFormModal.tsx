@@ -229,7 +229,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                         if (+e.target.value >= 0) {
                           return props.handleChange(e)
                         }
-                        // props.handleChange(e)
                       }}
                       onBlur={props.handleBlur}
                       name='quantity'

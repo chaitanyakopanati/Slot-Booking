@@ -17,9 +17,10 @@ export interface getInstallationsData {
   statusId: number
   userName: string
   installerName: string
-  connectionTypeId:number
-  installerid:number
-  zonepointid:number
+  connectionTypeId: number
+  installerid: number
+  zonepointid: number
+  customerId: number
 }
 
 export interface getAllInstallationsData {
@@ -29,22 +30,22 @@ export interface getAllInstallationsData {
 }
 export interface postlistData {
   createdbyId: any
-  userName:string
-  zonepointid:number
-  connectiontype:string
-  installerid:number
-  cabletypeid:number
-  cablelength:number
-  iptype:string
-  iptypeId:number
-  accesspointip:string
-  stationip:string
-  stationname:string
-  stationMac:string
-  status:string
-  isnotifyinstaller:boolean
-  remark:string
-  userid:number
+  userName: string
+  zonepointid: number
+  connectiontype: string
+  installerid: number
+  cabletypeid: number
+  cablelength: number
+  iptype: string
+  iptypeId: number
+  accesspointip: string
+  stationip: string
+  stationname: string
+  stationMac: string
+  status: string
+  isnotifyinstaller: boolean
+  remark: string
+  userid: number
 }
 
 export interface GetAllData {
@@ -55,8 +56,8 @@ export interface GetAllData {
   createdByName: string
   userName: string
   status: string
-  fullname:string
-  firstname:string
+  fullname: string
+  firstname: string
 }
 
 export interface GetAllDataApiSalesExecutve {
@@ -80,23 +81,23 @@ export interface GetAllDataApi {
 export interface putInstallationsmodel {
   modifyby: any
   id: number
-  connectiontype:string
-  userName:string
-  zonepointid:number
-  installerid:number
-  cabletypeid:number
-  cablelength:number
-  iptype:string
-  accesspointip:string
-  stationip:string
-  stationname:string
-  stationMac:string
-  status:string
-  isnotifyinstaller:boolean
-  remark:string
-  userid:number
-  connectiontypeId:number
-  iptypeId:number
+  connectiontype: string
+  userName: string
+  zonepointid: number
+  installerid: number
+  cabletypeid: number
+  cablelength: number
+  iptype: string
+  accesspointip: string
+  stationip: string
+  stationname: string
+  stationMac: string
+  status: string
+  isnotifyinstaller: boolean
+  remark: string
+  userid: number
+  connectiontypeId: number
+  iptypeId: number
 }
 export interface putInstallationsmodel1 {
   data: getInstallationsData
@@ -123,8 +124,8 @@ export interface GetAllInstallationsApi {
   startDate: string
   endDate: string
   salesexecutiveName: string
-  connectionTypeId:number
-  mainPointId:number
+  connectionTypeId: number
+  mainPointId: number
 }
 
 export type ID = undefined | null | string

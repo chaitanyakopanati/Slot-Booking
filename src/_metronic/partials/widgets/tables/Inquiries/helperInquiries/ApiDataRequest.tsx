@@ -4,7 +4,6 @@ import {ID, postlistData, putInquiriesmodel, roleIdInquiries} from './ModelInqui
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 
-
 {
   /* begin:: User:- getDynamicUser Api call */
 }
@@ -17,7 +16,7 @@ const getDynamicInquiries = (
   roleId: string,
   salesExecutiveId: number,
   startDate: string,
-  endDate: string,
+  endDate: string
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -39,14 +38,14 @@ const getDynamicDownloadFile = (
   searchText: string,
   startDate: string,
   endDate: string,
-  createdById:number,
-  statusId:number,
-  salesExecutiveId:number,
+  createdById: number,
+  statusId: number,
+  salesExecutiveId: number
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetInquiriesExcelSheet?&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdById=${createdById}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetInquiriesExcelSheet?&searchText=${searchText}&startDate=${startDate}&endDate=${endDate}&createdById=${createdById}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
@@ -58,8 +57,8 @@ const postInquiries = (obj: postlistData) => {
     name: obj.name,
     address: obj.address,
     contactno: obj.contactno,
-    statusId: 1,
-    salesexecutiveName:obj.salesexecutiveName,
+    statusId: obj.statusId,
+    salesexecutiveName: obj.salesexecutiveName,
     salesexecutiveId: obj.salesexecutiveId,
     description: obj.description,
     remark: obj.remark,
@@ -91,9 +90,9 @@ const editInquiries = (obj: putInquiriesmodel) => {
     name: obj.name,
     address: obj.address,
     contactno: obj.contactno,
-    statusId: 1,
-    salesexecutiveName:obj.salesexecutiveName,
-    salesexecutiveId:obj.salesexecutiveId,
+    statusId: obj.statusId,
+    salesexecutiveName: obj.salesexecutiveName,
+    salesexecutiveId: obj.salesexecutiveId,
     description: obj.description,
     remark: obj.remark,
     isnotify: obj.isnotify,
@@ -136,8 +135,6 @@ const getSalesExecutveByTypes = () => {
 const getSalesExecutveByGetUserByRoleTypes = () => {
   return http.get(`GetUserByRoleName?roleName=SalesExecutve`)
 }
-
-
 
 const Inquiriesservice = {
   getDynamicInquiries,
