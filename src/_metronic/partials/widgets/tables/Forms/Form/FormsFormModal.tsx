@@ -8,7 +8,7 @@ import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {ListPageData} from '../FormsContext'
 import Inquiriesservice from '../helperForms/ApiDataRequest'
-import moment from 'moment'
+import moment, {min} from 'moment'
 import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
@@ -21,13 +21,40 @@ let validationSchemaNewForm = Yup.object({
   formdate: Yup.string().required('This field is required'),
   formtype: Yup.string().required('This field is required'),
   salesexecutiveid: Yup.string().required('This field is required'),
-  pacakgetype: Yup.string().required('This field is required'),
+  // pacakgetype: Yup.string().required('This field is required'),
+  // packagevalidity: Yup.number().positive().required('This field is required'),
   companyid: Yup.string().required('This field is required'),
   packagecatid: Yup.string().required('This field is required'),
-  totalamount: Yup.string().required('This field is required'),
+  totalamount: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999')
+    .required('This field is required'),
   status: Yup.string().required('This field is required'),
-  packagevalidity: Yup.number().positive().required('This field is required'),
-  packagecost: Yup.string().min(0, 'Minimum 0 Rupee Value'),
+  remaningamount: Yup.number()
+    .min(0, 'This value should be greater than or equal to 0')
+    .required('This field is required'),
+  receiverid: Yup.string().required('This field is required'),
+  packagecost: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
+  installationcost: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
+  othercost: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
+  discount: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
+  gstamount: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
+  cashamount: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
+  chequeamount: Yup.number()
+    .min(0, 'This value should be between 0 and 999999')
+    .max(999999, 'This value should be between 0 and 999999'),
 })
 
 const FormsFormModal: FC<Props> = ({category}) => {
@@ -525,11 +552,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         <option value='1'>Unlimited</option>
                         <option value='2'>Limited</option>
                       </select>
-                      <div className='erro2' style={{color: 'red'}}>
+                      {/* <div className='erro2' style={{color: 'red'}}>
                         {formik.touched.pacakgetype && formik.errors.pacakgetype
                           ? formik.errors.pacakgetype
                           : null}
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className='col-md-4'>
@@ -568,11 +595,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         />
                       </div>
 
-                      <div className='erro2' style={{color: 'red'}}>
+                      {/* <div className='erro2' style={{color: 'red'}}>
                         {formik.touched.packagevalidity && formik.errors.packagevalidity
                           ? formik.errors.packagevalidity
                           : null}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -614,6 +641,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Installation cost'
                     />
                   </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.installationcost && formik.errors.installationcost
+                      ? formik.errors.installationcost
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -630,6 +662,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.othercost && formik.errors.othercost
+                      ? formik.errors.othercost
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -645,6 +682,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Discount'
                       className='form-control form-control-solid'
                     />
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.discount && formik.errors.discount
+                      ? formik.errors.discount
+                      : null}
                   </div>
                 </div>
               </div>
@@ -663,6 +705,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='GST Amount'
                       className='form-control form-control-solid'
                     />
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.gstamount && formik.errors.gstamount
+                      ? formik.errors.gstamount
+                      : null}
                   </div>
                 </div>
 
@@ -701,6 +748,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                     />
                   </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.cashamount && formik.errors.cashamount
+                      ? formik.errors.cashamount
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>
@@ -716,6 +768,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       placeholder='Cheque Amount'
                       className='form-control form-control-solid'
                     />
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.chequeamount && formik.errors.chequeamount
+                      ? formik.errors.chequeamount
+                      : null}
                   </div>
                 </div>
               </div>
@@ -733,8 +790,12 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       onBlur={formik.handleBlur}
                       placeholder='Remaining Amount'
                       className='form-control form-control-solid'
-                      disabled
                     />
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.remaningamount && formik.errors.remaningamount
+                      ? formik.errors.remaningamount
+                      : null}
                   </div>
                 </div>
 
@@ -802,6 +863,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       )
                     })}
                   </select>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.receiverid && formik.errors.receiverid
+                      ? formik.errors.receiverid
+                      : null}
+                  </div>
                 </div>
 
                 <div className='col-md-3'>

@@ -313,9 +313,9 @@ const ComplaintHeader = () => {
                             placeholder='All'
                             value={`${
                               fromDate && toDate
-                                ? `${moment(fromDate).format('DD-MM-yyyy')}-${moment(toDate).format(
-                                    'DD-MM-yyyy'
-                                  )}`
+                                ? `${moment(fromDate).format('DD-MM-yyyy')} - ${moment(
+                                    toDate
+                                  ).format('DD-MM-yyyy')}`
                                 : ''
                             }`}
                           />

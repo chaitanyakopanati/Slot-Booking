@@ -64,7 +64,7 @@ const FormsHeader: FC<Props> = ({category}) => {
     setFormTypeId,
     formSubmitTypeId,
     setFormSubmitTypeId,
-    fetchAllDownload
+    fetchAllDownload,
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -195,8 +195,8 @@ const FormsHeader: FC<Props> = ({category}) => {
     setFormSubmitTypeId(e.target.value)
   }
 
-   // search by username
-   const handlesearchByUserNamechange = (e: any) => {
+  // search by username
+  const handlesearchByUserNamechange = (e: any) => {
     setPageNo(1)
     console.log(e.target.value)
     setSearchByUsername(e.target.value)
@@ -214,11 +214,10 @@ const FormsHeader: FC<Props> = ({category}) => {
     /* End::handleConnectionTypechange */
   }
 
-   // download
-   const downloadFile = async () => {
+  // download
+  const downloadFile = async () => {
     fetchAllDownload()
   }
-
 
   useEffect(() => {
     fetchAllUser()
@@ -243,7 +242,7 @@ const FormsHeader: FC<Props> = ({category}) => {
     connectionTypeId,
     formTypeId,
     formSubmitTypeId,
-    paymentTypeId
+    paymentTypeId,
   ])
 
   return (
@@ -289,7 +288,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
                   <div className='ms-auto'>
-                  <button
+                    <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
                       onClick={downloadFile}
@@ -355,7 +354,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         value={searchByUserName}
-                    onChange={handlesearchByUserNamechange}
+                        onChange={handlesearchByUserNamechange}
                         autoComplete='off'
                       />
                     </div>
@@ -462,7 +461,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                                 placeholder='All'
                                 value={`${
                                   fromCreatedAtDate && toCreatedAtDate
-                                    ? `${moment(fromCreatedAtDate).format('DD-MM-yyyy')}-${moment(
+                                    ? `${moment(fromCreatedAtDate).format('DD-MM-yyyy')} - ${moment(
                                         toCreatedAtDate
                                       ).format('DD-MM-yyyy')}`
                                     : ''
@@ -502,7 +501,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                               placeholder='All'
                               value={`${
                                 fromsDate && toFormsDate
-                                  ? `${moment(fromsDate).format('DD-MM-yyyy')}-${moment(
+                                  ? `${moment(fromsDate).format('DD-MM-yyyy')} - ${moment(
                                       toFormsDate
                                     ).format('DD-MM-yyyy')}`
                                   : ''
@@ -541,7 +540,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                               placeholder='All'
                               value={`${
                                 expiryDate && toexpiryDate
-                                  ? `${moment(expiryDate).format('DD-MM-yyyy')}-${moment(
+                                  ? `${moment(expiryDate).format('DD-MM-yyyy')} - ${moment(
                                       toexpiryDate
                                     ).format('DD-MM-yyyy')}`
                                   : ''
