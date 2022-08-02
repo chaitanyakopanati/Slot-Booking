@@ -231,7 +231,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                   <label className='form-label fw-bold required'>User Name</label>{' '}
                   <input
                     name='userName'
-                    placeholder='userName'
+                    placeholder='User Name'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.userName || ''}
                     autoComplete='off'
@@ -379,7 +379,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                       value={formik.values.cablelength}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      type='text'
+                      type='number'
                       name='cablelength'
                       autoComplete='off'
                     />
@@ -412,14 +412,14 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Acces point IP</label>
+                  <label className='form-label fw-bold'>Access point IP</label>
                   <input
-                    placeholder='access point ip'
+                    placeholder='Access point IP'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.accesspointip}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    type='text'
+                    type='number'
                     name='accesspointip'
                     autoComplete='off'
                   />
@@ -439,7 +439,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     value={formik.values.stationip}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    type='text'
+                    type='number'
                     name='stationip'
                     autoComplete='off'
                   />

@@ -96,15 +96,15 @@ const ComplaintTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>Complaint no.</th>
+              <th className='max-w-60px min-w-40px rounded-start ps-4'>Complaint No.</th>
               <th className='max-w-60px '>Username</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
-              <th className='min-w-150px'>Package category</th>
-              <th className='min-w-200px'>Complaint type</th>
+              <th className='min-w-150px'>Package Category</th>
+              <th className='min-w-200px'>Complaint Type</th>
               <th className='min-w-150px'>Assign to</th>
               <th className='min-w-150px'>Status</th>
-              <th className='min-w-150px'>Complaint date</th>
+              <th className='min-w-150px'>Complaint Date</th>
               <th className='min-w-150px rounded-end'>Actions</th>
             </tr>
           </thead>
@@ -159,14 +159,11 @@ const ComplaintTable = () => {
                       {' '}
                       {moment(row?.createdDate).format('DD-MMMM-YYYY, h:mm:ss a') || '-'}
                     </td>
-                    {/* {moment(row?.outwardDate).format('DD-MMMM-YYYY') || '-'} */}
 
                     <td>
                       <a
-                        // className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
-                        className='btn btn-icon btn-active-color-success btn-sm me-1'
+                        className='btn btn-icon btn-active-color-success btn-sm'
                         onClick={() => navigate(`complaintviewform/${row.id}`)}
-                        // onClick={() => openViewModal(row.id)}
                         title='View complaint'
                       >
                         <KTSVG
@@ -176,7 +173,7 @@ const ComplaintTable = () => {
                       </a>
 
                       <button
-                        className='btn btn-icon btn-active-color-primary btn-sm me-1'
+                        className='btn btn-icon btn-active-color-primary btn-sm'
                         onClick={() => {
                           navigate(`complaintform/${row.id}`)
                         }}
@@ -196,20 +193,21 @@ const ComplaintTable = () => {
                         />
                       </button>
 
-                      {/* <a
-                        className='btn btn-icon btn-active-color-success btn-sm me-1'
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-active-color-danger btn-sm'
                         data-bs-toggle='modal'
-                        data-bs-target='#kt_modal_3'
+                        data-bs-target='#view-customer-modal'
+                        title='Created Customer'
                         onClick={() => {
                           window.open(`/customers/customerviewform/${row.id}`, '_blank')
                         }}
-                        title='View customer'
                       >
                         <KTSVG
-                          path='/media/icons/duotune/general/gen060.svg'
+                          path='/media/icons/duotune/communication/com013.svg'
                           className='svg-icon-3'
                         />
-                      </a> */}
+                      </a>
                     </td>
                   </tr>
                 )
@@ -343,6 +341,19 @@ const ComplaintTable = () => {
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+
+                        <button
+                          className='btn btn-icon btn-active-color-danger btn-sm'
+                          title='Created Customer'
+                          onClick={() => {
+                            window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                          }}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/communication/com013.svg'
                             className='svg-icon-3'
                           />
                         </button>

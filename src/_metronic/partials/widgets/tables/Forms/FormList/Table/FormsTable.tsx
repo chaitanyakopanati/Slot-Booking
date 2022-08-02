@@ -122,12 +122,12 @@ const FormsTable = () => {
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
-              <th className='max-w-60px ps-4'>File no.</th>
+              <th className='max-w-60px ps-4'>File No.</th>
               <th className='min-w-150px'>Username</th>
               <th className='min-w-200px'>Name</th>
-              <th className='min-w-150px'>Sales executive.</th>
-              <th className='min-w-200px'>Form date</th>
-              <th className='min-w-150px'> Form type</th>
+              <th className='min-w-150px'>Sales Executive.</th>
+              <th className='min-w-200px'>Form Date</th>
+              <th className='min-w-150px'> Form Type</th>
               <th className='min-w-150px rounded-end'>Actions</th>
             </tr>
           </thead>
@@ -220,6 +220,18 @@ const FormsTable = () => {
                         />
                       </button>
                       {/* end:: Delete Icon */}
+                      <a
+                        className='btn btn-icon btn-bg-light btn-active-color-success btn-sm m-1'
+                        title='View Customer'
+                        onClick={() => {
+                          window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                        }}
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/communication/com013.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
                     </td>
                     {/* end:: Action */}
                   </tr>
@@ -337,6 +349,18 @@ const FormsTable = () => {
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+
+                        <button
+                          className='btn btn-icon btn-active-color-danger btn-sm'
+                          onClick={() => {
+                            window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                          }}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/communication/com013.svg'
                             className='svg-icon-3'
                           />
                         </button>

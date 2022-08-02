@@ -14,7 +14,7 @@ const getDynamicZones = (
     return http.get(`GetDynamicZones/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
     return http.get(
-      `GetDynamicZones/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`
+      `GetDynamicZones/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

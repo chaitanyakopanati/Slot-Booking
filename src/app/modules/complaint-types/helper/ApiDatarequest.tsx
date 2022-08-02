@@ -4,11 +4,20 @@ import {postlistData, putcomplaintsmodel, ID} from './ModelType'
 {
   /* begin:: Complaint Type:- getDynamicComplainTypes Api call */
 }
-const getDynamicComplaints = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicComplaints = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicComplaintTypes/${null}/${null}?searchText=${null}&createdById=${null}`)
+    return http.get(
+      `GetDynamicComplaintTypes/${null}/${null}?searchText=${null}&createdById=${null}`
+    )
   } else {
-    return http.get(`GetDynamicComplaintTypes/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicComplaintTypes/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {
@@ -33,8 +42,6 @@ const postcomplaints = (obj: postlistData) => {
     name: obj.name,
     etr: obj.etr,
     createdby: obj.createdby,
-   
-  
   })
 }
 {
@@ -89,7 +96,7 @@ const Complaintservice = {
   deletecomplaints,
   editcomplaints,
   GetComplaintTypeById,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default Complaintservice

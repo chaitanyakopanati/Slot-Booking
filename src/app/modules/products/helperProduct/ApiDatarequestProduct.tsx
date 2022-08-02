@@ -4,11 +4,20 @@ import {ID, postlistData, putProductmodel} from './ModelTypeProduct'
 {
   /* begin:: Product:- getDynamicProduct Api call */
 }
-const getDynamicProduct = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicProduct = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
-    return http.get(`GetDynamicProductData/${null}/${null}?searchText=${null}&createdById=${null}&createdById=${null}`)
+    return http.get(
+      `GetDynamicProductData/${null}/${null}?searchText=${null}&createdById=${null}&createdById=${null}`
+    )
   } else {
-    return http.get(`GetDynamicProductData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicProductData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {

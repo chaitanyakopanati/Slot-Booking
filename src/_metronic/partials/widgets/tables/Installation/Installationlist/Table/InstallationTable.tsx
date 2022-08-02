@@ -205,6 +205,9 @@ const InstallationTable = () => {
                         data-bs-toggle='modal'
                         data-bs-target='#view-customer-modal'
                         title='View Customer'
+                        onClick={() => {
+                          window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                        }}
                       >
                         <KTSVG
                           path='/media/icons/duotune/communication/com013.svg'
@@ -336,6 +339,29 @@ const InstallationTable = () => {
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+
+                        <button
+                          className='btn btn-icon btn-active-color-danger btn-sm'
+                          title='View Customer'
+                          onClick={() => {
+                            window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                          }}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/communication/com013.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+
+                        <button
+                          className='btn btn-icon btn-active-color-danger btn-sm'
+                          title='Download Installation Report'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/arrows/arr065.svg'
                             className='svg-icon-3'
                           />
                         </button>

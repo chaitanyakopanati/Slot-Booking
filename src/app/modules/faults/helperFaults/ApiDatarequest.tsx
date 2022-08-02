@@ -4,11 +4,18 @@ import {postlistData, putFaultsmodel, ID} from './ModelFaultsType'
 {
   /* begin:: Faults:- getDynamicFaults Api call */
 }
-const getDynamicFaults = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicFaults = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicFaults/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicFaults/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicFaults/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {
@@ -33,7 +40,6 @@ const postFaults = (obj: postlistData) => {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
     createdby: obj.createdby,
-  
   })
 }
 {
@@ -99,7 +105,7 @@ const Fautlservice = {
   editFaults,
   GetFaultsTypeById,
   getFaultsTypes,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default Fautlservice

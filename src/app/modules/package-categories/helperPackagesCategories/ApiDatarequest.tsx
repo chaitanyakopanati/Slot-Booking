@@ -16,7 +16,7 @@ const getDynamicPackageCategories = (
     )
   } else {
     return http.get(
-      `GetDynamicPackageCategoriesData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`
+      `GetDynamicPackageCategoriesData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

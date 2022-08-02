@@ -4,11 +4,18 @@ import {ID, putCompaniesmodel} from './ModelCompanies'
 {
   /* begin:: Company:- GetDynamicCompanyData Api call */
 }
-const getDynamicCompanies = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicCompanies = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicCompanyData/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicCompanyData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicCompanyData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {
@@ -86,7 +93,7 @@ const Zoneservice = {
   deleteCompanies,
   editCompanies,
   GetCompaniesTypeById,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default Zoneservice

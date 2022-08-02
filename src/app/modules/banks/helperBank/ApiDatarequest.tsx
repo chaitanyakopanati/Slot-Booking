@@ -4,11 +4,18 @@ import {ID, putBankmodel} from './ModelBank'
 {
   /* begin:: Bank:- GetDynamicBankData Api call */
 }
-const getDynamicBank = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicBank = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicBankData/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicBankData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicBankData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {
@@ -87,7 +94,7 @@ const Zoneservice = {
   deleteBank,
   editBank,
   GetBankTypeById,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default Zoneservice

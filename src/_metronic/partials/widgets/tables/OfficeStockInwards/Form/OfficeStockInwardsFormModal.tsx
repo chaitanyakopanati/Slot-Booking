@@ -223,12 +223,13 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       placeholder='quantity'
                       className='form-control form-control-lg form-control-solid'
                       type='number'
+                      min='1'
                       value={props.values.quantity}
                       onChange={(e) => {
-                        if (+e.target.value > 99999) {
-                          return
+                        if (+e.target.value >= 0) {
+                          return props.handleChange(e)
                         }
-                        props.handleChange(e)
+                        // props.handleChange(e)
                       }}
                       onBlur={props.handleBlur}
                       name='quantity'
@@ -266,6 +267,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       value={props.values.serialno}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
+                      type='number'
                       name='serialno'
                       placeholder='Serial no'
                       autoComplete='off'

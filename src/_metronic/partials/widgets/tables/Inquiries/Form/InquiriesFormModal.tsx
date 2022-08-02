@@ -8,7 +8,7 @@ import Inquiriesservice from '../helperInquiries/ApiDataRequest'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import {ListPageData} from '../InquiriesContext'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
-import { useAuth } from '../../../../../../app/modules/auth'
+import {useAuth} from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -42,7 +42,7 @@ let validationSchemaEditForm = Yup.object({
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
-  statusId: Yup.string().required('This fied is required'),
+  statusId: Yup.number().required('This fied is required'),
   salesexecutiveId: Yup.string().required('This fied is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
@@ -74,14 +74,14 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         name: category.data?.name || '',
         address: category.data?.address || '',
         contactno: category.data?.contactno || '',
-        statusId: category.data?.statusId || '',
+        statusId: category.data?.statusId || 0,
         status: category.data?.status || '',
         username: category.data?.username || '',
         salesexecutiveId: category.data?.salesexecutiveId || '',
         description: category.data?.description || '',
         remark: category.data?.remark || '',
         isnotify: category.data?.isnotify || false,
-        createdbyId:auth?.userId
+        createdbyId: auth?.userId,
       })
     } else {
       setInitialValues({
@@ -97,14 +97,13 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         description: category.data?.description || '',
         remark: category.data?.remark || '',
         isnotify: category.data?.isnotify || false,
-        modifybyId:auth?.userId
-
+        modifybyId: auth?.userId,
       })
     }
   }, [itemIdForUpdate])
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   useEffect(() => {
     console.log('StatusData', statusData)
@@ -267,7 +266,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             // console.log('rowwwwww')
                             return (
                               <option key={index} value={row?.id}>
-                                {row.status}
+                                {row.id}
                               </option>
                             )
                           })}

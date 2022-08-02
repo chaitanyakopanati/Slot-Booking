@@ -4,11 +4,20 @@ import {ID, putPackagesmodel} from './ModelPackages'
 {
   /* begin:: Packages:- getDynamicFaults Api call */
 }
-const getDynamicPackages = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicPackages = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+  // createdDate: ''
+) => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicPackageData/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicPackageData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicPackageData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}
+      &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {
@@ -87,7 +96,7 @@ const Zoneservice = {
   deletePackages,
   editPackages,
   GetPackagesTypeById,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default Zoneservice

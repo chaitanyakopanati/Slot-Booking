@@ -4,11 +4,18 @@ import {ID, postlistData, putMainPointmodel} from './ModelMainPoint'
 {
   /* begin:: MainPoint:- getDynamicFaults Api call */
 }
-const getDynamicMainPoint = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicMainPoint = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicMainPoints/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicMainPoints/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicMainPoints/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+    )
   }
 }
 {
@@ -98,7 +105,7 @@ const MainPointservice = {
   editMainPoint,
   GetMainPointById,
   getMainPointTypes,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default MainPointservice

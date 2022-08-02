@@ -7,8 +7,7 @@ import {useLoader} from '../../loader/LoaderContext'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {ListPageData} from '../ProductListContext'
 import Complaintservice from '../helperProduct/ApiDatarequestProduct'
-import { useAuth } from '../../auth'
-
+import {useAuth} from '../../auth'
 
 type Props = {
   category: any
@@ -25,7 +24,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
   }
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -160,6 +159,9 @@ const ProductFormModal: FC<Props> = ({category}) => {
                       type='text'
                       autoComplete='off'
                     />
+                    <div className='erro2' style={{color: 'red'}}>
+                      <ErrorMessage name='unit' />
+                    </div>
                   </div>
                 </div>
                 {/*end:: input Unit Filed */}

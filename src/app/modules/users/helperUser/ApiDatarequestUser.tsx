@@ -22,7 +22,7 @@ const getDynamicUser = (
     )
   } else {
     return http.get(
-      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById}&orderByColumnName=${orderByColumnName}`
+      `GetAllUsers/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&roleId=${roleId}&searchByUsername=${searchByUsername}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

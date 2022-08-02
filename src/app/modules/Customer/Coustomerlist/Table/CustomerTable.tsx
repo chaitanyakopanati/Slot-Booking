@@ -60,7 +60,7 @@ const CustomerTable = () => {
               <th className='min-w-150px'>Username</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
-              <th className='min-w-100px'>package name</th>
+              <th className='min-w-100px'>Package Name</th>
               <th className='min-w-100px'>Mobile No</th>
               <th className='min-w-120px'>Expiry date</th>
               <th className='min-w-125px rounded-end'>Options</th>
@@ -196,7 +196,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
-                      title='Created complaint'
+                      title='View complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>
@@ -370,7 +370,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
-                      title='Created complaint'
+                      title='View complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>
