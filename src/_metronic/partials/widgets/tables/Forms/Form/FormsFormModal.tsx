@@ -16,16 +16,18 @@ type Props = {
 }
 
 let validationSchemaNewForm = Yup.object({
-  userid: Yup.string().required('This fied is required'),
-  formno: Yup.string().required('This fied is required'),
-  formdate: Yup.string().required('This fied is required'),
-  formtype: Yup.string().required('This fied is required'),
-  salesexecutiveid: Yup.string().required('This fied is required'),
-  pacakgetype: Yup.string().required('This fied is required'),
-  companyid: Yup.string().required('This fied is required'),
-  packagecatid: Yup.string().required('This fied is required'),
-  totalamount: Yup.string().required('This fied is required'),
-  status: Yup.string().required('This fied is required'),
+  userid: Yup.string().required('This field is required'),
+  formno: Yup.string().required('This field is required'),
+  formdate: Yup.string().required('This field is required'),
+  formtype: Yup.string().required('This field is required'),
+  salesexecutiveid: Yup.string().required('This field is required'),
+  pacakgetype: Yup.string().required('This field is required'),
+  companyid: Yup.string().required('This field is required'),
+  packagecatid: Yup.string().required('This field is required'),
+  totalamount: Yup.string().required('This field is required'),
+  status: Yup.string().required('This field is required'),
+  packagevalidity: Yup.number().positive().required('This field is required'),
+  packagecost: Yup.string().min(0, 'Minimum 0 Rupee Value'),
 })
 
 const FormsFormModal: FC<Props> = ({category}) => {
@@ -211,7 +213,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
   }
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
+  // console.log(auth?.userId, 'auth')
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -219,6 +221,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
       console.log('Values::', values)
+
       LoderActions(true)
 
       try {
@@ -358,8 +361,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
                         <ul>
                           {getUserNameData?.length > 0 &&
-                            getUserNameData.map((user, index) => {
-                              console.log('user', user)
+                            getUserNameData.map((user) => {
                               return (
                                 <li
                                   key={user.id}
@@ -516,10 +518,18 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('pacakgetype')}
                       >
-                        <option>Package Type</option>
+                        <option value='' disabled>
+                          Select Package Type
+                        </option>
+                        {/* <option>Package Type</option> */}
                         <option value='1'>Unlimited</option>
                         <option value='2'>Limited</option>
                       </select>
+                      <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.pacakgetype && formik.errors.pacakgetype
+                          ? formik.errors.pacakgetype
+                          : null}
+                      </div>
                     </div>
 
                     <div className='col-md-4'>
@@ -557,6 +567,12 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           placeholder='Package validity'
                         />
                       </div>
+
+                      <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.packagevalidity && formik.errors.packagevalidity
+                          ? formik.errors.packagevalidity
+                          : null}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -576,6 +592,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-solid'
                       placeholder='Package Cost'
                     />
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.packagecost && formik.errors.packagecost
+                      ? formik.errors.packagecost
+                      : null}
                   </div>
                 </div>
 
@@ -883,10 +904,8 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     <option value='3'>Cancel</option>
                   </select>
                   <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.status && formik.errors.status
-                          ? formik.errors.status
-                          : null}
-                      </div>
+                    {formik.touched.status && formik.errors.status ? formik.errors.status : null}
+                  </div>
                 </div>
               </div>
             </div>
@@ -896,7 +915,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         <div className='modal-footer border-0 pb-0 pt-0'>
           {/* begin::close button */}
           <CustomTooltip title='Close form'>
-            <button type='reset' onClick={() => navigation(-1)} className='btn btn-light'>
+            <button type='reset' onClick={() => navigation('/forms')} className='btn btn-light'>
               Close
             </button>
           </CustomTooltip>

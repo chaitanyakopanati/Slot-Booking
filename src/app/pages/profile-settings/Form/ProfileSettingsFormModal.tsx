@@ -37,6 +37,7 @@ const ProfileSettingsFormModal: FC = () => {
   const {auth} = useAuth()
   let {LoderActions} = useLoader()
   const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
+  const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
 
   useEffect(() => {
     console.log('auth', auth?.userId)
@@ -99,7 +100,10 @@ const ProfileSettingsFormModal: FC = () => {
           lastname: Yup.string()
             .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
             .required('This field is required'),
-          email: Yup.string().email('Invalid email format').required('This field is required'),
+          email: Yup.string()
+            .email('Invalid email format')
+            .matches(emailRegExp, 'Invalid email format')
+            .required('This field is required'),
           phone: Yup.string()
             .min(10, 'Invalid Phone Number')
             .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')

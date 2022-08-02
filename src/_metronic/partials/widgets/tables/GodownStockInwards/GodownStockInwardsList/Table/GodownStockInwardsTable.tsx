@@ -69,7 +69,9 @@ const GodownStockInwardsTable = () => {
                     <td>
                       <div className='d-flex align-items-center'>
                         <div className='d-flex justify-content-start flex-column'>
-                          <div className='text-dark fw-bold ps-4 fs-6'>{row?.id ? row?.id : '-'}</div>
+                          <div className='text-dark fw-bold ps-4 fs-6'>
+                            {row?.id ? row?.id : '-'}
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -100,6 +102,7 @@ const GodownStockInwardsTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`godown-stock-inwardsviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
+                        title='View Godown Stock Inwards'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -114,6 +117,7 @@ const GodownStockInwardsTable = () => {
                         onClick={() => {
                           navigate(`godownInwardsform/${row.id}`)
                         }}
+                        title='Edit Godown Stock Inwards'
                         // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

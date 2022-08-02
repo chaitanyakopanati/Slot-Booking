@@ -6,7 +6,6 @@ import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
 import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 import moment from 'moment'
-import ReactTooltip from 'react-tooltip'
 
 const CustomerTable = () => {
   let {filter, fetchCustomer, customerTableData, pageNo, pageSize} = ListPageData()

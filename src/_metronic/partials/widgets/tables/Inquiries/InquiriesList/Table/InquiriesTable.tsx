@@ -24,7 +24,6 @@ const InquiriesTable = () => {
     DataGetAllTypeStatus,
     DataGetAllTypeSalesExecutve,
     DataGetAllTypeSalesExecutveUserByRole,
-    
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -180,6 +179,7 @@ const InquiriesTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`inquiriesviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
+                        title='View Inquiries'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -194,6 +194,8 @@ const InquiriesTable = () => {
                         onClick={() => {
                           navigate(`inquiriesform/${row.id}`)
                         }}
+                        title='Edit Inquiries'
+
                         // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
@@ -204,6 +206,7 @@ const InquiriesTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
+                        title='Delete Inquiries'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'
@@ -300,7 +303,7 @@ const InquiriesTable = () => {
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
                           // onClick={() => openViewModal(row)}
-                          onClick={() => navigate(`viewform/${row.id}`)}
+                          onClick={() => navigate(`inquiriesviewform/${row.id}`)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen060.svg'
@@ -312,7 +315,7 @@ const InquiriesTable = () => {
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
                           // onClick={() => openEditModal(row.id)}
                           onClick={() => {
-                            navigate(`form/${row.id}`)
+                            navigate(`inquiriesform/${row.id}`)
                           }}
                         >
                           <KTSVG

@@ -22,16 +22,26 @@ function CustomerFormModal({customerById}: customerProps) {
   const {customer, fetchUsetByRoleNameWithSearch} = ListPageData()
   // const GSTINFORMAT_REGEX: any =
   //   '[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9a-zA-Z]{1}'
+  const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
 
   const validationSchema = Yup.object({
     Userid: Yup.string().when(['UserName'], {
       is: (UserName: any) => !UserName,
       then: Yup.string().required().label('UserName'),
     }),
-    MobileNo: Yup.string().min(10).max(10).required().label('MobileNo'),
-    Contactno: Yup.string().min(10).max(10).label('Contactno'),
+    MobileNo: Yup.string()
+      .min(10, 'Invalid Phone Number')
+      .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
+      .required('This field is required'),
+    Contactno: Yup.string()
+      .min(10, 'Invalid Phone Number')
+      .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
+      .required('This field is required'),
     ZoneId: Yup.string().required().label('Zone'),
-    Email: Yup.string().email('Must be a valid email').max(255),
+    Email: Yup.string()
+      .email('Invalid email format')
+      .matches(emailRegExp, 'Invalid email format')
+      .required('This field is required'),
     Address: Yup.string().required().label('Address'),
     FirstName: Yup.string().required().label('FirstName'),
     LastName: Yup.string().required().label('LastName'),
@@ -504,7 +514,7 @@ function CustomerFormModal({customerById}: customerProps) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {formik.touched.MobileNo && formik.errors.MobileNo && (
+                  {formik.touched.Contactno && formik.errors.Contactno && (
                     <div className='fv-plugins-message-container'>
                       <div className='fv-help-block'>
                         <span role='alert' style={{color: 'red'}}>

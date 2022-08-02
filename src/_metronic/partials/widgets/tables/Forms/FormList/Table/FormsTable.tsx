@@ -186,6 +186,7 @@ const FormsTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`formsviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
+                        title='View Form'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -200,6 +201,7 @@ const FormsTable = () => {
                         onClick={() => {
                           navigate(`formsform/${row.id}`)
                         }}
+                        title='Edit Form'
                         // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
@@ -210,6 +212,7 @@ const FormsTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
+                        title='Delete Form'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'

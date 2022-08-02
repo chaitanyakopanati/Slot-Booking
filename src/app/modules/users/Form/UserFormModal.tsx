@@ -10,13 +10,14 @@ import Userservice from '../helperUser/ApiDatarequestUser'
 import {useNavigate} from 'react-router-dom'
 import showPwdImg from '../../../../app/images/eye-fill.svg'
 import hidePwdImg from '../../../../app/images/eye-slash-fill.svg'
-import { useAuth } from '../../auth'
+import {useAuth} from '../../auth'
 
 type Props = {
   category: any
 }
 
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
+const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
 
 let validationSchemaNewForm = Yup.object({
   firstname: Yup.string()
@@ -28,15 +29,18 @@ let validationSchemaNewForm = Yup.object({
   username: Yup.string()
     .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
-  email: Yup.string().email('Invalid email format').required('This field is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .matches(emailRegExp, 'Invalid email format')
+    .required('This field is required'),
   phone: Yup.string()
     //  .min(10, 'Min 10 digits are allowed')
     // .max(10, 'Max 10 digits are allowed')
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
-  zoneId: Yup.string().required('This fied is required'),
-  roleId: Yup.string().required('This fielld is required'),
+  zoneId: Yup.string().required('This field is required'),
+  roleId: Yup.string().required('This field is required'),
   // password: Yup.string().required('This field is required'),
   password: Yup.string()
     .label('Password')
@@ -82,7 +86,7 @@ const UserFormModal: FC<Props> = ({category}) => {
   const navigation = useNavigate()
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
@@ -116,7 +120,6 @@ const UserFormModal: FC<Props> = ({category}) => {
         password: category.data?.password || '',
         confirmPassword: '',
         createdby: auth?.userId,
-       
       })
     } else {
       setInitialValues({

@@ -146,6 +146,7 @@ const CompaniesTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => openViewModal(row)}
+                        title='View Company'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -158,6 +159,7 @@ const CompaniesTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                         onClick={() => openEditModal(row.id)}
+                        title='Edit Company'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -167,6 +169,7 @@ const CompaniesTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteCompaniesData(row.id)}
+                        title='Delete Company'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'

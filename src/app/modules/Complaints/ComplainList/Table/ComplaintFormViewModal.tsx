@@ -31,15 +31,24 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
           companyName: category.data?.companyName || ' ',
           contactNo: category.data?.contactNo || 0,
           solvedAt: category.data?.solvedAt
-            ? moment(category.data?.solvedAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            ? moment
+                .utc(category.data?.solvedAt, 'YYYY-MM-DD,h:mm a')
+                .local()
+                .format('YYYY-MM-DD,h:mm a')
             : '',
 
           createdDate: category.data?.createdDate
-            ? moment(category.data?.createdDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            ? moment
+                .utc(category.data?.createdDate, 'YYYY-MM-DD,h:mm a')
+                .local()
+                .format('YYYY-MM-DD,h:mm a')
             : '',
 
           modifiedDate: category.data?.modifiedDate
-            ? moment(category.data?.modifiedDate, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            ? moment
+                .utc(category.data?.modifiedDate, 'YYYY-MM-DD,h:mm a')
+                .local()
+                .format('YYYY-MM-DD,h:mm a')
             : '',
 
           modifiedByName: category.data?.modifiedByName || ' ',

@@ -4,11 +4,18 @@ import {ID, postlistData, putZonemodel} from './ModelZones'
 {
   /* begin:: Zones:- GetDynamicZones Api call */
 }
-const getDynamicZones = (pageNo: number, pageSize: number, searchText: string = '',createdById:number) => {
+const getDynamicZones = (
+  pageNo: number,
+  pageSize: number,
+  searchText: string = '',
+  createdById: number
+) => {
   if (pageSize <= 0) {
     return http.get(`GetDynamicZones/${null}/${null}?searchText=${null}&createdById=${null}`)
   } else {
-    return http.get(`GetDynamicZones/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`)
+    return http.get(
+      `GetDynamicZones/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}`
+    )
   }
 }
 {
@@ -32,7 +39,7 @@ const postZones = (obj: postlistData) => {
   return http.post('SaveZone', {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    createdby: obj.createdby,
+    createdById: obj.createdById,
   })
 }
 {
@@ -56,7 +63,7 @@ const editZones = (obj: putZonemodel) => {
   return http.post(`SaveZone`, {
     name: obj.name,
     faulttypeid: obj.faulttypeid,
-    modifyby: obj.modifyby,
+    modifyById: obj.modifyById,
     id: obj.id,
   })
 }
@@ -87,7 +94,7 @@ const Zoneservice = {
   deleteZones,
   editZones,
   GetZonesTypeById,
-  getCreatedByTypes
+  getCreatedByTypes,
 }
 
 export default Zoneservice

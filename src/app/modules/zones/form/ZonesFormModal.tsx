@@ -7,7 +7,7 @@ import {CustomTooltip} from '../../../routing/customtooltip'
 import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../ZonesContext'
 import Zoneservice from '../helperZones/ApiDatarequest'
-import { useAuth } from '../../auth'
+import {useAuth} from '../../auth'
 
 type Props = {
   category: any
@@ -24,7 +24,7 @@ const ZonesFormModal: FC<Props> = ({category}) => {
   }
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -47,8 +47,8 @@ const ZonesFormModal: FC<Props> = ({category}) => {
           id: category.data?.id,
           name: category.data?.name || '',
           faulttypeid: category.data?.faulttypeid || '',
-          modifyby: auth?.userId,
-          createdby: auth?.userId,
+          modifyById: auth?.userId,
+          createdById: auth?.userId,
         }}
         validationSchema={Yup.object({
           name: Yup.string()

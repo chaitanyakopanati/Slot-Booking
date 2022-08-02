@@ -11,7 +11,7 @@ export interface getZoneData {
   createdById: number
   createdByName: string
   modifyByName: string
-  username:string
+  username: string
 }
 export interface getAllZoneData {
   data: getZoneData[]
@@ -22,7 +22,7 @@ export interface getAllZoneData {
   pages: number
 }
 export interface postlistData {
-  createdby: any
+  createdById: any
   name: string
   faulttypeid: number
 }
@@ -38,7 +38,7 @@ export interface GetAllData {
   message: string
 }
 export interface putZonemodel {
-  modifyby: any
+  modifyById: any
   name: string
   faulttypeid: number
   id: number | string
@@ -57,8 +57,8 @@ export interface GetAllFaulttApi {
   TotalRecords: number
   page: number
   pageSize: number
-  createdById:number
-  username:string
+  createdById: number
+  username: string
 }
 
 export type ID = undefined | null | string

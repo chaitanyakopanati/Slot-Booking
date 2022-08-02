@@ -97,7 +97,7 @@ const PrivateRoutes = () => {
           path='forms/formsform/:id'
           element={
             <>
-              <PageTitle>forms Form</PageTitle>
+              <PageTitle>Forms Form</PageTitle>
               <FormsFormWrapper />
             </>
           }
@@ -106,7 +106,7 @@ const PrivateRoutes = () => {
           path='forms/formsviewform/:id'
           element={
             <>
-              <PageTitle>View forms</PageTitle>
+              <PageTitle>View Forms</PageTitle>
               <FormViewWrapper />
             </>
           }
@@ -117,7 +117,7 @@ const PrivateRoutes = () => {
           path='installations/installationsform/:id'
           element={
             <>
-              <PageTitle>installations Form</PageTitle>
+              <PageTitle>Installations Form</PageTitle>
               <InstallationFormWrapper />
             </>
           }
@@ -126,7 +126,7 @@ const PrivateRoutes = () => {
           path='installations/installationsviewform/:id'
           element={
             <>
-              <PageTitle>View installations</PageTitle>
+              <PageTitle>View Installations</PageTitle>
               <InstallationViewWrapper />
             </>
           }
@@ -136,7 +136,7 @@ const PrivateRoutes = () => {
           path='inquiries/inquiriesform/:id'
           element={
             <>
-              <PageTitle>User Form</PageTitle>
+              <PageTitle>Inquiries Form</PageTitle>
               <InquiriesFormWrapper />
             </>
           }
@@ -145,7 +145,7 @@ const PrivateRoutes = () => {
           path='inquiries/inquiriesviewform/:id'
           element={
             <>
-              <PageTitle>View User</PageTitle>
+              <PageTitle>View Inquiries</PageTitle>
               <InquiriesViewWrapper />
             </>
           }

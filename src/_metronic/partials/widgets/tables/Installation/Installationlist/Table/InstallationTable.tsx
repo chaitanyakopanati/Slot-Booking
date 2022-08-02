@@ -165,6 +165,7 @@ const InstallationTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`installationsviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
+                        title='View Installation'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -180,6 +181,7 @@ const InstallationTable = () => {
                           navigate(`installationsform/${row.id}`)
                         }}
                         // onClick={()=>openEditModal(row.id)}
+                        title='Edit Installation'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -189,6 +191,7 @@ const InstallationTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
+                        title='Delete Installation'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'
@@ -201,6 +204,7 @@ const InstallationTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
                         data-bs-toggle='modal'
                         data-bs-target='#view-customer-modal'
+                        title='View Customer'
                       >
                         <KTSVG
                           path='/media/icons/duotune/communication/com013.svg'
@@ -210,6 +214,7 @@ const InstallationTable = () => {
                       <a
                         href='#'
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+                        title='Download Installation Report'
                       >
                         <KTSVG
                           path='/media/icons/duotune/arrows/arr065.svg'
@@ -304,7 +309,7 @@ const InstallationTable = () => {
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
                           // onClick={() => openViewModal(row)}
-                          onClick={() => navigate(`viewform/${row.id}`)}
+                          onClick={() => navigate(`installationsviewform/${row.id}`)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/general/gen060.svg'
@@ -316,7 +321,7 @@ const InstallationTable = () => {
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
                           // onClick={() => openEditModal(row.id)}
                           onClick={() => {
-                            navigate(`form/${row.id}`)
+                            navigate(`installationsform/${row.id}`)
                           }}
                         >
                           <KTSVG

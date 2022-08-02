@@ -155,6 +155,7 @@ const ComplaintTypeTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => openViewModal(row)}
+                        title='View Complaint Type'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -167,6 +168,7 @@ const ComplaintTypeTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                         onClick={() => openEditModal(row.id)}
+                        title='Edit Complaint Type'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -176,6 +178,7 @@ const ComplaintTypeTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deletecomplaints(row.id)}
+                        title='Delete Complaint Type'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'

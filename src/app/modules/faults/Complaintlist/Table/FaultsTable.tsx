@@ -161,6 +161,7 @@ const FaultsTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => openViewModal(row)}
+                        title='View Fault'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -173,6 +174,7 @@ const FaultsTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                         onClick={() => openEditModal(row.id)}
+                        title='Edit Fault'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -182,6 +184,7 @@ const FaultsTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
+                        title='Delete Fault'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'

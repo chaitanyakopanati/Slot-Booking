@@ -30,7 +30,7 @@ function StockWrapper() {
           path='office-stock-inwards'
           element={
             <>
-              <PageTitle>Office stock Inwards</PageTitle>
+              <PageTitle>Office Stock Inwards</PageTitle>
               <OfficeStockInwardsWrapper />
             </>
           }
@@ -48,7 +48,7 @@ function StockWrapper() {
           path='office-stock-inwards/office-stock-inwardsviewform/:id'
           element={
             <>
-              <PageTitle>Office Stock Inwards User</PageTitle>
+              <PageTitle>View Office Stock Inwards</PageTitle>
               <OfficeStockInwardsViewWrapper />
             </>
           }
@@ -59,12 +59,12 @@ function StockWrapper() {
           path='office-stock-outwards'
           element={
             <>
-              <PageTitle>Office stock Outwards</PageTitle>
+              <PageTitle>Office Stock Outwards</PageTitle>
               <OfficeStockOutwardsWrapper />
             </>
           }
         />
-         <Route
+        <Route
           path='office-stock-outwards/form/:id'
           element={
             <>
@@ -77,18 +77,18 @@ function StockWrapper() {
           path='office-stock-outwards/office-stock-outwardsviewform/:id'
           element={
             <>
-              <PageTitle>Office Stock Outwards </PageTitle>
+              <PageTitle>View Office Stock Outwards </PageTitle>
               <OfficeStockOutwardsViewWrapper />
             </>
           }
         />
-        
+
         {/*  */}
         <Route
           path='office-stock-availability'
           element={
             <>
-              <PageTitle>Office stock Availability</PageTitle>
+              <PageTitle>Office Stock Availability</PageTitle>
               <OfficeStockAvailabilityWrapper />
             </>
           }
@@ -98,16 +98,16 @@ function StockWrapper() {
           path='office-old-stock-inwards'
           element={
             <>
-              <PageTitle>Office old stock inwards</PageTitle>
+              <PageTitle>Office Old Stock Inwards</PageTitle>
               <OfficeOldstockinwardWrapper />
             </>
           }
         />
-         <Route
+        <Route
           path='office-old-stock-inwards/inwardsOldform/:id'
           element={
             <>
-              <PageTitle>Office Old Stock inwards Form</PageTitle>
+              <PageTitle>Office Old Stock Inwards Form</PageTitle>
               <OfficeOldStockInwardsFormWrapper />
             </>
           }
@@ -116,7 +116,7 @@ function StockWrapper() {
           path='office-old-stock-inwards/office-stock-inwardsOldviewform/:id'
           element={
             <>
-              <PageTitle>Office Old Stock inwards </PageTitle>
+              <PageTitle>View Office Old Stock Inwards </PageTitle>
               <OfficeOldStockInwardsViewWrapper />
             </>
           }
@@ -126,16 +126,16 @@ function StockWrapper() {
           path='office-old-stock-outwards'
           element={
             <>
-              <PageTitle>Office old stock Outwards</PageTitle>
+              <PageTitle>Office Old Stock Outwards</PageTitle>
               <OfficeOldStockOutwardsWrapper />
             </>
           }
         />
-         <Route
+        <Route
           path='office-old-stock-outwards/OutwardsOldform/:id'
           element={
             <>
-              <PageTitle>Office Old Stock Outwards</PageTitle>
+              <PageTitle>Office Old Stock Outwards Form</PageTitle>
               <OfficeOldStockOutwardsFormWrapper />
             </>
           }
@@ -144,7 +144,7 @@ function StockWrapper() {
           path='office-old-stock-outwards/office-stock-OutwardsOldviewform/:id'
           element={
             <>
-              <PageTitle>Office Old Stock Outwards </PageTitle>
+              <PageTitle>View Office Old Stock Outwards </PageTitle>
               <OfficeOldStockOutwardsViewWrapper />
             </>
           }
@@ -154,7 +154,7 @@ function StockWrapper() {
           path='office-old-stock-availability'
           element={
             <>
-              <PageTitle>Office old stock Availability</PageTitle>
+              <PageTitle>Office Old Stock Availability</PageTitle>
               <OfficeOldStockAvailabilityWrapper />
             </>
           }
@@ -164,7 +164,7 @@ function StockWrapper() {
           path='godown-stock-inwards'
           element={
             <>
-              <PageTitle>Godown stock Inwards</PageTitle>
+              <PageTitle>Godown Stock Inwards</PageTitle>
               <GodownStockInwardsWrapper />
             </>
           }
@@ -173,7 +173,7 @@ function StockWrapper() {
           path='godown-stock-inwards/godownInwardsform/:id'
           element={
             <>
-              <PageTitle>Godown stock inwards</PageTitle>
+              <PageTitle>Godown Stock Inwards Form</PageTitle>
               <GodownStockInwardsFormWrapper />
             </>
           }
@@ -182,7 +182,7 @@ function StockWrapper() {
           path='godown-stock-inwards/godown-stock-inwardsviewform/:id'
           element={
             <>
-              <PageTitle>Office Old Stock inwards </PageTitle>
+              <PageTitle>View Godown Stock Inwards</PageTitle>
               <GodownStockInwardsViewWrapper />
             </>
           }
@@ -192,7 +192,7 @@ function StockWrapper() {
           path='godown-stock-availability'
           element={
             <>
-              <PageTitle>Godown stock Availability</PageTitle>
+              <PageTitle>Godown Stock Availability</PageTitle>
               <GodownStockAvailabilityWrapper />
             </>
           }

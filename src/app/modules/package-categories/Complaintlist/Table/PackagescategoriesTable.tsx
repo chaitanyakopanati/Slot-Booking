@@ -154,6 +154,7 @@ const PackagescategoriesTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => openViewModal(row)}
+                        title='View Package Category'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -166,6 +167,7 @@ const PackagescategoriesTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                         onClick={() => openEditModal(row.id)}
+                        title='Edit Package Category'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -175,6 +177,7 @@ const PackagescategoriesTable = () => {
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deletePackagesCategoriesData(row.id)}
+                        title='Delete Package Category'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'

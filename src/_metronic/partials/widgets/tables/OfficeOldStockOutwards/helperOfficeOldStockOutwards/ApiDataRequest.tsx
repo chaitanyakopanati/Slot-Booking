@@ -140,7 +140,7 @@ const getUserName = (username: string) => {
 //  product Zone quntity
 
 const getProductZoneQuntityTypes = (productId: number, zoneId: number) => {
-  return http.get(`GetProductCountByZone/${productId}/${zoneId}`)
+  return http.get(`GetOldStockProductCountByZone/${productId}/${zoneId}`)
 }
 
 const OfficeStockOutwardsViewService = {

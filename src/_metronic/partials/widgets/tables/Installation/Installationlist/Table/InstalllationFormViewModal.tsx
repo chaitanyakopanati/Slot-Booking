@@ -71,7 +71,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
           {/* begin:: View Modal Header */}
           <div className='modal-header'>
             <div className='d-flex align-items-center'>
-              <span className='svg-icon svg-icon-2x' onClick={() => navigate(-1)}>
+              <span className='svg-icon svg-icon-2x' onClick={() => navigate('/installations')}>
                 <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
               </span>
               <h5 className='modal-title'>View installation</h5>
@@ -446,11 +446,15 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               />
             </div>
 
-            <div className='modal-footer'>
-              <button type='reset' onClick={() => navigate(-1)} className='btn btn-light'>
+            {/* <div className='modal-footer'>
+              <button
+                type='reset'
+                onClick={() => navigate('/installations')}
+                className='btn btn-light'
+              >
                 Close
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

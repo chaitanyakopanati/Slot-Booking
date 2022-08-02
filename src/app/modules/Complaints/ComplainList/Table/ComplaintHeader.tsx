@@ -7,7 +7,6 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../app/images/closeIcon.svg'
-import ReactTooltip from 'react-tooltip'
 
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)

@@ -383,11 +383,11 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                       name='cablelength'
                       autoComplete='off'
                     />
-                    <div className='erro2' style={{color: 'red'}}>
-                      {formik.touched.cablelength && formik.errors.cablelength
-                        ? formik.errors.cablelength
-                        : null}
-                    </div>
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.cablelength && formik.errors.cablelength
+                      ? formik.errors.cablelength
+                      : null}
                   </div>
                 </div>
 
@@ -555,7 +555,11 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         <div className='modal-footer border-0 pb-0 pt-0'>
           {/* begin::close button */}
           <CustomTooltip title='Close form'>
-            <button type='reset' onClick={() => navigation(-1)} className='btn btn-light'>
+            <button
+              type='reset'
+              onClick={() => navigation('/installations')}
+              className='btn btn-light'
+            >
               Close
             </button>
           </CustomTooltip>
