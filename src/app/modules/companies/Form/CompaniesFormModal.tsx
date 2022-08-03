@@ -8,7 +8,7 @@ import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../CompaniesContext'
 import Zoneservice from '../helperCompanies/ApiDatarequest'
 import {CustomTooltip} from '../../../routing/customtooltip'
-import { useAuth } from '../../auth'
+import {useAuth} from '../../auth'
 
 type Props = {
   category: any
@@ -19,7 +19,7 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
   let {LoderActions} = useLoader()
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -130,7 +130,11 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
                   <input
                     placeholder='Name'
                     value={props.values.name}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                      if (e.target.value.length <= 20) {
+                        props.handleChange(e)
+                      }
+                    }}
                     type='text'
                     name='name'
                     className='form-control form-control-lg form-control-solid'

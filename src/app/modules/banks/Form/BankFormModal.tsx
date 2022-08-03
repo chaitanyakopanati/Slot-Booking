@@ -7,7 +7,7 @@ import {useLoader} from '../../loader/LoaderContext'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {ListPageData} from '../BankContext'
 import Zoneservice from '../helperBank/ApiDatarequest'
-import { useAuth } from '../../auth'
+import {useAuth} from '../../auth'
 
 type Props = {
   category: any
@@ -24,7 +24,7 @@ const BankFormModal: FC<Props> = ({category}) => {
   }
 
   const {auth} = useAuth()
-  console.log(auth?.userId,"auth");
+  console.log(auth?.userId, 'auth')
 
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -131,7 +131,11 @@ const BankFormModal: FC<Props> = ({category}) => {
                   <input
                     placeholder='Name'
                     value={props.values.name}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                      if (e.target.value.length <= 20) {
+                        props.handleChange(e)
+                      }
+                    }}
                     type='text'
                     name='name'
                     className='form-control form-control-lg form-control-solid'

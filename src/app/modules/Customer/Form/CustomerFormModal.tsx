@@ -300,7 +300,11 @@ function CustomerFormModal({customerById}: customerProps) {
                   autoComplete='off'
                   name='FirstName'
                   value={formik.values.FirstName}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 20) {
+                      formik.handleChange(e)
+                    }
+                  }}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.FirstName && formik.errors.FirstName && (
@@ -323,7 +327,11 @@ function CustomerFormModal({customerById}: customerProps) {
                   autoComplete='off'
                   name='Middlename'
                   value={formik.values.Middlename}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 20) {
+                      formik.handleChange(e)
+                    }
+                  }}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.Middlename && formik.errors.Middlename && (
@@ -346,7 +354,11 @@ function CustomerFormModal({customerById}: customerProps) {
                   autoComplete='off'
                   name='LastName'
                   value={formik.values.LastName}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    if (e.target.value.length <= 20) {
+                      formik.handleChange(e)
+                    }
+                  }}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.LastName && formik.errors.LastName && (

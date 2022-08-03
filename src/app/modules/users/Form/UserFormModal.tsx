@@ -237,7 +237,11 @@ const UserFormModal: FC<Props> = ({category}) => {
                       placeholder='First name'
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.firstname}
-                      onChange={props.handleChange}
+                      onChange={(e) => {
+                        if (e.target.value.length <= 20) {
+                          props.handleChange(e)
+                        }
+                      }}
                       onBlur={props.handleBlur}
                       type='text'
                       name='firstname'
@@ -255,7 +259,11 @@ const UserFormModal: FC<Props> = ({category}) => {
                       placeholder='Last name'
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.lastname}
-                      onChange={props.handleChange}
+                      onChange={(e) => {
+                        if (e.target.value.length <= 20) {
+                          props.handleChange(e)
+                        }
+                      }}
                       onBlur={props.handleBlur}
                       type='text'
                       name='lastname'

@@ -215,7 +215,11 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           name='name'
                           placeholder='name'
                           value={props.values.name}
-                          onChange={props.handleChange}
+                          onChange={(e) => {
+                            if (e.target.value.length <= 20) {
+                              props.handleChange(e)
+                            }
+                          }}
                           onBlur={props.handleBlur}
                           type='text'
                           autoComplete='off'

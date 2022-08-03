@@ -134,7 +134,11 @@ const ProductFormModal: FC<Props> = ({category}) => {
                   <input
                     placeholder='Name'
                     value={props.values.name}
-                    onChange={props.handleChange}
+                    onChange={(e) => {
+                      if (e.target.value.length <= 20) {
+                        props.handleChange(e)
+                      }
+                    }}
                     type='text'
                     name='name'
                     className='form-control form-control-lg form-control-solid'
