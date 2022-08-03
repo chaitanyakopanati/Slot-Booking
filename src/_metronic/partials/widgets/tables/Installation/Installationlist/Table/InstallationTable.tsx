@@ -106,7 +106,7 @@ const InstallationTable = () => {
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>No</th>
-              <th className='min-w-150px'>User NOfame</th>
+              <th className='min-w-150px'>User Name</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
               <th className='min-w-150px'>Installer</th>
