@@ -53,7 +53,7 @@ const OfficeOldStockInwardsTable = () => {
               <th className='min-w-150px'>Quantity</th>
               <th className='min-w-200px'>Delivered by</th>
               <th className='min-w-150px'>Zone</th>
-              <th className='min-w-150px'>UserName</th>
+              <th className='min-w-150px'>User Name</th>
               <th className='min-w-150px rounded-end'>Actions</th>
             </tr>
           </thead>
@@ -83,7 +83,7 @@ const OfficeOldStockInwardsTable = () => {
 
                     {/* begin:: inwardDate At Date & Time */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment(row?.inwardDate).format('DD-MMMM-YYYY') || '-'}
+                      {moment(row?.inwardDate).format('DD-MMM-YYYY') || '-'}
                     </td>
                     {/* end:: inwardDate At Date & Time */}
 
@@ -179,7 +179,9 @@ const OfficeOldStockInwardsTable = () => {
                         </div>
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>InwardDate:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
+                          <div className='text-dark fw-bold  ms-2'>
+                            {moment(row?.inwardDate).format('DD-MMM-YYYY') || '-'}
+                          </div>
                         </div>
 
                         <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>

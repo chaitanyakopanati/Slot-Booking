@@ -27,7 +27,7 @@ const getDynamicInstallations = (
     )
   } else {
     return http.get(
-      `GetDynamicInstallations/${pageNo}/${pageSize}?searchText=${searchText}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&connectionTypeId=${connectionTypeId}&zoneId=${zoneId}&mainPointId=${mainPointId}&installerId=${installerId}&companyId=${companyId}`
+      `GetDynamicInstallations/${pageNo}/${pageSize}?searchText=${searchText}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&connectionTypeId=${connectionTypeId}&zoneId=${zoneId}&mainPointId=${mainPointId}&installerId=${installerId}&companyId=${companyId}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }
@@ -177,7 +177,7 @@ const getcableType = () => {
 
 // userName
 const getUserName = (username: string) => {
-  return http.get(`GetByUserName`, {userName: username})
+  return http.get(`GetUserByRoleName?roleName=Customer`, {userName: username})
 }
 
 // Company

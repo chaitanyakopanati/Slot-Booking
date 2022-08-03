@@ -22,7 +22,7 @@ const getDynamicOfficeStockInwards = (
     )
   } else {
     return http.get(
-      `GetAllOfficeStockInward/${pageNo}/${pageSize}?searchText=${searchText}&createdBy=${createdBy}&startDate=${startDate}&endDate=${endDate}&zoneId=${zoneId}&productId=${productId}`
+      `GetAllOfficeStockInward/${pageNo}/${pageSize}?searchText=${searchText}&createdBy=${createdBy}&startDate=${startDate}&endDate=${endDate}&zoneId=${zoneId}&productId=${productId}&orderByColumnName=${'createdDate'}&sortColumnDir=${'desc'}`
     )
   }
 }

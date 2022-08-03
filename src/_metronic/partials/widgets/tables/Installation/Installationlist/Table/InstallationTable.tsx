@@ -106,7 +106,7 @@ const InstallationTable = () => {
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>No</th>
-              <th className='min-w-150px'>Username</th>
+              <th className='min-w-150px'>User NOfame</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
               <th className='min-w-150px'>Installer</th>
@@ -155,7 +155,7 @@ const InstallationTable = () => {
 
                     {/* begin:: User Type Input createdAt */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.createdAt).local().format('DD-MMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: User Type Input  createdAt */}
 
@@ -292,7 +292,7 @@ const InstallationTable = () => {
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Created at:</div>
                           <div className='text-dark fw-bold  ms-2'>
-                            {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') ||
+                            {moment.utc(row?.createdAt).local().format('DD-MMM-YYYY, h:mm a') ||
                               '-'}
                           </div>
                         </div>

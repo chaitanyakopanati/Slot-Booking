@@ -1,6 +1,6 @@
 import axios from 'axios'
 import http from '../../../../../helpers/components/http-common'
-import { ID, postlistData, putInquiriesmodel } from './ModelForms'
+import {ID, postlistData, putInquiriesmodel} from './ModelForms'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 
@@ -15,20 +15,20 @@ const getDynamicForm = (
   statusId: number,
   roleId: string,
   salesExecutiveId: number,
-  zoneId:number,
-  companyId:number,
-  paymentTypeId:number,
-  createdStartDate:string,
-  createdEndDate:string,
-  formStartDate:string,
-  formEndDate:string,
-  expiryStartDate:string,
-  expiryEndDate:string,
-  packageCategoryId:number,
-  connectionTypeId:number,
-  formTypeId:number,
-  searchByUserName:string,
-  formSubmitTypeId:number
+  zoneId: number,
+  companyId: number,
+  paymentTypeId: number,
+  createdStartDate: string,
+  createdEndDate: string,
+  formStartDate: string,
+  formEndDate: string,
+  expiryStartDate: string,
+  expiryEndDate: string,
+  packageCategoryId: number,
+  connectionTypeId: number,
+  formTypeId: number,
+  searchByUserName: string,
+  formSubmitTypeId: number
 ) => {
   if (pageSize <= 0) {
     return http.get(
@@ -36,7 +36,7 @@ const getDynamicForm = (
     )
   } else {
     return http.get(
-      `GetDynamicForms/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&statusId=${statusId}&roleId=${roleId}&salesExecutiveId=${salesExecutiveId}&zoneId=${zoneId}&companyId=${companyId}&paymentTypeId=${paymentTypeId}&createdStartDate=${createdStartDate}&createdEndDate=${createdEndDate}&formStartDate=${formStartDate}&formEndDate=${formEndDate}&expiryStartDate=${expiryStartDate}&expiryEndDate=${expiryEndDate}&packageCategoryId=${packageCategoryId}&connectionTypeId=${connectionTypeId}&formTypeId=${formTypeId}&searchByUserName=${searchByUserName}&formSubmitTypeId=${formSubmitTypeId}`
+      `GetDynamicForms/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&statusId=${statusId}&roleId=${roleId}&salesExecutiveId=${salesExecutiveId}&zoneId=${zoneId}&companyId=${companyId}&paymentTypeId=${paymentTypeId}&createdStartDate=${createdStartDate}&createdEndDate=${createdEndDate}&formStartDate=${formStartDate}&formEndDate=${formEndDate}&expiryStartDate=${expiryStartDate}&expiryEndDate=${expiryEndDate}&packageCategoryId=${packageCategoryId}&connectionTypeId=${connectionTypeId}&formTypeId=${formTypeId}&searchByUserName=${searchByUserName}&formSubmitTypeId=${formSubmitTypeId}&orderByColumnName=${'createdAt'}&orderByColumnDir=${'desc'}`
     )
   }
 }
@@ -44,30 +44,29 @@ const getDynamicForm = (
   /* end:: User:- getDynamicFaults Api call */
 }
 
-
 // download
 
 const getDynamicDownloadFile = (
   searchText: string,
-  salesExecutiveId:number,
-  zoneId:number,
-  companyId:number,
-  connectionTypeId:number,
-  formTypeId:number,
-  paymentTypeId:number,
-  createdStartDate:string,
-  createdEndDate:string,
-  formStartDate:string,
-  formEndDate:string,
-  expiryStartDate:string,
-  expiryEndDate:string,
-  packageCategoryId:number,
-  formSubmitTypeId:number,
+  salesExecutiveId: number,
+  zoneId: number,
+  companyId: number,
+  connectionTypeId: number,
+  formTypeId: number,
+  paymentTypeId: number,
+  createdStartDate: string,
+  createdEndDate: string,
+  formStartDate: string,
+  formEndDate: string,
+  expiryStartDate: string,
+  expiryEndDate: string,
+  packageCategoryId: number,
+  formSubmitTypeId: number
 ) => {
-    return axios({
-      url: `${API_URL_DATA}/GetFormsExcelSheet?&searchText=${searchText}&salesExecutiveId=${salesExecutiveId}&zoneId=${zoneId}&companyId=${companyId}&connectionTypeId=${connectionTypeId}&formTypeId=${formTypeId}&paymentTypeId=${paymentTypeId}&createdStartDate=${createdStartDate}&createdEndDate=${createdEndDate}&formStartDate=${formStartDate}&formEndDate=${formEndDate}&expiryStartDate=${expiryStartDate}&expiryEndDate=${expiryEndDate}&packageCategoryId=${packageCategoryId}&formSubmitTypeId=${formSubmitTypeId}`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
+  return axios({
+    url: `${API_URL_DATA}/GetFormsExcelSheet?&searchText=${searchText}&salesExecutiveId=${salesExecutiveId}&zoneId=${zoneId}&companyId=${companyId}&connectionTypeId=${connectionTypeId}&formTypeId=${formTypeId}&paymentTypeId=${paymentTypeId}&createdStartDate=${createdStartDate}&createdEndDate=${createdEndDate}&formStartDate=${formStartDate}&formEndDate=${formEndDate}&expiryStartDate=${expiryStartDate}&expiryEndDate=${expiryEndDate}&packageCategoryId=${packageCategoryId}&formSubmitTypeId=${formSubmitTypeId}`, //your url
+    method: 'GET',
+    responseType: 'blob', // important
   })
 }
 
@@ -76,37 +75,37 @@ const getDynamicDownloadFile = (
 }
 const postForms = (obj: postlistData) => {
   return http.post('SaveForm', {
-   userid:obj.userid,
-   formno:obj.formno,
-   formdate:obj.formdate,
-   formtype:obj.formtype,
-   salesexecutiveid:+obj.salesexecutiveid,
-   companyid:+obj.companyid,
-   pacakgetype:obj.pacakgetype.toString(),
-   packageid:obj.packageid,
-   packagecatid:+obj.packagecatid,
-   packagevalidity:obj.packagevalidity,
-   packagecost:obj.packagecost,
-   installationcost:obj.installationcost,
-   othercost:obj.othercost,
-   discount:obj.discount,
-   gstamount:obj.gstamount,
-   totalamount:obj.totalamount,
-   cashamount:obj.cashamount,
-   chequeamount:obj.chequeamount,
-   remaningamount:obj.remaningamount,
-   bankid:+obj.bankid,
-   chequeno:obj.chequeno.toString(),
-   chequedate:obj.chequedate,
-   receiverid:+obj.receiverid,
-   activationdate:obj.activationdate,
-   expirydate:obj.expirydate,
-   iptype:obj.iptype.toString(),
-   note:obj.note,
-   thirdparty:obj.thirdparty,
-   remark:obj.remark,
-   status:obj.status.toString(),
-   createdbyId:obj.createdbyId
+    userid: obj.userid,
+    formno: obj.formno,
+    formdate: obj.formdate,
+    formtype: obj.formtype,
+    salesexecutiveid: +obj.salesexecutiveid,
+    companyid: +obj.companyid,
+    pacakgetype: obj.pacakgetype.toString(),
+    packageid: obj.packageid,
+    packagecatid: +obj.packagecatid,
+    packagevalidity: obj.packagevalidity,
+    packagecost: obj.packagecost,
+    installationcost: obj.installationcost,
+    othercost: obj.othercost,
+    discount: obj.discount,
+    gstamount: obj.gstamount,
+    totalamount: obj.totalamount,
+    cashamount: obj.cashamount,
+    chequeamount: obj.chequeamount,
+    remaningamount: obj.remaningamount,
+    bankid: +obj.bankid,
+    chequeno: obj.chequeno.toString(),
+    chequedate: obj.chequedate,
+    receiverid: +obj.receiverid,
+    activationdate: obj.activationdate,
+    expirydate: obj.expirydate,
+    iptype: obj.iptype.toString(),
+    note: obj.note,
+    thirdparty: obj.thirdparty,
+    remark: obj.remark,
+    status: obj.status.toString(),
+    createdbyId: obj.createdbyId,
   })
 }
 {
@@ -130,39 +129,39 @@ const deleteForms = (Id: number) => {
 const editForms = (obj: putInquiriesmodel) => {
   return http.post(`SaveForm`, {
     id: obj.id,
-    userid:obj.userid,
-    userName:obj.userName,
-   formno:obj.formno,
-   formdate:obj.formdate,
-   packageid:obj.packageid,
-   formtype:obj.formtype.toString(),
-   pacakgetype:obj.pacakgetype.toString(),
-   salesexecutiveid:obj.salesexecutiveid,
-   companyid:obj.companyid,
-   packagecatid:obj.packagecatid,
-   packagevalidity:obj.packagevalidity,
-   packagecost:obj.packagecost,
-   installationcost:obj.installationcost,
-   othercost:obj.othercost,
-   discount:obj.discount,
-   gstamount:obj.gstamount,
-   totalamount:obj.totalamount,
-   cashamount:obj.cashamount,
-   chequeamount:obj.chequeamount,
-   remaningamount:obj.remaningamount,
-   bankid:obj.bankid,
-   chequeno:obj.chequeno,
-   chequedate:obj.chequedate,
-   receiverid:obj.receiverid,
-   activationdate:obj.activationdate,
-   expirydate:obj.expirydate,
-   iptype:obj.iptype.toString(),
-   note:obj.note,
-   thirdparty:obj.thirdparty,
-   remark:obj.remark,
-   status:obj.status.toString(),
- 
-  modifyby: obj.modifyby,
+    userid: obj.userid,
+    userName: obj.userName,
+    formno: obj.formno,
+    formdate: obj.formdate,
+    packageid: obj.packageid,
+    formtype: obj.formtype.toString(),
+    pacakgetype: obj.pacakgetype.toString(),
+    salesexecutiveid: obj.salesexecutiveid,
+    companyid: obj.companyid,
+    packagecatid: obj.packagecatid,
+    packagevalidity: obj.packagevalidity,
+    packagecost: obj.packagecost,
+    installationcost: obj.installationcost,
+    othercost: obj.othercost,
+    discount: obj.discount,
+    gstamount: obj.gstamount,
+    totalamount: obj.totalamount,
+    cashamount: obj.cashamount,
+    chequeamount: obj.chequeamount,
+    remaningamount: obj.remaningamount,
+    bankid: obj.bankid,
+    chequeno: obj.chequeno,
+    chequedate: obj.chequedate,
+    receiverid: obj.receiverid,
+    activationdate: obj.activationdate,
+    expirydate: obj.expirydate,
+    iptype: obj.iptype.toString(),
+    note: obj.note,
+    thirdparty: obj.thirdparty,
+    remark: obj.remark,
+    status: obj.status.toString(),
+
+    modifyby: obj.modifyby,
   })
 }
 {
@@ -218,14 +217,13 @@ const getBank = () => {
 
 // userName
 const getUserName = (username: string) => {
-  return http.get(`GetByUserName`, {userName: username})
+  return http.get(`GetUserByRoleName?roleName=Customer`, {userName: username})
 }
 
 //Reciever
 const getReciever = () => {
   return http.get(`GetUserByRoleName?roleName=Technician`)
 }
-
 
 const Inquiriesservice = {
   getDynamicForm,
@@ -242,7 +240,7 @@ const Inquiriesservice = {
   getUserName,
   getPackage,
   getBank,
-  getReciever
+  getReciever,
 }
 
 export default Inquiriesservice

@@ -23,7 +23,7 @@ const getDynamicGodownStockInwards = (
     )
   } else {
     return http.get(
-      `GetDynamicGodownStockInwards/${pageNo}/${pageSize}?searchText=${searchText}&createdBy=${createdBy}&startDate=${startDate}&endDate=${endDate}&zoneId=${zoneId}&productId=${productId}&supplierName=${supplierName}`
+      `GetDynamicGodownStockInwards/${pageNo}/${pageSize}?searchText=${searchText}&createdBy=${createdBy}&startDate=${startDate}&endDate=${endDate}&zoneId=${zoneId}&productId=${productId}&supplierName=${supplierName}&orderBYColumnName=${'createdDate'}&orderByColumnDir=${'desc'}`
     )
   }
 }

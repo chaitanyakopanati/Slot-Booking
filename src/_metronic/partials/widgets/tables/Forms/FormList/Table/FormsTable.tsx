@@ -123,7 +123,7 @@ const FormsTable = () => {
             <tr className='fw-bolder text-muted bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>No.</th>
               <th className='max-w-60px ps-4'>File No.</th>
-              <th className='min-w-150px'>Username</th>
+              <th className='min-w-150px'>User Name</th>
               <th className='min-w-200px'>Name</th>
               <th className='min-w-150px'>Sales Executive.</th>
               <th className='min-w-200px'>Form Date</th>
@@ -171,7 +171,7 @@ const FormsTable = () => {
                     {/* begin:: User Type Input formdate */}
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
-                      {moment.utc(row?.formdate).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.formdate).local().format('DD-MMM-YYYY') || '-'}
                     </td>
                     {/* end:: User Type Input  formdate*/}
 
@@ -224,7 +224,7 @@ const FormsTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm m-1'
                         title='View Customer'
                         onClick={() => {
-                          window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                          window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
                         }}
                       >
                         <KTSVG
@@ -276,7 +276,7 @@ const FormsTable = () => {
                         <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                       </div>
                       <div className='py-1 d-flex'>
-                        <div className='fw-bolder '>userName:</div>
+                        <div className='fw-bolder '>user Name:</div>
                         <div className='text-dark fw-bold  ms-2'>{row.userName || '-'}</div>
                       </div>
 
@@ -296,8 +296,7 @@ const FormsTable = () => {
                           <div className='fw-bolder '>Form Date:</div>
                           <div className='text-dark fw-bold  ms-2'>
                             {' '}
-                            {moment.utc(row?.formdate).local().format('DD-MMMM-YYYY, h:mm a') ||
-                              '-'}
+                            {moment.utc(row?.formdate).local().format('DD-MMM-YYYY, h:mm a') || '-'}
                           </div>
                         </div>
 
@@ -356,7 +355,7 @@ const FormsTable = () => {
                         <button
                           className='btn btn-icon btn-active-color-danger btn-sm'
                           onClick={() => {
-                            window.open(`/customers/customerviewform/${row.id}`, '_blank')
+                            window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
                           }}
                         >
                           <KTSVG

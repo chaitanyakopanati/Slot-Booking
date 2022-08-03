@@ -247,7 +247,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold'>Name</label>
                     <input
-                      placeholder='Shivani Dhavalbhai Nasit'
                       value={props.values.name}
                       className='form-control form-control-lg form-control-solid'
                       type='text'
@@ -261,7 +260,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                   <div className='col-lg-6'>
                     <label className='form-label fw-bold'>Company name</label>
                     <input
-                      placeholder='Company name'
                       value={props.values.companyName}
                       className='form-control form-control-lg form-control-solid'
                       type='text'
@@ -348,7 +346,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       value={props.values.address}
                       className='form-control form-control form-control-solid'
                       data-kt-autosize='true'
-                      placeholder='165, Gf, Block No-2, New Gidc, Mahakali Baug Katargam'
+                      placeholder='Address'
                       disabled
                     ></textarea>
                   </div>

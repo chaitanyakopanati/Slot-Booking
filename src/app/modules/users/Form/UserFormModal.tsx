@@ -271,9 +271,9 @@ const UserFormModal: FC<Props> = ({category}) => {
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   {itemIdForUpdate === 'add' ? (
                     <div className='col-lg-6'>
-                      <label className='form-label fw-bold required'>Username :</label>
+                      <label className='form-label fw-bold required'>User Name :</label>
                       <input
-                        placeholder='username'
+                        placeholder='User Name'
                         className='form-control form-control-lg form-control-solid'
                         value={props.values.username}
                         onChange={props.handleChange}
@@ -288,9 +288,9 @@ const UserFormModal: FC<Props> = ({category}) => {
                     </div>
                   ) : (
                     <div className='col-lg-6'>
-                      <label className='form-label fw-bold required'>Username :</label>
+                      <label className='form-label fw-bold required'>User Name :</label>
                       <input
-                        placeholder='username'
+                        placeholder='User Name'
                         className='form-control form-control-lg form-control-solid'
                         value={props.values.username}
                         onChange={props.handleChange}

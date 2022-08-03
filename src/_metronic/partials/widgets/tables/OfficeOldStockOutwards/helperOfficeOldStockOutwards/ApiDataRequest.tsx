@@ -24,7 +24,7 @@ const getDynamicOfficeOldStockOutwards = (
     )
   } else {
     return http.get(
-      `GetDynamicOfficeOldStockOutwards/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&createdBy=${createdBy}&TechnicianId=${TechnicianId}&startDate=${startDate}&endDate=${endDate}&productId=${productId}`
+      `GetDynamicOfficeOldStockOutwards/${pageNo}/${pageSize}?searchText=${searchText}&zoneId=${zoneId}&Username=${Username}&createdBy=${createdBy}&TechnicianId=${TechnicianId}&startDate=${startDate}&endDate=${endDate}&productId=${productId}&orderBYColumnName=${'createdDate'}&orderByColumnDir=${'desc'}`
     )
   }
 }

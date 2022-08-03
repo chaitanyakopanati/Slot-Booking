@@ -79,7 +79,7 @@ const GodownStockInwardsTable = () => {
 
                     {/* begin:: inwardDate At Date & Time */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment(row?.inwardDate).format('DD-MMMM-YYYY') || '-'}
+                      {moment(row?.inwardDate).format('DD-MMM-YYYY') || '-'}
                     </td>
                     {/* end:: inwardDate At Date & Time */}
 
@@ -168,7 +168,9 @@ const GodownStockInwardsTable = () => {
                       </div>
                       <div className='py-1 d-flex'>
                         <div className='fw-bolder '>InwardDate:</div>
-                        <div className='text-dark fw-bold  ms-2'>{row.inwardDate || '-'}</div>
+                        <div className='text-dark fw-bold  ms-2'>
+                          {moment(row?.inwardDate).format('DD-MMM-YYYY') || '-'}
+                        </div>
                       </div>
 
                       <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>

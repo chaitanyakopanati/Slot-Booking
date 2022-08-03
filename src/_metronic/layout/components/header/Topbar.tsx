@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React, {FC} from 'react'
+import {useAuth} from '../../../../app/modules/auth'
 import {KTSVG, toAbsoluteUrl} from '../../../helpers'
 import {HeaderNotificationsMenu, HeaderUserMenu, QuickLinks, Search} from '../../../partials'
 import {useLayout} from '../../core'
@@ -11,6 +12,9 @@ const toolbarButtonMarginClass = 'ms-1 ms-lg-3',
 
 const Topbar: FC = () => {
   const {config} = useLayout()
+
+  const {currentUser, logout} = useAuth()
+  const {auth} = useAuth()
 
   return (
     <div className='d-flex align-items-stretch flex-shrink-0'>
@@ -46,6 +50,16 @@ const Topbar: FC = () => {
           data-kt-menu-flip='bottom'
         >
           <img src={toAbsoluteUrl('/media/avatars/profile.png')} alt='metronic' />
+          <div className='d-flex flex-column'>
+            <div className='fw-bolder d-flex align-items-center fs-5'>
+              {currentUser?.first_name} {currentUser?.last_name}
+            </div>
+            {/* <a href='#' className='fw-bold text-muted text-hover-primary fs-7'>
+              {currentUser?.email}
+            </a> */}
+            {/* <div className='fw-bold text-muted fs-7'>Designation (Admin)</div> */}
+            <div className='fw-bold text-muted fs-7'>{auth?.username}</div>
+          </div>
         </div>
         <HeaderUserMenu />
         {/* end::Toggle */}

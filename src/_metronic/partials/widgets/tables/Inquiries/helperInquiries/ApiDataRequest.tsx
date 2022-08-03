@@ -24,7 +24,7 @@ const getDynamicInquiries = (
     )
   } else {
     return http.get(
-      `GetAllInquiries/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&statusId=${statusId}&roleId=${roleId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}`
+      `GetAllInquiries/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&statusId=${statusId}&roleId=${roleId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

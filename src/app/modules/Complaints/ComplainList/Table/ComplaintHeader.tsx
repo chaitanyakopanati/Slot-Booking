@@ -333,6 +333,7 @@ const ComplaintHeader = () => {
                         onChange={handleAssign}
                       >
                         <option value='0'>All</option>
+                        <option value='0'>Not assigned</option>
 
                         {getDataAllTypeTechnician.map((getDataAllTypeTechnician: any, index) => {
                           return (
@@ -353,7 +354,8 @@ const ComplaintHeader = () => {
                         value={complainttypeid}
                         onChange={handleComplaintType}
                       >
-                        <option value='0'>All</option>
+                        <option value=''>All</option>
+                        <option value='0'>Not described</option>
 
                         {getDataAllTypeComplaint.map((complaintData: any, index) => {
                           return (

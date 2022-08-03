@@ -156,7 +156,7 @@ const getAllCompanies = () => {
 
 // userName
 const getUserName = (username: string) => {
-  return http.get(`GetByUserName`, {userName: username})
+  return http.get(`GetUserByRoleName?roleName=Customer`, {userName: username})
 }
 
 const getAllPackages = () => {

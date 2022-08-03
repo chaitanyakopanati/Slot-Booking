@@ -57,7 +57,7 @@ const CustomerTable = () => {
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>No</th>
-              <th className='min-w-150px'>Username</th>
+              <th className='min-w-150px'>User Name</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
               <th className='min-w-100px'>Package Name</th>
@@ -107,7 +107,7 @@ const CustomerTable = () => {
                   <td className='text-dark fw-bold fs-6'>
                     {' '}
                     {customer?.expiryDate
-                      ? moment.utc(customer?.expiryDate).local().format('DD-MMMM-YYYY')
+                      ? moment.utc(customer?.expiryDate).local().format('DD-MMM-YYYY')
                       : '-'}
                   </td>
                   <td>
@@ -242,7 +242,7 @@ const CustomerTable = () => {
                     <div className='text-muted fw-bold ms-2'>- {customer.name}</div>
                   </div>
                   <div className='text-dark fw-bold py-1'>
-                    <span className='fw-bolder'>userName: </span>
+                    <span className='fw-bolder'>user Name: </span>
                     <span className='mx-2'>{customer.userName}</span>
                   </div>
                   <div id={`card-id-${customer.id}`} className='collapse'>
@@ -272,7 +272,7 @@ const CustomerTable = () => {
                       <span className='fw-bolder'>Expiry date:</span>
                       <span className='text-dark fw-bold  ms-2'>
                         {' '}
-                        {moment.utc(customer?.expiryDate).local().format('DD-MMMM-YYYY, h:mm a') ||
+                        {moment.utc(customer?.expiryDate).local().format('DD-MMM-YYYY, h:mm a') ||
                           '-'}
                       </span>
                     </div>

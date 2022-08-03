@@ -16,7 +16,7 @@ const getDynamicPackages = (
   } else {
     return http.get(
       `GetDynamicPackageData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}
-      &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+     &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

@@ -25,7 +25,7 @@ let validationSchemaNewForm = Yup.object({
   remark: Yup.string().required('This field is required'),
   status: Yup.string().required('This field is required'),
   iptype: Yup.string().required('This field is required'),
-  accesspointip: Yup.string().required('This field is required'),
+  // accesspointip: Yup.string().required('This field is required'),
   stationip: Yup.string().required('This field is required'),
   stationname: Yup.string().required('This field is required'),
   stationMac: Yup.string().required('This field is required'),
@@ -168,6 +168,13 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     onSubmit: async (values: any, {resetForm}) => {
       LoderActions(true)
       values.zoneId = +values.zoneId
+      values.cabletypeid = +values.cabletypeid
+      values.installerid = +values.installerid
+      values.zonepointid = +values.zonepointid
+      values.cabletypeid = +values.cabletypeid
+      // values.accesspointip = String.valueOf(values.accesspointip)
+      // values.stationip = String.valueOf(values.stationip)
+
       try {
         if (values.id) {
           // Edit Api Response
@@ -203,6 +210,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       }
     },
   })
+
+  var regex = new RegExp('^[0-9.]+$')
 
   return (
     <>
@@ -267,10 +276,10 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                               key={user.id}
                               onClick={() => {
                                 formik.setFieldValue('userid', user.id)
-                                formik.setFieldValue('userName', user.firstname)
+                                formik.setFieldValue('userName', user.username)
                               }}
                             >
-                              {user.firstname}
+                              {user.username}
                             </li>
                           )
                         })}
@@ -417,9 +426,15 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     placeholder='Access point IP'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.accesspointip}
-                    onChange={formik.handleChange}
+                    // onChange={formik.handleChange}
+                    onChange={(e) => {
+                      if (e.target.value.length == 0 || e.target.value.match(regex)) {
+                        return formik.handleChange(e)
+                      }
+                      return
+                    }}
                     onBlur={formik.handleBlur}
-                    type='number'
+                    type='sting'
                     name='accesspointip'
                     autoComplete='off'
                   />
@@ -437,9 +452,14 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     placeholder='Station IP'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.stationip}
-                    onChange={formik.handleChange}
+                    // onChange={formik.handleChange}
+                    onChange={(e) => {
+                      if (e.target.value.length == 0 || e.target.value.match(regex)) {
+                        return formik.handleChange(e)
+                      }
+                    }}
                     onBlur={formik.handleBlur}
-                    type='number'
+                    type='sting'
                     name='stationip'
                     autoComplete='off'
                   />

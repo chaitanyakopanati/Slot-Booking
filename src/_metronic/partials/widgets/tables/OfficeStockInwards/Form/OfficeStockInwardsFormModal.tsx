@@ -6,10 +6,11 @@ import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
 import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
-import moment from 'moment'
+import moment, {min} from 'moment'
 import {ListPageData} from '../OfficeStockInwardsContext'
 import OfficeStockInwardsService from '../helperOfficeStockInwards/ApiDataRequest'
 import {useAuth} from '../../../../../../app/modules/auth'
+import NumericInput from 'react-numeric-input'
 
 type Props = {
   category: any
@@ -40,7 +41,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
     inwardNo: '',
     inwardDate: '',
     productId: '',
-    quantity: '',
+    quantity: 0,
     deliveredById: '',
     zoneId: '',
     serialno: '',
@@ -55,7 +56,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         inwardNo: category.data?.inwardNo || '',
         inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
         productId: category.data?.productId || '',
-        quantity: category.data?.quantity || '',
+        quantity: category.data?.quantity || 0,
         deliveredById: category.data?.deliveredById || '',
         zoneId: category.data?.zoneId || '',
         createdbyId: auth?.userId,
@@ -67,7 +68,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         inwardNo: category.data?.inwardNo || '',
         inwardDate: moment(category.data?.inwardDate).format('YYYY-MM-DD'),
         productId: category.data?.productId || '',
-        quantity: category.data?.quantity || '',
+        quantity: category.data?.quantity || 0,
         deliveredById: category.data?.deliveredById || '',
         zoneId: category.data?.zoneId || '',
         modifyById: auth?.userId,
@@ -101,6 +102,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
           console.log('values', values)
           LoderActions(true)
           values.zoneId = +values.zoneId
+          values.productId = +values.productId
+          values.deliveredById = +values.deliveredById
 
           try {
             if (values.id) {
@@ -219,20 +222,38 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
 
                   <div className=' col-md-3'>
                     <label className='form-label fw-bold required'>Quantity</label>
+                    {/* 
+                    <NumericInput
+                      placeholder='quantity'
+                      className='form-control form-control-lg form-control-solid'
+                      name='quantity'
+                      min={0}
+                      type='number'
+                      value={props.values.quantity}
+                      // onChange={props?.handleChange}
+                      // onChange={(e) => {
+                      //   if (e) {
+                      //     return props.handleChange(e)
+                      //   }
+                      // }}
+                      // onChange={(value) => {
+                      //   return props?.handleChange(value)
+                      // }}
+
+                      onBlur={props.handleBlur}
+                    /> */}
+
                     <input
                       placeholder='quantity'
                       className='form-control form-control-lg form-control-solid'
-                      type='number'
-                      min='1'
-                      value={props.values.quantity}
-                      onChange={(e) => {
-                        if (+e.target.value >= 0) {
-                          return props.handleChange(e)
-                        }
-                      }}
-                      onBlur={props.handleBlur}
                       name='quantity'
+                      min={0}
+                      type='number'
+                      value={props.values.quantity}
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
                     />
+
                     <div className='erro2' style={{color: 'red'}}>
                       <ErrorMessage name='quantity' />
                     </div>
@@ -266,7 +287,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       value={props.values.serialno}
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      type='number'
+                      type='text'
                       name='serialno'
                       placeholder='Serial no'
                       autoComplete='off'

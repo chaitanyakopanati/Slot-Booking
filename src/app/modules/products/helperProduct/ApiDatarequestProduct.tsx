@@ -16,7 +16,7 @@ const getDynamicProduct = (
     )
   } else {
     return http.get(
-      `GetDynamicProductData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&createdById=${createdById} &orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+      `GetDynamicProductData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&createdById=${createdById}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

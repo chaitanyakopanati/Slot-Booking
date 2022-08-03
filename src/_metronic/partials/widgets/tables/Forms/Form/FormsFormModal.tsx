@@ -31,7 +31,7 @@ let validationSchemaNewForm = Yup.object({
     .required('This field is required'),
   status: Yup.string().required('This field is required'),
   remaningamount: Yup.number()
-    .min(0, 'This value should be greater than or equal to 0')
+    // .min(0, 'This value should be greater than or equal to 0')
     .required('This field is required'),
   receiverid: Yup.string().required('This field is required'),
   packagecost: Yup.number()
@@ -394,10 +394,10 @@ const FormsFormModal: FC<Props> = ({category}) => {
                                   key={user.id}
                                   onClick={() => {
                                     formik.setFieldValue('userid', user.id)
-                                    formik.setFieldValue('userName', user.firstname)
+                                    formik.setFieldValue('userName', user.username)
                                   }}
                                 >
-                                  {user.firstname}
+                                  {user.username}
                                 </li>
                               )
                             })}

@@ -145,7 +145,7 @@ const MainPointTable = () => {
 
                     {/* begin:: Created At Date & Time */}
                     <td className='text-dark fw-bold fs-6'>
-                      {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') || '-'}
+                      {moment.utc(row?.createdAt).local().format('DD-MMM-YYYY, h:mm a') || '-'}
                     </td>
                     {/* end:: Created At Date & Time */}
 
@@ -235,12 +235,12 @@ const MainPointTable = () => {
                           </div>
                         </div>
 
-                        <div id='card-id-1' className='collapse'>
+                        <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
                           <div className='py-1 d-flex align-items-cenetr'>
                             <div className='fw-bolder '>Created at:</div>
                             <div className='text-dark fw-bold  ms-2'>
                               {' '}
-                              {moment.utc(row?.createdAt).local().format('DD-MMMM-YYYY, h:mm a') ||
+                              {moment.utc(row?.createdAt).local().format('DD-MMM-YYYY, h:mm a') ||
                                 '-'}
                             </div>
                           </div>

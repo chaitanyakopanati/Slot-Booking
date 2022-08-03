@@ -97,7 +97,7 @@ const ComplaintTable = () => {
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>Complaint No.</th>
-              <th className='max-w-60px '>Username</th>
+              <th className='max-w-60px '>User Name</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
               <th className='min-w-150px'>Package Category</th>
@@ -157,7 +157,7 @@ const ComplaintTable = () => {
 
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
-                      {moment(row?.createdDate).format('DD-MMMM-YYYY, h:mm:ss a') || '-'}
+                      {moment(row?.createdDate).format('DD-MMM-YYYY, h:mm a') || '-'}
                     </td>
 
                     <td>
@@ -248,7 +248,7 @@ const ComplaintTable = () => {
                         <div className='fw-bold badge badge-light-danger ms-auto'>Open</div>
                       </div>
                       <div className='py-1 d-flex'>
-                        <div className='fw-bolder '>userName:</div>
+                        <div className='fw-bolder '>user Name:</div>
                         <div className='text-dark fw-bold  ms-2'>{row.userName || '-'}</div>
                       </div>
                       <div className='py-1 d-flex'>
@@ -290,7 +290,7 @@ const ComplaintTable = () => {
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Complaint date:</div>
                           <div className='text-dark fw-bold  ms-2'>
-                            {moment.utc(row?.outwardDate).local().format('DD-MMMM-YYYY, h:mm a') ||
+                            {moment.utc(row?.outwardDate).local().format('DD-MMM-YYYY, h:mm a') ||
                               '-'}
                           </div>
                         </div>

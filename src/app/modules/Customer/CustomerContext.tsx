@@ -57,8 +57,8 @@ let ListDataContext = createContext<CustomerDataContextModel>({
   zoneType: [],
   filter: {
     searchText: '',
-    orderByColumnName: 'firstName',
-    sortColumnDir: 'asc',
+    // orderByColumnName: 'firstName',
+    // sortColumnDir: 'asc',
     installerId: '',
     salesExecutiveId: '',
     zoneId: '',
@@ -67,6 +67,8 @@ let ListDataContext = createContext<CustomerDataContextModel>({
     connectionTypeId: '',
     userName: '',
     createdById: '',
+    orderByColumnName: 'createdAt',
+    sortColumnDir: 'desc',
   },
   setFilter: (filterTable) => {},
   pageNo: 1,
@@ -99,8 +101,8 @@ const CustomerContext: FC = ({children}) => {
   const [zoneType, setZoneType] = useState<zoneTypes[]>([])
   const [filter, setFilter] = useState<filterTable>({
     searchText: '',
-    orderByColumnName: 'firstName',
-    sortColumnDir: 'asc',
+    // orderByColumnName: 'firstName',
+    // sortColumnDir: 'asc',
     installerId: '',
     salesExecutiveId: '',
     zoneId: '',
@@ -109,6 +111,8 @@ const CustomerContext: FC = ({children}) => {
     connectionTypeId: '',
     userName: '',
     createdById: '',
+    orderByColumnName: 'createdAt',
+    sortColumnDir: 'desc',
   })
   const [customerTableData, setCustomerTableData] = useState<customerType[]>([])
   const [companies, setCompanies] = useState<companiesTypes[]>([])

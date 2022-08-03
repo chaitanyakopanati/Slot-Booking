@@ -187,7 +187,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
             data-kt-scroll-offset='300px'
           >
             {/* begin: input name Filed */}
-            <div className='row w-100 mx-0 mb-4 gy-4'>
+            <div className='row w-100 mb-4 gy-4'>
               <div className='col-md-3'>
                 <label className='form-label fw-bold required'>Outward date </label>
                 <input

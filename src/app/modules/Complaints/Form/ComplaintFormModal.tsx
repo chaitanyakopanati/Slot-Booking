@@ -315,10 +315,10 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                                       key={user.id}
                                       onClick={() => {
                                         formik.setFieldValue('userId', user.id)
-                                        formik.setFieldValue('username', user.firstname)
+                                        formik.setFieldValue('username', user.username)
                                       }}
                                     >
-                                      {user.firstname}
+                                      {user.username}
                                     </li>
                                   )
                                 })}

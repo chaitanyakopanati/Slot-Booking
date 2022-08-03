@@ -87,7 +87,7 @@ const UserTable = () => {
             <tr className='fw-bolder text-muted  bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4 text-center'>No</th>
               <th className='min-w-150px'>Name</th>
-              <th className='min-w-150px'>Username</th>
+              <th className='min-w-150px'>User Name</th>
               <th className='min-w-200px'>Email</th>
               <th className='min-w-200px'>Mobile no.</th>
               <th className='min-w-200px'>Zone</th>
