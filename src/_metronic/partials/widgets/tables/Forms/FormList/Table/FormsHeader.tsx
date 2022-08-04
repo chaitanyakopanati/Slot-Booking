@@ -405,7 +405,8 @@ const FormsHeader: FC<Props> = ({category}) => {
                         value={salesExecutiveId}
                         onChange={handlesalesExecutiveIdchange}
                       >
-                        <option value=''>All</option>
+                        <option>All</option>
+                        {/* <option value='0'>Not described</option> */}
                         {getUserByRole?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -559,9 +560,12 @@ const FormsHeader: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...props.getFieldProps('packagecatid')}
                         value={packageCategoryId}
+                        placeholder='All'
                         onChange={handlePackagesCategoryIdchange}
                       >
-                        <option value=''>All</option>
+                        <option>All</option>
+                        {/* <option value='0'>Not described</option> */}
+
                         {getPackagesCategory?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -580,10 +584,10 @@ const FormsHeader: FC<Props> = ({category}) => {
                         onChange={handleConnectionTypechange}
                       >
                         <option>All</option>
-                        <option value='1'>FormCable </option>
+                        <option value='1'>Form Cable </option>
                         <option value='2'>Wireless </option>
-                        <option value='3'>NotDescribed </option>
-                        <option value='4'>NotInstalled </option>
+                        <option value='3'>Not Described </option>
+                        <option value='4'>Not Installed </option>
                       </select>
                     </div>
                     <div className='col-lg-3'>

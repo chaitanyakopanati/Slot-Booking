@@ -68,7 +68,7 @@ const GodownStockAvailabilityTable = () => {
               <tr>
                 <td colSpan={8}>
                   <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
-                    No Records Found !
+                    No data available in table
                   </div>
                 </td>
               </tr>
@@ -127,7 +127,9 @@ const GodownStockAvailabilityTable = () => {
           ) : (
             <div>
               <div>
-                <div className='text-dark fw-bolder fs-6 ps-4 text-center'>No Records Found !</div>
+                <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                  No data available in table
+                </div>
               </div>
             </div>
           )}

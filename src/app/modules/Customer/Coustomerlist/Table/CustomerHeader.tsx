@@ -153,6 +153,8 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
+                    <option value='0'>Not described</option>
+
                     {companies.map((company) => {
                       return (
                         <option key={company.id} value={company.id}>
@@ -204,6 +206,8 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
+                    <option value='0'>Not described</option>
+
                     {installer.map((user) => {
                       return (
                         <option key={user.id} value={user.id}>
@@ -229,6 +233,7 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
+                    <option value='0'>Not described</option>
                     {salesExecutve.map((user) => {
                       return (
                         <option key={user.id} value={user.id}>
@@ -254,6 +259,7 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
+                    <option value='0'>Not described</option>
                     {mainPoint.map((point) => {
                       return (
                         <option key={point.id} value={point.id}>

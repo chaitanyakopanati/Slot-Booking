@@ -11,7 +11,6 @@ import {
 } from './helperForms/ModelForms'
 import {saveAs} from 'file-saver'
 
-
 export interface ComplaintDataContextModel {
   getData: getInquiriesData[]
   getDataAllType: GetAllData[]
@@ -403,62 +402,62 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
-    //packages 
+  //packages
 
-    const DataGetAllTypePackages = async () => {
-      LoderActions(true)
-      try {
-        let payload: GetAllData = await Inquiriesservice.getPackage()
-        console.log(payload, 'SalepackagesSalepackages')
-  
-        if (payload.success == true) {
-          setGetPackages(payload?.data)
-          console.log(payload.data, 'Salepackages')
-        }
-      } catch (error) {
-        LoderActions(false)
-      } finally {
-        LoderActions(false)
+  const DataGetAllTypePackages = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await Inquiriesservice.getPackage()
+      console.log(payload, 'SalepackagesSalepackages')
+
+      if (payload.success == true) {
+        setGetPackages(payload?.data)
+        console.log(payload.data, 'Salepackages')
       }
+    } catch (error) {
+      LoderActions(false)
+    } finally {
+      LoderActions(false)
     }
+  }
 
-    //Bank
+  //Bank
 
-    const DataGetAllTypeBank = async () => {
-      LoderActions(true)
-      try {
-        let payload: GetAllData = await Inquiriesservice.getBank()
-        console.log(payload, 'getBankgetBank')
-  
-        if (payload.success == true) {
-          setGetBank(payload?.data)
-          console.log(payload.data, 'getBank')
-        }
-      } catch (error) {
-        LoderActions(false)
-      } finally {
-        LoderActions(false)
+  const DataGetAllTypeBank = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await Inquiriesservice.getBank()
+      console.log(payload, 'getBankgetBank')
+
+      if (payload.success == true) {
+        setGetBank(payload?.data)
+        console.log(payload.data, 'getBank')
       }
+    } catch (error) {
+      LoderActions(false)
+    } finally {
+      LoderActions(false)
     }
+  }
 
-      //Reciever
+  //Reciever
 
-      const DataGetAllTypeReciever = async () => {
-        LoderActions(true)
-        try {
-          let payload: GetAllData = await Inquiriesservice.getReciever()
-          console.log(payload, 'getBankgetBank')
-    
-          if (payload.success == true) {
-            setGetReciever(payload?.data)
-            console.log(payload.data, 'getBank')
-          }
-        } catch (error) {
-          LoderActions(false)
-        } finally {
-          LoderActions(false)
-        }
+  const DataGetAllTypeReciever = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await Inquiriesservice.getReciever()
+      console.log(payload, 'getBankgetBank')
+
+      if (payload.success == true) {
+        setGetReciever(payload?.data)
+        console.log(payload.data, 'getBank')
       }
+    } catch (error) {
+      LoderActions(false)
+    } finally {
+      LoderActions(false)
+    }
+  }
 
   //User name
 
@@ -468,9 +467,7 @@ const ListDataProvider: FC = ({children}) => {
       let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
-          let payload: GetAllData = await Inquiriesservice.getUserName(
-            suggestionUserText
-          )
+          let payload: GetAllData = await Inquiriesservice.getUserName(suggestionUserText)
           console.log(payload, 'getUserNamegetUserName')
 
           if (payload.success == true) {
