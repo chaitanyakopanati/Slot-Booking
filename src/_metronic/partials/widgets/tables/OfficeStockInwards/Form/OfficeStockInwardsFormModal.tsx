@@ -10,7 +10,7 @@ import moment, {min} from 'moment'
 import {ListPageData} from '../OfficeStockInwardsContext'
 import OfficeStockInwardsService from '../helperOfficeStockInwards/ApiDataRequest'
 import {useAuth} from '../../../../../../app/modules/auth'
-import NumericInput from 'react-numeric-input'
+// import NumericInput from 'react-numeric-input'
 
 type Props = {
   category: any
