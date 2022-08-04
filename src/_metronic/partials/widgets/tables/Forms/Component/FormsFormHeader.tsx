@@ -15,7 +15,7 @@ const FormsFormHeader = () => {
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
           </span>
           <h2 className='modal-title fw-bolder'>
-            {itemIdForUpdate === 'add' ? 'Create Forms' : 'Edit Forms'}
+            {itemIdForUpdate === 'add' ? 'Create Form' : 'Edit Form'}
           </h2>
         </div>
 

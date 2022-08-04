@@ -25,24 +25,27 @@ function CustomerFormModal({customerById}: customerProps) {
   const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
 
   const validationSchema = Yup.object({
-    Userid: Yup.string().when(['UserName'], {
-      is: (UserName: any) => !UserName,
-      then: Yup.string().required().label('UserName'),
-    }),
+    // Userid: Yup.string().when(['UserName'], {
+    //   is: (UserName: any) => !UserName,
+    //   then: Yup.string().required().label('UserName'),
+    // }),
+
+    UserName: Yup.string().required('This field is required'),
+    // Userid: Yup.number().required('Entered User Name Does Not Exist'),
     MobileNo: Yup.string()
       .min(10, 'Invalid Phone Number')
       .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
       .required('This field is required'),
-    Contactno: Yup.string()
-      .min(10, 'Invalid Phone Number')
-      .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
-      .required('This field is required'),
+    // Contactno: Yup.string()
+    //   .min(10, 'Invalid Phone Number')
+    //   .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
+    //   .required('This field is required'),
     ZoneId: Yup.string().required().label('Zone'),
     Email: Yup.string()
       .email('Invalid email format')
       .matches(emailRegExp, 'Invalid email format')
       .required('This field is required'),
-    Address: Yup.string().required().label('Address'),
+    // Address: Yup.string().required().label('Address'),
     FirstName: Yup.string().required().label('FirstName'),
     LastName: Yup.string().required().label('LastName'),
     Middlename: Yup.string().required().label('Middlename'),
@@ -479,15 +482,20 @@ function CustomerFormModal({customerById}: customerProps) {
                       })}
                   </ul>
                 </div>
-                {formik.touched.Userid && formik.errors.Userid && (
-                  <div className='fv-plugins-message-container'>
-                    <div className='fv-help-block'>
-                      <span role='alert' style={{color: 'red'}}>
-                        {formik.errors.Userid}
-                      </span>
-                    </div>
-                  </div>
-                )}
+
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.UserName && formik.errors.UserName
+                    ? formik.errors.UserName
+                    : null}
+                </div>
+                {/* <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.UserName &&
+                  !formik.errors.UserName &&
+                  formik.touched.Userid &&
+                  formik.errors.Userid
+                    ? formik.errors.Userid
+                    : null}
+                </div> */}
               </div>
               {/* Mobile no. */}
               <div className='col-lg-3'>

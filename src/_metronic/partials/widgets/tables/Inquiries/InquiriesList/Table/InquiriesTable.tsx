@@ -179,7 +179,7 @@ const InquiriesTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`inquiriesviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
-                        title='View Inquiries'
+                        title='View Inquirie'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -194,7 +194,7 @@ const InquiriesTable = () => {
                         onClick={() => {
                           navigate(`inquiriesform/${row.id}`)
                         }}
-                        title='Edit Inquiries'
+                        title='Edit Inquirie'
 
                         // onClick={()=>openEditModal(row.id)}
                       >

@@ -21,6 +21,7 @@ export interface getInstallationsData {
   installerid: number
   zonepointid: number
   customerId: number
+  statusName: string
 }
 
 export interface getAllInstallationsData {
@@ -127,6 +128,7 @@ export interface GetAllInstallationsApi {
   salesexecutiveName: string
   connectionTypeId: number
   mainPointId: number
+  statusName: string
 }
 
 export type ID = undefined | null | string

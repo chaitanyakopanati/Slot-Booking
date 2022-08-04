@@ -43,7 +43,7 @@ export interface ComplaintDataContextModel {
   setFormSubmitTypeId: Dispatch<SetStateAction<number>>
   pageSize: number
   zoneId: number
-  salesExecutiveId: number
+  salesExecutiveId: any
   paymentTypeId: number
   packageCategoryId: number
   statusId: number
@@ -191,7 +191,7 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [searchByUserName, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
-  const [salesExecutiveId, setSalesExecutiveId] = useState(0)
+  const [salesExecutiveId, setSalesExecutiveId] = useState<any>('')
   const [roleId, setRoleId] = useState('')
   const [createdAt, setCreatedAt] = useState('')
   const [createdStartDate, setCreatedStartDate] = useState('')
@@ -203,7 +203,7 @@ const ListDataProvider: FC = ({children}) => {
   const [statusId, setStatusId] = useState<number>(0)
   const [companyId, setCompanyId] = useState<number>(0)
   const [paymentTypeId, setPaymentTypeId] = useState<number>(0)
-  const [packageCategoryId, setPackageCategoryId] = useState<number>(0)
+  const [packageCategoryId, setPackageCategoryId] = useState<any>('')
   const [connectionTypeId, setConnectionTypeId] = useState<number>(0)
   const [formTypeId, setFormTypeId] = useState<number>(0)
   const [formSubmitTypeId, setFormSubmitTypeId] = useState<number>(0)

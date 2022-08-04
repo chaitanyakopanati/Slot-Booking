@@ -21,13 +21,15 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
   const {setSuggestionUserText, getUserNameData, pageNo, pageSize} = ListPageData()
 
   let validationSchemaNewForm = Yup.object({
-    userId: Yup.number().required('This field is required'),
-    complainttypeid: Yup.number().required('This field is required'),
-    assigntechnicianid: Yup.number().required('This field is required'),
-    faultid: Yup.number().required('This fielld is required'),
-    description: Yup.string().required('This field is required'),
+    username: Yup.string().required('This field is required'),
+    userId: Yup.number().required('Entered User Name Does Not Exist'),
+
+    // complainttypeid: Yup.number().required('This field is required'),
+    // assigntechnicianid: Yup.number().required('This field is required'),
+    // faultid: Yup.number().required('This fielld is required'),
+    // description: Yup.string().required('This field is required'),
     status: Yup.number().required('This field is required'),
-    remark: Yup.string().required('This field is required'),
+    // remark: Yup.string().required('This field is required'),
   })
 
   const navigate = useNavigate()
@@ -325,7 +327,15 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                             </ul>
                           </div>
                           <div className='erro2' style={{color: 'red'}}>
-                            {formik.touched.userId && formik.errors.userId
+                            {formik.touched.username && formik.errors.username
+                              ? formik.errors.username
+                              : null}
+                          </div>
+                          <div className='erro2' style={{color: 'red'}}>
+                            {formik.touched.username &&
+                            !formik.errors.username &&
+                            formik.touched.userId &&
+                            formik.errors.userId
                               ? formik.errors.userId
                               : null}
                           </div>

@@ -108,7 +108,7 @@ const OfficeStockOutwardsTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`office-stock-inwardsviewform/${row.id}`)}
-                        title='View Office Stock Inwards'
+                        title='View Office Stock Inward'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -123,7 +123,7 @@ const OfficeStockOutwardsTable = () => {
                         onClick={() => {
                           navigate(`inwardsform/${row.id}`)
                         }}
-                        title='Edit Office Stock Inwards'
+                        title='Edit Office Stock Inward'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>

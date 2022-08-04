@@ -105,7 +105,10 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
       zoneId: Yup.number().required('This fielld is required'),
       technicianId: Yup.string().required('This field is required'),
       reason: Yup.string().required('This field is required'),
+      // username: Yup.string().required('This field is required'),
+
       username: Yup.string().required('This field is required'),
+      userId: Yup.number().required('Entered User Name Does Not Exist'),
     }),
     onSubmit: async (values: any, {resetForm}) => {
       LoderActions(true)
@@ -316,11 +319,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                     })
                   }}
                 />
-                <div className='erro2' style={{color: 'red'}}>
-                  {formik.touched.username && formik.errors.username
-                    ? formik.errors.username
-                    : null}
-                </div>
                 <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
                   <ul>
                     {getUserNameData?.length > 0 &&
@@ -339,6 +337,19 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                         )
                       })}
                   </ul>
+                </div>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.username && formik.errors.username
+                    ? formik.errors.username
+                    : null}
+                </div>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.username &&
+                  !formik.errors.username &&
+                  formik.touched.userId &&
+                  formik.errors.userId
+                    ? formik.errors.userId
+                    : null}
                 </div>
               </div>
 

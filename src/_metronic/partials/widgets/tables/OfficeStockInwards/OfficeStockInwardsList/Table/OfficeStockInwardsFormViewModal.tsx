@@ -65,7 +65,7 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                     >
                       <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
                     </span>
-                    <h5 className='modal-title'>View Office Stock Inwards</h5>
+                    <h5 className='modal-title'>View Office Stock Inward</h5>
                   </div>
                   <div className='ms-3'>
                     {/* begin::  Edit User button */}
@@ -81,7 +81,7 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                       }}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                      Edit office stock inwards
+                      Edit office stock inward
                     </button>
                     {/* end::  Edit User button */}
                   </div>

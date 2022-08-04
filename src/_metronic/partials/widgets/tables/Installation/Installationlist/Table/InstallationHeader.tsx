@@ -356,6 +356,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       onChange={handlesalesExecutiveIdchange}
                     >
                       <option value=''>All</option>
+                      <option value='0'>Not Described</option>
+
                       {getUserByRole?.map((row, index) => {
                         return (
                           <option key={index} value={row?.id}>
@@ -381,7 +383,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
                   <div className='row w-100 mx-0 my-3'>
                     <div className='col-lg-3'>
-                      <label className='form-label fw-bold'>Zone Point</label>
+                      <label className='form-label fw-bold'>Main Point</label>
                       <select
                         className='form-select form-select-solid'
                         {...props.getFieldProps('zonepointid')}
@@ -389,6 +391,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         onChange={handleMainPointchange}
                       >
                         <option value=''>All</option>
+                        <option value='0'>Not Described</option>
+
                         {getMainPoint.map((TypeData: any, index: number) => {
                           return (
                             <option key={index} value={TypeData?.id}>
@@ -425,6 +429,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         onChange={handleCompanyChange}
                       >
                         <option value=''>All</option>
+                        <option value='0'>Not Described</option>
+
                         {getCompanyTypeData.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>
@@ -443,6 +449,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         onChange={handleInstallerChange}
                       >
                         <option value=''>All</option>
+                        <option value='0'>Not Described</option>
+
                         {getInstallations.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>

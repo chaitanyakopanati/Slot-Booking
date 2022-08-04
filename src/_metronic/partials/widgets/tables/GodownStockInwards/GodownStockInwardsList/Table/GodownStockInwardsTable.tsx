@@ -102,7 +102,7 @@ const GodownStockInwardsTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`godown-stock-inwardsviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
-                        title='View Godown Stock Inwards'
+                        title='View Godown Stock Inward'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'

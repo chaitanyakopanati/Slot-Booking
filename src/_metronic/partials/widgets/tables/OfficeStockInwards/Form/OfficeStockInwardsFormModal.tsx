@@ -90,6 +90,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
 
   useEffect(() => {}, [category, itemIdForUpdate])
 
+  var regex = new RegExp('^[a-zA-Z0-9]+$')
+
   return (
     <>
       {/* begin::formik Add/Edit form */}
@@ -250,7 +252,16 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       min={0}
                       type='number'
                       value={props.values.quantity}
-                      onChange={props.handleChange}
+                      // onChange={(e) => {
+                      //   if (e.target.value >= 0) {
+                      //     props.handleChange(e)
+                      //   }
+                      // }}
+                      onChange={(e) => {
+                        if (+e.target.value >= 0) {
+                          return props.handleChange(e)
+                        }
+                      }}
                       onBlur={props.handleBlur}
                     />
 

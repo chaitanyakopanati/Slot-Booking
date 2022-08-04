@@ -19,7 +19,10 @@ let validationSchemaNewForm = Yup.object({
   inwardDate: Yup.string().required('This field is required'),
   productId: Yup.number().required('This field is required'),
   quantity: Yup.number().required('This field is required'),
-  supplierId: Yup.string().required('This fied is required'),
+  // supplierId: Yup.string().required('Please Enter Valid Supplier Name'),
+
+  supplierName: Yup.string().required('This field is required'),
+  supplierId: Yup.number().required('Entered Supplier Name Does Not Exist'),
 })
 
 const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
@@ -265,8 +268,21 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                             })}
                         </ul>
                       </div>
-                      <div className='erro2' style={{color: 'red'}}>
+                      {/* <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='supplierId' />
+                      </div> */}
+                      <div className='erro2' style={{color: 'red'}}>
+                        {props.touched.supplierName && props.errors.supplierName
+                          ? props.errors.supplierName
+                          : null}
+                      </div>
+                      <div className='erro2' style={{color: 'red'}}>
+                        {props.touched.supplierName &&
+                        !props.errors.supplierName &&
+                        props.touched.supplierId &&
+                        props.errors.supplierId
+                          ? props.errors.supplierId
+                          : null}
                       </div>
                     </div>
                   </div>

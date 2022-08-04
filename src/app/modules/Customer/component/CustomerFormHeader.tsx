@@ -27,7 +27,7 @@ const CustomerFormHeader = () => {
             </span>
           </div>
           <h2 className='modal-title fw-bolder'>
-            {itemIdForUpdate === 'new' ? 'Create User' : 'Edit User'}
+            {itemIdForUpdate === 'new' ? 'Create Customer' : 'Edit Customer'}
           </h2>
         </div>
 

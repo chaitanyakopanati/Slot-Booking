@@ -21,7 +21,9 @@ let validationSchemaNewForm = Yup.object({
   quantity: Yup.number().required('This field is required'),
   deliveredById: Yup.number().required('This fied is required'),
   zoneId: Yup.number().required('This fielld is required'),
+
   username: Yup.string().required('This field is required'),
+  userId: Yup.number().required('Entered User Name Does Not Exist'),
 })
 
 const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
@@ -295,8 +297,21 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                           })}
                       </ul>
                     </div>
-                    <div className='erro2' style={{color: 'red'}}>
+                    {/* <div className='erro2' style={{color: 'red'}}>
                       <ErrorMessage name='username' />
+                    </div> */}
+                    <div className='erro2' style={{color: 'red'}}>
+                      {props.touched.username && props.errors.username
+                        ? props.errors.username
+                        : null}
+                    </div>
+                    <div className='erro2' style={{color: 'red'}}>
+                      {props.touched.username &&
+                      !props.errors.username &&
+                      props.touched.userId &&
+                      props.errors.userId
+                        ? props.errors.userId
+                        : null}
                     </div>
                   </div>
 

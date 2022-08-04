@@ -18,18 +18,20 @@ type Props = {
 // const location: any = useLocation()
 
 let validationSchemaNewForm = Yup.object({
-  installerid: Yup.string().required('This field is required'),
-  cablelength: Yup.string().required('This fied is required'),
-  cabletypeid: Yup.string().required('This fied is required'),
-  zonepointid: Yup.number().required('This field is required'),
-  remark: Yup.string().required('This field is required'),
-  status: Yup.string().required('This field is required'),
-  iptype: Yup.string().required('This field is required'),
+  userName: Yup.string().required('This field is required'),
+  userid: Yup.number().required('Entered User Name Does Not Exist'),
+  // installerid: Yup.string().required('This field is required'),
+  // cablelength: Yup.string().required('This fied is required'),
+  // cabletypeid: Yup.string().required('This fied is required'),
+  // zonepointid: Yup.number().required('This field is required'),
+  // remark: Yup.string().required('This field is required'),
+  // status: Yup.string().required('This field is required'),
+  // iptype: Yup.string().required('This field is required'),
   // accesspointip: Yup.string().required('This field is required'),
-  stationip: Yup.string().required('This field is required'),
-  stationname: Yup.string().required('This field is required'),
-  stationMac: Yup.string().required('This field is required'),
-  connectiontype: Yup.string().required('This field is required'),
+  // stationip: Yup.string().required('This field is required'),
+  // stationname: Yup.string().required('This field is required'),
+  // stationMac: Yup.string().required('This field is required'),
+  // connectiontype: Yup.string().required('This field is required'),
 })
 
 const InstallationFormModal: FC<Props> = ({category}) => {
@@ -286,7 +288,17 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     </ul>
                   </div>
                   <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.userid && formik.errors.userid ? formik.errors.userid : null}
+                    {formik.touched.userName && formik.errors.userName
+                      ? formik.errors.userName
+                      : null}
+                  </div>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.userName &&
+                    !formik.errors.userName &&
+                    formik.touched.userid &&
+                    formik.errors.userid
+                      ? formik.errors.userid
+                      : null}
                   </div>
                 </div>
 
@@ -447,7 +459,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
               </div>
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold required'>Station IP</label>
+                  <label className='form-label fw-bold'>Station IP</label>
                   <input
                     placeholder='Station IP'
                     className='form-control form-control-lg form-control-solid'
@@ -471,7 +483,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold required'>Station Name</label>
+                  <label className='form-label fw-bold'>Station Name</label>
                   <input
                     placeholder='Station Name'
                     className='form-control form-control-lg form-control-solid'
@@ -490,7 +502,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold required'>Station MAC</label>
+                  <label className='form-label fw-bold'>Station MAC</label>
                   <input
                     placeholder='Station MAC'
                     className='form-control form-control-lg form-control-solid'
@@ -509,7 +521,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold required'>status</label>
+                  <label className='form-label fw-bold'>status</label>
                   <select
                     className='form-select form-select-solid'
                     value={formik.values.status}
@@ -530,7 +542,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
               </div>
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col'>
-                  <label className='form-label fw-bold required'>Remark</label>
+                  <label className='form-label fw-bold'>Remark</label>
                   <input
                     placeholder='Remark'
                     className='form-control form-control-lg form-control-solid'

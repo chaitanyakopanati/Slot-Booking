@@ -19,9 +19,7 @@ const OfficeStockInwardsFormHeader = () => {
             {/* <KTSVG path='/media/icons/duotune/arrows/arr096.svg' /> */}
           </span>
           <h2 className='modal-title fw-bolder'>
-            {itemIdForUpdate === 'add'
-              ? 'Create Office Stock Inwards'
-              : 'Edit Office Stock Inwards'}
+            {itemIdForUpdate === 'add' ? 'Create Office Stock Inward' : 'Edit Office Stock Inward'}
           </h2>
         </div>
 

@@ -160,7 +160,7 @@ const InstallationTable = () => {
                     {/* end:: User Type Input  createdAt */}
 
                     {/* begin:: User Type Input status */}
-                    <td className='text-dark fw-bold  fs-6'>{row.status || '-'}</td>
+                    <td className='text-dark fw-bold  fs-6'>{row.statusName || '-'}</td>
                     {/* end:: User Type Input  status*/}
 
                     {/* begin:: Action */}
@@ -299,7 +299,7 @@ const InstallationTable = () => {
 
                         <div className='py-1 d-flex'>
                           <div className='fw-bolder '>Status:</div>
-                          <div className='text-dark fw-bold  ms-2'>{row.status || '-'}</div>
+                          <div className='text-dark fw-bold  ms-2'>{row.statusName || '-'}</div>
                         </div>
                       </div>
 

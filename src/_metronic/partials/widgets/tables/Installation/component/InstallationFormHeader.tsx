@@ -15,7 +15,7 @@ const InstallationFormHeader = () => {
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
           </span>
           <h2 className='modal-title fw-bolder'>
-            {itemIdForUpdate === 'add' ? 'Create installations' : 'Edit installations'}
+            {itemIdForUpdate === 'add' ? 'Create installation' : 'Edit installation'}
           </h2>
         </div>
 

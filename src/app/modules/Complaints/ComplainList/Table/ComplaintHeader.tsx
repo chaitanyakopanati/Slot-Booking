@@ -332,7 +332,7 @@ const ComplaintHeader = () => {
                         value={assignToId}
                         onChange={handleAssign}
                       >
-                        <option value='0'>All</option>
+                        <option value=''>All</option>
                         <option value='0'>Not assigned</option>
 
                         {getDataAllTypeTechnician.map((getDataAllTypeTechnician: any, index) => {
@@ -397,7 +397,8 @@ const ComplaintHeader = () => {
                         value={CompanyId}
                         onChange={handleCompanyId}
                       >
-                        <option value='0'>All</option>
+                        <option value=''>All</option>
+                        <option value='0'>Not described</option>
 
                         {companiesName.map((companiesName: any, index) => {
                           return (
@@ -418,7 +419,8 @@ const ComplaintHeader = () => {
                         value={faultid}
                         onChange={handleFaultId}
                       >
-                        <option value='0'>All</option>
+                        <option value=''>All</option>
+                        <option value='0'>Not described</option>
 
                         {getDataAllFault.map((getDataAllFault: any, index) => {
                           return (
@@ -439,7 +441,8 @@ const ComplaintHeader = () => {
                         value={PackageCategoryId}
                         onChange={handlePackageId}
                       >
-                        <option value='0'>All</option>
+                        <option value=''>All</option>
+                        <option value='0'>Not described</option>
 
                         {packagesName.map((packagesName: any, index) => {
                           return (

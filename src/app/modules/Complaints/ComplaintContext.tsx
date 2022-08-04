@@ -1,7 +1,12 @@
-import { createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react'
-import { saveAs } from 'file-saver'
-import { GetAllData, ID, getComplaintsData, GetAllgetComplaintsDataApi } from './helperComplaint/ModelComplaint'
-import { useLoader } from '../loader/LoaderContext'
+import {createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState} from 'react'
+import {saveAs} from 'file-saver'
+import {
+  GetAllData,
+  ID,
+  getComplaintsData,
+  GetAllgetComplaintsDataApi,
+} from './helperComplaint/ModelComplaint'
+import {useLoader} from '../loader/LoaderContext'
 import ComplaintsViewService from './helperComplaint/ApiDataRequest'
 
 export interface ComplaintDataContextModel {
@@ -57,7 +62,6 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeComplaint: () => void
   DataGetAllFault: () => void
 
-
   complainttypeid: string
   setComplainttypeid: Dispatch<SetStateAction<string>>
   status: number
@@ -85,20 +89,20 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   getUserNameData: [],
   getDataAllTypeComplaint: [],
   pageNo: 0,
-  setPageNo: () => { },
-  setZoneId: () => { },
-  setProductId: () => { },
-  setTechnicianId: () => { },
+  setPageNo: () => {},
+  setZoneId: () => {},
+  setProductId: () => {},
+  setTechnicianId: () => {},
   // getDataAllTypeProduct: [],
   pageCount: 0,
   productId: 0,
   createdById: 0,
-  setPageCount: () => { },
-  setCreatedById: () => { },
-  setStartDate: () => { },
+  setPageCount: () => {},
+  setCreatedById: () => {},
+  setStartDate: () => {},
   totalData: 0,
-  setTotalData: () => { },
-  setcreatedById: () => { },
+  setTotalData: () => {},
+  setcreatedById: () => {},
   pageSize: 0,
   zoneId: 0,
   createdBy: 0,
@@ -106,53 +110,52 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   startDate: '',
   endDate: '',
   suggestionUserText: '',
-  setPageSize: () => { },
-  setSuggestionUserText: () => { },
+  setPageSize: () => {},
+  setSuggestionUserText: () => {},
   searchText: '',
   Username: '',
-  setSearchText: () => { },
-  setSearchByUsername: () => { },
-  setEndDate: () => { },
+  setSearchText: () => {},
+  setSearchByUsername: () => {},
+  setEndDate: () => {},
   getDataAllType: [],
   getDataAllTypeCreatedBy: [],
   filterShow: false,
   // showPasswordFields: false,
-  setFilterShow: (filterShow: boolean) => { },
+  setFilterShow: (filterShow: boolean) => {},
   // setShowPasswordFields: (filterShow: boolean) => { },
-  setItemIdForUpdate: (_itemIdForUpdate: ID) => { },
+  setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
-  setViewIdForUpdate: (_setViewIdForUpdate: ID) => { },
-  fetchAllComplaint: () => { },
-  DataGetAllTypeZone: () => { },
-  DataGetAllTypeCreatedByTypes: () => { },
-  fetchAllDownload: () => { },
-  DataGetAllTypeTechnician: () => { },
-  DataGetAllTypeComplaint: () => { },
-  DataGetAllFault: () => { },
+  setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
+  fetchAllComplaint: () => {},
+  DataGetAllTypeZone: () => {},
+  DataGetAllTypeCreatedByTypes: () => {},
+  fetchAllDownload: () => {},
+  DataGetAllTypeTechnician: () => {},
+  DataGetAllTypeComplaint: () => {},
+  DataGetAllFault: () => {},
   getDataAllFault: [],
 
-
   complainttypeid: '',
-  setComplainttypeid: () => { },
+  setComplainttypeid: () => {},
   status: 0,
-  setStatus: () => { },
+  setStatus: () => {},
   createdDate: '',
-  setCreatedDate: () => { },
+  setCreatedDate: () => {},
   assignToId: 0,
-  setassignToId: () => { },
+  setassignToId: () => {},
   faultid: 0,
-  setFaultid: () => { },
+  setFaultid: () => {},
   companiesName: [],
-  DataGetCompaniesName: () => { },
+  DataGetCompaniesName: () => {},
   CompanyId: 0,
-  setCompanyId: () => { },
-  DataGetPackagesName: () => { },
+  setCompanyId: () => {},
+  DataGetPackagesName: () => {},
   packagesName: [],
   PackageCategoryId: 0,
-  setPackageCategoryId: () => { },
+  setPackageCategoryId: () => {},
 })
-const ListDataProvider: FC = ({ children }) => {
+const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getComplaintsData[]>([])
   const [getDataDownload, setGetDataDownload] = useState<getComplaintsData[]>([])
   const [getDataAllType, setGetDataAllType] = useState<GetAllData[]>([])
@@ -180,25 +183,23 @@ const ListDataProvider: FC = ({ children }) => {
   const [createdBy, setcreatedById] = useState<number>(0)
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
 
-
-
   const [complainttypeid, setComplainttypeid] = useState('')
   const [status, setStatus] = useState<number>(0)
   const [createdDate, setCreatedDate] = useState('')
-  const [assignToId, setassignToId] = useState<number>(0)
+  const [assignToId, setassignToId] = useState<any>('')
   const [zoneId, setZoneId] = useState(0)
-  const [faultid, setFaultid] = useState(0)
+  const [faultid, setFaultid] = useState<any>('')
   const [companiesName, setCompaniesName] = useState<GetAllData[]>([])
-  const [CompanyId, setCompanyId] = useState(0)
+  const [CompanyId, setCompanyId] = useState<any>('')
   const [packagesName, setPackagesName] = useState<GetAllData[]>([])
-  const [PackageCategoryId, setPackageCategoryId] = useState(0)
+  const [PackageCategoryId, setPackageCategoryId] = useState<any>('')
 
-  let { LoderActions } = useLoader()
+  let {LoderActions} = useLoader()
 
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log("Enter")
+    console.log('Enter')
     LoderActions(true)
     try {
       let response: any = await ComplaintsViewService.getDynamicDownloadFile(
@@ -218,10 +219,9 @@ const ListDataProvider: FC = ({ children }) => {
         startDate,
         endDate
       )
-      saveAs(response.data, "complaints.xlsx")
-
+      saveAs(response.data, 'complaints.xlsx')
     } catch (error) {
-      console.log("Error", error)
+      console.log('Error', error)
     } finally {
       LoderActions(false)
     }
@@ -238,8 +238,7 @@ const ListDataProvider: FC = ({ children }) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeComplaint(payload.data)
-        console.log("kk", payload.data)
-
+        console.log('kk', payload.data)
       }
     } catch (error) {
     } finally {
@@ -255,8 +254,7 @@ const ListDataProvider: FC = ({ children }) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllFault(payload.data)
-        console.log("kddk", payload.data)
-
+        console.log('kddk', payload.data)
       }
     } catch (error) {
     } finally {
@@ -274,25 +272,26 @@ const ListDataProvider: FC = ({ children }) => {
   let fetchAllComplaint = async () => {
     LoderActions(true)
     try {
-      let response: GetAllgetComplaintsDataApi = await ComplaintsViewService.getDynamicComplaintData(
-        pageNo,
-        pageSize,
-        searchText,
-        zoneId,
-        Username,
-        complainttypeid,
-        status,
-        createdDate,
-        assignToId,
-        faultid,
-        CompanyId,
-        createdBy,
-        PackageCategoryId,
-        startDate,
-        endDate
-        // createdById,
-        // TechnicianId
-      )
+      let response: GetAllgetComplaintsDataApi =
+        await ComplaintsViewService.getDynamicComplaintData(
+          pageNo,
+          pageSize,
+          searchText,
+          zoneId,
+          Username,
+          complainttypeid,
+          status,
+          createdDate,
+          assignToId,
+          faultid,
+          CompanyId,
+          createdBy,
+          PackageCategoryId,
+          startDate,
+          endDate
+          // createdById,
+          // TechnicianId
+        )
       console.log(response, 'response=========')
 
       if (response.success == true) {
@@ -403,10 +402,8 @@ const ListDataProvider: FC = ({ children }) => {
     }
   }
 
-
-
   useEffect(() => {
-    console.log("suggestionUserText", suggestionUserText)
+    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
       let fetchSuggestionUser = async () => {
         LoderActions(true)
@@ -483,7 +480,6 @@ const ListDataProvider: FC = ({ children }) => {
     DataGetAllFault,
     getDataAllFault,
 
-
     complainttypeid,
     setComplainttypeid,
     status,
@@ -502,7 +498,6 @@ const ListDataProvider: FC = ({ children }) => {
     packagesName,
     PackageCategoryId,
     setPackageCategoryId,
-
   }
   return (
     <>
@@ -514,6 +509,4 @@ function ListPageData() {
   return useContext(ListDataContext)
 }
 
-export { ListDataProvider, ListPageData }
-
-
+export {ListDataProvider, ListPageData}

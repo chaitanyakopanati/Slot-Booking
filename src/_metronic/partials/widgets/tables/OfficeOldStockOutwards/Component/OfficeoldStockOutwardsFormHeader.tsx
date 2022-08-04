@@ -20,8 +20,8 @@ const OfficeOldStockOutwardsFormHeader = () => {
           </span>
           <h2 className='modal-title fw-bolder'>
             {itemIdForUpdate === 'add'
-              ? 'Create Office Old Stock Outwards'
-              : 'Edit Office Old Stock Outwards'}
+              ? 'Create Office Old Stock Outward'
+              : 'Edit Office Old Stock Outward'}
           </h2>
         </div>
 

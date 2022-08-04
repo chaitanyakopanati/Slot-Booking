@@ -307,6 +307,8 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       onChange={handleSaleExcutivechange}
                     >
                       <option value=''>All</option>
+                      <option value='0'>Not Described</option>
+
                       {getUserByRole?.map((row, index) => {
                         return (
                           <option key={index} value={row?.id}>

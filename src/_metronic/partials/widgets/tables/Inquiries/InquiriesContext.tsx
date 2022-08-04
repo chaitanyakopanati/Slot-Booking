@@ -131,7 +131,7 @@ const ListDataProvider: FC = ({children}) => {
   const [searchText, setSearchText] = useState('')
   const [searchByUsername, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
-  const [salesExecutiveId, setSalesExecutiveId] = useState(0)
+  const [salesExecutiveId, setSalesExecutiveId] = useState<any>('')
   const [roleId, setRoleId] = useState('')
   const [createdAt, setCreatedAt] = useState('')
   const [startDate, setStartDate] = useState('')

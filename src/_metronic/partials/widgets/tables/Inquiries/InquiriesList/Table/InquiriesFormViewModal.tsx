@@ -55,7 +55,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
               <span className='svg-icon svg-icon-2x' onClick={() => navigate('/inquiries')}>
                 <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
               </span>
-              <h5 className='modal-title'>View Inquiries</h5>
+              <h5 className='modal-title'>View Inquirie</h5>
             </div>
             <div className='ms-3'>
               {/* begin::  Edit User button */}
@@ -71,7 +71,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                Edit Inquiries
+                Edit Inquirie
               </button>
               {/* end::  Edit User button */}
             </div>

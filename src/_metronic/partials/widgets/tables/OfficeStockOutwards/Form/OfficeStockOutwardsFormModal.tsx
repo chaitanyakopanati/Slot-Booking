@@ -21,7 +21,8 @@ let validationFormSchema = Yup.object({
   zoneId: Yup.number().required('This fielld is required'),
   technicianId: Yup.string().required('This field is required'),
   reason: Yup.string().required('This field is required'),
-  userId: Yup.number().required('This field is required'),
+  username: Yup.string().required('This field is required'),
+  userId: Yup.number().required('Entered User Name Does Not Exist'),
 })
 
 const UserFormModal: FC<formik> = ({category}) => {
@@ -331,7 +332,17 @@ const UserFormModal: FC<formik> = ({category}) => {
                   </ul>
                 </div>
                 <div className='erro2' style={{color: 'red'}}>
-                  {formik.touched.userId && formik.errors.userId ? formik.errors.userId : null}
+                  {formik.touched.username && formik.errors.username
+                    ? formik.errors.username
+                    : null}
+                </div>
+                <div className='erro2' style={{color: 'red'}}>
+                  {formik.touched.username &&
+                  !formik.errors.username &&
+                  formik.touched.userId &&
+                  formik.errors.userId
+                    ? formik.errors.userId
+                    : null}
                 </div>
               </div>
 

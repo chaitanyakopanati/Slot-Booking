@@ -18,7 +18,7 @@ const InquiriesFormHeader = () => {
           </span>
 
           <h2 className='modal-title fw-bolder'>
-            {itemIdForUpdate === 'add' ? 'Create Inquiries' : 'Edit Inquiries'}
+            {itemIdForUpdate === 'add' ? 'Create Inquiries' : 'Edit Inquirie'}
           </h2>
         </div>
 

@@ -72,14 +72,14 @@ const postComplaint: any = (obj: postlistData) => {
   console.log(obj, 'obj')
 
   return http.post('SaveComplaint', {
-    complainttypeid: obj.complainttypeid,
+    complainttypeid: obj.complainttypeid ? obj.complainttypeid : null,
     userId: obj.userId,
 
     description: obj.description,
     status: obj.status,
     remark: obj.remark,
-    assigntechnicianid: obj.assigntechnicianid,
-    faultid: obj.faultid,
+    assigntechnicianid: obj.assigntechnicianid ? obj.assigntechnicianid : null,
+    faultid: obj.faultid ? obj.faultid : null,
     isnotifycustomer: obj.isnotifycustomer,
     isnotifytechinician: obj.isnotifytechinician,
     CreatedBy: obj.CreatedBy,
@@ -95,13 +95,13 @@ const postComplaint: any = (obj: postlistData) => {
 const editComplaints = (obj: postlistData) => {
   return http.post(`SaveComplaint`, {
     id: obj.id,
-    complainttypeid: obj.complainttypeid,
+    complainttypeid: obj.complainttypeid ? obj.complainttypeid : null,
     userId: obj.userId,
     description: obj.description,
     status: obj.status,
     remark: obj.remark,
-    assigntechnicianid: obj.assigntechnicianid,
-    faultid: obj.faultid,
+    assigntechnicianid: obj.assigntechnicianid ? obj.assigntechnicianid : null,
+    faultid: obj.faultid ? obj.faultid : null,
     isnotifycustomer: obj.isnotifycustomer,
     isnotifytechinician: obj.isnotifytechinician,
     ModifyBy: obj.ModifyBy,

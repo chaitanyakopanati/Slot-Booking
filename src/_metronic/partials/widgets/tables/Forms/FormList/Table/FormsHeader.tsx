@@ -335,7 +335,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                             className='svg-icon-3'
                           />
                         </span>
-                        Create Forms
+                        Create Form
                       </button>
                     </div>
                   </div>
@@ -405,8 +405,8 @@ const FormsHeader: FC<Props> = ({category}) => {
                         value={salesExecutiveId}
                         onChange={handlesalesExecutiveIdchange}
                       >
-                        <option>All</option>
-                        {/* <option value='0'>Not described</option> */}
+                        <option value=''>All</option>
+                        <option value='0'>Not described</option>
                         {getUserByRole?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -563,8 +563,8 @@ const FormsHeader: FC<Props> = ({category}) => {
                         placeholder='All'
                         onChange={handlePackagesCategoryIdchange}
                       >
-                        <option>All</option>
-                        {/* <option value='0'>Not described</option> */}
+                        <option value=''>All</option>
+                        <option value='0'>Not described</option>
 
                         {getPackagesCategory?.map((row, index) => {
                           return (

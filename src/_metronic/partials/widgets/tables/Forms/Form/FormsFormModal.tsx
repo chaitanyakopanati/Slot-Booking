@@ -16,7 +16,8 @@ type Props = {
 }
 
 let validationSchemaNewForm = Yup.object({
-  userid: Yup.string().required('This field is required'),
+  userName: Yup.string().required('This field is required'),
+  userid: Yup.number().required('Entered User Name Does Not Exist'),
   formno: Yup.string().required('This field is required'),
   formdate: Yup.string().required('This field is required'),
   formtype: Yup.string().required('This field is required'),
@@ -24,15 +25,15 @@ let validationSchemaNewForm = Yup.object({
   // pacakgetype: Yup.string().required('This field is required'),
   // packagevalidity: Yup.number().positive().required('This field is required'),
   companyid: Yup.string().required('This field is required'),
-  packagecatid: Yup.string().required('This field is required'),
+  // packagecatid: Yup.string().required('This field is required'),
   totalamount: Yup.number()
     .min(0, 'This value should be between 0 and 999999')
     .max(999999, 'This value should be between 0 and 999999')
     .required('This field is required'),
   status: Yup.string().required('This field is required'),
-  remaningamount: Yup.number()
-    // .min(0, 'This value should be greater than or equal to 0')
-    .required('This field is required'),
+  // remaningamount: Yup.number()
+  //   .min(0, 'This value should be greater than or equal to 0')
+  //   .required('This field is required'),
   receiverid: Yup.string().required('This field is required'),
   packagecost: Yup.number()
     .min(0, 'This value should be between 0 and 999999')
@@ -84,7 +85,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
     pacakgetype: '',
     companyid: '',
     packagecatid: '',
-    packagevalidity: '',
+    packagevalidity: 0,
     packagecost: 0,
     packageid: '',
     installationcost: 0,
@@ -124,7 +125,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         pacakgetype: category.data?.pacakgetype || '',
         companyid: category.data?.companyid || '',
         packagecatid: category.data?.packagecatid || '',
-        packagevalidity: category.data?.packagevalidity || '',
+        packagevalidity: category.data?.packagevalidity || 0,
         packagecost: category.data?.packagecost || 0,
         packageid: category.data?.packageid || '',
         installationcost: category.data?.installationcost || 0,
@@ -161,7 +162,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         pacakgetype: category.data?.pacakgetype || '',
         companyid: category.data?.companyid || '',
         packagecatid: category.data?.packagecatid || '',
-        packagevalidity: category.data?.packagevalidity || '',
+        packagevalidity: category.data?.packagevalidity || 0,
         packagecost: category.data?.packagecost || 0,
         packageid: category.data?.packageid || '',
         installationcost: category.data?.installationcost || 0,
@@ -199,7 +200,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         salesexecutiveid: category?.data?.salesexecutiveid || '',
         companyid: category?.data?.companyid || '',
         packagecatid: category?.data?.packagecatid || '',
-        packagevalidity: category?.data?.packagevalidity || '',
+        packagevalidity: category?.data?.packagevalidity || 0,
         packagecost: category?.data?.packagecost || 0,
         packageName: category?.data?.packageName || '',
         packageid: category?.data?.packageid || '',
@@ -248,6 +249,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
       console.log('Values::', values)
+      values.packagecatid = +values.packagecatid
+      values.packageid = +values.packageid
+      values.packagevalidity = +values.packagevalidity
+      values.bankid = +values.bankid
+      values.receiverid = +values.receiverid
 
       LoderActions(true)
 
@@ -404,7 +410,15 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         </ul>
                       </div>
                       <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.userid && formik.errors.userid
+                        {formik.touched.userName && formik.errors.userName
+                          ? formik.errors.userName
+                          : null}
+                      </div>
+                      <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.userName &&
+                        !formik.errors.userName &&
+                        formik.touched.userid &&
+                        formik.errors.userid
                           ? formik.errors.userid
                           : null}
                       </div>
@@ -847,7 +861,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Reciever</label>
+                  <label className='form-label fw-bold required'>Reciever</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('receiverid')}

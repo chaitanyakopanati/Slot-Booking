@@ -80,7 +80,7 @@ const CompaniesFormViewModal: FC<Props> = ({category}) => {
                         {/* begin:: View Modal Header */}
                         <div className='modal-header'>
                           <div className='d-flex align-items-center'>
-                            <h5 className='modal-title'>View Companies</h5>
+                            <h5 className='modal-title'>View Companie</h5>
                           </div>
                           <div className='ms-3'>
                             {/* begin::  Edit Company Button */}

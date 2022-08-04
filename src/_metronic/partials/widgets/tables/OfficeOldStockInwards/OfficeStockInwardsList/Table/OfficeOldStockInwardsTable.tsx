@@ -114,7 +114,7 @@ const OfficeOldStockInwardsTable = () => {
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`office-stock-inwardsOldviewform/${row.id}`)}
                         // onClick={() => openViewModal(row.id)}
-                        title='View Office Old Stock Inwards'
+                        title='View Office Old Stock Inward'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen060.svg'
@@ -129,7 +129,7 @@ const OfficeOldStockInwardsTable = () => {
                         onClick={() => {
                           navigate(`inwardsOldform/${row.id}`)
                         }}
-                        title='Edit Office Old Stock Inwards'
+                        title='Edit Office Old Stock Inward'
                         // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
