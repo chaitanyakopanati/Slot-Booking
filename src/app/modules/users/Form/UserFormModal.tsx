@@ -27,7 +27,7 @@ let validationSchemaNewForm = Yup.object({
     .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
   username: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
   email: Yup.string()
     .email('Invalid email format')

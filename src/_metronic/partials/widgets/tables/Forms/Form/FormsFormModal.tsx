@@ -338,7 +338,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
           .format('YYYY-MM-DD')
       )
     }
-  }, [formik.values.packagevalidity])
+  }, [formik.values.packagevalidity, formik.values.activationdate])
 
   return (
     <>
@@ -861,13 +861,13 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold required'>Reciever</label>
+                  <label className='form-label fw-bold required'>receiver</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('receiverid')}
                   >
                     <option value='' disabled>
-                      select Reciever Name
+                      select receiver Name
                     </option>
                     {getReciever?.map((row, index) => {
                       return (
@@ -977,7 +977,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     autoComplete='off'
                   >
                     <option value='' disabled>
-                      Select Form Submit
+                      Select status
                     </option>
                     <option value='1'>Done</option>
                     <option value='2'>Pending</option>

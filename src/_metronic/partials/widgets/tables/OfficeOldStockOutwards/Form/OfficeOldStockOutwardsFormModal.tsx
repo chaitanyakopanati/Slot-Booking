@@ -274,7 +274,12 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                   className='form-control form-control-lg form-control-solid'
                   type='number'
                   value={formik.values.quantity || ''}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    if (+e.target.value >= 0) {
+                      formik.handleChange(e)
+                    }
+                  }}
+                  // onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   name='quantity'
                   autoComplete='off'

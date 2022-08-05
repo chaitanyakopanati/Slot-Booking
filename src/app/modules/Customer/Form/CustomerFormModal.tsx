@@ -46,9 +46,9 @@ function CustomerFormModal({customerById}: customerProps) {
       .matches(emailRegExp, 'Invalid email format')
       .required('This field is required'),
     // Address: Yup.string().required().label('Address'),
-    FirstName: Yup.string().required().label('FirstName'),
-    LastName: Yup.string().required().label('LastName'),
-    Middlename: Yup.string().required().label('Middlename'),
+    FirstName: Yup.string().required().label('First Name'),
+    LastName: Yup.string().required().label('Last Name'),
+    Middlename: Yup.string().required().label('Middle Name'),
     // Gstno: Yup.string().required(GSTINFORMAT_REGEX).label('Gstno'),
   })
   const API_URL_DATA = process.env.REACT_APP_IMG_PATH
@@ -432,7 +432,7 @@ function CustomerFormModal({customerById}: customerProps) {
             <div className='row w-100 mx-0 mb-4 gy-4'>
               {/*  */}
               <div className='col-lg-3'>
-                <label className='form-label fw-bold required'>Username</label>
+                <label className='form-label fw-bold required'>User Name</label>
                 <input
                   placeholder='Username'
                   name='UserName'

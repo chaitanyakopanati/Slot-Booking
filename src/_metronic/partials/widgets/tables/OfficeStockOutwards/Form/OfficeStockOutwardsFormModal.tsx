@@ -267,7 +267,12 @@ const UserFormModal: FC<formik> = ({category}) => {
                   type='number'
                   // max='50'
                   value={formik.values.quantity || ''}
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    if (+e.target.value >= 0) {
+                      formik.handleChange(e)
+                    }
+                  }}
+                  // onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   name='quantity'
                   autoComplete='off'

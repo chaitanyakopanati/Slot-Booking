@@ -239,7 +239,12 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='number'
                       value={props.values.quantity}
-                      onChange={props.handleChange}
+                      onChange={(e) => {
+                        if (+e.target.value >= 0) {
+                          props.handleChange(e)
+                        }
+                      }}
+                      // onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       name='quantity'
                       autoComplete='off'

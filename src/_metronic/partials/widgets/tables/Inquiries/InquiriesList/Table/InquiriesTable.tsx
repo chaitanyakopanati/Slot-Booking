@@ -38,6 +38,8 @@ const InquiriesTable = () => {
     setViewIdForUpdate(id)
   }
 
+  var currentTime: any = moment(new Date())
+
   {
     /* begin:: Delete functionlity */
   }
@@ -130,7 +132,25 @@ const InquiriesTable = () => {
                 // console.log("wertyuiop[",row);
 
                 return (
-                  <tr key={index}>
+                  <tr
+                    key={index}
+                    //   className={
+                    //   currentTime.diff(moment(row?.createdAt), 'days') >= 15 &&
+                    //   row.status === 'Pending'
+                    //     ? 'p-3 mb-2 text-white '
+                    //     : ''
+                    //     //  || row.status === 'Unsolved'
+                    //     // ? 'p-3 mb-2 text-white'
+                    //     // : ''
+                    // }
+                    style={{
+                      backgroundColor:
+                        currentTime.diff(moment(row?.createdAt), 'days') >= 15 &&
+                        row.status === 'Pending'
+                          ? `#f5c6cb`
+                          : '',
+                    }}
+                  >
                     {/* begin:: Index No */}
                     <td>
                       <div className='text-dark fw-bolder fs-6 ps-4 text-center'>

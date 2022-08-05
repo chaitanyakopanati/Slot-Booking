@@ -398,7 +398,11 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                       placeholder='access point ip'
                       className='form-control form-control-lg form-control-solid'
                       value={formik.values.cablelength}
-                      onChange={formik.handleChange}
+                      onChange={(e) => {
+                        if (e.target.value.length <= 10) {
+                          formik.handleChange(e)
+                        }
+                      }}
                       onBlur={formik.handleBlur}
                       type='number'
                       name='cablelength'
