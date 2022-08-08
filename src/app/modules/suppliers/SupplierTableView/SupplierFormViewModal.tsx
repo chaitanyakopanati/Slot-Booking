@@ -1,18 +1,9 @@
-// import React from 'react'
-
-// export const SupplierFormViewModal = () => {
-//   return <div>SupplierFormViewModal</div>
-// }
-
 import {Form, Formik} from 'formik'
 import moment from 'moment'
 import {FC, useEffect} from 'react'
 import {KTSVG} from '../../../../_metronic/helpers'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {ListPageData} from '../SupplierContext'
-// import {KTSVG} from '../../../../../_metronic/helpers'
-// import {CustomTooltip} from '../../../../routing/customtooltip'
-// import {ListPageData} from '../../PackagesCategoriesContext'
 
 type Props = {
   category: any

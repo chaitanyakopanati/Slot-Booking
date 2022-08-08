@@ -1,17 +1,4 @@
-// import React from 'react'
-
-// export const SupplierFormHeader = () => {
-//   return (
-//     <div>SupplierFormHeader</div>
-//   )
-// }
-
-// import {KTSVG} from '../../../../../_metronic/helpers'
-// import {CustomTooltip} from '../../../../routing/customtooltip'
-// import {ListPageData} from '../../PackagesCategoriesContext'
-
 import {ListPageData} from '../SupplierContext'
-// import { CustomTooltip } from '../../../routing/customtooltip'
 import {KTSVG} from '../../../../_metronic/helpers'
 import {CustomTooltip} from '../../../routing/customtooltip'
 

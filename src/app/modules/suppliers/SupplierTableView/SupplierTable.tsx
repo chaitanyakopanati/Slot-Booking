@@ -1,21 +1,7 @@
-// import React from 'react'
-
-// export const SupplierTable = () => {
-//   return (
-//     <div>SupplierTable</div>
-//   )
-// }
-
-// import {KTSVG} from '../../../../../_metronic/helpers'
 import Swal from 'sweetalert2'
 import {useEffect} from 'react'
 import moment from 'moment'
 import {toast} from 'react-toastify'
-// import {useLoader} from '../../../loader/LoaderContext'
-// import {ListPageData} from '../../PackagesCategoriesContext'
-// import Complaintservice from '../../helperPackagesCategories/ApiDatarequest'
-// import {getPackageCategoriesData} from '../../helperPackagesCategories/ModelTypePackagesCategories'
-
 import {KTSVG} from '../../../../_metronic/helpers'
 import {useLoader} from '../../loader/LoaderContext'
 import {ListPageData} from '../SupplierContext'

@@ -12,7 +12,7 @@ export function AsideMenuMain() {
     <>
       <AsideMenuItem
         to='/complaint'
-        icon='/media/icons/duotune/general/gen008.svg'
+        icon='/media/icons/duotune/general/gen009.svg'
         title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
         fontIcon='bi-app-indicator'
       />
@@ -26,14 +26,14 @@ export function AsideMenuMain() {
 
       <AsideMenuItem
         to='/forms'
-        icon='/media/icons/duotune/general/gen029.svg'
+        icon='/media/icons/duotune/general/gen005.svg'
         title={intl.formatMessage({id: 'MENU.FORMS'})}
         fontIcon='bi-app-indicator'
       />
 
       <AsideMenuItem
         to='/installations'
-        icon='/media/icons/duotune/general/gen033.svg'
+        icon='/media/icons/duotune/general/gen008.svg'
         title={intl.formatMessage({id: 'MENU.INSTALLATIONS'})}
         fontIcon='bi-app-indicator'
       />

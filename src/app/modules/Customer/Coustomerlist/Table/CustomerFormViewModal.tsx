@@ -118,7 +118,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
-                      <label
+                      {/* <label
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
                         data-kt-image-input-action='change'
                         data-bs-toggle='tooltip'
@@ -129,7 +129,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
 
                         <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
                         <input type='hidden' name='avatar_remove' />
-                      </label>
+                      </label> */}
 
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
@@ -165,7 +165,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
-                      <label
+                      {/* <label
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
                         data-kt-image-input-action='change'
                         data-bs-toggle='tooltip'
@@ -176,7 +176,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
 
                         <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
                         <input type='hidden' name='avatar_remove' />
-                      </label>
+                      </label> */}
 
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
@@ -211,7 +211,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
 
-                      <label
+                      {/* <label
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
                         data-kt-image-input-action='change'
                         data-bs-toggle='tooltip'
@@ -222,7 +222,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
 
                         <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
                         <input type='hidden' name='avatar_remove' />
-                      </label>
+                      </label> */}
 
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'

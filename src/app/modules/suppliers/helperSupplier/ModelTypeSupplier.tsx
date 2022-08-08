@@ -1,15 +1,6 @@
-// import React from 'react'
-
-// export const ModelTypePackagesCategories = () => {
-//   return (
-//     <div>ModelTypePackagesCategories</div>
-//   )
-// }
-
 export interface getSuppliersData {
   fullName: string
   name: string
-  //   etr: number
   createdAt: string
   createdby: string
   id: number
@@ -30,13 +21,11 @@ export interface postlistData {
   createdby: any
   name: string
   gstNo: string
-  //   etr: number
 }
 export interface putSuppliersmodel {
   modifyby: any
   name: string
   gstNo: string
-  //   etr: number
   id: number | string
 }
 export interface putSuppliermodel1 {

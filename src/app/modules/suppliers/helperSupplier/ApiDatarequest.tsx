@@ -1,11 +1,3 @@
-// import React from 'react'
-
-// export const ApiDatarequest = () => {
-//   return (
-//     <div>ApiDatarequest</div>
-//   )
-// }
-
 import http from '../../../../_metronic/helpers/components/http-common'
 import {ID, postlistData, putSuppliersmodel} from './ModelTypeSupplier'
 

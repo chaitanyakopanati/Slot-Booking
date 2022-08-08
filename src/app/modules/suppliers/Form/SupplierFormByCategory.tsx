@@ -1,18 +1,7 @@
-// import React from 'react'
-
-// export const SupplierFormByCategory = () => {
-//   return (
-//     <div>SupplierFormByCategory</div>
-//   )
-// }
-
 import {useQuery} from 'react-query'
 import {useEffect} from 'react'
-// import {ListPageData} from '../PackagesCategoriesContext'
 import {ListPageData} from '../SupplierContext'
 import {isNotEmpty} from '../../../../_metronic/helpers'
-// import Complaintservice from '../helperPackagesCategories/ApiDatarequest'
-// import PackagescategoriesFormModal from './PackagescategoriesFormModal'
 import Supplierservice from '../helperSupplier/ApiDatarequest'
 import SupplierFormModal from './SupplierFormModal'
 

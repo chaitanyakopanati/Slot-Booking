@@ -1,13 +1,5 @@
-// import React from 'react'
-
-// export const SupplierHeader = () => {
-//   return <div>SupplierHeader</div>
-// }
-
 import {Formik} from 'formik'
 import {useEffect, FC} from 'react'
-// import {KTSVG} from '../../../../../_metronic/helpers'
-// import {ListPageData} from '../../PackagesCategoriesContext'
 import * as Yup from 'yup'
 import {KTSVG} from '../../../../_metronic/helpers'
 import {ListPageData} from '../SupplierContext'

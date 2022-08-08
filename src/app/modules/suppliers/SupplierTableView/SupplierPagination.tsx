@@ -1,13 +1,4 @@
-// import React from 'react'
-
-// export const supplierPagination = () => {
-//   return (
-//     <div>supplierPagination</div>
-//   )
-// }
-
 import ReactPaginate from 'react-paginate'
-// import {ListPageData} from '../../PackagesCategoriesContext'
 import {ListPageData} from '../SupplierContext'
 
 const supplierPagination = () => {

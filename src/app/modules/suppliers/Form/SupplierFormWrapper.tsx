@@ -1,14 +1,4 @@
-// import React from 'react'
-
-// export const SupplierFormWrapper = () => {
-//   return (
-//     <div>SupplierFormWrapper</div>
-//   )
-// }
-
 import {useEffect} from 'react'
-// import PackagescategoriesFormHeader from '../Packages-categories-Form/component/PackagescategoriesFormHeader'
-// import PackagescategoriesFormByCategory from './PackagescategoriesFormByCategory'
 import SupplierFormHeader from '../SupplierForm/SupplierFormHeader'
 import SupplierFormByCategory from './SupplierFormByCategory'
 

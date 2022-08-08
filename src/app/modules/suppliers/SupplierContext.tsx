@@ -1,14 +1,5 @@
-// import React from 'react'
-
-// export const SupplierContext = () => {
-//   return (
-//     <div>SupplierContext</div>
-//   )
-// }
-
 import {createContext, FC, useContext, useState, SetStateAction, Dispatch} from 'react'
 import {useLoader} from '../loader/LoaderContext'
-// import Complaintservice from './helperPackagesCategories/ApiDatarequest'
 import Supplierservice from './helperSupplier/ApiDatarequest'
 import {
   getAllSuppliersData,
@@ -94,7 +85,6 @@ const ListDataProvider: FC = ({children}) => {
   let {LoderActions} = useLoader()
 
   {
-    /* begin:: Package-Category:- getAllPackagecategoriesData Api call */
   }
   const DataGetApiSuppliers = async () => {
     LoderActions(true)
@@ -114,11 +104,9 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
   {
-    /* end:: Package-Category:- getAllPackagecategoriesData Api call */
   }
 
   {
-    /* begin:: Package-Category:- getDynamicPackageCategories Api call */
   }
   let fetchAllSuppliers = async () => {
     LoderActions(true)
@@ -142,7 +130,6 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
   {
-    /* end:: Package-Category:- getDynamicPackageCategories Api call */
   }
 
   {

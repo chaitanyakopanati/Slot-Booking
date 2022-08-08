@@ -1,19 +1,9 @@
-// import React from 'react'
-
-// export const SupplierFormModal = () => {
-//   return (
-//     <div>SupplierFormModal</div>
-//   )
-// }
-
 import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import {FC, useEffect} from 'react'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {useLoader} from '../../loader/LoaderContext'
-// import {ListPageData} from '../PackagesCategoriesContext'
-// import Complaintservice from '../helperPackagesCategories/ApiDatarequest'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {useAuth} from '../../auth'
 import {ListPageData} from '../SupplierContext'
@@ -68,9 +58,8 @@ const SupplierFormModal: FC<Props> = ({category}) => {
             .max(25, 'Max 25 Characters Allowed')
             .required('This field is required'),
           gstNo: Yup.string()
-            // .min(1, 'Etr must be between 1 to 999.')
             .max(15, 'Max 15 Characters Allowed')
-            .min(15, 'Min 15 Characters are required')
+            // .min(15, 'Min 15 Characters are required')
             .required('This field is required'),
         })}
         onSubmit={async (values, {resetForm}) => {
