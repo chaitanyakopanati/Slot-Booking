@@ -14,6 +14,8 @@ import PackageCategoriesWrapper from '../../modules/package-categories/PackageCa
 import UserFormWrapper from '../../modules/users/Form/UserFormWrapper'
 import {ListPageData} from '../../modules/users/UserContext'
 import UserViewWrapper from '../../modules/users/Form/UserViewWrapper'
+import SupplierWrapper from '../../modules/suppliers/SupplierWrapper'
+// import {SupplierWrapper} from '../../modules/suppliers/SupplierWrapper'
 
 function MasterWrapper() {
   const {itemIdForUpdate, viewIdForUpdate} = ListPageData()
@@ -144,6 +146,16 @@ function MasterWrapper() {
             <>
               <PageTitle>Package Categories</PageTitle>
               <PackageCategoriesWrapper />
+            </>
+          }
+        />
+
+        <Route
+          path='suppliers'
+          element={
+            <>
+              <PageTitle>Suppliers</PageTitle>
+              <SupplierWrapper />
             </>
           }
         />

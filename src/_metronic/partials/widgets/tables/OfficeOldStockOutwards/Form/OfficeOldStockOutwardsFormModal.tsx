@@ -180,7 +180,7 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
           onSubmit={formik.handleSubmit}
         >
           <div
-            className='d-flex flex-column scroll-y me-n7 pe-7'
+            className='d-flex flex-column scroll-y me-n7 pe-7 px-3'
             id='kt_modal_add_user_scroll'
             data-kt-scroll='true'
             data-kt-scroll-activate='{default: false, lg: true}'

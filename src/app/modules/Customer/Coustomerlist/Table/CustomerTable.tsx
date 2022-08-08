@@ -196,7 +196,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
-                      title='View complaint'
+                      title='Create complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>
@@ -372,7 +372,7 @@ const CustomerTable = () => {
                           '_blank'
                         )
                       }}
-                      title='View complaint'
+                      title='Create complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
                     </a>

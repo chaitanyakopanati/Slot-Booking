@@ -422,7 +422,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       <label className='form-label fw-bold'>Created by</label>
                       <input
                         value={props.values.createdby}
-                        placeholder='Akshay Patel'
+                        placeholder='Created byl'
                         className='form-control form-control-lg form-control-solid'
                         type='text'
                         autoComplete='off'
@@ -444,7 +444,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       </span>
                       <input
                         type='text'
-                        value={props.values.createdby}
+                        value={props.values.createdAt}
                         className='form-control'
                         placeholder='Created at'
                         aria-label='Username'

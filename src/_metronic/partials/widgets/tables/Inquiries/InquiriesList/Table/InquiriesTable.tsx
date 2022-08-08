@@ -106,11 +106,21 @@ const InquiriesTable = () => {
     setSearchText(e.target.value)
   }
 
+  const setBackgrondColour = (row: any) => {
+    console.log('ddd', row)
+    if (currentTime.diff(moment(row?.createdAt), 'days') >= 15 && row.status === 'Pending') {
+      return `#f5c6cb`
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
         {/* begin::Table */}
-        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
+        {/* <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'> */}
+        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border'>
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
@@ -150,6 +160,9 @@ const InquiriesTable = () => {
                           ? `#f5c6cb`
                           : '',
                     }}
+                    // style={{
+                    //   backgroundColor: setBackgrondColour(row),
+                    // }}
                   >
                     {/* begin:: Index No */}
                     <td>

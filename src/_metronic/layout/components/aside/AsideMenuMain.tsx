@@ -177,6 +177,13 @@ export function AsideMenuMain() {
           title={intl.formatMessage({id: 'MENU.MASTER.PACKAGE.CATEGORIES'})}
           fontIcon='bi-app-indicator'
         />
+
+        <AsideMenuItem
+          to='/master/suppliers'
+          icon='/media/icons/duotune/general/gen007.svg'
+          title={intl.formatMessage({id: 'suppliers'})}
+          fontIcon='bi-app-indicator'
+        />
       </AsideMenuItemWithSub>
       {/*  */}
     </>
