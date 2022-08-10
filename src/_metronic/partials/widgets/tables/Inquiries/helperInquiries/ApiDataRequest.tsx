@@ -64,6 +64,8 @@ const postInquiries = (obj: postlistData) => {
     remark: obj.remark,
     isnotify: obj.isnotify,
     createdbyId: obj.createdbyId,
+    area: obj.area,
+    userId: obj?.userId ? obj?.userId : 0,
   })
 }
 {
@@ -97,6 +99,8 @@ const editInquiries = (obj: putInquiriesmodel) => {
     remark: obj.remark,
     isnotify: obj.isnotify,
     modifybyId: obj.modifybyId,
+    area: obj.area,
+    userId: obj?.userId ? obj?.userId : 0,
   })
 }
 {
@@ -136,6 +140,10 @@ const getSalesExecutveByGetUserByRoleTypes = () => {
   return http.get(`GetUserByRoleName?roleName=SalesExecutve`)
 }
 
+const getUserName = (username: string) => {
+  return http.get(`GetUserByRoleName?roleName=Customer`, {userName: username})
+}
+
 const Inquiriesservice = {
   getDynamicInquiries,
   postInquiries,
@@ -147,6 +155,7 @@ const Inquiriesservice = {
   getSalesExecutveByTypes,
   getSalesExecutveByGetUserByRoleTypes,
   getDynamicDownloadFile,
+  getUserName,
 }
 
 export default Inquiriesservice

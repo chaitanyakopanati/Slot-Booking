@@ -28,7 +28,7 @@ const InquiriesTable = () => {
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
 
-  const DataWiseIndex = (pageNo - 1) * pageSize
+  const DataWiseIndex: any = (pageNo - 1) * pageSize
 
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
@@ -45,7 +45,7 @@ const InquiriesTable = () => {
   }
   const deleteFaults = (ID: number) => {
     Swal.fire({
-      title: `Do you want to delete this records ?`,
+      title: `Do you want to delete this record ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

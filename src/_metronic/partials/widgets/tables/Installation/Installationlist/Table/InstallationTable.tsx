@@ -8,8 +8,9 @@ import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../InstallationContext'
 import {getInstallationsData} from '../../helperInstallation/ModelInstallation'
 import InstallationsService from '../../helperInstallation/ApiDatarequest'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
+import React from 'react'
 
 const InstallationTable = () => {
   const {
@@ -32,8 +33,8 @@ const InstallationTable = () => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -42,7 +43,7 @@ const InstallationTable = () => {
   }
   const deleteFaults = (ID: number) => {
     Swal.fire({
-      title: `Do you want to delete this records ?`,
+      title: `Do you want to delete this record ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -197,16 +198,19 @@ const InstallationTable = () => {
                       {/* end:: Edit Icon */}
 
                       {/* begin:: Delete Icon */}
-                      {Access[id].hasOwnProperty("allAccess") || Access[id]["installationrights"].includes("delete") &&<button
-                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                        onClick={() => deleteFaults(row.id)}
-                        title='Delete Installation'
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen027.svg'
-                          className='svg-icon-3'
-                        />
-                      </button>}
+                      {Access[id].hasOwnProperty('allAccess') ||
+                        (Access[id]['installationrights'].includes('delete') && (
+                          <button
+                            className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                            onClick={() => deleteFaults(row.id)}
+                            title='Delete Installation'
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/general/gen027.svg'
+                              className='svg-icon-3'
+                            />
+                          </button>
+                        ))}
                       {/* end:: Delete Icon */}
                       <a
                         href='#'

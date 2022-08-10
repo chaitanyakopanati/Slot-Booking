@@ -55,7 +55,7 @@ const PackagescategoriesTable = () => {
   }
   const deletePackagesCategoriesData = (ID: number) => {
     Swal.fire({
-      title: `Do you want to delete this records ?`,
+      title: `Do you want to delete this record ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

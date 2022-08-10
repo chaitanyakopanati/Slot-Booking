@@ -80,6 +80,8 @@ export interface ComplaintDataContextModel {
   packagesName: GetAllData[]
   PackageCategoryId: number
   setPackageCategoryId: Dispatch<SetStateAction<number>>
+  addComplaint: any[]
+  setAddComplaint: Dispatch<SetStateAction<any>>
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -154,6 +156,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   packagesName: [],
   PackageCategoryId: 0,
   setPackageCategoryId: () => {},
+  addComplaint: [],
+  setAddComplaint: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getComplaintsData[]>([])
@@ -193,6 +197,7 @@ const ListDataProvider: FC = ({children}) => {
   const [CompanyId, setCompanyId] = useState<any>('')
   const [packagesName, setPackagesName] = useState<GetAllData[]>([])
   const [PackageCategoryId, setPackageCategoryId] = useState<any>('')
+  const [addComplaint, setAddComplaint] = useState<any>([])
 
   let {LoderActions} = useLoader()
 
@@ -498,6 +503,8 @@ const ListDataProvider: FC = ({children}) => {
     packagesName,
     PackageCategoryId,
     setPackageCategoryId,
+    addComplaint,
+    setAddComplaint,
   }
   return (
     <>

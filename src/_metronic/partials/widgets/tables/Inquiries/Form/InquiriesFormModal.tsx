@@ -1,6 +1,6 @@
 import {Formik, ErrorMessage} from 'formik'
 import * as Yup from 'yup'
-import {FC, useEffect, useState} from 'react'
+import {FC, useEffect, useRef, useState} from 'react'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
@@ -25,10 +25,28 @@ let validationSchemaNewForm = Yup.object({
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
-  statusId: Yup.string().required('This fied is required'),
+  statusId: Yup.number().required('This fied is required'),
   salesexecutiveId: Yup.string().required('This fielld is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
+  area: Yup.string().required('This field is required'),
+
+  // username: Yup.string().required('This field is required'),
+  // userId: Yup.number().required('Entered User Name Does Not Exist'),
+  // Userid: Yup.string().when(['username'], {
+  //   is: (username: any) => !username,
+  //   then: Yup.number().required().label('Entered User Name Does Not Exist'),
+  // }),
+  // statusId: Yup.string().required('This fied is required'),
+  username: Yup.string().when('statusId', {
+    is: (statusId: any) => statusId == 4,
+    then: Yup.string().required('This field is required'),
+  }),
+
+  Userid: Yup.number().when('statusId', {
+    is: (statusId: any) => statusId == 4,
+    then: Yup.number().required('This field is required'),
+  }),
 })
 
 let validationSchemaEditForm = Yup.object({
@@ -46,11 +64,21 @@ let validationSchemaEditForm = Yup.object({
   salesexecutiveId: Yup.string().required('This fied is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
+  area: Yup.string().required('This field is required'),
+  // username: Yup.string().required('This field is required'),
+  // userId: Yup.number().required('Entered User Name Does Not Exist'),
 })
 
 const InquiriesFormModal: FC<Props> = ({category}) => {
-  const {setItemIdForUpdate, itemIdForUpdate, statusData, getUserByRole, DataGetAllTypeStatus} =
-    ListPageData()
+  const {
+    setItemIdForUpdate,
+    itemIdForUpdate,
+    statusData,
+    getUserByRole,
+    DataGetAllTypeStatus,
+    setSuggestionUserText,
+    getUserNameData,
+  } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
   const [initialValues, setInitialValues] = useState<any>({
@@ -65,7 +93,10 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
     status: '',
     username: '',
     isnotify: false,
+    area: '',
   })
+
+  const [status, setStatus] = useState<any>('')
 
   useEffect(() => {
     console.log('catagary', category)
@@ -76,6 +107,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         id: category.data?.id,
         name: category.data?.name || '',
         address: category.data?.address || '',
+        area: category.data?.area || '',
         contactno: category.data?.contactno || '',
         statusId: category.data?.statusId || 0,
         status: category.data?.status || '',
@@ -92,6 +124,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         id: category.data?.id,
         name: category.data?.name || '',
         address: category.data?.address || '',
+        area: category.data?.area || '',
         contactno: category.data?.contactno || '',
         statusId: category.data?.statusId || '',
         status: category.data?.status || '',
@@ -104,6 +137,8 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
       })
     }
   }, [itemIdForUpdate])
+
+  const suggestionRef: any = useRef()
 
   const {auth} = useAuth()
   console.log(auth?.userId, 'auth')
@@ -137,13 +172,17 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={
-          itemIdForUpdate === 'add' ? validationSchemaNewForm : validationSchemaEditForm
+          validationSchemaNewForm
+          // itemIdForUpdate === 'add' ? validationSchemaNewForm : validationSchemaEditForm
+          // status == '4' ? validationSchemaNewForm : validationSchemaEditForm
         }
         onSubmit={async (values: any, {resetForm}) => {
           console.log('values', values)
           LoderActions(true)
 
           values.salesexecutiveId = +values.salesexecutiveId
+          // values.statusId = status
+
           // values.phone = values.phone.toString()
 
           try {
@@ -243,6 +282,22 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           <ErrorMessage name='address' />
                         </div>
                       </div>
+                      <div className='col-12 col-lg-12'>
+                        <label className='form-label fw-bold required'>Area</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          name='area'
+                          value={props.values.Area}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          data-kt-autosize='true'
+                          placeholder='Area'
+                          autoComplete='off'
+                        ></input>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='area' />
+                        </div>
+                      </div>
                     </div>
                     <div className='row w-100 mx-0 mb-4 gy-4'>
                       <div className='col-lg-4'>
@@ -272,11 +327,10 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         <select
                           className='form-select form-select-solid'
                           {...props.getFieldProps('statusId')}
+                          // onChange={() => setStatus(props.values.statusId)}
                         >
                           <option> Select Status</option>
-                          <option value='' disabled>
-                            Select Status Type
-                          </option>
+                          {/* <option value=''>Select Status Type</option> */}
                           {statusData?.map((row, index) => {
                             return (
                               <option key={index} value={row?.id}>
@@ -285,7 +339,88 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='statusId' />
+                        </div>
                       </div>
+                      {props.values.statusId == '4' ? (
+                        <div className='col-lg-4'>
+                          <div className='row w-100 mx-0 mb-4 gy-4'>
+                            <div className='col-12' style={{position: 'relative'}}>
+                              <div className='col-lg-12'>
+                                <label className='form-label fw-bold required'>User Name</label>{' '}
+                                <input
+                                  name='username'
+                                  placeholder='User Name'
+                                  className='form-control form-control-lg form-control-solid'
+                                  value={props.values.username || ''}
+                                  autoComplete='off'
+                                  onChange={(e) => {
+                                    setSuggestionUserText(e.target.value)
+                                    if (e.target.value) {
+                                      suggestionRef.current.style.display = 'block'
+                                    } else {
+                                      suggestionRef.current.style.display = 'none'
+                                    }
+                                    props.handleChange(e)
+                                  }}
+                                  onBlur={(e) => {
+                                    // suggestionRef.current.
+                                    var container = suggestionRef.current
+                                    document.addEventListener('click', function (event) {
+                                      if (
+                                        container !== event.target &&
+                                        !container.contains(event.target)
+                                      ) {
+                                      } else {
+                                      }
+                                      suggestionRef.current.style.display = 'none'
+                                      document.removeEventListener('click', () => {})
+                                    })
+                                  }}
+                                />
+                                <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
+                                  <ul>
+                                    {getUserNameData?.length > 0 &&
+                                      getUserNameData.map((user, index) => {
+                                        console.log('user', user)
+                                        return (
+                                          <li
+                                            key={user.id}
+                                            onClick={() => {
+                                              props.setFieldValue('userId', user.id)
+                                              props.setFieldValue('username', user.username)
+                                            }}
+                                          >
+                                            {user.username}
+                                          </li>
+                                        )
+                                      })}
+                                  </ul>
+                                </div>
+                                <div className='erro2' style={{color: 'red'}}>
+                                  {props.touched.username && props.errors.username
+                                    ? props.errors.username
+                                    : null}
+                                </div>
+                                <div className='erro2' style={{color: 'red'}}>
+                                  {props.touched.username &&
+                                  !props.errors.username &&
+                                  props.touched.userId &&
+                                  props.errors.userId
+                                    ? props.errors.userId
+                                    : null}
+                                </div>
+                                {/* <div className='erro2' style={{color: 'red'}}>
+                                  <ErrorMessage name='description' />
+                                </div> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        ''
+                      )}
 
                       <div className='col-lg-4'>
                         <label className='form-label fw-bold required'>Sales executive</label>
@@ -293,9 +428,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           className='form-select form-select-solid'
                           {...props.getFieldProps('salesexecutiveId')}
                         >
-                          <option value='' disabled>
-                            Select Sales executive
-                          </option>
+                          <option value=''>Select Sales executive</option>
                           {getUserByRole?.map((row, index) => {
                             return (
                               <option key={index} value={row?.id}>
@@ -304,6 +437,9 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='salesexecutiveId' />
+                        </div>
                       </div>
 
                       <div className='col-12 col-lg-12'>

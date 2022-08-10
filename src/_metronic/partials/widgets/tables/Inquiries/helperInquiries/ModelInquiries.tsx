@@ -1,4 +1,3 @@
-
 export interface getInquiriesData {
   name: string
   createdAt: string
@@ -15,7 +14,7 @@ export interface getInquiriesData {
   contactno: string
   salesexecutiveName: string
   status: string
-  statusId:number
+  statusId: number
 }
 
 export interface getAllInquiriesData {
@@ -33,24 +32,27 @@ export interface postlistData {
   description: string
   remark: string
   isnotify: boolean
-  salesexecutiveName:string
+  salesexecutiveName: string
+  area: string
+  userId: number
 }
 
 export interface GetAllData {
+  success: boolean
   fullName: string
   id: number
   name: string
   createdById: number
   createdByName: string
   username: string
-  status:string
+  status: string
 }
 
 export interface GetAllDataApiSalesExecutve {
   salesexecutiveName: string
-  id:string
-  name:string
-  username:string
+  id: string
+  name: string
+  username: string
 }
 export interface GetAllDataApiSalesExecutve {
   data: GetAllDataApiSalesExecutve[]
@@ -64,7 +66,7 @@ export interface GetAllDataApi {
 }
 export interface putInquiriesmodel {
   modifybyId: any
-  id:number
+  id: number
   name: string
   address: string
   contactno: string
@@ -73,7 +75,9 @@ export interface putInquiriesmodel {
   description: string
   remark: string
   isnotify: boolean
-  salesexecutiveName:string
+  salesexecutiveName: string
+  area: string
+  userId: number
 }
 export interface putInquiriesmodel1 {
   data: getInquiriesData
@@ -81,8 +85,8 @@ export interface putInquiriesmodel1 {
   success: boolean
 }
 
-export interface roleIdInquiries{
-  roleId:string
+export interface roleIdInquiries {
+  roleId: string
 }
 
 export interface GetAllInquiriesApi {
@@ -96,10 +100,10 @@ export interface GetAllInquiriesApi {
   zoneId: number
   roleId: string
   searchByUsername: string
-  statusId:number
-  startDate:string
-  endDate:string
-  salesexecutiveName:string
+  statusId: number
+  startDate: string
+  endDate: string
+  salesexecutiveName: string
 }
 
 export type ID = undefined | null | string

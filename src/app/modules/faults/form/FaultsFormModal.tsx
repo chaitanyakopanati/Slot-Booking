@@ -156,9 +156,7 @@ const FaultsFormModal: FC<Props> = ({category}) => {
                     className='form-select form-select-solid'
                     {...props.getFieldProps('faulttypeid')}
                   >
-                    <option value='' disabled>
-                      Select Fault Type
-                    </option>
+                    <option value=''>Select Fault Type</option>
                     {getDataAllType.map((TypeData, index) => {
                       return (
                         <option key={index} value={TypeData?.id}>

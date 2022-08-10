@@ -60,6 +60,8 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeSalesExecutve: () => void
   DataGetAllTypeSalesExecutveUserByRole: () => void
   fetchAllDownload: () => void
+  setSuggestionUserText: Dispatch<SetStateAction<string>>
+  getUserNameData: GetAllDataApiSalesExecutve[]
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -111,6 +113,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeSalesExecutve: () => {},
   DataGetAllTypeSalesExecutveUserByRole: () => {},
   fetchAllDownload: () => {},
+  setSuggestionUserText: () => {},
+  getUserNameData: [],
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInquiriesData[]>([])
@@ -137,6 +141,9 @@ const ListDataProvider: FC = ({children}) => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [statusId, setStatusId] = useState<number>(0)
+  const [suggestionUserText, setSuggestionUserText] = useState<string>('')
+  const [getUserNameData, setgetUserNameData] = useState<GetAllDataApiSalesExecutve[]>([])
+
   let {LoderActions} = useLoader()
 
   // Download fill
@@ -280,6 +287,33 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
+  useEffect(() => {
+    console.log('suggestionUserText', suggestionUserText)
+    if (suggestionUserText) {
+      let fetchSuggestionUser = async () => {
+        LoderActions(true)
+        try {
+          let payload: GetAllDataApiSalesExecutve = await Inquiriesservice.getUserName(
+            suggestionUserText
+          )
+          console.log(payload, 'getUserNamegetUserName')
+
+          if (payload.success == true) {
+            LoderActions(false)
+            setgetUserNameData(payload?.data)
+            console.log(payload.data, 'getUserName')
+          } else if (payload.message === 'No records found') {
+            setgetUserNameData([])
+          }
+        } catch (error) {
+        } finally {
+          LoderActions(false)
+        }
+      }
+      fetchSuggestionUser()
+    }
+  }, [suggestionUserText])
+
   const value: ComplaintDataContextModel = {
     getData,
     createdById,
@@ -329,6 +363,8 @@ const ListDataProvider: FC = ({children}) => {
     fetchAllUser,
     totalData,
     setTotalData,
+    setSuggestionUserText,
+    getUserNameData,
   }
   return (
     <>

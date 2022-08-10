@@ -9,7 +9,7 @@ export interface getProductData {
   unit: string
   createdById: number
   createdByName: string
-  username:string
+  username: string
 }
 
 export interface getAllProductData {
@@ -21,6 +21,7 @@ export interface postlistData {
   createdby: any
   name: string
   unit: string
+  connectiontype: number
 }
 
 export interface putProductmodel {
@@ -28,6 +29,7 @@ export interface putProductmodel {
   name: string
   unit: string
   id: number | string
+  connectiontype: number
 }
 export interface putProductmodel1 {
   data: getProductData
@@ -44,7 +46,7 @@ export interface GetAllProductApi {
   page: number
   pageSize: number
   createdById: number
-  username:string
+  username: string
 }
 
 export type ID = undefined | null | string

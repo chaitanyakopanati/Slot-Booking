@@ -21,8 +21,8 @@ let validationSchemaNewForm = Yup.object({
   quantity: Yup.number().required('This field is required'),
   // supplierId: Yup.string().required('Please Enter Valid Supplier Name'),
 
-  supplierName: Yup.string().required('This field is required'),
-  supplierId: Yup.number().required('Entered Supplier Name Does Not Exist'),
+  // supplierName: Yup.string().required('This field is required'),
+  // supplierId: Yup.number().required('Entered Supplier Name Does Not Exist'),
 })
 
 const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
@@ -34,6 +34,8 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
     getDataAllTypeProduct,
     setSuggestionUserText,
     getUserNameData,
+    DataGetAllTypeSupplierName,
+    getSupplierNameData,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
@@ -93,6 +95,10 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
       keyEvent.preventDefault()
     }
   }
+
+  useEffect(() => {
+    DataGetAllTypeSupplierName()
+  }, [])
 
   useEffect(() => {}, [category, itemIdForUpdate])
 
@@ -210,6 +216,11 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       type='number'
                       value={props.values.quantity}
                       // onChange={props.handleChange}
+                      onChange={(e) => {
+                        if (+e.target.value >= 0) {
+                          props.handleChange(e)
+                        }
+                      }}
                       onBlur={props.handleBlur}
                       name='quantity'
                       autoComplete='off'
@@ -222,7 +233,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                   <div className='col-md-3'>
                     <div className='col-lg-12' style={{position: 'relative'}}>
                       <label className='form-label fw-bold required'>Supplier name</label>{' '}
-                      <input
+                      {/* <input
                         name='supplierName'
                         placeholder='supplierName'
                         className='form-control form-control-lg form-control-solid'
@@ -249,6 +260,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                           })
                         }}
                       />
+                    
                       <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
                         <ul>
                           {getUserNameData?.length > 0 &&
@@ -267,11 +279,24 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                               )
                             })}
                         </ul>
+                      </div> */}
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('supplierId')}
+                      >
+                        <option value=''>Select Product Type</option>
+                        {getSupplierNameData.map((TypeData: any, index: Key | null | undefined) => {
+                          return (
+                            <option key={index} value={TypeData.id}>
+                              {TypeData?.name}
+                            </option>
+                          )
+                        })}
+                      </select>
+                      <div className='erro2' style={{color: 'red'}}>
+                        <ErrorMessage name='supplierId' />
                       </div>
                       {/* <div className='erro2' style={{color: 'red'}}>
-                        <ErrorMessage name='supplierId' />
-                      </div> */}
-                      <div className='erro2' style={{color: 'red'}}>
                         {props.touched.supplierName && props.errors.supplierName
                           ? props.errors.supplierName
                           : null}
@@ -283,7 +308,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                         props.errors.supplierId
                           ? props.errors.supplierId
                           : null}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 

@@ -227,9 +227,7 @@ const UserFormModal: FC<formik> = ({category}) => {
                   className='form-select form-select-solid'
                   {...formik.getFieldProps('zoneId')}
                 >
-                  <option value='' disabled>
-                    Select Zone
-                  </option>
+                  <option value=''>Select Zone</option>
                   {getDataAllType.map((TypeData: any, index) => {
                     //
 
@@ -357,9 +355,7 @@ const UserFormModal: FC<formik> = ({category}) => {
                   className='form-select form-select-solid'
                   {...formik.getFieldProps('technicianId')}
                 >
-                  <option value='' disabled>
-                    All
-                  </option>
+                  <option value=''>All</option>
                   {getDataAllTypeTechnician.map((TypeData, index) => {
                     return (
                       <option key={index} value={TypeData?.id}>

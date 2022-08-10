@@ -1,5 +1,5 @@
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../InstallationContext'
+import {ListPageData} from '../../InstallationContext'
 
 const Installationpagination = () => {
   const {setPageNo, pageNo, pageSize, totalData, setPageSize, pageCount, getData} = ListPageData()
@@ -62,7 +62,7 @@ const Installationpagination = () => {
             {/* begin:: Page Data Result */}
             {pageNo * pageSize <= totalData ? (
               <div className='form-label fw-bold px-4'>
-                Showing {(pageNo - 1) * pageSize + 1}-{pageNo * pageSize}  of {totalData} entries
+                Showing {(pageNo - 1) * pageSize + 1}-{pageNo * pageSize} of {totalData} entries
               </div>
             ) : (
               <div className='form-label fw-bold px-4'>
@@ -77,4 +77,3 @@ const Installationpagination = () => {
   )
 }
 export default Installationpagination
-

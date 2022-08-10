@@ -46,6 +46,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.data?.id,
           name: category.data?.name || '',
+          connectiontype: category.data?.connectiontype || '',
           unit: category.data?.unit || '',
           createdby: auth?.userId,
           modifyby: auth?.userId,
@@ -58,10 +59,11 @@ const ProductFormModal: FC<Props> = ({category}) => {
           unit: Yup.string()
             // .min(1, 'Etr must be of 3digit ')
             .required('This field is required'),
+          connectiontype: Yup.number().required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
           LoderActions(true)
-
+          // values?.connectiontype = +values?.connectiontype
           try {
             if (values.id) {
               console.log(values, 'valuespost')
@@ -151,7 +153,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                 {/* end: input name Filed */}
 
                 {/*begin:: input Unit Filed */}
-                <div className='row w-100 mx-0 mb-4 gy-4'>
+                <div className='row w-100 mb-4 gy-4'>
                   <div className='col'>
                     <label className='form-label fw-bold required'>Unit</label>
                     <input
@@ -166,6 +168,23 @@ const ProductFormModal: FC<Props> = ({category}) => {
                     <div className='erro2' style={{color: 'red'}}>
                       <ErrorMessage name='unit' />
                     </div>
+                  </div>
+                </div>
+
+                <div className='col-lg-12'>
+                  <label className='form-label fw-bold required'>Connection Type</label>
+                  <select
+                    className='form-select form-select-solid'
+                    {...props.getFieldProps('connectiontype')}
+                  >
+                    <option value=''>Select Connection Type</option>
+                    <option value='1'>Cable</option>
+                    <option value='2'>Wireless</option>
+                    <option value='3'>Fibre</option>
+                    <option value='4'>Other</option>
+                  </select>
+                  <div className='erro2' style={{color: 'red'}}>
+                    <ErrorMessage name='connectiontype' />
                   </div>
                 </div>
                 {/*end:: input Unit Filed */}

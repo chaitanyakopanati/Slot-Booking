@@ -169,6 +169,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
       LoderActions(true)
+
       values.zoneId = +values.zoneId
       values.cabletypeid = +values.cabletypeid
       values.installerid = +values.installerid
@@ -308,9 +309,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('installerid')}
                   >
-                    <option value='' disabled>
-                      Select Installer
-                    </option>
+                    <option value=''>Select Installer</option>
                     {getInstallations.map((TypeData: any, index: number) => {
                       return (
                         <option key={index} value={TypeData.id}>
@@ -331,9 +330,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('zonepointid')}
                   >
-                    <option value='' disabled>
-                      Select MainPoint
-                    </option>
+                    <option value=''>Select MainPoint</option>
                     {getMainPoint.map((TypeData: any, index) => {
                       return (
                         <option key={index} value={TypeData.id}>
@@ -354,11 +351,11 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('connectiontype')}
                   >
-                    <option value='' disabled>
-                      Select Connection Type
-                    </option>
+                    <option value=''>Select Connection Type</option>
                     <option value='1'>Cable</option>
                     <option value='2'>Wireless</option>
+                    <option value='3'>Fibre</option>
+                    <option value='4'>Other</option>
                   </select>
                   <div className='erro2' style={{color: 'red'}}>
                     {formik.touched.connectiontype && formik.errors.connectiontype
@@ -366,6 +363,28 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                       : null}
                   </div>
                 </div>
+                {formik.values.connectiontype == 2 ? (
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Wireless Type</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...formik.getFieldProps('connectiontype')}
+                    >
+                      <option value=''>Select Wireless Type</option>
+                      <option value='1'>Cable</option>
+                      <option value='2'>Wireless</option>
+                      <option value='3'>Fibre</option>
+                      <option value='4'>Other</option>
+                    </select>
+                    <div className='erro2' style={{color: 'red'}}>
+                      {formik.touched.connectiontype && formik.errors.connectiontype
+                        ? formik.errors.connectiontype
+                        : null}
+                    </div>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-lg-3'>
@@ -425,9 +444,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     onBlur={formik.handleBlur}
                     name='iptype'
                   >
-                    <option value='' disabled>
-                      Select IP Type
-                    </option>
+                    <option value=''>Select IP Type</option>
                     <option value='1'>Dynamic</option>
                     <option value='2'>Static</option>
                   </select>
@@ -533,9 +550,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     onBlur={formik.handleBlur}
                     name='status'
                   >
-                    <option value='' disabled>
-                      Select status Type
-                    </option>
+                    <option value=''>Select status Type</option>
                     <option value='1'>Pending</option>
                     <option value='2'>Done</option>
                   </select>

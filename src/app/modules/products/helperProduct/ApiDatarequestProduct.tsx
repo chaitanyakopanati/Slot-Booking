@@ -42,6 +42,7 @@ const postProduct = (obj: postlistData) => {
     name: obj.name,
     unit: obj.unit,
     createdby: obj.createdby,
+    connectiontype: obj.connectiontype,
   })
 }
 {
@@ -67,6 +68,7 @@ const editProduct = (obj: putProductmodel) => {
     unit: obj.unit,
     id: obj.id,
     modifyby: obj.modifyby,
+    connectiontype: obj.connectiontype,
   })
 }
 {

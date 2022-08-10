@@ -59,6 +59,8 @@ export interface ComplaintDataContextModel {
   DataGetAllTypeTechnician: () => void
   DataGetAllTypeProduct: () => void
   DataGetAllTypeDeliveredByTypes: () => void
+  getSupplierNameData: GetAllData[]
+  DataGetAllTypeSupplierName: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -111,6 +113,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypeTechnician: () => {},
   DataGetAllTypeProduct: () => {},
   DataGetAllTypeDeliveredByTypes: () => {},
+  getSupplierNameData: [],
+  DataGetAllTypeSupplierName: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getGodownStockInwardsData[]>([])
@@ -138,6 +142,7 @@ const ListDataProvider: FC = ({children}) => {
   const [createdBy, setcreatedById] = useState<number>(0)
   const [supplierName, setSupplierName] = useState('')
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
+  const [getSupplierNameData, setGetSupplierNameData] = useState<GetAllData[]>([])
 
   let {LoderActions} = useLoader()
 
@@ -280,6 +285,22 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
+  const DataGetAllTypeSupplierName = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllData = await OfficeStockInwardsService.getAllSuppliers()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetSupplierNameData(payload.data)
+        console.log(payload.data, 'oooooooooooo')
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   useEffect(() => {
     console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
@@ -372,6 +393,8 @@ const ListDataProvider: FC = ({children}) => {
     setTotalData,
     suggestionUserText,
     setSuggestionUserText,
+    getSupplierNameData,
+    DataGetAllTypeSupplierName,
   }
   return (
     <>

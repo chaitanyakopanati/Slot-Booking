@@ -7,10 +7,12 @@ import {KTSVG} from '../../../../../../helpers'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
-import closeIcon from '../../../../../../../app/images/closeIcon.svg'
+// import closeIcon from '../../../../../../../app/images/closeIcon.svg'
+// import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {ListPageData} from '../../InstallationContext'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
+import React from 'react'
 
 type Props = {
   category: any
@@ -57,8 +59,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
   } = ListPageData()
 
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const [fromDate, setFromDate] = useState<any>()
   const [toDate, setToDate] = useState<any>()
@@ -235,21 +237,23 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                 { Access[id].hasOwnProperty("download") &&  <div className='ms-auto'>
-                    <button
-                      type='button'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                      onClick={downloadFile}
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download report</span>
-                    </button>
-                  </div>}
+                  {Access[id].hasOwnProperty('download') && (
+                    <div className='ms-auto'>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                        onClick={downloadFile}
+                      >
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/arrows/arr091.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Download report</span>
+                      </button>
+                    </div>
+                  )}
                   {/* end:: Download */}
 
                   {/* begin::Filter */}
@@ -309,7 +313,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                             setEndDate('')
                           }}
                         >
-                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                          {/* <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} /> */}
                         </span>
                       </div>
                       <div>
@@ -382,6 +386,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       <option value=''>All</option>
                       <option value='1'>Cable</option>
                       <option value='2'>Wireless</option>
+                      <option value='3'>Not Described</option>
                     </select>
                   </div>
 

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../ComplaintContext'
@@ -7,6 +7,7 @@ import moment from 'moment'
 import {toast} from 'react-toastify'
 import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
 import {useLoader} from '../../../loader/LoaderContext'
+import {Checkbox} from 'rsuite'
 const ComplaintTable = () => {
   const {
     getData,
@@ -16,9 +17,16 @@ const ComplaintTable = () => {
     fetchAllComplaint,
     pageNo,
     pageSize,
+    setAddComplaint,
+    addComplaint,
   } = ListPageData()
   let navigate = useNavigate()
   let {LoderActions} = useLoader()
+
+  // const [addComplaint, setAddComplaint] = useState<any>([])
+  const [isCheckAll, setIsCheckAll] = useState<any>(false)
+  const [isCheck, setIsCheck] = useState<any>(false)
+  const [list, setList] = useState<any>([])
 
   const openViewPage = () => {
     navigate('complaintviewform')
@@ -40,7 +48,7 @@ const ComplaintTable = () => {
 
   const deleteFaults = (ID: number) => {
     Swal.fire({
-      title: `Do you want to delete this records ?`,
+      title: `Do you want to delete this record ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -88,6 +96,101 @@ const ComplaintTable = () => {
     }
   }
 
+  const toggleAllChecked = () => {
+    if (pageSize <= addComplaint.length) {
+      setIsCheck(true)
+    } else {
+      setIsCheck(false)
+    }
+  }
+
+  // useEffect(() => {
+  //   setIsCheck(false)
+  // }, [pageNo])
+
+  useEffect(() => {
+    toggleAllChecked()
+  }, [pageSize, addComplaint])
+
+  const multipleSelectComplaint = (id: any) => {
+    // debugger
+    const temp = addComplaint.some((addComplaintId: any) => id === addComplaintId)
+    if (temp) {
+      const removeComplainID = addComplaint.filter((complaintId: any) => {
+        return complaintId !== id
+      })
+      setAddComplaint(removeComplainID)
+    } else {
+      setAddComplaint([...addComplaint, id])
+    }
+    // debugger
+    console.log('jjj', addComplaint)
+
+    if (pageSize <= addComplaint.length) {
+      setIsCheck(true)
+    } else {
+      setIsCheck(false)
+    }
+  }
+
+  // const selectAllComplaint = () => {
+  //   getData.forEach((data) => {
+  //     // debugger
+  //     const temp = addComplaint.some((addComplaintId: any) => data.id == addComplaintId)
+  //     if (temp) {
+  //       const removeComplainID = addComplaint.filter((complaintId: any) => {
+  //         return complaintId !== data.id
+  //       })
+  //       setAddComplaint(removeComplainID)
+  //     } else {
+  //       // setAddComplaint([...addComplaint, data.id])
+  //       addComplaint.push(data.id)
+  //     }
+  //     // debugger
+  //     console.log('jjj', addComplaint)
+  //   })
+  // }
+
+  const selectAllComplaint = () => {
+    setIsCheckAll(!isCheckAll)
+    if (isCheckAll == false || pageSize >= addComplaint.length) {
+      getData.forEach((data) => {
+        addComplaint.push(data.id)
+        setIsCheck(false)
+      })
+    } else {
+      setAddComplaint([])
+    }
+    // debugger
+    if (pageSize <= addComplaint.length) {
+      setIsCheck(true)
+    } else {
+      setIsCheck(false)
+    }
+  }
+
+  // const checkAll = (id: any) => {
+  //   addComplaint.every((value) => {
+  //     value == id
+  //   })
+  // }
+
+  // const handleSelectAll = (e: any) => {
+  //   setIsCheckAll(!isCheckAll)
+  //   setIsCheck(list.map((li: any) => li.id))
+  //   if (isCheckAll) {
+  //     setIsCheck([])
+  //   }
+  // }
+
+  // const handleClick: any = (e: any) => {
+  //   const {id, checked} = e.target
+  //   setIsCheck([...isCheck, id])
+  //   if (!checked) {
+  //     setIsCheck(isCheck.filter((item: any) => item !== id))
+  //   }
+  // }
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
@@ -96,7 +199,29 @@ const ComplaintTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              <th className='max-w-60px min-w-40px rounded-start ps-4'>Complaint No.</th>
+              {/* <th className='max-w-10px '>
+                <input
+                  type='checkbox'
+      
+                />
+              </th> */}
+              <th className='max-w-60px min-w-40px rounded-start ps-4 d-flex justify-content-start'>
+                {' '}
+                <input
+                  type='checkbox'
+                  className='mx-4'
+                  onClick={selectAllComplaint}
+                  checked={isCheck}
+                />
+                {/* <Checkbox
+                  type='checkbox'
+                  name='selectAll'
+                  id='selectAll'
+                  handleClick={handleSelectAll}
+                  isChecked={isCheckAll}
+                /> */}
+                Complaint No.
+              </th>
               <th className='max-w-60px '>User Name</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-200px'>Address</th>
@@ -129,7 +254,24 @@ const ComplaintTable = () => {
                     }}
                   >
                     <td>
-                      <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
+                      <div className='text-dark fw-bolder fs-6 ps-4 text-center d-flex justify-content-start'>
+                        <input
+                          className='mx-4'
+                          type='checkbox'
+                          onClick={() => {
+                            multipleSelectComplaint(row.id)
+                          }}
+                          checked={addComplaint.includes(row.id)}
+                        />
+
+                        {/* <Checkbox
+                          type='checkbox'
+                          name='name'
+                          id='id'
+                          handleClick={handleClick}
+                          isChecked={isCheck.includes(row.id)}
+                        /> */}
+
                         {DataWiseIndex + index + 1}
                       </div>
                     </td>
@@ -242,6 +384,8 @@ const ComplaintTable = () => {
                       <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                         <div className='text-dark fw-bolder fs-3 me-2'>
                           {' '}
+                          {/* <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> */}
+                          <input type='checkbox' />
                           {DataWiseIndex + index + 1}
                         </div>
                         <div className='fw-bolder fs-3'>{row?.userName || '-'}</div>

@@ -38,7 +38,7 @@ const FormsTable = () => {
 
   const deleteFaults = (ID: number) => {
     Swal.fire({
-      title: `Do you want to delete this records ?`,
+      title: `Do you want to delete this record ?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -113,8 +113,8 @@ const FormsTable = () => {
     }
     return '#fff'
   }
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>

@@ -129,6 +129,9 @@ const getDeliveredByTypes = () => {
   return http.get(`GetUserByRoleName?roleName=technician`)
 }
 
+const getAllSuppliers = () => {
+  return http.get(`GetAllSuppliers`)
+}
 const OfficeStockInwardsService = {
   getDynamicGodownStockInwards,
   postGodownStockInwards,
@@ -141,6 +144,7 @@ const OfficeStockInwardsService = {
   getZoneTypes,
   getDynamicDownloadFile,
   getDeliveredByTypes,
+  getAllSuppliers,
 }
 
 export default OfficeStockInwardsService

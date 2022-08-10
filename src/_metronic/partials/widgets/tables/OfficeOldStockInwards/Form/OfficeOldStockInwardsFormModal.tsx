@@ -216,9 +216,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       className='form-select form-select-solid'
                       {...props.getFieldProps('zoneId')}
                     >
-                      <option value='' disabled>
-                        Select Zone
-                      </option>
+                      <option value=''>Select Zone</option>
                       {getDataAllType.map((TypeData: any, index) => {
                         return (
                           <option key={index} value={TypeData.id}>
@@ -326,9 +324,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       className='form-select form-select-solid'
                       {...props.getFieldProps('deliveredById')}
                     >
-                      <option value='' disabled>
-                        Select Delivered By
-                      </option>
+                      <option value=''>Select Delivered By</option>
                       {getDataAllTypeDeliveredBy.map((TypeData, index) => {
                         return (
                           <option key={index} value={TypeData?.id}>

@@ -381,9 +381,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       {...props.getFieldProps('zoneId')}
                       // onChange={props.handleChange}
                     >
-                      <option value='' disabled>
-                        Select Zone Type
-                      </option>
+                      <option value=''>Select Zone Type</option>
                       {getDataAllType.map((TypeData: any, index) => {
                         //
 
@@ -404,9 +402,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                     <div className='col-lg-12'>
                       <label className='form-label fw-bold required'>Status</label>
                       <select className='form-select form-select-solid'>
-                        <option value='' disabled>
-                          Select Status Type
-                        </option>
+                        <option value=''>Select Status Type</option>
                         <option value='1'>Pending</option>
                         <option value='2'>Done</option>
                       </select>
@@ -420,9 +416,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-select form-select-solid'
                       {...props.getFieldProps('roleId')}
                     >
-                      <option value='' disabled>
-                        Select Role Type
-                      </option>
+                      <option value=''>Select Role Type</option>
                       {getDataAllTypeRole.map((TypeDataRole, index) => {
                         return (
                           <option key={index} value={TypeDataRole?.id}>

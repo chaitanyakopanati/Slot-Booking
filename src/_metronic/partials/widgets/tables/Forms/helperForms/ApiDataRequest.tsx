@@ -225,6 +225,13 @@ const getReciever = () => {
   return http.get(`GetUserByRoleName?roleName=Technician`)
 }
 
+const postInstallations = (obj: postlistData) => {
+  return http.post('SaveInstallations', {
+    userid: obj.userid,
+    createdbyId: obj.createdbyId,
+  })
+}
+
 const Inquiriesservice = {
   getDynamicForm,
   postForms,
@@ -241,6 +248,7 @@ const Inquiriesservice = {
   getPackage,
   getBank,
   getReciever,
+  postInstallations,
 }
 
 export default Inquiriesservice

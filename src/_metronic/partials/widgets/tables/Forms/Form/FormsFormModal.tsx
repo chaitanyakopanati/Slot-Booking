@@ -288,6 +288,23 @@ const FormsFormModal: FC<Props> = ({category}) => {
         console.log(error, 'error')
         toast.error(error.data.message)
       }
+
+      if (values.formtype == '4' && !values.id) {
+        try {
+          let response = await Inquiriesservice.postInstallations(values)
+
+          if (response.success === false) {
+            toast.error(response.message)
+          } else {
+            toast.success(response.message)
+            // toast.success(` Data Added Successfully`)
+          }
+          toast.dismiss('1s')
+        } catch (error: any) {
+          console.log(error, 'error')
+          toast.error(error.data.message)
+        }
+      }
     },
   })
 
@@ -468,9 +485,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('formtype')}
                       >
-                        <option value='' disabled>
-                          select Form Type
-                        </option>
+                        <option value=''>select Form Type</option>
                         <option value='1'>New</option>
                         <option value='2'>Renew </option>
                         <option value='3'>Upgrade </option>
@@ -514,9 +529,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('companyid')}
                       >
-                        <option value='' disabled>
-                          select Company
-                        </option>
+                        <option value=''>select Company</option>
                         {getDataAllTypeCompany.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>
@@ -538,9 +551,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('packagecatid')}
                       >
-                        <option value='' disabled>
-                          select Packages Category
-                        </option>
+                        <option value=''>select Packages Category</option>
                         {getPackagesCategory?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -559,9 +570,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('pacakgetype')}
                       >
-                        <option value='' disabled>
-                          Select Package Type
-                        </option>
+                        <option value=''>Select Package Type</option>
                         {/* <option>Package Type</option> */}
                         <option value='1'>Unlimited</option>
                         <option value='2'>Limited</option>
@@ -579,9 +588,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('packageid')}
                       >
-                        <option value='' disabled>
-                          select Packages Category
-                        </option>
+                        <option value=''>select Packages Category</option>
                         {getPackages?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -818,10 +825,9 @@ const FormsFormModal: FC<Props> = ({category}) => {
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('bankid')}
+                    // menuPlacement='bottom'
                   >
-                    <option value='' disabled>
-                      select Bank Name
-                    </option>
+                    <option value=''>Select Bank Name</option>
                     {getBank?.map((row, index) => {
                       return (
                         <option key={index} value={row?.id}>
@@ -830,6 +836,20 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       )
                     })}
                   </select>
+
+                  {/* <select
+                    className='form-select form-select-solid'
+                    {...formik.getFieldProps('bankid')}
+                  >
+                    <option value=''>select receiver Name</option>
+                    {getBank?.map((row, index) => {
+                      return (
+                        <option key={index} value={row?.id}>
+                          {row.name}
+                        </option>
+                      )
+                    })}
+                  </select> */}
                 </div>
 
                 <div className='col-md-3'>
@@ -866,9 +886,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('receiverid')}
                   >
-                    <option value='' disabled>
-                      select receiver Name
-                    </option>
+                    <option value=''>select receiver Name</option>
                     {getReciever?.map((row, index) => {
                       return (
                         <option key={index} value={row?.id}>
@@ -917,9 +935,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     {...formik.getFieldProps('iptype')}
                     autoComplete='off'
                   >
-                    <option value='' disabled>
-                      Select IP Type
-                    </option>
+                    <option value=''>Select IP Type</option>
                     <option value='1'>Dynmaic</option>
                     <option value='2'>Static</option>
                   </select>
@@ -976,9 +992,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     {...formik.getFieldProps('status')}
                     autoComplete='off'
                   >
-                    <option value='' disabled>
-                      Select status
-                    </option>
+                    <option value=''>Select status</option>
                     <option value='1'>Done</option>
                     <option value='2'>Pending</option>
                     <option value='3'>Cancel</option>

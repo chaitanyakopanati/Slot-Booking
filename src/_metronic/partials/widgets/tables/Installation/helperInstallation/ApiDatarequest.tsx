@@ -27,7 +27,7 @@ const getDynamicInstallations = (
     )
   } else {
     return http.get(
-      `GetDynamicInstallations/${pageNo}/${pageSize}?searchText=${searchText}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&connectionTypeId=${connectionTypeId}&zoneId=${zoneId}&mainPointId=${mainPointId}&installerId=${installerId}&companyId=${companyId}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+      `GetDynamicInstallations/${pageNo}/${pageSize}?searchText=${searchText}&statusId=${statusId}&salesExecutiveId=${salesExecutiveId}&startDate=${startDate}&endDate=${endDate}&connectionTypeId=${zoneId}&zoneId=${connectionTypeId}&mainPointId=${mainPointId}&installerId=${installerId}&companyId=${companyId}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }

@@ -156,9 +156,7 @@ const MainPointFormModal: FC<Props> = ({category}) => {
                     className='form-select form-select-solid'
                     {...props.getFieldProps('zoneid')}
                   >
-                    <option value='' disabled>
-                      Select Zone Type
-                    </option>
+                    <option value=''>Select Zone Type</option>
                     {getDataAllType.map((TypeData, index) => {
                       return (
                         <option key={index} value={TypeData?.id}>

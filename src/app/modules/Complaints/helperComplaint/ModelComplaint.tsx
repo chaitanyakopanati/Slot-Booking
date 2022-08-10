@@ -25,12 +25,14 @@ export interface getComplaintsData {
   username: string
   zoneId: number
   zoneName: string
+  pageSize: any
 }
 
 export interface getAllgetComplaintsDataData {
   data: getComplaintsData[]
   message: string
   success: boolean
+  pageSize: any
 }
 export interface postlistData {
   id: number

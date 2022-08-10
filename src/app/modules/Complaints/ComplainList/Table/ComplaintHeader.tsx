@@ -6,14 +6,18 @@ import {Formik, Form} from 'formik'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
-import closeIcon from '../../../../../app/images/closeIcon.svg'
-import {useAuth} from "../../../../modules/auth"
+// import closeIcon from '../../../../../app/images/closeIcon.svg'
+import Swal from 'sweetalert2'
+import {toast} from 'react-toastify'
+import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
+import {useAuth} from '../../../auth'
 import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
+
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
   const {
     setPageNo,
     setSearchText,
@@ -59,6 +63,8 @@ const ComplaintHeader = () => {
     setEndDate,
     startDate,
     endDate,
+    setAddComplaint,
+    addComplaint,
   } = ListPageData()
 
   useEffect(() => {
@@ -180,6 +186,43 @@ const ComplaintHeader = () => {
     endDate,
   ])
 
+  useEffect(() => {
+    console.log(`addComplaint`, addComplaint)
+  })
+
+  const deleteMultipleComplaint = () => {
+    // Swal.fire({
+    //   title: `Do you want to delete this records ?`,
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Delete',
+    // }).then(async (result) => {
+    //   if (result.isConfirmed) {
+    //     LoderActions(true)
+    //     try {
+    //       let payload = await ComplaintsViewService.deleteComplaint(addComplaint)
+    //       if (payload.success === true) {
+    //         LoderActions(false)
+    //         toast.success(payload.message)
+    //         // toast.success(` Data Deleted Successfully`)
+    //         toast.dismiss('1s')
+    //       } else {
+    //         LoderActions(false)
+    //         toast.error(payload.message)
+    //         // toast.error(` Failed to Delete Data`)
+    //         toast.dismiss('1s')
+    //       }
+    //     } catch (error: any) {
+    //       toast.error(error?.data?.message)
+    //       toast.dismiss('1s')
+    //     }
+    //     fetchAllComplaint()
+    //   }
+    // })
+  }
+
   return (
     <>
       <Formik
@@ -213,25 +256,25 @@ const ComplaintHeader = () => {
                     placeholder='Search'
                   />
                 </div>
-                    
+
                 <div className='d-flex align-items-center'>
-                  { Access[id].hasOwnProperty("download") &&  
-                  <div className='ms-auto'>
-                    <button
-                      type='button'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                      onClick={downloadFileComplaint}
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download report</span>
-                    </button>
-                  </div>
-                }
+                  {Access[id].hasOwnProperty('download') && (
+                    <div className='ms-auto'>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                        onClick={downloadFileComplaint}
+                      >
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/arrows/arr091.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Download report</span>
+                      </button>
+                    </div>
+                  )}
                   <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
                     <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
                       <span className='svg-icon svg-icon-gray-500 me-0'>
@@ -264,6 +307,31 @@ const ComplaintHeader = () => {
                           />
                         </span>
                         Create Complaint
+                      </button>
+                    </div>
+                  </div>
+
+                  <div
+                    className='d-flex justify-content-end ms-3'
+                    data-kt-user-table-toolbar='base'
+                  >
+                    <div title='Click to add new category'>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                        onClick={() => {
+                          deleteMultipleComplaint()
+                        }}
+                        // onClick={openAddCategoryModal}
+                      >
+                        <span className='svg-icon svg-icon-gray-500 me-1'>
+                          <KTSVG
+                            // path='/media/icons/duotune/arrows/arr027.svg'
+                            path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </span>
+                        Delete Complaint
                       </button>
                     </div>
                   </div>
@@ -300,7 +368,7 @@ const ComplaintHeader = () => {
                           setEndDate('')
                         }}
                       >
-                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        {/* <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} /> */}
                       </span>
                       <DateRangePicker
                         initialSettings={{
@@ -487,3 +555,6 @@ const ComplaintHeader = () => {
 }
 
 export default ComplaintHeader
+function LoderActions(arg0: boolean) {
+  throw new Error('Function not implemented.')
+}
