@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {FC, useEffect} from 'react'
+import {FC, useEffect, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {useIntl} from 'react-intl'
+import SignoutPop from '../../../../app/routing/SignoutPop'
 
 // import {useAuth} from '../../../../app/modules/auth'
 import {useAuth} from '../../../../app/modules/auth/core/Auth'
@@ -17,7 +18,7 @@ const HeaderUserMenu: FC = () => {
   useEffect(() => {
     console.log('auth', auth)
   }, [])
-
+  const [show,setShow]= useState(true)
   return (
     <div
       className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px'

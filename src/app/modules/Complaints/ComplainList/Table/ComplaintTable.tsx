@@ -8,6 +8,9 @@ import {toast} from 'react-toastify'
 import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
 import {useLoader} from '../../../loader/LoaderContext'
 import {Checkbox} from 'rsuite'
+import {useAuth} from "../../../auth"
+import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
+
 const ComplaintTable = () => {
   const {
     getData,
@@ -27,6 +30,8 @@ const ComplaintTable = () => {
   const [isCheckAll, setIsCheckAll] = useState<any>(false)
   const [isCheck, setIsCheck] = useState<any>(false)
   const [list, setList] = useState<any>([])
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   const openViewPage = () => {
     navigate('complaintviewform')
@@ -314,6 +319,7 @@ const ComplaintTable = () => {
                         />
                       </a>
 
+                      { (Access[id].hasOwnProperty("allAccess") || Access[id]["complaintrights"].includes("edit")) &&
                       <button
                         className='btn btn-icon btn-active-color-primary btn-sm'
                         onClick={() => {
@@ -323,11 +329,13 @@ const ComplaintTable = () => {
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
+                      }
 
-                      <button
+                     { (Access[id].hasOwnProperty("allAccess") || Access[id]["complaintrights"].includes("delete")) && 
+                     <> <button
                         className='btn btn-icon btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
-                        title='Deleted complaint'
+                        title='Delete complaint'
                       >
                         <KTSVG
                           path='/media/icons/duotune/general/gen027.svg'
@@ -349,7 +357,7 @@ const ComplaintTable = () => {
                           path='/media/icons/duotune/communication/com013.svg'
                           className='svg-icon-3'
                         />
-                      </a>
+                      </a> </>}
                     </td>
                   </tr>
                 )

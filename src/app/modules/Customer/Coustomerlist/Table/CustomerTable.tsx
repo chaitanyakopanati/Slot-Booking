@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
 import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 import moment from 'moment'
+import {useAuth} from "../../../auth"
+import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
 
 const CustomerTable = () => {
   let {filter, fetchCustomer, customerTableData, pageNo, pageSize} = ListPageData()
@@ -19,6 +21,8 @@ const CustomerTable = () => {
   }, [])
 
   const navigate = useNavigate()
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   const deletedCustomerData = (ID: number, username: string) => {
     Swal.fire({
@@ -111,7 +115,7 @@ const CustomerTable = () => {
                       : '-'}
                   </td>
                   <td>
-                    <a
+                   { (Access[id].hasOwnProperty("allAccess") || Access[id]["customerrights"].includes("edit")) && <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                       data-bs-toggle='modal'
@@ -126,7 +130,7 @@ const CustomerTable = () => {
                         path='/media/icons/duotune/general/gen055.svg'
                         className='svg-icon-3'
                       />
-                    </a>
+                    </a>}
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
@@ -142,7 +146,8 @@ const CustomerTable = () => {
                         className='svg-icon-3'
                       />
                     </a>
-                    <a
+                    { Access[id].hasOwnProperty("allAccess") &&
+                     <> <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => deletedCustomerData(customer.id, customer.userName)}
@@ -168,9 +173,10 @@ const CustomerTable = () => {
                         path='/media/icons/duotune/general/gen005.svg'
                         className='svg-icon-3'
                       />
-                    </a>
+                    </a> </>}
 
-                    <a
+                   { (Access[id].hasOwnProperty("allAccess") || Access[id]["customerrights"].includes("createInstallation")) && 
+                   <a
                       // href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
                       onClick={() => {
@@ -185,9 +191,9 @@ const CustomerTable = () => {
                         path='/media/icons/duotune/electronics/elc008.svg'
                         className='svg-icon-3'
                       />
-                    </a>
+                    </a>}
 
-                    <a
+                   { Access[id].hasOwnProperty("allAccess") && <a
                       // href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                       onClick={() => {
@@ -199,7 +205,7 @@ const CustomerTable = () => {
                       title='Create complaint'
                     >
                       <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
-                    </a>
+                    </a>}
                   </td>
                 </tr>
               )

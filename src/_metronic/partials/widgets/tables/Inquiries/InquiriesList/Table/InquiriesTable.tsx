@@ -8,6 +8,8 @@ import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import Inquiriesservice from '../../helperInquiries/ApiDataRequest'
 import {getInquiriesData} from '../../helperInquiries/ModelInquiries'
 import {KTSVG} from '../../../../../../helpers'
+import {useAuth} from "../../../../../../../app/modules/auth"
+import Access from '../../../../../../layout/components/aside/Accessibility'
 
 const InquiriesTable = () => {
   const {
@@ -27,6 +29,8 @@ const InquiriesTable = () => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   const DataWiseIndex: any = (pageNo - 1) * pageSize
 
@@ -222,6 +226,7 @@ const InquiriesTable = () => {
                       {/* end:: View Icon */}
 
                       {/* begin:: Edit Icon */}
+                      {(Access[id].hasOwnProperty("allAccess") || Access[id]["inquiryrights"]?.includes("edit")) && 
                       <button
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                         onClick={() => {
@@ -232,11 +237,12 @@ const InquiriesTable = () => {
                         // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                      </button>
+                      </button>}
                       {/* end:: Edit Icon */}
 
                       {/* begin:: Delete Icon */}
-                      <button
+                      {Access[id].hasOwnProperty("allAccess") &&
+                        <button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
                         title='Delete Inquiries'
@@ -245,7 +251,7 @@ const InquiriesTable = () => {
                           path='/media/icons/duotune/general/gen027.svg'
                           className='svg-icon-3'
                         />
-                      </button>
+                      </button>}
                       {/* end:: Delete Icon */}
                     </td>
                     {/* end:: Action */}

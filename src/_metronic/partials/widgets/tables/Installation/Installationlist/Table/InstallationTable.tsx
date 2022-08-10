@@ -33,8 +33,8 @@ const InstallationTable = () => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
-  const {currentUser, auth} = useAuth()
-  const id: number | any = auth?.roleId
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -198,21 +198,21 @@ const InstallationTable = () => {
                       {/* end:: Edit Icon */}
 
                       {/* begin:: Delete Icon */}
-                      {Access[id].hasOwnProperty('allAccess') ||
-                        (Access[id]['installationrights'].includes('delete') && (
-                          <button
-                            className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                            onClick={() => deleteFaults(row.id)}
-                            title='Delete Installation'
-                          >
-                            <KTSVG
-                              path='/media/icons/duotune/general/gen027.svg'
-                              className='svg-icon-3'
-                            />
-                          </button>
-                        ))}
+                      { (Access[id].hasOwnProperty("allAccess") || Access[id]["installationrights"].includes("delete")) &&
+                      <button
+                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                        onClick={() => deleteFaults(row.id)}
+                        title='Delete Installation'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen027.svg'
+                          className='svg-icon-3'
+                        />
+                      </button> }
                       {/* end:: Delete Icon */}
-                      <a
+                     { 
+                    ( Access[id].hasOwnProperty("allAccess") || Access[id]["installationrights"].includes("delete")) &&
+                     <> <a
                         href='#'
                         className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
                         data-bs-toggle='modal'
@@ -237,7 +237,7 @@ const InstallationTable = () => {
                           path='/media/icons/duotune/arrows/arr065.svg'
                           className='svg-icon-2'
                         />
-                      </a>
+                      </a> </> }
                     </td>
                     {/* end:: Action */}
                   </tr>

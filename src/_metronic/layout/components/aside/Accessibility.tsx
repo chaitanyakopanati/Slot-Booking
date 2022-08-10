@@ -19,7 +19,7 @@ const Access:{[key:number]:any}={
         inquiries:false,
         stocks:false,
         master:false,
-        actions:["view",]
+        customerrights:["view","createInstallation"]
     },
     3:{ 
         complaints:true,
@@ -28,7 +28,11 @@ const Access:{[key:number]:any}={
         installations:true,
         inquiries:true,
         stocks:false,
-        master:false
+        master:false,
+        installationrights:["view","edit"],
+        complaintrights:["view","edit"],
+        customerrights:["edit","view"],
+        inquiryrights:["edit","view"]
     }, 4:{ 
         complaints:true,
         customers:true,
@@ -45,7 +49,8 @@ const Access:{[key:number]:any}={
         installations:false,
         inquiries:true,
         stocks:false,
-        master:false
+        master:false,
+        customerrights:["view"]
     },
     6:{ 
         complaints:false,
@@ -64,23 +69,10 @@ const Access:{[key:number]:any}={
         inquiries:false,
         stocks:false,
         master:false,
-        installationrights:["view","edit"]
+        installationrights:["view","edit"],
+        complaintrights:["view"],
     }
     
 }
-// export default Access;
-// const Access:{[key:string]:any}=
-//              {
-//                 complaints:{
-//                              roles:140|2
-//                             },
-//                 customers:{
-//                             roles:140|2
-//                           },
-//                 forms:{ roles:140||2 },
-//                 installations:{ roles:140||185 },
-//                 inquiries:{ roles:140||2},
-//                 stocks:{ roles:140||2},
-//                 master:{ roles:140||2}          
-//              }
+
 export default Access;
