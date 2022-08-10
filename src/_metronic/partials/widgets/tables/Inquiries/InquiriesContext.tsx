@@ -25,7 +25,7 @@ export interface ComplaintDataContextModel {
   setTotalData: Dispatch<SetStateAction<number>>
   setPageNo: Dispatch<SetStateAction<number>>
   setZoneId: Dispatch<SetStateAction<number>>
-  setSalesExecutiveId: Dispatch<SetStateAction<number>>
+  setSalesExecutiveId: Dispatch<SetStateAction<any>>
   setStatusId: Dispatch<SetStateAction<number>>
   setRoleId: Dispatch<SetStateAction<string>>
   setCreatedAt: Dispatch<SetStateAction<string>>

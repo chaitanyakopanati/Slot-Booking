@@ -1,5 +1,5 @@
 import {Formik} from 'formik'
-import {FC, useEffect, useState} from 'react'
+import {FC, useEffect, useLayoutEffect, useState} from 'react'
 import {Navigate, useNavigate} from 'react-router-dom'
 import * as Yup from 'yup'
 import {Form} from 'react-bootstrap'
@@ -9,7 +9,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 
 type Props = {
@@ -44,11 +44,13 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     setStartDate,
     fetchAllDownload,
     setEndDate,
+    getUserNameData,
+    // fetchSuggestionUser,
   } = ListPageData()
 
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const [fromDate, setFromDate] = useState<any>()
   const [toDate, setToDate] = useState<any>()
@@ -141,6 +143,17 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     salesExecutiveId,
   ])
 
+  useLayoutEffect(() => {
+    if (auth?.roleId == 5) {
+      setSalesExecutiveId(auth?.userId)
+    }
+    console.log('jk', auth?.roleId)
+  }, [])
+
+  useEffect(() => {
+    // fetchSuggestionUser()
+  }, [])
+
   return (
     <>
       {/* begin::formik Form */}
@@ -182,58 +195,68 @@ const InquiriesHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                  {Access[id].hasOwnProperty("download") &&   <div className='ms-auto'>
-                    <button
-                      type='button'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                      onClick={downloadFile}
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download report</span>
-                    </button>
-                  </div>}
-                  {/* end:: Download */}
-
-                  {/* begin::Filter */}
-                  <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
-                    <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen031.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Filter</span>
-                    </div>
-                  </div>
-                  {/* end:: Filter */}
-
-                  {/* begin::Create Fault Button*/}
-                  <div className='d-flex justify-content-end ms-3'>
-                    <div title='Click to add new category'>
+                  {Access[id].hasOwnProperty('download') && (
+                    <div className='ms-auto'>
                       <button
                         type='button'
                         className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          navigate('inquiriesform/add')
-                        }}
-                        // onClick={openAddCategoryModal}
+                        onClick={downloadFile}
                       >
-                        <span className='svg-icon svg-icon-gray-500 me-1'>
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
                           <KTSVG
-                            path='/media/icons/duotune/arrows/arr075.svg'
-                            className='svg-icon-3'
+                            path='/media/icons/duotune/arrows/arr091.svg'
+                            className='svg-icon-3 me-0'
                           />
                         </span>
-                        Create Inquiries
+                        <span className='d-none d-sm-block ms-3'>Download report</span>
                       </button>
                     </div>
-                  </div>
+                  )}
+                  {/* end:: Download */}
+
+                  {/* begin::Filter */}
+                  {auth?.roleId == 5 ? (
+                    ''
+                  ) : (
+                    <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+                      <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen031.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Filter</span>
+                      </div>
+                    </div>
+                  )}
+                  {/* end:: Filter */}
+
+                  {/* begin::Create Fault Button*/}
+                  {auth?.roleId == 5 ? (
+                    ''
+                  ) : (
+                    <div className='d-flex justify-content-end ms-3'>
+                      <div title='Click to add new category'>
+                        <button
+                          type='button'
+                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                          onClick={() => {
+                            navigate('inquiriesform/add')
+                          }}
+                          // onClick={openAddCategoryModal}
+                        >
+                          <span className='svg-icon svg-icon-gray-500 me-1'>
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr075.svg'
+                              className='svg-icon-3'
+                            />
+                          </span>
+                          Create Inquiries
+                        </button>
+                      </div>
+                    </div>
+                  )}
                   {/* end::Create Fault Button*/}
                 </div>
               </div>
@@ -316,7 +339,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       {getUserByRole?.map((row, index) => {
                         return (
                           <option key={index} value={row?.id}>
-                            {row.username}
+                            {row.fullName}
                           </option>
                         )
                       })}

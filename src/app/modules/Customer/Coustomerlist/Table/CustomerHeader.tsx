@@ -8,6 +8,7 @@ import {useRef} from 'react'
 import {toast} from 'react-toastify'
 import {saveCustomer} from '../../helperCustomer/ApiDataRequest'
 import {customerFormType, formInitialValues} from '../../helperCustomer/ModelCustomer'
+import {useAuth} from '../../../auth'
 
 function CustomerHeader() {
   let {
@@ -42,6 +43,14 @@ function CustomerHeader() {
     console.log('filter', filter)
   }, [filter])
 
+  const {currentUser, auth} = useAuth()
+  useEffect(() => {
+    if (auth?.roleId == 5) {
+      filter.salesExecutiveId = auth?.userId
+    }
+    console.log('jk', auth?.roleId)
+  }, [])
+
   return (
     <>
       {/* begin::Header */}
@@ -63,34 +72,46 @@ function CustomerHeader() {
               }}
             />
           </div>
+
           <div className='d-flex align-items-center'>
-            <div className='d-flex'>
-              <div onClick={() => setFilterShow(!filterShow)}>
-                <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                  <span className='svg-icon svg-icon-gray-500 me-1'>
-                    <KTSVG path='/media/icons/duotune/general/gen031.svg' className='svg-icon-3' />
-                  </span>
-                  Filter
+            {auth?.roleId == 5 ? (
+              ''
+            ) : (
+              <div className='d-flex'>
+                <div onClick={() => setFilterShow(!filterShow)}>
+                  <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                    <span className='svg-icon svg-icon-gray-500 me-1'>
+                      <KTSVG
+                        path='/media/icons/duotune/general/gen031.svg'
+                        className='svg-icon-3'
+                      />
+                    </span>
+                    Filter
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
-            <div className='ms-5'>
-              <a
-                // href='#'
-                className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                // data-bs-toggle='modal'
-                // data-bs-target='#kt_modal_1'
-                onClick={() => {
-                  navigation('customersform/new')
-                }}
-              >
-                <span className='svg-icon svg-icon-gray-500 me-1'>
-                  <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
-                </span>
-                Create Customer
-              </a>
-            </div>
+            {auth?.roleId == 5 ? (
+              ''
+            ) : (
+              <div className='ms-5'>
+                <a
+                  // href='#'
+                  className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                  // data-bs-toggle='modal'
+                  // data-bs-target='#kt_modal_1'
+                  onClick={() => {
+                    navigation('customersform/new')
+                  }}
+                >
+                  <span className='svg-icon svg-icon-gray-500 me-1'>
+                    <KTSVG path='/media/icons/duotune/arrows/arr075.svg' className='svg-icon-3' />
+                  </span>
+                  Create Customer
+                </a>
+              </div>
+            )}
           </div>
         </div>
 
@@ -237,7 +258,7 @@ function CustomerHeader() {
                     {salesExecutve.map((user) => {
                       return (
                         <option key={user.id} value={user.id}>
-                          {user.firstname}
+                          {user.fullName}
                         </option>
                       )
                     })}

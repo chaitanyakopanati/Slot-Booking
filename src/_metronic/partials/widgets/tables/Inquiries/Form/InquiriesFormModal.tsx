@@ -25,8 +25,9 @@ let validationSchemaNewForm = Yup.object({
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
-  statusId: Yup.number().required('This fied is required'),
+  // statusId: Yup.string().required('This fied is required'),
   salesexecutiveId: Yup.string().required('This fielld is required'),
+  statusId: Yup.number().required('This fielld is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
   area: Yup.string().required('This field is required'),
@@ -43,7 +44,7 @@ let validationSchemaNewForm = Yup.object({
     then: Yup.string().required('This field is required'),
   }),
 
-  Userid: Yup.number().when('statusId', {
+  userId: Yup.number().when('statusId', {
     is: (statusId: any) => statusId == 4,
     then: Yup.number().required('This field is required'),
   }),
@@ -339,10 +340,17 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
-                        <div className='erro2' style={{color: 'red'}}>
+
+                        {/* <div className='erro2' style={{color: 'red'}}>
                           <ErrorMessage name='statusId' />
+                        </div> */}
+                        <div className='erro2' style={{color: 'red'}}>
+                          {props.touched.statusId && props.errors.statusId
+                            ? props.errors.statusId
+                            : null}
                         </div>
                       </div>
+
                       {props.values.statusId == '4' ? (
                         <div className='col-lg-4'>
                           <div className='row w-100 mx-0 mb-4 gy-4'>

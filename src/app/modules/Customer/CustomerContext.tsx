@@ -1,4 +1,5 @@
 import React, {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
+// import {useAuth} from '../auth'
 import {
   getCompaniesTypes,
   getCustomerList,
@@ -51,6 +52,8 @@ export interface CustomerDataContextModel {
   itemIdForUpdate: ID
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
 }
+
+// const {currentUser, auth} = useAuth()
 
 let ListDataContext = createContext<CustomerDataContextModel>({
   fetchZone: () => {},

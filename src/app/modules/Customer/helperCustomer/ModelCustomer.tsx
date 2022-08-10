@@ -44,7 +44,7 @@ export interface filterTable {
   orderByColumnName: string
   sortColumnDir: 'asc' | 'desc'
   installerId: number | ''
-  salesExecutiveId: number | ''
+  salesExecutiveId: number | any
   zoneId: number | ''
   companyId: number | ''
   mainPointId: number | ''

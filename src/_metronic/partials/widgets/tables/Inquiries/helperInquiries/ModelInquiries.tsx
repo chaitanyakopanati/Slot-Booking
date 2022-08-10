@@ -53,6 +53,7 @@ export interface GetAllDataApiSalesExecutve {
   id: string
   name: string
   username: string
+  fullName: string
 }
 export interface GetAllDataApiSalesExecutve {
   data: GetAllDataApiSalesExecutve[]
