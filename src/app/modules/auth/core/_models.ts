@@ -3,8 +3,8 @@ export interface AuthModel {
   expiration?: string
   userId?: number
   username?: string
+  roleId?:number
 }
-
 export interface UserAddressModel {
   addressLine: string
   city: string

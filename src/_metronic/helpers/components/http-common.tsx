@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const API_URL_DATA = process.env.REACT_APP_API_URL
 
-
 axios.interceptors.response.use(
   function (response) {
     return response

@@ -8,6 +8,8 @@ import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../InstallationContext'
 import {getInstallationsData} from '../../helperInstallation/ModelInstallation'
 import InstallationsService from '../../helperInstallation/ApiDatarequest'
+import {useAuth} from "../../../../../../../app/modules/auth"
+import Access from '../../../../../../layout/components/aside/Accessibility'
 
 const InstallationTable = () => {
   const {
@@ -30,6 +32,8 @@ const InstallationTable = () => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -193,7 +197,7 @@ const InstallationTable = () => {
                       {/* end:: Edit Icon */}
 
                       {/* begin:: Delete Icon */}
-                      <button
+                      {Access[id].hasOwnProperty("allAccess") || Access[id]["installationrights"].includes("delete") &&<button
                         className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
                         onClick={() => deleteFaults(row.id)}
                         title='Delete Installation'
@@ -202,7 +206,7 @@ const InstallationTable = () => {
                           path='/media/icons/duotune/general/gen027.svg'
                           className='svg-icon-3'
                         />
-                      </button>
+                      </button>}
                       {/* end:: Delete Icon */}
                       <a
                         href='#'

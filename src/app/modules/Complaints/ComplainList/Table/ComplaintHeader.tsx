@@ -7,11 +7,13 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../app/images/closeIcon.svg'
-
+import {useAuth} from "../../../../modules/auth"
+import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
   const navigate = useNavigate()
-
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
   const {
     setPageNo,
     setSearchText,
@@ -211,8 +213,9 @@ const ComplaintHeader = () => {
                     placeholder='Search'
                   />
                 </div>
-
+                    
                 <div className='d-flex align-items-center'>
+                  { Access[id].hasOwnProperty("download") &&  
                   <div className='ms-auto'>
                     <button
                       type='button'
@@ -228,7 +231,7 @@ const ComplaintHeader = () => {
                       <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
                   </div>
-
+                }
                   <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
                     <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
                       <span className='svg-icon svg-icon-gray-500 me-0'>

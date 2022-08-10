@@ -4,48 +4,55 @@ import {useIntl} from 'react-intl'
 import {KTSVG} from '../../../helpers'
 import {AsideMenuItemWithSub} from './AsideMenuItemWithSub'
 import {AsideMenuItem} from './AsideMenuItem'
+import {useAuth} from "../../../../app/modules/auth"
+import Access from './Accessibility'
 
 export function AsideMenuMain() {
   const intl = useIntl()
-
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
+  console.log(auth?.roleId , "Testing role iD");
+//here the role id or userid can be taken from auth and replace it in the condition to work
   return (
     <>
-      <AsideMenuItem
+    {  Access[id]["complaints"]===true  &&  // like here
+       /* { Access["complaints"]["roles"]===185 &&  */
+     <AsideMenuItem
         to='/complaint'
         icon='/media/icons/duotune/general/gen009.svg'
         title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
         fontIcon='bi-app-indicator'
-      />
+      />}
 
-      <AsideMenuItem
+      { Access[id]["customers"]===true && <AsideMenuItem
         to='/customers'
         icon='/media/icons/duotune/general/gen009.svg'
         title={intl.formatMessage({id: 'MENU.CUSTOMERS'})}
         fontIcon='bi-app-indicator'
-      />
+      />}
 
-      <AsideMenuItem
+      { Access[id]["forms"]===true && <AsideMenuItem
         to='/forms'
         icon='/media/icons/duotune/general/gen005.svg'
         title={intl.formatMessage({id: 'MENU.FORMS'})}
         fontIcon='bi-app-indicator'
-      />
+      />}
 
-      <AsideMenuItem
+      { Access[id]["installations"]===true && <AsideMenuItem
         to='/installations'
         icon='/media/icons/duotune/general/gen008.svg'
         title={intl.formatMessage({id: 'MENU.INSTALLATIONS'})}
         fontIcon='bi-app-indicator'
-      />
+      />}
 
-      <AsideMenuItem
+      { Access[id]["inquiries"]===true && <AsideMenuItem
         to='/inquiries'
         icon='/media/icons/duotune/general/gen035.svg'
         title={intl.formatMessage({id: 'MENU.INQUIRIES'})}
         fontIcon='bi-app-indicator'
-      />
+      />}
 
-      <AsideMenuItemWithSub
+      {  Access[id]["stocks"]===true && <AsideMenuItemWithSub
         to='/stocks'
         title='Stocks'
         fontIcon='bi-archive'
@@ -99,10 +106,10 @@ export function AsideMenuMain() {
           title={intl.formatMessage({id: 'MENU.COMPLAINT.TYPES8'})}
           fontIcon='bi-app-indicator'
         />
-      </AsideMenuItemWithSub>
+      </AsideMenuItemWithSub>}
 
       {/* master */}
-      <AsideMenuItemWithSub
+      {  Access[id]["master"]===true && <AsideMenuItemWithSub
         to='/master'
         title='Master'
         fontIcon='bi-archive'
@@ -184,7 +191,7 @@ export function AsideMenuMain() {
           title={intl.formatMessage({id: 'suppliers'})}
           fontIcon='bi-app-indicator'
         />
-      </AsideMenuItemWithSub>
+      </AsideMenuItemWithSub>}
       {/*  */}
     </>
   )

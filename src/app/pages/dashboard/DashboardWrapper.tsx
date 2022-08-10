@@ -2,8 +2,9 @@
 import React, {FC, SetStateAction} from 'react'
 import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
-
+import {useAuth} from '../../modules/auth'
 const DashboardPage: FC = () => (
+   
   <>
     <div className='row gy-5 gx-xl-8'>
       <div className='col-xl-12'>
@@ -13,11 +14,13 @@ const DashboardPage: FC = () => (
   </>
 )
 
+
 const DashboardWrapper: FC = () => {
   const intl = useIntl()
+  const {currentUser,auth} = useAuth()
   return (
     <>
-      <PageTitle breadcrumbs={[]}>{intl.formatMessage({id: 'MENU.DASHBOARD'})}</PageTitle>
+      <PageTitle breadcrumbs={[]}>{intl.formatMessage({id:`welcome ${auth?.username}`})}</PageTitle>
       <DashboardPage />
     </>
   )

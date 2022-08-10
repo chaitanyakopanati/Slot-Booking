@@ -8,6 +8,8 @@ import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {useNavigate} from 'react-router-dom'
+import {useAuth} from "../../../../../../../app/modules/auth"
+import Access from '../../../../../../layout/components/aside/Accessibility'
 
 type Props = {
   category: any
@@ -15,6 +17,8 @@ type Props = {
 
 const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
   const navigate = useNavigate()
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   const {
     setItemIdForUpdate,
@@ -164,7 +168,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                  <div className='ms-auto'>
+                 { Access[id].hasOwnProperty("download") &&  <div className='ms-auto'>
                     <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
@@ -178,7 +182,7 @@ const OfficeStockInwardsHeader: FC<Props> = ({category}) => {
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
-                  </div>
+                  </div>}
                   {/* end:: Download */}
 
                   {/* begin::Filter */}

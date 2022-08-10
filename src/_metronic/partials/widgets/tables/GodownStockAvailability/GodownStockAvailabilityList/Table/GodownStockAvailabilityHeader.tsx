@@ -4,6 +4,8 @@ import * as Yup from 'yup'
 import {KTSVG} from '../../../../../../helpers'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import {ListPageData} from '../../GodownStockAvailabilityContext'
+import {useAuth} from "../../../../../../../app/modules/auth"
+import Access from '../../../../../../layout/components/aside/Accessibility'
 
 type Props = {
   category: any
@@ -24,6 +26,8 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
     setproductId,
     fetchAllDownload,
   } = ListPageData()
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
 
   {
     /* begin::Search */
@@ -93,7 +97,7 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                  <div className='ms-auto'>
+                 {Access[id].hasOwnProperty("download") &&   <div className='ms-auto'>
                     <button
                       type='button'
                       className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
@@ -107,7 +111,7 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
                       </span>
                       <span className='d-none d-sm-block ms-3'>Download report</span>
                     </button>
-                  </div>
+                  </div>}
                   {/* end:: Download */}
 
                   {/* begin::Filter */}

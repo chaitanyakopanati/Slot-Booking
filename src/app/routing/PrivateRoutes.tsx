@@ -25,30 +25,39 @@ import FormViewWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/
 import CustomerFormWrapper from '../modules/Customer/Form/CustomerFormWrapper'
 import CustomerViewWrapper from '../modules/Customer/Form/CustomerViewWrapper'
 // import CustomerFormViewModal from '../modules/Customer/Coustomerlist/Table/CustomerFormViewModal'
-
+import {useAuth} from '../modules/auth'
+import Permission from '../routing/Permission_check'
 const PrivateRoutes = () => {
+  const {currentUser,auth} = useAuth()
+
   const StockWrapper = lazy(() => import('../pages/stocks/StockWrapper'))
   return (
     <Routes>
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
-        <Route path='auth/*' element={<Navigate to='/complaint' />} />
-        {/* Pages */}
-        <Route path='dashboard' element={<DashboardWrapper />} />
-
-        <Route path='complaint' element={<ComplaintWrapper />} />
-        <Route path='complaint/complaintviewform/:id' element={<ComplaintViewWrapper />} />
-        <Route
-          path='complaint/complaintform/:id'
-          element={
-            <>
-              <PageTitle>Complaint Form</PageTitle>
-              {/* <ComplaintFormWrapper /> */}
-              <ComplaintFormWrapper />
-            </>
-          }
-        />
-
+        {  auth?.token? 
+            ( <Route path='auth/*' element={<Navigate to='/dashboard' />} /> )
+            :
+            (  <Route path='auth/*' element={<Navigate to='/login' />} />)
+            }
+       
+        {/* Pages  */}
+        {/* components wrapped in permission. so that only permitted user can access pvt routes -GK*/}
+               <Route path='dashboard' element={<DashboardWrapper />} />
+        <Route element={<Permission roles={auth?.roleId} type={"complaints"} />}>
+               <Route path='complaint' element={<ComplaintWrapper />} />
+               <Route path='complaint/complaintviewform/:id' element={<ComplaintViewWrapper />} />
+               <Route
+                   path='complaint/complaintform/:id'
+                  element={
+                         <>
+                          <PageTitle>Complaint Form</PageTitle>
+                          {/* <ComplaintFormWrapper /> */}
+                          <ComplaintFormWrapper />
+                        </>   
+                        }
+              />
+        </Route>
         {/* <Route
           path='complaint/complaintform/:id&name'
           element={
@@ -58,7 +67,7 @@ const PrivateRoutes = () => {
             </>
           }
         /> */}
-
+        <Route element={<Permission roles={auth?.roleId} type={"customers"} />}>
         <Route path='customers' element={<CustomersWrapper />} />
         <Route path='customers/customerviewform/:id' element={<CustomerViewWrapper />} />
 
@@ -71,7 +80,8 @@ const PrivateRoutes = () => {
               {/* <CustomerFormModal /> */}
             </>
           }
-        />
+        /></Route>
+                <Route element={<Permission roles={auth?.roleId} type={"stocks"} />}>
         <Route path='complaint-types' element={<ComplaintTypesWrapper />} />
         <Route
           path='stocks/*'
@@ -80,8 +90,9 @@ const PrivateRoutes = () => {
               <StockWrapper />
             </SuspensedView>
           }
-        />
+        /></Route>
         {/*  */}
+        <Route element={<Permission roles={auth?.roleId} type={"master"} />}>
         <Route
           path='master/*'
           element={
@@ -89,8 +100,9 @@ const PrivateRoutes = () => {
               <MasterWrapper />
             </SuspensedView>
           }
-        />
+        /></Route>
         <Route path='profile-settings' element={<ProfileSettingsWrapper />} />
+                <Route element={<Permission roles={auth?.roleId} type={"forms"} />}>
         <Route path='forms' element={<FormsWrapper />} />
 
         <Route
@@ -111,7 +123,8 @@ const PrivateRoutes = () => {
             </>
           }
         />
-
+        </Route>
+        <Route element={<Permission roles={auth?.roleId} type={"installations"} />}>
         <Route path='installations' element={<InstallationsWrapper />} />
         <Route
           path='installations/installationsform/:id'
@@ -130,7 +143,8 @@ const PrivateRoutes = () => {
               <InstallationViewWrapper />
             </>
           }
-        />
+        /></Route>
+                <Route element={<Permission roles={auth?.roleId} type={"complaints"} />}>
         <Route path='inquiries' element={<InquiriesWrapper />} />
         <Route
           path='inquiries/inquiriesform/:id'
@@ -149,7 +163,7 @@ const PrivateRoutes = () => {
               <InquiriesViewWrapper />
             </>
           }
-        />
+        /></Route>
         {/* <Route path='*' element={<Navigate to='/error/404' />} /> */}
       </Route>
     </Routes>

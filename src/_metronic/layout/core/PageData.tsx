@@ -48,10 +48,12 @@ type Props = {
 }
 
 const PageTitle: FC<Props> = ({children, description, breadcrumbs}) => {
+
   const {setPageTitle, setPageDescription, setPageBreadcrumbs} = usePageData()
   useEffect(() => {
     if (children) {
       setPageTitle(children.toString())
+     
     }
     return () => {
       setPageTitle('')
@@ -70,6 +72,7 @@ const PageTitle: FC<Props> = ({children, description, breadcrumbs}) => {
   useEffect(() => {
     if (breadcrumbs) {
       setPageBreadcrumbs(breadcrumbs)
+      console.log("breadcrumbs page",breadcrumbs)
     }
     return () => {
       setPageBreadcrumbs([])

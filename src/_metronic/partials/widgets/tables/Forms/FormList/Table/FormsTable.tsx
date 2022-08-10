@@ -8,7 +8,8 @@ import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import Inquiriesservice from '../../helperForms/ApiDataRequest'
 import {getInquiriesData} from '../../helperForms/ModelForms'
 import {KTSVG} from '../../../../../../helpers'
-
+import {useAuth} from '../../../../../../../app/modules/auth'
+import Access from '../../../../../../../_metronic/layout/components/aside/Accessibility'
 const FormsTable = () => {
   const {
     setItemIdForUpdate,
@@ -112,7 +113,8 @@ const FormsTable = () => {
     }
     return '#fff'
   }
-
+  const {currentUser,auth} = useAuth()
+  const id:number|any = auth?.roleId ;
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
