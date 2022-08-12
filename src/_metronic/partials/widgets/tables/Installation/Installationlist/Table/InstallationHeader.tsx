@@ -1,5 +1,5 @@
 import {Formik} from 'formik'
-import {FC, useEffect, useState} from 'react'
+import {FC, useEffect, useLayoutEffect, useState} from 'react'
 import {Navigate, useNavigate} from 'react-router-dom'
 import * as Yup from 'yup'
 import {Form} from 'react-bootstrap'
@@ -90,6 +90,17 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
+  useLayoutEffect(() => {
+    if (auth?.roleId == 7) {
+      setInstallerId(auth?.userId)
+    }
+  })
+
+  // useEffect(() => {
+  //   if (auth?.roleId == 7) {
+  //     setInstallerId(auth?.userId)
+  //   }
+  // }, [])
 
   {
     /* begin::Search */
@@ -105,7 +116,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
   //sales executive
   const handlesalesExecutiveIdchange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setSalesExecutiveId(e.target.value)
   }
@@ -113,7 +124,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* begin::handleMainPointchange */
   }
   const handleMainPointchange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setMainPointId(e.target.value)
   }
@@ -125,7 +136,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* begin::handleConnectionTypechange */
   }
   const handleConnectionTypechange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setConnectionTypeId(e.target.value)
   }
@@ -135,7 +146,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
   //status
   const handleStatuschange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setStatusId(e.target.value)
   }
@@ -144,7 +155,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* begin::Zone */
   }
   const handleZoneChange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setZoneId(e.target.value)
   }
@@ -153,7 +164,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
   }
 
   const handleInstallerChange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setInstallerId(e.target.value)
   }
@@ -161,7 +172,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
   //Company
 
   const handleCompanyChange = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
     console.log(e.target.value)
     setCompanyId(e.target.value)
   }
@@ -170,9 +181,14 @@ const InstallationHeader: FC<Props> = ({category}) => {
   const downloadFile = async () => {
     fetchAllDownload()
   }
+  // useEffect(() => {
+  //   fetchAllUser()
+  // }, [installerId])
 
   useEffect(() => {
+    // if (auth?.roleId !== 7) {
     fetchAllUser()
+    // }
   }, [
     pageNo,
     pageSize,
@@ -257,39 +273,48 @@ const InstallationHeader: FC<Props> = ({category}) => {
                   {/* end:: Download */}
 
                   {/* begin::Filter */}
-                  <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
-                    <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen031.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Filter</span>
+                  {auth?.roleId !== 7 ? (
+                    <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+                      <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen031.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Filter</span>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    ''
+                  )}
                   {/* end:: Filter */}
 
                   {/* begin::Create Installation Button*/}
-                  <div className='d-flex justify-content-end ms-3'>
-                    <div title='Click to add new category'>
-                      <button
-                        type='button'
-                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          navigate('installationsform/add')
-                        }}
-                      >
-                        <span className='svg-icon svg-icon-gray-500 me-1'>
-                          <KTSVG
-                            path='/media/icons/duotune/arrows/arr075.svg'
-                            className='svg-icon-3'
-                          />
-                        </span>
-                        Create Installation
-                      </button>
+                  {auth?.roleId !== 7 ? (
+                    <div className='d-flex justify-content-end ms-3'>
+                      <div title='Click to add new category'>
+                        <button
+                          type='button'
+                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                          onClick={() => {
+                            navigate('installationsform/add')
+                          }}
+                        >
+                          <span className='svg-icon svg-icon-gray-500 me-1'>
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr075.svg'
+                              className='svg-icon-3'
+                            />
+                          </span>
+                          Create Installation
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    ''
+                  )}
+
                   {/* end::Create Installation Button*/}
                 </div>
               </div>
@@ -353,6 +378,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       <option value=''>All</option>
                       <option value='1'>Pending</option>
                       <option value='2'>Done</option>
+                      <option value='3'>Partially Done</option>
                     </select>
                   </div>
                   <div className='col-lg-3'>
@@ -463,7 +489,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         {getInstallations.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>
-                              {TypeData?.username}
+                              {TypeData?.fullName}
                             </option>
                           )
                         })}

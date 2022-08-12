@@ -8,7 +8,7 @@ import {toast} from 'react-toastify'
 import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
 import {useLoader} from '../../../loader/LoaderContext'
 import {Checkbox} from 'rsuite'
-import {useAuth} from "../../../auth"
+import {useAuth} from '../../../auth'
 import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
 
 const ComplaintTable = () => {
@@ -22,6 +22,8 @@ const ComplaintTable = () => {
     pageSize,
     setAddComplaint,
     addComplaint,
+    assignToId,
+    setassignToId,
   } = ListPageData()
   let navigate = useNavigate()
   let {LoderActions} = useLoader()
@@ -30,8 +32,8 @@ const ComplaintTable = () => {
   const [isCheckAll, setIsCheckAll] = useState<any>(false)
   const [isCheck, setIsCheck] = useState<any>(false)
   const [list, setList] = useState<any>([])
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const openViewPage = () => {
     navigate('complaintviewform')
@@ -43,8 +45,20 @@ const ComplaintTable = () => {
   var currentTime: any = moment(new Date())
 
   useEffect(() => {
-    fetchAllComplaint()
+    if (auth?.roleId !== 7) {
+      fetchAllComplaint()
+      console.log('third', auth?.roleId)
+    }
   }, [])
+
+  // useEffect(() => {
+  //   if (auth?.roleId == 7) {
+  //     setassignToId(auth?.userId)
+
+  //     fetchAllComplaint()
+  //     console.log('fourth', auth?.roleId)
+  //   }
+  // }, [])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
@@ -307,7 +321,7 @@ const ComplaintTable = () => {
                       {moment(row?.createdDate).format('DD-MMM-YYYY, h:mm a') || '-'}
                     </td>
 
-                    <td>
+                    <td className='p-0'>
                       <a
                         className='btn btn-icon btn-active-color-success btn-sm'
                         onClick={() => navigate(`complaintviewform/${row.id}`)}
@@ -319,45 +333,53 @@ const ComplaintTable = () => {
                         />
                       </a>
 
-                      { (Access[id].hasOwnProperty("allAccess") || Access[id]["complaintrights"].includes("edit")) &&
-                      <button
-                        className='btn btn-icon btn-active-color-primary btn-sm'
-                        onClick={() => {
-                          navigate(`complaintform/${row.id}`)
-                        }}
-                        title='Edit complaint'
-                      >
-                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                      </button>
-                      }
+                      {(Access[id].hasOwnProperty('allAccess') ||
+                        Access[id]['complaintrights'].includes('edit')) && (
+                        <button
+                          className='btn btn-icon btn-active-color-primary btn-sm'
+                          onClick={() => {
+                            navigate(`complaintform/${row.id}`)
+                          }}
+                          title='Edit complaint'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/art/art005.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      )}
 
-                     { (Access[id].hasOwnProperty("allAccess") || Access[id]["complaintrights"].includes("delete")) && 
-                     <> <button
-                        className='btn btn-icon btn-active-color-danger btn-sm'
-                        onClick={() => deleteFaults(row.id)}
-                        title='Delete complaint'
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen027.svg'
-                          className='svg-icon-3'
-                        />
-                      </button>
-
-                      <a
-                        href='#'
-                        className='btn btn-icon btn-active-color-danger btn-sm'
-                        data-bs-toggle='modal'
-                        data-bs-target='#view-customer-modal'
-                        title='Created Customer'
-                        onClick={() => {
-                          window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
-                        }}
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/communication/com013.svg'
-                          className='svg-icon-3'
-                        />
-                      </a> </>}
+                      {(Access[id].hasOwnProperty('allAccess') ||
+                        Access[id]['complaintrights'].includes('delete')) && (
+                        <>
+                          {' '}
+                          <button
+                            className='btn btn-icon btn-active-color-danger btn-sm'
+                            onClick={() => deleteFaults(row.id)}
+                            title='Delete complaint'
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/general/gen027.svg'
+                              className='svg-icon-3'
+                            />
+                          </button>
+                          <a
+                            href='#'
+                            className='btn btn-icon btn-active-color-danger btn-sm'
+                            data-bs-toggle='modal'
+                            data-bs-target='#view-customer-modal'
+                            title='Created Customer'
+                            onClick={() => {
+                              window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
+                            }}
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/communication/com013.svg'
+                              className='svg-icon-3'
+                            />
+                          </a>{' '}
+                        </>
+                      )}
                     </td>
                   </tr>
                 )

@@ -9,7 +9,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 type Props = {
   category: any
@@ -68,8 +68,8 @@ const FormsHeader: FC<Props> = ({category}) => {
     fetchAllDownload,
   } = ListPageData()
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const [fromCreatedAtDate, setFromCreatedAtDate] = useState<any>()
   const [toCreatedAtDate, setToCreatedAtDate] = useState<any>()
@@ -289,21 +289,23 @@ const FormsHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                { Access[id].hasOwnProperty("download") &&  <div className='ms-auto'>
-                    <button
-                      type='button'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                      onClick={downloadFile}
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download report</span>
-                    </button>
-                  </div>}
+                  {Access[id].hasOwnProperty('download') && (
+                    <div className='ms-auto'>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                        onClick={downloadFile}
+                      >
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/arrows/arr091.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Download report</span>
+                      </button>
+                    </div>
+                  )}
                   {/* end:: Download */}
 
                   {/* begin::Filter */}
@@ -586,7 +588,7 @@ const FormsHeader: FC<Props> = ({category}) => {
                         onChange={handleConnectionTypechange}
                       >
                         <option>All</option>
-                        <option value='1'>Form Cable </option>
+                        <option value='1'>Cable</option>
                         <option value='2'>Wireless </option>
                         <option value='3'>Not Described </option>
                         <option value='4'>Not Installed </option>

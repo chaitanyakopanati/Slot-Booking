@@ -9,6 +9,7 @@ import {
   ViewForm,
 } from './helperGodownStockAvailability/ModelGodownStockAvailability'
 import {saveAs} from 'file-saver'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getGodownstockavailabilitiesData[]
@@ -91,7 +92,9 @@ const ListDataProvider: FC = ({children}) => {
         searchText
       )
       saveAs(response.data, 'GodownstockAvailability.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
+      toast.error('Something went wrong Please try again ')
       console.log('Error', error)
     } finally {
       LoderActions(false)

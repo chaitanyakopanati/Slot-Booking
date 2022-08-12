@@ -8,7 +8,7 @@ import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import Inquiriesservice from '../../helperInquiries/ApiDataRequest'
 import {getInquiriesData} from '../../helperInquiries/ModelInquiries'
 import {KTSVG} from '../../../../../../helpers'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 
 const InquiriesTable = () => {
@@ -29,8 +29,8 @@ const InquiriesTable = () => {
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const DataWiseIndex: any = (pageNo - 1) * pageSize
 
@@ -90,7 +90,9 @@ const InquiriesTable = () => {
     DataGetAllTypeCreatedByTypes()
     // DataGetAllTypeStatus()
     DataGetAllTypeStatus()
-    fetchAllUser()
+    if (auth?.roleId !== 5) {
+      fetchAllUser()
+    }
     DataGetAllTypeSalesExecutve()
     DataGetAllTypeSalesExecutveUserByRole()
   }, [])
@@ -226,32 +228,38 @@ const InquiriesTable = () => {
                       {/* end:: View Icon */}
 
                       {/* begin:: Edit Icon */}
-                      {(Access[id].hasOwnProperty("allAccess") || Access[id]["inquiryrights"]?.includes("edit")) && 
-                      <button
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                        onClick={() => {
-                          navigate(`inquiriesform/${row.id}`)
-                        }}
-                        title='Edit Inquirie'
+                      {(Access[id].hasOwnProperty('allAccess') ||
+                        Access[id]['inquiryrights']?.includes('edit')) && (
+                        <button
+                          className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                          onClick={() => {
+                            navigate(`inquiriesform/${row.id}`)
+                          }}
+                          title='Edit Inquirie'
 
-                        // onClick={()=>openEditModal(row.id)}
-                      >
-                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                      </button>}
+                          // onClick={()=>openEditModal(row.id)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/art/art005.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      )}
                       {/* end:: Edit Icon */}
 
                       {/* begin:: Delete Icon */}
-                      {Access[id].hasOwnProperty("allAccess") &&
+                      {Access[id].hasOwnProperty('allAccess') && (
                         <button
-                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                        onClick={() => deleteFaults(row.id)}
-                        title='Delete Inquiries'
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen027.svg'
-                          className='svg-icon-3'
-                        />
-                      </button>}
+                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                          onClick={() => deleteFaults(row.id)}
+                          title='Delete Inquiries'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      )}
                       {/* end:: Delete Icon */}
                     </td>
                     {/* end:: Action */}

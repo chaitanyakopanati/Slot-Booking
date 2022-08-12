@@ -350,7 +350,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('complainttypeid')}
                       >
-                        <option>Log out</option>
+                        <option>Select Complaint Type</option>
                         {getDataAllTypeComplaint.map((complaintData: any, index) => {
                           return (
                             <option key={index} value={complaintData.id}>

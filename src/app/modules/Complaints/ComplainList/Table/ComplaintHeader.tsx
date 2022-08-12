@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../ComplaintContext'
@@ -17,6 +17,7 @@ const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
   const navigate = useNavigate()
   const {currentUser, auth} = useAuth()
+
   const id: number | any = auth?.roleId
   const {
     setPageNo,
@@ -67,6 +68,22 @@ const ComplaintHeader = () => {
     addComplaint,
   } = ListPageData()
 
+  // useLayoutEffect(() => {
+  //   if (auth?.roleId == 7) {
+  //     setassignToId(auth?.userId)
+  //   }
+  //   console.log('jk', auth?.roleId)
+  // }, [])
+
+  // useEffect(() => {
+  //   if (auth?.roleId == 7) {
+  //     setassignToId(auth?.userId)
+
+  //     console.log('first', auth?.roleId)
+  //   }
+  //   console.log('jk', auth?.roleId)
+  // }, [])
+
   useEffect(() => {
     DataGetAllTypeComplaint()
     DataGetAllTypeTechnician()
@@ -113,61 +130,66 @@ const ComplaintHeader = () => {
     fetchAllDownload()
   }
   const handleComplaintType = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setComplainttypeid(e.target.value)
   }
 
   const handleStatus = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setStatus(e.target.value)
   }
 
   const handleDate = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setCreatedDate(e.target.value)
   }
 
   const handleAssign = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setassignToId(e.target.value)
   }
 
   const handleZoneId = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setZoneId(e.target.value)
   }
 
   const handleFaultId = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setFaultid(e.target.value)
   }
 
   const handleCompanyId = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setCompanyId(e.target.value)
   }
 
   const handlePackageId = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setPackageCategoryId(e.target.value)
   }
 
   const handleCreaterId = (e: any) => {
-    setPageNo(1)
+    // setPageNo(1)
 
     setcreatedById(e.target.value)
   }
 
   useEffect(() => {
     fetchAllComplaint()
+    console.log('kkfff')
+
+    // if (auth?.roleId !== 7) {
+    // setassignToId(auth?.userId)
+    // }
   }, [
     pageNo,
     pageSize,
@@ -178,17 +200,27 @@ const ComplaintHeader = () => {
     CompanyId,
     faultid,
     zoneId,
-    assignToId,
     createdDate,
     status,
     complainttypeid,
     startDate,
     endDate,
+    assignToId,
   ])
 
-  useEffect(() => {
-    console.log(`addComplaint`, addComplaint)
-  })
+  // useEffect(() => {
+  //   if (auth?.roleId == 7) {
+  //     setassignToId(auth?.userId)
+  //   }
+  //   console.log(`addComplaint`, addComplaint)
+  // })
+
+  useLayoutEffect(() => {
+    if (auth?.roleId == 7) {
+      setassignToId(auth?.userId)
+    }
+    console.log('jk', auth?.roleId)
+  }, [])
 
   const deleteMultipleComplaint = () => {
     // Swal.fire({
@@ -257,85 +289,89 @@ const ComplaintHeader = () => {
                   />
                 </div>
 
-                <div className='d-flex align-items-center'>
-                  {Access[id].hasOwnProperty('download') && (
-                    <div className='ms-auto'>
-                      <button
-                        type='button'
-                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={downloadFileComplaint}
-                      >
+                {auth?.roleId == 7 ? (
+                  ''
+                ) : (
+                  <div className='d-flex align-items-center'>
+                    {Access[id].hasOwnProperty('download') && (
+                      <div className='ms-auto'>
+                        <button
+                          type='button'
+                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                          onClick={downloadFileComplaint}
+                        >
+                          <span className='svg-icon svg-icon-gray-500 me-0'>
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr091.svg'
+                              className='svg-icon-3 me-0'
+                            />
+                          </span>
+                          <span className='d-none d-sm-block ms-3'>Download report</span>
+                        </button>
+                      </div>
+                    )}
+                    <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
+                      <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
                         <span className='svg-icon svg-icon-gray-500 me-0'>
                           <KTSVG
-                            path='/media/icons/duotune/arrows/arr091.svg'
-                            className='svg-icon-3 me-0'
+                            path='/media/icons/duotune/general/gen031.svg'
+                            className='svg-icon-2 me-0'
                           />
                         </span>
-                        <span className='d-none d-sm-block ms-3'>Download report</span>
-                      </button>
+                        <span className='d-none d-sm-block ms-3'>Filter</span>
+                      </div>
                     </div>
-                  )}
-                  <div className='ms-3' onClick={() => setFilterShow(!filterShow)}>
-                    <div className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'>
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen031.svg'
-                          className='svg-icon-2 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Filter</span>
-                    </div>
-                  </div>
 
-                  <div
-                    className='d-flex justify-content-end ms-3'
-                    data-kt-user-table-toolbar='base'
-                  >
-                    <div title='Click to add new category'>
-                      <button
-                        type='button'
-                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          navigate('complaintform/add')
-                        }}
-                        // onClick={openAddCategoryModal}
-                      >
-                        <span className='svg-icon svg-icon-gray-500 me-1'>
-                          <KTSVG
-                            path='/media/icons/duotune/arrows/arr075.svg'
-                            className='svg-icon-3'
-                          />
-                        </span>
-                        Create Complaint
-                      </button>
+                    <div
+                      className='d-flex justify-content-end ms-3'
+                      data-kt-user-table-toolbar='base'
+                    >
+                      <div title='Click to add new category'>
+                        <button
+                          type='button'
+                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                          onClick={() => {
+                            navigate('complaintform/add')
+                          }}
+                          // onClick={openAddCategoryModal}
+                        >
+                          <span className='svg-icon svg-icon-gray-500 me-1'>
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr075.svg'
+                              className='svg-icon-3'
+                            />
+                          </span>
+                          Create Complaint
+                        </button>
+                      </div>
                     </div>
-                  </div>
 
-                  <div
-                    className='d-flex justify-content-end ms-3'
-                    data-kt-user-table-toolbar='base'
-                  >
-                    <div title='Click to add new category'>
-                      <button
-                        type='button'
-                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          deleteMultipleComplaint()
-                        }}
-                        // onClick={openAddCategoryModal}
-                      >
-                        <span className='svg-icon svg-icon-gray-500 me-1'>
-                          <KTSVG
-                            // path='/media/icons/duotune/arrows/arr027.svg'
-                            path='/media/icons/duotune/general/gen027.svg'
-                            className='svg-icon-3'
-                          />
-                        </span>
-                        Delete Complaint
-                      </button>
+                    <div
+                      className='d-flex justify-content-end ms-3'
+                      data-kt-user-table-toolbar='base'
+                    >
+                      <div title='Click to add new category'>
+                        <button
+                          type='button'
+                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                          onClick={() => {
+                            deleteMultipleComplaint()
+                          }}
+                          // onClick={openAddCategoryModal}
+                        >
+                          <span className='svg-icon svg-icon-gray-500 me-1'>
+                            <KTSVG
+                              // path='/media/icons/duotune/arrows/arr027.svg'
+                              path='/media/icons/duotune/general/gen027.svg'
+                              className='svg-icon-3'
+                            />
+                          </span>
+                          Delete Complaint
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {filterShow && (

@@ -11,6 +11,7 @@ import {
   roleIdInstallations,
 } from './helperInstallation/ModelInstallation'
 import {saveAs} from 'file-saver'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getInstallationsData[]
@@ -41,7 +42,7 @@ export interface ComplaintDataContextModel {
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
   setCompanyId: Dispatch<SetStateAction<number>>
-  setInstallerId: Dispatch<SetStateAction<number>>
+  setInstallerId: Dispatch<SetStateAction<any>>
   pageSize: number
   zoneId: number
   installerId: number
@@ -206,7 +207,9 @@ const ListDataProvider: FC = ({children}) => {
         connectionTypeId
       )
       saveAs(response.data, 'Installations.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
+      toast.error('Something went wrong Please try again ')
       console.log('Error', error)
     } finally {
       LoderActions(false)

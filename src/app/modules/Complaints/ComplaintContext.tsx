@@ -8,6 +8,7 @@ import {
 } from './helperComplaint/ModelComplaint'
 import {useLoader} from '../loader/LoaderContext'
 import ComplaintsViewService from './helperComplaint/ApiDataRequest'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getComplaintsData[]
@@ -69,7 +70,7 @@ export interface ComplaintDataContextModel {
   createdDate: string
   setCreatedDate: Dispatch<SetStateAction<string>>
   assignToId: number
-  setassignToId: Dispatch<SetStateAction<number>>
+  setassignToId: Dispatch<SetStateAction<any>>
   faultid: number
   setFaultid: Dispatch<SetStateAction<number>>
   companiesName: GetAllData[]
@@ -225,7 +226,11 @@ const ListDataProvider: FC = ({children}) => {
         endDate
       )
       saveAs(response.data, 'complaints.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
+      console.log(`responsedddddddd`)
+      toast.error('Something went wrong Please try again ')
+
       console.log('Error', error)
     } finally {
       LoderActions(false)

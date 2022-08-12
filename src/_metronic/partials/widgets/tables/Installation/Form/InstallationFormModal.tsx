@@ -313,7 +313,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     {getInstallations.map((TypeData: any, index: number) => {
                       return (
                         <option key={index} value={TypeData.id}>
-                          {TypeData?.username}
+                          {TypeData?.fullName}
                         </option>
                       )
                     })}
@@ -373,7 +373,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                       <option value=''>Select Wireless Type</option>
                       <option value='1'>Cable</option>
                       <option value='2'>Wireless</option>
-                      <option value='3'>Fibre</option>
+                      <option value='3'>Fiber</option>
                       <option value='4'>Other</option>
                     </select>
                     <div className='erro2' style={{color: 'red'}}>
@@ -551,8 +551,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     name='status'
                   >
                     <option value=''>Select status Type</option>
-                    <option value='1'>Pending</option>
-                    <option value='2'>Done</option>
+                    {auth?.roleId !== 7 ? <option value='1'>Pending</option> : ''}
+                    {auth?.roleId !== 7 ? <option value='2'>Done</option> : ''}
+                    <option value='3'>Partially Done</option>
                   </select>
                   <div className='erro2' style={{color: 'red'}}>
                     {formik.touched.status && formik.errors.status ? formik.errors.status : null}

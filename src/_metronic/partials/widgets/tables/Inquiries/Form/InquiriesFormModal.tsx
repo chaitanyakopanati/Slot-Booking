@@ -46,7 +46,7 @@ let validationSchemaNewForm = Yup.object({
 
   userId: Yup.number().when('statusId', {
     is: (statusId: any) => statusId == 4,
-    then: Yup.number().required('This field is required'),
+    then: Yup.number().required('Entered User Name Does Not Exist'),
   }),
 })
 
@@ -110,7 +110,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         address: category.data?.address || '',
         area: category.data?.area || '',
         contactno: category.data?.contactno || '',
-        statusId: category.data?.statusId || 0,
+        statusId: category.data?.statusId || '',
         status: category.data?.status || '',
         username: category.data?.username || '',
         salesexecutiveId: category.data?.salesexecutiveId || '',
@@ -118,6 +118,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         remark: category.data?.remark || '',
         isnotify: category.data?.isnotify || false,
         createdbyId: auth?.userId,
+        userId: category.data?.userId || '',
       })
     } else {
       setInitialValues({
@@ -128,6 +129,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         area: category.data?.area || '',
         contactno: category.data?.contactno || '',
         statusId: category.data?.statusId || '',
+        userId: category.data?.userId || '',
         status: category.data?.status || '',
         username: category.data?.username || '',
         salesexecutiveId: category.data?.salesexecutiveId || '',
@@ -182,6 +184,8 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
           LoderActions(true)
 
           values.salesexecutiveId = +values.salesexecutiveId
+          values.statusId = +values.statusId
+
           // values.statusId = status
 
           // values.phone = values.phone.toString()
@@ -341,14 +345,14 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           })}
                         </select>
 
-                        {/* <div className='erro2' style={{color: 'red'}}>
-                          <ErrorMessage name='statusId' />
-                        </div> */}
                         <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='statusId' />
+                        </div>
+                        {/* <div className='erro2' style={{color: 'red'}}>
                           {props.touched.statusId && props.errors.statusId
                             ? props.errors.statusId
                             : null}
-                        </div>
+                        </div> */}
                       </div>
 
                       {props.values.statusId == '4' ? (

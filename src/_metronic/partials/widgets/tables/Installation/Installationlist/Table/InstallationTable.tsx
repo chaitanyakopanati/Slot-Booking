@@ -30,11 +30,12 @@ const InstallationTable = () => {
     DataGetAllTypeInstallation,
     DataGetAllTypeCompany,
     fetchAllDownload,
+    installerId,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const DataWiseIndex = (pageNo - 1) * pageSize
 
@@ -86,11 +87,22 @@ const InstallationTable = () => {
     DataGetAllTypeStatus()
     DataGetAllTypeMainPoint()
     DataGetAllTypeStatus()
-    fetchAllUser()
+
+    // fetchAllUser()
     DataGetAllTypeSalesExecutve()
     DataGetAllTypeInstallation()
     DataGetAllTypeCompany()
   }, [])
+
+  useEffect(() => {
+    if (auth?.roleId !== 7) {
+      fetchAllUser()
+    }
+  }, [])
+
+  // useEffect(() => {
+  //   fetchAllUser()
+  // }, [installerId])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
@@ -102,11 +114,21 @@ const InstallationTable = () => {
     fetchAllDownload()
   }
 
+  const setBackGroundColour = (row: any) => {
+    if (row.status == 1) {
+      return '#f5c6cb'
+    } else if (row.status == 0) {
+      return 'rgb(235 235 159)'
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
         {/* begin::Table */}
-        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'>
+        <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border'>
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
@@ -127,7 +149,8 @@ const InstallationTable = () => {
               getData.map((row: getInstallationsData, index: number) => {
                 // console.log("wertyuiop[",row);
                 return (
-                  <tr key={index}>
+                  // <tr key={index}>
+                  <tr key={index} style={{backgroundColor: setBackGroundColour(row)}}>
                     {/* begin:: Index No */}
                     <td>
                       <div className='text-dark fw-bolder fs-6 ps-4 text-center'>
@@ -198,46 +221,52 @@ const InstallationTable = () => {
                       {/* end:: Edit Icon */}
 
                       {/* begin:: Delete Icon */}
-                      { (Access[id].hasOwnProperty("allAccess") || Access[id]["installationrights"].includes("delete")) &&
-                      <button
-                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                        onClick={() => deleteFaults(row.id)}
-                        title='Delete Installation'
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/general/gen027.svg'
-                          className='svg-icon-3'
-                        />
-                      </button> }
+                      {(Access[id].hasOwnProperty('allAccess') ||
+                        Access[id]['installationrights'].includes('delete')) && (
+                        <button
+                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                          onClick={() => deleteFaults(row.id)}
+                          title='Delete Installation'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      )}
                       {/* end:: Delete Icon */}
-                     { 
-                    ( Access[id].hasOwnProperty("allAccess") || Access[id]["installationrights"].includes("delete")) &&
-                     <> <a
-                        href='#'
-                        className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
-                        data-bs-toggle='modal'
-                        data-bs-target='#view-customer-modal'
-                        title='View Customer'
-                        onClick={() => {
-                          window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
-                        }}
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/communication/com013.svg'
-                          className='svg-icon-3'
-                        />
-                      </a>
-                      <a
-                        href='#'
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                        title='Download Installation Report'
-                        onClick={downloadInstallationData}
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr065.svg'
-                          className='svg-icon-2'
-                        />
-                      </a> </> }
+                      {(Access[id].hasOwnProperty('allAccess') ||
+                        Access[id]['installationrights'].includes('delete')) && (
+                        <>
+                          {' '}
+                          <a
+                            href='#'
+                            className='btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1'
+                            data-bs-toggle='modal'
+                            data-bs-target='#view-customer-modal'
+                            title='View Customer'
+                            onClick={() => {
+                              window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
+                            }}
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/communication/com013.svg'
+                              className='svg-icon-3'
+                            />
+                          </a>
+                          <a
+                            href='#'
+                            className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+                            title='Download Installation Report'
+                            onClick={downloadInstallationData}
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr065.svg'
+                              className='svg-icon-2'
+                            />
+                          </a>{' '}
+                        </>
+                      )}
                     </td>
                     {/* end:: Action */}
                   </tr>

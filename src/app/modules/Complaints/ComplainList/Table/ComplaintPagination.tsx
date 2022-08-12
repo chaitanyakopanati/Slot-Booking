@@ -1,10 +1,8 @@
-
-
 import ReactPaginate from 'react-paginate'
-import { ListPageData } from '../../ComplaintContext'
+import {ListPageData} from '../../ComplaintContext'
 
 const ComplaintPagination = () => {
-  const { setPageNo, pageNo, pageSize, totalData, setPageSize, pageCount, getData } = ListPageData()
+  const {setPageNo, pageNo, pageSize, totalData, setPageSize, pageCount, getData} = ListPageData()
 
   const handlepageclick = async (pages: any) => {
     const currantPage = (await pages.selected) + 1

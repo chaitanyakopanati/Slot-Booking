@@ -10,6 +10,7 @@ import {
   ID,
 } from './helperForms/ModelForms'
 import {saveAs} from 'file-saver'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getInquiriesData[]
@@ -290,8 +291,10 @@ const ListDataProvider: FC = ({children}) => {
         formSubmitTypeId
       )
       saveAs(response.data, 'Forms.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
       console.log('Error', error)
+      toast.error('Something went wrong Please try again ')
     } finally {
       LoderActions(false)
     }

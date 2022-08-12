@@ -4,6 +4,7 @@ import Userservice from './helperUser/ApiDatarequestUser'
 import {GetAllData, GetAllUserApi, getUserData, ID, ViewForm} from './helperUser/ModelUserType'
 import {saveAs} from 'file-saver'
 import axios from 'axios'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getUserData[]
@@ -120,7 +121,9 @@ const ListDataProvider: FC = ({children}) => {
         searchByUsername
       )
       saveAs(response.data, 'users.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
+      toast.error('Something went wrong Please try again ')
       console.log('Error', error)
     } finally {
       LoderActions(false)

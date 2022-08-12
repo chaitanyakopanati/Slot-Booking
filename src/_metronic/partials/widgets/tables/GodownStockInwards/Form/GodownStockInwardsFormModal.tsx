@@ -66,6 +66,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         serialno: category.data?.serialno || '',
         remark: category.data?.remark || '',
         createdbyId: auth?.userId,
+        supplierName: category.data?.supplierName || '',
       })
     } else {
       setInitialValues({
@@ -100,7 +101,9 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
     DataGetAllTypeSupplierName()
   }, [])
 
-  useEffect(() => {}, [category, itemIdForUpdate])
+  useEffect(() => {
+    console.log('category', category)
+  }, [category, itemIdForUpdate])
 
   return (
     <>
@@ -284,7 +287,7 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...props.getFieldProps('supplierId')}
                       >
-                        <option value=''>Select Product Type</option>
+                        <option value=''>Select Supplier Name</option>
                         {getSupplierNameData.map((TypeData: any, index: Key | null | undefined) => {
                           return (
                             <option key={index} value={TypeData.id}>

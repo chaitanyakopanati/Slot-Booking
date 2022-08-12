@@ -8,6 +8,7 @@ import {
 } from './helperOfficeStockOutwards/ModelOfficeStockOutwards'
 import {useLoader} from '../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardsViewService from './helperOfficeStockOutwards/ApiDataRequest'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getOfficeStockOutwardsData[]
@@ -156,7 +157,9 @@ const ListDataProvider: FC = ({children}) => {
         createdBy
       )
       saveAs(response.data, 'OfficeStockOutwards.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
+      toast.error('Something went wrong Please try again ')
       console.log('Error', error)
     } finally {
       LoderActions(false)

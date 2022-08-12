@@ -8,6 +8,7 @@ import {
   ID,
 } from './helperOfficeStockInwards/ModelOfficeStockInwards'
 import OfficeStockInwardsService from './helperOfficeStockInwards/ApiDataRequest'
+import {toast} from 'react-toastify'
 
 export interface ComplaintDataContextModel {
   getData: getOfficeOldStockInwardsData[]
@@ -151,7 +152,9 @@ const ListDataProvider: FC = ({children}) => {
         endDate
       )
       saveAs(response.data, 'OfficeStockInwards.xlsx')
+      toast.success('Requested File Downloaded Successfully')
     } catch (error) {
+      toast.error('Something went wrong Please try again ')
       console.log('Error', error)
     } finally {
       LoderActions(false)
