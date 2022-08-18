@@ -89,10 +89,6 @@ const UserFormModal: FC<formik> = ({category}) => {
     }
   }
 
-  // var QuntityData: any = getProductZoneQuntity
-
-  // var EditQuntityData: any = category.data?.quantity
-
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
@@ -104,31 +100,24 @@ const UserFormModal: FC<formik> = ({category}) => {
         if (values.id) {
           // Edit Api Response
           let response = await OfficeStockOutwardsViewService.editOfficeStockOutwards(values)
-          console.log('Edit User*****************', response)
-
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(`Data Updated Successfully`)
           }
           navigation('/stocks/office-stock-outwards')
           toast.dismiss('1s')
         } else {
           let response = await OfficeStockOutwardsViewService.postOfficeStockOutwards(values)
-          console.log('Add User*****************', response)
-
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
           navigation('/stocks/office-stock-outwards')
         }
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       } finally {
         LoderActions(false)
@@ -143,7 +132,6 @@ const UserFormModal: FC<formik> = ({category}) => {
           formik.values.productId,
           formik.values.zoneId
         )
-        console.log(payload, 'payloadpayload')
         if (payload.success == true) {
           LoderActions(false)
           if (formik.values.id) {
@@ -153,7 +141,6 @@ const UserFormModal: FC<formik> = ({category}) => {
           }
         }
       }
-      // formik.setFieldValue('quantity',10)
 
       ProductZoneAllData()
     }
@@ -161,7 +148,6 @@ const UserFormModal: FC<formik> = ({category}) => {
 
   return (
     <>
-      {/* begin::formik Add/Edit form */}
       <div className='mt-4'>
         <form
           id='kt_modal_add_user_form'
@@ -254,23 +240,18 @@ const UserFormModal: FC<formik> = ({category}) => {
                   >
                     {formik.values.maxQuantity &&
                       `(${formik.values.maxQuantity} Quantity Available)`}
-                    {/* {getProductZoneQuntity != null
-                      ? `(${getProductZoneQuntity} Quantity Available)`
-                      : ''} */}
                   </label>
                 }
                 <input
                   placeholder='quantity'
                   className='form-control form-control-lg form-control-solid'
                   type='number'
-                  // max='50'
                   value={formik.values.quantity || ''}
                   onChange={(e) => {
                     if (+e.target.value >= 0) {
                       formik.handleChange(e)
                     }
                   }}
-                  // onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   name='quantity'
                   autoComplete='off'
@@ -299,7 +280,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                       suggestionRef.current.style.display = 'block'
                     } else {
                       suggestionRef.current.style.display = 'none'
-                      console.log('Elseeeeeee__________________________', suggestionRef)
                     }
                     formik.handleChange(e)
                   }}
@@ -310,7 +290,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                       if (suggestionRef.current) {
                         suggestionRef.current.style.display = 'none'
                       }
-                      // console.log(suggestionRef, '=====================-------===----==--')
                       document.removeEventListener('click', () => {})
                     })
                   }}
@@ -319,7 +298,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                   <ul>
                     {getUserNameData?.length > 0 &&
                       getUserNameData.map((user, index) => {
-                        console.log('user', user)
                         return (
                           <li
                             key={user.id}
@@ -413,7 +391,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                   autoComplete='off'
                 ></textarea>
                 <div className='erro2' style={{color: 'red'}}>
-                  {/* <ErrorMessage name='remark' /> */}
                   {formik.touched.remark && formik.errors.remark ? formik.errors.remark : null}
                 </div>
               </div>
@@ -421,7 +398,6 @@ const UserFormModal: FC<formik> = ({category}) => {
           </div>
 
           <div className='modal-footer border-0'>
-            {/* begin::close button */}
             <CustomTooltip title='Close form'>
               <button
                 type='reset'

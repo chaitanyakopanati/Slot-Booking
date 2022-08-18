@@ -20,25 +20,14 @@ let validationSchemaNewForm = Yup.object({
     .required('This field is required'),
   address: Yup.string().required('This field is required'),
   contactno: Yup.string()
-    //  .min(10, 'Min 10 digits are allowed')
-    // .max(10, 'Max 10 digits are allowed')
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
-  // statusId: Yup.string().required('This fied is required'),
   salesexecutiveId: Yup.string().required('This fielld is required'),
   statusId: Yup.number().required('This fielld is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
   area: Yup.string().required('This field is required'),
-
-  // username: Yup.string().required('This field is required'),
-  // userId: Yup.number().required('Entered User Name Does Not Exist'),
-  // Userid: Yup.string().when(['username'], {
-  //   is: (username: any) => !username,
-  //   then: Yup.number().required().label('Entered User Name Does Not Exist'),
-  // }),
-  // statusId: Yup.string().required('This fied is required'),
   username: Yup.string().when('statusId', {
     is: (statusId: any) => statusId == 4,
     then: Yup.string().required('This field is required'),
@@ -56,8 +45,6 @@ let validationSchemaEditForm = Yup.object({
     .required('This field is required'),
   address: Yup.string().required('This field is required'),
   contactno: Yup.string()
-    //  .min(10, 'Min 10 digits are allowed')
-    // .max(10, 'Max 10 digits are allowed')
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
@@ -66,8 +53,6 @@ let validationSchemaEditForm = Yup.object({
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
   area: Yup.string().required('This field is required'),
-  // username: Yup.string().required('This field is required'),
-  // userId: Yup.number().required('Entered User Name Does Not Exist'),
 })
 
 const InquiriesFormModal: FC<Props> = ({category}) => {
@@ -100,8 +85,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
   const [status, setStatus] = useState<any>('')
 
   useEffect(() => {
-    console.log('catagary', category)
-
     if (itemIdForUpdate === 'add') {
       setInitialValues({
         ...category,
@@ -144,16 +127,9 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
   const suggestionRef: any = useRef()
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
-
-  useEffect(() => {
-    // DataGetAllTypeStatus()
-    console.log('StatusData', statusData)
-  }, [])
 
   useEffect(() => {
     DataGetAllTypeStatus()
-    console.log('StatusData', statusData)
   }, [])
 
   const cancel = (withRefresh?: boolean) => {
@@ -168,55 +144,37 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
     }
   }
 
-  // useEffect(() => {}, [category, itemIdForUpdate])
   return (
     <>
       <Formik
         enableReinitialize={true}
         initialValues={initialValues}
-        validationSchema={
-          validationSchemaNewForm
-          // itemIdForUpdate === 'add' ? validationSchemaNewForm : validationSchemaEditForm
-          // status == '4' ? validationSchemaNewForm : validationSchemaEditForm
-        }
+        validationSchema={validationSchemaNewForm}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
           LoderActions(true)
-
           values.salesexecutiveId = +values.salesexecutiveId
           values.statusId = +values.statusId
-
-          // values.statusId = status
-
-          // values.phone = values.phone.toString()
 
           try {
             if (values.id) {
               // Edit Api Response
               let response = await Inquiriesservice.editInquiries(values)
-              console.log('Edit User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
               } else {
                 toast.success(response.message)
-                // toast.success(`Data Updated Successfully`)
               }
               navigation('/inquiries')
-              // toast.success(` Data Updated Successfully`)
               toast.dismiss('1s')
-
               resetForm({})
               cancel()
             } else {
               let response = await Inquiriesservice.postInquiries(values)
-              console.log('Add User*****************', response)
-
               if (response.success === false) {
                 toast.error(response.message)
               } else {
                 toast.success(response.message)
-                // toast.success(` Data Added Successfully`)
               }
               toast.dismiss('1s')
               navigation('/inquiries')
@@ -224,7 +182,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
               cancel()
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -348,11 +305,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         <div className='erro2' style={{color: 'red'}}>
                           <ErrorMessage name='statusId' />
                         </div>
-                        {/* <div className='erro2' style={{color: 'red'}}>
-                          {props.touched.statusId && props.errors.statusId
-                            ? props.errors.statusId
-                            : null}
-                        </div> */}
                       </div>
 
                       {props.values.statusId == '4' ? (
@@ -395,7 +347,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                                   <ul>
                                     {getUserNameData?.length > 0 &&
                                       getUserNameData.map((user, index) => {
-                                        console.log('user', user)
                                         return (
                                           <li
                                             key={user.id}
@@ -423,9 +374,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                                     ? props.errors.userId
                                     : null}
                                 </div>
-                                {/* <div className='erro2' style={{color: 'red'}}>
-                                  <ErrorMessage name='description' />
-                                </div> */}
                               </div>
                             </div>
                           </div>
@@ -498,7 +446,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
                             name='isnotify'
-                            //  value=''
                             checked={props.values.statusId === '2' ? true : false}
                           />
                           <label className='form-check-label'>Sales executive</label>

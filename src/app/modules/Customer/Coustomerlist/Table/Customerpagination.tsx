@@ -21,7 +21,6 @@ const Customerpagination = () => {
 
   useEffect(() => {
     fetchCustomer()
-    console.log('pageSize', pageSize)
   }, [pageNo, pageSize])
 
   return (

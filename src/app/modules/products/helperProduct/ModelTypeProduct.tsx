@@ -1,4 +1,6 @@
 export interface getProductData {
+  connnectionTypeId: string | number | readonly string[] | undefined
+  connnectionTypeDisplay: any
   fullName: string
   name: string
   createdAt: string
@@ -21,7 +23,7 @@ export interface postlistData {
   createdby: any
   name: string
   unit: string
-  connectiontype: number
+  connectionTypeId: number
 }
 
 export interface putProductmodel {
@@ -29,7 +31,7 @@ export interface putProductmodel {
   name: string
   unit: string
   id: number | string
-  connectiontype: number
+  connectionTypeId: number
 }
 export interface putProductmodel1 {
   data: getProductData
@@ -47,6 +49,7 @@ export interface GetAllProductApi {
   pageSize: number
   createdById: number
   username: string
+  connectionTypeId: any
 }
 
 export type ID = undefined | null | string

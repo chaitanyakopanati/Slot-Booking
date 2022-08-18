@@ -46,7 +46,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
         initialValues={{
           id: category.data?.id,
           name: category.data?.name || '',
-          connectiontype: category.data?.connectiontype || '',
+          connectionTypeId: category.data?.connectionTypeId || '',
           unit: category.data?.unit || '',
           createdby: auth?.userId,
           modifyby: auth?.userId,
@@ -59,11 +59,13 @@ const ProductFormModal: FC<Props> = ({category}) => {
           unit: Yup.string()
             // .min(1, 'Etr must be of 3digit ')
             .required('This field is required'),
-          connectiontype: Yup.number().required('This field is required'),
+          connectionTypeId: Yup.number().required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
+          values.connectionTypeId = +values.connectionTypeId
+
           LoderActions(true)
-          // values?.connectiontype = +values?.connectiontype
+          // values?.connectionTypeId = +values?.connectionTypeId
           try {
             if (values.id) {
               console.log(values, 'valuespost')
@@ -175,7 +177,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                   <label className='form-label fw-bold required'>Connection Type</label>
                   <select
                     className='form-select form-select-solid'
-                    {...props.getFieldProps('connectiontype')}
+                    {...props.getFieldProps('connectionTypeId')}
                   >
                     <option value=''>Select Connection Type</option>
                     <option value='1'>Cable</option>
@@ -184,7 +186,7 @@ const ProductFormModal: FC<Props> = ({category}) => {
                     <option value='4'>Other</option>
                   </select>
                   <div className='erro2' style={{color: 'red'}}>
-                    <ErrorMessage name='connectiontype' />
+                    <ErrorMessage name='connectionTypeId' />
                   </div>
                 </div>
                 {/*end:: input Unit Filed */}

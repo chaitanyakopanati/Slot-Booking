@@ -60,7 +60,8 @@ const SupplierFormModal: FC<Props> = ({category}) => {
           gstNo: Yup.string()
             .max(15, 'Max 15 Characters Allowed')
             // .min(15, 'Min 15 Characters are required')
-            .required('This field is required'),
+            .required('This field is required')
+            .matches(/^[a-zA-Z1-9\s]*$/, 'Only alphabetics are allowed for this field '),
         })}
         onSubmit={async (values, {resetForm}) => {
           LoderActions(true)

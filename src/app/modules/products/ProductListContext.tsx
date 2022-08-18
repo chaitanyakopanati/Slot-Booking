@@ -37,6 +37,8 @@ export interface ComplaintDataContextModel {
   fetchAllProduct: () => void
   getDataProductAllType: () => void
   DataGetAllTypeCreatedByTypes: () => void
+  connectionTypeId: any
+  setConnectionTypeId: Dispatch<SetStateAction<number>>
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -67,6 +69,8 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetApiProduct: () => {},
   getDataProductAllType: () => {},
   DataGetAllTypeCreatedByTypes: () => {},
+  connectionTypeId: 0,
+  setConnectionTypeId: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getProductData[]>([])
@@ -82,6 +86,8 @@ const ListDataProvider: FC = ({children}) => {
   const [totalData, setTotalData] = useState<number>(100)
   const [lastIndex, setLastIndex] = useState<number>(0)
   const [createdById, setCreatedById] = useState<number>(0)
+  const [connectionTypeId, setConnectionTypeId] = useState<any>('')
+
   let {LoderActions} = useLoader()
 
   {
@@ -118,7 +124,8 @@ const ListDataProvider: FC = ({children}) => {
         pageNo,
         pageSize,
         searchText,
-        createdById
+        createdById,
+        connectionTypeId
       )
       console.log(response, 'response=========Allll')
       if (response.success == true) {
@@ -193,6 +200,8 @@ const ListDataProvider: FC = ({children}) => {
     setViewIdForUpdate,
     createdById,
     setCreatedById,
+    connectionTypeId,
+    setConnectionTypeId,
   }
   return (
     <>

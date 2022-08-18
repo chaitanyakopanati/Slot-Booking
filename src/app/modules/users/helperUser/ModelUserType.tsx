@@ -7,7 +7,7 @@ export interface getUserData {
   faultTypeName: string
   modifyAt: number
   modifyby: number
-  username: string
+  username: any
   email: string
   phone: string
   zoneName: string
@@ -45,7 +45,7 @@ export interface GetAllData {
   name: string
   createdById: number
   createdByName: string
-  username:string
+  username: string
 }
 
 export interface GetAllData {
@@ -56,7 +56,7 @@ export interface GetAllData {
 export interface putUsersmodel {
   modifyby: any
   name: string
-  zoneId: number 
+  zoneId: number
   roleId: string
   firstname: string
   lastname: string
@@ -67,6 +67,7 @@ export interface putUsersmodel {
   id: number | string
   createdById: number
   createdByName: string
+  userName: string
 }
 export interface putUsermodel1 {
   data: getUserData
@@ -82,7 +83,7 @@ export interface GetAllUserApi {
   TotalRecords: number
   page: number
   pageSize: number
-  zoneId: number 
+  zoneId: number
   roleId: string
   searchByUsername: string
 }

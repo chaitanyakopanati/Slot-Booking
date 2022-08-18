@@ -10,7 +10,6 @@ const getCompaniesTypes = () => {
 }
 
 const getCustomerList = (filter: filterTable, pageNo: number, pageSize: number) => {
-  // return http.get(`GetDynamicCustomers/1/10`, filter)
   return http.get(`GetDynamicCustomers/${pageNo}/${pageSize}`, filter)
 }
 

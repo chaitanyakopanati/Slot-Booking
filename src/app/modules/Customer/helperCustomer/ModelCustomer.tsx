@@ -51,8 +51,6 @@ export interface filterTable {
   connectionTypeId: number | ''
   userName: string
   createdById: number | ''
-  // pageNo: number | ''
-  // pageSize: number | ''
 }
 
 export interface customerType {

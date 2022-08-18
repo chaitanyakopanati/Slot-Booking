@@ -5,7 +5,6 @@ import {isNotEmpty} from '../../../../_metronic/helpers'
 import {ListPageData} from '../CustomerContext'
 import {GetCustomerById} from '../helperCustomer/ApiDataRequest'
 import CustomerFormModal from './CustomerFormModal'
-// import CustomerFormModal from "./CustomerFormModal"
 
 const CustomerFormByCategory = () => {
   let {id} = useParams()

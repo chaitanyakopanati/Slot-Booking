@@ -1,4 +1,3 @@
-import React from 'react'
 import {FC} from 'react'
 import {useRef} from 'react'
 import {useState, useEffect} from 'react'
@@ -23,13 +22,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
   let validationSchemaNewForm = Yup.object({
     username: Yup.string().required('This field is required'),
     userId: Yup.number().required('Entered User Name Does Not Exist'),
-
-    // complainttypeid: Yup.number().required('This field is required'),
-    // assigntechnicianid: Yup.number().required('This field is required'),
-    // faultid: Yup.number().required('This fielld is required'),
-    // description: Yup.string().required('This field is required'),
     status: Yup.number().required('This field is required'),
-    // remark: Yup.string().required('This field is required'),
   })
 
   const navigate = useNavigate()
@@ -72,18 +65,13 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
     DataGetAllTypeComplaint()
     DataGetAllFault()
     DataGetAllTypeTechnician()
-    console.log(`bb`, getDataAllFault)
-    console.log(`fffff`, getDataAllTypeComplaint)
   }, [])
 
   const getDataByUserId = async () => {
     try {
       let payload: any = await ComplaintsViewService.GetComplaintsByUserId(category?.userId)
-      console.log('payload', payload)
-
       if (payload.success == true) {
         setComplaintData(payload.data)
-        console.log('kddkfffff', payload.data)
       }
     } catch (error) {
     } finally {
@@ -129,8 +117,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         CreatedBy: auth?.userId || '',
       })
     } else {
-      console.log('edit complaint from data:::::')
-      console.log('category', category)
       setInitialValues({
         ...category,
         id: category?.id || '',
@@ -165,61 +151,46 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
-      // LoderActions(true)
       values.complainttypeid = +values.complainttypeid
       values.assigntechnicianid = +values.assigntechnicianid
       values.faultid = +values.faultid
       values.status = +values.status
       values.userId = +values.userId
 
-      console.log('ccccc', values.id)
       try {
         if (values.id) {
           // Edit Api Response
+          debugger
           let response = await ComplaintsViewService.editComplaints(values)
-          console.log('Edit User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(`Data Updated Successfully`)
           }
           navigate('/complaint')
-          // toast.success(` Data Updated Successfully`)
           toast.dismiss('1s')
         } else {
           let response = await ComplaintsViewService.postComplaint(values)
-          console.log('Add User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
           navigate('/complaint')
         }
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       } finally {
-        // LoderActions(false)
       }
     },
   })
 
-  const submitStep = () => {}
-
-  useEffect(() => {
-    console.log('catagary', category)
-  }, [])
-
-  const DataWiseIndex = (pageNo - 1) * pageSize
+  const DataWiseIndex: any = (pageNo - 1) * pageSize
 
   const setBackgrondColour = (row: any) => {
-    console.log('ddd', row)
     if (
       currentTime.diff(moment(row?.createdDate), 'hours') >= 24 &&
       row.statusName === 'Unsolved'
@@ -241,16 +212,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
           className='form'
           onSubmit={formik.handleSubmit}
         >
-          {/* <div
-            className='d-flex flex-column scroll-y me-n7 pe-7'
-            id='kt_modal_add_user_scroll'
-            data-kt-scroll='true'
-            data-kt-scroll-activate='{default: false, lg: true}'
-            data-kt-scroll-max-height='auto'
-            data-kt-scroll-dependencies='#kt_modal_add_user_header'
-            data-kt-scroll-wrappers='#kt_modal_add_user_scroll'
-            data-kt-scroll-offset='300px'
-          > */}
           <div className='modal-body'>
             {' '}
             <div className='container-fluid p-0'>
@@ -311,7 +272,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                             <ul>
                               {getUserNameData?.length > 0 &&
                                 getUserNameData.map((user, index) => {
-                                  console.log('user', user)
                                   return (
                                     <li
                                       key={user.id}
@@ -467,11 +427,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                       value={formik.values.remark || ''}
                       name='remark'
                       onChange={formik.handleChange}
-                      // onChange={(e) => {
-                      //   if (e.target.value.match(regex)) {
-                      //     return formik.handleChange(e)
-                      //   }
-                      // }}
                       onBlur={formik.handleBlur}
                       placeholder='Remark'
                       className='form-control form-control-lg form-control-solid'
@@ -518,8 +473,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
                 </div>
-                {/* </div> */}
-                {/* </div> */}
 
                 <div className='modal-footer'>
                   <CustomTooltip title='Close form'>

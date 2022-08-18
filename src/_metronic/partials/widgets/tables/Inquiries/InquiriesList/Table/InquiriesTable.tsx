@@ -64,17 +64,14 @@ const InquiriesTable = () => {
             LoderActions(false)
 
             toast.success(payload.message)
-            // toast.success(` Data Deleted Successfully`)
             toast.dismiss('1s')
           } else {
             LoderActions(false)
 
             toast.error(payload.message)
-            // toast.error(` Failed to Delete Data`)
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -88,7 +85,6 @@ const InquiriesTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    // DataGetAllTypeStatus()
     DataGetAllTypeStatus()
     if (auth?.roleId !== 5) {
       fetchAllUser()
@@ -97,23 +93,12 @@ const InquiriesTable = () => {
     DataGetAllTypeSalesExecutveUserByRole()
   }, [])
 
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllUser()
-  // }, [pageNo, pageSize, searchText, zoneId, roleId])
-
-  // useEffect(() => {
-  //   console.log('getData', getData)
-  // }, [getData])
-
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
   const setBackgrondColour = (row: any) => {
-    console.log('ddd', row)
     if (currentTime.diff(moment(row?.createdAt), 'days') >= 15 && row.status === 'Pending') {
       return `#f5c6cb`
     } else {
@@ -124,10 +109,7 @@ const InquiriesTable = () => {
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
-        {/* begin::Table */}
-        {/* <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border table-striped'> */}
         <table className='table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3 mb-0 mt-4 table-rounded border'>
-          {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4'>Inquiry No.</th>
@@ -145,20 +127,9 @@ const InquiriesTable = () => {
           <tbody>
             {getData.length > 0 ? (
               getData.map((row: getInquiriesData, index: number) => {
-                // console.log("wertyuiop[",row);
-
                 return (
                   <tr
                     key={index}
-                    //   className={
-                    //   currentTime.diff(moment(row?.createdAt), 'days') >= 15 &&
-                    //   row.status === 'Pending'
-                    //     ? 'p-3 mb-2 text-white '
-                    //     : ''
-                    //     //  || row.status === 'Unsolved'
-                    //     // ? 'p-3 mb-2 text-white'
-                    //     // : ''
-                    // }
                     style={{
                       backgroundColor:
                         currentTime.diff(moment(row?.createdAt), 'days') >= 15 &&
@@ -166,9 +137,6 @@ const InquiriesTable = () => {
                           ? `#f5c6cb`
                           : '',
                     }}
-                    // style={{
-                    //   backgroundColor: setBackgrondColour(row),
-                    // }}
                   >
                     {/* begin:: Index No */}
                     <td>
@@ -188,28 +156,18 @@ const InquiriesTable = () => {
                     </td>
                     {/* end:: Name Input */}
 
-                    {/* begin:: User Type Input username */}
                     <td className='text-dark fw-bold  fs-6'>{row.address || '-'}</td>
-                    {/* end:: User Type Input  username */}
 
-                    {/* begin:: User Type Input email */}
                     <td className='text-dark fw-bold  fs-6'>{row.contactno || '-'}</td>
-                    {/* end:: User Type Input  email*/}
 
-                    {/* begin:: User Type Input phone*/}
                     <td className='text-dark fw-bold  fs-6'>{row.salesexecutiveName || '-'}</td>
-                    {/* end:: User Type Input  phone*/}
 
-                    {/* begin:: User Type Input zoneName */}
                     <td className='text-dark fw-bold  fs-6'>
                       {' '}
                       {moment.utc(row?.createdAt).local().format('DD-MMM-YYYY, h:mm a') || '-'}
                     </td>
-                    {/* end:: User Type Input  zoneName*/}
 
-                    {/* begin:: User Type Input roleName*/}
                     <td className='text-dark fw-bold  fs-6'>{row.status || '-'}</td>
-                    {/* end:: User Type Input  roleName*/}
 
                     {/* begin:: Action */}
                     <td>
@@ -217,7 +175,6 @@ const InquiriesTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`inquiriesviewform/${row.id}`)}
-                        // onClick={() => openViewModal(row.id)}
                         title='View Inquirie'
                       >
                         <KTSVG
@@ -236,8 +193,6 @@ const InquiriesTable = () => {
                             navigate(`inquiriesform/${row.id}`)
                           }}
                           title='Edit Inquirie'
-
-                          // onClick={()=>openEditModal(row.id)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/art/art005.svg'
@@ -349,7 +304,6 @@ const InquiriesTable = () => {
                       <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
-                          // onClick={() => openViewModal(row)}
                           onClick={() => navigate(`inquiriesviewform/${row.id}`)}
                         >
                           <KTSVG
@@ -360,7 +314,6 @@ const InquiriesTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                          // onClick={() => openEditModal(row.id)}
                           onClick={() => {
                             navigate(`inquiriesform/${row.id}`)
                           }}

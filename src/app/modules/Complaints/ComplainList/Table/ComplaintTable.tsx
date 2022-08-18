@@ -16,7 +16,6 @@ const ComplaintTable = () => {
     getData,
     setPageNo,
     setSearchText,
-
     fetchAllComplaint,
     pageNo,
     pageSize,
@@ -25,10 +24,10 @@ const ComplaintTable = () => {
     assignToId,
     setassignToId,
   } = ListPageData()
+
   let navigate = useNavigate()
   let {LoderActions} = useLoader()
 
-  // const [addComplaint, setAddComplaint] = useState<any>([])
   const [isCheckAll, setIsCheckAll] = useState<any>(false)
   const [isCheck, setIsCheck] = useState<any>(false)
   const [list, setList] = useState<any>([])
@@ -47,25 +46,15 @@ const ComplaintTable = () => {
   useEffect(() => {
     if (auth?.roleId !== 7) {
       fetchAllComplaint()
-      console.log('third', auth?.roleId)
     }
   }, [])
-
-  // useEffect(() => {
-  //   if (auth?.roleId == 7) {
-  //     setassignToId(auth?.userId)
-
-  //     fetchAllComplaint()
-  //     console.log('fourth', auth?.roleId)
-  //   }
-  // }, [])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
     setSearchText(e.target.value)
   }
 
-  const deleteFaults = (ID: number) => {
+  const deleteComplaint = (ID: number) => {
     Swal.fire({
       title: `Do you want to delete this record ?`,
       icon: 'warning',
@@ -75,20 +64,18 @@ const ComplaintTable = () => {
       confirmButtonText: 'Delete',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        LoderActions(true)
         try {
           let payload = await ComplaintsViewService.deleteComplaint(ID)
           if (payload.success === true) {
-            LoderActions(false)
             toast.success(payload.message)
-            // toast.success(` Data Deleted Successfully`)
             toast.dismiss('1s')
+            fetchAllComplaint()
           } else {
             LoderActions(false)
 
             toast.error(payload.message)
-            // toast.error(` Failed to Delete Data`)
             toast.dismiss('1s')
+            fetchAllComplaint()
           }
         } catch (error: any) {
           toast.error(error?.data?.message)
@@ -102,7 +89,6 @@ const ComplaintTable = () => {
   const DataWiseIndex = (pageNo - 1) * pageSize
 
   const setBackgrondColour = (row: any) => {
-    console.log('ddd', row)
     if (
       currentTime.diff(moment(row?.createdDate), 'hours') >= 24 &&
       row.statusName === 'Unsolved'
@@ -123,27 +109,20 @@ const ComplaintTable = () => {
     }
   }
 
-  // useEffect(() => {
-  //   setIsCheck(false)
-  // }, [pageNo])
-
   useEffect(() => {
     toggleAllChecked()
   }, [pageSize, addComplaint])
 
   const multipleSelectComplaint = (id: any) => {
-    // debugger
-    const temp = addComplaint.some((addComplaintId: any) => id === addComplaintId)
+    const temp = addComplaint.some((addComplaintId: any) => id == addComplaintId)
     if (temp) {
       const removeComplainID = addComplaint.filter((complaintId: any) => {
         return complaintId !== id
       })
       setAddComplaint(removeComplainID)
     } else {
-      setAddComplaint([...addComplaint, id])
+      setAddComplaint([...addComplaint, +id])
     }
-    // debugger
-    console.log('jjj', addComplaint)
 
     if (pageSize <= addComplaint.length) {
       setIsCheck(true)
@@ -151,64 +130,23 @@ const ComplaintTable = () => {
       setIsCheck(false)
     }
   }
-
-  // const selectAllComplaint = () => {
-  //   getData.forEach((data) => {
-  //     // debugger
-  //     const temp = addComplaint.some((addComplaintId: any) => data.id == addComplaintId)
-  //     if (temp) {
-  //       const removeComplainID = addComplaint.filter((complaintId: any) => {
-  //         return complaintId !== data.id
-  //       })
-  //       setAddComplaint(removeComplainID)
-  //     } else {
-  //       // setAddComplaint([...addComplaint, data.id])
-  //       addComplaint.push(data.id)
-  //     }
-  //     // debugger
-  //     console.log('jjj', addComplaint)
-  //   })
-  // }
 
   const selectAllComplaint = () => {
     setIsCheckAll(!isCheckAll)
     if (isCheckAll == false || pageSize >= addComplaint.length) {
       getData.forEach((data) => {
-        addComplaint.push(data.id)
+        addComplaint.push(+data.id)
         setIsCheck(false)
       })
     } else {
       setAddComplaint([])
     }
-    // debugger
     if (pageSize <= addComplaint.length) {
       setIsCheck(true)
     } else {
       setIsCheck(false)
     }
   }
-
-  // const checkAll = (id: any) => {
-  //   addComplaint.every((value) => {
-  //     value == id
-  //   })
-  // }
-
-  // const handleSelectAll = (e: any) => {
-  //   setIsCheckAll(!isCheckAll)
-  //   setIsCheck(list.map((li: any) => li.id))
-  //   if (isCheckAll) {
-  //     setIsCheck([])
-  //   }
-  // }
-
-  // const handleClick: any = (e: any) => {
-  //   const {id, checked} = e.target
-  //   setIsCheck([...isCheck, id])
-  //   if (!checked) {
-  //     setIsCheck(isCheck.filter((item: any) => item !== id))
-  //   }
-  // }
 
   return (
     <div>
@@ -218,12 +156,6 @@ const ComplaintTable = () => {
           {/* begin::Table head */}
           <thead>
             <tr className='fw-bolder text-muted  bg-dark'>
-              {/* <th className='max-w-10px '>
-                <input
-                  type='checkbox'
-      
-                />
-              </th> */}
               <th className='max-w-60px min-w-40px rounded-start ps-4 d-flex justify-content-start'>
                 {' '}
                 <input
@@ -232,13 +164,6 @@ const ComplaintTable = () => {
                   onClick={selectAllComplaint}
                   checked={isCheck}
                 />
-                {/* <Checkbox
-                  type='checkbox'
-                  name='selectAll'
-                  id='selectAll'
-                  handleClick={handleSelectAll}
-                  isChecked={isCheckAll}
-                /> */}
                 Complaint No.
               </th>
               <th className='max-w-60px '>User Name</th>
@@ -282,14 +207,6 @@ const ComplaintTable = () => {
                           }}
                           checked={addComplaint.includes(row.id)}
                         />
-
-                        {/* <Checkbox
-                          type='checkbox'
-                          name='name'
-                          id='id'
-                          handleClick={handleClick}
-                          isChecked={isCheck.includes(row.id)}
-                        /> */}
 
                         {DataWiseIndex + index + 1}
                       </div>
@@ -355,7 +272,7 @@ const ComplaintTable = () => {
                           {' '}
                           <button
                             className='btn btn-icon btn-active-color-danger btn-sm'
-                            onClick={() => deleteFaults(row.id)}
+                            onClick={() => deleteComplaint(row.id)}
                             title='Delete complaint'
                           >
                             <KTSVG
@@ -406,7 +323,6 @@ const ComplaintTable = () => {
         {getData.length > 0 ? (
           getData?.map((row: any, index: number) => {
             return (
-              // <div key={DataWiseIndex + index + 1}>
               <div key={index}>
                 <div className='col-md-6 mx-0 my-2'>
                   <div className='card card-custom border'>
@@ -414,7 +330,6 @@ const ComplaintTable = () => {
                       <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                         <div className='text-dark fw-bolder fs-3 me-2'>
                           {' '}
-                          {/* <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> */}
                           <input type='checkbox' />
                           {DataWiseIndex + index + 1}
                         </div>
@@ -484,7 +399,6 @@ const ComplaintTable = () => {
                       <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
-                          // onClick={() => openViewModal(row)}
                           onClick={() => navigate(`complaintviewform/${row.id}`)}
                           title='Edit Complain'
                         >
@@ -496,7 +410,6 @@ const ComplaintTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                          // onClick={() => openEditModal(row.id)}
                           onClick={() => {
                             navigate(`complaintform/${row.id}`)
                           }}
@@ -510,7 +423,7 @@ const ComplaintTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-danger btn-sm'
-                          onClick={() => deleteFaults(row.id)}
+                          onClick={() => deleteComplaint(row.id)}
                           title='Deleted Complain'
                         >
                           <KTSVG

@@ -8,9 +8,6 @@ const CustomerFormHeader = () => {
   const {viewIdForUpdate, setItemIdForUpdate, itemIdForUpdate} = ListPageData()
   const navigation = useNavigate()
 
-  useEffect(() => {
-    console.log(`itemIdForUpdate`, itemIdForUpdate)
-  }, [])
   return (
     <>
       <div className='modal-header'>

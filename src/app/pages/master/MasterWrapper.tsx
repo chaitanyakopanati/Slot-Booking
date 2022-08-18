@@ -15,6 +15,7 @@ import UserFormWrapper from '../../modules/users/Form/UserFormWrapper'
 import {ListPageData} from '../../modules/users/UserContext'
 import UserViewWrapper from '../../modules/users/Form/UserViewWrapper'
 import SupplierWrapper from '../../modules/suppliers/SupplierWrapper'
+import {UserEditePassword} from '../../modules/users/Form/UserEditePassword'
 // import {SupplierWrapper} from '../../modules/suppliers/SupplierWrapper'
 
 function MasterWrapper() {
@@ -41,6 +42,17 @@ function MasterWrapper() {
             </>
           }
         />
+
+        <Route
+          path='users/form/:id/password'
+          element={
+            <>
+              <PageTitle>Edit user password</PageTitle>
+              <UserEditePassword />
+            </>
+          }
+        />
+
         <Route
           path='users/viewform/:id'
           element={
@@ -150,6 +162,26 @@ function MasterWrapper() {
           }
         />
 
+        {/* <Route
+          path='/master/users/form/:id/passwor'
+          element={
+            <>
+              <PageTitle>Edit user password</PageTitle>
+              <UserEditePassword />
+            </>
+          }
+        /> */}
+
+        {/* <Route
+          path='/master/users/form/:id/password'
+          element={
+            <>
+              <PageTitle>Edit user password</PageTitle>
+              <UserEditePassword />
+            </>
+          }
+        /> */}
+
         <Route
           path='suppliers'
           element={
@@ -159,8 +191,8 @@ function MasterWrapper() {
             </>
           }
         />
-        {/*  */}
       </Route>
+
       <Route index element={<Navigate to='/master/users' />} />
     </Routes>
   )

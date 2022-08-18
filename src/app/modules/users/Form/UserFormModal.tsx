@@ -341,7 +341,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                         type='text'
                         name='email'
                         autoComplete='off'
-                        disabled
+                        // disabled
                       />
                     </div>
                   )}

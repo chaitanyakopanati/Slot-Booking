@@ -1,5 +1,4 @@
 import React, {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
-// import {useAuth} from '../auth'
 import {
   getCompaniesTypes,
   getCustomerList,
@@ -46,22 +45,20 @@ export interface CustomerDataContextModel {
   fetchMainPoint: () => void
   fetchUsetByRoleNameWithSearch: (text: string) => void
   mainPoint: mainPointType[]
-
   viewIdForUpdate: ID
   setViewIdForUpdate: (_setViewIdForUpdate: ID) => void
   itemIdForUpdate: ID
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
+  setCustomerTableData: Dispatch<SetStateAction<any>>
+  setDueDate: Dispatch<SetStateAction<any>>
+  dueDate: any
 }
-
-// const {currentUser, auth} = useAuth()
 
 let ListDataContext = createContext<CustomerDataContextModel>({
   fetchZone: () => {},
   zoneType: [],
   filter: {
     searchText: '',
-    // orderByColumnName: 'firstName',
-    // sortColumnDir: 'asc',
     installerId: '',
     salesExecutiveId: '',
     zoneId: '',
@@ -93,19 +90,19 @@ let ListDataContext = createContext<CustomerDataContextModel>({
   mainPoint: [],
   customer: [],
   fetchUsetByRoleNameWithSearch: (string) => {},
-
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
   setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
   itemIdForUpdate: undefined,
+  setCustomerTableData: () => {},
+  dueDate: 0,
+  setDueDate: () => {},
 })
 
 const CustomerContext: FC = ({children}) => {
   const [zoneType, setZoneType] = useState<zoneTypes[]>([])
   const [filter, setFilter] = useState<filterTable>({
     searchText: '',
-    // orderByColumnName: 'firstName',
-    // sortColumnDir: 'asc',
     installerId: '',
     salesExecutiveId: '',
     zoneId: '',
@@ -129,6 +126,7 @@ const CustomerContext: FC = ({children}) => {
   const [totalData, setTotalData] = useState<number>(0)
   const [pageCount, setPageCount] = useState<number>(0)
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
+  const [dueDate, setDueDate] = useState(0)
 
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
 
@@ -142,20 +140,14 @@ const CustomerContext: FC = ({children}) => {
 
   let fetchCustomer = async () => {
     let response: customerTypeApi = await getCustomerList(filter, pageNo, pageSize)
-    // if (response.success) {
-    //   setTotalData(response.TotalRecords)
-    //   setCustomerTableData(response.data)
-    // }
     if (response.success == true) {
       setCustomerTableData(response.data)
-      // LoderActions(false)
       const PageCout = response?.pages
 
       setPageCount(Math.floor(PageCout))
       setTotalData(response.TotalRecords)
     } else {
       setCustomerTableData([])
-      // LoderActions(false)
       setPageCount(0)
     }
   }
@@ -227,6 +219,9 @@ const CustomerContext: FC = ({children}) => {
     setViewIdForUpdate,
     setItemIdForUpdate,
     itemIdForUpdate,
+    setCustomerTableData,
+    dueDate,
+    setDueDate,
   }
 
   return <ListDataContext.Provider value={value}>{children}</ListDataContext.Provider>

@@ -80,14 +80,12 @@ const editInstallations = (obj: putInstallationsmodel) => {
   return http.post(`SaveInstallations`, {
     id: obj.id,
     userid: obj.userid,
-    // userName: obj.userName,
     zonepointid: obj.zonepointid ? obj.zonepointid : null,
     connectiontype: obj.connectiontype ? obj.connectiontype : null,
     installerid: obj.installerid ? obj.installerid : null,
     cabletypeid: obj.cabletypeid ? obj.cabletypeid : null,
     cablelength: +obj.cablelength,
     iptype: obj.iptype ? obj.iptype.toString() : null,
-    // iptypeId: obj.iptypeId,
     accesspointip: obj.accesspointip,
     stationip: obj.stationip,
     stationname: obj.stationname,
@@ -130,8 +128,6 @@ const getDynamicDownloadFile = (
   /* begin:: GetInstallationsTypeById:- getById Api call */
 }
 const GetInstallationsTypeById = (id: ID) => {
-  console.log(id, 'id===============')
-
   return http.get(`GetInstallationById/${id}`)
 }
 {

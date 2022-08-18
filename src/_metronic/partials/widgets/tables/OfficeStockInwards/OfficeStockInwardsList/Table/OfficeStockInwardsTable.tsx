@@ -34,7 +34,6 @@ const OfficeStockOutwardsTable = () => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 

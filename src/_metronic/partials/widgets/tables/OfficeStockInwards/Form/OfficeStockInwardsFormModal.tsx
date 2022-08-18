@@ -10,7 +10,6 @@ import moment, {min} from 'moment'
 import {ListPageData} from '../OfficeStockInwardsContext'
 import OfficeStockInwardsService from '../helperOfficeStockInwards/ApiDataRequest'
 import {useAuth} from '../../../../../../app/modules/auth'
-// import NumericInput from 'react-numeric-input'
 
 type Props = {
   category: any
@@ -101,7 +100,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         initialValues={initialValues}
         validationSchema={validationSchemaNewForm}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
           LoderActions(true)
           values.zoneId = +values.zoneId
           values.productId = +values.productId
@@ -111,31 +109,25 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               // Edit Api Response
               let response = await OfficeStockInwardsService.editOfficeStockInwards(values)
-              console.log('Edit User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
               } else {
                 toast.success(response.message)
-                // toast.success(`Data Updated Successfully`)
               }
               navigation('/stocks/office-stock-inwards')
               toast.dismiss('1s')
             } else {
               let response = await OfficeStockInwardsService.postOfficeStockInwards(values)
-              console.log('Add User*****************', response)
-
               if (response.success === false) {
                 toast.error(response.message)
               } else {
-                // toast.success(` Data Added Successfully`)
                 toast.success(response.message)
               }
               toast.dismiss('1s')
               navigation('/stocks/office-stock-inwards')
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -222,27 +214,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
 
                   <div className=' col-md-3'>
                     <label className='form-label fw-bold required'>Quantity</label>
-                    {/* 
-                    <NumericInput
-                      placeholder='quantity'
-                      className='form-control form-control-lg form-control-solid'
-                      name='quantity'
-                      min={0}
-                      type='number'
-                      value={props.values.quantity}
-                      // onChange={props?.handleChange}
-                      // onChange={(e) => {
-                      //   if (e) {
-                      //     return props.handleChange(e)
-                      //   }
-                      // }}
-                      // onChange={(value) => {
-                      //   return props?.handleChange(value)
-                      // }}
-
-                      onBlur={props.handleBlur}
-                    /> */}
-
                     <input
                       placeholder='quantity'
                       className='form-control form-control-lg form-control-solid'
@@ -250,11 +221,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       min={0}
                       type='number'
                       value={props.values.quantity}
-                      // onChange={(e) => {
-                      //   if (e.target.value >= 0) {
-                      //     props.handleChange(e)
-                      //   }
-                      // }}
                       onChange={(e) => {
                         if (+e.target.value >= 0) {
                           return props.handleChange(e)

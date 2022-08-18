@@ -1,9 +1,9 @@
-import { KTCard } from "../../../../helpers"
-import FormsFormViewModal from "./FormList/Table/FormsFormViewModal"
-import FormsHeader from "./FormList/Table/FormsHeader"
-import FormsPagination from "./FormList/Table/FormsPagination"
-import FormsTable from "./FormList/Table/FormsTable"
-import { ListDataProvider, ListPageData } from "./FormsContext"
+import {KTCard} from '../../../../helpers'
+import FormsFormViewModal from './FormList/Table/FormsFormViewModal'
+import FormsHeader from './FormList/Table/FormsHeader'
+import FormsPagination from './FormList/Table/FormsPagination'
+import FormsTable from './FormList/Table/FormsTable'
+import {ListDataProvider, ListPageData} from './FormsContext'
 
 const Formlist = () => {
   const {viewIdForUpdate} = ListPageData()

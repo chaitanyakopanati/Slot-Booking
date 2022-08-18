@@ -6,7 +6,6 @@ import {Formik, Form} from 'formik'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
-// import closeIcon from '../../../../../app/images/closeIcon.svg'
 import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
 import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
@@ -68,22 +67,6 @@ const ComplaintHeader = () => {
     addComplaint,
   } = ListPageData()
 
-  // useLayoutEffect(() => {
-  //   if (auth?.roleId == 7) {
-  //     setassignToId(auth?.userId)
-  //   }
-  //   console.log('jk', auth?.roleId)
-  // }, [])
-
-  // useEffect(() => {
-  //   if (auth?.roleId == 7) {
-  //     setassignToId(auth?.userId)
-
-  //     console.log('first', auth?.roleId)
-  //   }
-  //   console.log('jk', auth?.roleId)
-  // }, [])
-
   useEffect(() => {
     DataGetAllTypeComplaint()
     DataGetAllTypeTechnician()
@@ -123,73 +106,49 @@ const ComplaintHeader = () => {
   const handlesearchange = (e: any) => {
     setPageNo(1)
     setSearchText(e.target.value)
-    // fetchAllUser()
   }
 
   const downloadFileComplaint = () => {
     fetchAllDownload()
   }
   const handleComplaintType = (e: any) => {
-    // setPageNo(1)
-
     setComplainttypeid(e.target.value)
   }
 
   const handleStatus = (e: any) => {
-    // setPageNo(1)
-
     setStatus(e.target.value)
   }
 
   const handleDate = (e: any) => {
-    // setPageNo(1)
-
     setCreatedDate(e.target.value)
   }
 
   const handleAssign = (e: any) => {
-    // setPageNo(1)
-
     setassignToId(e.target.value)
   }
 
   const handleZoneId = (e: any) => {
-    // setPageNo(1)
-
     setZoneId(e.target.value)
   }
 
   const handleFaultId = (e: any) => {
-    // setPageNo(1)
-
     setFaultid(e.target.value)
   }
 
   const handleCompanyId = (e: any) => {
-    // setPageNo(1)
-
     setCompanyId(e.target.value)
   }
 
   const handlePackageId = (e: any) => {
-    // setPageNo(1)
-
     setPackageCategoryId(e.target.value)
   }
 
   const handleCreaterId = (e: any) => {
-    // setPageNo(1)
-
     setcreatedById(e.target.value)
   }
 
   useEffect(() => {
     fetchAllComplaint()
-    console.log('kkfff')
-
-    // if (auth?.roleId !== 7) {
-    // setassignToId(auth?.userId)
-    // }
   }, [
     pageNo,
     pageSize,
@@ -208,51 +167,37 @@ const ComplaintHeader = () => {
     assignToId,
   ])
 
-  // useEffect(() => {
-  //   if (auth?.roleId == 7) {
-  //     setassignToId(auth?.userId)
-  //   }
-  //   console.log(`addComplaint`, addComplaint)
-  // })
-
   useLayoutEffect(() => {
     if (auth?.roleId == 7) {
       setassignToId(auth?.userId)
     }
-    console.log('jk', auth?.roleId)
   }, [])
 
   const deleteMultipleComplaint = () => {
-    // Swal.fire({
-    //   title: `Do you want to delete this records ?`,
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Delete',
-    // }).then(async (result) => {
-    //   if (result.isConfirmed) {
-    //     LoderActions(true)
-    //     try {
-    //       let payload = await ComplaintsViewService.deleteComplaint(addComplaint)
-    //       if (payload.success === true) {
-    //         LoderActions(false)
-    //         toast.success(payload.message)
-    //         // toast.success(` Data Deleted Successfully`)
-    //         toast.dismiss('1s')
-    //       } else {
-    //         LoderActions(false)
-    //         toast.error(payload.message)
-    //         // toast.error(` Failed to Delete Data`)
-    //         toast.dismiss('1s')
-    //       }
-    //     } catch (error: any) {
-    //       toast.error(error?.data?.message)
-    //       toast.dismiss('1s')
-    //     }
-    //     fetchAllComplaint()
-    //   }
-    // })
+    if (addComplaint.length > 0) {
+      Swal.fire({
+        title: `Do you want to delete this records ?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete',
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            let response: any = await ComplaintsViewService.deleteComplaintByIds(addComplaint)
+            toast.success(` Data Deleted Successfully`)
+            toast.dismiss('1s')
+            fetchAllComplaint()
+          } catch (error: any) {
+            toast.error(error?.data?.message)
+            toast.dismiss('1s')
+            fetchAllComplaint()
+          }
+          fetchAllComplaint()
+        }
+      })
+    }
   }
 
   return (
@@ -260,15 +205,7 @@ const ComplaintHeader = () => {
       <Formik
         initialValues={{
           complainttypeid: complainttypeid,
-          // zoneId: category.data?.zoneId || '',
-          // roleId: category.data?.roleId || '',
-          // id: category.data?.id || '',
         }}
-        // validationSchema={Yup.object({
-        //   zoneId: Yup.number().required('This fied is required'),
-        //   roleId: Yup.string().required('This fielld is required'),
-        //   id: Yup.string().required('This fielld is required'),
-        // })}
         onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
@@ -333,7 +270,6 @@ const ComplaintHeader = () => {
                           onClick={() => {
                             navigate('complaintform/add')
                           }}
-                          // onClick={openAddCategoryModal}
                         >
                           <span className='svg-icon svg-icon-gray-500 me-1'>
                             <KTSVG
@@ -357,16 +293,14 @@ const ComplaintHeader = () => {
                           onClick={() => {
                             deleteMultipleComplaint()
                           }}
-                          // onClick={openAddCategoryModal}
                         >
                           <span className='svg-icon svg-icon-gray-500 me-1'>
                             <KTSVG
-                              // path='/media/icons/duotune/arrows/arr027.svg'
                               path='/media/icons/duotune/general/gen027.svg'
                               className='svg-icon-3'
                             />
                           </span>
-                          Delete Complaint
+                          Delete Complaints
                         </button>
                       </div>
                     </div>
@@ -403,14 +337,11 @@ const ComplaintHeader = () => {
                           setStartDate('')
                           setEndDate('')
                         }}
-                      >
-                        {/* <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} /> */}
-                      </span>
+                      ></span>
                       <DateRangePicker
                         initialSettings={{
                           alwaysShowCalendars: false,
                           ranges: range,
-                          // placeholder:"All"
                         }}
                         onHide={handleEvent}
                       >

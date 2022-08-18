@@ -96,36 +96,24 @@ const FormsHeader: FC<Props> = ({category}) => {
 
   // created at
   const handleEventCreatedAt = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFromCreatedAtDate(picker.startDate._d)
     setToCreatedAtDate(picker.endDate._d)
-
     setCreatedStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setCreatedEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
 
   // form date
   const handleEventFormDate = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFromsDate(picker.startDate._d)
     setToFormsDate(picker.endDate._d)
-
     setFormStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFormEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
 
   // expiry Date
   const handleEventExpiryDate = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setExpiryDate(picker.startDate._d)
     setToExpiryDate(picker.endDate._d)
-
     setExpiryStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setExpiryEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
@@ -133,7 +121,6 @@ const FormsHeader: FC<Props> = ({category}) => {
   //sales executive
   const handlesalesExecutiveIdchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSalesExecutiveId(e.target.value)
   }
 
@@ -142,7 +129,6 @@ const FormsHeader: FC<Props> = ({category}) => {
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -153,8 +139,6 @@ const FormsHeader: FC<Props> = ({category}) => {
     /* begin::Zone */
   }
   const handleZoneChange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setZoneId(e.target.value)
   }
   {
@@ -165,42 +149,36 @@ const FormsHeader: FC<Props> = ({category}) => {
 
   const handleCompanyChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setCompanyId(e.target.value)
   }
 
   //Payment
   const handlePaymentchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setPaymentTypeId(e.target.value)
   }
 
   // packages Category
   const handlePackagesCategoryIdchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setPackageCategoryId(e.target.value)
   }
 
   // form type
   const handleFormTypechange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setFormTypeId(e.target.value)
   }
 
   // form sumbit
   const handleFormSumbitchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setFormSubmitTypeId(e.target.value)
   }
 
   // search by username
   const handlesearchByUserNamechange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchByUsername(e.target.value)
   }
 
@@ -209,7 +187,6 @@ const FormsHeader: FC<Props> = ({category}) => {
   }
   const handleConnectionTypechange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setConnectionTypeId(e.target.value)
   }
   {
@@ -263,9 +240,7 @@ const FormsHeader: FC<Props> = ({category}) => {
           username: Yup.string().required('This fielld is required'),
           fullName: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
@@ -331,7 +306,6 @@ const FormsHeader: FC<Props> = ({category}) => {
                         onClick={() => {
                           navigate('formsform/add')
                         }}
-                        // onClick={openAddCategoryModal}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG
@@ -443,7 +417,6 @@ const FormsHeader: FC<Props> = ({category}) => {
                         <span
                           role='button'
                           onClick={() => {
-                            console.log('datatatatat========================\\\\\\\\\\\\')
                             setFromCreatedAtDate('')
                             setToCreatedAtDate('')
                             setCreatedStartDate('')
@@ -483,7 +456,6 @@ const FormsHeader: FC<Props> = ({category}) => {
                       <span
                         role='button'
                         onClick={() => {
-                          console.log('datatatatat========================\\\\\\\\\\\\')
                           setFromsDate('')
                           setToFormsDate('')
                           setFormStartDate('')
@@ -522,7 +494,6 @@ const FormsHeader: FC<Props> = ({category}) => {
                       <span
                         role='button'
                         onClick={() => {
-                          console.log('datatatatat========================\\\\\\\\\\\\')
                           setExpiryDate('')
                           setToExpiryDate('')
                           setExpiryStartDate('')

@@ -14,24 +14,9 @@ import {useAuth} from '../../../../../../app/modules/auth'
 type Props = {
   category: any
 }
-
-// const location: any = useLocation()
-
 let validationSchemaNewForm = Yup.object({
   userName: Yup.string().required('This field is required'),
   userid: Yup.number().required('Entered User Name Does Not Exist'),
-  // installerid: Yup.string().required('This field is required'),
-  // cablelength: Yup.string().required('This fied is required'),
-  // cabletypeid: Yup.string().required('This fied is required'),
-  // zonepointid: Yup.number().required('This field is required'),
-  // remark: Yup.string().required('This field is required'),
-  // status: Yup.string().required('This field is required'),
-  // iptype: Yup.string().required('This field is required'),
-  // accesspointip: Yup.string().required('This field is required'),
-  // stationip: Yup.string().required('This field is required'),
-  // stationname: Yup.string().required('This field is required'),
-  // stationMac: Yup.string().required('This field is required'),
-  // connectiontype: Yup.string().required('This field is required'),
 })
 
 const InstallationFormModal: FC<Props> = ({category}) => {
@@ -48,10 +33,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
   const location: any = useLocation()
-
-  useEffect(() => {
-    console.log('catagary', category)
-  }, [])
 
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
@@ -85,7 +66,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         iptype: category.data?.iptype || '',
         userid: category?.data?.userid || '',
         userName: category?.data?.userName || '',
-
         accesspointip: category.data?.accesspointip || '',
         remark: category.data?.remark || '',
         stationip: category.data?.stationip || '',
@@ -108,7 +88,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         iptype: category.data?.iptype || '',
         userid: category?.data?.userid || '',
         userName: category?.data?.userName || '',
-
         accesspointip: category.data?.accesspointip || '',
         remark: category.data?.remark || '',
         stationip: category.data?.stationip || '',
@@ -149,7 +128,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   }, [getUserNameData])
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -169,44 +147,35 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
       LoderActions(true)
-
       values.zoneId = +values.zoneId
       values.cabletypeid = +values.cabletypeid
       values.installerid = +values.installerid
       values.zonepointid = +values.zonepointid
       values.cabletypeid = +values.cabletypeid
-      // values.accesspointip = String.valueOf(values.accesspointip)
-      // values.stationip = String.valueOf(values.stationip)
-
       try {
         if (values.id) {
           // Edit Api Response
           let response = await InstallationsService.editInstallations(values)
-          console.log('Edit User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(`Data Updated Successfully`)
           }
           navigation('/installations')
           toast.dismiss('1s')
         } else {
           let response = await InstallationsService.postInstallations(values)
-          console.log('Add User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
           navigation('/installations')
         }
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       } finally {
         LoderActions(false)
@@ -253,7 +222,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                         suggestionRef.current.style.display = 'block'
                       } else {
                         suggestionRef.current.style.display = 'none'
-                        console.log('Elseeeeeee__________________________', suggestionRef)
                       }
                       formik.handleChange(e)
                     }}
@@ -264,7 +232,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                         if (suggestionRef.current) {
                           suggestionRef.current.style.display = 'none'
                         }
-                        console.log(suggestionRef, '=====================-------===----==--')
                         document.removeEventListener('click', () => {})
                       })
                     }}
@@ -273,7 +240,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     <ul>
                       {getUserNameData?.length > 0 &&
                         getUserNameData.map((user, index) => {
-                          console.log('user', user)
                           return (
                             <li
                               key={user.id}
@@ -388,7 +354,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
               </div>
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Cable type</label>
+                  <label className='form-label fw-bold'>Cable Type</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('cabletypeid')}
@@ -410,11 +376,11 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Cable length</label>
+                  <label className='form-label fw-bold'>Cable Length</label>
                   <div className='input-group'>
                     <span className='input-group-text border-0'>m</span>
                     <input
-                      placeholder='access point ip'
+                      placeholder='Access point ip'
                       className='form-control form-control-lg form-control-solid'
                       value={formik.values.cablelength}
                       onChange={(e) => {
@@ -436,7 +402,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>IP type</label>
+                  <label className='form-label fw-bold'>IP Type</label>
                   <select
                     className='form-select form-select-solid'
                     value={formik.values.iptype}
@@ -459,7 +425,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     placeholder='Access point IP'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.accesspointip}
-                    // onChange={formik.handleChange}
                     onChange={(e) => {
                       if (e.target.value.length == 0 || e.target.value.match(regex)) {
                         return formik.handleChange(e)
@@ -485,7 +450,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     placeholder='Station IP'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.stationip}
-                    // onChange={formik.handleChange}
                     onChange={(e) => {
                       if (e.target.value.length == 0 || e.target.value.match(regex)) {
                         return formik.handleChange(e)
@@ -542,7 +506,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>status</label>
+                  <label className='form-label fw-bold'>Status</label>
                   <select
                     className='form-select form-select-solid'
                     value={formik.values.status}
@@ -550,7 +514,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     onBlur={formik.handleBlur}
                     name='status'
                   >
-                    <option value=''>Select status Type</option>
+                    <option value=''>Select Status Type</option>
                     {auth?.roleId !== 7 ? <option value='1'>Pending</option> : ''}
                     {auth?.roleId !== 7 ? <option value='2'>Done</option> : ''}
                     <option value='3'>Partially Done</option>

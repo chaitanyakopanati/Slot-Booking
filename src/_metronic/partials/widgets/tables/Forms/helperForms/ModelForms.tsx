@@ -30,7 +30,7 @@ export interface getAllInquiriesData {
   success: boolean
 }
 export interface postlistData {
-  userid: number
+  userid: any
   formno: string
   formdate: string
   formtype: string

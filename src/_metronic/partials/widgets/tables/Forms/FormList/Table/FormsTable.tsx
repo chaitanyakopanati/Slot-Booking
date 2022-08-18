@@ -61,7 +61,6 @@ const FormsTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -84,37 +83,43 @@ const FormsTable = () => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
   const handleColor = (row: any) => {
     var formDate = moment(row.formdate).format('YYYY-MM-DD')
-    console.log(formDate, 'FormDate')
-
     let currDate = moment().format('YYYY-MM-DD')
-    console.log(typeof currDate, 'currDate')
     let currDay = moment(currDate).diff(formDate, 'days')
-    console.log(currDay, 'currDay')
 
     if (row.remaningamount <= 0) {
-      console.log('white')
-
       return '#fff'
     }
     if (row.remaningamount > 0 && Number(currDay) < 15) {
-      console.log('light')
       return '#f5c6cb'
     }
     if (row.remaningamount > 0 && Number(currDay) >= 15) {
-      console.log('tomato')
-
       return 'tomato'
     }
     return '#fff'
   }
   const {currentUser, auth} = useAuth()
   const id: number | any = auth?.roleId
+
+  const addInstallation = async (id: any) => {
+    try {
+      let response = await Inquiriesservice.postInstallations(id)
+
+      if (response.success === false) {
+        toast.error(response.message)
+      } else {
+        toast.success(response.message)
+      }
+      toast.dismiss('1s')
+    } catch (error: any) {
+      toast.error(error.data.message)
+    }
+    // }
+  }
   return (
     <div>
       <div className='table-responsive d-none d-lg-block'>
@@ -187,7 +192,6 @@ const FormsTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`formsviewform/${row.id}`)}
-                        // onClick={() => openViewModal(row.id)}
                         title='View Form'
                       >
                         <KTSVG
@@ -204,7 +208,6 @@ const FormsTable = () => {
                           navigate(`formsform/${row.id}`)
                         }}
                         title='Edit Form'
-                        // onClick={()=>openEditModal(row.id)}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                       </button>
@@ -234,6 +237,23 @@ const FormsTable = () => {
                           className='svg-icon-3'
                         />
                       </a>
+
+                      {auth?.roleId == 2 ? (
+                        <a
+                          className='btn btn-icon btn-bg-light btn-active-color-success btn-sm m-1'
+                          title='Create Installation'
+                          onClick={() => {
+                            addInstallation(row.customerId)
+                          }}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/electronics/elc008.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>
+                      ) : (
+                        ''
+                      )}
                     </td>
                     {/* end:: Action */}
                   </tr>
@@ -322,7 +342,6 @@ const FormsTable = () => {
                       <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
-                          // onClick={() => openViewModal(row)}
                           onClick={() => navigate(`formsviewform/${row.id}`)}
                         >
                           <KTSVG
@@ -333,7 +352,6 @@ const FormsTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                          // onClick={() => openEditModal(row.id)}
                           onClick={() => {
                             navigate(`formsform/${row.id}`)
                           }}

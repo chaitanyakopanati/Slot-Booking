@@ -9,6 +9,7 @@ import {toast} from 'react-toastify'
 import {saveCustomer} from '../../helperCustomer/ApiDataRequest'
 import {customerFormType, formInitialValues} from '../../helperCustomer/ModelCustomer'
 import {useAuth} from '../../../auth'
+import moment from 'moment'
 
 function CustomerHeader() {
   let {
@@ -24,9 +25,16 @@ function CustomerHeader() {
     salesExecutve,
     fetchMainPoint,
     mainPoint,
+    customerTableData,
+    fetchCustomer,
+    setCustomerTableData,
+    pageNo,
   } = ListPageData()
   const [filterShow, setFilterShow] = useState(false)
+  const [dueDate, setDueDate] = useState(0)
   const navigation = useNavigate()
+
+  var currentTime: any = moment(new Date())
 
   useEffect(() => {
     fetchZone()
@@ -39,17 +47,42 @@ function CustomerHeader() {
 
   const suggestionRef: any = useRef()
 
-  useEffect(() => {
-    console.log('filter', filter)
-  }, [filter])
-
   const {currentUser, auth} = useAuth()
   useEffect(() => {
     if (auth?.roleId == 5) {
       filter.salesExecutiveId = auth?.userId
     }
-    console.log('jk', auth?.roleId)
   }, [])
+
+  useEffect(() => {
+    if (auth?.roleId !== 5) {
+      fetchCustomer()
+    }
+  }, [])
+
+  // useEffect(() => {
+
+  //   const data = customerTableData.filter((customerTableData: any) => {
+  //     if (dueDate == 1) {
+  //       return (
+  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') <= 15 &&
+  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') >= 0
+  //       )
+  //     } else if (dueDate == 2) {
+  //       return (
+  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') >= -15 &&
+  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') <= 0
+  //       )
+  //     }
+
+  //   })
+
+  //   setCustomerTableData(data)
+  // }, [dueDate])
+
+  const handelChangeDates = (e: any) => {
+    setDueDate(e.target.value)
+  }
 
   return (
     <>
@@ -97,10 +130,7 @@ function CustomerHeader() {
             ) : (
               <div className='ms-5'>
                 <a
-                  // href='#'
                   className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                  // data-bs-toggle='modal'
-                  // data-bs-target='#kt_modal_1'
                   onClick={() => {
                     navigation('customersform/new')
                   }}
@@ -309,6 +339,28 @@ function CustomerHeader() {
                     <option value={3}>Not described</option>
                     <option value={1}>Cable</option>
                     <option value={2}>Wireless</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className='col-lg-3'>
+              <div className='mb-10' data-select2-id='select-created-by'>
+                <label className='form-label fw-bold'>Due Date</label>
+                <div data-select2-id='select-created-by'>
+                  <select
+                    className='form-select form-select-solid'
+                    value={dueDate}
+                    onChange={(e) => {
+                      handelChangeDates(e)
+                      // setFilter((old) => {
+                      //   return {...old, connectionTypeId: +e.target.value}
+                      // })
+                    }}
+                  >
+                    <option value=''>All</option>
+                    <option value={1}>Before 15 days</option>
+                    <option value={2}>After 15 days</option>
                   </select>
                 </div>
               </div>

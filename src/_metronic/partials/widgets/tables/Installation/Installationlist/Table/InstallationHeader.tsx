@@ -7,8 +7,6 @@ import {KTSVG} from '../../../../../../helpers'
 import DateRangePicker from 'react-bootstrap-daterangepicker'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
-// import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-// import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {ListPageData} from '../../InstallationContext'
 import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
@@ -81,12 +79,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
   }
 
   const handleEvent = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFromDate(picker.startDate._d)
     setToDate(picker.endDate._d)
-
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
@@ -96,18 +90,11 @@ const InstallationHeader: FC<Props> = ({category}) => {
     }
   })
 
-  // useEffect(() => {
-  //   if (auth?.roleId == 7) {
-  //     setInstallerId(auth?.userId)
-  //   }
-  // }, [])
-
   {
     /* begin::Search */
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -116,16 +103,12 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
   //sales executive
   const handlesalesExecutiveIdchange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setSalesExecutiveId(e.target.value)
   }
   {
     /* begin::handleMainPointchange */
   }
   const handleMainPointchange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setMainPointId(e.target.value)
   }
   {
@@ -136,8 +119,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* begin::handleConnectionTypechange */
   }
   const handleConnectionTypechange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setConnectionTypeId(e.target.value)
   }
   {
@@ -146,8 +127,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
 
   //status
   const handleStatuschange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setStatusId(e.target.value)
   }
 
@@ -155,8 +134,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     /* begin::Zone */
   }
   const handleZoneChange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setZoneId(e.target.value)
   }
   {
@@ -164,16 +141,12 @@ const InstallationHeader: FC<Props> = ({category}) => {
   }
 
   const handleInstallerChange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setInstallerId(e.target.value)
   }
 
   //Company
 
   const handleCompanyChange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setCompanyId(e.target.value)
   }
 
@@ -181,14 +154,9 @@ const InstallationHeader: FC<Props> = ({category}) => {
   const downloadFile = async () => {
     fetchAllDownload()
   }
-  // useEffect(() => {
-  //   fetchAllUser()
-  // }, [installerId])
 
   useEffect(() => {
-    // if (auth?.roleId !== 7) {
     fetchAllUser()
-    // }
   }, [
     pageNo,
     pageSize,
@@ -227,9 +195,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
           zonepointid: Yup.string().required('This fielld is required'),
           zoneId: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
@@ -331,15 +297,12 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         <span
                           role='button'
                           onClick={() => {
-                            console.log('datatatatat========================\\\\\\\\\\\\')
                             setFromDate('')
                             setToDate('')
                             setStartDate('')
                             setEndDate('')
                           }}
-                        >
-                          {/* <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} /> */}
-                        </span>
+                        ></span>
                       </div>
                       <div>
                         <DateRangePicker

@@ -245,7 +245,6 @@ const ListDataProvider: FC = ({children}) => {
         searchByUserName,
         formSubmitTypeId
       )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         setGetData(response.data)
@@ -270,7 +269,6 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log('Enter')
     LoderActions(true)
     try {
       let response: any = await Inquiriesservice.getDynamicDownloadFile(
@@ -293,7 +291,6 @@ const ListDataProvider: FC = ({children}) => {
       saveAs(response.data, 'Forms.xlsx')
       toast.success('Requested File Downloaded Successfully')
     } catch (error) {
-      console.log('Error', error)
       toast.error('Something went wrong Please try again ')
     } finally {
       LoderActions(false)
@@ -310,8 +307,6 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
-
         setGetDataAllType(payload?.data)
       }
     } catch (error) {
@@ -328,12 +323,9 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: GetAllDataApi = await Inquiriesservice.getCompany()
-      console.log(payload, 'getCompanygetCompany')
-
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCompany(payload?.data)
-        console.log(payload.data, 'getCompany')
       }
     } catch (error) {
     } finally {
@@ -346,19 +338,14 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve = await Inquiriesservice.getSalesExecutveByTypes()
-      console.log(payload, 'getSalesExecutveByTypes')
-
       if (payload.success == true) {
-        // if(payload.data.name === "SalesExecutve")
         const salesData = payload.data.filter((e) => {
           return e.name === 'SalesExecutve'
         })
-        console.log(salesData[0].id, 'salesDatasalesData')
         let a: any = salesData[0].id
         LoderActions(false)
         setSalesExecutveAllData(a)
         setRoleId(a)
-        console.log(payload.data, 'SalesExecutve')
       }
     } catch (error) {
     } finally {
@@ -373,11 +360,8 @@ const ListDataProvider: FC = ({children}) => {
     try {
       let payload: GetAllDataApiSalesExecutve =
         await Inquiriesservice.getSalesExecutveByGetUserByRoleTypes()
-      console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
-
       if (payload.success == true) {
         setGetUserByRole(payload.data)
-        console.log(payload.data, 'SalesExecutveUserByRole')
       }
     } catch (error) {
       LoderActions(false)
@@ -392,11 +376,8 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getPackagesCategory()
-      console.log(payload, 'SalesExecutveUserByRoleSalesExecutveUserByRole')
-
       if (payload.success == true) {
         setGetPackagesCategory(payload?.data)
-        console.log(payload.data, 'SalesExecutveUserByRole')
       }
     } catch (error) {
       LoderActions(false)
@@ -411,11 +392,8 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getPackage()
-      console.log(payload, 'SalepackagesSalepackages')
-
       if (payload.success == true) {
         setGetPackages(payload?.data)
-        console.log(payload.data, 'Salepackages')
       }
     } catch (error) {
       LoderActions(false)
@@ -430,11 +408,8 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getBank()
-      console.log(payload, 'getBankgetBank')
-
       if (payload.success == true) {
         setGetBank(payload?.data)
-        console.log(payload.data, 'getBank')
       }
     } catch (error) {
       LoderActions(false)
@@ -449,11 +424,8 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getReciever()
-      console.log(payload, 'getBankgetBank')
-
       if (payload.success == true) {
         setGetReciever(payload?.data)
-        console.log(payload.data, 'getBank')
       }
     } catch (error) {
       LoderActions(false)
@@ -465,18 +437,14 @@ const ListDataProvider: FC = ({children}) => {
   //User name
 
   useEffect(() => {
-    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
       let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
           let payload: GetAllData = await Inquiriesservice.getUserName(suggestionUserText)
-          console.log(payload, 'getUserNamegetUserName')
-
           if (payload.success == true) {
             LoderActions(false)
             setgetUserNameData(payload?.data)
-            console.log(payload.data, 'getUserName')
           } else if (payload.message === 'No records found') {
             setgetUserNameData([])
           }

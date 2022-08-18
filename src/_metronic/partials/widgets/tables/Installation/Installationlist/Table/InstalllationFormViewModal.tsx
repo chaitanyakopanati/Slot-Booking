@@ -83,10 +83,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  console.log('tttttttttttttttttttttttttttt', category)
-                  console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/installations/installationsform/${category.data.id}`)
-                  // openEditModal(category.id)
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
@@ -445,16 +442,6 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
                 disabled
               />
             </div>
-
-            {/* <div className='modal-footer'>
-              <button
-                type='reset'
-                onClick={() => navigate('/installations')}
-                className='btn btn-light'
-              >
-                Close
-              </button>
-            </div> */}
           </div>
         </div>
       </div>

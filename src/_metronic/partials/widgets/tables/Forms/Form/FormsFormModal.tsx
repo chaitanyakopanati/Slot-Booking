@@ -22,18 +22,12 @@ let validationSchemaNewForm = Yup.object({
   formdate: Yup.string().required('This field is required'),
   formtype: Yup.string().required('This field is required'),
   salesexecutiveid: Yup.string().required('This field is required'),
-  // pacakgetype: Yup.string().required('This field is required'),
-  // packagevalidity: Yup.number().positive().required('This field is required'),
   companyid: Yup.string().required('This field is required'),
-  // packagecatid: Yup.string().required('This field is required'),
   totalamount: Yup.number()
     .min(0, 'This value should be between 0 and 999999')
     .max(999999, 'This value should be between 0 and 999999')
     .required('This field is required'),
   status: Yup.string().required('This field is required'),
-  // remaningamount: Yup.number()
-  //   .min(0, 'This value should be greater than or equal to 0')
-  //   .required('This field is required'),
   receiverid: Yup.string().required('This field is required'),
   packagecost: Yup.number()
     .min(0, 'This value should be between 0 and 999999')
@@ -117,7 +111,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
         id: category.data?.id,
         userid: category.data?.userid || '',
         userName: category?.data?.userName || '',
-
         formno: category.data?.formno || '',
         formdate: moment(category.data?.formdate).format('YYYY-MM-DD'),
         formtype: category.data?.formtype || '',
@@ -241,14 +234,12 @@ const FormsFormModal: FC<Props> = ({category}) => {
   }
 
   const {auth} = useAuth()
-  // console.log(auth?.userId, 'auth')
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
-      console.log('Values::', values)
       values.packagecatid = +values.packagecatid
       values.packageid = +values.packageid
       values.packagevalidity = +values.packagevalidity
@@ -261,31 +252,24 @@ const FormsFormModal: FC<Props> = ({category}) => {
         if (values.id) {
           // Edit Api Response
           let response = await Inquiriesservice.editForms(values)
-          console.log('Edit User*****************', response)
-
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(`Data Updated Successfully`)
           }
           navigation('/forms')
           toast.dismiss('1s')
         } else {
           let response = await Inquiriesservice.postForms(values)
-          console.log('Add User*****************', response)
-
           if (response.success === false) {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
           navigation('/forms')
         }
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       }
 
@@ -297,11 +281,9 @@ const FormsFormModal: FC<Props> = ({category}) => {
             toast.error(response.message)
           } else {
             toast.success(response.message)
-            // toast.success(` Data Added Successfully`)
           }
           toast.dismiss('1s')
         } catch (error: any) {
-          console.log(error, 'error')
           toast.error(error.data.message)
         }
       }
@@ -398,7 +380,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           formik.handleChange(e)
                         }}
                         onBlur={(e) => {
-                          // suggestionRef.current.
                           var container = suggestionRef.current
                           document.addEventListener('click', function (event) {
                             if (suggestionRef.current) {
@@ -571,15 +552,9 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         {...formik.getFieldProps('pacakgetype')}
                       >
                         <option value=''>Select Package Type</option>
-                        {/* <option>Package Type</option> */}
                         <option value='1'>Unlimited</option>
                         <option value='2'>Limited</option>
                       </select>
-                      {/* <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.pacakgetype && formik.errors.pacakgetype
-                          ? formik.errors.pacakgetype
-                          : null}
-                      </div> */}
                     </div>
 
                     <div className='col-md-4'>
@@ -602,9 +577,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     <div className='col-md-4'>
                       <label className='form-label fw-bold'>Package Validity</label>
                       <div className='input-group'>
-                        {/* <div className='input-group-prepend'> */}
                         <span className='input-group-text border-0'>Month</span>
-                        {/* </div> */}
                         <input
                           type='number'
                           name='packagevalidity'
@@ -615,12 +588,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           placeholder='Package validity'
                         />
                       </div>
-
-                      {/* <div className='erro2' style={{color: 'red'}}>
-                        {formik.touched.packagevalidity && formik.errors.packagevalidity
-                          ? formik.errors.packagevalidity
-                          : null}
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -825,7 +792,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('bankid')}
-                    // menuPlacement='bottom'
                   >
                     <option value=''>Select Bank Name</option>
                     {getBank?.map((row, index) => {
@@ -836,20 +802,6 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       )
                     })}
                   </select>
-
-                  {/* <select
-                    className='form-select form-select-solid'
-                    {...formik.getFieldProps('bankid')}
-                  >
-                    <option value=''>select receiver Name</option>
-                    {getBank?.map((row, index) => {
-                      return (
-                        <option key={index} value={row?.id}>
-                          {row.name}
-                        </option>
-                      )
-                    })}
-                  </select> */}
                 </div>
 
                 <div className='col-md-3'>

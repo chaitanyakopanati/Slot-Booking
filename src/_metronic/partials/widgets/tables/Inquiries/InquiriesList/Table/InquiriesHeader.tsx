@@ -45,7 +45,6 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     fetchAllDownload,
     setEndDate,
     getUserNameData,
-    // fetchSuggestionUser,
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -71,12 +70,8 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
 
   const handleEvent = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFromDate(picker.startDate._d)
     setToDate(picker.endDate._d)
-
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
@@ -90,7 +85,6 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -102,7 +96,6 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
   const handleCreatedBYchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setCreatedById(e.target.value)
   }
   {
@@ -110,15 +103,11 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
 
   const handleStatuschange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setStatusId(e.target.value)
   }
 
   // sale excutive
   const handleSaleExcutivechange = (e: any) => {
-    // setPageNo(1)
-    console.log(e.target.value)
     setSalesExecutiveId(e.target.value)
   }
 
@@ -147,11 +136,6 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     if (auth?.roleId == 5) {
       setSalesExecutiveId(auth?.userId)
     }
-    console.log('jk', auth?.roleId)
-  }, [])
-
-  useEffect(() => {
-    // fetchSuggestionUser()
   }, [])
 
   return (
@@ -169,9 +153,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
           username: Yup.string().required('This fielld is required'),
           fullName: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
@@ -272,7 +254,6 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                       <span
                         role='button'
                         onClick={() => {
-                          console.log('datatatatat========================\\\\\\\\\\\\')
                           setFromDate('')
                           setToDate('')
                           setStartDate('')

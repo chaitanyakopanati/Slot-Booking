@@ -57,19 +57,14 @@ const InstallationTable = () => {
           let payload = await InstallationsService.deleteInstallations(ID)
           if (payload.success === true) {
             LoderActions(false)
-
             toast.success(payload.message)
-            // toast.success(` Data Deleted Successfully`)
             toast.dismiss('1s')
           } else {
             LoderActions(false)
-
             toast.error(payload.message)
-            // toast.error(` Failed to Delete Data`)
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -87,8 +82,6 @@ const InstallationTable = () => {
     DataGetAllTypeStatus()
     DataGetAllTypeMainPoint()
     DataGetAllTypeStatus()
-
-    // fetchAllUser()
     DataGetAllTypeSalesExecutve()
     DataGetAllTypeInstallation()
     DataGetAllTypeCompany()
@@ -100,13 +93,8 @@ const InstallationTable = () => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   fetchAllUser()
-  // }, [installerId])
-
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -147,7 +135,6 @@ const InstallationTable = () => {
           <tbody>
             {getData.length > 0 ? (
               getData.map((row: getInstallationsData, index: number) => {
-                // console.log("wertyuiop[",row);
                 return (
                   // <tr key={index}>
                   <tr key={index} style={{backgroundColor: setBackGroundColour(row)}}>
@@ -197,7 +184,6 @@ const InstallationTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`installationsviewform/${row.id}`)}
-                        // onClick={() => openViewModal(row.id)}
                         title='View Installation'
                       >
                         <KTSVG
@@ -213,7 +199,6 @@ const InstallationTable = () => {
                         onClick={() => {
                           navigate(`installationsform/${row.id}`)
                         }}
-                        // onClick={()=>openEditModal(row.id)}
                         title='Edit Installation'
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
@@ -298,7 +283,6 @@ const InstallationTable = () => {
         {getData.length > 0 ? (
           getData?.map((row: getInstallationsData, index: number) => {
             return (
-              // <div key={DataWiseIndex + index + 1}>
               <div key={row.id}>
                 <div className='col-md-6 mx-0 my-2'>
                   <div className='card card-custom border'>
@@ -354,7 +338,6 @@ const InstallationTable = () => {
                       <div className='d-flex align-items-center justify-content-evenly w-50 mx-auto'>
                         <a
                           className='btn btn-icon btn-active-color-success btn-sm me-1'
-                          // onClick={() => openViewModal(row)}
                           onClick={() => navigate(`installationsviewform/${row.id}`)}
                         >
                           <KTSVG
@@ -365,7 +348,6 @@ const InstallationTable = () => {
 
                         <button
                           className='btn btn-icon btn-active-color-primary btn-sm me-1'
-                          // onClick={() => openEditModal(row.id)}
                           onClick={() => {
                             navigate(`installationsform/${row.id}`)
                           }}

@@ -16,7 +16,6 @@ const OfficeStockOutwardsFormHeader = () => {
             onClick={() => navigation('/stocks/office-stock-outwards')}
           >
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-            {/* <KTSVG path='/media/icons/duotune/arrows/arr096.svg' /> */}
           </span>
           <h2 className='modal-title fw-bolder'>
             {itemIdForUpdate === 'add'

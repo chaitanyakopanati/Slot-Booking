@@ -92,8 +92,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  console.log('tttttttttttttttttttttttttttt', category)
-                  console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/forms/formsform/${category.data.id}`)
                 }}
               >
@@ -109,23 +107,6 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
         <div className='modal-body'>
           <div className='container-fluid p-0'>
             <div className='row w-100 mx-0 mb-4 gy-4'>
-              {/* <div className='col-md-3 d-flex flex-column align-items-center justify-content-center'>
-                <div
-                  className='image-input image-input-outline mx-auto'
-                  data-kt-image-input='true'
-                  style={{
-                    backgroundImage: "url('/metronic8/demo1/assets/media/svg/avatars/blank.svg')",
-                  }}
-                >
-                  <div
-                    className='image-input-wrapper w-125px h-125px'
-                    style={{
-                      backgroundImage: 'url(/metronic8/demo1/assets/media/avatars/300-1.jpg)',
-                    }}
-                  ></div>
-                </div>
-              </div> */}
-
               <div className='col-md-12'>
                 <div className='row mb-6 gy-4'>
                   <div className='col-md-3'>

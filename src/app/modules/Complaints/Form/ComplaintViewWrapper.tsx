@@ -1,27 +1,22 @@
-import { useEffect } from 'react'
-import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
-import { isNotEmpty, KTCard } from '../../../../_metronic/helpers'
+import {useEffect} from 'react'
+import {useQuery} from 'react-query'
+import {useParams} from 'react-router-dom'
+import {isNotEmpty, KTCard} from '../../../../_metronic/helpers'
 import ComplaintsViewService from '../helperComplaint/ApiDataRequest'
-import { ListDataProvider, ListPageData } from '../ComplaintContext'
+import {ListDataProvider, ListPageData} from '../ComplaintContext'
 import ComplaintFormViewModal from '../ComplainList/Table/ComplaintFormViewModal'
 
 function ComplaintView() {
-  let { id } = useParams()
-  const { viewIdForUpdate, setViewIdForUpdate, DataGetAllTypeTechnician } = ListPageData()
+  let {id} = useParams()
+  const {viewIdForUpdate, setViewIdForUpdate, DataGetAllTypeTechnician} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
-    console.log('id', id)
     if (id) {
       setViewIdForUpdate(id)
     }
   }, [id])
 
-  useEffect(() => {
-    console.log('viewIdForUpdate', viewIdForUpdate)
-  }, [viewIdForUpdate])
-
-  const { data: userDetails, error } = useQuery(
+  const {data: userDetails, error} = useQuery(
     `ViewOfficeStockOutwardsById-${viewIdForUpdate}`,
     () => {
       return ComplaintsViewService.GetComplaintsTypeById(viewIdForUpdate)
@@ -37,7 +32,6 @@ function ComplaintView() {
   )
 
   useEffect(() => {
-    // DataGetAllTypeProduct()
     DataGetAllTypeTechnician()
   }, [])
   return (
@@ -51,15 +45,10 @@ function ComplaintView() {
 }
 
 function UserFormViewHeader() {
-  return (
-    <>
-
-    </>
-  )
+  return <></>
 }
 
 let ComplaintViewWrapper = () => {
-
   return (
     <ListDataProvider>
       <ComplaintView />
@@ -68,6 +57,3 @@ let ComplaintViewWrapper = () => {
 }
 
 export default ComplaintViewWrapper
-
-
-

@@ -172,8 +172,6 @@ const editForms = (obj: putInquiriesmodel) => {
   /* begin:: User:- getById Api call */
 }
 const GetFormsTypeById = (id: ID) => {
-  console.log(id, 'id===============')
-
   return http.get(`GetFormById/${id}`)
 }
 {

@@ -25,6 +25,8 @@ const ProductHeader: FC<Props> = ({category}) => {
     getData,
     getDataProductAllType,
     getDataProduct,
+    connectionTypeId,
+    setConnectionTypeId,
   } = ListPageData()
 
   const openAddCategoryModal = () => {
@@ -51,14 +53,23 @@ const ProductHeader: FC<Props> = ({category}) => {
     console.log(e.target.value)
     setCreatedById(e.target.value)
   }
+
+  const handleConnectionTypechange = (e: any) => {
+    setPageNo(1)
+    setConnectionTypeId(e.target.value)
+  }
   {
     /* End::Createdby */
   }
 
   useEffect(() => {
     fetchAllProduct()
+  }, [])
+
+  useEffect(() => {
+    fetchAllProduct()
     getDataProductAllType()
-  }, [pageNo, pageSize, searchText, createdById])
+  }, [pageNo, pageSize, searchText, createdById, connectionTypeId])
 
   return (
     <>
@@ -138,30 +149,52 @@ const ProductHeader: FC<Props> = ({category}) => {
               </div>
 
               {/* begin:: Filter:- Created By */}
-              {filterShow && (
-                <div className='row gy-2 w-100 mx-0 mt-5'>
-                  <div className='col-lg-3 col-md-3'>
-                    <label className='form-label fw-bold'>Created by:</label>
-                    <select
-                      className='form-select form-select-solid'
-                      {...props.getFieldProps('id')}
-                      value={createdById}
-                      onChange={handleCreatedBychange}
-                    >
-                      <option value=''>All</option>
-                      {getDataAllTypeCreatedBy.map((TypeData, index) => {
-                        return (
-                          <option key={index} value={TypeData?.id}>
-                            {TypeData?.fullName}
-                          </option>
-                        )
-                      })}
-                    </select>
+              <div className='row w-100 gy-1 mx-0 my-5'>
+                {filterShow && (
+                  <div className='row w-100 gy-1 mx-0 my-5'>
+                    {/* <div className='row gy-2 w-100 mx-0 mt-5'> */}
+                    <div className='col-lg-3 col-md-3 '>
+                      <label className='form-label fw-bold'>Created by:</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('id')}
+                        value={createdById}
+                        onChange={handleCreatedBychange}
+                      >
+                        <option value=''>All</option>
+                        {getDataAllTypeCreatedBy.map((TypeData, index) => {
+                          return (
+                            <option key={index} value={TypeData?.id}>
+                              {TypeData?.fullName}
+                            </option>
+                          )
+                        })}
+                      </select>
+                      {/* </div> */}
+                    </div>
+
+                    {/* <div className='row gy-2 w-100 mx-0 mt-5'> */}
+                    <div className='col-lg-3 col-md-3'>
+                      <label className='form-label fw-bold'>Connection Type:</label>
+                      <select
+                        className='form-select form-select-solid'
+                        {...props.getFieldProps('connnectionTypeId')}
+                        value={connectionTypeId}
+                        onChange={handleConnectionTypechange}
+                      >
+                        <option value=''>All</option>
+                        <option value='1'>Cable</option>
+                        <option value='2'>Wireless</option>
+                        <option value='3'>Fibre</option>
+                        <option value='4'>Other</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-              )}
-              {/* end:: Filter:- Created By */}
+                  // </div>
+                )}
+              </div>
             </div>
+            {/* end:: Filter:- Created By */}
             {/* end::Header */}
           </form>
         )}

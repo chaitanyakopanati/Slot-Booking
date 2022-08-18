@@ -32,7 +32,6 @@ const OfficeStockOutwardsTable = () => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -60,8 +59,6 @@ const OfficeStockOutwardsTable = () => {
           <tbody>
             {getData.length > 0 ? (
               getData.map((row: getOfficeStockOutwardsData, index: number) => {
-                // console.log("wertyuiop[",row);
-
                 return (
                   <tr key={index}>
                     <td>

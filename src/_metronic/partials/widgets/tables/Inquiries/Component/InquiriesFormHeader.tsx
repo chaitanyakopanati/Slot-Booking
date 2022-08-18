@@ -14,7 +14,6 @@ const InquiriesFormHeader = () => {
         <div className='d-flex align-items-center'>
           <span className='svg-icon svg-icon-2x' onClick={() => navigation('/inquiries')}>
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
-            {/* <KTSVG path='/media/icons/duotune/arrows/arr096.svg' /> */}
           </span>
 
           <h2 className='modal-title fw-bolder'>

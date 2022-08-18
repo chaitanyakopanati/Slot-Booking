@@ -106,6 +106,7 @@ const ProductTable = () => {
               <th className='max-w-60px min-w-40px rounded-start ps-4 text-center'>No</th>
               <th className='min-w-150px'>Name</th>
               <th className='min-w-150px'>Unit</th>
+              <th className='min-w-150px'>Connnection Type</th>
               <th className='min-w-200px'>Created at</th>
               <th className='min-w-125px rounded-end'>Actions</th>
             </tr>
@@ -139,6 +140,10 @@ const ProductTable = () => {
 
                     {/* begin:: Created At Date & Time */}
                     <td className='text-dark fw-bold  fs-6'>{row?.unit ? row?.unit : '-'}</td>
+                    <td className='text-dark fw-bold  fs-6'>
+                      {row?.connnectionTypeDisplay ? row?.connnectionTypeDisplay : '-'}
+                    </td>
+
                     <td className='text-dark fw-bold fs-6'>
                       {moment.utc(row?.createdAt).local().format('DD-MMM-YYYY, h:mm a') || '-'}
                     </td>
@@ -223,6 +228,12 @@ const ProductTable = () => {
                         </div>
 
                         <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
+                          <div className='py-1 d-flex align-items-cenetr'>
+                            <div className='fw-bolder '>Connnection Type:</div>
+                            <div className='text-dark fw-bold  ms-2'>
+                              {row?.connnectionTypeDisplay || '-'}
+                            </div>
+                          </div>
                           <div className='py-1 d-flex align-items-cenetr'>
                             <div className='fw-bolder '>Unit:</div>
                             <div className='text-dark fw-bold  ms-2'>{row?.unit || '-'}</div>

@@ -8,6 +8,7 @@ import SignoutPop from '../../../../app/routing/SignoutPop'
 import {useAuth} from '../../../../app/modules/auth/core/Auth'
 import {Languages} from './Languages'
 import {toAbsoluteUrl} from '../../../helpers'
+import Swal from 'sweetalert2'
 
 const HeaderUserMenu: FC = () => {
   const {currentUser, logout} = useAuth()
@@ -18,7 +19,43 @@ const HeaderUserMenu: FC = () => {
   useEffect(() => {
     console.log('auth', auth)
   }, [])
-  const [show,setShow]= useState(true)
+
+  const signOut = () => {
+    Swal.fire({
+      title: `Are you sure you want to sign out ?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sign Out',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        logout()
+        // LoderActions(true)
+        // try {
+        //   let payload = await InstallationsService.deleteInstallations(ID)
+        //   if (payload.success === true) {
+        //     LoderActions(false)
+        //     toast.success(payload.message)
+        //     // toast.success(` Data Deleted Successfully`)
+        //     toast.dismiss('1s')
+        //   } else {
+        //     LoderActions(false)
+        //     toast.error(payload.message)
+        //     // toast.error(` Failed to Delete Data`)
+        //     toast.dismiss('1s')
+        //   }
+        // } catch (error: any) {
+        //   console.log('error', error.data)
+        //   toast.error(error?.data?.message)
+        //   toast.dismiss('1s')
+        // }
+        // fetchAllUser()
+      }
+    })
+  }
+
+  const [show, setShow] = useState(true)
   return (
     <div
       className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px'
@@ -61,7 +98,8 @@ const HeaderUserMenu: FC = () => {
       {/* <Languages /> */}
 
       <div className='menu-item px-5 my-1'>
-        <a onClick={logout} className='menu-link px-5'>
+        {/* <a onClick={logout} className='menu-link px-5'> */}
+        <a onClick={signOut} className='menu-link px-5'>
           {/* Sign Out */}
           {intl.formatMessage({id: 'PROFILE.SIGNOUT'})}
         </a>

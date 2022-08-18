@@ -95,6 +95,22 @@ const editUser = (obj: putUsersmodel) => {
     id: obj.id,
   })
 }
+
+const editUserPassword = (obj: putUsersmodel) => {
+  return http.post(`EditPassword`, {
+    // firstname: obj.firstname,
+    // lastname: obj.lastname,
+    userName: obj.userName,
+    password: obj.password,
+    // email: obj.email,
+    // phone: obj.phone,
+    // zoneId: obj.zoneId,
+    // roleId: obj.roleId,
+    // modifyby: obj.modifyby,
+    // status: '1',
+    // id: obj.id,
+  })
+}
 {
   /* begin:: User:- post Api call(edit) */
 }
@@ -145,6 +161,7 @@ const Userservice = {
   getZoneTypes,
   getroleTypes,
   getDynamicDownloadFile,
+  editUserPassword,
 }
 
 export default Userservice

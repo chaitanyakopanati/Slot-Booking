@@ -15,22 +15,9 @@ const idProofPath: string = `${API_URL_DATA}Mediaupload/Customer/IDProof//`
 const gstProofPath: string = `${API_URL_DATA}MediaUpload/Customer/GSTCertificate//`
 const addressProofPath: string = `${API_URL_DATA}MediaUpload/Customer/AddressProof/`
 const CustomerFormViewModal: FC<Props> = ({category}) => {
-  useEffect(() => {
-    console.log('category', category)
-  }, [])
-
-  useEffect(() => {
-    console.log('cccc', `${API_URL_DATA}MediaUpload/Customer/AddressProof/`)
-  }, [])
-
   const navigation = useNavigate()
   return (
     <>
-      {/* View Complain::Modal */}
-      {/* <div className='modal fade' id='kt_modal_3'>
-        <div className='modal-dialog modal-dialog-centered modal-xl mw-md-600px'>
-          <div className='modal-content'> */}
-
       <Formik
         initialValues={{
           id: category.id || 0,
@@ -68,7 +55,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
         {(props) => (
           <form
             id='kt_modal_add_user_form'
-            // onKeyDown={onKeyDown}
             className='form'
             onSubmit={props.handleSubmit}
             noValidate
@@ -117,20 +103,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
-
-                      {/* <label
-                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
-                        data-kt-image-input-action='change'
-                        data-bs-toggle='tooltip'
-                        data-bs-dismiss='click'
-                        title='Change avatar'
-                      >
-                        <i className='bi bi-pencil-fill fs-7'></i>
-
-                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
-                        <input type='hidden' name='avatar_remove' />
-                      </label> */}
-
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
                         data-kt-image-input-action='cancel'
@@ -158,26 +130,11 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
-                      // style={{backgroundImage: `url(${ImageSelect})`}}
                       style={{
                         backgroundImage: `url("${addressProofPath}${props.values.docNameAddressproofImage}")`,
                       }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
-
-                      {/* <label
-                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
-                        data-kt-image-input-action='change'
-                        data-bs-toggle='tooltip'
-                        data-bs-dismiss='click'
-                        title='Change avatar'
-                      >
-                        <i className='bi bi-pencil-fill fs-7'></i>
-
-                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
-                        <input type='hidden' name='avatar_remove' />
-                      </label> */}
-
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
                         data-kt-image-input-action='cancel'
@@ -210,20 +167,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                       }}
                     >
                       <div className='image-input-wrapper w-125px h-125px'></div>
-
-                      {/* <label
-                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
-                        data-kt-image-input-action='change'
-                        data-bs-toggle='tooltip'
-                        data-bs-dismiss='click'
-                        title='Change avatar'
-                      >
-                        <i className='bi bi-pencil-fill fs-7'></i>
-
-                        <input type='file' name='avatar' accept='.png, .jpg, .jpeg' />
-                        <input type='hidden' name='avatar_remove' />
-                      </label> */}
-
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
                         data-kt-image-input-action='cancel'
@@ -334,7 +277,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         placeholder='Zone'
                         value={props.values.zoneName}
                         className='form-control form-control-lg form-control-solid'
-                        // type='number'
                         autoComplete='off'
                         disabled
                       />
@@ -492,10 +434,6 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
           </form>
         )}
       </Formik>
-      {/* </div>
-        </div>
-      </div> */}
-      {/* View Complain::Modal */}
     </>
   )
 }

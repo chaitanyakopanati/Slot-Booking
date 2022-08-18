@@ -24,7 +24,6 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
     salesexecutiveName: category.data?.salesexecutiveName || '',
     description: category.data?.description || '',
     remark: category.data?.remark || '',
-
     createdby: category.data.createdByName || '',
     modifyby: category.data.modifyByName || '',
     createdAt: moment
@@ -64,10 +63,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  console.log('tttttttttttttttttttttttttttt', category)
-                  console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/inquiries/inquiriesform/${category.data.id}`)
-                  // openEditModal(category.id)
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

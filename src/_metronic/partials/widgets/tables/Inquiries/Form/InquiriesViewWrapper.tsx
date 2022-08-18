@@ -1,26 +1,20 @@
 import {useEffect} from 'react'
 import {useQuery} from 'react-query'
 import {useParams} from 'react-router-dom'
-import { isNotEmpty, KTCard } from '../../../../../helpers'
+import {isNotEmpty, KTCard} from '../../../../../helpers'
 import Inquiriesservice from '../helperInquiries/ApiDataRequest'
-import { ListDataProvider, ListPageData } from '../InquiriesContext'
+import {ListDataProvider, ListPageData} from '../InquiriesContext'
 import InquiriesFormViewModal from '../InquiriesList/Table/InquiriesFormViewModal'
-
 
 function InquiriesView() {
   let {id} = useParams()
   const {viewIdForUpdate, setViewIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
-    console.log('id', id)
     if (id) {
       setViewIdForUpdate(id)
     }
   }, [id])
-
-  useEffect(() => {
-    console.log('viewIdForUpdate', viewIdForUpdate)
-  }, [viewIdForUpdate])
 
   const {data: userDetails, error} = useQuery(
     `ViewInquiriesbyId-${viewIdForUpdate}`,
@@ -48,15 +42,7 @@ function InquiriesView() {
 }
 
 function InquiriesFormViewHeader() {
-  return (
-    <>
-      {/* <div className='modal-header'> */}
-        {/* begin::Modal title */}
-        {/* <h2 className='fw-bolder'>View User</h2> */}
-        {/* end::Modal title */}
-      {/* </div> */}
-    </>
-  )
+  return <></>
 }
 
 let InquiriesViewWrapper = () => {
@@ -68,4 +54,3 @@ let InquiriesViewWrapper = () => {
 }
 
 export default InquiriesViewWrapper
-

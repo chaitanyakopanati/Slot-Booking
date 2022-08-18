@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
 import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 import moment from 'moment'
-import {useAuth} from "../../../auth"
+import {useAuth} from '../../../auth'
 import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
 
 const CustomerTable = () => {
@@ -17,12 +17,14 @@ const CustomerTable = () => {
   }, [filter])
 
   useEffect(() => {
-    console.log('ooooo', process.env.REACT_APP_THEME_DEMO)
+    if (auth?.roleId !== 5) {
+      fetchCustomer()
+    }
   }, [])
 
   const navigate = useNavigate()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const deletedCustomerData = (ID: number, username: string) => {
     Swal.fire({
@@ -34,16 +36,11 @@ const CustomerTable = () => {
       confirmButtonText: 'Delete',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        // LoderActions(true)
         let payload = await deleteCustomer(ID, username)
         if (payload.success === true) {
-          // LoderActions(false)
-
           toast.success(` Data Deleted Successfully`)
           toast.dismiss('1s')
         } else {
-          // LoderActions(false)
-
           toast.error(` Failed to Delete Data`)
           toast.dismiss('1s')
         }
@@ -115,22 +112,25 @@ const CustomerTable = () => {
                       : '-'}
                   </td>
                   <td>
-                   { (Access[id].hasOwnProperty("allAccess") || Access[id]["customerrights"].includes("edit")) && <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      data-bs-toggle='modal'
-                      data-bs-target='#kt_modal_1'
-                      // target='_blank'
-                      onClick={() => {
-                        window.open(`/customers/customersform/${customer.id}`, '_blank')
-                      }}
-                      title='Edit customer'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen055.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>}
+                    {(Access[id].hasOwnProperty('allAccess') ||
+                      Access[id]['customerrights'].includes('edit')) && (
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                        data-bs-toggle='modal'
+                        data-bs-target='#kt_modal_1'
+                        // target='_blank'
+                        onClick={() => {
+                          window.open(`/customers/customersform/${customer.id}`, '_blank')
+                        }}
+                        title='Edit customer'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/general/gen055.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                    )}
                     <a
                       href='#'
                       className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
@@ -146,66 +146,77 @@ const CustomerTable = () => {
                         className='svg-icon-3'
                       />
                     </a>
-                    { Access[id].hasOwnProperty("allAccess") &&
-                     <> <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                      onClick={() => deletedCustomerData(customer.id, customer.userName)}
-                      title='Deleted customer'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen027.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>
-                    <a
-                      href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                      onClick={() => {
-                        window.open(
-                          `/forms/formsform/${customer.userName}&${customer.userid}`,
-                          '_blank'
-                        )
-                      }}
-                      title='Create form'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/general/gen005.svg'
-                        className='svg-icon-3'
-                      />
-                    </a> </>}
+                    {Access[id].hasOwnProperty('allAccess') && (
+                      <>
+                        {' '}
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                          onClick={() => deletedCustomerData(customer.id, customer.userName)}
+                          title='Delete customer'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen027.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>
+                        <a
+                          href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                          onClick={() => {
+                            window.open(
+                              `/forms/formsform/${customer.userName}&${customer.userid}`,
+                              '_blank'
+                            )
+                          }}
+                          title='Create form'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/general/gen005.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>{' '}
+                      </>
+                    )}
 
-                   { (Access[id].hasOwnProperty("allAccess") || Access[id]["customerrights"].includes("createInstallation")) && 
-                   <a
-                      // href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                      onClick={() => {
-                        window.open(
-                          `/installations/installationsform/${customer.userName}&${customer.userid}`,
-                          '_blank'
-                        )
-                      }}
-                      title='Create installation'
-                    >
-                      <KTSVG
-                        path='/media/icons/duotune/electronics/elc008.svg'
-                        className='svg-icon-3'
-                      />
-                    </a>}
+                    {(Access[id].hasOwnProperty('allAccess') ||
+                      Access[id]['customerrights'].includes('createInstallation')) && (
+                      <a
+                        // href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                        onClick={() => {
+                          window.open(
+                            `/installations/installationsform/${customer.userName}&${customer.userid}`,
+                            '_blank'
+                          )
+                        }}
+                        title='Create installation'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/electronics/elc008.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                    )}
 
-                   { Access[id].hasOwnProperty("allAccess") && <a
-                      // href='#'
-                      className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                      onClick={() => {
-                        window.open(
-                          `/complaint/complaintform/${customer.userName}&${customer.userid}`,
-                          '_blank'
-                        )
-                      }}
-                      title='Create complaint'
-                    >
-                      <KTSVG path='/media/icons/duotune/coding/cod009.svg' className='svg-icon-3' />
-                    </a>}
+                    {Access[id].hasOwnProperty('allAccess') && (
+                      <a
+                        // href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                        onClick={() => {
+                          window.open(
+                            `/complaint/complaintform/${customer.userName}&${customer.userid}`,
+                            '_blank'
+                          )
+                        }}
+                        title='Create complaint'
+                      >
+                        <KTSVG
+                          path='/media/icons/duotune/coding/cod009.svg'
+                          className='svg-icon-3'
+                        />
+                      </a>
+                    )}
                   </td>
                 </tr>
               )
@@ -226,15 +237,6 @@ const CustomerTable = () => {
               </div>
             </div>
           </div>
-          // <div className='col-md-12 p-5 my-2'>
-          //   <div className='card card-custom border'>
-          //     <div className='card-body p-4 '>
-          //       <div className='py-1'>
-          //         <div className='fw-bolder text-center'>No Data Found</div>
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
         )}
 
         {customerTableData.map((customer) => {
@@ -243,7 +245,6 @@ const CustomerTable = () => {
               <div className='card card-custom border'>
                 <div className='card-body p-4'>
                   <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
-                    {/* <div className='text-dark fw-bolder fs-3 me-2'></div> */}
                     <div className='text-dark fw-bolder fs-3'>
                       {`${customer.firstName} ${customer.lastName}`}{' '}
                     </div>
@@ -276,7 +277,6 @@ const CustomerTable = () => {
                       <div className='text-dark fw-bold  ms-2'> {customer.packageName}</div>
                     </div>
                     <div className='py-1 d-flex align-items-cenetr'>
-                      {/* <KTSVG path='/media/icons/duotune/general/gen014.svg' className='svg-icon-2 me-2' /> */}
                       <span className='fw-bolder'>Expiry date:</span>
                       <span className='text-dark fw-bold  ms-2'>
                         {' '}
@@ -330,7 +330,7 @@ const CustomerTable = () => {
                       href='#'
                       className='btn btn-icon btn-active-color-danger btn-sm me-1'
                       onClick={() => deletedCustomerData(customer.id, customer.userName)}
-                      title='Deleted customer'
+                      title='Delete customer'
                     >
                       <KTSVG
                         path='/media/icons/duotune/general/gen027.svg'

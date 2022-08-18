@@ -8,15 +8,16 @@ const getDynamicProduct = (
   pageNo: number,
   pageSize: number,
   searchText: string = '',
-  createdById: number
+  createdById: number,
+  connectionTypeId: any
 ) => {
   if (pageSize <= 0) {
     return http.get(
-      `GetDynamicProductData/${null}/${null}?searchText=${null}&createdById=${null}&createdById=${null}`
+      `GetDynamicProductData/${null}/${null}?searchText=${null}&createdById=${null}&createdById=${null}&connectionTypeId=${null}`
     )
   } else {
     return http.get(
-      `GetDynamicProductData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&createdById=${createdById}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
+      `GetDynamicProductData/${pageNo}/${pageSize}?searchText=${searchText}&createdById=${createdById}&connectionTypeId=${connectionTypeId}&orderByColumnName=${'createdAt'}&sortColumnDir=${'desc'}`
     )
   }
 }
@@ -42,7 +43,7 @@ const postProduct = (obj: postlistData) => {
     name: obj.name,
     unit: obj.unit,
     createdby: obj.createdby,
-    connectiontype: obj.connectiontype,
+    connectionTypeId: obj.connectionTypeId,
   })
 }
 {
@@ -68,7 +69,7 @@ const editProduct = (obj: putProductmodel) => {
     unit: obj.unit,
     id: obj.id,
     modifyby: obj.modifyby,
-    connectiontype: obj.connectiontype,
+    connectionTypeId: obj.connectionTypeId,
   })
 }
 {

@@ -69,12 +69,9 @@ const deleteComplaint = (Id: number) => {
   /* begin:: post Api call(create) */
 }
 const postComplaint: any = (obj: postlistData) => {
-  console.log(obj, 'obj')
-
   return http.post('SaveComplaint', {
     complainttypeid: obj.complainttypeid ? obj.complainttypeid : null,
     userId: obj.userId,
-
     description: obj.description,
     status: obj.status,
     remark: obj.remark,
@@ -121,6 +118,10 @@ const GetComplaintsTypeById = (id: ID) => {
 const GetComplaintsByUserId = (id: ID) => {
   return http.get(`GetComplaintsByUserId/${id}`)
 }
+
+const deleteComplaintByIds = (Id: any) => {
+  return http.deletes(`DeleteComplaintByIds`, Id)
+}
 {
   /* end:: getById Api call */
 }
@@ -136,7 +137,6 @@ const getZoneTypes = () => {
   return http.get('GetAllZones')
 }
 
-//getProducts
 const getComplaintTypes = () => {
   return http.get('GetAllComplaintTypes')
 }
@@ -179,6 +179,7 @@ const ComplaintsViewService = {
   getAllPackages,
   deleteComplaint,
   GetComplaintsByUserId,
+  deleteComplaintByIds,
 }
 
 export default ComplaintsViewService

@@ -39,9 +39,6 @@ const ComplaintFormByCategory = () => {
     }
   )
 
-  {
-  }
-
   if (itemIdForUpdate == 'add' && username && userId) {
     return <ComplaintFormModal category={{ID: undefined, username: username, userId: userId}} />
   }
@@ -49,9 +46,6 @@ const ComplaintFormByCategory = () => {
     return <ComplaintFormModal category={{ID: undefined}} />
   } else {
     return <ComplaintFormModal category={category?.data} />
-  }
-
-  {
   }
 
   // return null

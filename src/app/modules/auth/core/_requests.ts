@@ -35,11 +35,16 @@ export function register(
 }
 
 // Server should return object => { result: boolean } (Is Email in DB)
-export function requestPassword(username: string) {
+export function requestPassword(username: any) {
   return axios.post<{result: boolean}>(REQUEST_PASSWORD_URL, {
     username,
   })
 }
+
+export function requestPasswords(username: any) {
+  return axios.get<{result: any}>(`${API_URL}/ForgotPassword/${username}`)
+}
+
 
 export function getUserByToken(token: string) {
   return axios.post<UserModel>(GET_USER_BY_ACCESSTOKEN_URL, {

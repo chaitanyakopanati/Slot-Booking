@@ -75,10 +75,7 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                       className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                       onClick={() => {
                         setViewIdForUpdate(undefined)
-                        console.log('tttttttttttttttttttttttttttt', category)
-                        console.log('tttttttttttttttttttttttttttt', category.data.id)
                         navigate(`/stocks/office-stock-outwards/form/${category.data.id}`)
-                        // openEditModal(category.id)
                       }}
                     >
                       <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

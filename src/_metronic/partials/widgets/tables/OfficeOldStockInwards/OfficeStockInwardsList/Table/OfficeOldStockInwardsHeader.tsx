@@ -8,7 +8,7 @@ import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {useNavigate} from 'react-router-dom'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 
 type Props = {
@@ -37,14 +37,13 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
     zoneId,
     setZoneId,
     getDataAllTypeProduct,
-
     setEndDate,
     productId,
     fetchAllDownload,
     setProductId,
   } = ListPageData()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   const [fromDate, setFromDate] = useState<any>()
   const [toDate, setToDate] = useState<any>()
@@ -65,12 +64,8 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
 
   const handleEvent = (event: any, picker: any) => {
-    console.log('start: ', picker.startDate._d)
-    console.log('end: ', picker.endDate._d)
-    console.log('start date', moment(picker.startDate._d).format('YYYY-MM-DD'))
     setFromDate(picker.startDate._d)
     setToDate(picker.endDate._d)
-
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
@@ -80,7 +75,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -91,7 +85,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
   const handleProductchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setProductId(e.target.value)
   }
 
@@ -100,7 +93,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
   const handleCratedBychange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setcreatedById(e.target.value)
   }
   {
@@ -112,7 +104,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
   }
   const handleZoneChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setZoneId(e.target.value)
   }
 
@@ -138,9 +129,7 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
           createdById: Yup.number().required('This fied is required'),
           id: Yup.string().required('This fied is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <form>
@@ -164,21 +153,23 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                 { Access[id].hasOwnProperty("download") &&   <div className='ms-auto'>
-                    <button
-                      type='button'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                      onClick={downloadFile}
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download report</span>
-                    </button>
-                  </div>}
+                  {Access[id].hasOwnProperty('download') && (
+                    <div className='ms-auto'>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                        onClick={downloadFile}
+                      >
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/arrows/arr091.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Download report</span>
+                      </button>
+                    </div>
+                  )}
                   {/* end:: Download */}
 
                   {/* begin::Filter */}
@@ -234,7 +225,6 @@ const OfficeOldStockInwardsHeader: FC<Props> = ({category}) => {
                         <span
                           role='button'
                           onClick={() => {
-                            console.log('datatatatat========================\\\\\\\\\\\\')
                             setFromDate('')
                             setToDate('')
                             setStartDate('')

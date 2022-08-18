@@ -111,8 +111,6 @@ const editInquiries = (obj: putInquiriesmodel) => {
   /* begin:: User:- getById Api call */
 }
 const GetInquiriesTypeById = (id: ID) => {
-  console.log(id, 'id===============')
-
   return http.get(`GetInquiry/${id}`)
 }
 {

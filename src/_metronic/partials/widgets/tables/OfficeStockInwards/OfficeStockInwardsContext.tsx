@@ -140,7 +140,6 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log('Enter')
     LoderActions(true)
     try {
       let response: any = await OfficeStockInwardsService.getDynamicDownloadFile(
@@ -154,7 +153,6 @@ const ListDataProvider: FC = ({children}) => {
       saveAs(response.data, 'OfficeStockInwards.xlsx')
       toast.success('Requested File Downloaded Successfully')
     } catch (error) {
-      console.log('Error', error)
       toast.error('Something went wrong Please try again ')
     } finally {
       LoderActions(false)
@@ -199,7 +197,6 @@ const ListDataProvider: FC = ({children}) => {
           zoneId,
           productId
         )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         setGetData(response.data)
@@ -231,8 +228,6 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
-
         setGetDataAllType(payload.data)
       }
     } catch (error) {
@@ -252,7 +247,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
@@ -269,7 +263,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeTechnician(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
@@ -278,18 +271,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   useEffect(() => {
-    console.log('suggestionUserText', suggestionUserText)
     if (suggestionUserText) {
       let fetchSuggestionUser = async () => {
         LoderActions(true)
         try {
           let payload: GetAllData = await OfficeStockInwardsService.getUserName(suggestionUserText)
-          console.log(payload, 'getUserNamegetUserName')
-
           if (payload.success == true) {
             LoderActions(false)
             setgetUserNameData(payload?.data)
-            console.log(payload.data, 'getUserName')
           } else if (payload.message === 'No records found') {
             setgetUserNameData([])
           }
@@ -311,7 +300,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeDeliveredBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {

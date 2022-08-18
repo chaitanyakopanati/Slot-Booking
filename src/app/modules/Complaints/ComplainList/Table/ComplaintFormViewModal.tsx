@@ -53,12 +53,11 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
 
           modifiedByName: category.data?.modifiedByName || ' ',
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log()}
       >
         {(props) => (
           <form
             id='kt_modal_add_user_form'
-            // onKeyDown={onKeyDown}
             className='form'
             onSubmit={props.handleSubmit}
             noValidate
@@ -86,7 +85,6 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                   href='#'
                   className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                   data-bs-toggle='modal'
-                  // data-bs-target='#kt_modal_2'
                   data-bs-target='#create-modal'
                   onClick={() => navigate(`/complaint/complaintform/${props.values.id}`)}
                 >
@@ -290,7 +288,6 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       value={props.values.createdDate}
                       placeholder='Updated at'
                       className='form-control form-control-lg form-control-solid'
-                      // type='date'
                       type='text'
                       autoComplete='off'
                       disabled
@@ -313,7 +310,6 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                       placeholder='Updated at'
                       value={props.values.modifiedDate}
                       className='form-control form-control-lg form-control-solid'
-                      // type='date'
                       autoComplete='off'
                       disabled
                     />
