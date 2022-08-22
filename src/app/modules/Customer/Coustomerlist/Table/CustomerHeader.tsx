@@ -29,9 +29,10 @@ function CustomerHeader() {
     fetchCustomer,
     setCustomerTableData,
     pageNo,
+    dueDate,
+    setDueDate,
   } = ListPageData()
   const [filterShow, setFilterShow] = useState(false)
-  const [dueDate, setDueDate] = useState(0)
   const navigation = useNavigate()
 
   var currentTime: any = moment(new Date())
@@ -81,7 +82,8 @@ function CustomerHeader() {
   // }, [dueDate])
 
   const handelChangeDates = (e: any) => {
-    setDueDate(e.target.value)
+    filter.dueDate(+e.target.value)
+    // setDueDate(e.target.value)
   }
 
   return (
@@ -350,17 +352,17 @@ function CustomerHeader() {
                 <div data-select2-id='select-created-by'>
                   <select
                     className='form-select form-select-solid'
-                    value={dueDate}
+                    value={filter.dueDate}
                     onChange={(e) => {
-                      handelChangeDates(e)
-                      // setFilter((old) => {
-                      //   return {...old, connectionTypeId: +e.target.value}
-                      // })
+                      // handelChangeDates(e)
+                      setFilter((old) => {
+                        return {...old, dueDate: +e.target.value}
+                      })
                     }}
                   >
                     <option value=''>All</option>
-                    <option value={1}>Before 15 days</option>
-                    <option value={2}>After 15 days</option>
+                    <option value={1}>After 15 days</option>
+                    <option value={2}>Before 15 days</option>
                   </select>
                 </div>
               </div>

@@ -51,6 +51,7 @@ export interface filterTable {
   connectionTypeId: number | ''
   userName: string
   createdById: number | ''
+  dueDate: any
 }
 
 export interface customerType {

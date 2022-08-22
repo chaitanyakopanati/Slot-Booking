@@ -56,6 +56,7 @@ const postInstallations = (obj: postlistData) => {
     remark: obj.remark,
     isnotifyinstaller: obj.isnotifyinstaller,
     createdbyId: obj.createdbyId,
+    wirelessTypeId: obj.wirelessTypeId ? obj.wirelessTypeId : null,
   })
 }
 {
@@ -93,6 +94,7 @@ const editInstallations = (obj: putInstallationsmodel) => {
     stationMac: obj.stationMac,
     remark: obj.remark,
     isnotifyinstaller: obj.isnotifyinstaller,
+    wirelessTypeId: obj.wirelessTypeId ? obj.wirelessTypeId : null,
 
     modifyby: obj.modifyby,
   })
@@ -138,6 +140,10 @@ const GetInstallationsTypeById = (id: ID) => {
 
 const getZoneTypes = () => {
   return http.get('GetAllZones')
+}
+
+const getAllWirelessTypeProducts = () => {
+  return http.get('GetAllWirelessTypeProducts')
 }
 
 // Status
@@ -196,6 +202,7 @@ const InstallationsService = {
   getUserName,
   getCompany,
   getDynamicDownloadFile,
+  getAllWirelessTypeProducts,
 }
 
 export default InstallationsService

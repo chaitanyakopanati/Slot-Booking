@@ -201,7 +201,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Company name</label>
+                    <label className='form-label fw-bold'>Company Name</label>
                     <input
                       value={props.values.companyName}
                       className='form-control form-control-lg form-control-solid'
@@ -236,9 +236,9 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>Username</label>
+                    <label className='form-label fw-bold'>User Name</label>
                     <input
-                      placeholder='Username'
+                      placeholder='User Name'
                       value={props.values.userName}
                       className='form-control form-control-lg form-control-solid'
                       type='text'
@@ -306,7 +306,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
                   <div className='col-lg-4'>
-                    <label className='form-label fw-bold'>Activation date</label>
+                    <label className='form-label fw-bold'>Activation Date</label>
                     <div className='input-group mb-5'>
                       <span
                         className='input-group-text svg-icon svg-icon-gray-500 '
@@ -330,7 +330,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-lg-4'>
-                    <label className='form-label fw-bold'>Expiry date</label>
+                    <label className='form-label fw-bold'>Expiry Date</label>
                     <div className='input-group mb-5'>
                       <span className='input-group-text' id='basic-addon1'>
                         <KTSVG

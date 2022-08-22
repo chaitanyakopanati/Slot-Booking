@@ -80,6 +80,9 @@ export interface ComplaintDataContextModel {
   fetchAllDownload: () => void
   suggestionUserText: string
   setSuggestionUserText: Dispatch<SetStateAction<string>>
+  getDataAllTypeWireless: any[]
+  setGetDataAllTypeWireless: Dispatch<SetStateAction<any>>
+  DataGetAllTypegetWirelessTypes: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -149,6 +152,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   suggestionUserText: '',
   setSuggestionUserText: () => {},
   fetchAllDownload: () => {},
+  getDataAllTypeWireless: [],
+  setGetDataAllTypeWireless: () => {},
+  DataGetAllTypegetWirelessTypes: () => {},
 })
 
 const ListDataProvider: FC = ({children}) => {
@@ -185,6 +191,8 @@ const ListDataProvider: FC = ({children}) => {
   const [mainPointId, setMainPointId] = useState<any>('')
   const [companyId, setCompanyId] = useState<any>('')
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
+  const [getDataAllTypeWireless, setGetDataAllTypeWireless] = useState<any[]>([])
+
   let {LoderActions} = useLoader()
 
   // Download fill
@@ -264,6 +272,21 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeZone(payload.data)
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+  const DataGetAllTypegetWirelessTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllDataApi = await InstallationsService.getAllWirelessTypeProducts()
+
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetDataAllTypeWireless(payload.data)
       }
     } catch (error) {
     } finally {
@@ -478,6 +501,9 @@ const ListDataProvider: FC = ({children}) => {
     setTotalData,
     suggestionUserText,
     setSuggestionUserText,
+    getDataAllTypeWireless,
+    setGetDataAllTypeWireless,
+    DataGetAllTypegetWirelessTypes,
   }
   return (
     <>

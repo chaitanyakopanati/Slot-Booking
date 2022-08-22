@@ -21,7 +21,7 @@ function CustomerFormModal({customerById}: customerProps) {
   const suggestionRef: any = useRef()
   const {customer, fetchUsetByRoleNameWithSearch} = ListPageData()
 
-  const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+  const emailRegExp = RegExp(/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/)
 
   const validationSchema = Yup.object({
     UserName: Yup.string().required('This field is required'),
@@ -34,9 +34,18 @@ function CustomerFormModal({customerById}: customerProps) {
       .email('Invalid email format')
       .matches(emailRegExp, 'Invalid email format')
       .required('This field is required'),
-    FirstName: Yup.string().required().label('First Name'),
-    LastName: Yup.string().required().label('Last Name'),
-    Middlename: Yup.string().required().label('Middle Name'),
+    FirstName: Yup.string()
+      .required()
+      .matches(/^[a-zA-Z]$/, 'Only alphabetics are allowed for this field')
+      .label('First Name'),
+    LastName: Yup.string()
+      .matches(/^[a-zA-Z]$/, 'Only alphabetics are allowed for this field')
+      .required()
+      .label('Last Name'),
+    Middlename: Yup.string()
+      .matches(/^[a-zA-Z]$/, 'Only alphabetics are allowed for this field')
+      .required()
+      .label('Middle Name'),
   })
   const API_URL_DATA = process.env.REACT_APP_IMG_PATH
 
@@ -272,7 +281,7 @@ function CustomerFormModal({customerById}: customerProps) {
               <div className='col-lg-4'>
                 <label className='form-label fw-bold required'>First Name</label>
                 <input
-                  placeholder='First name'
+                  placeholder='First Name'
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
@@ -297,9 +306,9 @@ function CustomerFormModal({customerById}: customerProps) {
               </div>
               {/* Middle name */}
               <div className='col-lg-4'>
-                <label className='form-label fw-bold required'>Middle name</label>
+                <label className='form-label fw-bold required'>Middle Name</label>
                 <input
-                  placeholder='Middle name'
+                  placeholder='Middle Name'
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
@@ -326,7 +335,7 @@ function CustomerFormModal({customerById}: customerProps) {
               <div className='col-lg-4'>
                 <label className='form-label fw-bold required'>Last Name</label>
                 <input
-                  placeholder='Last name'
+                  placeholder='Last Name'
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
@@ -353,9 +362,9 @@ function CustomerFormModal({customerById}: customerProps) {
             {/* Company name */}
             <div className='row w-100 mx-0 mb-4 gy-4'>
               <div className='col-lg-6'>
-                <label className='form-label fw-bold'>Company name</label>
+                <label className='form-label fw-bold'>Company Name</label>
                 <input
-                  placeholder='Company name'
+                  placeholder='Company Name'
                   className='form-control form-control-lg form-control-solid'
                   type='text'
                   autoComplete='off'
@@ -409,7 +418,7 @@ function CustomerFormModal({customerById}: customerProps) {
               <div className='col-lg-3'>
                 <label className='form-label fw-bold required'>User Name</label>
                 <input
-                  placeholder='Username'
+                  placeholder='User Name'
                   name='UserName'
                   className='form-control form-control-lg form-control-solid'
                   type='text'

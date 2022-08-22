@@ -20,7 +20,7 @@ let validationSchemaNewForm = Yup.object({
   productId: Yup.number().required('This field is required'),
   quantity: Yup.number().required('This field is required'),
   deliveredById: Yup.number().required('This fied is required'),
-  zoneId: Yup.number().required('This fielld is required'),
+  zoneId: Yup.number().required('This fied is required'),
 })
 
 const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {

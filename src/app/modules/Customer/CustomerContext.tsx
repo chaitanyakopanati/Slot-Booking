@@ -67,6 +67,7 @@ let ListDataContext = createContext<CustomerDataContextModel>({
     connectionTypeId: '',
     userName: '',
     createdById: '',
+    dueDate: '',
     orderByColumnName: 'createdAt',
     sortColumnDir: 'desc',
   },
@@ -111,6 +112,7 @@ const CustomerContext: FC = ({children}) => {
     connectionTypeId: '',
     userName: '',
     createdById: '',
+    dueDate: '',
     orderByColumnName: 'createdAt',
     sortColumnDir: 'desc',
   })
@@ -126,7 +128,7 @@ const CustomerContext: FC = ({children}) => {
   const [totalData, setTotalData] = useState<number>(0)
   const [pageCount, setPageCount] = useState<number>(0)
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
-  const [dueDate, setDueDate] = useState(0)
+  const [dueDate, setDueDate] = useState(null)
 
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
 

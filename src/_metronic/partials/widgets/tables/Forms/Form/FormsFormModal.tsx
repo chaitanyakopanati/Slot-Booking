@@ -366,7 +366,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       <label className='form-label fw-bold required'>User Name</label>{' '}
                       <input
                         name='userName'
-                        placeholder='Username'
+                        placeholder='User Name'
                         className='form-control form-control-lg form-control-solid'
                         value={formik.values.userName || ''}
                         autoComplete='off'
@@ -442,7 +442,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-md-3'>
-                      <label className='form-label fw-bold required'>Form date</label>
+                      <label className='form-label fw-bold required'>Form Date</label>
                       <input
                         className='form-control form-control-lg form-control-solid'
                         type='date'
@@ -450,7 +450,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         value={formik.values.formdate}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        placeholder='Form date'
+                        placeholder='Form Date'
                         autoComplete='off'
                       />
                       <div className='erro2' style={{color: 'red'}}>
@@ -461,12 +461,12 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     </div>
 
                     <div className='col-md-3'>
-                      <label className='form-label fw-bold required'>Form type</label>
+                      <label className='form-label fw-bold required'>Form Type</label>
                       <select
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('formtype')}
                       >
-                        <option value=''>select Form Type</option>
+                        <option value=''>Select Form Type</option>
                         <option value='1'>New</option>
                         <option value='2'>Renew </option>
                         <option value='3'>Upgrade </option>
@@ -510,7 +510,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('companyid')}
                       >
-                        <option value=''>select Company</option>
+                        <option value=''>Select Company</option>
                         {getDataAllTypeCompany.map((TypeData: any, index) => {
                           return (
                             <option key={index} value={TypeData.id}>
@@ -532,7 +532,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('packagecatid')}
                       >
-                        <option value=''>select Packages Category</option>
+                        <option value=''>Select Packages Category</option>
                         {getPackagesCategory?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -546,7 +546,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
                   <div className='row mb-6'>
                     <div className='col-md-4'>
-                      <label className='form-label fw-bold'>Package type</label>
+                      <label className='form-label fw-bold'>Package Type</label>
                       <select
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('pacakgetype')}
@@ -563,7 +563,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('packageid')}
                       >
-                        <option value=''>select Packages Category</option>
+                        <option value=''>Select Packages Category</option>
                         {getPackages?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
@@ -585,7 +585,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           className='form-control form-control-solid'
-                          placeholder='Package validity'
+                          placeholder='Package Validity'
                         />
                       </div>
                     </div>
@@ -616,7 +616,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Installation cost</label>
+                  <label className='form-label fw-bold'>Installation Cost</label>
                   <div className='input-group'>
                     <span className='input-group-text border-0'>₹</span>
                     <input
@@ -626,7 +626,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className='form-control form-control-solid'
-                      placeholder='Installation cost'
+                      placeholder='Installation Cost'
                     />
                   </div>
                   <div className='erro2' style={{color: 'red'}}>
@@ -818,14 +818,14 @@ const FormsFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Cheque date</label>
+                  <label className='form-label fw-bold'>Cheque Date</label>
                   <input
                     type='date'
                     name='chequedate'
                     value={formik.values.chequedate}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder='Cheque date'
+                    placeholder='Cheque Date'
                     className='form-control form-control-solid'
                   />
                 </div>
@@ -833,12 +833,12 @@ const FormsFormModal: FC<Props> = ({category}) => {
 
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold required'>receiver</label>
+                  <label className='form-label fw-bold required'>Receiver</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('receiverid')}
                   >
-                    <option value=''>select receiver Name</option>
+                    <option value=''>Select Receiver Name</option>
                     {getReciever?.map((row, index) => {
                       return (
                         <option key={index} value={row?.id}>
@@ -855,27 +855,27 @@ const FormsFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Activation date</label>
+                  <label className='form-label fw-bold'>Activation Date</label>
                   <input
                     type='date'
                     name='activationdate'
                     value={formik.values.activationdate}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder='Activation date'
+                    placeholder='Activation Date'
                     className='form-control form-control-solid'
                   />
                 </div>
 
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Expiry date</label>
+                  <label className='form-label fw-bold'>Expiry Date</label>
                   <input
                     type='date'
                     name='expirydate'
                     value={formik.values.expirydate}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    placeholder='Expiry date'
+                    placeholder='Expiry Date'
                     className='form-control form-control-solid'
                   />
                 </div>
@@ -910,10 +910,10 @@ const FormsFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-md-3'>
-                  <label className='form-label fw-bold'>Third party</label>
+                  <label className='form-label fw-bold'>Third Party</label>
                   <input
                     type='text'
-                    placeholder='Third party'
+                    placeholder='Third Party'
                     name='thirdparty'
                     value={formik.values.thirdparty}
                     onChange={formik.handleChange}
@@ -938,13 +938,13 @@ const FormsFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-md-2'>
-                  <label className='form-label fw-bold required'>Form submit</label>
+                  <label className='form-label fw-bold required'>Form Submit</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('status')}
                     autoComplete='off'
                   >
-                    <option value=''>Select status</option>
+                    <option value=''>Select Status</option>
                     <option value='1'>Done</option>
                     <option value='2'>Pending</option>
                     <option value='3'>Cancel</option>

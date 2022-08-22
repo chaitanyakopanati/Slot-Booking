@@ -47,6 +47,7 @@ export interface postlistData {
   isnotifyinstaller: boolean
   remark: string
   userid: number
+  wirelessTypeId: any
 }
 
 export interface GetAllData {
@@ -100,6 +101,7 @@ export interface putInstallationsmodel {
   userid: number
   connectiontypeId: number
   iptypeId: number
+  wirelessTypeId: any
 }
 export interface putInstallationsmodel1 {
   data: getInstallationsData

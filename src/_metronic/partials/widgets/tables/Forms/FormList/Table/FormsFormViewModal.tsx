@@ -110,12 +110,12 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
               <div className='col-md-12'>
                 <div className='row mb-6 gy-4'>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold required'>Username</label>
+                    <label className='form-label fw-bold required'>User Name</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       value={initialvalues.userName}
                       type='text'
-                      placeholder='Username'
+                      placeholder='User Name'
                       autoComplete='off'
                       disabled
                       readOnly
@@ -136,14 +136,14 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold '>Company name</label>
+                    <label className='form-label fw-bold '>Company Name</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='text'
                       value={initialvalues.companyName}
                       disabled
                       readOnly
-                      placeholder='Company name'
+                      placeholder='Company Name'
                       autoComplete='off'
                     />
                   </div>
@@ -174,11 +174,11 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Form date</label>
+                    <label className='form-label fw-bold'>Form Date</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='date'
-                      placeholder='Form date'
+                      placeholder='Form Date'
                       value={initialvalues.formdate}
                       disabled
                       readOnly
@@ -264,11 +264,11 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Form type</label>
+                    <label className='form-label fw-bold'>Form Type</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='text'
-                      placeholder='Form type'
+                      placeholder='Form Type'
                       value={initialvalues.formtype}
                       disabled
                       readOnly
@@ -301,11 +301,11 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Package category</label>
+                    <label className='form-label fw-bold'>Package Category</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='text'
-                      placeholder='Package category'
+                      placeholder='Package Category'
                       value={initialvalues.packagecatName}
                       disabled
                       readOnly
@@ -314,11 +314,11 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Package type</label>
+                    <label className='form-label fw-bold'>Package Type</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       type='text'
-                      placeholder='Package type'
+                      placeholder='Package Type'
                       value={initialvalues.pacakgetype}
                       disabled
                       readOnly
@@ -346,7 +346,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                       <input
                         type='number'
                         className='form-control form-control-solid'
-                        placeholder='Package validity'
+                        placeholder='Package Validity'
                         value={initialvalues.packagevalidity}
                         disabled
                         readOnly
@@ -371,12 +371,12 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Installation cost</label>
+                    <label className='form-label fw-bold'>Installation Cost</label>
                     <div className='input-group'>
                       <span className='input-group-text border-0'>₹</span>
                       <input
                         type='number'
-                        placeholder='Installation cost'
+                        placeholder='Installation Cost'
                         value={initialvalues.installationcost}
                         disabled
                         readOnly
@@ -523,10 +523,10 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Cheque date</label>
+                    <label className='form-label fw-bold'>Cheque Date</label>
                     <input
                       type='date'
-                      placeholder='Cheque no'
+                      placeholder='Cheque No'
                       value={initialvalues.chequedate}
                       disabled
                       readOnly
@@ -548,10 +548,10 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Activation date</label>
+                    <label className='form-label fw-bold'>Activation Date</label>
                     <input
                       type='date'
-                      placeholder='Activation date'
+                      placeholder='Activation Date'
                       value={initialvalues.activationdate}
                       disabled
                       readOnly
@@ -561,10 +561,10 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Expiry date</label>
+                    <label className='form-label fw-bold'>Expiry Date</label>
                     <input
                       type='date'
-                      placeholder='Expiry date'
+                      placeholder='Expiry Date'
                       value={initialvalues.expirydate}
                       disabled
                       readOnly
@@ -599,10 +599,10 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                   </div>
 
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Third party</label>
+                    <label className='form-label fw-bold'>Third Party</label>
                     <input
                       type='text'
-                      placeholder='Third party'
+                      placeholder='Third Party'
                       value={initialvalues.thirdparty}
                       disabled
                       readOnly
@@ -624,7 +624,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold'>Form submit</label>
+                    <label className='form-label fw-bold'>Form Submit</label>
                     <input
                       type='text'
                       placeholder='Form Submit'

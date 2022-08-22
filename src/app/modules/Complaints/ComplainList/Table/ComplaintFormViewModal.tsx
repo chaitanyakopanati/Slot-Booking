@@ -111,7 +111,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                     />
                   </div>
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Username</label>
+                    <label className='form-label fw-bold'>User Name</label>
                     <input
                       placeholder='Name Here'
                       value={props.values.username}
@@ -139,7 +139,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
 
                 <div className='row w-100 mx-0 mb-4 gy-4'>
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Company name</label>
+                    <label className='form-label fw-bold'>Company Name</label>
                     <input
                       placeholder='Name Here'
                       value={props.values.companyName}
@@ -177,7 +177,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                   </div>
                   <div className='col-lg-6'>
                     <div data-select2-id='select-role'>
-                      <label className='form-label fw-bold'>Complaint type</label>
+                      <label className='form-label fw-bold'>Complaint Type</label>
                       <input
                         placeholder='Complaint Type'
                         value={props.values.complaintTypeName}

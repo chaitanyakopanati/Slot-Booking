@@ -250,7 +250,10 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                     <div
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
                     >
-                      <label className='form-label fw-bold'>Inquiry date</label>
+                      <div className='d-flex'>
+                        <label className='form-label fw-bold'>Inquiry date</label>
+                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                      </div>
                       <span
                         role='button'
                         onClick={() => {
@@ -259,9 +262,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                           setStartDate('')
                           setEndDate('')
                         }}
-                      >
-                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
-                      </span>
+                      ></span>
                       <div>
                         <DateRangePicker
                           initialSettings={{

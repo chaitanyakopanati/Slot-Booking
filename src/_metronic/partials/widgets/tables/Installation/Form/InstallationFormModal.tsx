@@ -29,6 +29,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     getcableTypeData,
     setSuggestionUserText,
     getUserNameData,
+    DataGetAllTypegetWirelessTypes,
+    getDataAllTypeWireless,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
@@ -51,7 +53,12 @@ const InstallationFormModal: FC<Props> = ({category}) => {
     userid: '',
     connectiontype: '',
     userName: '',
+    wirelessTypeId: '',
   })
+
+  useEffect(() => {
+    DataGetAllTypegetWirelessTypes()
+  }, [])
 
   useEffect(() => {
     if (itemIdForUpdate == 'add' && category.data.userName && category.data.userid) {
@@ -74,6 +81,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         connectiontype: category.data?.connectiontype || '',
         isnotifyinstaller: category.data?.isnotifyinstaller || false,
         createdbyId: auth?.userId,
+        wirelessTypeId: category?.data?.wirelessTypeId || '',
       })
     }
     if (itemIdForUpdate == 'add') {
@@ -96,6 +104,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         connectiontype: category.data?.connectiontype || '',
         isnotifyinstaller: category.data?.isnotifyinstaller || false,
         createdbyId: auth?.userId,
+        wirelessTypeId: category?.data?.wirelessTypeId || '',
       })
     } else {
       setInitialValues({
@@ -117,6 +126,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
         connectiontype: category?.data?.connectiontype || '',
         isnotifyinstaller: category?.data?.isnotifyinstaller || false,
         modifyby: auth?.userId,
+        wirelessTypeId: category?.data?.wirelessTypeId || '',
       })
     }
   }, [itemIdForUpdate, category])
@@ -152,6 +162,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       values.installerid = +values.installerid
       values.zonepointid = +values.zonepointid
       values.cabletypeid = +values.cabletypeid
+      // values?.wirelessTypeId = +values?.wirelessTypeId
+
       try {
         if (values.id) {
           // Edit Api Response
@@ -334,13 +346,16 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                     <label className='form-label fw-bold'>Wireless Type</label>
                     <select
                       className='form-select form-select-solid'
-                      {...formik.getFieldProps('connectiontype')}
+                      {...formik.getFieldProps('wirelessTypeId')}
                     >
                       <option value=''>Select Wireless Type</option>
-                      <option value='1'>Cable</option>
-                      <option value='2'>Wireless</option>
-                      <option value='3'>Fiber</option>
-                      <option value='4'>Other</option>
+                      {getDataAllTypeWireless.map((TypeData: any, index) => {
+                        return (
+                          <option key={index} value={TypeData.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
                     </select>
                     <div className='erro2' style={{color: 'red'}}>
                       {formik.touched.connectiontype && formik.errors.connectiontype

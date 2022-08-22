@@ -9,6 +9,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 import Userservice from '../helperUser/ApiDatarequestUser'
 import {GetAllData} from '../helperUser/ModelUserType'
 import {useQuery} from 'react-query'
+import {KTSVG} from '../../../../_metronic/helpers'
 
 const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$')
 
@@ -151,43 +152,40 @@ export const UserEditePassword = () => {
         className='form'
         onSubmit={formik.handleSubmit}
       >
-        {/* <div className='row w-100 mx-0 mb-4 gy-4'>
-          <div className='col'>
-            <label className='form-label fw-bold required'>New password </label>
-            <div className='d-flex justify-content-between align-center'>
-              <input
-                placeholder='New password '
-                className='form-control form-control-lg form-control-solid'
-                value={formik.values.newpassword}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                type={isRevealPwd ? 'text' : 'password'}
-                name='newpassword'
-                autoComplete='off'
-              />
-              <img
-                style={{position: 'absolute', right: '15px'}}
-                title={isRevealPwd ? 'Hide password' : 'Show password'}
-                src={isRevealPwd ? hidePwdImg : showPwdImg}
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
-              />
+        <div className='modal-header d-flex justify-content-start'>
+          {/* begin::Modal title */}
+          <span
+            className='svg-icon svg-icon-2x'
+            onClick={() => navigation('/master/users/form/${id}')}
+          >
+            <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
+          </span>
+          <h2 className='fw-bolder'>Edit User Password</h2>
+          {/* end::Modal title */}
+
+          {/* begin::Close Icon*/}
+
+          {/* <CustomTooltip title='Close'>
+            <div
+              className='btn btn-icon btn-sm btn-active-icon-primary'
+              onClick={() => setItemIdForUpdate(undefined)}
+              style={{cursor: 'pointer'}}
+            >
+              <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
             </div>
-          </div>
+          </CustomTooltip> */}
 
-          <div className='erro2' style={{color: 'red'}}>
-            {formik.touched.newpassword && formik.errors.newpassword
-              ? formik.errors.newpassword
-              : null}
-          </div>
-        </div> */}
+          {/* end::Close Icon*/}
+        </div>
 
-        <div className='row w-100 mx-0 mb-4 gy-4'>
+        <div className='row w-100 mx-0 mb-4 gy-4 mt-2'>
           <div className='col'>
             <label className='form-label fw-bold required'>New password</label>
             <div className='d-flex justify-content-between align-items-center'>
               <input
                 placeholder='New password '
                 className='form-control form-control-lg form-control-solid'
+                id='ex3'
                 value={formik.values.newpassword}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -245,7 +243,13 @@ export const UserEditePassword = () => {
         </div> */}
         <div className='modal-footer border-0 pb-0 pt-0'>
           <CustomTooltip title='Close form'>
-            <button type='reset' className='btn btn-light'>
+            <button
+              type='reset'
+              className='btn btn-light'
+              onClick={() => {
+                navigation(`/master/users/form/${id}`)
+              }}
+            >
               Close
             </button>
           </CustomTooltip>

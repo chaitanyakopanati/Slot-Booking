@@ -240,7 +240,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                           <label className='form-label fw-bold required'>User Name</label>{' '}
                           <input
                             name='username'
-                            placeholder='userName'
+                            placeholder='User Name'
                             className='form-control form-control-lg form-control-solid'
                             value={formik.values.username || ''}
                             autoComplete='off'
@@ -304,7 +304,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                     </div>
                   </div>
                   <div className='col-lg-6'>
-                    <label className='form-label fw-bold'>Complaint type</label>
+                    <label className='form-label fw-bold'>Complaint Type</label>
                     <div data-select2-id='select-role'>
                       <select
                         className='form-select form-select-solid'
@@ -356,7 +356,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                         className='form-select form-select-solid'
                         {...formik.getFieldProps('assigntechnicianid')}
                       >
-                        <option value=''>select Techanician</option>
+                        <option value=''>Select Techanician</option>
                         {getDataAllTypeTechnician.map((getDataAllTypeTechnician: any, index) => {
                           return (
                             <option key={index} value={getDataAllTypeTechnician.id}>
