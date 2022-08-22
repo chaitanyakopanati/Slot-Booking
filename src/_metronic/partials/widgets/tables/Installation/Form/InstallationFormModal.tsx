@@ -303,12 +303,12 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                   </div>
                 </div>
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Main point</label>
+                  <label className='form-label fw-bold'>Main Point</label>
                   <select
                     className='form-select form-select-solid'
                     {...formik.getFieldProps('zonepointid')}
                   >
-                    <option value=''>Select MainPoint</option>
+                    <option value=''>Select Main Point</option>
                     {getMainPoint.map((TypeData: any, index) => {
                       return (
                         <option key={index} value={TypeData.id}>
@@ -435,9 +435,9 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                 </div>
 
                 <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Access point IP</label>
+                  <label className='form-label fw-bold'>Access Point IP</label>
                   <input
-                    placeholder='Access point IP'
+                    placeholder='Access Point IP'
                     className='form-control form-control-lg form-control-solid'
                     value={formik.values.accesspointip}
                     onChange={(e) => {

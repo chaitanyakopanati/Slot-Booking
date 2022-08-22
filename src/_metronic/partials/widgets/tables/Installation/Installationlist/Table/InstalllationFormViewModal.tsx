@@ -97,9 +97,9 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
 
           <div className='row w-100 mx-0 mb-4 gy-4'>
             <div className='col-lg-3'>
-              <label className='form-label fw-bold'>UserName</label>
+              <label className='form-label fw-bold'>User Name</label>
               <input
-                placeholder='userName'
+                placeholder='user Name'
                 value={initialvalues.userName}
                 type='text'
                 name='userName'
@@ -112,7 +112,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
             <div className='col-lg-3'>
               <label className='form-label fw-bold'>Name</label>
               <input
-                placeholder='name'
+                placeholder='Name'
                 value={initialvalues.name}
                 type='text'
                 name='name'
@@ -123,9 +123,9 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
             </div>
 
             <div className='col-lg-3'>
-              <label className='form-label fw-bold'>Company name</label>
+              <label className='form-label fw-bold'>Company Name</label>
               <input
-                placeholder='CompanyName'
+                placeholder='Company Name'
                 value={initialvalues.companyName}
                 name='companyName'
                 type='text'
@@ -179,7 +179,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               <input
                 placeholder='Email'
                 value={initialvalues.email}
-                name='email'
+                name='Email'
                 type='text'
                 className='form-control form-control-lg form-control-solid'
                 disabled

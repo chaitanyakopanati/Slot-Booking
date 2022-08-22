@@ -103,11 +103,13 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
 
   const handleStatuschange = (e: any) => {
+    setPageNo(1)
     setStatusId(e.target.value)
   }
 
   // sale excutive
   const handleSaleExcutivechange = (e: any) => {
+    setPageNo(1)
     setSalesExecutiveId(e.target.value)
   }
 
