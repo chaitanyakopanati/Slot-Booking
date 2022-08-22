@@ -59,7 +59,7 @@ export function Login() {
         toast.success('Sign in Successfully')
       } catch (error) {
         let {data}: any = error
-        console.log(data, 'response')
+        console.log(data, 'responsefff')
         if (data.message) {
           setStatus(data.message)
           toast.error(data.message)
@@ -103,7 +103,6 @@ export function Login() {
     }
     getCookieData()
   }, [])
-
 
   const setCookie = () => {
     var username = formik.values.username

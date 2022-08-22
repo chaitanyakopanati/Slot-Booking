@@ -41,7 +41,7 @@ export function requestPassword(username: any) {
   })
 }
 
-export function requestPasswords(username: any) {
+export  function requestPasswords(username: any) {
   return axios.get<{result: any}>(`${API_URL}/ForgotPassword/${username}`)
 }
 

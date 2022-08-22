@@ -105,7 +105,7 @@ const InstallationTable = () => {
   const setBackGroundColour = (row: any) => {
     if (row.status == 1) {
       return '#f5c6cb'
-    } else if (row.status == 0) {
+    } else if (row.status == 3) {
       return 'rgb(235 235 159)'
     } else {
       return ''

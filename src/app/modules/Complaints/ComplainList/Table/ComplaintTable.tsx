@@ -161,12 +161,20 @@ const ComplaintTable = () => {
             <tr className='fw-bolder text-muted  bg-dark'>
               <th className='max-w-60px min-w-40px rounded-start ps-4 d-flex justify-content-start'>
                 {' '}
-                <input
-                  type='checkbox'
-                  className='mx-4'
-                  onClick={selectAllComplaint}
-                  checked={isCheck}
-                />
+                {auth?.roleId != 2 &&
+                auth?.roleId != 3 &&
+                auth?.roleId != 5 &&
+                auth?.roleId !== 6 &&
+                auth?.roleId !== 7 ? (
+                  <input
+                    type='checkbox'
+                    className='mx-4'
+                    onClick={selectAllComplaint}
+                    checked={isCheck}
+                  />
+                ) : (
+                  ''
+                )}
                 Complaint No.
               </th>
               <th className='max-w-60px '>User Name</th>
@@ -202,14 +210,22 @@ const ComplaintTable = () => {
                   >
                     <td>
                       <div className='text-dark fw-bolder fs-6 ps-4 text-center d-flex justify-content-start'>
-                        <input
-                          className='mx-4'
-                          type='checkbox'
-                          onClick={() => {
-                            multipleSelectComplaint(row.id)
-                          }}
-                          checked={addComplaint.includes(row.id)}
-                        />
+                        {auth?.roleId != 2 &&
+                        auth?.roleId != 3 &&
+                        auth?.roleId != 5 &&
+                        auth?.roleId !== 6 &&
+                        auth?.roleId !== 7 ? (
+                          <input
+                            className='mx-4'
+                            type='checkbox'
+                            onClick={() => {
+                              multipleSelectComplaint(row.id)
+                            }}
+                            checked={addComplaint.includes(row.id)}
+                          />
+                        ) : (
+                          ''
+                        )}
 
                         {DataWiseIndex + index + 1}
                       </div>

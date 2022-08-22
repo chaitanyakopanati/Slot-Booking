@@ -36,14 +36,14 @@ function CustomerFormModal({customerById}: customerProps) {
       .required('This field is required'),
     FirstName: Yup.string()
       .required()
-      .matches(/^[a-zA-Z]$/, 'Only alphabetics are allowed for this field')
+      .matches(/^[a-zA-Z\s]*$/, 'Only alphabetics are allowed for this field')
       .label('First Name'),
     LastName: Yup.string()
-      .matches(/^[a-zA-Z]$/, 'Only alphabetics are allowed for this field')
+      .matches(/^[a-zA-Z\s]*$/, 'Only alphabetics are allowed for this field')
       .required()
       .label('Last Name'),
     Middlename: Yup.string()
-      .matches(/^[a-zA-Z]$/, 'Only alphabetics are allowed for this field')
+      .matches(/^[a-zA-Z\s]*$/, 'Only alphabetics are allowed for this field')
       .required()
       .label('Middle Name'),
   })

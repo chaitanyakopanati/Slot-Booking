@@ -151,7 +151,7 @@ function CustomerHeader() {
           <div className='row w-100 mx-0 mt-5'>
             {/* username */}
             <div className='col-lg-3'>
-              <label className='form-label fw-bold'>Username</label>
+              <label className='form-label fw-bold'>User Name</label>
               <input
                 placeholder='All'
                 className='form-control form-control-lg form-control-solid'
@@ -201,12 +201,13 @@ function CustomerHeader() {
                     value={filter.companyId}
                     onChange={(e) => {
                       setFilter((old) => {
+                        // debugger
                         return {...old, companyId: +e.target.value}
                       })
                     }}
                   >
-                    <option value=''>All</option>
-                    <option value='0'>Not described</option>
+                    <option value={''}>All</option>
+                    <option value={0}>Not described</option>
 
                     {companies.map((company) => {
                       return (
@@ -259,7 +260,7 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
-                    <option value='0'>Not described</option>
+                    <option value={0}>Not described</option>
 
                     {installer.map((user) => {
                       return (
@@ -286,7 +287,7 @@ function CustomerHeader() {
                     }}
                   >
                     <option value=''>All</option>
-                    <option value='0'>Not described</option>
+                    <option value={0}>Not described</option>
                     {salesExecutve.map((user) => {
                       return (
                         <option key={user.id} value={user.id}>

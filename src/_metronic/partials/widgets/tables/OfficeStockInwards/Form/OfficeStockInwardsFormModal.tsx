@@ -258,7 +258,12 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                     <input
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.serialno}
-                      onChange={props.handleChange}
+                      // onChange={props.handleChange}
+                      onChange={(e: any) => {
+                        if (e.target.value.length <= 20) {
+                          props.handleChange(e)
+                        }
+                      }}
                       onBlur={props.handleBlur}
                       type='text'
                       name='serialno'

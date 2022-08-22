@@ -50,6 +50,9 @@ let validationSchemaNewForm = Yup.object({
   chequeamount: Yup.number()
     .min(0, 'This value should be between 0 and 999999')
     .max(999999, 'This value should be between 0 and 999999'),
+  packagevalidity: Yup.number()
+    .min(0, 'This value should be between 0 and 64')
+    .max(64, 'This value should be between 0 and 64'),
 })
 
 const FormsFormModal: FC<Props> = ({category}) => {
@@ -587,6 +590,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                           className='form-control form-control-solid'
                           placeholder='Package Validity'
                         />
+                      </div>
+                      <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.packagevalidity && formik.errors.packagevalidity
+                          ? formik.errors.packagevalidity
+                          : null}
                       </div>
                     </div>
                   </div>

@@ -124,12 +124,13 @@
 import React, {useState} from 'react'
 import * as Yup from 'yup'
 import clsx from 'clsx'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useFormik} from 'formik'
 import {requestPassword, requestPasswords} from '../core/_requests'
 import {toast} from 'react-toastify'
 import {CustomTooltip} from '../../../routing/customtooltip'
 import {error} from 'console'
+import {useLoader} from '../../loader/LoaderContext'
 
 const initialValues = {
   username: '',
@@ -142,36 +143,79 @@ const forgotPasswordSchema = Yup.object().shape({
 export function ForgotPassword() {
   const [loading, setLoading] = useState(false)
   const [hasErrors, setHasErrors] = useState<boolean | undefined>(undefined)
+  let {LoderActions} = useLoader()
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: forgotPasswordSchema,
-    onSubmit: (values, {setStatus, setSubmitting}) => {
+    onSubmit: async (values, {setStatus, setSubmitting}) => {
       console.log('ggg')
 
-      // debugger
       console.log('kkkk')
 
-      setLoading(true)
-      setHasErrors(undefined)
+      LoderActions(true)
+
+      // setHasErrors(undefined)
       // toast.success('Data Successfully')
       // toast.success(payload.message)
 
-      setTimeout(() => {
-        requestPasswords(values.username)
-          .then(({data: {result}}) => {
-            setHasErrors(false)
-            setLoading(false)
-            toast.success(result.message)
-          })
-          .catch(() => {
-            setHasErrors(true)
-            setLoading(false)
-            toast.error('Wrong UserName')
+      // setTimeout(() => {
+      //   requestPasswords(values.username)
+      //     .then(({data: {result}}) => {
+      //       debugger
+      //       setHasErrors(false)
+      //       // setLoading(false)
+      //       if (result.status == true) {
+      //         toast.success(result.message)
+      //         console.log('ppp', result.message)
+      //       } else {
+      //         toast.error(result.message)
+      //       }
+      //       setLoading(false)
+      //     })
+      //     .catch(() => {
+      //       setHasErrors(true)
+      //       setLoading(false)
+      //       // toast.error('Wrong UserName')
+      //       // toast.error(error.result.message)
 
-            setSubmitting(false)
-            setStatus('The login detail is incorrect')
-          })
-      }, 1000)
+      //       setSubmitting(false)
+      //       setStatus('The login detail is incorrect')
+      //     })
+      // })
+
+      // setTimeout(() => {
+      // .then(({data: {result}}) => {
+      // debugger
+      // setHasErrors(false)
+      // setLoading(false)
+      let response: any = await requestPasswords(values.username)
+      console.log(response, 'result11111111111111111111')
+      try {
+        // LoderActions(false)
+        toast.success(response.message)
+        console.log(response, 'result222222222222222222222222222222')
+        if (response.data.success == true) {
+          LoderActions(false)
+
+          toast.success(response.data.message)
+          console.log('ppp', response.data.message)
+          navigate('/auth')
+        } else {
+          LoderActions(false)
+          console.log('milind')
+
+          toast.success(response.data.message)
+        }
+      } catch (error: any) {
+        console.log('jjjjjjjjj')
+
+        console.log(error, 'raghuggggggggg')
+        LoderActions(false)
+        toast.error(error.data.data.message)
+      }
+      // })
     },
   })
 

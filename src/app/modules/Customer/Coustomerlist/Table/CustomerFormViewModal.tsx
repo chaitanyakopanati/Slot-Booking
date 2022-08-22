@@ -34,7 +34,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
           remark: category.remark || '',
           createdby: category.createdby || '',
           modifyAt: category.modifyAt
-            ? moment(category.modifyAt, 'YYYY-MM-DD,h:mm a').format('YYYY-MM-DD,h:mm a')
+            ? moment.utc(category.modifyAt, 'YYYY-MM-DD,h:mm a').local().format('YYYY-MM-DD,h:mm a')
             : '',
           modifyby: category.modifyby || '',
           createdAt: category.createdAt

@@ -11,6 +11,8 @@ import {ListPageData} from '../../InstallationContext'
 import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 import React from 'react'
+// import closeIcon from '../../../../../app/images/closeIcon.svg'
+import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 
 type Props = {
   category: any
@@ -293,17 +295,23 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
                     >
                       <div>
-                        <label className='form-label fw-bold'>Installer date</label>
-                        <span
-                          role='button'
-                          onClick={() => {
-                            setFromDate('')
-                            setToDate('')
-                            setStartDate('')
-                            setEndDate('')
-                          }}
-                        ></span>
+                        <div className='d-flex'>
+                          <label className='form-label fw-bold'>Installer date</label>
+                          {/* <label className='form-label fw-bold'>Installer date</label> */}
+                          <span
+                            role='button'
+                            onClick={() => {
+                              setFromDate('')
+                              setToDate('')
+                              setStartDate('')
+                              setEndDate('')
+                            }}
+                          >
+                            <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                          </span>
+                        </div>
                       </div>
+
                       <div>
                         <DateRangePicker
                           initialSettings={{

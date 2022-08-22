@@ -249,7 +249,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         <input
                           className='form-control form-control-lg form-control-solid'
                           name='area'
-                          value={props.values.Area}
+                          value={props.values.area}
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                           data-kt-autosize='true'
