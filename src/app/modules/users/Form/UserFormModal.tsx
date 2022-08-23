@@ -17,7 +17,8 @@ type Props = {
 }
 
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
-const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+// const emailRegExp = RegExp(/^\w+@[a-zA-Z0-9._%+-]+?\.[a-zA-Z]{2,3}$/)
+const emailRegExp = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
 
 let validationSchemaNewForm = Yup.object({
   firstname: Yup.string()

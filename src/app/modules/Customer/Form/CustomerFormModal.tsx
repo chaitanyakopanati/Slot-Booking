@@ -21,7 +21,8 @@ function CustomerFormModal({customerById}: customerProps) {
   const suggestionRef: any = useRef()
   const {customer, fetchUsetByRoleNameWithSearch} = ListPageData()
 
-  const emailRegExp = RegExp(/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/)
+  // const emailRegExp = RegExp(/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/)
+  const emailRegExp = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+?\.[A-Z]{2,3}$/i)
 
   const validationSchema = Yup.object({
     UserName: Yup.string().required('This field is required'),

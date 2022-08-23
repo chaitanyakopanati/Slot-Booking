@@ -5,6 +5,7 @@ import moment from 'moment'
 import {KTSVG} from '../../../../../../helpers'
 import {Formik} from 'formik'
 import {ListPageData} from '../../OfficeOldStockOutwardsContext'
+import {useAuth} from '../../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -19,6 +20,7 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
   const {setViewIdForUpdate} = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
+  const {currentUser, auth} = useAuth()
 
   return (
     <>
@@ -70,26 +72,35 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                     </span>
                     <h5 className='modal-title'>View Old office stock outward</h5>
                   </div>
-                  <div className='ms-3'>
-                    {/* begin::  Edit User button */}
-                    <button
-                      // type='submit'
-                      className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
-                      onClick={() => {
-                        setViewIdForUpdate(undefined)
-                        console.log('tttttttttttttttttttttttttttt', category)
-                        console.log('tttttttttttttttttttttttttttt', category.data.id)
-                        navigate(
-                          `/stocks/office-old-stock-outwards/OutwardsOldform/${category.data.id}`
-                        )
-                        // openEditModal(category.id)
-                      }}
-                    >
-                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                      Edit Old office stock outwards
-                    </button>
-                    {/* end::  Edit User button */}
-                  </div>
+
+                  {auth?.roleId != 2 &&
+                  auth?.roleId != 3 &&
+                  auth?.roleId != 5 &&
+                  auth?.roleId !== 6 &&
+                  auth?.roleId !== 7 ? (
+                    <div className='ms-3'>
+                      {/* begin::  Edit User button */}
+                      <button
+                        // type='submit'
+                        className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                        onClick={() => {
+                          setViewIdForUpdate(undefined)
+                          console.log('tttttttttttttttttttttttttttt', category)
+                          console.log('tttttttttttttttttttttttttttt', category.data.id)
+                          navigate(
+                            `/stocks/office-old-stock-outwards/OutwardsOldform/${category.data.id}`
+                          )
+                          // openEditModal(category.id)
+                        }}
+                      >
+                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                        Edit Old office stock outwards
+                      </button>
+                      {/* end::  Edit User button */}
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
                 {/* end:: View Modal Header */}
               </div>

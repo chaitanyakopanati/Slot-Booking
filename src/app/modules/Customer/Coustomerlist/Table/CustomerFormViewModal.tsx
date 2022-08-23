@@ -4,6 +4,7 @@ import {FC, useEffect} from 'react'
 import {Formik} from 'formik'
 import moment from 'moment'
 import {useNavigate} from 'react-router-dom'
+import {useAuth} from '../../../auth'
 
 type Props = {
   category: any
@@ -16,6 +17,8 @@ const gstProofPath: string = `${API_URL_DATA}MediaUpload/Customer/GSTCertificate
 const addressProofPath: string = `${API_URL_DATA}MediaUpload/Customer/AddressProof/`
 const CustomerFormViewModal: FC<Props> = ({category}) => {
   const navigation = useNavigate()
+  const {currentUser, auth} = useAuth()
+
   return (
     <>
       <Formik
@@ -72,20 +75,29 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                 </div>
                 <h5 className='modal-title'>View Customer</h5>
               </div>
-              <div className='ms-3'>
-                <a
-                  href='#'
-                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
-                  data-bs-toggle='modal'
-                  data-bs-target='#kt_modal_1'
-                  onClick={() => navigation(`/customers/customersform/${props.values.id}`)}
-                >
-                  <span className='svg-icon svg-icon-gray-500 me-1'>
-                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                  </span>
-                  Edit Customer
-                </a>
-              </div>
+
+              {auth?.roleId != 2 &&
+              auth?.roleId != 3 &&
+              auth?.roleId != 5 &&
+              auth?.roleId !== 6 &&
+              auth?.roleId !== 7 ? (
+                <div className='ms-3'>
+                  <a
+                    href='#'
+                    className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                    data-bs-toggle='modal'
+                    data-bs-target='#kt_modal_1'
+                    onClick={() => navigation(`/customers/customersform/${props.values.id}`)}
+                  >
+                    <span className='svg-icon svg-icon-gray-500 me-1'>
+                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                    </span>
+                    Edit Customer
+                  </a>
+                </div>
+              ) : (
+                ''
+              )}
             </div>
 
             <div className='modal-body'>

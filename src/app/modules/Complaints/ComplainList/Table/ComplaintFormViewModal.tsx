@@ -3,6 +3,7 @@ import {KTSVG} from '../../../../../_metronic/helpers'
 import {Formik} from 'formik'
 import moment from 'moment'
 import {useNavigate} from 'react-router-dom'
+import {useAuth} from '../../../auth'
 
 type Props = {
   category: any
@@ -10,6 +11,7 @@ type Props = {
 
 const ComplaintFormViewModal: FC<Props> = ({category}) => {
   const navigate = useNavigate()
+  const {currentUser, auth} = useAuth()
 
   return (
     <>
@@ -80,20 +82,29 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
                 </div>
                 <h5 className='modal-title'>View complaint</h5>
               </div>
-              <div className='ms-3'>
-                <a
-                  href='#'
-                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
-                  data-bs-toggle='modal'
-                  data-bs-target='#create-modal'
-                  onClick={() => navigate(`/complaint/complaintform/${props.values.id}`)}
-                >
-                  <span className='svg-icon svg-icon-gray-500 me-1'>
-                    <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                  </span>
-                  Edit Complaint
-                </a>
-              </div>
+
+              {auth?.roleId != 2 &&
+              auth?.roleId != 3 &&
+              auth?.roleId != 5 &&
+              auth?.roleId !== 6 &&
+              auth?.roleId !== 7 ? (
+                <div className='ms-3'>
+                  <a
+                    href='#'
+                    className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                    data-bs-toggle='modal'
+                    data-bs-target='#create-modal'
+                    onClick={() => navigate(`/complaint/complaintform/${props.values.id}`)}
+                  >
+                    <span className='svg-icon svg-icon-gray-500 me-1'>
+                      <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                    </span>
+                    Edit Complaint
+                  </a>
+                </div>
+              ) : (
+                ''
+              )}
             </div>
 
             <div className='modal-body'>

@@ -4,6 +4,7 @@ import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import moment from 'moment'
 import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../FormsContext'
+import {useAuth} from '../../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -67,6 +68,8 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
       .format('YYYY-MM-DD,h:mm a'),
   })
 
+  const {currentUser, auth} = useAuth()
+
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
   }
@@ -85,21 +88,29 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
               </span>
               <h5 className='modal-title'>View Form</h5>
             </div>
-            <div className='ms-3'>
-              {/* begin::  Edit User button */}
-              <button
-                // type='submit'
-                className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
-                onClick={() => {
-                  setViewIdForUpdate(undefined)
-                  navigate(`/forms/formsform/${category.data.id}`)
-                }}
-              >
-                <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                Edit Forms
-              </button>
-              {/* end::  Edit User button */}
-            </div>
+            {auth?.roleId != 2 &&
+            auth?.roleId != 3 &&
+            auth?.roleId != 5 &&
+            auth?.roleId !== 6 &&
+            auth?.roleId !== 7 ? (
+              <div className='ms-3'>
+                {/* begin::  Edit User button */}
+                <button
+                  // type='submit'
+                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                  onClick={() => {
+                    setViewIdForUpdate(undefined)
+                    navigate(`/forms/formsform/${category.data.id}`)
+                  }}
+                >
+                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  Edit Forms
+                </button>
+                {/* end::  Edit User button */}
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           {/* end:: View Modal Header */}
         </div>

@@ -4,6 +4,7 @@ import {useLoader} from '../../../../../../../app/modules/loader/LoaderContext'
 import moment from 'moment'
 import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../InstallationContext'
+import {useAuth} from '../../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -13,6 +14,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, setViewIdForUpdate} = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
+  const {currentUser, auth} = useAuth()
 
   const [initialvalues, setInitialvalues] = useState<any>({
     ...category,
@@ -76,21 +78,30 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               </span>
               <h5 className='modal-title'>View installation</h5>
             </div>
-            <div className='ms-3'>
-              {/* begin::  Edit User button */}
-              <button
-                // type='submit'
-                className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
-                onClick={() => {
-                  setViewIdForUpdate(undefined)
-                  navigate(`/installations/installationsform/${category.data.id}`)
-                }}
-              >
-                <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                Edit installation
-              </button>
-              {/* end::  Edit User button */}
-            </div>
+
+            {auth?.roleId != 2 &&
+            auth?.roleId != 3 &&
+            auth?.roleId != 5 &&
+            auth?.roleId !== 6 &&
+            auth?.roleId !== 7 ? (
+              <div className='ms-3'>
+                {/* begin::  Edit User button */}
+                <button
+                  // type='submit'
+                  className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
+                  onClick={() => {
+                    setViewIdForUpdate(undefined)
+                    navigate(`/installations/installationsform/${category.data.id}`)
+                  }}
+                >
+                  <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                  Edit installation
+                </button>
+                {/* end::  Edit User button */}
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           {/* end:: View Modal Header */}
           {/*  */}
