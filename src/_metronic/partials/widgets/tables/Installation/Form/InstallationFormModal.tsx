@@ -110,7 +110,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       setInitialValues({
         ...category,
         id: category?.data?.id,
-        status: category?.data?.status || '',
+        status: '' + category?.data?.status || '',
         installerid: category?.data?.installerid || '',
         zonepointid: category?.data?.zonepointid || '',
         cabletypeid: category?.data?.cabletypeid || '',
@@ -161,7 +161,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       values.cabletypeid = +values.cabletypeid
       values.installerid = +values.installerid
       values.zonepointid = +values.zonepointid
-      values.cabletypeid = +values.cabletypeid
+      values.connectiontype = '' + values.connectiontype
       // values?.wirelessTypeId = +values?.wirelessTypeId
 
       try {

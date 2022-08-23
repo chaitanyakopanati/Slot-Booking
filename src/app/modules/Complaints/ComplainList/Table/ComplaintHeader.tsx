@@ -259,52 +259,62 @@ const ComplaintHeader = () => {
                         <span className='d-none d-sm-block ms-3'>Filter</span>
                       </div>
                     </div>
-
-                    <div
-                      className='d-flex justify-content-end ms-3'
-                      data-kt-user-table-toolbar='base'
-                    >
-                      <div title='Click to add new category'>
-                        <button
-                          type='button'
-                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                          onClick={() => {
-                            navigate('complaintform/add')
-                          }}
-                        >
-                          <span className='svg-icon svg-icon-gray-500 me-1'>
-                            <KTSVG
-                              path='/media/icons/duotune/arrows/arr075.svg'
-                              className='svg-icon-3'
-                            />
-                          </span>
-                          Create Complaint
-                        </button>
+                    {auth?.roleId !== 3 ? (
+                      <div
+                        className='d-flex justify-content-end ms-3'
+                        data-kt-user-table-toolbar='base'
+                      >
+                        <div title='Click to add new category'>
+                          <button
+                            type='button'
+                            className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                            onClick={() => {
+                              navigate('complaintform/add')
+                            }}
+                          >
+                            <span className='svg-icon svg-icon-gray-500 me-1'>
+                              <KTSVG
+                                path='/media/icons/duotune/arrows/arr075.svg'
+                                className='svg-icon-3'
+                              />
+                            </span>
+                            Create Complaint
+                          </button>
+                        </div>
                       </div>
-                    </div>
-
-                    <div
-                      className='d-flex justify-content-end ms-3'
-                      data-kt-user-table-toolbar='base'
-                    >
-                      <div title='Click to add new category'>
-                        <button
-                          type='button'
-                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                          onClick={() => {
-                            deleteMultipleComplaint()
-                          }}
-                        >
-                          <span className='svg-icon svg-icon-gray-500 me-1'>
-                            <KTSVG
-                              path='/media/icons/duotune/general/gen027.svg'
-                              className='svg-icon-3'
-                            />
-                          </span>
-                          Delete Complaints
-                        </button>
+                    ) : (
+                      ''
+                    )}
+                    {auth?.roleId != 2 &&
+                    auth?.roleId != 3 &&
+                    auth?.roleId != 5 &&
+                    auth?.roleId !== 6 &&
+                    auth?.roleId !== 7 ? (
+                      <div
+                        className='d-flex justify-content-end ms-3'
+                        data-kt-user-table-toolbar='base'
+                      >
+                        <div title='Click to add new category'>
+                          <button
+                            type='button'
+                            className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                            onClick={() => {
+                              deleteMultipleComplaint()
+                            }}
+                          >
+                            <span className='svg-icon svg-icon-gray-500 me-1'>
+                              <KTSVG
+                                path='/media/icons/duotune/general/gen027.svg'
+                                className='svg-icon-3'
+                              />
+                            </span>
+                            Delete Complaints
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 )}
               </div>

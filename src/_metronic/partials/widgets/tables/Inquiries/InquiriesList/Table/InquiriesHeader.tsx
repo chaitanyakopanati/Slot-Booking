@@ -217,7 +217,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                   {/* end:: Filter */}
 
                   {/* begin::Create Fault Button*/}
-                  {auth?.roleId == 5 ? (
+                  {auth?.roleId == 5 || auth?.roleId == 3 ? (
                     ''
                   ) : (
                     <div className='d-flex justify-content-end ms-3'>

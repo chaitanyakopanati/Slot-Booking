@@ -259,7 +259,9 @@ const InstallationHeader: FC<Props> = ({category}) => {
                   {/* end:: Filter */}
 
                   {/* begin::Create Installation Button*/}
-                  {auth?.roleId !== 7 ? (
+                  {auth?.roleId == 7 || auth?.roleId == 3 ? (
+                    ''
+                  ) : (
                     <div className='d-flex justify-content-end ms-3'>
                       <div title='Click to add new category'>
                         <button
@@ -279,8 +281,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
                         </button>
                       </div>
                     </div>
-                  ) : (
-                    ''
                   )}
 
                   {/* end::Create Installation Button*/}

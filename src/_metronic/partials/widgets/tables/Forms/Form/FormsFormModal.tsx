@@ -818,7 +818,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
                     type='number'
                     name='chequeno'
                     value={formik.values.chequeno}
-                    onChange={formik.handleChange}
+                    onChange={(e: any) => {
+                      if (e.target.value.length <= 14) {
+                        formik.handleChange(e)
+                      }
+                    }}
                     onBlur={formik.handleBlur}
                     placeholder='Cheque no'
                     className='form-control form-control-solid'
