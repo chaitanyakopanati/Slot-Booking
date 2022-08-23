@@ -46,6 +46,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
     zonepointName: category.data?.zonepointName || '',
     connectiontypeName: category.data?.connectiontypeName || '',
     createdByName: category.data.createdByName || '',
+    wirelessTypeName: category.data.wirelessTypeName || '',
     modifyByName: category.data.modifyByName || '',
     createdAt: moment
       .utc(category.data.createdAt, 'YYYY-MM-DD,h:mm a')
@@ -298,6 +299,18 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
                 className='form-control form-control-lg form-control-solid'
                 disabled
                 placeholder='Cable type'
+              />
+            </div>
+
+            <div className='col-lg-3'>
+              <label className='form-label fw-bold'>Wireless Type</label>
+              <input
+                type='text'
+                value={initialvalues.wirelessTypeName}
+                name='wirelessTypeName'
+                className='form-control form-control-lg form-control-solid'
+                disabled
+                placeholder='Wireless Type'
               />
             </div>
 
