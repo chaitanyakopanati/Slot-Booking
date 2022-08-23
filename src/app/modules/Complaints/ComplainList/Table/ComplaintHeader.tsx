@@ -104,6 +104,12 @@ const ComplaintHeader = () => {
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
 
+  useLayoutEffect(() => {
+    if (auth?.roleId == 7) {
+      setassignToId(auth?.userId)
+    }
+  }, [])
+
   const handlesearchange = (e: any) => {
     setPageNo(1)
     setSearchText(e.target.value)
@@ -149,7 +155,19 @@ const ComplaintHeader = () => {
   }
 
   useEffect(() => {
-    fetchAllComplaint()
+    DataGetAllTypeComplaint()
+    DataGetAllTypeTechnician()
+    DataGetAllTypeZone()
+    DataGetAllFault()
+    DataGetCompaniesName()
+    DataGetPackagesName()
+    DataGetAllTypeCreatedByTypes()
+  }, [])
+
+  useEffect(() => {
+    if (assignToId) {
+      fetchAllComplaint()
+    }
   }, [
     pageNo,
     pageSize,
@@ -169,20 +187,26 @@ const ComplaintHeader = () => {
   ])
 
   useEffect(() => {
-    DataGetAllTypeComplaint()
-    DataGetAllTypeTechnician()
-    DataGetAllTypeZone()
-    DataGetAllFault()
-    DataGetCompaniesName()
-    DataGetPackagesName()
-    DataGetAllTypeCreatedByTypes()
-  }, [])
-
-  useLayoutEffect(() => {
-    if (auth?.roleId == 7) {
-      setassignToId(auth?.userId)
+    if (auth?.roleId !== 7) {
+      fetchAllComplaint()
     }
-  }, [])
+  }, [
+    pageNo,
+    pageSize,
+    searchText,
+    createdBy,
+    zoneId,
+    PackageCategoryId,
+    CompanyId,
+    faultid,
+    zoneId,
+    createdDate,
+    status,
+    complainttypeid,
+    startDate,
+    endDate,
+    assignToId,
+  ])
 
   const deleteMultipleComplaint = () => {
     if (addComplaint.length > 0) {

@@ -76,6 +76,12 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
 
+  useLayoutEffect(() => {
+    if (auth?.roleId == 5) {
+      setSalesExecutiveId(auth?.userId)
+    }
+  }, [])
+
   const openAddCategoryModal = () => {
     setItemIdForUpdate(null)
   }
@@ -119,13 +125,9 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
-    if (auth?.roleId !== 5) {
+    if (salesExecutiveId) {
       fetchAllUser()
     }
-  }, [])
-
-  useEffect(() => {
-    fetchAllUser()
   }, [
     pageNo,
     pageSize,
@@ -140,11 +142,23 @@ const InquiriesHeader: FC<Props> = ({category}) => {
     salesExecutiveId,
   ])
 
-  useLayoutEffect(() => {
-    if (auth?.roleId == 5) {
-      setSalesExecutiveId(auth?.userId)
+  useEffect(() => {
+    if (auth?.roleId !== 5) {
+      fetchAllUser()
     }
-  }, [])
+  }, [
+    pageNo,
+    pageSize,
+    searchText,
+    zoneId,
+    roleId,
+    searchByUsername,
+    createdById,
+    statusId,
+    startDate,
+    endDate,
+    salesExecutiveId,
+  ])
 
   return (
     <>

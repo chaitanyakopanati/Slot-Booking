@@ -197,7 +197,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
   // ])
 
   useEffect(() => {
-    if (auth?.roleId == 7) {
+    if (installerId) {
       fetchAllUsers()
     }
   }, [
