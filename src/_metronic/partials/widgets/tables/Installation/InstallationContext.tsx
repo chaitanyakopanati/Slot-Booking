@@ -69,6 +69,7 @@ export interface ComplaintDataContextModel {
   setStartDate: Dispatch<SetStateAction<string>>
   setEndDate: Dispatch<SetStateAction<string>>
   fetchAllUser: () => void
+  fetchAllUsers: () => void
   DataGetAllTypegetZoneTypes: () => void
   DataGetAllTypeStatus: () => void
   DataGetAllTypeSalesExecutve: () => void
@@ -141,6 +142,7 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
   fetchAllUser: () => {},
+  fetchAllUsers: () => {},
   DataGetAllTypegetZoneTypes: () => {},
   DataGetAllTypeStatus: () => {},
   DataGetAllTypeSalesExecutve: () => {},
@@ -226,6 +228,41 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getDynamicUser Api call */
   }
   let fetchAllUser = async () => {
+    LoderActions(true)
+    try {
+      let response: GetAllInstallationsApi = await InstallationsService.getDynamicInstallations(
+        pageNo,
+        pageSize,
+        searchText,
+        zoneId,
+        statusId,
+        roleId,
+        salesExecutiveId,
+        startDate,
+        endDate,
+        connectionTypeId,
+        mainPointId,
+        installerId,
+        companyId
+      )
+      if (response.success == true) {
+        setGetData(response.data)
+        LoderActions(false)
+        const PageCout = response?.pages
+        setPageCount(Math.floor(PageCout))
+        setTotalData(response.TotalRecords)
+      } else {
+        setGetData([])
+        LoderActions(false)
+        setPageCount(0)
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+  let fetchAllUsers = async () => {
     LoderActions(true)
     try {
       let response: GetAllInstallationsApi = await InstallationsService.getDynamicInstallations(
@@ -497,6 +534,7 @@ const ListDataProvider: FC = ({children}) => {
     setSearchText,
     setSearchByUsername,
     fetchAllUser,
+    fetchAllUsers,
     totalData,
     setTotalData,
     suggestionUserText,

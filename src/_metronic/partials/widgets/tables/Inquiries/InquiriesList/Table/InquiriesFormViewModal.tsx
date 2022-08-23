@@ -26,6 +26,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
     remark: category.data?.remark || '',
     createdby: category.data.createdByName || '',
     modifyby: category.data.modifyByName || '',
+    area: category.data.area || '',
     createdAt: moment
       .utc(category.data.createdAt, 'YYYY-MM-DD,h:mm a')
       .local()
@@ -101,6 +102,20 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
               className='form-control form-control-lg form-control-solid'
               value={initialvalues.address}
               // type='text'
+              disabled
+              readOnly
+            />
+          </div>
+        </div>
+
+        <div className='row w-100 mx-0 mb-4 gy-4'>
+          <div className='col-lg-12'>
+            <label className='form-label fw-bold required'>Area:</label>
+            <input
+              placeholder='Area'
+              className='form-control form-control-lg form-control-solid'
+              type='text'
+              value={initialvalues.area}
               disabled
               readOnly
             />

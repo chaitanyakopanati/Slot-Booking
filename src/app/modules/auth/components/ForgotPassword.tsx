@@ -206,7 +206,7 @@ export function ForgotPassword() {
           LoderActions(false)
           console.log('milind')
 
-          toast.success(response.data.message)
+          toast.error(response.data.message)
         }
       } catch (error: any) {
         console.log('jjjjjjjjj')

@@ -31,13 +31,13 @@ export interface ComplaintDataContextModel {
   setRoleId: Dispatch<SetStateAction<string>>
   setCreatedAt: Dispatch<SetStateAction<string>>
   pageCount: number
-  createdById: number
+  createdById: any
   setPageCount: Dispatch<SetStateAction<number>>
   setCreatedById: Dispatch<SetStateAction<number>>
   pageSize: number
   zoneId: number
   salesExecutiveId: number
-  statusId: number
+  statusId: any
   roleId: string
   createdAt: string
   setPageSize: Dispatch<SetStateAction<number>>
@@ -132,7 +132,7 @@ const ListDataProvider: FC = ({children}) => {
   const [pageSize, setPageSize] = useState<number>(5)
   const [totalData, setTotalData] = useState<number>(100)
   const [pageCount, setPageCount] = useState<number>(0)
-  const [createdById, setCreatedById] = useState<number>(0)
+  const [createdById, setCreatedById] = useState<any>(null)
   const [searchText, setSearchText] = useState('')
   const [searchByUsername, setSearchByUsername] = useState('')
   const [zoneId, setZoneId] = useState(0)
@@ -141,7 +141,7 @@ const ListDataProvider: FC = ({children}) => {
   const [createdAt, setCreatedAt] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
-  const [statusId, setStatusId] = useState<number>(0)
+  const [statusId, setStatusId] = useState<any>(null)
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
   const [getUserNameData, setgetUserNameData] = useState<GetAllDataApiSalesExecutve[]>([])
 

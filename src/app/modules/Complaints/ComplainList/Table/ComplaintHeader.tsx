@@ -68,15 +68,15 @@ const ComplaintHeader = () => {
     addComplaint,
   } = ListPageData()
 
-  useEffect(() => {
-    DataGetAllTypeComplaint()
-    DataGetAllTypeTechnician()
-    DataGetAllTypeZone()
-    DataGetAllFault()
-    DataGetCompaniesName()
-    DataGetPackagesName()
-    DataGetAllTypeCreatedByTypes()
-  }, [])
+  // useEffect(() => {
+  //   DataGetAllTypeComplaint()
+  //   DataGetAllTypeTechnician()
+  //   DataGetAllTypeZone()
+  //   DataGetAllFault()
+  //   DataGetCompaniesName()
+  //   DataGetPackagesName()
+  //   DataGetAllTypeCreatedByTypes()
+  // }, [])
 
   const [fromDate, setFromDate] = useState<any>()
   const [toDate, setToDate] = useState<any>()
@@ -167,6 +167,16 @@ const ComplaintHeader = () => {
     endDate,
     assignToId,
   ])
+
+  useEffect(() => {
+    DataGetAllTypeComplaint()
+    DataGetAllTypeTechnician()
+    DataGetAllTypeZone()
+    DataGetAllFault()
+    DataGetCompaniesName()
+    DataGetPackagesName()
+    DataGetAllTypeCreatedByTypes()
+  }, [])
 
   useLayoutEffect(() => {
     if (auth?.roleId == 7) {

@@ -119,6 +119,12 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
 
   useEffect(() => {
+    if (auth?.roleId !== 5) {
+      fetchAllUser()
+    }
+  }, [])
+
+  useEffect(() => {
     fetchAllUser()
   }, [
     pageNo,

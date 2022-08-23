@@ -38,7 +38,13 @@ function CustomerHeader() {
   var currentTime: any = moment(new Date())
 
   useEffect(() => {
-    fetchZone()
+    if (auth?.roleId == 5) {
+      filter.salesExecutiveId = auth?.userId
+    }
+  }, [])
+
+  useEffect(() => {
+    // fetchZone()
     fetchCompanies()
     fetchUserByRoleName('Admin')
     fetchUserByRoleName('Technician')
@@ -49,11 +55,11 @@ function CustomerHeader() {
   const suggestionRef: any = useRef()
 
   const {currentUser, auth} = useAuth()
-  useEffect(() => {
-    if (auth?.roleId == 5) {
-      filter.salesExecutiveId = auth?.userId
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (auth?.roleId == 5) {
+  //     filter.salesExecutiveId = auth?.userId
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (auth?.roleId !== 5) {

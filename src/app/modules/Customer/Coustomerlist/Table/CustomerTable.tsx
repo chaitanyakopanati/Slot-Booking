@@ -16,11 +16,11 @@ const CustomerTable = () => {
     fetchCustomer()
   }, [filter])
 
-  useEffect(() => {
-    if (auth?.roleId !== 5) {
-      fetchCustomer()
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (auth?.roleId !== 5) {
+  //     fetchCustomer()
+  //   }
+  // }, [])
 
   const navigate = useNavigate()
   const {currentUser, auth} = useAuth()

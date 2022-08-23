@@ -31,6 +31,17 @@ const InstallationTable = () => {
     DataGetAllTypeCompany,
     fetchAllDownload,
     installerId,
+    searchText,
+    zoneId,
+    searchByUsername,
+    createdById,
+    statusId,
+    startDate,
+    endDate,
+    connectionTypeId,
+    mainPointId,
+    salesExecutiveId,
+    companyId,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigate = useNavigate()
@@ -92,6 +103,23 @@ const InstallationTable = () => {
       fetchAllUser()
     }
   }, [])
+
+  // useEffect(() => {
+  //   fetchAllUser()
+  // }, [
+  //   searchText,
+  //   zoneId,
+  //   searchByUsername,
+  //   createdById,
+  //   statusId,
+  //   startDate,
+  //   endDate,
+  //   connectionTypeId,
+  //   mainPointId,
+  //   installerId,
+  //   salesExecutiveId,
+  //   companyId,
+  // ])
 
   const handlesearchange = (e: any) => {
     setPageNo(1)

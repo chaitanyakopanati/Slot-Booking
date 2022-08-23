@@ -56,6 +56,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setCompanyId,
     getCompanyTypeData,
     fetchAllDownload,
+    fetchAllUsers,
   } = ListPageData()
 
   const navigate = useNavigate()
@@ -86,15 +87,21 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
-  useLayoutEffect(() => {
-    if (auth?.roleId == 7) {
-      setInstallerId(auth?.userId)
-    }
-  })
+  // useLayoutEffect(() => {
+  //   if (auth?.roleId == 7) {
+  //     setInstallerId(auth?.userId)
+  //   }
+  // })
 
   {
     /* begin::Search */
   }
+
+  useEffect(() => {
+    if (auth?.roleId == 7) {
+      setInstallerId(auth?.userId)
+    }
+  }, [])
   const handlesearchange = (e: any) => {
     setPageNo(1)
     setSearchText(e.target.value)
@@ -157,14 +164,45 @@ const InstallationHeader: FC<Props> = ({category}) => {
     fetchAllDownload()
   }
 
+  // useEffect(() => {
+  //   if (
+  //     installerId ||
+  //     searchText ||
+  //     zoneId ||
+  //     searchByUsername ||
+  //     createdById ||
+  //     statusId ||
+  //     startDate ||
+  //     endDate ||
+  //     connectionTypeId ||
+  //     mainPointId ||
+  //     salesExecutiveId ||
+  //     companyId
+  //   ) {
+  //     fetchAllUser()
+  //   }
+  // }, [
+  //   searchText,
+  //   zoneId,
+  //   searchByUsername,
+  //   createdById,
+  //   statusId,
+  //   startDate,
+  //   endDate,
+  //   connectionTypeId,
+  //   mainPointId,
+  //   installerId,
+  //   salesExecutiveId,
+  //   companyId,
+  // ])
+
   useEffect(() => {
-    fetchAllUser()
+    if (auth?.roleId == 7) {
+      fetchAllUsers()
+    }
   }, [
-    pageNo,
-    pageSize,
     searchText,
     zoneId,
-    roleId,
     searchByUsername,
     createdById,
     statusId,
@@ -177,6 +215,30 @@ const InstallationHeader: FC<Props> = ({category}) => {
     companyId,
   ])
 
+  useEffect(() => {
+    if (auth?.roleId !== 7) {
+      fetchAllUser()
+    }
+  }, [
+    searchText,
+    zoneId,
+    searchByUsername,
+    createdById,
+    statusId,
+    startDate,
+    endDate,
+    connectionTypeId,
+    mainPointId,
+    installerId,
+    salesExecutiveId,
+    companyId,
+  ])
+
+  // useEffect(() => {
+  //   if (auth?.roleId !== 7) {
+  //     fetchAllUser()
+  //   }
+  // }, [])
   return (
     <>
       {/* begin::formik Form */}
@@ -373,7 +435,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                     </select>
                   </div>
                   <div className='col-lg-3'>
-                    <label className='form-label fw-bold'>connetion Type</label>
+                    <label className='form-label fw-bold'>connection Type</label>
                     <select
                       className='form-select form-select-solid'
                       {...props.getFieldProps('connectiontypeId')}
