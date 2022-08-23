@@ -86,7 +86,6 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         LoderActions(false)
@@ -103,34 +102,36 @@ const ListDataProvider: FC = ({children}) => {
     /* end:: Bank:- getDynamicBank Api call */
   }
 
-    {/* begin::Get Api Call*/}
-  let getDataBankAllType = async() =>{
+  {
+    /* begin::Get Api Call*/
+  }
+  let getDataBankAllType = async () => {
     let response: GetAllBankApi = await Zoneservice.getBank()
-    console.log(response,"res0000000");
     setgetDataBankType(response.data)
   }
-    {/* End::Get Api Call*/}
+  {
+    /* End::Get Api Call*/
+  }
 
-    const DataGetAllTypeCreatedByTypes = async () => {
-      LoderActions(true)
-      try {
-        let payload: GetAllBankApi = await Zoneservice.getCreatedByTypes()
-  
-        if (payload.success == true) {
-          LoderActions(false)
-          setGetDataAllTypeCreatedBy(payload.data)
-          console.log(payload.data, 'oooooooooooo')
-        }
-      } catch (error) {
-      } finally {
+  const DataGetAllTypeCreatedByTypes = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllBankApi = await Zoneservice.getCreatedByTypes()
+
+      if (payload.success == true) {
         LoderActions(false)
+        setGetDataAllTypeCreatedBy(payload.data)
       }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
     }
+  }
 
   const value: ComplaintDataContextModel = {
     getData,
     getDataBankAllType,
-    getDataBankType ,
+    getDataBankType,
     itemIdForUpdate,
     setTotalData,
     DataGetAllTypeCreatedByTypes,

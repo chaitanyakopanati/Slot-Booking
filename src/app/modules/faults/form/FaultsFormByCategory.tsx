@@ -22,18 +22,12 @@ const FaultsFormByCategory = () => {
       enabled: enabledQuery,
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )
   {
     /* end:: Api call GetFaultsTypeById */
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   {
     /* begin::Add-Form Model functionality */

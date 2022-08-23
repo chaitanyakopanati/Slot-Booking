@@ -47,7 +47,6 @@ const ComplaintTypeTable = () => {
     /* begin:: Delete functionlity */
   }
   const deletecomplaints = (ID: number) => {
-    console.log('ID', ID)
     Swal.fire({
       title: `Do you want to delete this record ?`,
       icon: 'warning',
@@ -56,12 +55,10 @@ const ComplaintTypeTable = () => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Delete',
     }).then(async (result) => {
-      console.log('result', result)
       if (result.isConfirmed) {
         LoderActions(true)
         try {
           let payload = await Complaintservice.deletecomplaints(ID)
-          console.log('payload', payload)
           if (payload.success === true) {
             LoderActions(false)
             // toast.success(` Data Deleted Successfully`)
@@ -74,7 +71,6 @@ const ComplaintTypeTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
           // toast.error(`The record has a reference to another module. Transaction failed!`)
@@ -87,13 +83,8 @@ const ComplaintTypeTable = () => {
     /* end:: Delete functionlity */
   }
 
-  useEffect(() => {
-    console.log(getData, 'getData')
-  }, [])
-
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 

@@ -19,10 +19,6 @@ let validationSchemaNewForm = Yup.object({
   inwardDate: Yup.string().required('This field is required'),
   productId: Yup.number().required('This field is required'),
   quantity: Yup.number().required('This field is required'),
-  // supplierId: Yup.string().required('Please Enter Valid Supplier Name'),
-
-  // supplierName: Yup.string().required('This field is required'),
-  // supplierId: Yup.number().required('Entered Supplier Name Does Not Exist'),
 })
 
 const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
@@ -101,10 +97,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
     DataGetAllTypeSupplierName()
   }, [])
 
-  useEffect(() => {
-    console.log('category', category)
-  }, [category, itemIdForUpdate])
-
   return (
     <>
       {/* begin::formik Add/Edit form */}
@@ -114,7 +106,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         initialValues={initialValues}
         validationSchema={validationSchemaNewForm}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
           LoderActions(true)
           values.zoneId = +values.zoneId
 
@@ -122,7 +113,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               // Edit Api Response
               let response = await OfficeStockInwardsService.editGodownStockInwards(values)
-              console.log('Edit User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
@@ -134,7 +124,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               toast.dismiss('1s')
             } else {
               let response = await OfficeStockInwardsService.postGodownStockInwards(values)
-              console.log('Add User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
@@ -146,7 +135,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               navigation('/stocks/godown-stock-inwards')
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -236,53 +224,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                   <div className='col-md-3'>
                     <div className='col-lg-12' style={{position: 'relative'}}>
                       <label className='form-label fw-bold required'>Supplier name</label>{' '}
-                      {/* <input
-                        name='supplierName'
-                        placeholder='supplierName'
-                        className='form-control form-control-lg form-control-solid'
-                        value={props.values.supplierName}
-                        autoComplete='off'
-                        onChange={(e) => {
-                          setSuggestionUserText(e.target.value)
-                          if (e.target.value) {
-                            suggestionRef.current.style.display = 'block'
-                          } else {
-                            suggestionRef.current.style.display = 'none'
-                          }
-                          props.handleChange(e)
-                        }}
-                        onBlur={(e) => {
-                          // suggestionRef.current.
-                          var container = suggestionRef.current
-                          document.addEventListener('click', function (event) {
-                            if (suggestionRef.current) {
-                              suggestionRef.current.style.display = 'none'
-                            }
-                            console.log(suggestionRef, '=====================-------===----==--')
-                            document.removeEventListener('click', () => {})
-                          })
-                        }}
-                      />
-                    
-                      <div className='dropdown-menu suggestion-list' ref={suggestionRef}>
-                        <ul>
-                          {getUserNameData?.length > 0 &&
-                            getUserNameData.map((user, index) => {
-                              console.log('user', user)
-                              return (
-                                <li
-                                  key={user.id}
-                                  onClick={() => {
-                                    props.setFieldValue('supplierId', user.id)
-                                    props.setFieldValue('supplierName', user.firstname)
-                                  }}
-                                >
-                                  {user.firstname}
-                                </li>
-                              )
-                            })}
-                        </ul>
-                      </div> */}
                       <select
                         className='form-select form-select-solid'
                         {...props.getFieldProps('supplierId')}
@@ -299,19 +240,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='supplierId' />
                       </div>
-                      {/* <div className='erro2' style={{color: 'red'}}>
-                        {props.touched.supplierName && props.errors.supplierName
-                          ? props.errors.supplierName
-                          : null}
-                      </div>
-                      <div className='erro2' style={{color: 'red'}}>
-                        {props.touched.supplierName &&
-                        !props.errors.supplierName &&
-                        props.touched.supplierId &&
-                        props.errors.supplierId
-                          ? props.errors.supplierId
-                          : null}
-                      </div> */}
                     </div>
                   </div>
 

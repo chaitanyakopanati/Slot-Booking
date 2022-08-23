@@ -61,7 +61,6 @@ const ZonesTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -78,18 +77,8 @@ const ZonesTable = () => {
     LoderActions(false)
   }, [])
 
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllZone()
-  // }, [pageNo, pageSize, searchText])
-
-  // useEffect(() => {
-  //   console.log('getData', getData)
-  // }, [getData])
-
-  const handlesearchange = (e: any) => {
+  function handlesearchange(e: any) {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 

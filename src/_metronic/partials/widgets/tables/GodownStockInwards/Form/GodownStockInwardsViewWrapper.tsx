@@ -11,15 +11,12 @@ function GodownStockInwards() {
   const {viewIdForUpdate, setViewIdForUpdate, DataGetAllTypeProduct} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
-    console.log('id', id)
     if (id) {
       setViewIdForUpdate(id)
     }
   }, [id])
 
-  useEffect(() => {
-    console.log('viewIdForUpdate', viewIdForUpdate)
-  }, [viewIdForUpdate])
+  useEffect(() => {}, [viewIdForUpdate])
 
   useEffect(() => {
     DataGetAllTypeProduct()
@@ -35,7 +32,6 @@ function GodownStockInwards() {
       enabled: enabledQuery,
       onError: (err) => {
         setViewIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )

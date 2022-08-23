@@ -59,8 +59,6 @@ function CustomerFormModal({customerById}: customerProps) {
   const [initialValues, setInitialValues] = useState<customerFormType>(formInitialValues)
 
   useEffect(() => {
-    console.log('customerById', customerById)
-
     setInitialValues({
       Id: customerById.id || null,
       UserName: customerById.userName || '',
@@ -454,8 +452,6 @@ function CustomerFormModal({customerById}: customerProps) {
                           <li
                             key={user.id}
                             onClick={() => {
-                              console.log('user*****', user)
-                              // IsMasterUser
                               formik.setFieldValue('IsMasterUser', true)
                               formik.setFieldValue('Userid', user.id)
                               formik.setFieldValue('UserName', user.firstname)

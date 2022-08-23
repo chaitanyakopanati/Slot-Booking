@@ -16,10 +16,6 @@ const HeaderUserMenu: FC = () => {
   const navigate = useNavigate()
   const {auth} = useAuth()
 
-  useEffect(() => {
-    console.log('auth', auth)
-  }, [])
-
   const signOut = () => {
     Swal.fire({
       title: `Are you sure you want to sign out ?`,
@@ -31,26 +27,6 @@ const HeaderUserMenu: FC = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         logout()
-        // LoderActions(true)
-        // try {
-        //   let payload = await InstallationsService.deleteInstallations(ID)
-        //   if (payload.success === true) {
-        //     LoderActions(false)
-        //     toast.success(payload.message)
-        //     // toast.success(` Data Deleted Successfully`)
-        //     toast.dismiss('1s')
-        //   } else {
-        //     LoderActions(false)
-        //     toast.error(payload.message)
-        //     // toast.error(` Failed to Delete Data`)
-        //     toast.dismiss('1s')
-        //   }
-        // } catch (error: any) {
-        //   console.log('error', error.data)
-        //   toast.error(error?.data?.message)
-        //   toast.dismiss('1s')
-        // }
-        // fetchAllUser()
       }
     })
   }
@@ -71,10 +47,7 @@ const HeaderUserMenu: FC = () => {
             <div className='fw-bolder d-flex align-items-center fs-5'>
               {currentUser?.first_name} {currentUser?.last_name}
             </div>
-            {/* <a href='#' className='fw-bold text-muted text-hover-primary fs-7'>
-              {currentUser?.email}
-            </a> */}
-            {/* <div className='fw-bold text-muted fs-7'>Designation (Admin)</div> */}
+
             <div className='fw-bold text-muted fs-7'>{auth?.username}</div>
           </div>
         </div>

@@ -22,17 +22,11 @@ function SupplierFormByCategory() {
       enabled: enabledQuery,
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )
   {
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   {
   }

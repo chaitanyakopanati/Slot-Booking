@@ -17,7 +17,6 @@ type Props = {
 }
 
 const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
-// const emailRegExp = RegExp(/^\w+@[a-zA-Z0-9._%+-]+?\.[a-zA-Z]{2,3}$/)
 const emailRegExp = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
 
 let validationSchemaNewForm = Yup.object({
@@ -27,22 +26,17 @@ let validationSchemaNewForm = Yup.object({
   lastname: Yup.string()
     .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
-  username: Yup.string()
-    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
+  username: Yup.string().required('This field is required'),
   email: Yup.string()
     .email('Invalid email format')
     .matches(emailRegExp, 'Invalid email format')
     .required('This field is required'),
   phone: Yup.string()
-    //  .min(10, 'Min 10 digits are allowed')
-    // .max(10, 'Max 10 digits are allowed')
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
   zoneId: Yup.string().required('This field is required'),
   roleId: Yup.string().required('This field is required'),
-  // password: Yup.string().required('This field is required'),
   password: Yup.string()
     .label('Password')
     .required('This field is required')
@@ -72,8 +66,6 @@ let validationSchemaEditForm = Yup.object({
     .required('This field is required'),
   email: Yup.string().email('Invalid email format').required('This field is required'),
   phone: Yup.string()
-    //  .min(10, 'Min 10 digits are allowed')
-    // .max(10, 'Max 10 digits are allowed')
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
@@ -87,8 +79,6 @@ const UserFormModal: FC<Props> = ({category}) => {
   const navigation = useNavigate()
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
-
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
     firstname: '',
@@ -164,7 +154,6 @@ const UserFormModal: FC<Props> = ({category}) => {
           itemIdForUpdate === 'add' ? validationSchemaNewForm : validationSchemaEditForm
         }
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
           LoderActions(true)
           values.zoneId = +values.zoneId
           values.phone = values.phone.toString()
@@ -173,7 +162,6 @@ const UserFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               // Edit Api Response
               let response = await Userservice.editUser(values)
-              console.log('Edit User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
@@ -189,7 +177,6 @@ const UserFormModal: FC<Props> = ({category}) => {
               cancel()
             } else {
               let response = await Userservice.postUser(values)
-              console.log('Add User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
@@ -203,7 +190,6 @@ const UserFormModal: FC<Props> = ({category}) => {
               cancel()
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -456,11 +442,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                           onClick={() => setIsRevealPwd((prevState) => !prevState)}
                         />
                       </div>
-                      {/* <input
-                        type='button'
-                        title={isRevealPwd ? 'Hide password' : 'Show password'}
-                        onClick={() => setIsRevealPwd((prevState) => !prevState)}
-                      /> */}
+
                       <div className='erro2' style={{color: 'red'}}>
                         <ErrorMessage name='password' />
                       </div>
@@ -477,7 +459,6 @@ const UserFormModal: FC<Props> = ({category}) => {
                           onChange={props.handleChange}
                           name='confirmPassword'
                           onBlur={props.handleBlur}
-                          // type='password'
                           type={isRevealConfPwd ? 'text' : 'password'}
                           autoComplete='off'
                         />

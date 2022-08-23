@@ -35,7 +35,6 @@ const ZonesHeader: FC<Props> = ({category}) => {
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -47,7 +46,6 @@ const ZonesHeader: FC<Props> = ({category}) => {
   }
   const handleCratedBychange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setCreatedById(e.target.value)
   }
   {
@@ -73,9 +71,7 @@ const ZonesHeader: FC<Props> = ({category}) => {
           id: Yup.number().required('This fied is required'),
           roleId: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <form>

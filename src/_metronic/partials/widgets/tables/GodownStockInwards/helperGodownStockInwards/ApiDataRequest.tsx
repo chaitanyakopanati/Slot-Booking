@@ -52,7 +52,6 @@ const getDynamicDownloadFile = (
   /* begin:: post Api call(create) */
 }
 const postGodownStockInwards: any = (obj: postlistData) => {
-  console.log(obj, 'obj')
   return http.post('SaveGodownStockInwards', {
     inwardDate: obj.inwardDate,
     productId: obj.productId,

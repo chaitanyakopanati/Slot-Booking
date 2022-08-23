@@ -162,7 +162,6 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       values.installerid = +values.installerid
       values.zonepointid = +values.zonepointid
       values.connectiontype = '' + values.connectiontype
-      // values?.wirelessTypeId = +values?.wirelessTypeId
 
       try {
         if (values.id) {

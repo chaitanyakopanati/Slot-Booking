@@ -70,8 +70,12 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getPackageCategoriesData[]>([])
-  const [getDataPackageCategory, setGetDataPackageCategory] = useState<getPackageCategoriesData[]>([])
-  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<getPackageCategoriesData[]>([])
+  const [getDataPackageCategory, setGetDataPackageCategory] = useState<getPackageCategoriesData[]>(
+    []
+  )
+  const [getDataAllTypeCreatedBy, setGetDataAllTypeCreatedBy] = useState<
+    getPackageCategoriesData[]
+  >([])
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
@@ -92,14 +96,11 @@ const ListDataProvider: FC = ({children}) => {
     try {
       let payload: getAllPackagecategoriesData = await Complaintservice.getPackageCategories()
       LoderActions(true)
-      console.log(payload, 'payload')
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload)
         // setGetData(payload.data)
       }
     } catch (error) {
-      console.log(error, 'error')
     } finally {
       LoderActions(false)
     }
@@ -120,31 +121,30 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      console.log(response, 'response=========Allll')
       if (response.success == true) {
-        console.log(response)
         LoderActions(false)
         setTotalData(response.TotalRecords)
         setGetData(response.data)
         setPageCount(response?.pages)
       }
-    } catch (error) {
-      console.log(error, 'error')
-    }
+    } catch (error) {}
   }
   {
     /* end:: Package-Category:- getDynamicPackageCategories Api call */
   }
 
-   {/* begin::Get Api call */}
-  const getDataPackageCategoryDataAllType = async() =>{
+  {
+    /* begin::Get Api call */
+  }
+  const getDataPackageCategoryDataAllType = async () => {
     let response: GetAllPackagecategorietApi = await Complaintservice.getPackageCategories()
-    console.log(response,"respo//////////");
     setGetDataPackageCategory(response.data)
   }
-   {/* End::Get Api call */}
+  {
+    /* End::Get Api call */
+  }
 
-   const DataGetAllTypeCreatedByTypes = async () => {
+  const DataGetAllTypeCreatedByTypes = async () => {
     LoderActions(true)
     try {
       let payload: GetAllPackagecategorietApi = await Complaintservice.getCreatedByTypes()
@@ -152,14 +152,12 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
       LoderActions(false)
     }
   }
-
 
   const value: ComplaintDataContextModel = {
     getData,

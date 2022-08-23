@@ -19,7 +19,6 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
   let {LoderActions} = useLoader()
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -32,11 +31,6 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
       keyEvent.preventDefault()
     }
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   return (
     <>
@@ -60,12 +54,9 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
 
           try {
             if (values.id) {
-              // console.log(values,"valuespost");
-
               // Edit Api Response
               let response = await Zoneservice.editCompanies(values)
               if (response.success === true) {
-                console.log(response, 'res======')
                 // toast.success(` Data Updated Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
@@ -73,16 +64,12 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
                 resetForm({})
                 cancel()
               } else {
-                console.log(response, 'res=----------====')
                 toast.error(response.message)
               }
             } else {
-              console.log(values, 'valuespost')
-
               // Create Api Response
               let response = await Zoneservice.postCompanies(values)
               if (response.success === true) {
-                console.log(response, 'res=----------====')
                 // toast.success(`Data Added Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
@@ -90,13 +77,11 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
                 resetForm({})
                 cancel()
               } else {
-                console.log(response, 'res=----------====')
                 toast.error(response.message)
                 resetForm({})
               }
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -105,8 +90,6 @@ const CompaniesFormModal: FC<Props> = ({category}) => {
       >
         {(props) => (
           <>
-            {console.log(category, 'category')}
-
             <Form
               id='kt_modal_add_user_form'
               onKeyDown={onKeyDown}

@@ -24,18 +24,12 @@ const ProductFormModal: FC<Props> = ({category}) => {
   }
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
 
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault()
     }
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   return (
     <>
@@ -68,12 +62,9 @@ const ProductFormModal: FC<Props> = ({category}) => {
           // values?.connectionTypeId = +values?.connectionTypeId
           try {
             if (values.id) {
-              console.log(values, 'valuespost')
-
               // Edit Api Response
               let response = await Complaintservice.editProduct(values)
               if (response.success === true) {
-                console.log(response, 'res======')
                 // toast.success(` Data Updated Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
@@ -81,16 +72,12 @@ const ProductFormModal: FC<Props> = ({category}) => {
                 resetForm({})
                 cancel()
               } else {
-                console.log(response, 'res=----------====')
                 toast.error(response.message)
               }
             } else {
-              console.log(values, 'valuespost')
-
               // Create Api Response
               let response = await Complaintservice.postProduct(values)
               if (response.success === true) {
-                console.log(response, 'res=----------====')
                 // toast.success(` Data Added Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
@@ -98,13 +85,11 @@ const ProductFormModal: FC<Props> = ({category}) => {
                 resetForm({})
                 cancel()
               } else {
-                console.log(response, 'res=----------====')
                 toast.error(response.message)
                 resetForm({})
               }
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -113,8 +98,6 @@ const ProductFormModal: FC<Props> = ({category}) => {
       >
         {(props) => (
           <>
-            {console.log(category, 'category')}
-
             <Form
               id='kt_modal_add_user_form'
               onKeyDown={onKeyDown}

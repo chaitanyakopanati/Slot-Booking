@@ -40,30 +40,20 @@ const ProfileSettingsFormModal: FC = () => {
   const emailRegExp = RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
 
   useEffect(() => {
-    console.log('auth', auth?.userId)
     if (auth) {
       GetUserTypeByIdAllData(auth.userId)
     }
   }, [])
 
-  // useEffect(() => {
-  //   if (userId) {
-  //     console.log('userId:', userId)
-  //   }
-  // }, [userId])
-
   useEffect(() => {
     if (setUser) {
-      console.log('setUser', setUser)
     }
   }, [setUser])
 
   const GetUserTypeByIdAllData: any = async (userId: number) => {
     let response = await Profileservice.GetUserTypeById(userId)
-    // console.log(response, 'papppppppppppppp')
     setUserId(response.data)
     setUserDetail({
-      // id: response.data?.id,
       firstname: response.data?.firstname,
       lastname: response.data?.lastname,
       username: response.data?.username,
@@ -80,10 +70,6 @@ const ProfileSettingsFormModal: FC = () => {
       confirmPassword: '',
     })
   }
-
-  useEffect(() => {
-    console.log('userPswd', userPswd)
-  }, [userPswd])
 
   return (
     <>
@@ -110,13 +96,11 @@ const ProfileSettingsFormModal: FC = () => {
             .required('This field is required'),
         })}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values++++++++++++++++++++++++++++++++++++++', values)
           LoderActions(true)
 
           try {
             // Edit Api Response
             let response = await Profileservice.editUser(values)
-            console.log('Edit User*****************', response)
 
             if (response.success === false) {
               toast.error(response.message)
@@ -127,7 +111,6 @@ const ProfileSettingsFormModal: FC = () => {
             navigation('/master/users')
             toast.dismiss('1s')
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -135,7 +118,6 @@ const ProfileSettingsFormModal: FC = () => {
         }}
       >
         {(props) => {
-          // console.log('props.values:', props.values)
           return (
             <Form onSubmit={props.handleSubmit}>
               <div className='row gy-5 gx-xl-8'>
@@ -283,9 +265,6 @@ const ProfileSettingsFormModal: FC = () => {
                           Save Changes
                         </button>
                       </div>
-                      {/* <input type='hidden' />
-                      <div></div> */}
-                      {/* </form> */}
                     </div>
                   </div>
                 </div>
@@ -298,7 +277,6 @@ const ProfileSettingsFormModal: FC = () => {
       {/* Edit password::Modal */}
       <Formik
         initialValues={userPswd}
-        // enableReinitialize={true}
         validationSchema={Yup.object({
           password: Yup.string()
             .label('Password')
@@ -317,14 +295,12 @@ const ProfileSettingsFormModal: FC = () => {
             }),
         })}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values++++++++++++++++++++++++++++++++++++++', values)
           let userCredentials = {userName: setUser['username'], password: values['password']}
           LoderActions(true)
 
           try {
             // Edit Api Response
             let response = await Profileservice.editPassword(userCredentials)
-            console.log('Edit User*****************', response)
 
             if (response.success === false) {
               toast.error(response.message)
@@ -337,7 +313,6 @@ const ProfileSettingsFormModal: FC = () => {
 
             toast.dismiss('1s')
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -386,18 +361,6 @@ const ProfileSettingsFormModal: FC = () => {
 
                   <div className='modal-body'>
                     <div className='container-fluid p-0'>
-                      {/* <div className='row w-100 mx-0 mb-4 gy-4'>
-                  <div className='col'>
-                    <label className='form-label fw-bold'>Current password:</label>
-                    <input
-                      placeholder='Current password'
-                      className='form-control form-control-lg form-control-solid'
-                      type='text'
-                      autoComplete='off'
-                    />
-                  </div>
-                </div> */}
-
                       <div className='row w-100 mx-0 mb-4 gy-4'>
                         <div className='col'>
                           <label className='form-label fw-bold'>New password:</label>
@@ -467,15 +430,6 @@ const ProfileSettingsFormModal: FC = () => {
                     >
                       Update
                     </button>
-                    {/* <button
-                      type='button'
-                      onClick={() => {
-                        props.resetForm()
-                      }}
-                      data-bs-dismiss='modal'
-                    >
-                      Hello
-                    </button> */}
                   </div>
                 </div>
               </div>

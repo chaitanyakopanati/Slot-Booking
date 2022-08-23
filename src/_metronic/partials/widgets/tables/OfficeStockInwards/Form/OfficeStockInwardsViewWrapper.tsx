@@ -30,7 +30,6 @@ function OfficeStockInwards() {
       enabled: enabledQuery,
       onError: (err) => {
         setViewIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )

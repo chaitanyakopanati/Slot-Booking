@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import {KTSVG} from '../../../../../../helpers'
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import {ListPageData} from '../../GodownStockAvailabilityContext'
-import {useAuth} from "../../../../../../../app/modules/auth"
+import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 
 type Props = {
@@ -26,15 +26,14 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
     setproductId,
     fetchAllDownload,
   } = ListPageData()
-  const {currentUser,auth} = useAuth()
-  const id:number|any = auth?.roleId ;
+  const {currentUser, auth} = useAuth()
+  const id: number | any = auth?.roleId
 
   {
     /* begin::Search */
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -45,7 +44,6 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
   }
   const handleProductchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setproductId(e.target.value)
   }
 
@@ -71,9 +69,7 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
           createdById: Yup.number().required('This fied is required'),
           id: Yup.string().required('This fied is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <form>
@@ -97,21 +93,23 @@ const GodownStockAvailabilityHeader: FC<Props> = ({category}) => {
 
                 <div className='d-flex align-items-center'>
                   {/* begin::Download */}
-                 {Access[id].hasOwnProperty("download") &&   <div className='ms-auto'>
-                    <button
-                      type='button'
-                      className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                      onClick={downloadFile}
-                    >
-                      <span className='svg-icon svg-icon-gray-500 me-0'>
-                        <KTSVG
-                          path='/media/icons/duotune/arrows/arr091.svg'
-                          className='svg-icon-3 me-0'
-                        />
-                      </span>
-                      <span className='d-none d-sm-block ms-3'>Download report</span>
-                    </button>
-                  </div>}
+                  {Access[id].hasOwnProperty('download') && (
+                    <div className='ms-auto'>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                        onClick={downloadFile}
+                      >
+                        <span className='svg-icon svg-icon-gray-500 me-0'>
+                          <KTSVG
+                            path='/media/icons/duotune/arrows/arr091.svg'
+                            className='svg-icon-3 me-0'
+                          />
+                        </span>
+                        <span className='d-none d-sm-block ms-3'>Download report</span>
+                      </button>
+                    </div>
+                  )}
                   {/* end:: Download */}
 
                   {/* begin::Filter */}

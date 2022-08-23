@@ -32,13 +32,11 @@ const SupplierHeader: FC<Props> = ({category}) => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
   const handleCreatedBychange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setcreatedById(e.target.value)
   }
 
@@ -60,9 +58,7 @@ const SupplierHeader: FC<Props> = ({category}) => {
           createdById: Yup.number().required('This fied is required'),
           id: Yup.string().required('This fied is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <form>

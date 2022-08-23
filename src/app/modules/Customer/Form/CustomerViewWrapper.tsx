@@ -26,7 +26,6 @@ function CustomerView() {
       enabled: enabledQuery,
       onError: (err) => {
         setViewIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )

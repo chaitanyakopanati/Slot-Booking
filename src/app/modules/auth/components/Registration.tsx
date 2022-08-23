@@ -62,17 +62,7 @@ export function Registration() {
           values.password,
           values.changepassword
         )
-        //   saveAuth(auth)
-        //   const {data: user} = await getUserByToken(auth.token)
-        //   setCurrentUser(user)
-        // } catch (error) {
-        //   console.error(error)
-        //   saveAuth(undefined)
-        //   setStatus('The registration details is incorrect')
-        //   setSubmitting(false)
-        //   setLoading(false)
-        // }
-        console.log('auth', auth)
+
         if (auth.message === 'SignUp successfully') {
           setLoading(false)
           toast.success(auth.message)
@@ -80,8 +70,6 @@ export function Registration() {
         }
       } catch (error) {
         let {data}: any = error
-        console.log(data, 'response')
-        console.log(error, 'error')
         if (data.message) {
           setStatus(data.message)
           toast.success(data.message)

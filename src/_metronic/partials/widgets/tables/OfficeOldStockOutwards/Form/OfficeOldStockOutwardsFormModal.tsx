@@ -93,7 +93,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
   }
 
   var QuntityData: any = getProductZoneQuntity
-  console.log(QuntityData, 'QuntityData')
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -117,7 +116,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
         if (values.id) {
           // Edit Api Response
           let response = await OfficeStockOutwardsViewService.editOfficeOldStockOutwards(values)
-          console.log('Edit User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
@@ -129,7 +127,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
           toast.dismiss('1s')
         } else {
           let response = await OfficeStockOutwardsViewService.postOfficeOldStockOutwards(values)
-          console.log('Add User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
@@ -141,7 +138,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
           navigation('/stocks/office-old-stock-outwards')
         }
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       } finally {
         LoderActions(false)
@@ -156,11 +152,9 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
           formik.values.productId,
           formik.values.zoneId
         )
-        console.log(payload, 'payloadpayload')
         if (payload.success == true) {
           LoderActions(false)
           setGetProductZoneQuntity(payload?.data)
-          console.log(payload.data, 'getProductZoneQuntityName')
         }
       }
       // formik.setFieldValue('quantity',10)
@@ -306,7 +300,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                       suggestionRef.current.style.display = 'block'
                     } else {
                       suggestionRef.current.style.display = 'none'
-                      console.log('Elseeeeeee__________________________', suggestionRef)
                     }
                     formik.handleChange(e)
                   }}
@@ -317,7 +310,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                       if (suggestionRef.current) {
                         suggestionRef.current.style.display = 'none'
                       }
-                      // console.log(suggestionRef, '=====================-------===----==--')
                       document.removeEventListener('click', () => {})
                     })
                   }}
@@ -326,7 +318,6 @@ const OfficeOldStockOutwardsFormModal: FC<Props> = ({category}) => {
                   <ul>
                     {getUserNameData?.length > 0 &&
                       getUserNameData.map((user, index) => {
-                        console.log('user', user)
                         return (
                           <li
                             key={user.id}

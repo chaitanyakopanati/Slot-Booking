@@ -80,7 +80,6 @@ const ListDataProvider: FC = ({children}) => {
   const [totalData, setTotalData] = useState<number>(100)
   const [createdById, setCreatedById] = useState<number>(0)
   const [searchText, setSearchText] = useState('')
-  // const [getDataCreatedByAllType, setGetDataCreatedByAllType] = useState<getFaultsData[]>([])
 
   let {LoderActions} = useLoader()
 
@@ -95,7 +94,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllType(payload.data)
-        // setGetDataCreatedByAllType(payload.data)
       }
     } catch (error) {
     } finally {
@@ -118,7 +116,6 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         LoderActions(false)
@@ -139,7 +136,6 @@ const ListDataProvider: FC = ({children}) => {
   }
   let getDataFaultsAllType = async () => {
     let response: GetAllFaulttApi = await Fautlservice.getFaults()
-    console.log(response, '-==========')
 
     setGetDataFaults(response.data)
   }
@@ -155,14 +151,12 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
       LoderActions(false)
     }
   }
-
 
   const value: ComplaintDataContextModel = {
     getData,

@@ -113,7 +113,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
         initialValues={initialValues}
         validationSchema={validationSchemaNewForm}
         onSubmit={async (values: any, {resetForm}) => {
-          console.log('values', values)
           LoderActions(true)
           values.zoneId = +values.zoneId
 
@@ -121,7 +120,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
             if (values.id) {
               // Edit Api Response
               let response = await OfficeStockInwardsService.editOfficeOldStockInwards(values)
-              console.log('Edit User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
@@ -133,7 +131,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               toast.dismiss('1s')
             } else {
               let response = await OfficeStockInwardsService.postOfficeOldStockInwards(values)
-              console.log('Add User*****************', response)
 
               if (response.success === false) {
                 toast.error(response.message)
@@ -145,7 +142,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
               navigation('/stocks/office-old-stock-inwards')
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -276,7 +272,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                           if (suggestionRef.current) {
                             suggestionRef.current.style.display = 'none'
                           }
-                          console.log(suggestionRef, '=====================-------===----==--')
                           document.removeEventListener('click', () => {})
                         })
                       }}
@@ -285,7 +280,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                       <ul>
                         {getUserNameData?.length > 0 &&
                           getUserNameData.map((user, index) => {
-                            console.log('user', user)
                             return (
                               <li
                                 key={user.id}
@@ -300,9 +294,6 @@ const OfficeStockInwardsFormModal: FC<Props> = ({category}) => {
                           })}
                       </ul>
                     </div>
-                    {/* <div className='erro2' style={{color: 'red'}}>
-                      <ErrorMessage name='username' />
-                    </div> */}
                     <div className='erro2' style={{color: 'red'}}>
                       {props.touched.username && props.errors.username
                         ? props.errors.username

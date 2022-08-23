@@ -11,7 +11,6 @@ import {ListPageData} from '../../InstallationContext'
 import {useAuth} from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 import React from 'react'
-// import closeIcon from '../../../../../app/images/closeIcon.svg'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 
 type Props = {
@@ -87,11 +86,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
     setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
   }
-  // useLayoutEffect(() => {
-  //   if (auth?.roleId == 7) {
-  //     setInstallerId(auth?.userId)
-  //   }
-  // })
 
   {
     /* begin::Search */
@@ -164,38 +158,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     fetchAllDownload()
   }
 
-  // useEffect(() => {
-  //   if (
-  //     installerId ||
-  //     searchText ||
-  //     zoneId ||
-  //     searchByUsername ||
-  //     createdById ||
-  //     statusId ||
-  //     startDate ||
-  //     endDate ||
-  //     connectionTypeId ||
-  //     mainPointId ||
-  //     salesExecutiveId ||
-  //     companyId
-  //   ) {
-  //     fetchAllUser()
-  //   }
-  // }, [
-  //   searchText,
-  //   zoneId,
-  //   searchByUsername,
-  //   createdById,
-  //   statusId,
-  //   startDate,
-  //   endDate,
-  //   connectionTypeId,
-  //   mainPointId,
-  //   installerId,
-  //   salesExecutiveId,
-  //   companyId,
-  // ])
-
   useEffect(() => {
     if (installerId) {
       fetchAllUsers()
@@ -234,11 +196,6 @@ const InstallationHeader: FC<Props> = ({category}) => {
     companyId,
   ])
 
-  // useEffect(() => {
-  //   if (auth?.roleId !== 7) {
-  //     fetchAllUser()
-  //   }
-  // }, [])
   return (
     <>
       {/* begin::formik Form */}

@@ -52,7 +52,6 @@ const MainPointTable = () => {
           let payload = await MainPointservice.deleteMainPoint(ID)
           if (payload.success === true) {
             LoderActions(false)
-            console.log('payload', payload)
             // toast.success(` Data Deleted Successfully`)
             toast.error(payload.message)
             toast.dismiss('1s')
@@ -64,7 +63,6 @@ const MainPointTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -82,18 +80,8 @@ const MainPointTable = () => {
     LoderActions(false)
   }, [])
 
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllMainPoint()
-  // }, [pageNo, pageSize, searchText])
-
-  // useEffect(() => {
-  //   console.log('getData', getData)
-  // }, [getData])
-
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 

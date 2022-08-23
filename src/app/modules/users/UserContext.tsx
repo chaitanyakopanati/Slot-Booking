@@ -110,7 +110,6 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log('Enter')
     LoderActions(true)
     try {
       let response: any = await Userservice.getDynamicDownloadFile(
@@ -124,7 +123,6 @@ const ListDataProvider: FC = ({children}) => {
       toast.success('Requested File Downloaded Successfully')
     } catch (error) {
       toast.error('Something went wrong Please try again ')
-      console.log('Error', error)
     } finally {
       LoderActions(false)
     }
@@ -146,7 +144,6 @@ const ListDataProvider: FC = ({children}) => {
         createdById,
         orderByColumnName
       )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         setGetData(response.data)
@@ -178,7 +175,6 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
 
         setGetDataAllType(payload.data)
       }
@@ -202,7 +198,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeRole(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
@@ -221,7 +216,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {

@@ -26,7 +26,6 @@ function ComplaintView() {
       enabled: enabledQuery,
       onError: (err) => {
         setViewIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )

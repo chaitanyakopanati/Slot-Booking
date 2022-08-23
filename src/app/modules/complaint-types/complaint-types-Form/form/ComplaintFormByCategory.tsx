@@ -22,18 +22,12 @@ function ComplaintFormByCategory() {
       enabled: enabledQuery,
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )
   {
     /* end:: Api call GetComplaintTypeById */
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   {
     /* begin::Add-Form Model functionality */

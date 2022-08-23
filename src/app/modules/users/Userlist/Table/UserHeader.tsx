@@ -44,7 +44,6 @@ const UserHeader: FC<Props> = ({category}) => {
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -56,7 +55,6 @@ const UserHeader: FC<Props> = ({category}) => {
   }
   const handleCreatedBYchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setCreatedById(e.target.value)
   }
   {
@@ -64,7 +62,6 @@ const UserHeader: FC<Props> = ({category}) => {
   }
 
   const handlesearchUsernamechange = (e: any) => {
-    console.log(e.target.value)
     setSearchByUsername(e.target.value)
   }
 
@@ -73,7 +70,6 @@ const UserHeader: FC<Props> = ({category}) => {
   }
   const handleZoneChange = (e: any) => {
     // setPageNo(1)
-    console.log(e.target.value)
     setZoneId(e.target.value)
   }
   {
@@ -85,7 +81,6 @@ const UserHeader: FC<Props> = ({category}) => {
   }
   const handleRoleChange = (e: any) => {
     // setPageNo(1)
-    console.log(e.target.value)
     setRoleId(e.target.value)
   }
   {
@@ -115,9 +110,7 @@ const UserHeader: FC<Props> = ({category}) => {
           roleId: Yup.string().required('This fielld is required'),
           id: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <Form>

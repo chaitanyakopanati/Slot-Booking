@@ -14,9 +14,7 @@ function getConfig(): Props {
   if (ls) {
     try {
       return JSON.parse(ls) as Props
-    } catch (er) {
-      console.error(er)
-    }
+    } catch (er) {}
   }
   return initialState
 }

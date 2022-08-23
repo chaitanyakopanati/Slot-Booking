@@ -13,15 +13,10 @@ function UserView() {
   const {viewIdForUpdate, setViewIdForUpdate} = ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
-    console.log('id', id)
     if (id) {
       setViewIdForUpdate(id)
     }
   }, [id])
-
-  useEffect(() => {
-    console.log('viewIdForUpdate', viewIdForUpdate)
-  }, [viewIdForUpdate])
 
   const {data: userDetails, error} = useQuery(
     `ViewUserbyId-${viewIdForUpdate}`,
@@ -33,7 +28,6 @@ function UserView() {
       enabled: enabledQuery,
       onError: (err) => {
         setViewIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )
@@ -49,15 +43,7 @@ function UserView() {
 }
 
 function UserFormViewHeader() {
-  return (
-    <>
-      {/* <div className='modal-header'> */}
-        {/* begin::Modal title */}
-        {/* <h2 className='fw-bolder'>View User</h2> */}
-        {/* end::Modal title */}
-      {/* </div> */}
-    </>
-  )
+  return <></>
 }
 
 let UserViewWrapper = () => {

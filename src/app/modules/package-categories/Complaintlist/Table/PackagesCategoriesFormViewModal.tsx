@@ -27,17 +27,9 @@ const PackagesCategoriesFormViewModal: FC<Props> = ({category}) => {
       keyEvent.preventDefault()
     }
   }
-  useEffect(() => {
-    console.log('category', category)
-    console.log(category.modifyAt, '-----------')
-    console.log(category.id, '======dddd')
-    console.log('viewIdForUpdate', viewIdForUpdate)
-  }, [category])
 
   return (
     <>
-      {/* {console.log(category, "category")} */}
-      {/* begin:: View form */}
       <Formik
         enableReinitialize={true}
         initialValues={{

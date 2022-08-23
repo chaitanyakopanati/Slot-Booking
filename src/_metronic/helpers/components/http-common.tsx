@@ -8,7 +8,6 @@ axios.interceptors.response.use(
   },
   function (error) {
     const {response} = error
-    console.log('response error', response)
     if (response.status === 401 && response.statusText === 'Unauthorized') {
       localStorage.removeItem('kt-auth-react-v')
       window.location.reload()
@@ -49,8 +48,6 @@ export const delet = (url: string) =>
     })
 
 export const deletes = (url: string, payload: any, config = {}) => {
-  console.log('payload:', payload, config)
-
   axios
     .delete(`${API_URL_DATA}/${url}`, {data: payload})
 

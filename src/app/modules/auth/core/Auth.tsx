@@ -39,19 +39,12 @@ const AuthProvider: FC = ({children}) => {
   const [auth, setAuth] = useState<AuthModel | undefined>(authHelper.getAuth())
   const [currentUser, setCurrentUser] = useState<UserModel | undefined>()
 
-  // useEffect(() => {
-  //   if (auth) {
-  //     console.log('auth', auth)
-  //   }
-  // }, [auth])
   useEffect(() => {
     if (currentUser) {
-      console.log('currentUser', currentUser)
     }
   }, [currentUser])
 
   const saveAuth = (auth: AuthModel | undefined) => {
-    console.log('auth::::::::::::::::::', auth)
     setAuth(auth)
     if (auth) {
       authHelper.setAuth(auth)

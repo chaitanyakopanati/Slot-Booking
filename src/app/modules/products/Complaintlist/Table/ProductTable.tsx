@@ -36,17 +36,11 @@ const ProductTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    // DataGetApiProduct()
     LoderActions(false)
   }, [])
 
-  // useEffect(() => {
-  //   fetchAllProduct()
-  // }, [pageNo, pageSize, searchText])
-
   const handleSearchChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -78,7 +72,6 @@ const ProductTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -90,10 +83,6 @@ const ProductTable = () => {
   {
     /* end:: Delete functionlity */
   }
-
-  useEffect(() => {
-    console.log(getData, 'getData')
-  }, [])
 
   return (
     <div>

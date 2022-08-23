@@ -35,7 +35,6 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
   }
   const handleSearchChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -47,7 +46,6 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
   }
   const handleCreatedByChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setCreatedById(e.target.value)
   }
   {
@@ -72,9 +70,7 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
           createdById: Yup.number().required('This fied is required'),
           id: Yup.string().required('This fied is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <>
@@ -150,8 +146,6 @@ const ComplaintTypeHeader: FC<Props> = ({category}) => {
                     >
                       <option value=''>All</option>
                       {getDataAllTypeCreatedBy.map((TypeData, index) => {
-                        console.log('pppppppppp', TypeData)
-
                         return (
                           <option key={index} value={TypeData?.id}>
                             {TypeData?.fullName}

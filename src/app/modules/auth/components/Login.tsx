@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import {useEffect, useState} from 'react'
-// import {useRef} from 'react'
 import * as Yup from 'yup'
 import {getUserByToken, login} from '../core/_requests'
 import clsx from 'clsx'
@@ -13,15 +12,8 @@ import showPwdImg from '../../../images/eye-fill.svg'
 import hidePwdImg from '../../../images/eye-slash-fill.svg'
 
 const loginSchema = Yup.object().shape({
-  username: Yup.string()
-    //  .('Wrong username format')
-    // .min(3, 'Minimum 3 symbols')
-    // .max(50, 'Maximum 50 symbols')
-    .required('Username is required'),
-  password: Yup.string()
-    // .min(3, 'Minimum 3 symbols')
-    // .max(50, 'Maximum 50 symbols')
-    .required('Password is required'),
+  username: Yup.string().required('Username is required'),
+  password: Yup.string().required('Password is required'),
 })
 
 const initialValues = {
@@ -47,9 +39,7 @@ export function Login() {
     onSubmit: async (values, {setStatus, setSubmitting}) => {
       setLoading(true)
       try {
-        console.log('values', values)
         const {data: auth, status} = await login(values.username, values.password)
-        // const response = await login(values.username, values.password)
         if (auth && status == 200) {
           if (formik.values.rememberMe) {
             setCookie()
@@ -59,7 +49,6 @@ export function Login() {
         toast.success('Sign in Successfully')
       } catch (error) {
         let {data}: any = error
-        console.log(data, 'responsefff')
         if (data.message) {
           setStatus(data.message)
           toast.error(data.message)
@@ -92,14 +81,11 @@ export function Login() {
     }
 
     const getCookieData = () => {
-      console.log(document.cookie)
       let user = getCookie('userName')
       let pswd = getCookie('passWord')
 
       formik.setFieldValue('username', user)
       formik.setFieldValue('password', pswd)
-      console.log('user', user)
-      console.log('pswd', pswd)
     }
     getCookieData()
   }, [])
@@ -158,20 +144,11 @@ export function Login() {
         </div>
         <div className='d-flex flex-stack mb-2 position-relative'>
           <input
-            // type='password'
             type={isRevealPwd ? 'text' : 'password'}
             autoComplete='off'
             placeholder='password'
             {...formik.getFieldProps('password')}
-            className={clsx(
-              'form-control form-control-lg form-control-solid'
-              // {
-              //   'is-invalid': formik.touched.password && formik.errors.password,
-              // },
-              // {
-              //   'is-valid': formik.touched.password && !formik.errors.password,
-              // }
-            )}
+            className={clsx('form-control form-control-lg form-control-solid')}
           />
           <img
             style={{position: 'absolute', right: '15px'}}
@@ -194,7 +171,6 @@ export function Login() {
 
       {/* begin::Form group */}
       <div className='fv-row mb-10'>
-        {/* <div className='d-flex justify-content-between mt-n5 w-100'> */}
         <div className='d-flex flex-stack mb-2'>
           <div className='form-check form-check-solid me-5 mb-0'>
             <input
@@ -225,9 +201,6 @@ export function Login() {
           type='submit'
           id='kt_sign_in_submit'
           className='btn btn-lg btn-primary w-100 mb-5'
-          // style={{
-          //   backgroundColor: '#6c757d',
-          // }}
           disabled={formik.isSubmitting || !formik.isValid}
         >
           {!loading && <span className='indicator-label'>Sign In</span>}

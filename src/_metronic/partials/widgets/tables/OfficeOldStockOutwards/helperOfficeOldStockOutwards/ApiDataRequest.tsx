@@ -55,8 +55,6 @@ const getDynamicDownloadFile = (
   /* begin:: post Api call(create) */
 }
 const postOfficeOldStockOutwards: any = (obj: postlistData) => {
-  console.log(obj, 'obj')
-
   return http.post('SaveOfficeOldStockOutwards', {
     outwardDate: obj.outwardDate,
     productId: obj.productId,
@@ -103,8 +101,6 @@ const editOfficeOldStockOutwards = (obj: putgetOfficeStockOutwardsDatasmodel) =>
   /* begin:: getById Api call */
 }
 const GetOfficeOldStockOutwardsTypeById = (id: ID) => {
-  console.log(id, 'id===============')
-
   return http.get(`GetOfficeOldStockOutwardsById/${id}`)
 }
 {

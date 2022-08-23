@@ -37,10 +37,6 @@ const GodownStockInwardsFormByCategory = () => {
     /* end:: Api call GetOfficeStockOutwardsTypeById */
   }
 
-  useEffect(() => {
-    console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category, itemIdForUpdate])
-
   {
     /* begin::Add-Form Model functionality */
   }

@@ -11,7 +11,6 @@ export function AsideMenuMain() {
   const intl = useIntl()
   const {currentUser, auth} = useAuth()
   const id: number | any = auth?.roleId
-  console.log(auth?.roleId, 'Testing role iD')
   //here the role id or userid can be taken from auth and replace it in the condition to work
   return (
     <>

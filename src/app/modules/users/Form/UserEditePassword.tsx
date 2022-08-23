@@ -17,18 +17,11 @@ let validationSchemaNewForm = Yup.object({
   newpassword: Yup.string()
     .required('This field is required')
     .matches(validPassword, 'Invalid Password'),
-  // password: Yup.string()
-  //   .required('This field is required')
-  //   .matches(validPassword, 'Invalid Password'),
 
   password: Yup.string().when('newpassword', {
     is: (val: any) => (val && val.length > 0 ? true : false),
     then: Yup.string().oneOf([Yup.ref('newpassword')], 'Both password need to be the same'),
   }),
-  // passwords: Yup.string().when('newpassword', {
-  //   is: (newpassword: any, password: any) => newpassword !== password,
-  //   then: Yup.string().required('No Match Password'),
-  // }),
 })
 
 export const UserEditePassword = () => {
@@ -41,11 +34,7 @@ export const UserEditePassword = () => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;d')
-
-        // setGetDataAllType(payload.data)
         setUsername(payload.data.username)
-        // let useur: any = payload.data
       }
     } catch (error) {
     } finally {
@@ -59,37 +48,11 @@ export const UserEditePassword = () => {
     userName: '',
   })
 
-  // useEffect(() => {
-  //   console.log('gggggggg', id)
-
-  //   try {
-  //     let payload: any = Userservice.GetUserTypeById(id)
-  //     console.log('payload', payload)
-
-  //     if (payload.success == true) {
-  //       LoderActions(false)
-  //       console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;d')
-
-  //       // setGetDataAllType(payload.data)
-  //       // setUsername(payload.data.username)
-  //       setInitialValues({
-  //         newpassword: '',
-  //         password: '',
-  //         userName: payload.data.username,
-  //       })
-  //       console.log('usename', username)
-
-  //       // const useur: any = payload.data.username
-  //     }
-  //   } catch (error) {}
-  // }, [])
-
   const {data: customer, error} = useQuery(
     `GetUserbyId-${id}`,
     async () => {
       let data = await Userservice.GetUserTypeById(id)
       if (data.length === 0) {
-        // navigate('/customers')
         return
       }
       return setInitialValues({
@@ -100,10 +63,7 @@ export const UserEditePassword = () => {
     },
     {
       cacheTime: 0,
-      // enabled: enabledQuery && id !== 'new',
-      onError: (err) => {
-        console.log('err', err)
-      },
+      onError: (err) => {},
     }
   )
 
@@ -117,26 +77,20 @@ export const UserEditePassword = () => {
     initialValues: initialValues,
     validationSchema: validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
-      //   values.userName = username
       try {
         // Edit Api Response
         let response = await Userservice.editUserPassword(values)
-        console.log('Edit User*****************', response)
-
         if (response.success === false) {
           toast.error(response.message)
         } else {
-          // toast.success(`Data Updated Successfully`)
           toast.success(response.message)
         }
         navigation(`/master/users/form/${id}`)
-        // toast.success(` Data Updated Successfully`)
         toast.dismiss('1s')
 
         resetForm({})
         cancel()
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       } finally {
         // LoderActions(false)
@@ -161,21 +115,6 @@ export const UserEditePassword = () => {
             <KTSVG path='/media/icons/duotune/arrows/arr022.svg' />
           </span>
           <h2 className='fw-bolder'>Edit User Password</h2>
-          {/* end::Modal title */}
-
-          {/* begin::Close Icon*/}
-
-          {/* <CustomTooltip title='Close'>
-            <div
-              className='btn btn-icon btn-sm btn-active-icon-primary'
-              onClick={() => setItemIdForUpdate(undefined)}
-              style={{cursor: 'pointer'}}
-            >
-              <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
-            </div>
-          </CustomTooltip> */}
-
-          {/* end::Close Icon*/}
         </div>
 
         <div className='row w-100 mx-0 mb-4 gy-4 mt-2'>
@@ -232,15 +171,9 @@ export const UserEditePassword = () => {
             <div className='erro2' style={{color: 'red'}}>
               {formik.touched.password && formik.errors.password ? formik.errors.password : null}
             </div>
-
-            {/* <div className='erro2' style={{color: 'red'}}>
-              {formik.touched.passwords && formik.errors.passwords ? formik.errors.passwords : null}
-            </div> */}
           </div>
         </div>
-        {/* <div className='erro2' style={{color: 'red'}}>
-          <ErrorMessage name='passwords' />
-        </div> */}
+
         <div className='modal-footer border-0 pb-0 pt-0'>
           <CustomTooltip title='Close form'>
             <button

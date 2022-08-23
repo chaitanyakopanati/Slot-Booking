@@ -10,7 +10,6 @@ const UserFormByCategory = () => {
   let {id} = useParams()
 
   const {setItemIdForUpdate, itemIdForUpdate} = ListPageData()
-  // const [itemIdForUpdate, setItemIdForUpdate] = useState<undefined | null | string>(null)
   const enabledQuery: boolean = isNotEmpty(itemIdForUpdate)
 
   useEffect(() => {
@@ -20,9 +19,6 @@ const UserFormByCategory = () => {
       setItemIdForUpdate(id)
     }
   }, [id])
-
-
-
 
   const {data: category, error} = useQuery(
     `GetUserbyId-${itemIdForUpdate}`,
@@ -34,7 +30,6 @@ const UserFormByCategory = () => {
       enabled: enabledQuery && id !== 'add',
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        
       },
     }
   )
@@ -42,18 +37,12 @@ const UserFormByCategory = () => {
     /* end:: Api call GetUserTypeById */
   }
 
-  useEffect(() => {
-    
-    console.log('itemIdForUpdate****', itemIdForUpdate)
-  }, [category,itemIdForUpdate])
-
   {
     /* begin::Add-Form Model functionality */
   }
   if (itemIdForUpdate === 'add' || !itemIdForUpdate) {
     return <UserFormModal category={{ID: undefined}} />
   }
-
 
   if (!error && category) {
     return <UserFormModal category={category} />

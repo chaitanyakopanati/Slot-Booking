@@ -98,17 +98,8 @@ const editUser = (obj: putUsersmodel) => {
 
 const editUserPassword = (obj: putUsersmodel) => {
   return http.post(`EditPassword`, {
-    // firstname: obj.firstname,
-    // lastname: obj.lastname,
     userName: obj.userName,
     password: obj.password,
-    // email: obj.email,
-    // phone: obj.phone,
-    // zoneId: obj.zoneId,
-    // roleId: obj.roleId,
-    // modifyby: obj.modifyby,
-    // status: '1',
-    // id: obj.id,
   })
 }
 {
@@ -119,8 +110,6 @@ const editUserPassword = (obj: putUsersmodel) => {
   /* begin:: User:- getById Api call */
 }
 const GetUserTypeById = (id: ID) => {
-  console.log(id, 'id===============')
-
   return http.get(`GetUserbyId/${id}`)
 }
 {
@@ -155,7 +144,6 @@ const Userservice = {
   postUser,
   deleteUser,
   editUser,
-  // getUser,
   GetUserTypeById,
   getCreatedByTypes,
   getZoneTypes,

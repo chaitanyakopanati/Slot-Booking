@@ -89,7 +89,6 @@ const ListDataProvider: FC = ({children}) => {
   // Download fill
 
   let fetchAllDownload = async () => {
-    console.log('Enter')
     LoderActions(true)
     try {
       let response: any = await OfficeStockOutwardservice.getDynamicDownloadFile(
@@ -101,7 +100,6 @@ const ListDataProvider: FC = ({children}) => {
       toast.success('Requested File Downloaded Successfully')
     } catch (error) {
       toast.error('Something went wrong Please try again ')
-      console.log('Error', error)
     } finally {
       LoderActions(false)
     }
@@ -121,7 +119,6 @@ const ListDataProvider: FC = ({children}) => {
           zoneId,
           productId
         )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         LoderActions(false)
@@ -146,7 +143,6 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
 
         setGetDataAllTypeZone(payload.data)
       }
@@ -169,7 +165,6 @@ const ListDataProvider: FC = ({children}) => {
 
       if (payload.success == true) {
         LoderActions(false)
-        console.log(payload, ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;')
 
         setGetDataAllTypeProduct(payload.data)
       }

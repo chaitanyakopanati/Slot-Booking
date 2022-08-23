@@ -1,5 +1,3 @@
-
-
 import {useQuery} from 'react-query'
 import {useEffect} from 'react'
 import {isNotEmpty} from '../../../../_metronic/helpers'
@@ -24,18 +22,12 @@ const MainPointFormByCategory = () => {
       enabled: enabledQuery,
       onError: (err) => {
         setItemIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )
   {
     /* end:: Api call GetMainPointById */
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   {
     /* begin::Add-Form Model functionality */

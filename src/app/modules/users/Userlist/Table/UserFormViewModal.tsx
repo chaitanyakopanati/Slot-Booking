@@ -78,28 +78,12 @@ const UserFormViewModal: FC<Props> = ({category}) => {
                 className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                 onClick={() => {
                   setViewIdForUpdate(undefined)
-                  console.log('tttttttttttttttttttttttttttt', category)
-                  console.log('tttttttttttttttttttttttttttt', category.data.id)
                   navigate(`/master/users/form/${category.data.id}`)
-                  // openEditModal(category.id)
                 }}
               >
                 <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
                 Edit User
               </button>
-              {/* end::  Edit User button */}
-
-              {/* begin::  close icon */}
-              {/* <CustomTooltip title='Close'>
-                <div
-                  className='btn btn-icon btn-sm btn-active-icon-primary'
-                  onClick={() => setViewIdForUpdate(undefined)}
-                  style={{cursor: 'pointer'}}
-                >
-                  <KTSVG path='/media/icons/duotune/arrows/arr061.svg' className='svg-icon-1' />
-                </div>
-              </CustomTooltip> */}
-              {/* end::  close icon */}
             </div>
           </div>
           {/* end:: View Modal Header */}

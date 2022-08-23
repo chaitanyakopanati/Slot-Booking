@@ -15,9 +15,7 @@ type Props = {
 
 const ProfileSettingsPage: FC<Props> = ({category}) => (
   <>
- 
- 
- <Formik
+    <Formik
       initialValues={{
         ...category,
         id: category.data?.id,
@@ -33,14 +31,12 @@ const ProfileSettingsPage: FC<Props> = ({category}) => (
           .required('This field is required'),
       })}
       onSubmit={async (values: any, {resetForm}) => {
-        console.log('values', values)
         LoderActions(true)
 
         try {
           if (values.id) {
             // Edit Api Response
             let response = await Userservice.editUser(values)
-            console.log('Edit User*****************', response)
 
             if (response.success === false) {
               toast.error(response.message)
@@ -53,15 +49,12 @@ const ProfileSettingsPage: FC<Props> = ({category}) => (
             resetForm({})
           }
         } catch (error: any) {
-          console.log(error, 'error')
           toast.error(error.data.message)
         } finally {
           LoderActions(false)
         }
       }}
-      
     >
-      
       {(props) => (
         <form onSubmit={props.handleSubmit}>
           <div className='row gy-5 gx-xl-8'>
@@ -212,45 +205,12 @@ const ProfileSettingsPage: FC<Props> = ({category}) => (
         </form>
       )}
     </Formik>
-    {/* <div className='row mb-6'>
-                    <label className='col-lg-3 col-form-label required fw-bold fs-6'>
-                      Communication
-                    </label>
-                    <div className='col-lg-9'>
-                      <div className='d-flex align-items-center mt-3'>
-                        <label className='form-check form-check-inline form-check-solid me-5'>
-                          <input
-                            className='form-check-input'
-                            name='communication[]'
-                            type='checkbox'
-                            value='1'
-                          />
-                          <span className='fw-bold ps-2 fs-6'>Email</span>
-                        </label>
-  
-                        <label className='form-check form-check-inline form-check-solid'>
-                          <input
-                            className='form-check-input'
-                            name='communication[]'
-                            type='checkbox'
-                            value='2'
-                          />
-                          <span className='fw-bold ps-2 fs-6'>Phone</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div> */}
-
   </>
 )
-
-
-
 
 const ProfileSettingsWrapper: FC = () => {
   const intl = useIntl()
   const navigator = useNavigate()
-
 
   return (
     <>

@@ -53,7 +53,6 @@ const UserTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data.message)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -73,7 +72,6 @@ const UserTable = () => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -100,8 +98,6 @@ const UserTable = () => {
           <tbody>
             {getData.length > 0 ? (
               getData.map((row: getUserData, index: number) => {
-                // console.log("wertyuiop[",row);
-
                 return (
                   <tr key={index}>
                     {/* begin:: Index No */}

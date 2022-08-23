@@ -115,7 +115,6 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         LoderActions(false)
@@ -135,7 +134,6 @@ const ListDataProvider: FC = ({children}) => {
   }
   let getDataMainPointAllType = async () => {
     let response: GetAllMainPointApi = await MainPointservice.getMainPoint()
-    console.log(response, '-==-------====s')
     setGetDataMainPoint(response.data)
   }
   {
@@ -150,7 +148,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {

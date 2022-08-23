@@ -47,7 +47,6 @@ const FaultsTable = () => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Delete',
     }).then(async (result) => {
-      console.log('result', result)
       if (result.isConfirmed) {
         LoderActions(true)
         try {
@@ -65,7 +64,6 @@ const FaultsTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data.message)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -83,22 +81,8 @@ const FaultsTable = () => {
     LoderActions(false)
   }, [])
 
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllFault()
-  // }, [pageNo, pageSize, searchText])
-
-  // useEffect(() => {
-  //   console.log('getData', getData)
-  // }, [getData])
-
-  useEffect(() => {
-    console.log('getDataAllType', getDataAllType)
-  }, [getDataAllType])
-
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 

@@ -95,14 +95,11 @@ const ListDataProvider: FC = ({children}) => {
     LoderActions(true)
     try {
       let payload: getAllComplainData = await Complaintservice.getComplaints()
-      console.log(payload, 'payload')
       if (payload.success == true) {
-        console.log(payload)
         setGetDataCreatedByAllType(payload.data)
         // setGetData(payload.data)
       }
     } catch (error) {
-      console.log(error, 'error')
     } finally {
       LoderActions(false)
     }
@@ -125,19 +122,15 @@ const ListDataProvider: FC = ({children}) => {
         createdById
       )
       LoderActions(true)
-      console.log(response, 'response=========Allll')
       if (response.success == true) {
         LoderActions(false)
 
-        console.log(response)
         setGetData(response.data)
         setPageCount(response?.pages)
         setTotalData(response.TotalRecords)
       }
     } catch (error) {
       LoderActions(false)
-
-      console.log(error, 'error')
     }
   }
   {
@@ -146,7 +139,6 @@ const ListDataProvider: FC = ({children}) => {
 
   let getDataComplaintAllType = async () => {
     let response: GetAllComplaintApi = await Complaintservice.getComplaints()
-    console.log(response, 'responseppppppp')
     setgetDataComplaint(response.data)
   }
 
@@ -158,7 +150,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {

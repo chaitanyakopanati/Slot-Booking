@@ -18,7 +18,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
   let {LoderActions} = useLoader()
 
   const {auth} = useAuth()
-  console.log(auth?.userId, 'auth')
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -31,11 +30,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
       keyEvent.preventDefault()
     }
   }
-
-  useEffect(() => {
-    console.log('category', category)
-    console.log('itemIdForUpdate', itemIdForUpdate)
-  }, [category])
 
   return (
     <>
@@ -63,12 +57,9 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
           try {
             if (values.id) {
-              console.log(values, 'valuespost')
-
               // Edit Api Response
               let response = await Complaintservice.editcomplaints(values)
               if (response.success === true) {
-                console.log(response, 'res======')
                 // toast.success(` Data Updated Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
@@ -76,16 +67,12 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                 resetForm({})
                 cancel()
               } else {
-                console.log(response, 'res=----------====')
                 toast.error(response.message)
               }
             } else {
-              console.log(values, 'valuespost')
-
               // Create Api Response
               let response = await Complaintservice.postcomplaints(values)
               if (response.success === true) {
-                console.log(response, 'res=----------====')
                 // toast.success(` Data Added Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
@@ -93,13 +80,11 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                 resetForm({})
                 cancel()
               } else {
-                console.log(response, 'res=----------====')
                 toast.error(response.message)
                 resetForm({})
               }
             }
           } catch (error: any) {
-            console.log(error, 'error')
             toast.error(error.data.message)
           } finally {
             LoderActions(false)
@@ -108,8 +93,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
       >
         {(props) => (
           <>
-            {console.log(category, 'category')}
-
             <Form
               id='kt_modal_add_user_form'
               onKeyDown={onKeyDown}
@@ -158,10 +141,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       type='number'
                       value={props.values.etr}
-                      // onChange={props.handleChange}
                       onChange={(e) => {
-                        // console.log(e.target.value,"number");
-
                         if (+e.target.value > 999) {
                           return
                         }

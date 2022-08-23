@@ -85,8 +85,6 @@ const OfficeOldStockOutwardsFormViewModal: FC<Props> = ({category}) => {
                         className=' btn-sm btn-flex btn btn-secondary btn-active-primary fw-bold'
                         onClick={() => {
                           setViewIdForUpdate(undefined)
-                          console.log('tttttttttttttttttttttttttttt', category)
-                          console.log('tttttttttttttttttttttttttttt', category.data.id)
                           navigate(
                             `/stocks/office-old-stock-outwards/OutwardsOldform/${category.data.id}`
                           )

@@ -33,9 +33,7 @@ const CustomerFormByCategory = () => {
     {
       cacheTime: 0,
       enabled: enabledQuery && id !== 'new',
-      onError: (err) => {
-        console.log('err', err)
-      },
+      onError: (err) => {},
     }
   )
   if (id === 'new' || !customer) {

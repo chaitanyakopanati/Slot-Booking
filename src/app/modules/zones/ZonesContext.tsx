@@ -23,7 +23,6 @@ export interface ComplaintDataContextModel {
   viewIdForUpdate: ViewForm
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => void
   setItemIdForUpdate: (_itemIdForUpdate: ID) => void
-  // DataGetAllType: () => void
   searchText: string
   setSearchText: Dispatch<SetStateAction<string>>
   fetchAllZone: () => void
@@ -53,7 +52,6 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   itemIdForUpdate: undefined,
   viewIdForUpdate: undefined,
   setViewIdForUpdate: (_setViewIdForUpdate: ViewForm) => {},
-  // DataGetAllType: () => {},
   fetchAllZone: () => {},
   getZonesAllTypeData: () => {},
   DataGetAllTypeCreatedByTypes: () => {},
@@ -85,7 +83,6 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      console.log(response, 'response=========')
 
       if (response.success == true) {
         LoderActions(false)
@@ -105,7 +102,6 @@ const ListDataProvider: FC = ({children}) => {
   }
   let getZonesAllTypeData = async () => {
     let response: GetAllFaulttApi = await Zoneservice.getZones()
-    console.log(response, '=666')
     setGetDataAllType(response.data)
   }
   {
@@ -120,7 +116,6 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
-        console.log(payload.data, 'oooooooooooo')
       }
     } catch (error) {
     } finally {
@@ -139,7 +134,6 @@ const ListDataProvider: FC = ({children}) => {
     setViewIdForUpdate,
     getZonesAllTypeData,
     DataGetAllTypeCreatedByTypes,
-    // DataGetAllType,
     getDataAllType,
     pageNo,
     pageSize,

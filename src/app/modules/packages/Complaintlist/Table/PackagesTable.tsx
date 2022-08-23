@@ -35,7 +35,6 @@ const PackagesTable = () => {
 
   const handleSearchChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -67,7 +66,6 @@ const PackagesTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -83,15 +81,6 @@ const PackagesTable = () => {
     DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
-
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllBank()
-  // }, [pageNo, pageSize, searchText])
-
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
 
   return (
     <>

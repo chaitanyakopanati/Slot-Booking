@@ -46,7 +46,6 @@ const SupplierTable = () => {
 
   const handleSearchChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -78,7 +77,6 @@ const SupplierTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -90,10 +88,6 @@ const SupplierTable = () => {
   {
     /* end:: Delete functionlity */
   }
-
-  useEffect(() => {
-    console.log(getData, 'getData')
-  }, [])
 
   return (
     <>
@@ -228,7 +222,6 @@ const SupplierTable = () => {
 
                         <div id={`card-id-${DataWiseIndex + index + 1}`} className='collapse'>
                           <div className='py-1 d-flex align-items-cenetr'>
-                            {/* <div className='fw-bolder '>ETR(Hours):</div> */}
                             <div className='text-dark fw-bold  ms-2'>{row?.gstNo || '-'}</div>
                           </div>
                           <div className='py-1 d-flex align-items-cenetr'>

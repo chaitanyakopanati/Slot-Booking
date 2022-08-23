@@ -13,9 +13,7 @@ const editUser = (obj: putUsersmodel) => {
     email: obj.email,
     phone: obj.phone,
     zoneId: obj.zoneId,
-    // zoneId: 3,
     roleId: obj.roleId,
-    // roleId: '4aebb2c4-648a-4929-95c5-67ae2f012805',
     modifyby: 1,
     status: '1',
     id: obj.id,
@@ -30,8 +28,6 @@ const editUser = (obj: putUsersmodel) => {
   /* begin:: User:- getById Api call */
 }
 const GetUserTypeById = (id: number) => {
-  //   console.log(id, 'id===============')
-
   return http.get(`GetUserbyId/${id}`)
 }
 {

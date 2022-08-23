@@ -12,15 +12,10 @@ function OfficeOldStockOutwardsView() {
     ListPageData()
   const enabledQuery: boolean = isNotEmpty(viewIdForUpdate)
   useEffect(() => {
-    console.log('id', id)
     if (id) {
       setViewIdForUpdate(id)
     }
   }, [id])
-
-  useEffect(() => {
-    console.log('viewIdForUpdate', viewIdForUpdate)
-  }, [viewIdForUpdate])
 
   const {data: userDetails, error} = useQuery(
     `ViewGetOfficeOldStockOutwardsById-${viewIdForUpdate}`,
@@ -32,7 +27,6 @@ function OfficeOldStockOutwardsView() {
       enabled: enabledQuery,
       onError: (err) => {
         setViewIdForUpdate(undefined)
-        console.error(err)
       },
     }
   )

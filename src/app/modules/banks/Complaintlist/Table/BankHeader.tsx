@@ -41,7 +41,6 @@ const BankHeader: FC<Props> = ({category}) => {
   }
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
   {
@@ -53,7 +52,6 @@ const BankHeader: FC<Props> = ({category}) => {
   }
   const handlCreatedBychange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setCreatedById(e.target.value)
   }
   {
@@ -78,9 +76,7 @@ const BankHeader: FC<Props> = ({category}) => {
           createdById: Yup.number().required('This fied is required'),
           id: Yup.string().required('This fied is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {
-          console.log(values, 'values')
-        }}
+        onSubmit={async (values: any, {resetForm}) => {}}
       >
         {(props) => (
           <form>

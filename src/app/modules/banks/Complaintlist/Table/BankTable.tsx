@@ -35,7 +35,6 @@ const BankTable = () => {
 
   const handleSearchChange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -67,7 +66,6 @@ const BankTable = () => {
             toast.dismiss('1s')
           }
         } catch (error: any) {
-          console.log('error', error.data)
           toast.error(error?.data?.message)
           toast.dismiss('1s')
         }
@@ -83,15 +81,6 @@ const BankTable = () => {
     DataGetAllTypeCreatedByTypes()
     LoderActions(false)
   }, [])
-
-  // useEffect(() => {
-  //   console.log('enter')
-  //   fetchAllBank()
-  // }, [pageNo, pageSize, searchText])
-
-  useEffect(() => {
-    console.log('getData', getData)
-  }, [getData])
 
   return (
     <>
@@ -203,7 +192,6 @@ const BankTable = () => {
           />
           {getData.length > 0 ? (
             getData?.map((row: getBankData, index: number) => {
-              console.log('DataWiseIndex', DataWiseIndex + index + 1, DataWiseIndex + index + 1)
               return (
                 <div key={DataWiseIndex + index + 1}>
                   <div className='col-md-6 mx-0 my-2'>

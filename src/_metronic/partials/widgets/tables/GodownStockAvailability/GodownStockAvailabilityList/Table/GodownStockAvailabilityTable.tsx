@@ -22,7 +22,6 @@ const GodownStockAvailabilityTable = () => {
 
   const handlesearchange = (e: any) => {
     setPageNo(1)
-    console.log(e.target.value)
     setSearchText(e.target.value)
   }
 
@@ -107,15 +106,6 @@ const GodownStockAvailabilityTable = () => {
                             {row.quantityDisplay || '-'}
                           </div>
                         </div>
-
-                        {/* <div
-                      className='cursor-pointer py-1 d-flex justify-content-start fw-bold fs-7 text-muted'
-                      data-bs-toggle='collapse'
-                      data-bs-target={`#card-id-${DataWiseIndex + index + 1}`}
-                      aria-expanded='false'
-                      >
-                      <span>+ &nbsp;</span>More info
-                    </div> */}
                       </div>
                     </div>
                   </div>
