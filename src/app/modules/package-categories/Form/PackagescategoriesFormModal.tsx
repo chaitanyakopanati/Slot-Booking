@@ -51,8 +51,8 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
-            .max(25, 'Max 25 Characters Allowed')
+            // .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
+            .max(100, 'Max 100 Characters Allowed')
             .required('This field is required'),
           etr: Yup.number()
             .min(1, 'Etr must be between 1 to 999.')
@@ -123,7 +123,7 @@ const PackagescategoriesFormModal: FC<Props> = ({category}) => {
                     placeholder='Name'
                     value={props.values.name}
                     onChange={(e) => {
-                      if (e.target.value.length <= 20) {
+                      if (e.target.value.length <= 100) {
                         props.handleChange(e)
                       }
                     }}

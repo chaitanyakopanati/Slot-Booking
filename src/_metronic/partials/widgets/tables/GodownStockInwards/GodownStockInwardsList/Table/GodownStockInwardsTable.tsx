@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {KTSVG} from '../../../../../../helpers'
 import {getGodownStockInwardsData} from '../../helperGodownStockInwards/ModelGodownStockInwards'
 import {ListPageData} from '../../GodownStockInwardsContext'
+import {useAuth} from '../../../../../../../app/modules/auth'
 
 const GodownStockInwardsTable = () => {
   const {
@@ -34,6 +35,8 @@ const GodownStockInwardsTable = () => {
     setPageNo(1)
     setSearchText(e.target.value)
   }
+
+  const {currentUser, auth} = useAuth()
 
   return (
     <div>
@@ -111,16 +114,23 @@ const GodownStockInwardsTable = () => {
                       {/* end:: View Icon */}
 
                       {/* begin:: Edit Icon */}
-                      <button
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                        onClick={() => {
-                          navigate(`godownInwardsform/${row.id}`)
-                        }}
-                        title='Edit Godown Stock Inwards'
-                        // onClick={()=>openEditModal(row.id)}
-                      >
-                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
-                      </button>
+                      {auth?.roleId == 6 ? (
+                        ''
+                      ) : (
+                        <button
+                          className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                          onClick={() => {
+                            navigate(`godownInwardsform/${row.id}`)
+                          }}
+                          title='Edit Godown Stock Inwards'
+                          // onClick={()=>openEditModal(row.id)}
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/art/art005.svg'
+                            className='svg-icon-3'
+                          />
+                        </button>
+                      )}
                       {/* end:: Edit Icon */}
                     </td>
                     {/* end:: Action */}

@@ -7,16 +7,16 @@ import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
 import OfficeStockOutwardsViewService from '../helperOfficeStockOutwards/ApiDataRequest'
 import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
 import moment from 'moment'
-import * as Yup from 'yup';
+import * as Yup from 'yup'
 
 type formik = {
   category: any
 }
 
-let validationFormSchema =   Yup.object({
+let validationFormSchema = Yup.object({
   outwardDate: Yup.string().required('This field is required'),
   productId: Yup.number().required('This field is required'),
-  quantity: Yup.number().max(Yup.ref("maxQuantity")).required('This field is required'),
+  quantity: Yup.number().max(Yup.ref('maxQuantity')).required('This field is required'),
   zoneId: Yup.number().required('This fielld is required'),
   technicianId: Yup.string().required('This field is required'),
   reason: Yup.string().required('This field is required'),
@@ -50,29 +50,27 @@ const UserFormModal: FC<formik> = ({category}) => {
     technicianId: '',
     serialno: '',
     remark: '',
-    maxQuantity:''
+    maxQuantity: '',
   })
   const [getProductZoneQuntity, setGetProductZoneQuntity] = useState(0)
 
   useEffect(() => {
-      setInitialValues({
-        ...category,
-        id: category.data?.id || '',
-        outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
-        productId: category.data?.productId || '',
-        quantity: category.data?.quantity || '',
-        zoneId: category.data?.zoneId || '',
-        userId: category.data?.userId || '',
-        username: category.data?.username || '',
-        reason: category.data?.reason || '',
-        technicianId: category.data?.technicianId || '',
-        serialno: category.data?.serialno || '',
-        remark: category.data?.remark || '',
-        maxQuantity: category.data?.maxQuantity || '',
-      })
+    setInitialValues({
+      ...category,
+      id: category.data?.id || '',
+      outwardDate: moment(category.data?.outwardDate).format('YYYY-MM-DD'),
+      productId: category.data?.productId || '',
+      quantity: category.data?.quantity || '',
+      zoneId: category.data?.zoneId || '',
+      userId: category.data?.userId || '',
+      username: category.data?.username || '',
+      reason: category.data?.reason || '',
+      technicianId: category.data?.technicianId || '',
+      serialno: category.data?.serialno || '',
+      remark: category.data?.remark || '',
+      maxQuantity: category.data?.maxQuantity || '',
+    })
   }, [itemIdForUpdate])
-
-
 
   const cancel = (withRefresh?: boolean) => {
     if (withRefresh) {
@@ -101,7 +99,6 @@ const UserFormModal: FC<formik> = ({category}) => {
         if (values.id) {
           // Edit Api Response
           let response = await OfficeStockOutwardsViewService.editOfficeStockOutwards(values)
-          console.log('Edit User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
@@ -112,7 +109,6 @@ const UserFormModal: FC<formik> = ({category}) => {
           toast.dismiss('1s')
         } else {
           let response = await OfficeStockOutwardsViewService.postOfficeStockOutwards(values)
-          console.log('Add User*****************', response)
 
           if (response.success === false) {
             toast.error(response.message)
@@ -123,7 +119,6 @@ const UserFormModal: FC<formik> = ({category}) => {
           navigation('/stocks/office-stock-outwards')
         }
       } catch (error: any) {
-        console.log(error, 'error')
         toast.error(error.data.message)
       } finally {
         LoderActions(false)
@@ -132,16 +127,15 @@ const UserFormModal: FC<formik> = ({category}) => {
   })
 
   useEffect(() => {
-    if ((formik.values.productId && formik.values.zoneId)) {
+    if (formik.values.productId && formik.values.zoneId) {
       const ProductZoneAllData = async () => {
         let payload = await OfficeStockOutwardsViewService.getProductZoneQuntityTypes(
           formik.values.productId,
           formik.values.zoneId
         )
-        console.log(payload, 'payloadpayload')
         if (payload.success == true) {
           LoderActions(false)
-          formik.setFieldValue('maxQuantity',payload?.data || 0)
+          formik.setFieldValue('maxQuantity', payload?.data || 0)
         }
       }
       // formik.setFieldValue('quantity',10)
@@ -245,7 +239,8 @@ const UserFormModal: FC<formik> = ({category}) => {
                       color: 'blue',
                     }}
                   >
-                    {formik.values.maxQuantity&&`(${formik.values.maxQuantity} Quantity Available)`}
+                    {formik.values.maxQuantity &&
+                      `(${formik.values.maxQuantity} Quantity Available)`}
                     {/* {getProductZoneQuntity != null
                       ? `(${getProductZoneQuntity} Quantity Available)`
                       : ''} */}
@@ -286,7 +281,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                       suggestionRef.current.style.display = 'block'
                     } else {
                       suggestionRef.current.style.display = 'none'
-                      console.log('Elseeeeeee__________________________', suggestionRef)
                     }
                     formik.handleChange(e)
                   }}
@@ -297,7 +291,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                       if (suggestionRef.current) {
                         suggestionRef.current.style.display = 'none'
                       }
-                      console.log(suggestionRef, '=====================-------===----==--')
                       document.removeEventListener('click', () => {})
                     })
                   }}
@@ -306,7 +299,6 @@ const UserFormModal: FC<formik> = ({category}) => {
                   <ul>
                     {getUserNameData?.length > 0 &&
                       getUserNameData.map((user, index) => {
-                        console.log('user', user)
                         return (
                           <li
                             key={user.id}

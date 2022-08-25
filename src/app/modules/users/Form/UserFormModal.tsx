@@ -21,10 +21,10 @@ const emailRegExp = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
 
 let validationSchemaNewForm = Yup.object({
   firstname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
   lastname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
   username: Yup.string().required('This field is required'),
   email: Yup.string()
@@ -56,10 +56,10 @@ let validationSchemaNewForm = Yup.object({
 
 let validationSchemaEditForm = Yup.object({
   firstname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
   lastname: Yup.string()
-    .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
+    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
   username: Yup.string()
     .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
@@ -225,7 +225,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.firstname}
                       onChange={(e) => {
-                        if (e.target.value.length <= 20) {
+                        if (e.target.value.length <= 100) {
                           props.handleChange(e)
                         }
                       }}
@@ -247,7 +247,7 @@ const UserFormModal: FC<Props> = ({category}) => {
                       className='form-control form-control-lg form-control-solid'
                       value={props.values.lastname}
                       onChange={(e) => {
-                        if (e.target.value.length <= 20) {
+                        if (e.target.value.length <= 100) {
                           props.handleChange(e)
                         }
                       }}

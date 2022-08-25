@@ -37,6 +37,9 @@ export interface customerFormType {
   CreatedBy: number | ''
   ModifyBy: number | ''
   IsMasterUser: boolean
+  OfficeNoHomeNo: string
+  ResidencyName: string
+  Area: string
 }
 
 export interface filterTable {
@@ -174,6 +177,9 @@ export let formInitialValues: customerFormType = {
   CreatedBy: '',
   ModifyBy: '',
   IsMasterUser: false,
+  ResidencyName: '',
+  Area: '',
+  OfficeNoHomeNo: '',
 }
 
 export type ID = undefined | null | string

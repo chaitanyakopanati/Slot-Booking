@@ -331,10 +331,20 @@ const FormsFormModal: FC<Props> = ({category}) => {
   }, [formik.values.cashamount, formik.values.chequeamount])
 
   useEffect(() => {
-    if (formik.values.packagevalidity >= 1) {
+    if (formik.values.packagevalidity == 0) {
       formik.setFieldValue(
         'expirydate',
-        moment(new Date())
+        // moment(new Date())
+        moment(formik.values.activationdate)
+          .add(formik.values.packagevalidity, 'months')
+          // .subtract(1, 'days')
+          .format('YYYY-MM-DD')
+      )
+    } else if (formik.values.packagevalidity >= 1) {
+      formik.setFieldValue(
+        'expirydate',
+        // moment(new Date())
+        moment(formik.values.activationdate)
           .add(formik.values.packagevalidity, 'months')
           .subtract(1, 'days')
           .format('YYYY-MM-DD')

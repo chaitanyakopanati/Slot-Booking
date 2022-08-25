@@ -55,7 +55,7 @@ const ComplaintFormViewModal: FC<Props> = ({category}) => {
 
           modifiedByName: category.data?.modifiedByName || ' ',
         }}
-        onSubmit={(values) => console.log()}
+        onSubmit={(values) => {}}
       >
         {(props) => (
           <form

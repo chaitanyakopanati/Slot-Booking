@@ -98,7 +98,7 @@ const editComplaints = (obj: postlistData) => {
     status: obj.status,
     remark: obj.remark,
     assigntechnicianid: obj.assigntechnicianid ? obj.assigntechnicianid : null,
-    faultid: obj.faultid ? obj.faultid : null,
+    faultid: obj.faultid ? +obj.faultid : null,
     isnotifycustomer: obj.isnotifycustomer,
     isnotifytechinician: obj.isnotifytechinician,
     ModifyBy: obj.ModifyBy,

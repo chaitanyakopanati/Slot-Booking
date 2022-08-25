@@ -23,7 +23,7 @@ let validationSchemaNewForm = Yup.object({
     .min(10, 'Invalid Phone Number')
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
-  salesexecutiveId: Yup.string().required('This fielld is required'),
+  // salesexecutiveId: Yup.string().required('This fielld is required'),
   statusId: Yup.number().required('This fielld is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
@@ -49,7 +49,7 @@ let validationSchemaEditForm = Yup.object({
     .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
     .required('This field is required'),
   statusId: Yup.number().required('This fied is required'),
-  salesexecutiveId: Yup.string().required('This fied is required'),
+  // salesexecutiveId: Yup.string().required('This fied is required'),
   description: Yup.string().required('This field is required'),
   remark: Yup.string().required('This field is required'),
   area: Yup.string().required('This field is required'),
@@ -80,6 +80,8 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
     username: '',
     isnotify: false,
     area: '',
+    OfficeNoHomeNo: '',
+    ResidencyName: '',
   })
 
   const [status, setStatus] = useState<any>('')
@@ -102,6 +104,8 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         isnotify: category.data?.isnotify || false,
         createdbyId: auth?.userId,
         userId: category.data?.userId || '',
+        OfficeNoHomeNo: category.data?.OfficeNoHomeNo || '',
+        ResidencyName: category.data?.ResidencyName || '',
       })
     } else {
       setInitialValues({
@@ -120,6 +124,8 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         remark: category.data?.remark || '',
         isnotify: category.data?.isnotify || false,
         modifybyId: auth?.userId,
+        OfficeNoHomeNo: category.data?.OfficeNoHomeNo || '',
+        ResidencyName: category.data?.ResidencyName || '',
       })
     }
   }, [itemIdForUpdate])
@@ -229,22 +235,37 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           <ErrorMessage name='name' />
                         </div>
                       </div>
-                      <div className='col-12 col-lg-12'>
-                        <label className='form-label fw-bold required'>Address</label>
-                        <textarea
-                          className='form-control form-control form-control-solid'
-                          name='address'
-                          value={props.values.address}
-                          onChange={props.handleChange}
+                      <div className='col-lg-4'>
+                        <label className='form-label fw-bold required'>Office no / Home no</label>
+                        <input
+                          placeholder='Office no'
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                          name='OfficeNoHomeNo'
+                          value={props.values.OfficeNoHomeNo}
+                          onChange={(e) => {
+                            props.handleChange(e)
+                          }}
                           onBlur={props.handleBlur}
-                          data-kt-autosize='true'
-                          placeholder='Address here'
-                        ></textarea>
-                        <div className='erro2' style={{color: 'red'}}>
-                          <ErrorMessage name='address' />
-                        </div>
-                      </div>
-                      <div className='col-12 col-lg-12'>
+                        />
+                      </div>{' '}
+                      <div className='col-lg-4'>
+                        <label className='form-label fw-bold required'>Residency</label>
+                        <input
+                          placeholder='Residency'
+                          className='form-control form-control-lg form-control-solid'
+                          type='text'
+                          autoComplete='off'
+                          name='ResidencyName'
+                          value={props.values.ResidencyName}
+                          onChange={(e) => {
+                            props.handleChange(e)
+                          }}
+                          onBlur={props.handleBlur}
+                        />
+                      </div>{' '}
+                      <div className='col-lg-4'>
                         <label className='form-label fw-bold required'>Area</label>
                         <input
                           className='form-control form-control-lg form-control-solid'
@@ -260,6 +281,37 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           <ErrorMessage name='area' />
                         </div>
                       </div>
+                      <div className='col-12 col-lg-12'>
+                        <label className='form-label fw-bold required'>Address</label>
+                        <textarea
+                          className='form-control form-control form-control-solid'
+                          name='address'
+                          value={props.values.address}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          data-kt-autosize='true'
+                          placeholder='Address here'
+                        ></textarea>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='address' />
+                        </div>
+                      </div>
+                      {/* <div className='col-12 col-lg-12'>
+                        <label className='form-label fw-bold required'>Area</label>
+                        <input
+                          className='form-control form-control-lg form-control-solid'
+                          name='area'
+                          value={props.values.area}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          data-kt-autosize='true'
+                          placeholder='Area'
+                          autoComplete='off'
+                        ></input>
+                        <div className='erro2' style={{color: 'red'}}>
+                          <ErrorMessage name='area' />
+                        </div>
+                      </div> */}
                     </div>
                     <div className='row w-100 mx-0 mb-4 gy-4'>
                       <div className='col-lg-4'>
@@ -383,7 +435,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                       )}
 
                       <div className='col-lg-4'>
-                        <label className='form-label fw-bold required'>Sales executive</label>
+                        <label className='form-label fw-bold'>Sales executive</label>
                         <select
                           className='form-select form-select-solid'
                           {...props.getFieldProps('salesexecutiveId')}
@@ -397,13 +449,13 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                             )
                           })}
                         </select>
-                        <div className='erro2' style={{color: 'red'}}>
+                        {/* <div className='erro2' style={{color: 'red'}}>
                           <ErrorMessage name='salesexecutiveId' />
-                        </div>
+                        </div> */}
                       </div>
 
                       <div className='col-12 col-lg-12'>
-                        <label className='form-label fw-bold required'>Description</label>
+                        <label className='form-label fw-bold required'>Description Plan</label>
                         <textarea
                           className='form-control form-control form-control-solid'
                           name='description'
@@ -411,7 +463,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                           data-kt-autosize='true'
-                          placeholder='Description here'
+                          placeholder='Description Plan here'
                         ></textarea>
                         <div className='erro2' style={{color: 'red'}}>
                           <ErrorMessage name='description' />

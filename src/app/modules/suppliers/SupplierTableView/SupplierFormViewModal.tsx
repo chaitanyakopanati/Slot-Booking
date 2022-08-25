@@ -48,7 +48,7 @@ const SupplierFormViewModal: FC<Props> = ({category}) => {
             ? moment.utc(category.modifyAt, 'YYYY-MM-DD,h:mm a').local().format('YYYY-MM-DD,h:mm a')
             : '',
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {}}
       >
         {(props) => (
           <Form

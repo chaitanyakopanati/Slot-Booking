@@ -48,13 +48,13 @@ const SupplierFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z-*&^%$#@!\s]*$/, 'Only alphabetics are allowed for this field ')
-            .max(25, 'Max 25 Characters Allowed')
+            // .matches(/^[a-zA-Z-*&^%$#@!\s]*$/, 'Only alphabetics are allowed for this field ')
+            .max(100, 'Max 100 Characters Allowed')
             .required('This field is required'),
           gstNo: Yup.string()
             .max(15, 'Max 15 Characters Allowed')
             // .min(15, 'Min 15 Characters are required')
-            .required('This field is required')
+            // .required('This field is required')
             .matches(/^[a-zA-Z1-9\s]*$/, 'Only alphabetics are allowed for this field '),
         })}
         onSubmit={async (values, {resetForm}) => {
@@ -122,7 +122,7 @@ const SupplierFormModal: FC<Props> = ({category}) => {
                     placeholder='Name'
                     value={props.values.name}
                     onChange={(e) => {
-                      if (e.target.value.length <= 20) {
+                      if (e.target.value.length <= 100) {
                         props.handleChange(e)
                       }
                     }}
@@ -139,7 +139,7 @@ const SupplierFormModal: FC<Props> = ({category}) => {
 
                 {/* begin:: Etr(Hours) Filed */}
                 <div className='fv-row mb-7'>
-                  <label className=' fw-bold fs-6 mb-2 required'>Gst No</label>
+                  <label className=' fw-bold fs-6 mb-2'>Gst No</label>
                   <div className='input-group'>
                     {/* <div className='input-group-text border-0'>Hour</div> */}
                     <input

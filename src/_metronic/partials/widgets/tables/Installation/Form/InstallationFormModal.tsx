@@ -366,175 +366,186 @@ const InstallationFormModal: FC<Props> = ({category}) => {
                   ''
                 )}
               </div>
-              <div className='row w-100 mx-0 mb-4 gy-4'>
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Cable Type</label>
-                  <select
-                    className='form-select form-select-solid'
-                    {...formik.getFieldProps('cabletypeid')}
-                  >
-                    <option value=''>Select Cable Type</option>
-                    {getcableTypeData.map((TypeData: any, index) => {
-                      return (
-                        <option key={index} value={TypeData.id}>
-                          {TypeData?.name}
-                        </option>
-                      )
-                    })}
-                  </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.cabletypeid && formik.errors.cabletypeid
-                      ? formik.errors.cabletypeid
-                      : null}
+              <div className={formik.values.connectiontype !== 2 ? 'row w-100 mx-0 mb-4 gy-4' : ''}>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Cable Type</label>
+                    <select
+                      className='form-select form-select-solid'
+                      {...formik.getFieldProps('cabletypeid')}
+                    >
+                      <option value=''>Select Cable Type</option>
+                      {getcableTypeData.map((TypeData: any, index) => {
+                        return (
+                          <option key={index} value={TypeData.id}>
+                            {TypeData?.name}
+                          </option>
+                        )
+                      })}
+                    </select>
+                    <div className='erro2' style={{color: 'red'}}>
+                      {formik.touched.cabletypeid && formik.errors.cabletypeid
+                        ? formik.errors.cabletypeid
+                        : null}
+                    </div>
                   </div>
-                </div>
 
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Cable Length</label>
-                  <div className='input-group'>
-                    <span className='input-group-text border-0'>m</span>
-                    <input
-                      placeholder='Access point ip'
-                      className='form-control form-control-lg form-control-solid'
-                      value={formik.values.cablelength}
-                      onChange={(e) => {
-                        if (e.target.value.length <= 10) {
-                          formik.handleChange(e)
-                        }
-                      }}
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Cable Length</label>
+                    <div className='input-group'>
+                      <span className='input-group-text border-0'>m</span>
+                      <input
+                        placeholder='Access point ip'
+                        className='form-control form-control-lg form-control-solid'
+                        value={formik.values.cablelength}
+                        onChange={(e) => {
+                          if (e.target.value.length <= 10) {
+                            formik.handleChange(e)
+                          }
+                        }}
+                        onBlur={formik.handleBlur}
+                        type='number'
+                        name='cablelength'
+                        autoComplete='off'
+                      />
+                    </div>
+                    <div className='erro2' style={{color: 'red'}}>
+                      {formik.touched.cablelength && formik.errors.cablelength
+                        ? formik.errors.cablelength
+                        : null}
+                    </div>
+                  </div>
+
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>IP Type</label>
+                    <select
+                      className='form-select form-select-solid'
+                      value={formik.values.iptype}
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      type='number'
-                      name='cablelength'
-                      autoComplete='off'
-                    />
+                      name='iptype'
+                    >
+                      <option value=''>Select IP Type</option>
+                      <option value='1'>Dynamic</option>
+                      <option value='2'>Static</option>
+                    </select>
+                    <div className='erro2' style={{color: 'red'}}>
+                      {formik.touched.iptype && formik.errors.iptype ? formik.errors.iptype : null}
+                    </div>
                   </div>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.cablelength && formik.errors.cablelength
-                      ? formik.errors.cablelength
-                      : null}
-                  </div>
+                  {formik.values.connectiontype == 2 ? (
+                    <div className='col-lg-3'>
+                      <label className='form-label fw-bold'>Access Point IP</label>
+                      <input
+                        placeholder='Access Point IP'
+                        className='form-control form-control-lg form-control-solid'
+                        value={formik.values.accesspointip}
+                        onChange={(e) => {
+                          if (e.target.value.length == 0 || e.target.value.match(regex)) {
+                            return formik.handleChange(e)
+                          }
+                          return
+                        }}
+                        onBlur={formik.handleBlur}
+                        type='sting'
+                        name='accesspointip'
+                        autoComplete='off'
+                      />
+                      <div className='erro2' style={{color: 'red'}}>
+                        {formik.touched.accesspointip && formik.errors.accesspointip
+                          ? formik.errors.accesspointip
+                          : null}
+                      </div>
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
+                <div className='row w-100 mx-0 mb-4 gy-4'>
+                  {formik.values.connectiontype == 2 ? (
+                    <>
+                      <div className='col-lg-3'>
+                        <label className='form-label fw-bold'>Station IP</label>
+                        <input
+                          placeholder='Station IP'
+                          className='form-control form-control-lg form-control-solid'
+                          value={formik.values.stationip}
+                          onChange={(e) => {
+                            if (e.target.value.length == 0 || e.target.value.match(regex)) {
+                              return formik.handleChange(e)
+                            }
+                          }}
+                          onBlur={formik.handleBlur}
+                          type='sting'
+                          name='stationip'
+                          autoComplete='off'
+                        />
+                        <div className='erro2' style={{color: 'red'}}>
+                          {formik.touched.stationip && formik.errors.stationip
+                            ? formik.errors.stationip
+                            : null}
+                        </div>
+                      </div>
 
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>IP Type</label>
-                  <select
-                    className='form-select form-select-solid'
-                    value={formik.values.iptype}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    name='iptype'
-                  >
-                    <option value=''>Select IP Type</option>
-                    <option value='1'>Dynamic</option>
-                    <option value='2'>Static</option>
-                  </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.iptype && formik.errors.iptype ? formik.errors.iptype : null}
-                  </div>
-                </div>
+                      <div className='col-lg-3'>
+                        <label className='form-label fw-bold'>Access Point Name</label>
+                        <input
+                          placeholder='Access Point Name'
+                          className='form-control form-control-lg form-control-solid'
+                          value={formik.values.stationname}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          type='text'
+                          name='stationname'
+                          autoComplete='off'
+                        />
+                        <div className='erro2' style={{color: 'red'}}>
+                          {formik.touched.stationname && formik.errors.stationname
+                            ? formik.errors.stationname
+                            : null}
+                        </div>
+                      </div>
 
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Access Point IP</label>
-                  <input
-                    placeholder='Access Point IP'
-                    className='form-control form-control-lg form-control-solid'
-                    value={formik.values.accesspointip}
-                    onChange={(e) => {
-                      if (e.target.value.length == 0 || e.target.value.match(regex)) {
-                        return formik.handleChange(e)
-                      }
-                      return
-                    }}
-                    onBlur={formik.handleBlur}
-                    type='sting'
-                    name='accesspointip'
-                    autoComplete='off'
-                  />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.accesspointip && formik.errors.accesspointip
-                      ? formik.errors.accesspointip
-                      : null}
-                  </div>
-                </div>
-              </div>
-              <div className='row w-100 mx-0 mb-4 gy-4'>
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Station IP</label>
-                  <input
-                    placeholder='Station IP'
-                    className='form-control form-control-lg form-control-solid'
-                    value={formik.values.stationip}
-                    onChange={(e) => {
-                      if (e.target.value.length == 0 || e.target.value.match(regex)) {
-                        return formik.handleChange(e)
-                      }
-                    }}
-                    onBlur={formik.handleBlur}
-                    type='sting'
-                    name='stationip'
-                    autoComplete='off'
-                  />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.stationip && formik.errors.stationip
-                      ? formik.errors.stationip
-                      : null}
-                  </div>
-                </div>
+                      <div className='col-lg-3'>
+                        <label className='form-label fw-bold'>Station MAC</label>
+                        <input
+                          placeholder='Station MAC'
+                          className='form-control form-control-lg form-control-solid'
+                          value={formik.values.stationMac}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          type='text'
+                          name='stationMac'
+                          autoComplete='off'
+                        />
+                        <div className='erro2' style={{color: 'red'}}>
+                          {formik.touched.stationMac && formik.errors.stationMac
+                            ? formik.errors.stationMac
+                            : null}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    ''
+                  )}
 
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Station Name</label>
-                  <input
-                    placeholder='Station Name'
-                    className='form-control form-control-lg form-control-solid'
-                    value={formik.values.stationname}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    type='text'
-                    name='stationname'
-                    autoComplete='off'
-                  />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.stationname && formik.errors.stationname
-                      ? formik.errors.stationname
-                      : null}
-                  </div>
-                </div>
-
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Station MAC</label>
-                  <input
-                    placeholder='Station MAC'
-                    className='form-control form-control-lg form-control-solid'
-                    value={formik.values.stationMac}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    type='text'
-                    name='stationMac'
-                    autoComplete='off'
-                  />
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.stationMac && formik.errors.stationMac
-                      ? formik.errors.stationMac
-                      : null}
-                  </div>
-                </div>
-
-                <div className='col-lg-3'>
-                  <label className='form-label fw-bold'>Status</label>
-                  <select
-                    className='form-select form-select-solid'
-                    value={formik.values.status}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    name='status'
-                  >
-                    <option value=''>Select Status Type</option>
-                    {auth?.roleId !== 7 ? <option value='1'>Pending</option> : ''}
-                    {auth?.roleId !== 7 ? <option value='2'>Done</option> : ''}
-                    <option value='3'>Partially Done</option>
-                  </select>
-                  <div className='erro2' style={{color: 'red'}}>
-                    {formik.touched.status && formik.errors.status ? formik.errors.status : null}
+                  <div className='col-lg-3'>
+                    <label className='form-label fw-bold'>Status</label>
+                    <select
+                      className='form-select form-select-solid'
+                      value={formik.values.status}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      name='status'
+                    >
+                      <option value=''>Select Status Type</option>
+                      {auth?.roleId !== 7 ? <option value='1'>Pending</option> : ''}
+                      {auth?.roleId !== 7 ? <option value='2'>Done</option> : ''}
+                      <option value='3'>Partially Done</option>
+                    </select>
+                    <div className='erro2' style={{color: 'red'}}>
+                      {formik.touched.status && formik.errors.status ? formik.errors.status : null}
+                    </div>
                   </div>
                 </div>
               </div>

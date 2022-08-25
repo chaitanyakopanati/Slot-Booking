@@ -133,7 +133,7 @@ function CustomerHeader() {
               </div>
             )}
 
-            {auth?.roleId == 5 || auth?.roleId == 3 ? (
+            {auth?.roleId == 5 ? (
               ''
             ) : (
               <div className='ms-5'>

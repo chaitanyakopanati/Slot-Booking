@@ -59,12 +59,15 @@ const postInquiries = (obj: postlistData) => {
     contactno: obj.contactno,
     statusId: obj.statusId,
     salesexecutiveName: obj.salesexecutiveName,
-    salesexecutiveId: obj.salesexecutiveId,
+    salesexecutiveId: obj?.salesexecutiveId ? obj?.salesexecutiveId : null,
     description: obj.description,
     remark: obj.remark,
     isnotify: obj.isnotify,
     createdbyId: obj.createdbyId,
     area: obj.area,
+    ResidencyName: obj.ResidencyName,
+    OfficeNoHomeNo: obj.OfficeNoHomeNo,
+
     userId: obj?.userId ? obj?.userId : 0,
   })
 }
@@ -94,12 +97,14 @@ const editInquiries = (obj: putInquiriesmodel) => {
     contactno: obj.contactno,
     statusId: obj.statusId,
     salesexecutiveName: obj.salesexecutiveName,
-    salesexecutiveId: obj.salesexecutiveId,
+    salesexecutiveId: obj.salesexecutiveId ? obj.salesexecutiveId : 0,
     description: obj.description,
     remark: obj.remark,
     isnotify: obj.isnotify,
     modifybyId: obj.modifybyId,
     area: obj.area,
+    ResidencyName: obj.ResidencyName,
+    OfficeNoHomeNo: obj.OfficeNoHomeNo,
     userId: obj?.userId ? obj?.userId : 0,
   })
 }

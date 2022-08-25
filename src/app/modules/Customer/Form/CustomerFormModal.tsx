@@ -73,6 +73,10 @@ function CustomerFormModal({customerById}: customerProps) {
       Gstno: customerById.gstno || '',
       Contactno: customerById.contactno || '',
       Address: customerById.address || '',
+      Area: customerById.Area || '',
+      OfficeNoHomeNo: customerById.OfficeNoHomeNo || '',
+      ResidencyName: customerById.ResidencyName || '',
+
       Remark: customerById.remark || '',
       Description: '',
       IdproofImageFile: customerById?.docNameIdProof ? customerById?.docNameIdProof : '',
@@ -552,12 +556,57 @@ function CustomerFormModal({customerById}: customerProps) {
                 )}
               </div>
               {/* Address */}
+              <div className='col-lg-4'>
+                <label className='form-label fw-bold'>Office no / Home no</label>
+                <input
+                  placeholder='Office no'
+                  className='form-control form-control-lg form-control-solid'
+                  type='text'
+                  autoComplete='off'
+                  name='OfficeNoHomeNo'
+                  value={formik.values.OfficeNoHomeNo}
+                  onChange={(e) => {
+                    formik.handleChange(e)
+                  }}
+                  onBlur={formik.handleBlur}
+                />
+              </div>{' '}
+              <div className='col-lg-4'>
+                <label className='form-label fw-bold'>Residency</label>
+                <input
+                  placeholder='Residency'
+                  className='form-control form-control-lg form-control-solid'
+                  type='text'
+                  autoComplete='off'
+                  name='ResidencyName'
+                  value={formik.values.ResidencyName}
+                  onChange={(e) => {
+                    formik.handleChange(e)
+                  }}
+                  onBlur={formik.handleBlur}
+                />
+              </div>{' '}
+              <div className='col-lg-4'>
+                <label className='form-label fw-bold'>Area</label>
+                <input
+                  placeholder='Area'
+                  className='form-control form-control-lg form-control-solid'
+                  type='text'
+                  autoComplete='off'
+                  name='Area'
+                  value={formik.values.Area}
+                  onChange={(e) => {
+                    formik.handleChange(e)
+                  }}
+                  onBlur={formik.handleBlur}
+                />
+              </div>
               <div className='col-lg-12'>
-                <label className='form-label fw-bold'>Address</label>
+                <label className='form-label fw-bold'>Address Line 1</label>
                 <textarea
                   className='form-control form-control form-control-solid'
                   data-kt-autosize='true'
-                  placeholder='Address here'
+                  placeholder='Address Line 1 here'
                   name='Address'
                   value={formik.values.Address}
                   onChange={formik.handleChange}

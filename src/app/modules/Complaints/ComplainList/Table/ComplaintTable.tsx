@@ -96,6 +96,8 @@ const ComplaintTable = () => {
       return `#f5c6cb`
     } else if (row.statusName === 'Unsolved') {
       return `#b8daff`
+    } else if (row.statusId == 3) {
+      return 'rgb(235 235 159)'
     } else {
       return ''
     }
@@ -269,21 +271,18 @@ const ComplaintTable = () => {
                         />
                       </a>
 
-                      {(Access[id].hasOwnProperty('allAccess') ||
-                        Access[id]['complaintrights'].includes('edit')) && (
-                        <button
-                          className='btn btn-icon btn-active-color-primary btn-sm'
-                          onClick={() => {
-                            navigate(`complaintform/${row.id}`)
-                          }}
-                          title='Edit complaint'
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/art/art005.svg'
-                            className='svg-icon-3'
-                          />
-                        </button>
-                      )}
+                      {/* {(Access[id].hasOwnProperty('allAccess') ||
+                        Access[id]['complaintrights'].includes('edit')) && ( */}
+                      <button
+                        className='btn btn-icon btn-active-color-primary btn-sm'
+                        onClick={() => {
+                          navigate(`complaintform/${row.id}`)
+                        }}
+                        title='Edit complaint'
+                      >
+                        <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />
+                      </button>
+                      {/* )} */}
 
                       {(Access[id].hasOwnProperty('allAccess') ||
                         Access[id]['complaintrights'].includes('delete')) && (
@@ -439,30 +438,38 @@ const ComplaintTable = () => {
                             className='svg-icon-3'
                           />
                         </button>
+                        {auth?.roleId !== 7 && auth?.roleId !== 3 ? (
+                          <>
+                            <button
+                              className='btn btn-icon btn-active-color-danger btn-sm'
+                              onClick={() => deleteComplaint(row.id)}
+                              title='Deleted Complain'
+                            >
+                              <KTSVG
+                                path='/media/icons/duotune/general/gen027.svg'
+                                className='svg-icon-3'
+                              />
+                            </button>
 
-                        <button
-                          className='btn btn-icon btn-active-color-danger btn-sm'
-                          onClick={() => deleteComplaint(row.id)}
-                          title='Deleted Complain'
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen027.svg'
-                            className='svg-icon-3'
-                          />
-                        </button>
-
-                        <button
-                          className='btn btn-icon btn-active-color-danger btn-sm'
-                          title='Created Customer'
-                          onClick={() => {
-                            window.open(`/customers/customerviewform/${row.customerId}`, '_blank')
-                          }}
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/communication/com013.svg'
-                            className='svg-icon-3'
-                          />
-                        </button>
+                            <button
+                              className='btn btn-icon btn-active-color-danger btn-sm'
+                              title='Created Customer'
+                              onClick={() => {
+                                window.open(
+                                  `/customers/customerviewform/${row.customerId}`,
+                                  '_blank'
+                                )
+                              }}
+                            >
+                              <KTSVG
+                                path='/media/icons/duotune/communication/com013.svg'
+                                className='svg-icon-3'
+                              />
+                            </button>
+                          </>
+                        ) : (
+                          ''
+                        )}
                       </div>
                     </div>
                   </div>

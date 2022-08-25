@@ -187,28 +187,32 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                   {/* end:: Filter */}
 
                   {/* begin::Create MainPoint Button */}
-                  <div
-                    className='d-flex justify-content-end ms-3'
-                    data-kt-user-table-toolbar='base'
-                  >
-                    <div title='Click to add new category'>
-                      <button
-                        type='button'
-                        className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
-                        onClick={() => {
-                          navigate('godownInwardsform/add')
-                        }}
-                      >
-                        <span className='svg-icon svg-icon-gray-500 me-1'>
-                          <KTSVG
-                            path='/media/icons/duotune/arrows/arr075.svg'
-                            className='svg-icon-3'
-                          />
-                        </span>
-                        Create Godown stock inwards
-                      </button>
+                  {auth?.roleId == 6 ? (
+                    ''
+                  ) : (
+                    <div
+                      className='d-flex justify-content-end ms-3'
+                      data-kt-user-table-toolbar='base'
+                    >
+                      <div title='Click to add new category'>
+                        <button
+                          type='button'
+                          className='btn btn-sm btn-flex btn-light btn-active-primary fw-bold'
+                          onClick={() => {
+                            navigate('godownInwardsform/add')
+                          }}
+                        >
+                          <span className='svg-icon svg-icon-gray-500 me-1'>
+                            <KTSVG
+                              path='/media/icons/duotune/arrows/arr075.svg'
+                              className='svg-icon-3'
+                            />
+                          </span>
+                          Create Godown stock inwards
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {/* end::Create MainPoint Button */}
                 </div>
               </div>
@@ -261,7 +265,6 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                       </div>
                     </div>
                   </div>
-
                   <div className='col-lg-3 col-md-3'>
                     <label className='form-label fw-bold'>Created by:</label>
                     <select

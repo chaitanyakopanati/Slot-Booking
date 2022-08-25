@@ -53,7 +53,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
           docNameGstcerificateImage: category.docNameGstcerificateImage || '',
           docNameIdProof: category.docNameIdProof || '',
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {}}
       >
         {(props) => (
           <form

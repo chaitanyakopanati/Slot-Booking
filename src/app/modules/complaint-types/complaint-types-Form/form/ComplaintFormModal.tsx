@@ -46,7 +46,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
+            // .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
             .required('This field is required'),
           etr: Yup.number()
             .min(1, 'etr must be between 1 to 999.')
@@ -117,7 +117,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                     placeholder='Name'
                     value={props.values.name}
                     onChange={(e) => {
-                      if (e.target.value.length <= 20) {
+                      if (e.target.value.length <= 100) {
                         props.handleChange(e)
                       }
                     }}

@@ -132,7 +132,7 @@ const InquiriesTable = () => {
                     key={index}
                     style={{
                       backgroundColor:
-                        currentTime.diff(moment(row?.createdAt), 'days') >= 15 &&
+                        currentTime.diff(moment(row?.modifyAt), 'days') >= 15 &&
                         row.status === 'Pending'
                           ? `#f5c6cb`
                           : '',

@@ -35,6 +35,8 @@ export interface postlistData {
   salesexecutiveName: string
   area: string
   userId: number
+  ResidencyName: string
+  OfficeNoHomeNo: string
 }
 
 export interface GetAllData {
@@ -79,6 +81,8 @@ export interface putInquiriesmodel {
   salesexecutiveName: string
   area: string
   userId: number
+  ResidencyName: string
+  OfficeNoHomeNo: string
 }
 export interface putInquiriesmodel1 {
   data: getInquiriesData

@@ -18,6 +18,7 @@ type Props = {
 }
 const ComplaintFormModal: FC<Props> = ({category}) => {
   const {setSuggestionUserText, getUserNameData, pageNo, pageSize} = ListPageData()
+  const {auth} = useAuth()
 
   let validationSchemaNewForm = Yup.object({
     username: Yup.string().required('This field is required'),
@@ -25,8 +26,24 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
     status: Yup.number().required('This field is required'),
   })
 
+  let validationSchemaTechRoleNewForm = Yup.object({
+    username: Yup.string().required('This field is required'),
+    userId: Yup.number().required('Entered User Name Does Not Exist'),
+    status: Yup.number().required('This field is required'),
+    description: Yup.string().required('This field is required'),
+    faultid: Yup.number().required('This field is required'),
+
+    // faultid: Yup.string().when('auth', {
+    //   is: (auth: any) => auth?.roleId == 7,
+    //   then: Yup.string().required('Field is required'),
+    // }),
+    // description: Yup.string().when('auth', {
+    //   is: (auth: any) => auth?.roleId == 7,
+    //   then: Yup.string().required('Field is required'),
+    // }),
+  })
+
   const navigate = useNavigate()
-  const {auth} = useAuth()
 
   const suggestionRef: any = useRef()
 
@@ -149,11 +166,11 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
     enableReinitialize: true,
     initialValues: initialValues,
 
-    validationSchema: validationSchemaNewForm,
+    validationSchema: auth?.roleId == 7 ? validationSchemaTechRoleNewForm : validationSchemaNewForm,
     onSubmit: async (values: any, {resetForm}) => {
       values.complainttypeid = +values.complainttypeid
       values.assigntechnicianid = +values.assigntechnicianid
-      values.faultid = +values.faultid
+      // values.faultid = +values.faultid
       values.status = +values.status
       values.userId = +values.userId
 
@@ -330,7 +347,13 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
 
                 <div className='row w-100 mx-0 mb-2 gy-4'>
                   <div className='col-lg-12'>
-                    <label className='form-label fw-bold'>Description</label>
+                    <label
+                      className={
+                        auth?.roleId == 7 ? 'form-label fw-bold required' : 'form-label fw-bold'
+                      }
+                    >
+                      Description
+                    </label>
                     <textarea
                       name='description'
                       value={formik.values.description || ''}
@@ -382,8 +405,9 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                           {...formik.getFieldProps('status')}
                         >
                           <option>Select Status</option>
-                          <option value='1'>Unsolved</option>
-                          <option value='2'>Solved</option>
+                          {auth?.roleId !== 7 ? <option value='1'>Pending</option> : ''}
+                          {auth?.roleId !== 7 ? <option value='2'>Done</option> : ''}
+                          <option value='3'>Partially Done</option>
                         </select>
                         <div className='erro2' style={{color: 'red'}}>
                           {formik.touched.status && formik.errors.status
@@ -395,7 +419,13 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
                   </div>
                   <div className='col-lg-4'>
                     <div data-select2-id='select-role'>
-                      <label className='form-label fw-bold'>Fault</label>
+                      <label
+                        className={
+                          auth?.roleId == 7 ? 'form-label fw-bold required' : 'form-label fw-bold'
+                        }
+                      >
+                        Fault
+                      </label>
                       <div data-select2-id='select-role'>
                         <select
                           className='form-select form-select-solid'

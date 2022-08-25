@@ -44,7 +44,7 @@ const OfficeStockOutwardsFormViewModal: FC<Props> = ({category}) => {
             .local()
             .format('YYYY-MM-DD,h:mm a'),
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {}}
       >
         {(props) => (
           <form
