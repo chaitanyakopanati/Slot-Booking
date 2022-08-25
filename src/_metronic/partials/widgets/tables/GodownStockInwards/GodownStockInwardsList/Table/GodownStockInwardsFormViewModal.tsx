@@ -83,7 +83,6 @@ const GodownStockInwardsFormViewModal: FC<Props> = ({category}) => {
                           navigate(
                             `/stocks/godown-stock-inwards/godownInwardsform/${category.data.id}`
                           )
-                          // openEditModal(category.id)
                         }}
                       >
                         <KTSVG path='/media/icons/duotune/art/art005.svg' className='svg-icon-3' />

@@ -123,7 +123,6 @@ const GodownStockInwardsTable = () => {
                             navigate(`godownInwardsform/${row.id}`)
                           }}
                           title='Edit Godown Stock Inwards'
-                          // onClick={()=>openEditModal(row.id)}
                         >
                           <KTSVG
                             path='/media/icons/duotune/art/art005.svg'

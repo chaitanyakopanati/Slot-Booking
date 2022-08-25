@@ -20,12 +20,8 @@ const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&
 const emailRegExp = RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
 
 let validationSchemaNewForm = Yup.object({
-  firstname: Yup.string()
-    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  lastname: Yup.string()
-    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
+  firstname: Yup.string().required('This field is required'),
+  lastname: Yup.string().required('This field is required'),
   username: Yup.string().required('This field is required'),
   email: Yup.string()
     .email('Invalid email format')
@@ -55,12 +51,8 @@ let validationSchemaNewForm = Yup.object({
 })
 
 let validationSchemaEditForm = Yup.object({
-  firstname: Yup.string()
-    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
-  lastname: Yup.string()
-    // .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
-    .required('This field is required'),
+  firstname: Yup.string().required('This field is required'),
+  lastname: Yup.string().required('This field is required'),
   username: Yup.string()
     .matches(/^[a-zA-Z\s]*$/, 'Only alphabets are allowed for this field ')
     .required('This field is required'),
@@ -362,16 +354,11 @@ const UserFormModal: FC<Props> = ({category}) => {
                   <div className='col-lg-12'>
                     <label className='form-label fw-bold required'>Zone</label>
                     <select
-                      // name="zoneId"
-                      // value={props.values.zoneId}
                       className='form-select form-select-solid'
                       {...props.getFieldProps('zoneId')}
-                      // onChange={props.handleChange}
                     >
                       <option value=''>Select Zone Type</option>
                       {getDataAllType.map((TypeData: any, index) => {
-                        //
-
                         return (
                           <option key={index} value={TypeData.id}>
                             {TypeData?.name}

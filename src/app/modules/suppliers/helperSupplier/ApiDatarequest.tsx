@@ -1,8 +1,6 @@
 import http from '../../../../_metronic/helpers/components/http-common'
 import {ID, postlistData, putSuppliersmodel} from './ModelTypeSupplier'
 
-{
-}
 const getDynamicSuppliers = (
   pageNo: number,
   pageSize: number,
@@ -17,19 +15,11 @@ const getDynamicSuppliers = (
     )
   }
 }
-{
-}
 
-{
-}
 const getAllSuppliers = () => {
   return http.get('GetAllSuppliers')
 }
-{
-}
 
-{
-}
 const postSuppliers = (obj: postlistData) => {
   return http.post('SaveSupplier', {
     name: obj.name,
@@ -37,18 +27,9 @@ const postSuppliers = (obj: postlistData) => {
     createdby: obj.createdby,
   })
 }
-{
-}
 
-{
-}
 const deleteSuppliers = (Id: number) => {
   return http.delet(`DeleteSupplierById/${Id}`)
-}
-{
-}
-
-{
 }
 const editSuppliers = (obj: putSuppliersmodel) => {
   return http.post(`SaveSupplier`, {
@@ -58,18 +39,10 @@ const editSuppliers = (obj: putSuppliersmodel) => {
     modifyby: obj.modifyby,
   })
 }
-{
-}
 
-{
-}
 const GetSuppliersTypeById = (id: ID) => {
   return http.get(`GetSupplieById/${id}`)
 }
-{
-}
-
-//Created by
 
 const getCreatedByTypes = () => {
   return http.get('GetUserByRoleName')

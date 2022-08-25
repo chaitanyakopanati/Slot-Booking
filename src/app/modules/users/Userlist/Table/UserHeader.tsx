@@ -177,7 +177,6 @@ const UserHeader: FC<Props> = ({category}) => {
                         onClick={() => {
                           navigate('form/add')
                         }}
-                        // onClick={openAddCategoryModal}
                       >
                         <span className='svg-icon svg-icon-gray-500 me-1'>
                           <KTSVG

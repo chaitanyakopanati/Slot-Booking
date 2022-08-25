@@ -134,9 +134,7 @@ const ComplaintTable = () => {
   }
 
   const selectAllComplaint = () => {
-    // debugger
     setIsCheckAll(!isCheckAll)
-    // if (isCheckAll == false || pageSize >= addComplaint.length) {
     if (isCheckAll == false) {
       getData.forEach((data) => {
         addComplaint.push(+data.id)
@@ -146,11 +144,6 @@ const ComplaintTable = () => {
       setAddComplaint([])
       setIsCheck(false)
     }
-    // if (pageSize <= addComplaint.length) {
-    //   setIsCheck(true)
-    // } else {
-    //   setIsCheck(true)
-    // }
   }
 
   return (

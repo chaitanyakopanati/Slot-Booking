@@ -100,10 +100,7 @@ export class LayoutSetup {
       document.body.classList.add(config.main.body.class)
     }
 
-    // if (config.loader.display) {
-    //   document.body.classList.add('page-loading')
-    //   document.body.classList.add('page-loading-enabled')
-    // }
+    
   }
 
   private static initHeader(config: IHeader): void {

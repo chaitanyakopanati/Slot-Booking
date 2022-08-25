@@ -23,7 +23,6 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
     setSearchText,
     searchText,
     setPageNo,
-
     createdBy,
     setcreatedById,
     fetchAllUser,
@@ -34,7 +33,6 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
     getDataAllTypeCreatedBy,
     setStartDate,
     zoneId,
-
     getDataAllTypeProduct,
     setEndDate,
     productId,

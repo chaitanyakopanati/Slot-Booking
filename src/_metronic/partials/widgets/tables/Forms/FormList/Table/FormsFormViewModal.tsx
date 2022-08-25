@@ -51,6 +51,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
     status: category.data?.status || '',
     contactNo: category.data?.contactNo || '',
     email: category.data?.email || '',
+    newAddress: category?.data?.newAddress || '',
     packageName: category.data?.packageName || '',
     activationdate: moment(category.data?.activationdate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
     expirydate: moment(category.data?.expirydate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
@@ -121,7 +122,7 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
               <div className='col-md-12'>
                 <div className='row mb-6 gy-4'>
                   <div className='col-md-3'>
-                    <label className='form-label fw-bold required'>User Name</label>
+                    <label className='form-label fw-bold'>User Name</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
                       value={initialvalues.userName}
@@ -364,6 +365,18 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
                         autoComplete='off'
                       />
                     </div>
+                  </div>
+                  <div className='col-lg-12 mb-5'>
+                    <label className='form-label fw-bold'>New Address</label>
+                    <input
+                      className='form-control form-control-lg form-control-solid'
+                      value={initialvalues?.newAddress}
+                      disabled
+                      readOnly
+                      // data-kt-autosize='true'
+                      placeholder='New Address'
+                      autoComplete='off'
+                    ></input>
                   </div>
                   <div className='col-md-3'>
                     <label className='form-label fw-bold'>Package Cost</label>

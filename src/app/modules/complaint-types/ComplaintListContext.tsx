@@ -97,7 +97,6 @@ const ListDataProvider: FC = ({children}) => {
       let payload: getAllComplainData = await Complaintservice.getComplaints()
       if (payload.success == true) {
         setGetDataCreatedByAllType(payload.data)
-        // setGetData(payload.data)
       }
     } catch (error) {
     } finally {
@@ -113,7 +112,6 @@ const ListDataProvider: FC = ({children}) => {
   }
   let fetchAllComplaint = async () => {
     LoderActions(true)
-    // setLoading(true)
     try {
       let response: GetAllComplaintApi = await Complaintservice.getDynamicComplaints(
         pageNo,

@@ -2,7 +2,6 @@ import {CustomTooltip} from '../../../routing/customtooltip'
 import {KTSVG} from '../../../../_metronic/helpers'
 import {useNavigate} from 'react-router-dom'
 import {ListPageData} from '../CustomerContext'
-import {useEffect} from 'react'
 
 const CustomerFormHeader = () => {
   const {viewIdForUpdate, setItemIdForUpdate, itemIdForUpdate} = ListPageData()

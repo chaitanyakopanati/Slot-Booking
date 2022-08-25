@@ -45,9 +45,7 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
           createdby: auth?.userId,
         }}
         validationSchema={Yup.object({
-          name: Yup.string()
-            // .matches(/^[a-zA-Z0-9\s]*$/, 'Only alphanumerics are allowed for this field ')
-            .required('This field is required'),
+          name: Yup.string().required('This field is required'),
           etr: Yup.number()
             .min(1, 'etr must be between 1 to 999.')
             .required('This field is required'),
@@ -73,7 +71,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
               // Create Api Response
               let response = await Complaintservice.postcomplaints(values)
               if (response.success === true) {
-                // toast.success(` Data Added Successfully`)
                 toast.success(response.message)
                 toast.dismiss('1s')
                 fetchAllComplaint()

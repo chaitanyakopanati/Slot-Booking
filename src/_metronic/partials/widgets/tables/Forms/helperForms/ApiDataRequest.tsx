@@ -106,6 +106,7 @@ const postForms = (obj: postlistData) => {
     remark: obj.remark,
     status: obj.status.toString(),
     createdbyId: obj.createdbyId,
+    newAddress: obj?.newAddress,
   })
 }
 {
@@ -160,7 +161,7 @@ const editForms = (obj: putInquiriesmodel) => {
     thirdparty: obj.thirdparty,
     remark: obj.remark,
     status: obj.status.toString(),
-
+    newAddress: obj?.newAddress,
     modifyby: obj.modifyby,
   })
 }

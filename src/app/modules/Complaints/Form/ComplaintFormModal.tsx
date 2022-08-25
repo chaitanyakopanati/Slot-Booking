@@ -32,15 +32,6 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
     status: Yup.number().required('This field is required'),
     description: Yup.string().required('This field is required'),
     faultid: Yup.number().required('This field is required'),
-
-    // faultid: Yup.string().when('auth', {
-    //   is: (auth: any) => auth?.roleId == 7,
-    //   then: Yup.string().required('Field is required'),
-    // }),
-    // description: Yup.string().when('auth', {
-    //   is: (auth: any) => auth?.roleId == 7,
-    //   then: Yup.string().required('Field is required'),
-    // }),
   })
 
   const navigate = useNavigate()

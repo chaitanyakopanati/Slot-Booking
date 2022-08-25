@@ -144,7 +144,6 @@ const UserTable = () => {
                       <a
                         className='btn btn-icon btn-bg-light btn-active-color-success btn-sm me-1'
                         onClick={() => navigate(`viewform/${row.id}`)}
-                        // onClick={() => openViewModal(row.id)}
                         title='View User'
                       >
                         <KTSVG

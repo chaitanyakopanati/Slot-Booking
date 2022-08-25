@@ -61,6 +61,7 @@ export interface postlistData {
   thirdparty: string
   remark: string
   status: string
+  newAddress: any
 }
 
 export interface GetAllData {
@@ -128,6 +129,7 @@ export interface putInquiriesmodel {
   thirdparty: string
   remark: string
   status: string
+  newAddress: any
 }
 export interface putInquiriesmodel1 {
   data: getInquiriesData

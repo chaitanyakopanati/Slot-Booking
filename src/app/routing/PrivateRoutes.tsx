@@ -24,7 +24,6 @@ import FormsFormWrapper from '../../_metronic/partials/widgets/tables/Forms/Form
 import FormViewWrapper from '../../_metronic/partials/widgets/tables/Forms/Form/FormViewWrapper'
 import CustomerFormWrapper from '../modules/Customer/Form/CustomerFormWrapper'
 import CustomerViewWrapper from '../modules/Customer/Form/CustomerViewWrapper'
-// import CustomerFormViewModal from '../modules/Customer/Coustomerlist/Table/CustomerFormViewModal'
 import {useAuth} from '../modules/auth'
 import Permission from '../routing/Permission_check'
 import React from 'react'
@@ -53,21 +52,12 @@ const PrivateRoutes = () => {
             element={
               <>
                 <PageTitle>Complaint Form</PageTitle>
-                {/* <ComplaintFormWrapper /> */}
                 <ComplaintFormWrapper />
               </>
             }
           />
         </Route>
-        {/* <Route
-          path='complaint/complaintform/:id&name'
-          element={
-            <>
-              <PageTitle>Complaint Form</PageTitle>
-              <ComplaintFormWrapper />
-            </>
-          }
-        /> */}
+
         <Route element={<Permission roles={auth?.roleId} type={'customers'} />}>
           <Route path='customers' element={<CustomersWrapper />} />
           <Route path='customers/customerviewform/:id' element={<CustomerViewWrapper />} />
@@ -78,7 +68,6 @@ const PrivateRoutes = () => {
               <>
                 <PageTitle>Customer Form</PageTitle>
                 <CustomerFormWrapper />
-                {/* <CustomerFormModal /> */}
               </>
             }
           />

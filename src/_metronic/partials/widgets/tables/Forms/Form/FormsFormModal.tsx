@@ -53,6 +53,10 @@ let validationSchemaNewForm = Yup.object({
   packagevalidity: Yup.number()
     .min(0, 'This value should be between 0 and 64')
     .max(64, 'This value should be between 0 and 64'),
+  newAddress: Yup.string().when('formtype', {
+    is: (formtype: any) => formtype == 4,
+    then: Yup.string().required('This field is required'),
+  }),
 })
 
 const FormsFormModal: FC<Props> = ({category}) => {
@@ -105,6 +109,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
     remark: '',
     status: '',
     userName: '',
+    newAddress: '',
   })
 
   useEffect(() => {
@@ -143,6 +148,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         thirdparty: category.data?.thirdparty || '',
         remark: category.data?.remark || '',
         status: category.data?.status || '',
+        newAddress: category?.data?.newAddress || '',
         createdbyId: auth?.userId,
       })
     }
@@ -180,6 +186,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         thirdparty: category.data?.thirdparty || '',
         remark: category.data?.remark || '',
         status: category.data?.status || '',
+        newAddress: category?.data?.newAddress || '',
         createdbyId: auth?.userId,
         userName: category?.data?.userName || '',
       })
@@ -218,6 +225,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         note: category?.data?.note || '',
         thirdparty: category?.data?.thirdparty || '',
         remark: category?.data?.remark || '',
+        newAddress: category?.data?.newAddress || '',
         status: category?.data?.status || '',
         modifyby: auth?.userId,
       })
@@ -610,6 +618,28 @@ const FormsFormModal: FC<Props> = ({category}) => {
                   </div>
                 </div>
               </div>
+              {formik.values?.formtype == 4 ? (
+                <div className='col-lg-12 mb-5'>
+                  <label className='form-label fw-bold required'>New Address</label>
+                  <input
+                    className='form-control form-control-lg form-control-solid'
+                    name='newAddress'
+                    value={formik.values?.newAddress}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    data-kt-autosize='true'
+                    placeholder='New Address'
+                    autoComplete='off'
+                  ></input>
+                  <div className='erro2' style={{color: 'red'}}>
+                    {formik.touched.newAddress && formik.errors.newAddress
+                      ? formik.errors.newAddress
+                      : null}
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
 
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-md-3'>

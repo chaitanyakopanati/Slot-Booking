@@ -11,7 +11,6 @@ import {toast} from 'react-toastify'
 import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
 import {useAuth} from '../../../auth'
 import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
-// import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import closeIcon from '../../../../../app/images/closeIcon.svg'
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
@@ -67,16 +66,6 @@ const ComplaintHeader = () => {
     setAddComplaint,
     addComplaint,
   } = ListPageData()
-
-  // useEffect(() => {
-  //   DataGetAllTypeComplaint()
-  //   DataGetAllTypeTechnician()
-  //   DataGetAllTypeZone()
-  //   DataGetAllFault()
-  //   DataGetCompaniesName()
-  //   DataGetPackagesName()
-  //   DataGetAllTypeCreatedByTypes()
-  // }, [])
 
   const [fromDate, setFromDate] = useState<any>()
   const [toDate, setToDate] = useState<any>()
@@ -372,10 +361,8 @@ const ComplaintHeader = () => {
                   </div>
                   <div className='col-lg-3'>
                     <div>
-                      {/* <label className='form-label fw-bold'>Complaint date</label> */}
                       <div className='d-flex'>
                         <label className='form-label fw-bold'>Complaint date</label>
-                        {/* <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} /> */}
 
                         <span
                           role='button'

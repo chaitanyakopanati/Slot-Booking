@@ -99,11 +99,7 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(false)
     }
   }
-  {
-  }
 
-  {
-  }
   let fetchAllSuppliers = async () => {
     LoderActions(true)
     try {
@@ -120,8 +116,6 @@ const ListDataProvider: FC = ({children}) => {
         setPageCount(response?.pages)
       }
     } catch (error) {}
-  }
-  {
   }
 
   {

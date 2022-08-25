@@ -44,7 +44,6 @@ function CustomerHeader() {
   }, [])
 
   useEffect(() => {
-    // fetchZone()
     fetchCompanies()
     fetchUserByRoleName('Admin')
     fetchUserByRoleName('Technician')
@@ -55,11 +54,6 @@ function CustomerHeader() {
   const suggestionRef: any = useRef()
 
   const {currentUser, auth} = useAuth()
-  // useEffect(() => {
-  //   if (auth?.roleId == 5) {
-  //     filter.salesExecutiveId = auth?.userId
-  //   }
-  // }, [])
 
   useEffect(() => {
     if (auth?.roleId !== 5) {
@@ -67,29 +61,8 @@ function CustomerHeader() {
     }
   }, [])
 
-  // useEffect(() => {
-
-  //   const data = customerTableData.filter((customerTableData: any) => {
-  //     if (dueDate == 1) {
-  //       return (
-  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') <= 15 &&
-  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') >= 0
-  //       )
-  //     } else if (dueDate == 2) {
-  //       return (
-  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') >= -15 &&
-  //         currentTime.diff(moment(customerTableData?.expiryDate), 'days') <= 0
-  //       )
-  //     }
-
-  //   })
-
-  //   setCustomerTableData(data)
-  // }, [dueDate])
-
   const handelChangeDates = (e: any) => {
     filter.dueDate(+e.target.value)
-    // setDueDate(e.target.value)
   }
 
   return (
@@ -207,7 +180,6 @@ function CustomerHeader() {
                     value={filter.companyId}
                     onChange={(e) => {
                       setFilter((old) => {
-                        // debugger
                         return {...old, companyId: +e.target.value}
                       })
                     }}
@@ -361,7 +333,6 @@ function CustomerHeader() {
                     className='form-select form-select-solid'
                     value={filter.dueDate}
                     onChange={(e) => {
-                      // handelChangeDates(e)
                       setFilter((old) => {
                         return {...old, dueDate: +e.target.value}
                       })
