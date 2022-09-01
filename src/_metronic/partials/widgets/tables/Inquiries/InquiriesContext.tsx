@@ -63,6 +63,9 @@ export interface ComplaintDataContextModel {
   fetchAllDownload: () => void
   setSuggestionUserText: Dispatch<SetStateAction<string>>
   getUserNameData: GetAllDataApiSalesExecutve[]
+  getSalesExcutiveData: any[]
+  setGetSalesExcutiveData: Dispatch<SetStateAction<any>>
+  DataGetAllsalesExcutive: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -116,6 +119,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   fetchAllDownload: () => {},
   setSuggestionUserText: () => {},
   getUserNameData: [],
+  getSalesExcutiveData: [],
+  setGetSalesExcutiveData: () => {},
+  DataGetAllsalesExcutive: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInquiriesData[]>([])
@@ -144,6 +150,7 @@ const ListDataProvider: FC = ({children}) => {
   const [statusId, setStatusId] = useState<any>(null)
   const [suggestionUserText, setSuggestionUserText] = useState<string>('')
   const [getUserNameData, setgetUserNameData] = useState<GetAllDataApiSalesExecutve[]>([])
+  const [getSalesExcutiveData, setGetSalesExcutiveData] = useState<any[]>([])
 
   let {LoderActions} = useLoader()
 
@@ -278,6 +285,20 @@ const ListDataProvider: FC = ({children}) => {
     }
   }
 
+  const DataGetAllsalesExcutive = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllDataApi = await Inquiriesservice.GetTechnicianUsers()
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetSalesExcutiveData(payload?.data)
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
   useEffect(() => {
     if (suggestionUserText) {
       let fetchSuggestionUser = async () => {
@@ -353,6 +374,9 @@ const ListDataProvider: FC = ({children}) => {
     setTotalData,
     setSuggestionUserText,
     getUserNameData,
+    getSalesExcutiveData,
+    setGetSalesExcutiveData,
+    DataGetAllsalesExcutive,
   }
   return (
     <>

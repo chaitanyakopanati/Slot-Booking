@@ -238,7 +238,7 @@ const FormsTable = () => {
                         />
                       </a>
 
-                      {auth?.roleId == 2 ? (
+                      {auth?.roleId == 2 || auth?.roleId == 1 ? (
                         <a
                           className='btn btn-icon btn-bg-light btn-active-color-success btn-sm m-1'
                           title='Create Installation'

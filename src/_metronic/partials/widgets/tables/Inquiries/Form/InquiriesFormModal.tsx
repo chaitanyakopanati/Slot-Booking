@@ -64,6 +64,9 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
     DataGetAllTypeStatus,
     setSuggestionUserText,
     getUserNameData,
+    getSalesExcutiveData,
+    setGetSalesExcutiveData,
+    DataGetAllsalesExcutive,
   } = ListPageData()
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
@@ -83,6 +86,10 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
     OfficeNoHomeNo: '',
     ResidencyName: '',
   })
+
+  useEffect(() => {
+    DataGetAllsalesExcutive()
+  }, [])
 
   const [status, setStatus] = useState<any>('')
 
@@ -441,10 +448,10 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           {...props.getFieldProps('salesexecutiveId')}
                         >
                           <option value=''>Select Sales executive</option>
-                          {getUserByRole?.map((row, index) => {
+                          {getSalesExcutiveData?.map((row, index) => {
                             return (
                               <option key={index} value={row?.id}>
-                                {row.username}
+                                {row.fullName}
                               </option>
                             )
                           })}

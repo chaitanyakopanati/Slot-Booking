@@ -91,6 +91,9 @@ export interface ComplaintDataContextModel {
   DataGetAllTypePackages: () => void
   DataGetAllTypeBank: () => void
   DataGetAllTypeReciever: () => void
+  getSalesExcutiveData: any[]
+  setGetSalesExcutiveData: Dispatch<SetStateAction<any>>
+  DataGetAllsalesExcutive: () => void
 }
 
 const ListDataContext = createContext<ComplaintDataContextModel>({
@@ -172,6 +175,9 @@ const ListDataContext = createContext<ComplaintDataContextModel>({
   DataGetAllTypePackages: () => {},
   DataGetAllTypeBank: () => {},
   DataGetAllTypeReciever: () => {},
+  getSalesExcutiveData: [],
+  setGetSalesExcutiveData: () => {},
+  DataGetAllsalesExcutive: () => {},
 })
 const ListDataProvider: FC = ({children}) => {
   const [getData, setGetData] = useState<getInquiriesData[]>([])
@@ -213,7 +219,7 @@ const ListDataProvider: FC = ({children}) => {
   const [getPackages, setGetPackages] = useState<GetAllData[]>([])
   const [getBank, setGetBank] = useState<GetAllData[]>([])
   const [getReciever, setGetReciever] = useState<GetAllData[]>([])
-
+  const [getSalesExcutiveData, setGetSalesExcutiveData] = useState<any[]>([])
   let {LoderActions} = useLoader()
 
   {
@@ -326,6 +332,20 @@ const ListDataProvider: FC = ({children}) => {
       if (payload.success == true) {
         LoderActions(false)
         setGetDataAllTypeCompany(payload?.data)
+      }
+    } catch (error) {
+    } finally {
+      LoderActions(false)
+    }
+  }
+
+  const DataGetAllsalesExcutive = async () => {
+    LoderActions(true)
+    try {
+      let payload: GetAllDataApi = await Inquiriesservice.GetTechnicianUsers()
+      if (payload.success == true) {
+        LoderActions(false)
+        setGetSalesExcutiveData(payload?.data)
       }
     } catch (error) {
     } finally {
@@ -536,6 +556,9 @@ const ListDataProvider: FC = ({children}) => {
     totalData,
     setTotalData,
     fetchAllDownload,
+    getSalesExcutiveData,
+    setGetSalesExcutiveData,
+    DataGetAllsalesExcutive,
   }
   return (
     <>

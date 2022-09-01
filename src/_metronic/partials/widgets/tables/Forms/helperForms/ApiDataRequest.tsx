@@ -175,6 +175,10 @@ const editForms = (obj: putInquiriesmodel) => {
 const GetFormsTypeById = (id: ID) => {
   return http.get(`GetFormById/${id}`)
 }
+
+const GetTechnicianUsers = () => {
+  return http.get(`GetTechnicianAndSalesExecutiveUsers`)
+}
 {
   /* end:: User:- getById Api call */
 }
@@ -248,6 +252,7 @@ const Inquiriesservice = {
   getBank,
   getReciever,
   postInstallations,
+  GetTechnicianUsers,
 }
 
 export default Inquiriesservice

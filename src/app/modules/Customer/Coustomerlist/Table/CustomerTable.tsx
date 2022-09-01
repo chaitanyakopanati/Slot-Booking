@@ -140,38 +140,39 @@ const CustomerTable = () => {
                         className='svg-icon-3'
                       />
                     </a>
-                    {Access[id].hasOwnProperty('allAccess') && (
-                      <>
-                        {' '}
-                        <a
-                          href='#'
-                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                          onClick={() => deletedCustomerData(customer.id, customer.userName)}
-                          title='Delete customer'
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen027.svg'
-                            className='svg-icon-3'
-                          />
-                        </a>
-                        <a
-                          href='#'
-                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
-                          onClick={() => {
-                            window.open(
-                              `/forms/formsform/${customer.userName}&${customer.userid}`,
-                              '_blank'
-                            )
-                          }}
-                          title='Create form'
-                        >
-                          <KTSVG
-                            path='/media/icons/duotune/general/gen005.svg'
-                            className='svg-icon-3'
-                          />
-                        </a>{' '}
-                      </>
-                    )}
+                    {Access[id].hasOwnProperty('allAccess') ||
+                      (Access[id]['customerrights'].includes('createForm') && (
+                        <>
+                          {' '}
+                          <a
+                            href='#'
+                            className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                            onClick={() => deletedCustomerData(customer.id, customer.userName)}
+                            title='Delete customer'
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/general/gen027.svg'
+                              className='svg-icon-3'
+                            />
+                          </a>
+                          <a
+                            href='#'
+                            className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm me-1'
+                            onClick={() => {
+                              window.open(
+                                `/forms/formsform/${customer.userName}&${customer.userid}`,
+                                '_blank'
+                              )
+                            }}
+                            title='Create form'
+                          >
+                            <KTSVG
+                              path='/media/icons/duotune/general/gen005.svg'
+                              className='svg-icon-3'
+                            />
+                          </a>{' '}
+                        </>
+                      ))}
 
                     {(Access[id].hasOwnProperty('allAccess') ||
                       Access[id]['customerrights'].includes('createInstallation')) && (
@@ -193,24 +194,25 @@ const CustomerTable = () => {
                       </a>
                     )}
 
-                    {Access[id].hasOwnProperty('allAccess') && (
-                      <a
-                        // href='#'
-                        className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
-                        onClick={() => {
-                          window.open(
-                            `/complaint/complaintform/${customer.userName}&${customer.userid}`,
-                            '_blank'
-                          )
-                        }}
-                        title='Create complaint'
-                      >
-                        <KTSVG
-                          path='/media/icons/duotune/coding/cod009.svg'
-                          className='svg-icon-3'
-                        />
-                      </a>
-                    )}
+                    {Access[id].hasOwnProperty('allAccess') ||
+                      (Access[id]['customerrights'].includes('createComplaint') && (
+                        <a
+                          // href='#'
+                          className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
+                          onClick={() => {
+                            window.open(
+                              `/complaint/complaintform/${customer.userName}&${customer.userid}`,
+                              '_blank'
+                            )
+                          }}
+                          title='Create complaint'
+                        >
+                          <KTSVG
+                            path='/media/icons/duotune/coding/cod009.svg'
+                            className='svg-icon-3'
+                          />
+                        </a>
+                      ))}
                   </td>
                 </tr>
               )

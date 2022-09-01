@@ -97,7 +97,7 @@ const editInquiries = (obj: putInquiriesmodel) => {
     contactno: obj.contactno,
     statusId: obj.statusId,
     salesexecutiveName: obj.salesexecutiveName,
-    salesexecutiveId: obj.salesexecutiveId ? obj.salesexecutiveId : 0,
+    salesexecutiveId: obj.salesexecutiveId ? obj.salesexecutiveId : null,
     description: obj.description,
     remark: obj.remark,
     isnotify: obj.isnotify,
@@ -147,6 +147,10 @@ const getUserName = (username: string) => {
   return http.get(`GetUserByRoleName?roleName=Customer`, {userName: username})
 }
 
+const GetTechnicianUsers = () => {
+  return http.get(`GetTechnicianAndSalesExecutiveUsers`)
+}
+
 const Inquiriesservice = {
   getDynamicInquiries,
   postInquiries,
@@ -159,6 +163,7 @@ const Inquiriesservice = {
   getSalesExecutveByGetUserByRoleTypes,
   getDynamicDownloadFile,
   getUserName,
+  GetTechnicianUsers,
 }
 
 export default Inquiriesservice

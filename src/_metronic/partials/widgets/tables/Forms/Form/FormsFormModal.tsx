@@ -71,9 +71,11 @@ const FormsFormModal: FC<Props> = ({category}) => {
     getUserByRole,
     getBank,
     getReciever,
+    DataGetAllsalesExcutive,
+    getSalesExcutiveData,
+    setGetSalesExcutiveData,
   } = ListPageData()
   const suggestionRef: any = useRef()
-
   let {LoderActions} = useLoader()
   const navigation = useNavigate()
   const [initialValues, setInitialValues] = useState<any>({
@@ -111,6 +113,10 @@ const FormsFormModal: FC<Props> = ({category}) => {
     userName: '',
     newAddress: '',
   })
+
+  useEffect(() => {
+    DataGetAllsalesExcutive()
+  }, [])
 
   useEffect(() => {
     if (itemIdForUpdate === 'add' && category?.data?.userName && category?.data?.userid) {
@@ -510,7 +516,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
                         {...formik.getFieldProps('salesexecutiveid')}
                       >
                         <option value=''>All</option>
-                        {getUserByRole?.map((row, index) => {
+                        {getSalesExcutiveData?.map((row, index) => {
                           return (
                             <option key={index} value={row?.id}>
                               {row.fullName}
