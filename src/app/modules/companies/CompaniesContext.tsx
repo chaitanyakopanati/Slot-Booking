@@ -73,7 +73,7 @@ const ListDataProvider: FC = ({children}) => {
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ViewForm>(undefined)
   const [filterShow, setFilterShow] = useState<boolean>(false)
   const [pageNo, setPageNo] = useState<number>(1)
-  const [pageSize, setPageSize] = useState<number>(5)
+  const [pageSize, setPageSize] = useState<number>(10)
   const [pageCount, setPageCount] = useState<number>(0)
   const [totalData, setTotalData] = useState<number>(100)
   const [createdById, setCreatedById] = useState<number>(0)

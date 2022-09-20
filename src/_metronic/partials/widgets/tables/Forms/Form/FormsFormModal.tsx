@@ -268,7 +268,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
       try {
         if (values.id) {
           // Edit Api Response
-          let response = await Inquiriesservice.editForms(values)
+          let response: any = await Inquiriesservice.editForms(values)
           if (response.success === false) {
             toast.error(response.message)
           } else {
@@ -277,7 +277,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
           navigation('/forms')
           toast.dismiss('1s')
         } else {
-          let response = await Inquiriesservice.postForms(values)
+          let response: any = await Inquiriesservice.postForms(values)
           if (response.success === false) {
             toast.error(response.message)
           } else {

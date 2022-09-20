@@ -2,8 +2,7 @@ import ReactPaginate from 'react-paginate'
 import {ListPageData} from '../../PackageContext'
 
 const PackagesPagination = () => {
-  const {setPageNo, setPageSize, pageCount, getData,totalData,pageNo,
-    pageSize} = ListPageData()
+  const {setPageNo, setPageSize, pageCount, getData, totalData, pageNo, pageSize} = ListPageData()
 
   const handlepageclick = async (pages: any) => {
     const currantPage = (await pages.selected) + 1
@@ -27,9 +26,9 @@ const PackagesPagination = () => {
                       setPageNo(1)
                     }}
                   >
-                    <option value='5'>5</option>
                     <option value='10'>10</option>
-                    <option value='20'>20</option>
+                    <option value='25'>25</option>
+                    <option value='50'>50</option>
                     <option value='100'>100</option>
                   </select>
                 </div>

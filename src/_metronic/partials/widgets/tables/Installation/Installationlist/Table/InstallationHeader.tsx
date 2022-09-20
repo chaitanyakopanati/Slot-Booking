@@ -175,6 +175,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
     installerId,
     salesExecutiveId,
     companyId,
+    pageSize,
+    pageNo,
   ])
 
   useEffect(() => {
@@ -194,6 +196,8 @@ const InstallationHeader: FC<Props> = ({category}) => {
     installerId,
     salesExecutiveId,
     companyId,
+    pageSize,
+    pageNo,
   ])
 
   return (

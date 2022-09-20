@@ -73,7 +73,7 @@ let ListDataContext = createContext<CustomerDataContextModel>({
   },
   setFilter: (filterTable) => {},
   pageNo: 1,
-  pageSize: 5,
+  pageSize: 10,
   setPageNo: (number) => {},
   setPageSize: (number) => {},
   fetchCustomer: () => {},
@@ -124,7 +124,7 @@ const CustomerContext: FC = ({children}) => {
   const [mainPoint, setMainPoint] = useState<mainPointType[]>([])
   const [customer, setCustomer] = useState<userType[]>([])
   const [pageNo, setPageNo] = useState<number>(1)
-  const [pageSize, setPageSize] = useState<number>(5)
+  const [pageSize, setPageSize] = useState<number>(10)
   const [totalData, setTotalData] = useState<number>(0)
   const [pageCount, setPageCount] = useState<number>(0)
   const [itemIdForUpdate, setItemIdForUpdate] = useState<ID>(undefined)

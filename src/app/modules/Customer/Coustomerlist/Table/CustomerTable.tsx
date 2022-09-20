@@ -272,6 +272,11 @@ const CustomerTable = () => {
                       <div className='fw-bolder '>Package Name:</div>
                       <div className='text-dark fw-bold  ms-2'> {customer.packageName}</div>
                     </div>
+
+                    <div className='py-1 d-flex'>
+                      <div className='fw-bolder '>Mobile No:</div>
+                      <div className='text-dark fw-bold  ms-2'> {customer.mobileNo}</div>
+                    </div>
                     <div className='py-1 d-flex align-items-cenetr'>
                       <span className='fw-bolder'>Expiry date:</span>
                       <span className='text-dark fw-bold  ms-2'>
