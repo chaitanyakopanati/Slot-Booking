@@ -31,10 +31,10 @@ function CustomerFormModal({customerById}: customerProps) {
       .matches(/^[0-9]{0,10}$/, 'Invalid Phone Number')
       .required('This field is required'),
     ZoneId: Yup.string().required().label('Zone'),
-    Email: Yup.string()
-      .email('Invalid email format')
-      .matches(emailRegExp, 'Invalid email format')
-      .required('This field is required'),
+    // Email: Yup.string()
+    //   .email('Invalid email format')
+    //   .matches(emailRegExp, 'Invalid email format')
+    //   .required('This field is required'),
     FirstName: Yup.string()
       .required()
       .matches(/^[a-zA-Z\s]*$/, 'Only alphabetics are allowed for this field')
@@ -138,12 +138,115 @@ function CustomerFormModal({customerById}: customerProps) {
 
   let fetchFilePath = async (file: any) => {
     const objectUrl = URL.createObjectURL(file[0])
+    console.log("objectUrl",objectUrl);
+    
     return objectUrl
   }
+
+  useEffect(()=>{
+console.log("customerById",customerById);
+
+  },[])
 
   useEffect(() => {
     fetchUsetByRoleNameWithSearch(formik.values.UserName)
   }, [formik.values.UserName])
+
+
+  const idProofImageUrl =async (filePath:any)=>{
+  if(filePath[0].name.split('.')[1]=='pdf'){
+    setIdProofImage('/media/icons/duotune/coding/pdfimg.png')
+    console.log("111");
+    
+   }else if(filePath[0].name.split('.')[1]=='xl' || filePath[0].name.split('.')[1]=='xlsx' ||filePath[0].name.split('.')[1]=='xls'){
+     setIdProofImage('/media/icons/duotune/coding/excelimage.png')
+    }else if(filePath[0].name.split('.')[1]=='doc'){
+     setIdProofImage('/media/icons/duotune/coding/docimage.png')
+    }else {
+      let url = await fetchFilePath(filePath)
+      setIdProofImage(url)
+    }
+  
+  }
+
+  const addressProofImageUrl =async (filePath:any)=>{
+  if(filePath[0].name.split('.')[1]=='pdf'){
+    setAddressProofImage('/media/icons/duotune/coding/pdfimg.png')
+    console.log("111");
+    
+   }else if(filePath[0].name.split('.')[1]=='xl' || filePath[0].name.split('.')[1]=='xlsx' ||filePath[0].name.split('.')[1]=='xls'){
+    setAddressProofImage('/media/icons/duotune/coding/excelimage.png')
+    }else if(filePath[0].name.split('.')[1]=='doc'){
+      setAddressProofImage('/media/icons/duotune/coding/docimage.png')
+    }else {
+      let url = await fetchFilePath(filePath)
+      setAddressProofImage(url)
+    }
+  
+  }
+
+  const gstProofImageUrl =async (filePath:any)=>{
+  if(filePath[0].name.split('.')[1]=='pdf'){
+    setGstCerificateImage('/media/icons/duotune/coding/pdfimg.png')
+    console.log("111");
+    
+   }else if(filePath[0].name.split('.')[1]=='xl' || filePath[0].name.split('.')[1]=='xlsx' ||filePath[0].name.split('.')[1]=='xls'){
+    setGstCerificateImage('/media/icons/duotune/coding/excelimage.png')
+    }else if(filePath[0].name.split('.')[1]=='doc'){
+      setGstCerificateImage('/media/icons/duotune/coding/docimage.png')
+    }else {
+      let url = await fetchFilePath(filePath)
+      setGstCerificateImage(url)
+      console.log("url",url);
+      
+    }
+  
+  }
+
+  const idProofImagePath =()=>{
+    if(customerById?.docNameIdProof?.split('.')[1] == 'pdf'){
+      return '/media/icons/duotune/coding/pdfimg.png'
+    } else if(customerById?.docNameIdProof?.split('.')[1] == 'xl' || customerById?.docNameIdProof?.split('.')[1] == 'xlsx'  || customerById?.docNameIdProof?.split('.')[1] == 'xls'){
+      return '/media/icons/duotune/coding/excelimage.png'
+    }else  if(customerById?.docNameIdProof?.split('.')[1] == 'doc'){
+      return '/media/icons/duotune/coding/docimage.png'
+    }
+    else {
+      return `${idProofPath}${customerById?.docNameIdProof}`
+    }
+  }
+
+  const addressProofImagePath =()=>{
+    if(customerById?.docNameAddressproofImage?.split('.')[1] == 'pdf'){
+      return '/media/icons/duotune/coding/pdfimg.png'
+    } else if(customerById?.docNameAddressproofImage?.split('.')[1] == 'xl' || customerById?.docNameAddressproofImage?.split('.')[1] == 'xlsx'  || customerById?.docNameAddressproofImage?.split('.')[1] == 'xls'){
+      return '/media/icons/duotune/coding/excelimage.png'
+    }else  if(customerById?.docNameAddressproofImage?.split('.')[1] == 'doc'){
+      return '/media/icons/duotune/coding/docimage.png'
+    }
+    else {
+      return `${addressProofPath}${customerById?.docNameAddressproofImage}`
+    }
+  }
+
+  const gstProofImagePath =()=>{
+    if(customerById?.docNameGstcerificateImage?.split('.')[1] == 'pdf'){
+      return '/media/icons/duotune/coding/pdfimg.png'
+    } else if(customerById?.docNameGstcerificateImage?.split('.')[1] == 'xl' || customerById?.docNameGstcerificateImage?.split('.')[1] == 'xlsx'  || customerById?.docNameGstcerificateImage?.split('.')[1] == 'xls'){
+      return '/media/icons/duotune/coding/excelimage.png'
+    }else  if(customerById?.docNameGstcerificateImage?.split('.')[1] == 'doc'){
+      return '/media/icons/duotune/coding/docimage.png'
+    }
+    else {
+      return `${gstProofPath}${customerById?.docNameGstcerificateImage}`
+    }
+  }
+
+  useEffect(()=>{
+    gstProofImagePath()
+    addressProofImagePath()
+    idProofImagePath()
+  },[])
 
   return (
     <>
@@ -161,7 +264,9 @@ function CustomerFormModal({customerById}: customerProps) {
                   className='image-input image-input-empty'
                   style={{
                     backgroundImage: `url(${
-                      idProofImage ? idProofImage : customerById.idproofImage || ImageSelect
+                      // idProofImage ? idProofImage : `${idProofPath}${customerById.docNameIdProof}`|| ImageSelect
+                      idProofImage ? idProofImage : idProofImagePath()|| ImageSelect
+
                     })`,
                   }}
                 >
@@ -178,13 +283,15 @@ function CustomerFormModal({customerById}: customerProps) {
                     <input
                       type='file'
                       name='IdproofImageFile'
-                      accept='.png, .jpg, .jpeg'
+                      // accept='.png, .jpg, .jpeg .pdf'
+                      accept='.png, .jpg, .jpeg ,.pdf,.xl,.xls,.xlsx,.doc'
                       onChange={async (e) => {
                         if (!e.target.files) {
                           return
                         }
-                        let url = await fetchFilePath(e.target.files)
-                        setIdProofImage(url)
+                        idProofImageUrl(e.target.files)
+                        // let url = await fetchFilePath(e.target.files)
+                        // setIdProofImage(url)
                         formik.setFieldValue('IdproofImageFile', e.target.files[0])
                       }}
                       onBlur={formik.handleBlur}
@@ -192,7 +299,6 @@ function CustomerFormModal({customerById}: customerProps) {
                   </label>
                 </div>
               </div>
-
               {/* Address */}
               <div className='col-lg-4 text-center'>
                 <div className='pb-5'>
@@ -204,8 +310,9 @@ function CustomerFormModal({customerById}: customerProps) {
                   style={{
                     backgroundImage: `url(${
                       addressProofImage
-                        ? addressProofImage
-                        : customerById.addressproofImage || ImageSelect
+                        ?  addressProofImage
+                        // : `${addressProofPath}${customerById.docNameAddressproofImage}` || ImageSelect
+                        :addressProofImagePath()|| ImageSelect
                     })`,
                   }}
                 >
@@ -223,13 +330,17 @@ function CustomerFormModal({customerById}: customerProps) {
                     <input
                       type='file'
                       name='AddressproofImageFile'
-                      accept='.png, .jpg, .jpeg'
+                      // accept='.png, .jpg, .jpeg'
+                      accept='.png, .jpg, .jpeg ,.pdf,.xl,.xls,.xlsx,.doc'
+
                       onChange={async (e) => {
                         if (!e.target.files) {
                           return
                         }
-                        let url = await fetchFilePath(e.target.files)
-                        setAddressProofImage(url)
+
+                        addressProofImageUrl(e.target.files)
+                        // let url = await fetchFilePath(e.target.files)
+                        // setAddressProofImage(url)
                         formik.setFieldValue('AddressproofImageFile', e.target.files[0])
                       }}
                       onBlur={formik.handleBlur}
@@ -249,7 +360,8 @@ function CustomerFormModal({customerById}: customerProps) {
                     backgroundImage: `url(${
                       gstCerificateImage
                         ? gstCerificateImage
-                        : customerById.gstcerificateImage || ImageSelect
+                        // : `${gstProofPath}${customerById.docNameGstcerificateImage}`|| ImageSelect
+                        :gstProofImagePath()|| ImageSelect
                     })`,
                   }}
                 >
@@ -266,13 +378,15 @@ function CustomerFormModal({customerById}: customerProps) {
                     <input
                       type='file'
                       name='GstcerificateImageFile'
-                      accept='.png, .jpg, .jpeg'
+                      // accept='.png, .jpg, .jpeg'
+                      accept='.png, .jpg, .jpeg ,.pdf,.xl,.xls,.xlsx,.doc'
                       onChange={async (e) => {
                         if (!e.target.files) {
                           return
                         }
-                        let url = await fetchFilePath(e.target.files)
-                        setGstCerificateImage(url)
+                        gstProofImageUrl(e.target.files)
+                        // let url = await fetchFilePath(e.target.files)
+                        // setGstCerificateImage(url)
                         formik.setFieldValue('GstcerificateImageFile', e.target.files[0])
                       }}
                       onBlur={formik.handleBlur}
@@ -404,7 +518,7 @@ function CustomerFormModal({customerById}: customerProps) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.Email && formik.errors.Email && (
+                {/* {formik.touched.Email && formik.errors.Email && (
                   <div className='fv-plugins-message-container'>
                     <div className='fv-help-block'>
                       <span role='alert' style={{color: 'red'}}>
@@ -412,7 +526,7 @@ function CustomerFormModal({customerById}: customerProps) {
                       </span>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
             {/* Username */}

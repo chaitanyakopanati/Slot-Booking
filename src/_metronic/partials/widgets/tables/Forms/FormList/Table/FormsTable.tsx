@@ -105,9 +105,9 @@ const FormsTable = () => {
   const {currentUser, auth} = useAuth()
   const id: number | any = auth?.roleId
 
-  const addInstallation = async (id: any) => {
+  const addInstallation = async (row: any) => {
     try {
-      let response = await Inquiriesservice.postInstallations(id)
+      let response = await Inquiriesservice.postInstallations(row)
 
       if (response.success === false) {
         toast.error(response.message)
@@ -243,7 +243,7 @@ const FormsTable = () => {
                           className='btn btn-icon btn-bg-light btn-active-color-success btn-sm m-1'
                           title='Create Installation'
                           onClick={() => {
-                            addInstallation(row.customerId)
+                            addInstallation(row)
                           }}
                         >
                           <KTSVG

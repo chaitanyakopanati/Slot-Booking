@@ -5,10 +5,14 @@ import moment from 'moment'
 import {KTSVG} from '../../../../../../helpers'
 import {ListPageData} from '../../FormsContext'
 import {useAuth} from '../../../../../../../app/modules/auth'
+import {saveAs} from 'file-saver'
 
 type Props = {
   category: any
 }
+const API_URL_DATA = process.env.REACT_APP_IMG_PATH
+
+const idProofPath: string = `${API_URL_DATA}MediaUpload/Form/`
 
 const FormsFormViewModal: FC<Props> = ({category}) => {
   const {setItemIdForUpdate, setViewIdForUpdate} = ListPageData()
@@ -67,12 +71,33 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
       .utc(category.data?.modifyAt, 'YYYY-MM-DD,h:mm a')
       .local()
       .format('YYYY-MM-DD,h:mm a'),
+      docNameAddressproofImage: category.data.docNameAddressproofImage || '',
+      docNameGstcerificateImage: category.data.docNameGstcerificateImage || '',
+      formDocument: category.data.formDocument || '',
   })
+useEffect(()=>{
+console.log(" category.data", category.data);
 
+},[])
   const {currentUser, auth} = useAuth()
 
   const openEditModal = (id: any) => {
     setItemIdForUpdate(id)
+  }
+
+  const imagesPath =(pathimg:any)=>{
+    console.log("pathimg",pathimg);
+    
+    if(pathimg.split('.')[1]=='pdf'){
+     return `url('/media/icons/duotune/coding/pdfimg.png')`
+    }else if(pathimg.split('.')[1]=='xl' || pathimg.split('.')[1]=='xlsx' ||pathimg.split('.')[1]=='xls'){
+      return `url('/media/icons/duotune/coding/excelimage.png')`
+     }else if(pathimg.split('.')[1]=='doc'){
+      return `url('/media/icons/duotune/coding/docimage.png')`
+     }else {
+     return `url("${idProofPath}${pathimg}")`
+     }
+    
   }
 
   return (
@@ -119,6 +144,63 @@ const FormsFormViewModal: FC<Props> = ({category}) => {
         <div className='modal-body'>
           <div className='container-fluid p-0'>
             <div className='row w-100 mx-0 mb-4 gy-4'>
+
+
+            <div className='col-lg-4 text-center'>
+                    <div className='pb-5'>
+                      <h5 className='m-0'>Form Document</h5>
+                    </div>
+                    <div
+                      className='image-input image-input-empty'
+                      data-kt-image-input='true'
+                     
+                      style={{
+                        // backgroundImage:initialvalues.formDocument.split('.')[1]=='pdf' ? `url("http://www.candmconcretestlouis.com/wp-content/uploads/2019/01/pdf-download.jpg")`:`url("${idProofPath}${initialvalues.formDocument}")`,
+                        // backgroundImage:initialvalues.formDocument.split('.')[1]=='pdf' ? `url('/media/icons/duotune/coding/pdf.png')`:`url("${idProofPath}${initialvalues.formDocument}")`,
+                        backgroundImage:imagesPath(initialvalues.formDocument)
+
+
+                      }}
+                    >
+                  {initialvalues.formDocument?
+                         <div className="d-flex align-items-center justify-content-center image_icn">
+                        <div className="mx-2 position-relative"  onClick={() => {
+                        window.open(
+                          `${idProofPath}${initialvalues.formDocument}`,
+                          '_blank'
+                        )
+                      }}><i className='bi bi-eye fs-7'></i></div>
+
+
+                        {/* <div className="mx-2 position-relative" onClick={() => {saveAs('image_url',  `${idProofPath}${initialvalues.formDocument}`)}}>
+                          
+                    <i className="bi bi-download"></i>
+                    </div> */}
+                      </div>:""}
+                      <div className='image-input-wrapper w-125px h-125px'></div>
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='cancel'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Cancel avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                      <span
+                        className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                        data-kt-image-input-action='remove'
+                        data-bs-toggle='tooltip'
+                        data-bs-dismiss='click'
+                        title='Remove avatar'
+                      >
+                        <i className='bi bi-x fs-2'></i>
+                      </span>
+                    </div>
+                  </div>
+                
+
+
               <div className='col-md-12'>
                 <div className='row mb-6 gy-4'>
                   <div className='col-md-3'>

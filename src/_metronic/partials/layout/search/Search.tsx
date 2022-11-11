@@ -705,7 +705,7 @@ const Search: FC = () => {
 
             <div className='d-flex justify-content-end'>
               <button
-                onClick={(e) => {
+                onClick={(e:any) => {
                   e.preventDefault()
                   setMenuState('main')
                 }}
@@ -773,7 +773,7 @@ const Search: FC = () => {
 
             <div className='d-flex justify-content-end pt-7'>
               <button
-                onClick={(e) => {
+                onClick={(e:any) => {
                   e.preventDefault()
                   setMenuState('main')
                 }}

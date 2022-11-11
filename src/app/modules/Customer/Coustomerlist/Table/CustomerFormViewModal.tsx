@@ -5,6 +5,9 @@ import {Formik} from 'formik'
 import moment from 'moment'
 import {useNavigate} from 'react-router-dom'
 import {useAuth} from '../../../auth'
+import { url } from 'inspector' 
+import {saveAs} from 'file-saver'
+
 
 type Props = {
   category: any
@@ -19,6 +22,56 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
   const navigation = useNavigate()
   const {currentUser, auth} = useAuth()
 
+  // const showImg=(img:any)=>{
+  //   console.log("img",img);
+    
+  // }
+
+  const imagesPath =(pathimg:any)=>{
+    console.log("pathimg1",pathimg);
+    
+    if(pathimg.split('.')[1]=='pdf'){
+     return `url('/media/icons/duotune/coding/pdfimg.png')`
+    }else if(pathimg.split('.')[1]=='xl' || pathimg.split('.')[1]=='xlsx' ||pathimg.split('.')[1]=='xls'){
+      return `url('/media/icons/duotune/coding/excelimage.png')`
+     }else if(pathimg.split('.')[1]=='doc'){
+      return `url('/media/icons/duotune/coding/docimage.png')`
+     }else {
+     return `url("${idProofPath}${pathimg}")`
+     }
+    
+  }
+const addressImagesPath =(pathimg:any)=>{
+  console.log("pathimg2",pathimg);
+  
+  if(pathimg.split('.')[1]=='pdf'){
+   return `url('/media/icons/duotune/coding/pdfimg.png')`
+  }else if(pathimg.split('.')[1]=='xl' || pathimg.split('.')[1]=='xlsx' ||pathimg.split('.')[1]=='xls'){
+    return `url('/media/icons/duotune/coding/excelimage.png')`
+   }else if(pathimg.split('.')[1]=='doc'){
+    return `url('/media/icons/duotune/coding/docimage.png')`
+   }else {
+   return `url("${addressProofPath}${pathimg}")`
+   }
+  
+}
+
+const gstImagesPath =(pathimg:any)=>{
+  console.log("pathimg3",pathimg);
+  
+  if(pathimg.split('.')[1]=='pdf'){
+   return `url('/media/icons/duotune/coding/pdfimg.png')`
+  }else if(pathimg.split('.')[1]=='xl' || pathimg.split('.')[1]=='xlsx' ||pathimg.split('.')[1]=='xls'){
+    return `url('/media/icons/duotune/coding/excelimage.png')`
+   }else if(pathimg.split('.')[1]=='doc'){
+    return `url('/media/icons/duotune/coding/docimage.png')`
+   }else {
+    console.log("dd",`${idProofPath}${pathimg}`);
+    
+   return `url(${gstProofPath}${pathimg})`
+   }
+  
+}
   return (
     <>
       <Formik
@@ -110,10 +163,26 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
+                     
                       style={{
-                        backgroundImage: `url("${idProofPath}${props.values.docNameIdProof}")`,
+                        // backgroundImage:props.values.docNameIdProof.split('.')[1]=='pdf' ?`url("http://www.candmconcretestlouis.com/wp-content/uploads/2019/01/pdf-download.jpg")`:`url("${idProofPath}${props.values.docNameIdProof}")`,
+                        backgroundImage:imagesPath(props.values.docNameIdProof)
                       }}
                     >
+                      {props.values.docNameIdProof ?
+                    <div className="d-flex align-items-center justify-content-center image_icn">
+                        <div className="mx-2 position-relative"  onClick={() => {
+                        window.open(
+                          `${idProofPath}${props.values.docNameIdProof}`,
+                          '_blank'
+                        )
+                      }}><i className='bi bi-eye fs-7'></i></div>
+
+
+{/* <div className="mx-2 position-relative" onClick={() => {saveAs('image_url',  `${idProofPath}${props.values.docNameIdProof}`)}}>
+
+                          <i className="bi bi-download"></i></div> */}
+                      </div>:""}
                       <div className='image-input-wrapper w-125px h-125px'></div>
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
@@ -123,6 +192,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         title='Cancel avatar'
                       >
                         <i className='bi bi-x fs-2'></i>
+
                       </span>
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
@@ -132,6 +202,7 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                         title='Remove avatar'
                       >
                         <i className='bi bi-x fs-2'></i>
+
                       </span>
                     </div>
                   </div>
@@ -142,10 +213,27 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
+                     
                       style={{
-                        backgroundImage: `url("${addressProofPath}${props.values.docNameAddressproofImage}")`,
+                        // backgroundImage:props.values.docNameAddressproofImage.split('.')[1]=='pdf'?`url("http://www.candmconcretestlouis.com/wp-content/uploads/2019/01/pdf-download.jpg")`: `url("${addressProofPath}${props.values.docNameAddressproofImage}")`,
+                        backgroundImage:addressImagesPath(props.values.docNameAddressproofImage)
+                     
                       }}
                     >
+                      {props.values.docNameAddressproofImage?
+                       <div className="d-flex align-items-center justify-content-center image_icn">
+                        <div className="mx-2 position-relative"   onClick={() => {
+                        window.open(
+                          `${addressProofPath}${props.values.docNameAddressproofImage}`,
+                          '_blank'
+                        )
+                      }}><i className='bi bi-eye fs-7'></i></div>
+
+
+{/* <div className="mx-2 position-relative" onClick={() => {saveAs('image_url',  `${addressProofPath}${props.values.docNameAddressproofImage}`)}}>
+
+                          <i className="bi bi-download"></i></div> */}
+                      </div>:""}
                       <div className='image-input-wrapper w-125px h-125px'></div>
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
@@ -174,10 +262,26 @@ const CustomerFormViewModal: FC<Props> = ({category}) => {
                     <div
                       className='image-input image-input-empty'
                       data-kt-image-input='true'
+                    
                       style={{
-                        backgroundImage: `url("${gstProofPath}${props.values.docNameGstcerificateImage}")`,
+                        // backgroundImage:props.values.docNameGstcerificateImage.split('.')[1]=='pdf' ? `url("http://www.candmconcretestlouis.com/wp-content/uploads/2019/01/pdf-download.jpg")`:`url("${gstProofPath}${props.values.docNameGstcerificateImage}")`,
+                        backgroundImage:gstImagesPath(props.values.docNameGstcerificateImage)
+
                       }}
                     >
+                    {props.values.docNameGstcerificateImage?
+                       <div className="d-flex align-items-center justify-content-center image_icn">
+                        <div className="mx-2 position-relative"   onClick={() => {
+                        window.open(
+                          `${gstProofPath}${props.values.docNameGstcerificateImage}`,
+                          '_blank'
+                        )
+                      }}><i className='bi bi-eye fs-7'></i></div>
+
+{/* <div className="mx-2 position-relative" onClick={() => {saveAs('image_url',  `${gstProofPath}${props.values.docNameGstcerificateImage}`)}}>
+
+                          <i className="bi bi-download"></i></div> */}
+                      </div>:""}
                       <div className='image-input-wrapper w-125px h-125px'></div>
                       <span
                         className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'

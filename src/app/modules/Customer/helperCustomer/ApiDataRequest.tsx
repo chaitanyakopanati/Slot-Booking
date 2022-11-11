@@ -28,6 +28,10 @@ const saveCustomer = (formdata: any) => {
 const editCustomer = (formdata: any) => {
   return http.post('SaveCustomer', formdata)
 }
+
+const uploadImage = (formdata: any) => {
+  return http.post('UploadCustomerImage', formdata)
+}
 const GetCustomerById = (id: any) => {
   return http.get(`GetCustomerById/${id}`).then((result) => result.data)
 }
@@ -46,4 +50,5 @@ export {
   GetCustomerById,
   deleteCustomer,
   editCustomer,
+  uploadImage
 }

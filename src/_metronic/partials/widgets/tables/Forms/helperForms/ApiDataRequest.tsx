@@ -73,41 +73,44 @@ const getDynamicDownloadFile = (
 {
   /* begin:: User:- post Api call(create) */
 }
-const postForms = (obj: postlistData) => {
-  return http.post('SaveForm', {
-    userid: obj.userid,
-    formno: obj.formno,
-    formdate: obj.formdate,
-    formtype: obj.formtype,
-    salesexecutiveid: +obj.salesexecutiveid,
-    companyid: obj.companyid ? +obj.companyid : null,
-    pacakgetype: obj.pacakgetype ? obj.pacakgetype.toString() : null,
-    packageid: obj.packageid ? obj.packageid : null,
-    packagecatid: obj.packagecatid ? +obj.packagecatid : null,
-    packagevalidity: obj.packagevalidity,
-    packagecost: obj.packagecost,
-    installationcost: obj.installationcost,
-    othercost: obj.othercost,
-    discount: obj.discount,
-    gstamount: obj.gstamount,
-    totalamount: obj.totalamount,
-    cashamount: obj.cashamount,
-    chequeamount: obj.chequeamount,
-    remaningamount: obj.remaningamount,
-    bankid: obj.bankid ? +obj.bankid : null,
-    chequeno: obj.chequeno.toString(),
-    chequedate: obj.chequedate,
-    receiverid: +obj.receiverid,
-    activationdate: obj.activationdate,
-    expirydate: obj.expirydate,
-    iptype: obj.iptype ? obj.iptype.toString() : null,
-    note: obj.note,
-    thirdparty: obj.thirdparty,
-    remark: obj.remark,
-    status: obj.status.toString(),
-    createdbyId: obj.createdbyId,
-    newAddress: obj?.newAddress,
-  })
+const postForms = (formData: postlistData) => {
+  return http.post('SaveFormV1', formData
+  // {
+  //   userid: obj.userid,
+  //   formno: obj.formno,
+  //   formdate: obj.formdate,
+  //   formtype: obj.formtype,
+  //   salesexecutiveid: +obj.salesexecutiveid,
+  //   companyid: obj.companyid ? +obj.companyid : null,
+  //   pacakgetype: obj.pacakgetype ? obj.pacakgetype.toString() : null,
+  //   packageid: obj.packageid ? obj.packageid : null,
+  //   packagecatid: obj.packagecatid ? +obj.packagecatid : null,
+  //   packagevalidity: obj.packagevalidity,
+  //   packagecost: obj.packagecost,
+  //   installationcost: obj.installationcost,
+  //   othercost: obj.othercost,
+  //   discount: obj.discount,
+  //   gstamount: obj.gstamount,
+  //   totalamount: obj.totalamount,
+  //   cashamount: obj.cashamount,
+  //   chequeamount: obj.chequeamount,
+  //   remaningamount: obj.remaningamount,
+  //   bankid: obj.bankid ? +obj.bankid : null,
+  //   chequeno: obj.chequeno.toString(),
+  //   chequedate: obj.chequedate,
+  //   receiverid: +obj.receiverid,
+  //   activationdate: obj.activationdate,
+  //   expirydate: obj.expirydate,
+  //   iptype: obj.iptype ? obj.iptype.toString() : null,
+  //   note: obj.note,
+  //   thirdparty: obj.thirdparty,
+  //   remark: obj.remark,
+  //   status: obj.status.toString(),
+  //   createdbyId: obj.createdbyId,
+  //   newAddress: obj?.newAddress,
+  //   FormDocument:obj.IdproofImageFile
+  // }
+  )
 }
 {
   /* end:: User:- post Api call(create) */
@@ -127,43 +130,48 @@ const deleteForms = (Id: number) => {
 {
   /* begin:: User:- post Api call(edit) */
 }
-const editForms = (obj: putInquiriesmodel) => {
-  return http.post(`SaveForm`, {
-    id: obj.id,
-    userid: obj.userid,
-    userName: obj.userName,
-    formno: obj.formno,
-    formdate: obj.formdate,
-    packageid: obj.packageid ? obj.packageid : null,
-    formtype: obj.formtype.toString(),
-    pacakgetype: obj.pacakgetype ? obj.pacakgetype.toString() : null,
-    salesexecutiveid: obj.salesexecutiveid,
-    companyid: obj.companyid ? +obj.companyid : null,
-    packagecatid: obj.packagecatid ? +obj.packagecatid : null,
-    packagevalidity: obj.packagevalidity,
-    packagecost: obj.packagecost,
-    installationcost: obj.installationcost,
-    othercost: obj.othercost,
-    discount: obj.discount,
-    gstamount: obj.gstamount,
-    totalamount: obj.totalamount,
-    cashamount: obj.cashamount,
-    chequeamount: obj.chequeamount,
-    remaningamount: obj.remaningamount,
-    bankid: obj.bankid ? +obj.bankid : null,
-    chequeno: obj.chequeno,
-    chequedate: obj.chequedate,
-    receiverid: obj.receiverid,
-    activationdate: obj.activationdate,
-    expirydate: obj.expirydate,
-    iptype: obj.iptype ? obj.iptype.toString() : null,
-    note: obj.note,
-    thirdparty: obj.thirdparty,
-    remark: obj.remark,
-    status: obj.status.toString(),
-    newAddress: obj?.newAddress,
-    modifyby: obj.modifyby,
-  })
+const editForms = (formData: putInquiriesmodel) => {
+  console.log("formData",formData);
+  
+  return http.post(`SaveFormV1`,formData
+  //  {
+  //   id: obj.id,
+  //   userid: obj.userid,
+  //   userName: obj.userName,
+  //   formno: obj.formno,
+  //   formdate: obj.formdate,
+  //   packageid: obj.packageid ? obj.packageid : null,
+  //   formtype: obj.formtype.toString(),
+  //   pacakgetype: obj.pacakgetype ? obj.pacakgetype.toString() : null,
+  //   salesexecutiveid: obj.salesexecutiveid,
+  //   companyid: obj.companyid ? +obj.companyid : null,
+  //   packagecatid: obj.packagecatid ? +obj.packagecatid : null,
+  //   packagevalidity: obj.packagevalidity,
+  //   packagecost: obj.packagecost,
+  //   installationcost: obj.installationcost,
+  //   othercost: obj.othercost,
+  //   discount: obj.discount,
+  //   gstamount: obj.gstamount,
+  //   totalamount: obj.totalamount,
+  //   cashamount: obj.cashamount,
+  //   chequeamount: obj.chequeamount,
+  //   remaningamount: obj.remaningamount,
+  //   bankid: obj.bankid ? +obj.bankid : null,
+  //   chequeno: obj.chequeno,
+  //   chequedate: obj.chequedate,
+  //   receiverid: obj.receiverid,
+  //   activationdate: obj.activationdate,
+  //   expirydate: obj.expirydate,
+  //   iptype: obj.iptype ? obj.iptype.toString() : null,
+  //   note: obj.note,
+  //   thirdparty: obj.thirdparty,
+  //   remark: obj.remark,
+  //   status: obj.status.toString(),
+  //   newAddress: obj?.newAddress,
+  //   modifyby: obj.modifyby,
+  //   FormDocument:obj.IdproofImageFile
+  // }
+  )
 }
 {
   /* begin:: User:- post Api call(edit) */
@@ -171,6 +179,12 @@ const editForms = (obj: putInquiriesmodel) => {
 
 {
   /* begin:: User:- getById Api call */
+}
+
+const formUploadImage =(formData:any)=>{
+  console.log("111");
+  
+  return http.post(`UploadFormImage`,formData)
 }
 const GetFormsTypeById = (id: ID) => {
   return http.get(`GetFormById/${id}`)
@@ -228,13 +242,23 @@ const getReciever = () => {
   return http.get(`GetUserByRoleName?roleName=Technician`)
 }
 
-const postInstallations = (obj: postlistData) => {
+const postInstallations = (obj: postlistData,remarkData?:any,installationId?:any) => {  
   return http.post('SaveInstallations', {
+    id:installationId,
     userid: obj.userid,
+    remark:remarkData,
     createdbyId: obj.createdbyId,
+    isShifting:installationId?true:false
   })
 }
 
+const GetInstallationsTypeById = (id: any) => {
+  return http.get(`GetInstallationById/${id}`)
+}
+
+const ValidateUserById =(id:any)=>{
+   return http.get(`ValidateUserById/${id}`)
+}
 const Inquiriesservice = {
   getDynamicForm,
   postForms,
@@ -253,6 +277,9 @@ const Inquiriesservice = {
   getReciever,
   postInstallations,
   GetTechnicianUsers,
+  GetInstallationsTypeById,
+  ValidateUserById,
+  formUploadImage
 }
 
 export default Inquiriesservice

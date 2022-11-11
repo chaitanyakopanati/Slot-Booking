@@ -13,3 +13,29 @@ $mode: default;
 @import './core/layout/docs/layout';
 //page
 @import 'page/page';
+
+.image_icn {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image_icn i {
+    font-size: 18px !important;
+    background: #fff;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 0px 5px;
+    border: 1px solid #e1e1e1;
+    text-align: center;
+    clear: both;
+    line-height: 28px;
+    display: none;
+}
+
+.image-input-empty:hover .image_icn i {
+    display: block;
+}

@@ -401,7 +401,7 @@ const InstallationCustomerViewModel: FC<Props> = ({category}) => {
               />
             </div>
 
-            <div className='col-lg-6'>
+            <div className='col-lg-12'>
               <label className='form-label fw-bold'>Remark</label>
               <input
                 className='form-control form-control-lg form-control-solid'

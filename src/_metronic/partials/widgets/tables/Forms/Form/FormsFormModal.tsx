@@ -10,10 +10,15 @@ import {ListPageData} from '../FormsContext'
 import Inquiriesservice from '../helperForms/ApiDataRequest'
 import moment, {min} from 'moment'
 import {useAuth} from '../../../../../../app/modules/auth'
+import ImageSelect from '../../../../../../app/images/error-profile.svg'
 
 type Props = {
   category: any
 }
+const API_URL_DATA = process.env.REACT_APP_IMG_PATH
+
+const idProofPath: string = `${API_URL_DATA}MediaUpload/Form/`
+
 
 let validationSchemaNewForm = Yup.object({
   userName: Yup.string().required('This field is required'),
@@ -112,11 +117,15 @@ const FormsFormModal: FC<Props> = ({category}) => {
     status: '',
     userName: '',
     newAddress: '',
+    formDocument:''
   })
-
+const [remarkData,setRemarkData]=useState({})
   useEffect(() => {
     DataGetAllsalesExcutive()
   }, [])
+  const [idProofImage, setIdProofImage] = useState<any>(null)
+ 
+
 
   useEffect(() => {
     if (itemIdForUpdate === 'add' && category?.data?.userName && category?.data?.userid) {
@@ -156,6 +165,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         status: category.data?.status || '',
         newAddress: category?.data?.newAddress || '',
         createdbyId: auth?.userId,
+        formDocument: category?.data?.formDocument ? category?.data?.formDocument : '',
       })
     }
     if (itemIdForUpdate === 'add') {
@@ -195,6 +205,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         newAddress: category?.data?.newAddress || '',
         createdbyId: auth?.userId,
         userName: category?.data?.userName || '',
+        formDocument: category?.data?.formDocument ? category?.data?.formDocument : '',
       })
     } else {
       setInitialValues({
@@ -234,6 +245,7 @@ const FormsFormModal: FC<Props> = ({category}) => {
         newAddress: category?.data?.newAddress || '',
         status: category?.data?.status || '',
         modifyby: auth?.userId,
+        formDocument: category?.data?.formDocument ? category?.data?.formDocument : '',
       })
     }
   }, [itemIdForUpdate, category])
@@ -262,13 +274,23 @@ const FormsFormModal: FC<Props> = ({category}) => {
       values.packagevalidity = +values.packagevalidity
       values.bankid = +values.bankid
       values.receiverid = +values.receiverid
+    console.log("values1111",values);
 
       LoderActions(true)
+    
 
       try {
         if (values.id) {
           // Edit Api Response
-          let response: any = await Inquiriesservice.editForms(values)
+          let formData: any = new FormData()
+          delete formData.ModifyBy
+          Object.entries(values).forEach(([key, value]) => {
+            if (value) formData.append(key, value as string)
+          })
+          !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
+          delete formData.ModifyBy
+          console.log(`formData`,formData )
+          let response: any = await Inquiriesservice.editForms(formData)
           if (response.success === false) {
             toast.error(response.message)
           } else {
@@ -277,7 +299,16 @@ const FormsFormModal: FC<Props> = ({category}) => {
           navigation('/forms')
           toast.dismiss('1s')
         } else {
-          let response: any = await Inquiriesservice.postForms(values)
+          let formData: any = new FormData()
+          delete formData.CreatedBy
+          Object.entries(values).forEach(([key, value]) => {
+            if (value) formData.append(key, value as string)
+          })
+          !values.IsMasterUser && formData.append('IsMasterUser', values.IsMasterUser)
+          delete formData.CreatedBy
+          console.log(`formData`,formData )
+
+          let response: any = await Inquiriesservice.postForms(formData)
           if (response.success === false) {
             toast.error(response.message)
           } else {
@@ -289,15 +320,75 @@ const FormsFormModal: FC<Props> = ({category}) => {
       } catch (error: any) {
         toast.error(error.data.message)
       }
+      let remark:any=''
+      // if (values.formtype == '4' && !values.id) {
+      if (values.formtype == '4' ) {
+      try {
+          let res = await Inquiriesservice.ValidateUserById(values.userid)
+          if (res.success === false) {
 
-      if (values.formtype == '4' && !values.id) {
-        try {
-          let response = await Inquiriesservice.postInstallations(values)
+            // toast.error(res.message)
+            try {
+              let response = await Inquiriesservice.postInstallations(values)
+    
+              if (response.success === false) {
+                toast.error(response.message)
+                } else {
+                toast.success(response.message)
+              }
+              toast.dismiss('1s')
+            } catch (error: any) {
+              toast.error(error.data.message)
+            }
+            } else {
+            // toast.success(response.message)
+             try {
+              let response = await Inquiriesservice.GetInstallationsTypeById(res.installationId)
+    
+              if (response.success === false) {
+                toast.error(response.message)
+              } else {
+                toast.success(response.message)
+                if( response.data.userName ){
+                  remark +=`userName = ${response.data.userName},`
+                }          
+                if( response.data.installerName ){                 
+                  remark +=`installerName = ${response.data.installerName},`
+                }  
+                 if( response.data.connectiontypeName ){
+                  remark +=`connectiontypeName = ${response.data.connectiontypeName},`
+                }  
+                if( response.data.cabletypeName ){
+                 remark +=`cabletypeName = ${response.data.cabletypeName},`
+                }
+                if( response.data.accesspointip ){
+                  remark +=`accesspointip = ${response.data.accesspointip},`
+                } 
+                if( response.data.cablelength ){
+                  remark +=`cablelength = ${response.data.cablelength},`
+                } 
+                if(response.data.iptypeName){
+                  remark +=`iptypeName = ${response.data.iptypeName},`
+                }   
+              
+                setRemarkData(response.data)              }
+              toast.dismiss('1s')
+            } catch (error: any) {
+              toast.error(error.data.message)
+            }
+            try {
+              let response = await Inquiriesservice.postInstallations(values,remark,res.installationId)
+    
+              if (response.success === false) {
+                toast.error(response.message)
+                } else {
+                toast.success(response.message)
+              }
+              toast.dismiss('1s')
+            } catch (error: any) {
+              toast.error(error.data.message)
+            }
 
-          if (response.success === false) {
-            toast.error(response.message)
-          } else {
-            toast.success(response.message)
           }
           toast.dismiss('1s')
         } catch (error: any) {
@@ -366,6 +457,51 @@ const FormsFormModal: FC<Props> = ({category}) => {
     }
   }, [formik.values.packagevalidity, formik.values.activationdate])
 
+  let fetchFilePath = async (file: any) => {
+    const objectUrl = URL.createObjectURL(file[0])
+    return objectUrl
+  }
+
+const idProofImageUrl =async (filePath:any)=>{
+  console.log("filePath",filePath[0].name.split('.')[1]);
+  
+
+
+if(filePath[0].name.split('.')[1]=='pdf'){
+  setIdProofImage('/media/icons/duotune/coding/pdfimg.png')
+  console.log("111");
+  
+ }else if(filePath[0].name.split('.')[1]=='xl' || filePath[0].name.split('.')[1]=='xlsx' ||filePath[0].name.split('.')[1]=='xls'){
+   setIdProofImage('/media/icons/duotune/coding/excelimage.png')
+  }else if(filePath[0].name.split('.')[1]=='doc'){
+   setIdProofImage('/media/icons/duotune/coding/docimage.png')
+  }else {
+    let url = await fetchFilePath(filePath)
+    setIdProofImage(url)
+  }
+
+}
+  
+useEffect(()=>{
+  // setIdProofImage(category?.data?.formDocument)
+  console.log(`category?.data?.formDocument`,category?.data?.formDocument );
+},[])
+
+const idProofImagePath =()=>{
+  if(category?.data?.formDocument?.split('.')[1] == 'pdf'){
+    return '/media/icons/duotune/coding/pdfimg.png'
+  } else if(category?.data?.formDocument?.split('.')[1] == 'xl' || category?.data?.formDocument?.split('.')[1] == 'xlsx'  || category?.data?.formDocument?.split('.')[1] == 'xls'){
+    return '/media/icons/duotune/coding/excelimage.png'
+  }else  if(category?.data?.formDocument?.split('.')[1] == 'doc'){
+    return '/media/icons/duotune/coding/docimage.png'
+  }
+  else {
+    return `${idProofPath}${category?.data?.formDocument}`
+  }
+}
+useEffect(()=>{
+  idProofImagePath()
+},[])
   return (
     <>
       <Form
@@ -388,6 +524,51 @@ const FormsFormModal: FC<Props> = ({category}) => {
             <div className='container-fluid p-0'>
               <div className='row w-100 mx-0 mb-4 gy-4'>
                 <div className='col-md-12'>
+                  <div className='d-flex mb-4'>
+                <div className='col-lg-4 text-center'>
+                <div className='pb-5'>
+                  <h5 className='m-0'>Form Document</h5>
+                </div>
+                <div
+                  className='image-input image-input-empty'
+                  style={{
+                    backgroundImage: `url(${
+                      // idProofImage ? idProofImage : `${idProofPath}${category?.data?.formDocument}` || ImageSelect
+                      idProofImage ? idProofImage :idProofImagePath() || ImageSelect
+                    })`,
+                  }}
+                >
+                  <div className='image-input-wrapper w-125px h-125px'></div>
+
+                  <label
+                    className='btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow'
+                    data-kt-image-input-action='change'
+                    data-bs-toggle='tooltip'
+                    data-bs-dismiss='click'
+                    title='Change avatar'
+                  >
+                    <i className='bi bi-pencil-fill fs-7'></i>
+                    <input
+                      type='file'
+                      name='formDocument'
+                      accept='.png, .jpg, .jpeg ,.pdf,.xl,.xls,.xlsx,.doc'
+                      onChange={async (e) => {
+                        if (!e.target.files) {
+                          return
+                        }
+                        idProofImageUrl(e.target.files)
+                        // let url = await fetchFilePath(e.target.files)
+                        // setIdProofImage(url)
+                        formik.setFieldValue('formDocument', e.target.files[0])
+                      }}
+                      onBlur={formik.handleBlur}
+                    />
+                  </label>
+                </div>
+              </div>
+
+               
+              </div>
                   <div className='row mb-6'>
                     <div className='col-md-3'>
                       <label className='form-label fw-bold required'>User Name</label>{' '}

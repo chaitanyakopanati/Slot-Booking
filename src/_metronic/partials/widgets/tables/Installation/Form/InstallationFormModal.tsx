@@ -195,6 +195,7 @@ const InstallationFormModal: FC<Props> = ({category}) => {
   })
 
   var regex = new RegExp('^[0-9.]+$')
+ 
 
   return (
     <>
@@ -217,6 +218,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
           <div className='modal-body'>
             {' '}
             <div className='container-fluid p-0'>
+            
+
               {' '}
               <div className='row w-100 mx-0 mb-4 gy-4' style={{position: 'relative'}}>
                 <div className='col-lg-3 col-12'>

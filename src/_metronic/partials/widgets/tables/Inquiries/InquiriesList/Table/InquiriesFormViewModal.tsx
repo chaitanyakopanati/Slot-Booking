@@ -23,6 +23,7 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
     address: category.data?.address || '',
     contactno: category.data?.contactno || '',
     status: category.data?.status || '',
+    userName: category.data?.userName || '',
     salesexecutiveName: category.data?.salesexecutiveName || '',
     description: category.data?.description || '',
     remark: category.data?.remark || '',
@@ -163,6 +164,21 @@ const InquiriesFormViewModal: FC<Props> = ({category}) => {
               />
             </div>
           </div>
+{initialvalues.userName &&
+          <div className='col-lg-4 mb-4 gy-4'>
+            <div className=''>
+              <label className='form-label fw-bold required'>User Name :</label>
+              <input
+                placeholder='User Name.'
+                className='form-control form-control-lg form-control-solid'
+                type='text'
+                value={initialvalues.userName}
+                disabled
+                readOnly
+              />
+            </div>
+          </div>
+}
 
           {/*begin:: Zone*/}
           <div className='col-lg-4 mb-4 gy-4'>

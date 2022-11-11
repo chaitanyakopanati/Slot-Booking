@@ -62,6 +62,7 @@ export interface postlistData {
   remark: string
   status: string
   newAddress: any
+  IdproofImageFile:any
 }
 
 export interface GetAllData {
@@ -96,6 +97,7 @@ export interface GetAllDataApi {
   message: string
 }
 export interface putInquiriesmodel {
+  IdproofImageFile: any
   modifyby: any
   id: number
   userid: number
@@ -130,6 +132,7 @@ export interface putInquiriesmodel {
   remark: string
   status: string
   newAddress: any
+
 }
 export interface putInquiriesmodel1 {
   data: getInquiriesData

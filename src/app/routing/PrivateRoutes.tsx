@@ -27,6 +27,10 @@ import CustomerViewWrapper from '../modules/Customer/Form/CustomerViewWrapper'
 import {useAuth} from '../modules/auth'
 import Permission from '../routing/Permission_check'
 import React from 'react'
+import CustomerFormImageUploadWrapper from '../modules/Customer/FormImageUpload/CustomerFormImageUploadWrapper'
+import FormsImageUploadWrapper from '../../_metronic/partials/widgets/tables/Forms/ImageUpload/FormsImageUploadWrapper'
+// import closeIcon from '../App/images/closeIcon.svg'
+
 const PrivateRoutes = () => {
   const {currentUser, auth} = useAuth()
 
@@ -72,6 +76,37 @@ const PrivateRoutes = () => {
             }
           />
         </Route>
+
+        <Route element={<Permission roles={auth?.roleId} type={'inquiries'} />}>
+          {/* <Route path='customers' element={<CustomersWrapper />} /> */}
+          {/* <Route path='customers/customerviewform/:id' element={<CustomerViewWrapper />} /> */}
+
+          <Route
+            path='customers/customersformimgupload/:id'
+            element={
+              <>
+                <PageTitle>Customer Form Image Upload</PageTitle>                       
+               <CustomerFormImageUploadWrapper />
+              </>
+            }
+          />
+        </Route>
+
+        <Route element={<Permission roles={auth?.roleId} type={'inquiries'} />}>
+          {/* <Route path='customers' element={<CustomersWrapper />} /> */}
+          {/* <Route path='customers/customerviewform/:id' element={<CustomerViewWrapper />} /> */}
+
+          <Route
+            path='forms/formsimgupload/:id'
+            element={
+              <>
+                <PageTitle>Forms Image Upload</PageTitle>
+                <FormsImageUploadWrapper />
+              </>
+            }
+          />
+        </Route>
+
         <Route element={<Permission roles={auth?.roleId} type={'stocks'} />}>
           <Route path='complaint-types' element={<ComplaintTypesWrapper />} />
           <Route

@@ -29,12 +29,12 @@ let validationSchemaNewForm = Yup.object({
   remark: Yup.string().required('This field is required'),
   area: Yup.string().required('This field is required'),
   username: Yup.string().when('statusId', {
-    is: (statusId: any) => statusId == 4,
+    is: (statusId: any) => statusId == 4 || statusId == 5,
     then: Yup.string().required('This field is required'),
   }),
 
   userId: Yup.number().when('statusId', {
-    is: (statusId: any) => statusId == 4,
+    is: (statusId: any) => statusId == 4 || statusId == 5,
     then: Yup.number().required('Entered User Name Does Not Exist'),
   }),
 })
@@ -177,8 +177,13 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                 toast.error(response.message)
               } else {
                 toast.success(response.message)
+                if(values.statusId ==5){
+                  navigation(`/customers/customersformimgupload/${values.userId}`)
+                }else{
+                  navigation('/inquiries')
+                }
               }
-              navigation('/inquiries')
+              // navigation('/inquiries')
               toast.dismiss('1s')
               resetForm({})
               cancel()
@@ -366,7 +371,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         </div>
                       </div>
 
-                      {props.values.statusId == '4' ? (
+                      {props.values.statusId == '4' || props.values.statusId == '5'? (
                         <div className='col-lg-4'>
                           <div className='row w-100 mx-0 mb-4 gy-4'>
                             <div className='col-12' style={{position: 'relative'}}>
@@ -514,7 +519,6 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                   </div>
                 </div>
               </div>
-
               <div className='modal-footer border-0 pb-0 pt-0'>
                 {/* begin::close button */}
                 <CustomTooltip title='Close form'>
@@ -527,14 +531,21 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                   </button>
                 </CustomTooltip>
                 {/* end::close button */}
-
                 {/* begin::create/update Button */}
+                {(props.values.statusId == '5' && itemIdForUpdate != 'add') ?
                 <CustomTooltip title='Submit form'>
-                  <button type='submit' className='btn btn-primary'>
-                    {itemIdForUpdate !== 'add' ? 'Update' : 'Create'}
-                  </button>
-                </CustomTooltip>
-                {/* end::create/update Button */}
+                <button type='submit' className='btn btn-primary'>
+                Next
+                </button>
+              </CustomTooltip>
+               
+                :
+                <CustomTooltip title='Submit form'>
+                <button type='submit' className='btn btn-primary'>
+                  {itemIdForUpdate !== 'add'  ? 'Update' : 'Create'}
+                </button>
+              </CustomTooltip>
+}
               </div>
             </Form>
           </>
