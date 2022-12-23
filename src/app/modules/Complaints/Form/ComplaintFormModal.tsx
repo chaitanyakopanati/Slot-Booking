@@ -161,9 +161,14 @@ const ComplaintFormModal: FC<Props> = ({category}) => {
     onSubmit: async (values: any, {resetForm}) => {
       values.complainttypeid = +values.complainttypeid
       values.assigntechnicianid = +values.assigntechnicianid
+      
       // values.faultid = +values.faultid
       values.status = +values.status
       values.userId = +values.userId
+      values.isnotifytechinician =( values.assigntechnicianid != 0 &&
+      (values.status == '' || values.status == '1') )
+        ? true
+        : false
 
       try {
         if (values.id) {

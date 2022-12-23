@@ -1,14 +1,14 @@
-import {Formik, ErrorMessage} from 'formik'
+import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import {FC, useEffect, useRef, useState} from 'react'
-import {Form} from 'react-bootstrap'
-import {toast} from 'react-toastify'
-import {useNavigate} from 'react-router-dom'
+import { FC, useEffect, useRef, useState } from 'react'
+import { Form } from 'react-bootstrap'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 import Inquiriesservice from '../helperInquiries/ApiDataRequest'
-import {CustomTooltip} from '../../../../../../app/routing/customtooltip'
-import {ListPageData} from '../InquiriesContext'
-import {useLoader} from '../../../../../../app/modules/loader/LoaderContext'
-import {useAuth} from '../../../../../../app/modules/auth'
+import { CustomTooltip } from '../../../../../../app/routing/customtooltip'
+import { ListPageData } from '../InquiriesContext'
+import { useLoader } from '../../../../../../app/modules/loader/LoaderContext'
+import { useAuth } from '../../../../../../app/modules/auth'
 
 type Props = {
   category: any
@@ -55,7 +55,7 @@ let validationSchemaEditForm = Yup.object({
   area: Yup.string().required('This field is required'),
 })
 
-const InquiriesFormModal: FC<Props> = ({category}) => {
+const InquiriesFormModal: FC<Props> = ({ category }) => {
   const {
     setItemIdForUpdate,
     itemIdForUpdate,
@@ -68,7 +68,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
     setGetSalesExcutiveData,
     DataGetAllsalesExcutive,
   } = ListPageData()
-  let {LoderActions} = useLoader()
+  let { LoderActions } = useLoader()
   const navigation = useNavigate()
   const [initialValues, setInitialValues] = useState<any>({
     id: '',
@@ -139,7 +139,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
 
   const suggestionRef: any = useRef()
 
-  const {auth} = useAuth()
+  const { auth } = useAuth()
 
   useEffect(() => {
     DataGetAllTypeStatus()
@@ -163,10 +163,11 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
         enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={validationSchemaNewForm}
-        onSubmit={async (values: any, {resetForm}) => {
+        onSubmit={async (values: any, { resetForm }) => {
           LoderActions(true)
           values.salesexecutiveId = +values.salesexecutiveId
           values.statusId = +values.statusId
+          values.isnotify = values.statusId == 2 ? true : false
 
           try {
             if (values.id) {
@@ -177,9 +178,9 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                 toast.error(response.message)
               } else {
                 toast.success(response.message)
-                if(values.statusId ==5){
+                if (values.statusId == 5) {
                   navigation(`/customers/customersformimgupload/${values.userId}`)
-                }else{
+                } else {
                   navigation('/inquiries')
                 }
               }
@@ -243,7 +244,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           type='text'
                           autoComplete='off'
                         />
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='name' />
                         </div>
                       </div>
@@ -289,7 +290,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           placeholder='Area'
                           autoComplete='off'
                         ></input>
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='area' />
                         </div>
                       </div>
@@ -304,7 +305,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           data-kt-autosize='true'
                           placeholder='Address here'
                         ></textarea>
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='address' />
                         </div>
                       </div>
@@ -343,7 +344,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           type='text'
                           autoComplete='off'
                         />
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='contactno' />
                         </div>
                       </div>
@@ -353,7 +354,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                         <select
                           className='form-select form-select-solid'
                           {...props.getFieldProps('statusId')}
-                          // onChange={() => setStatus(props.values.statusId)}
+                        // onChange={() => setStatus(props.values.statusId)}
                         >
                           <option> Select Status</option>
                           {/* <option value=''>Select Status Type</option> */}
@@ -366,15 +367,15 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           })}
                         </select>
 
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='statusId' />
                         </div>
                       </div>
 
-                      {props.values.statusId == '4' || props.values.statusId == '5'? (
+                      {props.values.statusId == '4' || props.values.statusId == '5' ? (
                         <div className='col-lg-4'>
                           <div className='row w-100 mx-0 mb-4 gy-4'>
-                            <div className='col-12' style={{position: 'relative'}}>
+                            <div className='col-12' style={{ position: 'relative' }}>
                               <div className='col-lg-12'>
                                 <label className='form-label fw-bold required'>User Name</label>{' '}
                                 <input
@@ -403,7 +404,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                                       } else {
                                       }
                                       suggestionRef.current.style.display = 'none'
-                                      document.removeEventListener('click', () => {})
+                                      document.removeEventListener('click', () => { })
                                     })
                                   }}
                                 />
@@ -425,16 +426,16 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                                       })}
                                   </ul>
                                 </div>
-                                <div className='erro2' style={{color: 'red'}}>
+                                <div className='erro2' style={{ color: 'red' }}>
                                   {props.touched.username && props.errors.username
                                     ? props.errors.username
                                     : null}
                                 </div>
-                                <div className='erro2' style={{color: 'red'}}>
+                                <div className='erro2' style={{ color: 'red' }}>
                                   {props.touched.username &&
-                                  !props.errors.username &&
-                                  props.touched.userId &&
-                                  props.errors.userId
+                                    !props.errors.username &&
+                                    props.touched.userId &&
+                                    props.errors.userId
                                     ? props.errors.userId
                                     : null}
                                 </div>
@@ -477,7 +478,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           data-kt-autosize='true'
                           placeholder='Description Plan here'
                         ></textarea>
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='description' />
                         </div>
                       </div>
@@ -493,7 +494,7 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                           data-kt-autosize='true'
                           placeholder='Remark here'
                         ></textarea>
-                        <div className='erro2' style={{color: 'red'}}>
+                        <div className='erro2' style={{ color: 'red' }}>
                           <ErrorMessage name='remark' />
                         </div>
                       </div>
@@ -533,19 +534,19 @@ const InquiriesFormModal: FC<Props> = ({category}) => {
                 {/* end::close button */}
                 {/* begin::create/update Button */}
                 {(props.values.statusId == '5' && itemIdForUpdate != 'add') ?
-                <CustomTooltip title='Submit form'>
-                <button type='submit' className='btn btn-primary'>
-                Next
-                </button>
-              </CustomTooltip>
-               
-                :
-                <CustomTooltip title='Submit form'>
-                <button type='submit' className='btn btn-primary'>
-                  {itemIdForUpdate !== 'add'  ? 'Update' : 'Create'}
-                </button>
-              </CustomTooltip>
-}
+                  <CustomTooltip title='Submit form'>
+                    <button type='submit' className='btn btn-primary'>
+                      Next
+                    </button>
+                  </CustomTooltip>
+
+                  :
+                  <CustomTooltip title='Submit form'>
+                    <button type='submit' className='btn btn-primary'>
+                      {itemIdForUpdate !== 'add' ? 'Update' : 'Create'}
+                    </button>
+                  </CustomTooltip>
+                }
               </div>
             </Form>
           </>

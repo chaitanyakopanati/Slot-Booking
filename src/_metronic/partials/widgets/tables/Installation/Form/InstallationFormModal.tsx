@@ -163,6 +163,8 @@ const InstallationFormModal: FC<Props> = ({category}) => {
       values.zonepointid = +values.zonepointid
       values.connectiontype = '' + values.connectiontype
 
+      values.isnotifyinstaller = values.installerid != 0 ? true : false
+
       try {
         if (values.id) {
           // Edit Api Response
