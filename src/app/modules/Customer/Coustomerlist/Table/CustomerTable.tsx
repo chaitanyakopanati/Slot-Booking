@@ -140,8 +140,8 @@ const CustomerTable = () => {
                         className='svg-icon-3'
                       />
                     </a>
-                    {Access[id].hasOwnProperty('allAccess') ||
-                      (Access[id]['customerrights'].includes('createForm') && (
+                    {(Access[id].hasOwnProperty('allAccess') ||
+                      Access[id]['customerrights'].includes('createForm')) && (
                         <>
                           {' '}
                           <a
@@ -172,7 +172,7 @@ const CustomerTable = () => {
                             />
                           </a>{' '}
                         </>
-                      ))}
+                      )}
 
                     {(Access[id].hasOwnProperty('allAccess') ||
                       Access[id]['customerrights'].includes('createInstallation')) && (
@@ -194,8 +194,8 @@ const CustomerTable = () => {
                       </a>
                     )}
 
-                    {Access[id].hasOwnProperty('allAccess') ||
-                      (Access[id]['customerrights'].includes('createComplaint') && (
+                    {(Access[id].hasOwnProperty('allAccess') ||
+                      Access[id]['customerrights'].includes('createComplaint')) && (
                         <a
                           // href='#'
                           className='btn btn-icon btn-bg-light btn-active-color-danger btn-sm'
@@ -212,7 +212,7 @@ const CustomerTable = () => {
                             className='svg-icon-3'
                           />
                         </a>
-                      ))}
+                      )}
                   </td>
                 </tr>
               )
