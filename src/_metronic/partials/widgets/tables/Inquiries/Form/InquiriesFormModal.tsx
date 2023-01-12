@@ -10,6 +10,7 @@ import { ListPageData } from '../InquiriesContext'
 import { useLoader } from '../../../../../../app/modules/loader/LoaderContext'
 import { useAuth } from '../../../../../../app/modules/auth'
 
+
 type Props = {
   category: any
 }
@@ -33,10 +34,18 @@ let validationSchemaNewForm = Yup.object({
     then: Yup.string().required('This field is required'),
   }),
 
-  userId: Yup.number().when('statusId', {
-    is: (statusId: any) => statusId == 4 || statusId == 5,
-    then: Yup.number().required('Entered User Name Does Not Exist'),
-  }),
+//   userId: Yup.number().when('statusId', {
+//     is: (statusId: any) => statusId == 4 || statusId == 5,
+//     then: Yup.number().required('Entered User Name Does Not Exist'),
+//   }),
+// })
+
+
+userId: Yup.number().when('statusId' , {
+  is: (statusId: any,username:any) => (statusId == 5 && username =='') || statusId == 4,
+  then: Yup.number().required('Entered User Name Does Not Exist'),
+}),
+
 })
 
 let validationSchemaEditForm = Yup.object({
@@ -164,10 +173,14 @@ const InquiriesFormModal: FC<Props> = ({ category }) => {
         initialValues={initialValues}
         validationSchema={validationSchemaNewForm}
         onSubmit={async (values: any, { resetForm }) => {
-          LoderActions(true)
           values.salesexecutiveId = +values.salesexecutiveId
           values.statusId = +values.statusId
           values.isnotify = values.statusId == 2 ? true : false
+          if (values.statusId == 5 && !values.userId ) {
+            navigation('/customers/customersform/new')
+            localStorage.setItem('userName',values.username)
+          }else{
+            LoderActions(true)
 
           try {
             if (values.id) {
@@ -205,6 +218,7 @@ const InquiriesFormModal: FC<Props> = ({ category }) => {
           } finally {
             LoderActions(false)
           }
+        }
         }}
       >
         {(props) => (

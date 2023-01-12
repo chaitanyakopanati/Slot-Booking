@@ -11,6 +11,7 @@ import {toast} from 'react-toastify'
 import {useAuth} from '../../auth'
 import {CustomTooltip} from '../../../routing/customtooltip'
 
+
 interface customerProps {
   customerById: any
 }
@@ -61,7 +62,7 @@ function CustomerFormModal({customerById}: customerProps) {
   useEffect(() => {
     setInitialValues({
       Id: customerById.id || null,
-      UserName: customerById.userName || '',
+      UserName: customerById.userName || localStorage.getItem('userName') ||'',
       FirstName: customerById.firstName || '',
       LastName: customerById.lastName || '',
       Email: customerById.email || '',
@@ -124,6 +125,7 @@ function CustomerFormModal({customerById}: customerProps) {
         let response = await saveCustomer(formData)
         if (response.success) {
           toast.success(response.message)
+      localStorage.removeItem('userName')
           navigate('/customers')
         } else {
           toast.error(response.message)
@@ -142,6 +144,14 @@ function CustomerFormModal({customerById}: customerProps) {
     
     return objectUrl
   }
+
+  useEffect(()=>{
+    return (()=>{
+      localStorage.removeItem('userName')
+      console.log("555555");
+    })
+
+  },[])
 
   useEffect(()=>{
 console.log("customerById",customerById);
