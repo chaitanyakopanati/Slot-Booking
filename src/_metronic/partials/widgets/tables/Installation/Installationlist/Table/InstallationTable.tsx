@@ -297,7 +297,7 @@ const InstallationTable = () => {
               <div key={row.id}>
                 <div className='col-md-6 mx-0 my-2'>
                   <div className='card card-custom border'>
-                    <div className='card-body p-4'>
+                    <div className='card-body p-4' style={{backgroundColor: setBackGroundColour(row)}}>
                       <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                         <div className='text-dark fw-bolder fs-3 me-2'>
                           {' '}

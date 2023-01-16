@@ -337,7 +337,17 @@ const ComplaintTable = () => {
               <div key={index}>
                 <div className='col-md-6 mx-0 my-2'>
                   <div className='card card-custom border'>
-                    <div className='card-body p-4'>
+                    <div className={
+                      currentTime.diff(moment(row?.createdDate), 'hours') >= 24 &&
+                      row.statusName === 'Unsolved'
+                        ? 'p-3 mb-2 text-white card-body p-4'
+                        : '' || row.statusName === 'Unsolved'
+                        ? 'p-3 mb-2 text-white card-body p-4'
+                        : ''
+                    }
+                    style={{
+                      backgroundColor: setBackgrondColour(row),
+                    }}>
                       <div className='py-1 pb-3 d-flex align-items-center flex-wrap w-100'>
                         <div className='text-dark fw-bolder fs-3 me-2'>
                           {' '}
