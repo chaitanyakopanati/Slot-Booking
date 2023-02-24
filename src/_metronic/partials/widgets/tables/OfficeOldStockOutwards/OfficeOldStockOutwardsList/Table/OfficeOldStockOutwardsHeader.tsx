@@ -2,8 +2,8 @@ import {Formik} from 'formik'
 import {FC, useEffect, useState} from 'react'
 import * as Yup from 'yup'
 import {KTSVG} from '../../../../../../helpers'
-import DateRangePicker from 'react-bootstrap-daterangepicker'
-import 'bootstrap-daterangepicker/daterangepicker.css'
+import { DateRangePicker } from 'rsuite';
+import "rsuite/dist/rsuite.css"
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
 import {ListPageData} from '../../OfficeOldStockOutwardsContext'
@@ -68,12 +68,12 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
     ],
   }
 
-  const handleEvent = (event: any, picker: any) => {
-    setFromDate(picker.startDate._d)
-    setToDate(picker.endDate._d)
+  const handleEvent = (date: any) => {
+    setFromDate(date[0])
+    setToDate(date[1])
 
-    setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+    setStartDate(moment(date[0]).format('YYYY-MM-DD'))
+    setEndDate(moment(date[1]).format('YYYY-MM-DD'))
   }
 
   const openAddCategoryModal = () => {
@@ -295,16 +295,14 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                       </div>
 
                       <div>
-                        <DateRangePicker
-                          initialSettings={{
-                            alwaysShowCalendars: false,
-                            ranges: range,
-                            // placeholder:"All"
+                      <DateRangePicker
+                          format="yyyy-MM-dd"
+                          onChange={(date: any) => {
+                            handleEvent(date)
                           }}
-                          onHide={handleEvent}
                         >
-                          <div className='form-select form-select-solid'>
-                            <input
+                           <div className='form-select form-select-solid'>
+                           <input
                               style={{background: '#f5f8fa', border: 'none', outline: 'none'}}
                               placeholder='All'
                               value={`${
@@ -315,8 +313,9 @@ const OfficeOldStockOutwardsHeader: FC<Props> = ({category}) => {
                                   : ''
                               }`}
                             />
-                          </div>
+                            </div>
                         </DateRangePicker>
+                       
                       </div>
                     </div>
                   </div>

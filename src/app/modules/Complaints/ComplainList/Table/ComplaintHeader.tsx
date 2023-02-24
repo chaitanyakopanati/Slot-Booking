@@ -3,8 +3,6 @@ import {useNavigate} from 'react-router-dom'
 import {KTSVG} from '../../../../../_metronic/helpers'
 import {ListPageData} from '../../ComplaintContext'
 import {Formik, Form} from 'formik'
-import DateRangePicker from 'react-bootstrap-daterangepicker'
-import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import Swal from 'sweetalert2'
 import {toast} from 'react-toastify'
@@ -12,6 +10,8 @@ import ComplaintsViewService from '../../helperComplaint/ApiDataRequest'
 import {useAuth} from '../../../auth'
 import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
 import closeIcon from '../../../../../app/images/closeIcon.svg'
+import { DateRangePicker } from 'rsuite';
+import "rsuite/dist/rsuite.css"
 const ComplaintHeader = () => {
   const [filterShow, setFilterShow] = useState(false)
   const navigate = useNavigate()
@@ -85,12 +85,12 @@ const ComplaintHeader = () => {
     ],
   }
 
-  const handleEvent = (event: any, picker: any) => {
-    setFromDate(picker.startDate._d)
-    setToDate(picker.endDate._d)
+  const handleEvent = (date:any) => {
+    setFromDate(date[0])
+    setToDate(date[1])
 
-    setStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+    setStartDate(moment(date[0]).format('YYYY-MM-DD'))
+    setEndDate(moment(date[1]).format('YYYY-MM-DD'))
   }
 
   useLayoutEffect(() => {
@@ -378,14 +378,13 @@ const ComplaintHeader = () => {
                         </span>
                       </div>
                       <DateRangePicker
-                        initialSettings={{
-                          alwaysShowCalendars: false,
-                          ranges: range,
-                        }}
-                        onHide={handleEvent}
-                      >
-                        <div className='form-select form-select-solid'>
-                          <input
+                          format="yyyy-MM-dd"
+                          onChange={(date: any) => {
+                            handleEvent(date)
+                          }}
+                        >
+                           <div className='form-select form-select-solid'>
+                           <input
                             style={{background: '#f5f8fa', border: 'none', outline: 'none'}}
                             placeholder='All'
                             value={`${
@@ -396,8 +395,9 @@ const ComplaintHeader = () => {
                                 : ''
                             }`}
                           />
-                        </div>
-                      </DateRangePicker>
+                            </div>
+                        </DateRangePicker>
+                     
                     </div>
                   </div>
                   <div className='col-lg-3'>

@@ -1,21 +1,23 @@
-import {Formik} from 'formik'
-import {FC, useEffect, useState} from 'react'
-import {Navigate, useNavigate} from 'react-router-dom'
+import { Formik } from 'formik'
+import { FC, useEffect, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import {Form} from 'react-bootstrap'
-import {ListPageData} from '../../FormsContext'
-import {KTSVG} from '../../../../../../helpers'
-import DateRangePicker from 'react-bootstrap-daterangepicker'
-import 'bootstrap-daterangepicker/daterangepicker.css'
+import { Form } from 'react-bootstrap'
+import { ListPageData } from '../../FormsContext'
+import { KTSVG } from '../../../../../../helpers'
+// import DateRangePicker from 'react-bootstrap-daterangepicker'
+import { DateRangePicker } from 'rsuite';
+import "rsuite/dist/rsuite.css"
+// import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import {useAuth} from '../../../../../../../app/modules/auth'
+import { useAuth } from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
 type Props = {
   category: any
 }
 
-const FormsHeader: FC<Props> = ({category}) => {
+const FormsHeader: FC<Props> = ({ category }) => {
   const {
     setItemIdForUpdate,
     setFilterShow,
@@ -68,7 +70,7 @@ const FormsHeader: FC<Props> = ({category}) => {
     fetchAllDownload,
   } = ListPageData()
   const navigate = useNavigate()
-  const {currentUser, auth} = useAuth()
+  const { currentUser, auth } = useAuth()
   const id: number | any = auth?.roleId
 
   const [fromCreatedAtDate, setFromCreatedAtDate] = useState<any>()
@@ -95,27 +97,27 @@ const FormsHeader: FC<Props> = ({category}) => {
   }
 
   // created at
-  const handleEventCreatedAt = (event: any, picker: any) => {
-    setFromCreatedAtDate(picker.startDate._d)
-    setToCreatedAtDate(picker.endDate._d)
-    setCreatedStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setCreatedEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+  const handleEventCreatedAt = (date:any) => {
+    setFromCreatedAtDate(date[0])
+    setToCreatedAtDate(date[1])
+    setCreatedStartDate(moment(date[0]).format('YYYY-MM-DD'))
+    setCreatedEndDate(moment(date[1]).format('YYYY-MM-DD'))
   }
 
   // form date
-  const handleEventFormDate = (event: any, picker: any) => {
-    setFromsDate(picker.startDate._d)
-    setToFormsDate(picker.endDate._d)
-    setFormStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setFormEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
-  }
+  // const handleEventFormDate = (event: any, picker: any) => {
+  //   setFromsDate(picker.startDate._d)
+  //   setToFormsDate(picker.endDate._d)
+  //   setFormStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
+  //   setFormEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+  // }
 
   // expiry Date
-  const handleEventExpiryDate = (event: any, picker: any) => {
-    setExpiryDate(picker.startDate._d)
-    setToExpiryDate(picker.endDate._d)
-    setExpiryStartDate(moment(picker.startDate._d).format('YYYY-MM-DD'))
-    setExpiryEndDate(moment(picker.endDate._d).format('YYYY-MM-DD'))
+  const handleEventExpiryDate = (date:any) => {
+    setExpiryDate(date[0])
+    setToExpiryDate(date[1])
+    setExpiryStartDate(moment(date[0]).format('YYYY-MM-DD'))
+    setExpiryEndDate(moment(date[1]).format('YYYY-MM-DD'))
   }
 
   //sales executive
@@ -223,6 +225,13 @@ const FormsHeader: FC<Props> = ({category}) => {
     formSubmitTypeId,
     paymentTypeId,
   ])
+  const handleEventFormDate = (date: any) => {
+    console.log(`date`, date);
+    setFromsDate(date[0])
+    setToFormsDate(date[1])
+    setFormStartDate(moment(date[0]).format('YYYY-MM-DD'))
+    setFormEndDate(moment(date[1]).format('YYYY-MM-DD'))
+  }
 
   return (
     <>
@@ -240,7 +249,7 @@ const FormsHeader: FC<Props> = ({category}) => {
           username: Yup.string().required('This fielld is required'),
           fullName: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {}}
+        onSubmit={async (values: any, { resetForm }) => { }}
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
@@ -423,30 +432,28 @@ const FormsHeader: FC<Props> = ({category}) => {
                             setCreatedEndDate('')
                           }}
                         >
-                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                          <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
                         </span>
                         <div>
-                          <DateRangePicker
-                            initialSettings={{
-                              alwaysShowCalendars: false,
-                              ranges: range,
-                            }}
-                            onHide={handleEventCreatedAt}
-                          >
-                            <div className='form-select form-select-solid'>
+                        <DateRangePicker
+                          format="yyyy-MM-dd"
+                          onChange={(date: any) => {
+                            handleEventCreatedAt(date)
+                          }}
+                        >
+                           <div className='form-select form-select-solid'>
                               <input
-                                style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
+                                style={{ background: '#f5f8fa', outline: 'none', border: 'none' }}
                                 placeholder='All'
-                                value={`${
-                                  fromCreatedAtDate && toCreatedAtDate
-                                    ? `${moment(fromCreatedAtDate).format('DD-MM-yyyy')} - ${moment(
-                                        toCreatedAtDate
-                                      ).format('DD-MM-yyyy')}`
-                                    : ''
-                                }`}
+                                value={`${fromCreatedAtDate && toCreatedAtDate
+                                  ? `${moment(fromCreatedAtDate).format('DD-MM-yyyy')} - ${moment(
+                                    toCreatedAtDate
+                                  ).format('DD-MM-yyyy')}`
+                                  : ''
+                                  }`}
                               />
                             </div>
-                          </DateRangePicker>
+                        </DateRangePicker>
                         </div>
                       </div>
                     </div>
@@ -462,30 +469,29 @@ const FormsHeader: FC<Props> = ({category}) => {
                           setFormEndDate('')
                         }}
                       >
-                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
                       </span>
                       <div>
                         <DateRangePicker
-                          initialSettings={{
-                            alwaysShowCalendars: false,
-                            ranges: range,
+                          format="yyyy-MM-dd"
+                          onChange={(date: any) => {
+                            handleEventFormDate(date)
                           }}
-                          onHide={handleEventFormDate}
                         >
                           <div className='form-select form-select-solid'>
                             <input
-                              style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
+                              style={{ background: '#f5f8fa', outline: 'none', border: 'none' }}
                               placeholder='All'
-                              value={`${
-                                fromsDate && toFormsDate
-                                  ? `${moment(fromsDate).format('DD-MM-yyyy')} - ${moment(
-                                      toFormsDate
-                                    ).format('DD-MM-yyyy')}`
-                                  : ''
-                              }`}
+                              value={`${fromCreatedAtDate && toCreatedAtDate
+                                ? `${moment(fromCreatedAtDate).format('DD-MM-yyyy')} - ${moment(
+                                  toCreatedAtDate
+                                ).format('DD-MM-yyyy')}`
+                                : ''
+                                }`}
                             />
                           </div>
                         </DateRangePicker>
+
                       </div>
                     </div>
 
@@ -500,29 +506,27 @@ const FormsHeader: FC<Props> = ({category}) => {
                           setExpiryEndDate('')
                         }}
                       >
-                        <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
+                        <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
                       </span>
                       <div>
-                        <DateRangePicker
-                          initialSettings={{
-                            alwaysShowCalendars: false,
-                            ranges: range,
+                      <DateRangePicker
+                          format="yyyy-MM-dd"
+                          onChange={(date: any) => {
+                            handleEventExpiryDate(date)
                           }}
-                          onHide={handleEventExpiryDate}
                         >
-                          <div className='form-select form-select-solid'>
-                            <input
-                              style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
+                           <div className='form-select form-select-solid'>
+                           <input
+                              style={{ background: '#f5f8fa', outline: 'none', border: 'none' }}
                               placeholder='All'
-                              value={`${
-                                expiryDate && toexpiryDate
-                                  ? `${moment(expiryDate).format('DD-MM-yyyy')} - ${moment(
-                                      toexpiryDate
-                                    ).format('DD-MM-yyyy')}`
-                                  : ''
-                              }`}
+                              value={`${expiryDate && toexpiryDate
+                                ? `${moment(expiryDate).format('DD-MM-yyyy')} - ${moment(
+                                  toexpiryDate
+                                ).format('DD-MM-yyyy')}`
+                                : ''
+                                }`}
                             />
-                          </div>
+                            </div>
                         </DateRangePicker>
                       </div>
                     </div>
