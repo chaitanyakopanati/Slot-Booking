@@ -97,11 +97,20 @@ const FormsHeader: FC<Props> = ({ category }) => {
   }
 
   // created at
-  const handleEventCreatedAt = (date:any) => {
-    setFromCreatedAtDate(date[0])
-    setToCreatedAtDate(date[1])
-    setCreatedStartDate(moment(date[0]).format('YYYY-MM-DD'))
-    setCreatedEndDate(moment(date[1]).format('YYYY-MM-DD'))
+  const handleEventCreatedAt = (date: any) => {
+    if (!date) {
+      console.log("222");
+      setFromCreatedAtDate('')
+      setToCreatedAtDate('')
+      setCreatedStartDate('')
+      setCreatedEndDate('')
+    } else {
+      setFromCreatedAtDate(date[0])
+      setToCreatedAtDate(date[1])
+      setCreatedStartDate(moment(date[0]).format('YYYY-MM-DD'))
+      setCreatedEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    }
+
   }
 
   // form date
@@ -113,11 +122,20 @@ const FormsHeader: FC<Props> = ({ category }) => {
   // }
 
   // expiry Date
-  const handleEventExpiryDate = (date:any) => {
-    setExpiryDate(date[0])
-    setToExpiryDate(date[1])
-    setExpiryStartDate(moment(date[0]).format('YYYY-MM-DD'))
-    setExpiryEndDate(moment(date[1]).format('YYYY-MM-DD'))
+  const handleEventExpiryDate = (date: any) => {
+    if (!date) {
+      console.log("222");
+      setExpiryDate('')
+      setToExpiryDate('')
+      setExpiryStartDate('')
+      setExpiryEndDate('')
+    } else {
+      setExpiryDate(date[0])
+      setToExpiryDate(date[1])
+      setExpiryStartDate(moment(date[0]).format('YYYY-MM-DD'))
+      setExpiryEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    }
+
   }
 
   //sales executive
@@ -226,11 +244,19 @@ const FormsHeader: FC<Props> = ({ category }) => {
     paymentTypeId,
   ])
   const handleEventFormDate = (date: any) => {
-    console.log(`date`, date);
-    setFromsDate(date[0])
-    setToFormsDate(date[1])
-    setFormStartDate(moment(date[0]).format('YYYY-MM-DD'))
-    setFormEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    if (!date) {
+      console.log("222");
+      setFromsDate('')
+      setToFormsDate('')
+      setFormStartDate('')
+      setFormEndDate('')
+    } else {
+      setFromsDate(date[0])
+      setToFormsDate(date[1])
+      setFormStartDate(moment(date[0]).format('YYYY-MM-DD'))
+      setFormEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    }
+
   }
 
   return (
@@ -423,7 +449,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                     <div className='col-lg-3'>
                       <div>
                         <label className='form-label fw-bold'>Created at</label>
-                        <span
+                        {/* <span
                           role='button'
                           onClick={() => {
                             setFromCreatedAtDate('')
@@ -433,15 +459,15 @@ const FormsHeader: FC<Props> = ({ category }) => {
                           }}
                         >
                           <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
-                        </span>
+                        </span> */}
                         <div>
-                        <DateRangePicker
-                          format="yyyy-MM-dd"
-                          onChange={(date: any) => {
-                            handleEventCreatedAt(date)
-                          }}
-                        >
-                           <div className='form-select form-select-solid'>
+                          <DateRangePicker
+                            format="yyyy-MM-dd"
+                            onChange={(date: any) => {
+                              handleEventCreatedAt(date)
+                            }}
+                          >
+                            {/* <div className='form-select form-select-solid'>
                               <input
                                 style={{ background: '#f5f8fa', outline: 'none', border: 'none' }}
                                 placeholder='All'
@@ -452,15 +478,15 @@ const FormsHeader: FC<Props> = ({ category }) => {
                                   : ''
                                   }`}
                               />
-                            </div>
-                        </DateRangePicker>
+                            </div> */}
+                          </DateRangePicker>
                         </div>
                       </div>
                     </div>
 
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Form date</label>
-                      <span
+                      {/* <span
                         role='button'
                         onClick={() => {
                           setFromsDate('')
@@ -470,7 +496,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                         }}
                       >
                         <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
-                      </span>
+                      </span> */}
                       <div>
                         <DateRangePicker
                           format="yyyy-MM-dd"
@@ -478,7 +504,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                             handleEventFormDate(date)
                           }}
                         >
-                          <div className='form-select form-select-solid'>
+                          {/* <div className='form-select form-select-solid'>
                             <input
                               style={{ background: '#f5f8fa', outline: 'none', border: 'none' }}
                               placeholder='All'
@@ -489,7 +515,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                                 : ''
                                 }`}
                             />
-                          </div>
+                          </div> */}
                         </DateRangePicker>
 
                       </div>
@@ -497,7 +523,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
 
                     <div className='col-lg-3'>
                       <label className='form-label fw-bold'>Expiry date</label>
-                      <span
+                      {/* <span
                         role='button'
                         onClick={() => {
                           setExpiryDate('')
@@ -507,16 +533,16 @@ const FormsHeader: FC<Props> = ({ category }) => {
                         }}
                       >
                         <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
-                      </span>
+                      </span> */}
                       <div>
-                      <DateRangePicker
+                        <DateRangePicker
                           format="yyyy-MM-dd"
                           onChange={(date: any) => {
                             handleEventExpiryDate(date)
                           }}
                         >
-                           <div className='form-select form-select-solid'>
-                           <input
+                          {/* <div className='form-select form-select-solid'>
+                            <input
                               style={{ background: '#f5f8fa', outline: 'none', border: 'none' }}
                               placeholder='All'
                               value={`${expiryDate && toexpiryDate
@@ -526,7 +552,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                                 : ''
                                 }`}
                             />
-                            </div>
+                          </div> */}
                         </DateRangePicker>
                       </div>
                     </div>

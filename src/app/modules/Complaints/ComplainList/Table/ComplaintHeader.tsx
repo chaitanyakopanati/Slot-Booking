@@ -86,11 +86,18 @@ const ComplaintHeader = () => {
   }
 
   const handleEvent = (date:any) => {
-    setFromDate(date[0])
-    setToDate(date[1])
-
-    setStartDate(moment(date[0]).format('YYYY-MM-DD'))
-    setEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    if (!date) {
+      console.log("222");
+      setFromDate('')
+      setToDate('')
+      setStartDate('')
+      setEndDate('')
+    } else {
+      setFromDate(date[0])
+      setToDate(date[1])
+      setStartDate(moment(date[0]).format('YYYY-MM-DD'))
+      setEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    }
   }
 
   useLayoutEffect(() => {
@@ -364,7 +371,7 @@ const ComplaintHeader = () => {
                       <div className='d-flex'>
                         <label className='form-label fw-bold'>Complaint date</label>
 
-                        <span
+                        {/* <span
                           role='button'
                           onClick={() => {
                             setFromDate('')
@@ -375,7 +382,7 @@ const ComplaintHeader = () => {
                         >
                           {' '}
                           <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
-                        </span>
+                        </span> */}
                       </div>
                       <DateRangePicker
                           format="yyyy-MM-dd"
@@ -383,7 +390,7 @@ const ComplaintHeader = () => {
                             handleEvent(date)
                           }}
                         >
-                           <div className='form-select form-select-solid'>
+                           {/* <div className='form-select form-select-solid'>
                            <input
                             style={{background: '#f5f8fa', border: 'none', outline: 'none'}}
                             placeholder='All'
@@ -395,7 +402,7 @@ const ComplaintHeader = () => {
                                 : ''
                             }`}
                           />
-                            </div>
+                            </div> */}
                         </DateRangePicker>
                      
                     </div>

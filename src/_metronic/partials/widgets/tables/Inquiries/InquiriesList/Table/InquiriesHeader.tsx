@@ -1,22 +1,23 @@
-import {Formik} from 'formik'
-import {FC, useEffect, useLayoutEffect, useState} from 'react'
-import {Navigate, useNavigate} from 'react-router-dom'
+import { Formik } from 'formik'
+import { FC, useEffect, useLayoutEffect, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import {Form} from 'react-bootstrap'
-import {ListPageData} from '../../InquiriesContext'
-import {KTSVG} from '../../../../../../helpers'
+import { Form } from 'react-bootstrap'
+import { ListPageData } from '../../InquiriesContext'
+import { KTSVG } from '../../../../../../helpers'
 import { DateRangePicker } from 'rsuite';
 import "rsuite/dist/rsuite.css"
 import moment from 'moment'
 import closeIcon from '../../../../../../../app/images/closeIcon.svg'
-import {useAuth} from '../../../../../../../app/modules/auth'
+import { useAuth } from '../../../../../../../app/modules/auth'
 import Access from '../../../../../../layout/components/aside/Accessibility'
+import FaultsFormHeader from '../../../../../../../app/modules/faults/component/FaultsFormHeader'
 
 type Props = {
   category: any
 }
 
-const InquiriesHeader: FC<Props> = ({category}) => {
+const InquiriesHeader: FC<Props> = ({ category }) => {
   const {
     setItemIdForUpdate,
     setFilterShow,
@@ -48,7 +49,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   } = ListPageData()
 
   const navigate = useNavigate()
-  const {currentUser, auth} = useAuth()
+  const { currentUser, auth } = useAuth()
   const id: number | any = auth?.roleId
 
   const [fromDate, setFromDate] = useState<any>()
@@ -70,10 +71,19 @@ const InquiriesHeader: FC<Props> = ({category}) => {
   }
 
   const handleEvent = (date: any) => {
-    setFromDate(date[0])
-    setToDate(date[1])
-    setStartDate(moment(date[0]).format('YYYY-MM-DD'))
-    setEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    console.log("date", date);
+    if (!date) {
+      console.log("222");
+      setFromDate('')
+      setToDate('')
+      setStartDate('')
+      setEndDate('')
+    } else {
+      setFromDate(date[0])
+      setToDate(date[1])
+      setStartDate(moment(date[0]).format('YYYY-MM-DD'))
+      setEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    }
   }
 
   useLayoutEffect(() => {
@@ -175,7 +185,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
           username: Yup.string().required('This fielld is required'),
           fullName: Yup.string().required('This fielld is required'),
         })}
-        onSubmit={async (values: any, {resetForm}) => {}}
+        onSubmit={async (values: any, { resetForm }) => { }}
       >
         {(props) => (
           <Form onSubmit={props.handleSubmit}>
@@ -248,7 +258,7 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                           onClick={() => {
                             navigate('inquiriesform/add')
                           }}
-                          // onClick={openAddCategoryModal}
+                        // onClick={openAddCategoryModal}
                         >
                           <span className='svg-icon svg-icon-gray-500 me-1'>
                             <KTSVG
@@ -270,12 +280,12 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                 <div className='row w-100 mx-0 my-3'>
                   <div className='col-lg-3'>
                     <div
-                      style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}
+                      style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
                     >
                       <div className='d-flex'>
                         <label className='form-label fw-bold'>Inquiry date</label>
 
-                        <span
+                        {/* <span
                           role='button'
                           onClick={() => {
                             setFromDate('')
@@ -284,18 +294,20 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                             setEndDate('')
                           }}
                         >
-                          <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
-                        </span>
+                          <img src={closeIcon} style={{ height: '14px', marginLeft: '5px' }} />
+                        </span> */}
                       </div>
 
                       <div>
-                      <DateRangePicker
+                        <DateRangePicker
                           format="yyyy-MM-dd"
                           onChange={(date: any) => {
                             handleEvent(date)
                           }}
+                        // cleanable={false}
                         >
-                           <div className='form-select form-select-solid'>
+
+                          {/* <div className='form-select form-select-solid'>
                            <input
                               style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
                               placeholder='All'
@@ -307,9 +319,9 @@ const InquiriesHeader: FC<Props> = ({category}) => {
                                   : ''
                               }`}
                             />
-                            </div>
+                            </div> */}
                         </DateRangePicker>
-                       
+
                       </div>
                     </div>
                   </div>

@@ -63,11 +63,18 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
   }
 
   const handleEvent = (date: any) => {
-    setFromDate(date[0])
-    setToDate(date[1])
-
-    setStartDate(moment(date[0]).format('YYYY-MM-DD'))
-    setEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    if (!date) {
+      console.log("222");
+      setFromDate('')
+      setToDate('')
+      setStartDate('')
+      setEndDate('')
+    } else {
+      setFromDate(date[0])
+      setToDate(date[1])
+      setStartDate(moment(date[0]).format('YYYY-MM-DD'))
+      setEndDate(moment(date[1]).format('YYYY-MM-DD'))
+    }
   }
   {
     /* begin::Search */
@@ -224,7 +231,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                     >
                       <div>
                         <label className='form-label fw-bold'>Inward date</label>
-                        <span
+                        {/* <span
                           role='button'
                           onClick={() => {
                             setFromDate('')
@@ -234,7 +241,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                           }}
                         >
                           <img src={closeIcon} style={{height: '14px', marginLeft: '5px'}} />
-                        </span>
+                        </span> */}
                       </div>
 
                       <div>
@@ -244,7 +251,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                             handleEvent(date)
                           }}
                         >
-                           <div className='form-select form-select-solid'>
+                           {/* <div className='form-select form-select-solid'>
                            <input
                               style={{background: '#f5f8fa', outline: 'none', border: 'none'}}
                               placeholder='All'
@@ -256,7 +263,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
                                   : ''
                               }`}
                             />
-                            </div>
+                            </div> */}
                         </DateRangePicker>
                         
                       </div>
