@@ -8,7 +8,7 @@ import {deleteCustomer} from '../../helperCustomer/ApiDataRequest'
 import moment from 'moment'
 import {useAuth} from '../../../auth'
 import Access from '../../../../../_metronic/layout/components/aside/Accessibility'
-
+import SimpleBackdrop from '../../../loader/Loader'
 const CustomerTable = () => {
   let {filter, fetchCustomer, customerTableData, pageNo, pageSize} = ListPageData()
 

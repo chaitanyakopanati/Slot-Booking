@@ -87,16 +87,12 @@ const ListDataProvider: FC = ({children}) => {
   {
   }
   const DataGetApiSuppliers = async () => {
-    LoderActions(true)
     try {
       let payload: getAllSuppliersData = await Supplierservice.getAllSuppliers()
-      LoderActions(true)
       if (payload.success == true) {
-        LoderActions(false)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
@@ -110,12 +106,14 @@ const ListDataProvider: FC = ({children}) => {
         createdById
       )
       if (response.success == true) {
-        LoderActions(false)
         setTotalData(response.TotalRecords)
         setGetData(response.data)
         setPageCount(response?.pages)
       }
     } catch (error) {}
+    finally{
+      LoderActions(false)
+    }
   }
 
   {
@@ -130,17 +128,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllSuppliersApi = await Supplierservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

@@ -165,17 +165,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin::  get DataGetAllTypeProduct Type Api call */
   }
   const DataGetAllTypeProduct = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await OfficeStockOutwardsViewService.getProducts()
       //
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeProduct(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -204,13 +201,11 @@ const ListDataProvider: FC = ({children}) => {
 
       if (response.success == true) {
         setGetData(response.data)
-        LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       } else {
         setGetData([])
-        LoderActions(false)
         setPageCount(0)
       }
     } catch (error) {
@@ -226,18 +221,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getZoneTypes Api call */
   }
   const DataGetAllTypeZone = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await OfficeStockOutwardsViewService.getZoneTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
-
         setGetDataAllType(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -245,33 +236,27 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await OfficeStockOutwardsViewService.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   // Technician
   const DataGetAllTypeTechnician = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await OfficeStockOutwardsViewService.getTechnicianTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeTechnician(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

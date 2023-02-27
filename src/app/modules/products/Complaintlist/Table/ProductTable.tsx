@@ -36,7 +36,6 @@ const ProductTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   const handleSearchChange = (e: any) => {

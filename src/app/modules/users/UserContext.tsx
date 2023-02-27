@@ -147,13 +147,11 @@ const ListDataProvider: FC = ({children}) => {
 
       if (response.success == true) {
         setGetData(response.data)
-        LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       } else {
         setGetData([])
-        LoderActions(false)
         setPageCount(0)
       }
     } catch (error) {
@@ -169,18 +167,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getZoneTypes Api call */
   }
   const DataGetAllTypeZone = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Userservice.getZoneTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
-
         setGetDataAllType(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -191,17 +185,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getroleTypes Api call */
   }
   const DataGetAllTyperole = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Userservice.getroleTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeRole(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -209,17 +200,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Userservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

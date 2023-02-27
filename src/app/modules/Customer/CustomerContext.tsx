@@ -1,4 +1,4 @@
-import React, {createContext, Dispatch, FC, SetStateAction, useContext, useState} from 'react'
+import React, { createContext, Dispatch, FC, SetStateAction, useContext, useState } from 'react'
 import {
   getCompaniesTypes,
   getCustomerList,
@@ -20,6 +20,8 @@ import {
   zoneTypesApi,
   ID,
 } from './helperCustomer/ModelCustomer'
+import { useLoader } from '../loader/LoaderContext'
+
 
 export interface CustomerDataContextModel {
   fetchZone: () => void
@@ -55,7 +57,7 @@ export interface CustomerDataContextModel {
 }
 
 let ListDataContext = createContext<CustomerDataContextModel>({
-  fetchZone: () => {},
+  fetchZone: () => { },
   zoneType: [],
   filter: {
     searchText: '',
@@ -71,36 +73,36 @@ let ListDataContext = createContext<CustomerDataContextModel>({
     orderByColumnName: 'createdAt',
     sortColumnDir: 'desc',
   },
-  setFilter: (filterTable) => {},
+  setFilter: (filterTable) => { },
   pageNo: 1,
   pageSize: 10,
-  setPageNo: (number) => {},
-  setPageSize: (number) => {},
-  fetchCustomer: () => {},
+  setPageNo: (number) => { },
+  setPageSize: (number) => { },
+  fetchCustomer: () => { },
   totalData: 0,
   customerTableData: [],
-  setPageCount: (number) => {},
+  setPageCount: (number) => { },
   pageCount: 0,
-  fetchCompanies: () => {},
+  fetchCompanies: () => { },
   companies: [],
   createdBy: [],
   installer: [],
   salesExecutve: [],
-  fetchUserByRoleName: (string) => {},
-  fetchMainPoint: () => {},
+  fetchUserByRoleName: (string) => { },
+  fetchMainPoint: () => { },
   mainPoint: [],
   customer: [],
-  fetchUsetByRoleNameWithSearch: (string) => {},
+  fetchUsetByRoleNameWithSearch: (string) => { },
   viewIdForUpdate: undefined,
-  setViewIdForUpdate: (_setViewIdForUpdate: ID) => {},
-  setItemIdForUpdate: (_itemIdForUpdate: ID) => {},
+  setViewIdForUpdate: (_setViewIdForUpdate: ID) => { },
+  setItemIdForUpdate: (_itemIdForUpdate: ID) => { },
   itemIdForUpdate: undefined,
-  setCustomerTableData: () => {},
+  setCustomerTableData: () => { },
   dueDate: 0,
-  setDueDate: () => {},
+  setDueDate: () => { },
 })
 
-const CustomerContext: FC = ({children}) => {
+const CustomerContext: FC = ({ children }) => {
   const [zoneType, setZoneType] = useState<zoneTypes[]>([])
   const [filter, setFilter] = useState<filterTable>({
     searchText: '',
@@ -131,6 +133,7 @@ const CustomerContext: FC = ({children}) => {
   const [dueDate, setDueDate] = useState(null)
 
   const [viewIdForUpdate, setViewIdForUpdate] = useState<ID>(undefined)
+  let { LoderActions } = useLoader()
 
   // fetch zone api
   let fetchZone = async () => {
@@ -141,6 +144,8 @@ const CustomerContext: FC = ({children}) => {
   }
 
   let fetchCustomer = async () => {
+    try{
+    LoderActions(true)
     let response: customerTypeApi = await getCustomerList(filter, pageNo, pageSize)
     if (response.success == true) {
       setCustomerTableData(response.data)
@@ -148,10 +153,18 @@ const CustomerContext: FC = ({children}) => {
 
       setPageCount(Math.floor(PageCout))
       setTotalData(response.TotalRecords)
+
     } else {
       setCustomerTableData([])
       setPageCount(0)
     }
+  }catch(err){}
+  finally{
+    console.log("************");
+    
+    LoderActions(false)
+
+  }
   }
 
   let fetchCompanies = async () => {
@@ -233,4 +246,4 @@ function ListPageData() {
   return useContext(ListDataContext)
 }
 
-export {CustomerContext, ListPageData}
+export { CustomerContext, ListPageData }

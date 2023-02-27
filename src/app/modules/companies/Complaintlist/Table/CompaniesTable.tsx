@@ -79,7 +79,6 @@ const CompaniesTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   return (

@@ -77,7 +77,6 @@ const MainPointTable = () => {
   useEffect(() => {
     DataGetAllType()
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   const handlesearchange = (e: any) => {

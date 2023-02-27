@@ -117,13 +117,15 @@ const ListDataProvider: FC = ({children}) => {
       )
 
       if (response.success == true) {
-        LoderActions(false)
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       }
     } catch (error) {}
+    finally{
+      LoderActions(false)
+    }
   }
   {
     /* end:: MainPoint:- getDynamicMainPoint Api call */
@@ -141,17 +143,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllMainPointApi = await MainPointservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

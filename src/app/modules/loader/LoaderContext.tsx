@@ -19,6 +19,8 @@ const LoaderProvider: FC = ({children}) => {
   const [open, setOpen] = useState(false)
 
   let LoderActions = (value: boolean) => {
+    console.log("//////",value);
+    
     setOpen(value)
   }
 

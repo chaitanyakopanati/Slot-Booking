@@ -247,13 +247,11 @@ const ListDataProvider: FC = ({children}) => {
       )
       if (response.success == true) {
         setGetData(response.data)
-        LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       } else {
         setGetData([])
-        LoderActions(false)
         setPageCount(0)
       }
     } catch (error) {
@@ -302,53 +300,43 @@ const ListDataProvider: FC = ({children}) => {
 
   // getZoneTypes
   const DataGetAllTypegetZoneTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getZoneTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeZone(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   const DataGetAllTypegetWirelessTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getAllWirelessTypeProducts()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeWireless(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   // status
   const DataGetAllTypeStatus = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getStatusByTypes()
       if (payload.success == true) {
-        LoderActions(false)
         setStatusData(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   //SalesExecutve
   const DataGetAllTypeSalesExecutve = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve = await InstallationsService.getSalesExecutveByTypes()
       if (payload.success == true) {
@@ -356,20 +344,17 @@ const ListDataProvider: FC = ({children}) => {
           return e.name === 'SalesExecutve'
         })
         let a: any = salesData[0].id
-        LoderActions(false)
         setSalesExecutveAllData(a)
         setRoleId(a)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   //SalesExecutveUserByRole
 
   const DataGetAllTypeSalesExecutveUserByRole = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve =
         await InstallationsService.getSalesExecutveByGetUserByRoleTypes()
@@ -377,57 +362,46 @@ const ListDataProvider: FC = ({children}) => {
         setGetUserByRole(payload.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
   // Technician Installation
 
   const DataGetAllTypeInstallation = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getInstallationsByTypes()
       if (payload.success == true) {
-        LoderActions(false)
         setGetInstallations(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   // main point
 
   const DataGetAllTypeMainPoint = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getMainPoint()
       if (payload.success == true) {
-        LoderActions(false)
         setGetMainPoint(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   // cable Type
 
   const DataGetAllTypeCableType = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getcableType()
       if (payload.success == true) {
-        LoderActions(false)
         setGetcableTypeData(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
@@ -457,17 +431,14 @@ const ListDataProvider: FC = ({children}) => {
 
   //Company
   const DataGetAllTypeCompany = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await InstallationsService.getCompany()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetCompanyTypeData(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

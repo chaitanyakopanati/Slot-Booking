@@ -120,13 +120,15 @@ const ListDataProvider: FC = ({children}) => {
           productId
         )
       if (response.success == true) {
-        LoderActions(false)
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       }
     } catch (error) {}
+    finally {
+      LoderActions(false)
+    }
   }
   {
     /* end::  fetchAllofficestockOutward Api call */
@@ -136,17 +138,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getZoneTypes Api call */
   }
   const DataGetAllTypeZone = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await OfficeStockOutwardservice.getZoneTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeZone(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -157,17 +156,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getZoneTypes Api call */
   }
   const DataGetAllTypeProducts = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await OfficeStockOutwardservice.getProducts()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeProduct(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {

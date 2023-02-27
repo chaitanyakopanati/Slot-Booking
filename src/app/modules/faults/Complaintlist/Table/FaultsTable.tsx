@@ -76,9 +76,9 @@ const FaultsTable = () => {
   }
 
   useEffect(() => {
+    fetchAllFault()
     DataGetAllType()
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   const handlesearchange = (e: any) => {

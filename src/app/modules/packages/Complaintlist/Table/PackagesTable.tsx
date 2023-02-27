@@ -79,7 +79,6 @@ const PackagesTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   return (

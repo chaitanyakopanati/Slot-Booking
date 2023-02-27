@@ -94,15 +94,12 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Product:- getProduct Api call */
   }
   const DataGetApiProduct = async () => {
-    LoderActions(true)
     try {
       let payload: getAllProductData = await Complaintservice.getProduct()
       if (payload.success == true) {
-        LoderActions(false)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -124,12 +121,14 @@ const ListDataProvider: FC = ({children}) => {
         connectionTypeId
       )
       if (response.success == true) {
-        LoderActions(false)
         setGetData(response.data)
         setTotalData(response.TotalRecords)
         setPageCount(response?.pages)
       }
     } catch (error) {}
+    finally{
+      LoderActions(false)
+    }
   }
   {
     /* end:: Product:- getDynamicProduct Api call */
@@ -148,17 +147,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllProductApi = await Complaintservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

@@ -196,13 +196,11 @@ const ListDataProvider: FC = ({children}) => {
 
       if (response.success == true) {
         setGetData(response.data)
-        LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       } else {
         setGetData([])
-        LoderActions(false)
         setPageCount(0)
       }
     } catch (error) {
@@ -216,39 +214,32 @@ const ListDataProvider: FC = ({children}) => {
 
   // Createdby Type
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await Inquiriesservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   // status
   const DataGetAllTypeStatus = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await Inquiriesservice.getStatusByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setStatusData(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   //SalesExecutve
   const DataGetAllTypeSalesExecutve = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve = await Inquiriesservice.getSalesExecutveByTypes()
 
@@ -257,20 +248,17 @@ const ListDataProvider: FC = ({children}) => {
           return e.name === 'SalesExecutve'
         })
         let a: any = salesData[0].id
-        LoderActions(false)
         setSalesExecutveAllData(a)
         setRoleId(a)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   //SalesExecutveUserByRole
 
   const DataGetAllTypeSalesExecutveUserByRole = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApiSalesExecutve =
         await Inquiriesservice.getSalesExecutveByGetUserByRoleTypes()
@@ -279,23 +267,18 @@ const ListDataProvider: FC = ({children}) => {
         setGetUserByRole(payload?.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
   const DataGetAllsalesExcutive = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await Inquiriesservice.GetTechnicianUsers()
       if (payload.success == true) {
-        LoderActions(false)
         setGetSalesExcutiveData(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

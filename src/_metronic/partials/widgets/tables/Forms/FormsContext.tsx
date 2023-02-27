@@ -254,17 +254,17 @@ const ListDataProvider: FC = ({children}) => {
 
       if (response.success == true) {
         setGetData(response.data)
-        LoderActions(false)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
         setTotalData(response.TotalRecords)
       } else {
         setGetData([])
-        LoderActions(false)
         setPageCount(0)
       }
     } catch (error) {
     } finally {
+      console.log("888*---");
+      
       LoderActions(false)
     }
   }
@@ -274,7 +274,7 @@ const ListDataProvider: FC = ({children}) => {
 
   // Download fill
 
-  let fetchAllDownload = async () => {
+  let fetchAllDownload = async () => {    
     LoderActions(true)
     try {
       let response: any = await Inquiriesservice.getDynamicDownloadFile(
@@ -307,17 +307,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: User:- getZoneTypes Api call */
   }
   const DataGetAllTypeZone = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getZoneTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllType(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -326,57 +323,49 @@ const ListDataProvider: FC = ({children}) => {
 
   //Company
   const DataGetAllTypeCompany = async () => {
-    LoderActions(true)
-    try {
+        try {
       let payload: GetAllDataApi = await Inquiriesservice.getCompany()
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCompany(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   const DataGetAllsalesExcutive = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllDataApi = await Inquiriesservice.GetTechnicianUsers()
       if (payload.success == true) {
-        LoderActions(false)
         setGetSalesExcutiveData(payload?.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
   //SalesExecutve
   const DataGetAllTypeSalesExecutve = async () => {
-    LoderActions(true)
-    try {
+        try {
       let payload: GetAllDataApiSalesExecutve = await Inquiriesservice.getSalesExecutveByTypes()
       if (payload.success == true) {
         const salesData = payload.data.filter((e) => {
           return e.name === 'SalesExecutve'
         })
         let a: any = salesData[0].id
-        LoderActions(false)
         setSalesExecutveAllData(a)
         setRoleId(a)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
+      
     }
   }
 
   //SalesExecutveUserByRole
 
   const DataGetAllTypeSalesExecutveUserByRole = async () => {
-    LoderActions(true)
+    
     try {
       let payload: GetAllDataApiSalesExecutve =
         await Inquiriesservice.getSalesExecutveByGetUserByRoleTypes()
@@ -384,73 +373,60 @@ const ListDataProvider: FC = ({children}) => {
         setGetUserByRole(payload.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
   //packages category
 
   const DataGetAllTypePackagesCategory = async () => {
-    LoderActions(true)
+    
     try {
       let payload: GetAllData = await Inquiriesservice.getPackagesCategory()
       if (payload.success == true) {
         setGetPackagesCategory(payload?.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
   //packages
 
   const DataGetAllTypePackages = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getPackage()
       if (payload.success == true) {
         setGetPackages(payload?.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
   //Bank
 
   const DataGetAllTypeBank = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getBank()
       if (payload.success == true) {
         setGetBank(payload?.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
   //Reciever
 
   const DataGetAllTypeReciever = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Inquiriesservice.getReciever()
       if (payload.success == true) {
         setGetReciever(payload?.data)
       }
     } catch (error) {
-      LoderActions(false)
     } finally {
-      LoderActions(false)
     }
   }
 
@@ -463,7 +439,6 @@ const ListDataProvider: FC = ({children}) => {
         try {
           let payload: GetAllData = await Inquiriesservice.getUserName(suggestionUserText)
           if (payload.success == true) {
-            LoderActions(false)
             setgetUserNameData(payload?.data)
           } else if (payload.message === 'No records found') {
             setgetUserNameData([])

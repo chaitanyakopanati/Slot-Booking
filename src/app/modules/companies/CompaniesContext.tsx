@@ -92,9 +92,7 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      LoderActions(true)
       if (response.success == true) {
-        LoderActions(false)
 
         setGetData(response.data)
         const PageCout = response?.pages
@@ -102,6 +100,7 @@ const ListDataProvider: FC = ({children}) => {
         setTotalData(response.TotalRecords)
       }
     } catch (error) {
+    }finally{
       LoderActions(false)
     }
   }
@@ -115,17 +114,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllComapniesApi = await Zoneservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

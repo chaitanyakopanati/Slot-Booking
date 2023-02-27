@@ -92,17 +92,13 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Package-Category:- getAllPackagecategoriesData Api call */
   }
   const DataGetApiPackagecategories = async () => {
-    LoderActions(true)
     try {
       let payload: getAllPackagecategoriesData = await Complaintservice.getPackageCategories()
-      LoderActions(true)
       if (payload.success == true) {
-        LoderActions(false)
         // setGetData(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -114,6 +110,8 @@ const ListDataProvider: FC = ({children}) => {
   }
   let fetchAllPackagecategories = async () => {
     LoderActions(true)
+    console.log("start");
+    
     try {
       let response: GetAllPackagecategorietApi = await Complaintservice.getDynamicPackageCategories(
         pageNo,
@@ -122,12 +120,16 @@ const ListDataProvider: FC = ({children}) => {
         createdById
       )
       if (response.success == true) {
-        LoderActions(false)
         setTotalData(response.TotalRecords)
         setGetData(response.data)
         setPageCount(response?.pages)
       }
     } catch (error) {}
+    finally{
+      console.log("and");
+      
+      LoderActions(false)
+    }
   }
   {
     /* end:: Package-Category:- getDynamicPackageCategories Api call */
@@ -145,17 +147,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllPackagecategorietApi = await Complaintservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

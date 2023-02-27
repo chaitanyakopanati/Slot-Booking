@@ -95,13 +95,13 @@ const ListDataProvider: FC = ({children}) => {
       LoderActions(true)
 
       if (response.success == true) {
-        LoderActions(false)
         setTotalData(response.TotalRecords)
         setGetData(response.data)
         const PageCout = response?.pages
         setPageCount(Math.floor(PageCout))
       }
     } catch (error) {
+    }finally{
       LoderActions(false)
     }
   }
@@ -122,17 +122,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllPackagesApi = await Zoneservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

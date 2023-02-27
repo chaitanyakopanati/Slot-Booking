@@ -111,7 +111,6 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Complaint Type:- getDynamicComplaints Api call */
   }
   let fetchAllComplaint = async () => {
-    LoderActions(true)
     try {
       let response: GetAllComplaintApi = await Complaintservice.getDynamicComplaints(
         pageNo,
@@ -119,16 +118,13 @@ const ListDataProvider: FC = ({children}) => {
         searchText,
         createdById
       )
-      LoderActions(true)
       if (response.success == true) {
-        LoderActions(false)
 
         setGetData(response.data)
         setPageCount(response?.pages)
         setTotalData(response.TotalRecords)
       }
     } catch (error) {
-      LoderActions(false)
     }
   }
   {
@@ -141,17 +137,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllComplaintApi = await Complaintservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 

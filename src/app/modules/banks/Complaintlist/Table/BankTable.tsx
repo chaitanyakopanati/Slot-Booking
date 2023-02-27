@@ -79,7 +79,6 @@ const BankTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   return (

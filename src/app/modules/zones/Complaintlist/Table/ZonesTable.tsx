@@ -74,7 +74,6 @@ const ZonesTable = () => {
 
   useEffect(() => {
     DataGetAllTypeCreatedByTypes()
-    LoderActions(false)
   }, [])
 
   function handlesearchange(e: any) {

@@ -87,17 +87,14 @@ const ListDataProvider: FC = ({children}) => {
     /* begin:: Fault:- get Faults Type Api call */
   }
   const DataGetAllType = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllData = await Fautlservice.getFaultsTypes()
       //
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllType(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
   {
@@ -144,17 +141,14 @@ const ListDataProvider: FC = ({children}) => {
   }
 
   const DataGetAllTypeCreatedByTypes = async () => {
-    LoderActions(true)
     try {
       let payload: GetAllFaulttApi = await Fautlservice.getCreatedByTypes()
 
       if (payload.success == true) {
-        LoderActions(false)
         setGetDataAllTypeCreatedBy(payload.data)
       }
     } catch (error) {
     } finally {
-      LoderActions(false)
     }
   }
 
