@@ -153,12 +153,12 @@ const getStatusByTypes = () => {
 
 // SalesExecutve
 const getSalesExecutveByTypes = () => {
-  return http.get('GetUserByRoleName?roleName=SalesExecutve')
+  return http.get('GetUserByRoleName?roleName=SalesExecutive')
 }
 
 // SalesExecutveUserByRole
 const getSalesExecutveByGetUserByRoleTypes = () => {
-  return http.get(`GetUserByRoleName?roleName=SalesExecutve`)
+  return http.get(`GetUserByRoleName?roleName=SalesExecutive`)
 }
 
 // Technician Installations

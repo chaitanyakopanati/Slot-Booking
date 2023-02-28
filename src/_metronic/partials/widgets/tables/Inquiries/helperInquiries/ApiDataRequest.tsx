@@ -140,7 +140,7 @@ const getSalesExecutveByTypes = () => {
 
 // SalesExecutveUserByRole
 const getSalesExecutveByGetUserByRoleTypes = () => {
-  return http.get(`GetUserByRoleName?roleName=SalesExecutve`)
+  return http.get(`GetUserByRoleName?roleName=SalesExecutive`)
 }
 
 const getUserName = (username: string) => {

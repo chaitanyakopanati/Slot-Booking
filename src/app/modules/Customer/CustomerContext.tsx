@@ -192,7 +192,7 @@ const CustomerContext: FC = ({ children }) => {
         setInstaller(response.data)
         return
       }
-      if (rolename === 'SalesExecutve') {
+      if (rolename === 'SalesExecutive') {
         setSalesExecutve(response.data)
         return
       }

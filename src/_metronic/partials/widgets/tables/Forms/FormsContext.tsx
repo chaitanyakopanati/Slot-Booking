@@ -350,7 +350,7 @@ const ListDataProvider: FC = ({children}) => {
       let payload: GetAllDataApiSalesExecutve = await Inquiriesservice.getSalesExecutveByTypes()
       if (payload.success == true) {
         const salesData = payload.data.filter((e) => {
-          return e.name === 'SalesExecutve'
+          return e.name === 'SalesExecutive'
         })
         let a: any = salesData[0].id
         setSalesExecutveAllData(a)

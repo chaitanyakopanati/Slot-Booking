@@ -47,7 +47,7 @@ function CustomerHeader() {
     fetchCompanies()
     fetchUserByRoleName('Admin')
     fetchUserByRoleName('Technician')
-    fetchUserByRoleName('SalesExecutve')
+    fetchUserByRoleName('SalesExecutive')
     fetchMainPoint()
   }, [])
 
