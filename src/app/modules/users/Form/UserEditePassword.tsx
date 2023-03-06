@@ -11,13 +11,19 @@ import {GetAllData} from '../helperUser/ModelUserType'
 import {useQuery} from 'react-query'
 import {KTSVG} from '../../../../_metronic/helpers'
 
-const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$')
+// const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$')
+const passwordRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
 
 let validationSchemaNewForm = Yup.object({
   newpassword: Yup.string()
-    .required('This field is required')
-    .matches(validPassword, 'Invalid Password'),
-
+  .label('Password')
+  .required('This field is required')
+  .min(8, 'Seems a bit short(Min 8 characters)...')
+  .max(24, 'Please try a shorter password(Max 24 characters)...).')
+  .matches(
+    passwordRegExp,
+    'Password should Have 1 Uppercase,1 Lowercase,1 digit,1 special character'
+  ),
   password: Yup.string().when('newpassword', {
     is: (val: any) => (val && val.length > 0 ? true : false),
     then: Yup.string().oneOf([Yup.ref('newpassword')], 'Both password need to be the same'),

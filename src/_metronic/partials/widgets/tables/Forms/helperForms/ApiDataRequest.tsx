@@ -239,7 +239,7 @@ const getUserName = (username: string) => {
 
 //Reciever
 const getReciever = () => {
-  return http.get(`GetUserByRoleName?roleName=Technician`)
+  return http.get(`GetRecieverUsers`)
 }
 
 const postInstallations = (obj: postlistData,remarkData?:any,installationId?:any) => {  

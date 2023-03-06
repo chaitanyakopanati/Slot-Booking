@@ -463,6 +463,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                         <div>
                           <DateRangePicker
                             format="yyyy-MM-dd"
+                            placement="auto"
                             onChange={(date: any) => {
                               handleEventCreatedAt(date)
                             }}
@@ -500,6 +501,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                       <div>
                         <DateRangePicker
                           format="yyyy-MM-dd"
+                          placement="auto"
                           onChange={(date: any) => {
                             handleEventFormDate(date)
                           }}
@@ -537,6 +539,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                       <div>
                         <DateRangePicker
                           format="yyyy-MM-dd"
+                          placement="auto"
                           onChange={(date: any) => {
                             handleEventExpiryDate(date)
                           }}

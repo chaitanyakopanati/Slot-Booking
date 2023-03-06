@@ -319,7 +319,7 @@ console.log(" category.data", category.data);
                     />
                   </div>
 
-                  <div className='col-md-3'>
+                  <div className='col-lg-9 mb-5'>
                     <label className='form-label fw-bold '>Address</label>
                     <input
                       className='form-control form-control-lg form-control-solid'
