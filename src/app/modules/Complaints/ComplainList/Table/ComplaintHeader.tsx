@@ -386,6 +386,7 @@ const ComplaintHeader = () => {
                       </div>
                       <DateRangePicker
                           format="yyyy-MM-dd"
+                          showOneCalendar
                           onChange={(date: any) => {
                             handleEvent(date)
                           }}

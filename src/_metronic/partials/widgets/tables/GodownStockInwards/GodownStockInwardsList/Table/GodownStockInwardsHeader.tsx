@@ -246,6 +246,7 @@ const GodownStockInwardsHeader: FC<Props> = ({category}) => {
 
                       <div>
                       <DateRangePicker
+                      showOneCalendar
                           format="yyyy-MM-dd"
                           onChange={(date: any) => {
                             handleEvent(date)

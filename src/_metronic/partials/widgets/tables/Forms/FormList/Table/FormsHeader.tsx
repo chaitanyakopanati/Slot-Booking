@@ -98,6 +98,8 @@ const FormsHeader: FC<Props> = ({ category }) => {
 
   // created at
   const handleEventCreatedAt = (date: any) => {
+    console.log("date",date);
+    
     if (!date) {
       console.log("222");
       setFromCreatedAtDate('')
@@ -464,6 +466,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                           <DateRangePicker
                             format="yyyy-MM-dd"
                             placement="auto"
+                            showOneCalendar
                             onChange={(date: any) => {
                               handleEventCreatedAt(date)
                             }}
@@ -502,6 +505,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                         <DateRangePicker
                           format="yyyy-MM-dd"
                           placement="auto"
+                          showOneCalendar
                           onChange={(date: any) => {
                             handleEventFormDate(date)
                           }}
@@ -540,6 +544,7 @@ const FormsHeader: FC<Props> = ({ category }) => {
                         <DateRangePicker
                           format="yyyy-MM-dd"
                           placement="auto"
+                          showOneCalendar
                           onChange={(date: any) => {
                             handleEventExpiryDate(date)
                           }}

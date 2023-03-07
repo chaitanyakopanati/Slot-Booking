@@ -346,6 +346,7 @@ const InstallationHeader: FC<Props> = ({category}) => {
                       <div>
                       <DateRangePicker
                           format="yyyy-MM-dd"
+                          showOneCalendar
                           onChange={(date: any) => {
                             handleEvent(date)
                           }}
